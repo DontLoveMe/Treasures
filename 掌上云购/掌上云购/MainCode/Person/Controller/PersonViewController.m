@@ -147,8 +147,8 @@
             SnatchRecordController *seVC = [[SnatchRecordController alloc] init];
             seVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:seVC animated:YES];
-            //UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            //window.rootViewController = [[LoginViewController alloc] init];
+//            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//            window.rootViewController = [[LoginViewController alloc] init];
         }
             break;
         case 1://幸运记录
