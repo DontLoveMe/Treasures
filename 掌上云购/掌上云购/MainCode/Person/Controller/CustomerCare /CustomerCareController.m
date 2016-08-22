@@ -31,7 +31,7 @@
 }
 
 - (void)NavAction:(UIButton *)button{
-    
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 

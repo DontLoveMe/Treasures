@@ -8,16 +8,17 @@
 
 #import "BaseViewController.h"
 
-@interface HomeSearchController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+@interface HomeSearchController : BaseViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>{
 
     UISearchBar *_searchBar;
     
     UITableView *_searchHistoryTable;
     
-    UIImageView *_separateLine;
+//    UIImageView *_separateLine;
     
     UILabel     *_hotSearchLabel;
     
+    NSArray   *_historyData;
 }
 
 @end
