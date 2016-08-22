@@ -34,6 +34,9 @@
     //商品展示
     UISegmentedControl  *_kindControl;
     UICollectionView    *_goodsList;
+    
+    //数据
+    NSMutableArray      *_goodsArr;
 
 }
 @end

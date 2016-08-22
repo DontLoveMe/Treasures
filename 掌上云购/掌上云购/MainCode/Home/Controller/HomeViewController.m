@@ -44,8 +44,14 @@
     self.title = @"夺宝首页";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    //初始化数据
+    _goodsArr = [NSMutableArray array];
+    
     [self initNavBar];
     [self initViews];
+    
+    [self requestData];
+    
 }
 
 #pragma makr - initView
@@ -182,7 +188,7 @@
 #pragma mark -- 集合视图的数据源方法
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 4;
+    return _goodsArr.count;
     
 }
 
@@ -190,6 +196,13 @@
     
     HomeGoodsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeGoods_Cell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
+    
+    NSDictionary *dic = [_goodsArr objectAtIndex:indexPath.row];
+    
+    cell.goodsName.text = [dic objectForKey:@"name"];
+    cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%@%%",[dic objectForKey:@"sellShare"]];
+    NSLogZS(@"%@",dic);
+    
     return cell;
 }
 //设置单元格的尺寸
@@ -217,9 +230,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
     NSLogZS(@"选择了第%ld个",indexPath.row);
+    NSDictionary *dic = [_goodsArr objectAtIndex:indexPath.row];
+    
     if (indexPath.row == 0) {
         
         GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+        GDVC.goodsId = [dic objectForKey:@"id"];
         GDVC.isJoind = 0;
         GDVC.isAnnounced = 1;
         GDVC.isPrized = 0;
@@ -269,5 +285,34 @@
 
 }
 
+#pragma mark 请求网络数据
+- (void)requestData{
+
+    [self requestGoodsList:@"1"];
+
+}
+
+- (void)requestGoodsList:(NSString *)kindStr{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"orderType":kindStr}
+               forKey:@"paramsMap"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+                  _goodsArr = [json objectForKey:@"data"];
+                  [_goodsList reloadData];
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+
+}
 
 @end

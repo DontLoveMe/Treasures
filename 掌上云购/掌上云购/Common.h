@@ -15,11 +15,17 @@
 
 /*---------------登陆注册模块----------------------*/
 //会员登陆
-#define Login_URL @"/pcpServer-inf/user/login"
+#define Login_URL   @"/pcpServer-inf/user/login"
 //会员注册
-#define Regist_URL @"/pcpServer-inf/user/register"
+#define Regist_URL  @"/pcpServer-inf/user/register"
 //找回密码
 #define FindPWD_URL @"/pcpServer-inf/user/updatepass"
+
+/*---------------首页商品模块---------------------*/
+//商品列表
+#define GoodsList_URL @"/pcpServer-inf/product/list"
+//商品详情
+#define GoodsDetail_URL @"/pcpServer-inf/product/detai"
 
 /*---------------收货地址----------------------*/
 //省、市、区

@@ -63,4 +63,7 @@
 //标记是否中奖(前置条件：已揭晓。0:尚未中奖 1:中奖)
 @property (nonatomic ,assign)NSInteger isPrized;
 
+//商品id
+@property (nonatomic ,copy)NSString *goodsId;
+
 @end
