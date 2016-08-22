@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RechargeCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6sP-kd-WiT">
+                        <rect key="frame" x="8" y="5" width="33" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="GCe-Wa-VN8"/>
+                            <constraint firstAttribute="width" constant="33" id="eub-0U-Wsa"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mir-JT-Vn7">
+                        <rect key="frame" x="49" y="13" width="221" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="19" id="dZ2-Gn-KZt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZl-2V-HhI">
+                        <rect key="frame" x="278" y="8" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="28" id="ZrP-au-ZzM"/>
+                            <constraint firstAttribute="height" constant="28" id="ruT-Xs-4vm"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" backgroundImage="对勾-暗.png"/>
+                        <state key="selected" backgroundImage="对勾.png">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Mir-JT-Vn7" firstAttribute="leading" secondItem="6sP-kd-WiT" secondAttribute="trailing" constant="8" id="0Wx-iF-3HF"/>
+                    <constraint firstItem="6sP-kd-WiT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6b8-Oj-Hzt"/>
+                    <constraint firstItem="NZl-2V-HhI" firstAttribute="leading" secondItem="Mir-JT-Vn7" secondAttribute="trailing" constant="8" id="FlF-1c-MpW"/>
+                    <constraint firstItem="NZl-2V-HhI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="N9L-sC-mRV"/>
+                    <constraint firstItem="Mir-JT-Vn7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Wzq-VZ-x7w"/>
+                    <constraint firstItem="6sP-kd-WiT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XzX-Nw-b3i"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NZl-2V-HhI" secondAttribute="trailing" constant="6" id="esh-RJ-eWb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="Mir-JT-Vn7" id="KH3-DS-OaU"/>
+                <outlet property="drawButton" destination="NZl-2V-HhI" id="PLP-fO-Fe1"/>
+                <outlet property="iconView" destination="6sP-kd-WiT" id="v0J-C0-pXj"/>
+            </connections>
+            <point key="canvasLocation" x="319" y="278"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="对勾-暗.png" width="200" height="200"/>
+        <image name="对勾.png" width="200" height="200"/>
+    </resources>
+</document>

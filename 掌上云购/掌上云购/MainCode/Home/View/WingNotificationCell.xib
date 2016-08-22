@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="28" id="KGk-i7-Jjw" customClass="WingNotificationCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="27"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="喇叭图标.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZGB-VE-fh2">
+                        <rect key="frame" x="8" y="4" width="24" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="XrL-yy-XNl"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是一条中奖消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HA-Iu-8Nd">
+                        <rect key="frame" x="32" y="4" width="280" height="19"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ZGB-VE-fh2" secondAttribute="bottom" constant="4" id="HEn-OL-rwG"/>
+                    <constraint firstAttribute="trailing" secondItem="9HA-Iu-8Nd" secondAttribute="trailing" constant="8" id="Yfp-I6-vJI"/>
+                    <constraint firstItem="ZGB-VE-fh2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="cri-SK-wD3"/>
+                    <constraint firstItem="9HA-Iu-8Nd" firstAttribute="leading" secondItem="ZGB-VE-fh2" secondAttribute="trailing" id="czL-WW-C6f"/>
+                    <constraint firstItem="ZGB-VE-fh2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dep-1h-unJ"/>
+                    <constraint firstItem="9HA-Iu-8Nd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="gMA-Be-Cax"/>
+                    <constraint firstAttribute="bottom" secondItem="9HA-Iu-8Nd" secondAttribute="bottom" constant="4" id="rV6-92-rc4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="markImg" destination="ZGB-VE-fh2" id="8ln-a7-6Do"/>
+                <outlet property="notificationLabel" destination="9HA-Iu-8Nd" id="5Re-lZ-bLq"/>
+            </connections>
+            <point key="canvasLocation" x="348" y="339"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="喇叭图标.png" width="311" height="220"/>
+    </resources>
+</document>

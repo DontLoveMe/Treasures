@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="KGk-i7-Jjw" customClass="BroughtHistoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="321" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="321" height="87"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="云购客服.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Ac-YV-NSN">
+                        <rect key="frame" x="8" y="8" width="61" height="67"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="0Ac-YV-NSN" secondAttribute="height" multiplier="21:23" id="aOa-cF-MT2"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名：吃的饱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0e-2f-84J">
+                        <rect key="frame" x="77" y="8" width="232" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="o2f-SY-siR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与了：8次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNG-2B-J1Z">
+                        <rect key="frame" x="77" y="32" width="232" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="RIg-77-dN0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="城市ip：192.168.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlr-bi-a1T">
+                        <rect key="frame" x="77" y="54" width="232" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="PYt-er-Xum"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="h0e-2f-84J" secondAttribute="trailing" constant="12" id="399-2C-KYT"/>
+                    <constraint firstAttribute="trailing" secondItem="rlr-bi-a1T" secondAttribute="trailing" constant="12" id="5rQ-1Q-rPt"/>
+                    <constraint firstItem="h0e-2f-84J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Cia-yz-XfS"/>
+                    <constraint firstItem="rlr-bi-a1T" firstAttribute="leading" secondItem="0Ac-YV-NSN" secondAttribute="trailing" constant="8" id="GlM-Fz-c2Q"/>
+                    <constraint firstAttribute="bottom" secondItem="0Ac-YV-NSN" secondAttribute="bottom" constant="12" id="KdF-W5-9yA"/>
+                    <constraint firstItem="uNG-2B-J1Z" firstAttribute="top" secondItem="h0e-2f-84J" secondAttribute="bottom" constant="4" id="QgR-01-i1x"/>
+                    <constraint firstItem="0Ac-YV-NSN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="RYC-2j-z8W"/>
+                    <constraint firstItem="rlr-bi-a1T" firstAttribute="top" secondItem="uNG-2B-J1Z" secondAttribute="bottom" constant="2" id="XJq-1e-fsl"/>
+                    <constraint firstItem="h0e-2f-84J" firstAttribute="leading" secondItem="0Ac-YV-NSN" secondAttribute="trailing" constant="8" id="XkF-3A-jae"/>
+                    <constraint firstItem="0Ac-YV-NSN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="heN-px-w9S"/>
+                    <constraint firstItem="uNG-2B-J1Z" firstAttribute="leading" secondItem="0Ac-YV-NSN" secondAttribute="trailing" constant="8" id="ii9-Bj-LDe"/>
+                    <constraint firstAttribute="trailing" secondItem="uNG-2B-J1Z" secondAttribute="trailing" constant="12" id="yGc-3d-2YG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="302.5" y="389"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="云购客服.png" width="128" height="128"/>
+    </resources>
+</document>

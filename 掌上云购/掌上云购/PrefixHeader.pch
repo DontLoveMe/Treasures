@@ -1,0 +1,49 @@
+//
+//  PrefixHeader.pch
+//  掌上云购
+//
+//  Created by coco船长 on 16/8/3.
+//  Copyright © 2016年 nevermore. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+#import "Common.h"
+#import <AFNetworking.h>
+#import <JSONKit.h>
+#import <MBProgressHUD.h>
+#import <MJRefresh.h>
+#import "UIColor+RGB.h"
+#import "ZSTools.h"
+#import "UIViewExt.h"
+#import "MD5Security.h"
+#import "MJExtension.h"
+#endif
+
+//主色调
+#define ThemeColor @"1685FE"
+
+//取得屏幕的宽、高
+#define KScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
+
+//列表背景色
+#define TableViewBackColor [UIColor colorWithRed:242/256.0 green:238/256.0 blue:235/256.0 alpha:1]
+
+//导航栏和标签栏的高度
+#define kNavigationBarHeight 64
+#define kTabBarHeight 49
+
+//判断尺寸
+#define kkDeviceVersion UIDevice.currentDevice.systemVersion.floatValue >= 7.0
+
+//调试状态
+#ifdef DEBUG
+#define NSLogZS(...) NSLog(__VA_ARGS__)
+#else
+#define NSLogZS(...)
+#endif
+
+#endif /* PrefixHeader_pch */
