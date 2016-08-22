@@ -1924,7 +1924,7 @@
 				DDF92B4E1D6A9B15009D5A1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		DDF92B4F1D6A9B15009D5A1E /* Build configuration list for PBXNativeTarget "掌上云购" */ = {
 			isa = XCConfigurationList;
@@ -1933,7 +1933,7 @@
 				DDF92B511D6A9B15009D5A1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
