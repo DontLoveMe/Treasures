@@ -25,7 +25,9 @@
 //商品列表
 #define GoodsList_URL @"/pcpServer-inf/product/list"
 //商品详情
-#define GoodsDetail_URL @"/pcpServer-inf/product/detai"
+#define GoodsDetail_URL @"/pcpServer-inf/product/detail"
+//参与记录
+#define GoodsJoinRecords_URL @"/pcpServer-inf/sale/partiList"
 
 /*---------------收货地址----------------------*/
 //省、市、区

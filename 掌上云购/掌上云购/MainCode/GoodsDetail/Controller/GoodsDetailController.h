@@ -53,12 +53,18 @@
     //购买记录页面
     BroughtHistoryView  *_broughtHistoryView;
     
+    //商品详情字典
+    NSDictionary        *_dataDic;
+    
+    //商品参与记录数组
+    NSMutableArray      *_joinRecordArr;
+    NSInteger           _pageIndex;
     
 }
 
 //标记是否参与(0:尚未参加 1:已参加)
 @property (nonatomic ,assign)NSInteger isJoind;
-//标记是否揭晓(0:尚未揭晓 1:正在揭晓 2:已揭晓)
+//标记是否揭晓(1:尚未揭晓 2:正在揭晓 3:已揭晓)
 @property (nonatomic ,assign)NSInteger isAnnounced;
 //标记是否中奖(前置条件：已揭晓。0:尚未中奖 1:中奖)
 @property (nonatomic ,assign)NSInteger isPrized;

@@ -168,16 +168,16 @@
     NSInteger selectIndext = control.selectedSegmentIndex;
     switch (selectIndext) {
         case 0:
-            NSLogZS(@"选了第一个");
+            [self requestGoodsList:@"3"];
             break;
         case 1:
-            NSLogZS(@"选了第二个");
+            [self requestGoodsList:@"2"];
             break;
         case 2:
-            NSLogZS(@"选了第三个");
+            [self requestGoodsList:@"1"];
             break;
         case 3:
-            NSLogZS(@"选了第四个");
+            [self requestGoodsList:@"4"];
             break;
         default:
             break;
@@ -232,48 +232,60 @@
     NSLogZS(@"选择了第%ld个",indexPath.row);
     NSDictionary *dic = [_goodsArr objectAtIndex:indexPath.row];
     
-    if (indexPath.row == 0) {
-        
-        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-        GDVC.goodsId = [dic objectForKey:@"id"];
-        GDVC.isJoind = 0;
-        GDVC.isAnnounced = 1;
-        GDVC.isPrized = 0;
-        GDVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:GDVC
-                                             animated:YES];
-        
-    }else if (indexPath.row == 1) {
-        
-        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-        GDVC.isJoind = 1;
-        GDVC.isAnnounced = 1;
-        GDVC.isPrized = 0;
-        GDVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:GDVC
-                                             animated:YES];
-        
-    }else if (indexPath.row == 2) {
-        
-        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-        GDVC.isJoind = 0;
-        GDVC.isAnnounced = 2;
-        GDVC.isPrized = 0;
-        GDVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:GDVC
-                                             animated:YES];
-        
-    }else if (indexPath.row == 3) {
-        
-        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-        GDVC.isJoind = 1;
-        GDVC.isAnnounced = 2;
-        GDVC.isPrized = 0;
-        GDVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:GDVC
-                                             animated:YES];
-        
-    }
+    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+    GDVC.goodsId = [dic objectForKey:@"id"];
+    GDVC.isJoind = 0;
+    GDVC.isAnnounced = 1;
+    GDVC.isPrized = 0;
+    GDVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:GDVC
+                                         animated:YES];
+    
+//    if (indexPath.row == 0) {
+//        
+//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+//        GDVC.goodsId = [dic objectForKey:@"id"];
+//        GDVC.isJoind = 0;
+//        GDVC.isAnnounced = 1;
+//        GDVC.isPrized = 0;
+//        GDVC.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:GDVC
+//                                             animated:YES];
+//        
+//    }else if (indexPath.row == 1) {
+//        
+//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+//        GDVC.goodsId = [dic objectForKey:@"id"];
+//        GDVC.isJoind = 1;
+//        GDVC.isAnnounced = 1;
+//        GDVC.isPrized = 0;
+//        GDVC.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:GDVC
+//                                             animated:YES];
+//        
+//    }else if (indexPath.row == 2) {
+//        
+//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+//        GDVC.goodsId = [dic objectForKey:@"id"];
+//        GDVC.isJoind = 0;
+//        GDVC.isAnnounced = 2;
+//        GDVC.isPrized = 0;
+//        GDVC.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:GDVC
+//                                             animated:YES];
+//        
+//    }else if (indexPath.row == 3) {
+//        
+//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+//        GDVC.goodsId = [dic objectForKey:@"id"];
+//        GDVC.isJoind = 1;
+//        GDVC.isAnnounced = 2;
+//        GDVC.isPrized = 0;
+//        GDVC.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:GDVC
+//                                             animated:YES];
+//        
+//    }
 
 }
 
@@ -288,7 +300,7 @@
 #pragma mark 请求网络数据
 - (void)requestData{
 
-    [self requestGoodsList:@"1"];
+    [self requestGoodsList:@"3"];
 
 }
 
