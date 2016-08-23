@@ -281,6 +281,35 @@
     }
     
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
+    
+}
+
+#pragma mark 请求网络数据
+- (void)requestData{
+    
+    [self requestDetail];
+    
+}
+
+- (void)requestDetail{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"productId":_goodsId}
+               forKey:@"paramsMap"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
 
 }
 

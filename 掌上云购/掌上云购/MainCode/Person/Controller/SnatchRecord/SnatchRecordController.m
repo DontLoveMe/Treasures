@@ -133,6 +133,14 @@
     return 160;
 }
 
+//- (void)viewDidAppear:(BOOL)animated{
+//
+//    [super viewDidAppear:animated];
+//    UIImageView *imageVIew = [[UIImageView alloc] initWithFrame:CGRectMake(0, -64, KScreenWidth, 20.f)];
+//    imageVIew.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+//    [self.view addSubview:imageVIew];
+//
+//}
 
 
 

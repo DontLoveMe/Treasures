@@ -57,7 +57,7 @@
     }else if (button.tag == 102) {
         
         _tableView.editing = !_tableView.editing;
-//        _tableView.allowsMultipleSelection = YES;
+        
     }
 }
 - (void)viewDidLoad {
@@ -230,11 +230,20 @@
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    AddressModel *model = [AddressModel mj_objectWithKeyValues:_data[indexPath.row]];
-    [self deleteAddress:model.addressId index:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        AddressModel *model = [AddressModel mj_objectWithKeyValues:_data[indexPath.row]];
+        [self deleteAddress:model.addressId index:indexPath.row];
+    }
     
 }
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewCellEditingStyleDelete;
+//}
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
 
 #pragma mark - addAddress
 - (void)addAddressAction:(UIButton *)button {

@@ -8,6 +8,7 @@
 
 #import "GoodsStateCell.h"
 #import "AddressViewController.h"
+#import "AlertController.h"
 
 @implementation GoodsStateCell
 
@@ -19,27 +20,15 @@
 }
 //确认地址
 - (IBAction)sureAddress:(UIButton *)sender {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                             message:@"是否使用默认地址" preferredStyle:UIAlertControllerStyleAlert];
-   
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           [alertController dismissViewControllerAnimated:YES
-                                                                                               completion:nil];
-                                                       }];
-    [alertController addAction:sureAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             [alertController dismissViewControllerAnimated:YES
-                                                                                                 completion:nil];
-                                                         }];
-    [alertController addAction:cancelAction];
-    [[self viewController] presentViewController:alertController
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"是否使用默认地址?"];
+    [alert setSureBlock:^{
+        
+    }];
+    [[self viewController] presentViewController:alert
                                         animated:YES
                                       completion:nil];
+    
+    
 
 }
 //选择地址
@@ -50,47 +39,26 @@
 //延期收货
 - (IBAction)delayReceipt:(UIButton *)sender {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                             message:@"确认延期收货么?\n(提供48小时延期)" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             [alertController dismissViewControllerAnimated:YES
-                                                                                                 completion:nil];
-                                                         }];
-    [alertController addAction:sureAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             [alertController dismissViewControllerAnimated:YES
-                                                                                                 completion:nil];
-                                                         }];
-    [alertController addAction:cancelAction];
-    [[self viewController] presentViewController:alertController
-                       animated:YES
-                     completion:nil];
+    
+    
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?"];
+    [alert setSureBlock:^{
+        
+    }];
+    [[self viewController] presentViewController:alert
+                                        animated:YES
+                                      completion:nil];
 }
 //确认收货
 - (IBAction)sureReceipt:(UIButton *)sender {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                             message:@"确认收货么？" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           [alertController dismissViewControllerAnimated:YES
-                                                                                               completion:nil];
-                                                       }];
-    [alertController addAction:sureAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             [alertController dismissViewControllerAnimated:YES
-                                                                                                 completion:nil];
-                                                         }];
-    [alertController addAction:cancelAction];
-    [[self viewController] presentViewController:alertController
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?"];
+    [alert setSureBlock:^{
+        
+    }];
+    [[self viewController] presentViewController:alert
                                         animated:YES
                                       completion:nil];
+    
 }
 
 - (UIViewController *)viewController {

@@ -6,8 +6,8 @@
 //  Copyright © 2016年 nevermore. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface LuckyRecordController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface LuckyRecordController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 @end
