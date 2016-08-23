@@ -1,58 +1,39 @@
 //
-//  SunSharingViewController.m
+//  SunViewController.m
 //  掌上云购
 //
-//  Created by 杨浩斌 on 16/8/19.
+//  Created by 杨浩斌 on 16/8/23.
 //  Copyright © 2016年 nevermore. All rights reserved.
 //
 
-#import "SunSharingViewController.h"
+#import "SunViewController.h"
 #import "SunShareCell.h"
-#import "PersonalCenterController.h"
-@interface SunSharingViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@interface SunViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
-@implementation SunSharingViewController
-
+@implementation SunViewController
 {
-
-
+    
     UITableView *_tab;
     
     NSMutableArray *_dataArray;
-    
-
+ 
 }
-
-
-
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    _dataArray = [NSMutableArray array];
-    
-    self.title = @"晒单分享";
-    
-    UIImage *image =[[UIImage imageNamed:@"返回"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    UIBarButtonItem *imageButton =[[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(leftClick:)];
-    
-    self.navigationItem.leftBarButtonItem = imageButton;
-    
-    
     //创建列表
     [self creatTableView];
-    
-    
     
 }
 
 -(void)creatTableView
 {
-
+    
     _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     
     _tab.dataSource = self;
@@ -60,20 +41,20 @@
     _tab.delegate = self;
     
     [self.view addSubview:_tab];
-
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     return 4;
-
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
+    
+    
     SunShareCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (!cell) {
@@ -90,8 +71,8 @@
         
         tap.numberOfTouchesRequired = 1;
         
-     [cell.iconView addGestureRecognizer:tap];
-
+        [cell.iconView addGestureRecognizer:tap];
+        
         
         cell.nameLabel.text = @"明天5000个赌个金碗";
         
@@ -118,34 +99,18 @@
     }
     
     return cell;
-
-}
-
--(void)tap:(UITapGestureRecognizer *)tap
-{
-
-    PersonalCenterController *VC = [[PersonalCenterController alloc]init];
     
-    [self.navigationController pushViewController:VC animated:YES];
-    
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     return 280;
     
-
-
+    
+    
 }
 
--(void)leftClick:(UIButton *)btn
-{
-
-    [self.navigationController popViewControllerAnimated:YES];
-
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
