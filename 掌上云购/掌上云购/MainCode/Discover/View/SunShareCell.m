@@ -8,6 +8,7 @@
 
 #import "SunShareCell.h"
 #import "UIView+SDAutoLayout.h"
+#import "PersonalCenterController.h"
 @implementation SunShareCell
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -27,7 +28,15 @@
 
     _iconView = [[UIImageView alloc]init];
     
+    _iconView.userInteractionEnabled = YES;
+    
     [self.contentView addSubview:_iconView];
+       
+    
+    
+    
+    
+    
     
     _iconView.sd_layout
     .leftSpaceToView(self.contentView,10)
@@ -71,8 +80,6 @@
     
     _backView = [[UIImageView alloc]init];
     
-   // _backView.backgroundColor = [UIColor grayColor];
-  
     [self.contentView addSubview:_backView];
     
     _backView.sd_layout
@@ -155,10 +162,9 @@
     .heightIs(40);
     
     
-    
-    
-    
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

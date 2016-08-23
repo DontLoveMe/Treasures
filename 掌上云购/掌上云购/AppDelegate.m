@@ -19,6 +19,7 @@
     
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _window.backgroundColor = [UIColor whiteColor];
+    
     [_window makeKeyAndVisible];
     
     TabbarViewcontroller *TVC = [[TabbarViewcontroller alloc] init];

@@ -33,21 +33,21 @@
 - (void)initNavBar{
     
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40.f, 25.f)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25.f, 25.f)];
     rightButton.tag = 101;
-    [rightButton setTitle:@"信息" forState:UIControlStateNormal];
-//    [rightButton setBackgroundImage:[UIImage imageNamed:@""]
-//                          forState:UIControlStateNormal];
+//    [rightButton setTitle:@"信息" forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"消息"]
+                          forState:UIControlStateNormal];
     [rightButton addTarget:self
                    action:@selector(NavAction:)
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     
-    UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40.f, 25.f)];
+    UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25.f, 25.f)];
     rightButton1.tag = 102;
-    [rightButton1 setTitle:@"设置" forState:UIControlStateNormal];
-//    [rightButton1 setBackgroundImage:[UIImage imageNamed:@""]
-//                           forState:UIControlStateNormal];
+//    [rightButton1 setTitle:@"设置" forState:UIControlStateNormal];
+    [rightButton1 setBackgroundImage:[UIImage imageNamed:@"我的_设置"]
+                           forState:UIControlStateNormal];
     [rightButton1 addTarget:self
                     action:@selector(NavAction:)
           forControlEvents:UIControlEventTouchUpInside];
@@ -72,11 +72,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = YES;
-    //去掉导航栏下方的线
+
+    //设置导航栏透明
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init]
                        forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.navigationBar.translucent = YES;
+    //去掉导航下面的一条白线
+//    self.navigationController.navigationBar.clipsToBounds = YES;
+    
+    
+    self.view.backgroundColor= [UIColor colorWithWhite:0.9 alpha:1];
 }
 
 - (void)viewDidLoad {
@@ -88,12 +95,16 @@
     self.data = @[@"云购记录",@"幸运记录",@"我的红包",@"我的晒单",@"充值记录",@"云购客服"];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((KScreenWidth-12*4)/3, (KScreenWidth-12*4)/3);
-    layout.minimumLineSpacing = 10;
-    layout.sectionInset = UIEdgeInsetsMake(12, 12, 12, 12);
+    layout.itemSize = CGSizeMake((KScreenWidth-2)/3, (KScreenWidth-2)/3);
+    layout.minimumLineSpacing = 1;
+    layout.minimumInteritemSpacing = 1;
+    layout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
     
-    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.collectionViewLayout = layout;
+    _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.scrollEnabled = NO;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
@@ -128,14 +139,17 @@
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.data.count;
+    return self.data.count+3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PersonCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    
-    cell.titleLabel.text = self.data[indexPath.row];
-    cell.iconView.image = [UIImage imageNamed:self.data[indexPath.row]];
+    cell.backgroundColor = [UIColor whiteColor];
+    if (indexPath.row < self.data.count) {
+        
+        cell.titleLabel.text = self.data[indexPath.row];
+        cell.iconView.image = [UIImage imageNamed:self.data[indexPath.row]];
+    }
     
     return cell;
 }
@@ -146,6 +160,8 @@
         {
             SnatchRecordController *seVC = [[SnatchRecordController alloc] init];
             seVC.hidesBottomBarWhenPushed = YES;
+            seVC.navigationController.navigationBar.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+//            [seVC.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
             [self.navigationController pushViewController:seVC animated:YES];
 //            UIWindow *window = [UIApplication sharedApplication].keyWindow;
 //            window.rootViewController = [[LoginViewController alloc] init];
