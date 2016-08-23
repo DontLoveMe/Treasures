@@ -7,6 +7,7 @@
 //
 
 #import "AddAddressController.h"
+#import "AlertController.h"
 
 @interface AddAddressController ()
 
@@ -42,24 +43,13 @@
             ![self.detailAddressTV.text isEqualToString:_model.addressDetailFull]||
             [self.isDefaul boolValue] != [_model.isDefault boolValue]) {
             
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改了信息没有保存，确认现在返回吗？"
-                                                                                     message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
-                                                                   style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * _Nonnull action)
-            {
-                [alertController dismissViewControllerAnimated:YES
-                                                    completion:nil];
-                                                                 }];
-            [alertController addAction:cancelAction];
-            UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认"
-                                                                   style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * _Nonnull action)
-            {
+            
+            
+            AlertController *alert = [[AlertController alloc] initWithTitle:@"修改了信息没有保存，确认现在返回吗？" message:@""];
+            [alert setSureBlock:^{
                 [self.navigationController popViewControllerAnimated:YES];
-                                                                 }];
-            [alertController addAction:sureAction];
-            [self presentViewController:alertController
+            }];
+            [self presentViewController:alert
                                animated:YES
                              completion:nil];
             
@@ -162,8 +152,10 @@
         _phoneTF.text.length == 0 ||
         _addressTF.text.length == 0 ||
         _detailAddressTV.text.length == 0) {
+        
+        
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                                 message:@"请完善信息！" preferredStyle:UIAlertControllerStyleAlert];
+                                                                                 message:@"请完善信息" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
                                                                style:UIAlertActionStyleCancel
                                                              handler:^(UIAlertAction * _Nonnull action) {

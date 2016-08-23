@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的-图标.png" translatesAutoresizingMaskIntoConstraints="NO" id="xID-IF-ugP">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xID-IF-ugP">
                         <rect key="frame" x="30" y="30" width="40" height="39"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P78-Vf-iUU">
@@ -45,7 +45,4 @@
             <point key="canvasLocation" x="436" y="238"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="我的-图标.png" width="39" height="43"/>
-    </resources>
 </document>

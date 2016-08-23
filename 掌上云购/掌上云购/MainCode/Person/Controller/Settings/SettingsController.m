@@ -7,6 +7,7 @@
 //
 
 #import "SettingsController.h"
+#import "AlertController.h"
 
 @interface SettingsController ()
 
@@ -117,15 +118,11 @@
         case 0://密码修改
         {
             
-            [self showHUD:@"加载中"];
-            [self performSelector:@selector(a) withObject:nil afterDelay:1];
         }
             break;
         case 1://通知设置
         {
-            [self showHUD:@"加载中"];
-            [self performSelector:@selector(b) withObject:nil afterDelay:1];
-
+        
         }
             break;
         case 2://常见问题
@@ -161,28 +158,13 @@
 }
 #pragma mark - 缓存
 - (void)clearCacheAlertView {
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"温馨提示"
     
-                                        message:[NSString stringWithFormat:@"缓存大小:%.2fM,是否清除？",[self folderSizeWithPath:[self getPath]]]
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"否"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action)
-    {
-        [alertController dismissViewControllerAnimated:YES
-                                            completion:nil];
-                                                         }];
-    [alertController addAction:cancelAction];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是"
-                                                           style:UIAlertActionStyleDestructive
-                                                         handler:^(UIAlertAction * _Nonnull action)
-    {
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:[NSString stringWithFormat:@"缓存大小:%.2fM,是否清除？",[self folderSizeWithPath:[self getPath]]]];
+    [alert setSureBlock:^{
         [self clearCacheWithPath:[self getPath]];
         [_tableView reloadData];
-                                                         }];
-    [alertController addAction:sureAction];
-    [self presentViewController:alertController
+    }];
+    [self presentViewController:alert
                        animated:YES
                      completion:nil];
 }

@@ -6,8 +6,8 @@
 //  Copyright © 2016年 nevermore. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SnatchRecordController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface SnatchRecordController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 @end
