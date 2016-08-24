@@ -45,9 +45,59 @@
 
 - (void)initViews{
     
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight)];
-    imageview.image = [UIImage imageNamed:@"商品_1.png"];
-    [self.view addSubview:imageview];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
+    _webView.backgroundColor = [UIColor colorFromHexRGB:@"f6f5f5"];
+    _webView.delegate = self;
+    //自动适配屏幕
+//    _webView.scalesPageToFit = YES;
+    [self.view addSubview:_webView];
+    
+    //设置风火轮
+    _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    
+}
+
+- (void)setGoodsId:(NSString *)goodsId{
+
+    _goodsId = goodsId;
+    
+    [self requestData];
+
+}
+
+#pragma mark - 请求网络
+- (void)requestData{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"productId":_goodsId}
+               forKey:@"paramsMap"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsTPdetail_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              [_webView loadHTMLString:[json objectForKey:@"data"]baseURL:nil];
+              
+          } failure:^(NSError *error) {
+              
+          }];
+
+}
+
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    
+    [_activityView startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [_activityView stopAnimating];
+    
+    _activityView.hidden = YES;
+    
     
 }
 

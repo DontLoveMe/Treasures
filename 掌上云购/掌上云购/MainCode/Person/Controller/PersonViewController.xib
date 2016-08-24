@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonViewController">
             <connections>
                 <outlet property="balanceButton" destination="xQ9-ak-Iut" id="8un-QG-r6C"/>
+                <outlet property="bgIconView" destination="1Ss-oZ-L01" id="OFS-R1-Rbh"/>
                 <outlet property="collectionView" destination="6TR-Lq-bP7" id="Keo-jg-3uu"/>
                 <outlet property="iconView" destination="wqa-Qa-pre" id="PmJ-Tt-hJ5"/>
                 <outlet property="integralButton" destination="sNq-jg-CC6" id="feH-U0-XQ7"/>
@@ -60,7 +61,7 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Ss-oZ-L01">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="228"/>
-                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="228" id="4Kj-0Q-aNS"/>
                     </constraints>

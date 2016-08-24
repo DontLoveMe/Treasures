@@ -55,6 +55,8 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     _identify = @"LuckyRecordCell";
     UINib *nib = [UINib nibWithNibName:@"LuckyRecordCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
@@ -74,7 +76,7 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 190;
+    return 145;
 }
 
 @end

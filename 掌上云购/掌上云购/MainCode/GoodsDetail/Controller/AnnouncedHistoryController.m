@@ -37,9 +37,14 @@
     [super viewDidLoad];
     self.title = @"往期揭晓";
     
+    _announceHistoryArr = [NSMutableArray array];
+    _pageIndex = 0;
+    
     [self initNavBar];
 
     [self initViews];
+    
+    [self requestData:_pageIndex];
     
 }
 
@@ -53,6 +58,31 @@
     [_announcedTableView registerNib:[UINib nibWithNibName:@"AnnounceHistoryCell"
                                                     bundle:[NSBundle mainBundle]]
               forCellReuseIdentifier:@"AnnounceHistory_Cell"];
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        
+                _pageIndex = 1;
+                _announceHistoryArr = [NSMutableArray array];
+                [self requestData:_pageIndex];
+        
+    }];
+    NSArray *gifArr = @[[UIImage imageNamed:@"1"],
+                        [UIImage imageNamed:@"2"],
+                        [UIImage imageNamed:@"3"],
+                        [UIImage imageNamed:@"4"],
+                        [UIImage imageNamed:@"5"],
+                        [UIImage imageNamed:@"6"],
+                        [UIImage imageNamed:@"7"],
+                        [UIImage imageNamed:@"8"]];
+    [header setImages:gifArr
+             duration:1 forState:MJRefreshStateRefreshing];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _announcedTableView.mj_header = header;
+//    [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//        
+
+//        
+//    }];
     [self.view addSubview:_announcedTableView];
     
 }
@@ -60,7 +90,7 @@
 #pragma mark - UITableViewDelegate,UItableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 8;
+    return _announceHistoryArr.count;
     
 }
 
@@ -68,6 +98,14 @@
     
     AnnounceHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnnounceHistory_Cell"
                                                                 forIndexPath:indexPath];
+    NSDictionary *dic = [_announceHistoryArr objectAtIndex:indexPath.row];
+    
+    cell.goodsMsgLabel.text = [NSString stringWithFormat:@"期号：%@(揭晓时间：%@)",[dic objectForKey:@"drawTimes"],[dic objectForKey:@"drawDate"]];
+    cell.userName.text = [NSString stringWithFormat:@"获奖者：%@",[dic objectForKey:@"nickName"]];
+    cell.userId.text = [NSString stringWithFormat:@"用户ID:%@",[dic objectForKey:@"drawUserId"]];
+    cell.luckyNum.text = [NSString stringWithFormat:@"幸运号码：%@次",[dic objectForKey:@"drawNumber"]];
+    cell.joinTimes.text = [NSString stringWithFormat:@"本期参与：%@次",[dic objectForKey:@"qty"]];
+    
     return cell;
     
 }
@@ -83,6 +121,35 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLogZS(@"点击了第%ld个单元格",indexPath.row);
     
+}
+
+#pragma mark - 请求网络数据
+- (void)requestData:(NSInteger)indexPath{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"productId":_goodsID}
+               forKey:@"paramsMap"];
+    [params setObject:@"10" forKey:@"rows"];
+    [params setObject:[NSNumber numberWithInteger:indexPath]
+               forKey:@"page"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsHistoryPrize_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+              
+                  _announceHistoryArr = [json objectForKey:@"data"];
+                  [_announcedTableView reloadData];
+                  [_announcedTableView.mj_header endRefreshing];
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+
 }
 
 @end

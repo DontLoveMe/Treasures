@@ -39,9 +39,19 @@
     
 #warning 商品详情可以从父控制器传过来
     self.title = @"商品详情";
+    _isJoind = 0;
+    _isAnnounced = 1;
+    _isPrized = 1;
+    _pageIndex = 1;
+    
+    _dataDic = [NSDictionary dictionary];
+    //参与记录的数组
+    _joinRecordArr = [NSMutableArray array];
     
     [self initNavBar];
     [self initViews];
+    
+    [self requestData];
     
 }
 
@@ -55,6 +65,7 @@
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         NSLogZS(@"上拉了");
         
+        [self requestJoinList:_pageIndex];
         if (!_broughtHistoryView) {
             _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight, KScreenWidth , KScreenHeight - kNavigationBarHeight)];
             _broughtHistoryView.backgroundColor = [UIColor whiteColor];
@@ -72,7 +83,6 @@
         
     }];
     
-    
     [self initTopView];
     [self initCenterView];
     [self initBottonView];
@@ -82,6 +92,8 @@
 #pragma mark - broughtHistoryDelegate
 - (void)pullBack{
     
+    _pageIndex = 1;
+    _joinRecordArr = [NSMutableArray array];
     [UIView animateWithDuration:0.5
                      animations:^{
                          _broughtHistoryView.top = KScreenHeight - kNavigationBarHeight;
@@ -94,8 +106,7 @@
 - (void)initTopView{
 
     //轮播图
-    NSArray *imgArr = @[[UIImage imageNamed:@"商品_1"],[UIImage imageNamed:@"商品_2"],[UIImage imageNamed:@"商品_3"],[UIImage imageNamed:@"商品_4"],[UIImage imageNamed:@"商品_5"]];
-    _topGoodImgView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth *375 / 375) imagesGroup:imgArr];
+    _topGoodImgView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth *375 / 375) imagesGroup:nil];
     _topGoodImgView.placeholderImage = [UIImage imageNamed:@"placeholder"];
     _topGoodImgView.infiniteLoop = YES;
     _topGoodImgView.delegate = self;
@@ -135,7 +146,6 @@
 - (void)initCenterView{
     
     _goodsName = [[UILabel alloc] initWithFrame:CGRectMake(12.f, _topGoodImgView.bottom , KScreenWidth - 24.f, 40.f)];
-    _goodsName.text = @"Apple iPhone6s Plus 16G \"_\" 唯一的不同，是处处不同";
     _goodsName.numberOfLines = 0;
     _goodsName.textColor = [UIColor redColor];
     _goodsName.font = [UIFont systemFontOfSize:13.f];
@@ -144,7 +154,6 @@
     
 #warning 这里需要根据是否参与，是否结束等状态，改变视图内容和高度
     _oherFunctionTableView = [[GoodsDetailFunctionTableView alloc] initWithFrame:CGRectMake(0, _goodsName.bottom + 4.f, KScreenWidth, 275.f)];
-//    _oherFunctionTableView = [[GoodsDetailFunctionTableView alloc] initWithFrame:CGRectMake(0, _goodsName.bottom + 4.f, KScreenWidth, 300.f)];
     _oherFunctionTableView.isJoin = _isJoind;
     _oherFunctionTableView.isAnnounced = _isAnnounced;
     _oherFunctionTableView.isPrized = _isPrized;
@@ -159,7 +168,7 @@
     _bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_bottomView];
     
-    if (_isAnnounced == 0) {
+    if (_isAnnounced == 1) {
     
         _buyNowButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth / 3, kTabBarHeight)];
         [_buyNowButton setTitle:@"立即购买" forState:UIControlStateNormal];
@@ -242,7 +251,7 @@
 
     [super viewWillAppear:animated];
     
-    if (_isAnnounced == 0) {
+    if (_isAnnounced == 1) {
         
         if (_isJoind == 0) {
             
@@ -254,7 +263,7 @@
             
         }
         
-    }else if (_isAnnounced == 1){
+    }else if (_isAnnounced == 2){
         
         if (_isJoind == 0) {
             
@@ -266,7 +275,7 @@
             
         }
         
-    }else if (_isAnnounced == 2){
+    }else if (_isAnnounced == 3){
     
         if (_isJoind == 0) {
             
@@ -294,23 +303,144 @@
 - (void)requestDetail{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"productId":_goodsId}
+    #warning 是否登陆
+    [params setObject:@{@"productId":_goodsId,
+                        @"userId":@"1"}
                forKey:@"paramsMap"];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsDetail_URL];
     
     [ZSTools post:url
            params:params
           success:^(id json) {
               
               if ([json objectForKey:@"flag"]) {
-
+                  
+                  //商品图片
+                  NSDictionary  *dataDic = [json objectForKey:@"data"];
+                  NSArray   *picDicArr = [dataDic objectForKey:@"proPictureList"];
+                  NSMutableArray *picArr = [NSMutableArray array];
+                  for (int i = 0; i < picDicArr.count ; i ++) {
+                      
+                      NSDictionary *dic = [picDicArr objectAtIndex:i];
+                      [picArr addObject:[dic objectForKey:@"img650"]];
+                      
+                  }
+                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      _topGoodImgView.imageURLStringsGroup = picArr;
+                  });
+                  
+                  //商品名
+                  _goodsName.text = [dataDic objectForKey:@"name"];
+                  
+                  //商品状态信息
+                  _oherFunctionTableView.dataDic = dataDic;
+                  //进度
+//                  _oherFunctionTableView.goodSID = [dataDic objectForKey:@"drawId"];
+//                  NSInteger total =  [[dataDic objectForKey:@"totalShare"] integerValue];
+//                  NSInteger now = [[dataDic objectForKey:@"sellShare"] integerValue];
+//                  _oherFunctionTableView.progress = now * 100 / total ;
+                  
+                  //夺宝状态
+                  //是否揭晓
+                  _isAnnounced = [[dataDic objectForKey:@"status"] integerValue];
+                  
+                  //是否参与
+                  _isJoind = [[dataDic objectForKey:@"isBuy"] integerValue];
+                  NSLogZS(@"参与了么:%ld",[[dataDic objectForKey:@"isBuy"] integerValue]);
+                  
+                  _drawId = [dataDic objectForKey:@"drawId"];
+                  
+                  _oherFunctionTableView.isJoin = _isJoind;
+                  _oherFunctionTableView.isAnnounced = _isAnnounced;
+                  _oherFunctionTableView.isPrized = _isPrized;
+                  [_oherFunctionTableView reloadData];
+                  
               }
               
           } failure:^(NSError *error) {
               
           }];
 
+}
+
+//参与记录
+- (void)requestJoinList:(NSInteger) pageIndex{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"drawId":_drawId} forKey:@"paramsMap"];
+    [params setObject:[NSNumber numberWithInteger:_pageIndex] forKey:@"page"];
+    [params setObject:@"15" forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsJoinRecords_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+              
+                  _joinRecordArr = [json objectForKey:@"data"];
+                  _broughtHistoryView.dataArr = _joinRecordArr;
+              
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+
+}
+
+#pragma mark - 重写set方法
+- (void)setIsAnnounced:(NSInteger)isAnnounced{
+
+    if (_isAnnounced != isAnnounced) {
+        
+        _isAnnounced = isAnnounced;
+        if (_isAnnounced == 1) {
+
+            _oherFunctionTableView.height = 275.f;
+            
+        }else if (_isAnnounced == 2){
+
+            _oherFunctionTableView.height = 260.f;
+            
+        }else if (_isAnnounced == 3){
+            
+            _oherFunctionTableView.height = 308.f;
+
+            
+        }
+        _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
+        
+    }
+
+}
+
+- (void)setIsJoind:(NSInteger)isJoind{
+
+    if (_isJoind != isJoind) {
+        
+        _isJoind = isJoind;
+        
+        if (_isJoind == 0) {
+            return;
+        }else{
+            _oherFunctionTableView.height = _oherFunctionTableView.height + 25.f;
+        }
+        
+    }
+
+}
+
+
+- (void)setDrawId:(NSString *)drawId{
+
+    if (_drawId != drawId) {
+        
+        _drawId = drawId;
+        
+    }
+    
 }
 
 @end

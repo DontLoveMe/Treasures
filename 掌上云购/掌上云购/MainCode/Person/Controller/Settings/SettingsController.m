@@ -160,9 +160,16 @@
 - (void)clearCacheAlertView {
     
     AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:[NSString stringWithFormat:@"缓存大小:%.2fM,是否清除？",[self folderSizeWithPath:[self getPath]]]];
-    [alert setSureBlock:^{
-        [self clearCacheWithPath:[self getPath]];
-        [_tableView reloadData];
+    [alert addButtonTitleArray:@[@"否",@"是"]];
+    __weak typeof(AlertController*) weakAlert = alert;
+    [alert setClickButtonBlock:^(NSInteger tag) {
+        if (tag == 0) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }else {
+            [self clearCacheWithPath:[self getPath]];
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            [_tableView reloadData];
+        }
     }];
     [self presentViewController:alert
                        animated:YES

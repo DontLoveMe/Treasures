@@ -27,7 +27,7 @@
                             <constraint firstAttribute="height" constant="20" id="o2f-SY-siR"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与了：8次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNG-2B-J1Z">
@@ -36,7 +36,7 @@
                             <constraint firstAttribute="height" constant="20" id="RIg-77-dN0"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="城市ip：192.168.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlr-bi-a1T">
@@ -45,7 +45,7 @@
                             <constraint firstAttribute="height" constant="20" id="PYt-er-Xum"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -64,6 +64,12 @@
                     <constraint firstAttribute="trailing" secondItem="uNG-2B-J1Z" secondAttribute="trailing" constant="12" id="yGc-3d-2YG"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="headPic" destination="0Ac-YV-NSN" id="X5H-mm-JLb"/>
+                <outlet property="joinTimes" destination="uNG-2B-J1Z" id="Gue-aO-mzS"/>
+                <outlet property="userIP" destination="rlr-bi-a1T" id="Sed-gb-BJQ"/>
+                <outlet property="userName" destination="h0e-2f-84J" id="zfs-lQ-gYa"/>
+            </connections>
             <point key="canvasLocation" x="302.5" y="389"/>
         </tableViewCell>
     </objects>

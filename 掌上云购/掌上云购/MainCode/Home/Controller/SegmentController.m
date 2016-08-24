@@ -117,6 +117,11 @@
     for (int i = 0; i < titleArr.count ; i ++) {
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((1 + width) * i + 0.5, 4, width, 36.f)];
+        if (i == 0) {
+            
+            button.userInteractionEnabled = NO;
+            
+        }
         button.tag = 100 + i;
         [button setTitle:titleArr[i]
                 forState:UIControlStateNormal];

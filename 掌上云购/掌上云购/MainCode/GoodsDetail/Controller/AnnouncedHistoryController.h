@@ -13,7 +13,12 @@
 @interface AnnouncedHistoryController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
 
     UITableView *_announcedTableView;
+    
+    NSMutableArray      *_announceHistoryArr;
+    NSInteger           _pageIndex;
 
 }
+
+@property (nonatomic ,copy)NSString *goodsID;
 
 @end

@@ -21,8 +21,14 @@
 //确认地址
 - (IBAction)sureAddress:(UIButton *)sender {
     AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"是否使用默认地址?"];
-    [alert setSureBlock:^{
-        
+    [alert addButtonTitleArray:@[@"否",@"是"]];
+    __weak typeof(AlertController*) weakAlert = alert;
+    [alert setClickButtonBlock:^(NSInteger tag) {
+        if (tag == 0) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }else {
+            
+        }
     }];
     [[self viewController] presentViewController:alert
                                         animated:YES
@@ -42,8 +48,14 @@
     
     
     AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?"];
-    [alert setSureBlock:^{
-        
+    [alert addButtonTitleArray:@[@"取消",@"确认"]];
+    __weak typeof(AlertController*) weakAlert = alert;
+    [alert setClickButtonBlock:^(NSInteger tag) {
+        if (tag == 0) {//取消
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }else {//确认
+            
+        }
     }];
     [[self viewController] presentViewController:alert
                                         animated:YES
@@ -51,9 +63,15 @@
 }
 //确认收货
 - (IBAction)sureReceipt:(UIButton *)sender {
-    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?"];
-    [alert setSureBlock:^{
-        
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认收货么?"];
+    [alert addButtonTitleArray:@[@"取消",@"确认"]];
+    __weak typeof(AlertController*) weakAlert = alert;
+    [alert setClickButtonBlock:^(NSInteger tag) {
+        if (tag == 0) {//取消
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }else {//确认
+            
+        }
     }];
     [[self viewController] presentViewController:alert
                                         animated:YES

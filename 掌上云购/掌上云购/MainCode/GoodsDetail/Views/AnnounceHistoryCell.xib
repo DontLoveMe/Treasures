@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="20" id="5ZY-rd-VfD"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="商品_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="4cn-2t-wML">
@@ -38,7 +38,7 @@
                             <constraint firstAttribute="height" constant="20" id="xZ9-kS-7gO"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户ID：sakjjkawq" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w1-UD-1BG">
@@ -47,7 +47,7 @@
                             <constraint firstAttribute="height" constant="20" id="1IX-z2-0Bv"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幸运号码：10920941" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdv-oT-mJW">
@@ -56,7 +56,7 @@
                             <constraint firstAttribute="height" constant="20" id="naZ-b8-M6S"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期参与：892次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xz-H0-IXe">
@@ -65,7 +65,7 @@
                             <constraint firstAttribute="height" constant="20" id="dk2-FX-AEF"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7MW-xY-Kp2">
@@ -101,6 +101,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="goodsMsgLabel" destination="sJV-Rs-Zgc" id="arJ-RC-h36"/>
+                <outlet property="joinTimes" destination="0xz-H0-IXe" id="lMC-gV-DiL"/>
+                <outlet property="luckyNum" destination="Jdv-oT-mJW" id="ILx-OQ-n1M"/>
+                <outlet property="picImgView" destination="4cn-2t-wML" id="fLF-s0-rOR"/>
+                <outlet property="userId" destination="5w1-UD-1BG" id="Kbt-2F-Add"/>
+                <outlet property="userName" destination="ySm-Oc-HFC" id="BOz-6k-W0E"/>
             </connections>
             <point key="canvasLocation" x="105" y="337"/>
         </tableViewCell>
