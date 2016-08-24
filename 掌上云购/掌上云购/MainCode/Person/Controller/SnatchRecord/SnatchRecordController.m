@@ -47,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"购买记录";
+    self.title = @"云购记录";
     
     [self initNavBar];
     

@@ -53,7 +53,7 @@
     [self initNavBar];
     
     
-    _data = @[@"头像管理",@"ID",@"昵称",@"手机号码管理",@"绑定邮箱",@"地址管理"];
+    _data = @[@"头像管理",@"ID",@"昵称",@"手机号码",@"绑定邮箱",@"地址管理"];
     _iconImg = [UIImage imageNamed:@"无"];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStylePlain];
@@ -108,7 +108,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 5:
-            cell.detailTextLabel.text = @"长沙岳麓区";
+//            cell.detailTextLabel.text = @"长沙岳麓区";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
             

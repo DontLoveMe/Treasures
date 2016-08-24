@@ -22,13 +22,13 @@
     
     _nameLabel.text = _model.receiver;
     
-    _phoneLabel.text = [_model.mobile stringValue];
+    _phoneLabel.text = [NSString stringWithFormat:@"联系方式：%@",[_model.mobile stringValue]];
     
     if (![_model.province[@"name"]isKindOfClass:[NSNull class]]) {
         if ([_model.city[@"name"]isEqualToString:_model.area[@"name"]]) {
-            _addressLabel.text = [NSString stringWithFormat:@"%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.addressDetailFull];
+            _addressLabel.text = [NSString stringWithFormat:@"地址：%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.addressDetailFull];
         }else{
-            _addressLabel.text = [NSString stringWithFormat:@"%@%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.area[@"name"],_model.addressDetailFull];
+            _addressLabel.text = [NSString stringWithFormat:@"地址：%@%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.area[@"name"],_model.addressDetailFull];
         }
        
     }else {
@@ -38,8 +38,12 @@
     
     if ([_model.isDefault boolValue]) {
         _defaultButton.selected = YES;
+        [_setDfaultBtn setTitle:@"默认地址" forState:UIControlStateNormal];
+        [_setDfaultBtn setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
     }else {
         _defaultButton.selected = NO;
+        [_setDfaultBtn setTitle:@"设为默认" forState:UIControlStateNormal];
+        [_setDfaultBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
 }
 - (IBAction)defaultAction:(UIButton *)sender {
