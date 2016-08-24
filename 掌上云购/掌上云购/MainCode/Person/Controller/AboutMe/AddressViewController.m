@@ -10,6 +10,7 @@
 #import "AddAddressController.h"
 #import "AddressCell.h"
 #import "AddressModel.h"
+#import "AlertController.h"
 
 @interface AddressViewController ()
 
@@ -36,17 +37,17 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 45.f, 25.f)];
-    rightButton.tag = 102;
-    //    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [rightButton setTitle:@"编辑" forState:UIControlStateNormal];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"按钮框"]
-                           forState:UIControlStateNormal];
-    [rightButton addTarget:self
-                    action:@selector(NavAction:)
-          forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightItem;
+//    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 45.f, 25.f)];
+//    rightButton.tag = 102;
+//    //    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [rightButton setTitle:@"编辑" forState:UIControlStateNormal];
+//    [rightButton setBackgroundImage:[UIImage imageNamed:@"按钮框"]
+//                           forState:UIControlStateNormal];
+//    [rightButton addTarget:self
+//                    action:@selector(NavAction:)
+//          forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+//    self.navigationItem.rightBarButtonItem = rightItem;
     
 }
 - (void)NavAction:(UIButton *)button{
@@ -56,7 +57,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else if (button.tag == 102) {
         
-        _tableView.editing = !_tableView.editing;
+//        _tableView.editing = !_tableView.editing;
         
     }
 }
@@ -71,6 +72,9 @@
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    
+//    _tableView.separatorColor = [UIColor blackColor];
+    _tableView.showsVerticalScrollIndicator = NO;
     
     _identify = @"AddressCell";
     [_tableView registerNib:[UINib nibWithNibName:@"AddressCell" bundle:nil] forCellReuseIdentifier:_identify];
@@ -183,6 +187,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    
     [AddressModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
         return @{
                  @"addressId" : @"id",
@@ -204,6 +209,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *footView = [[UIView alloc] init];
+    
     footView.backgroundColor = [UIColor whiteColor];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake((KScreenWidth-120)/2, 20, 120, 40);
@@ -231,16 +237,31 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        AddressModel *model = [AddressModel mj_objectWithKeyValues:_data[indexPath.row]];
-        [self deleteAddress:model.addressId index:indexPath.row];
-    }
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"确定要删除吗" message:@""];
+        [alert addButtonTitleArray:@[@"取消",@"确认"]];
+        __weak typeof(self) weakSelf = self;
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }else {
+                AddressModel *model = [AddressModel mj_objectWithKeyValues:_data[indexPath.row]];
+                [weakSelf deleteAddress:model.addressId index:indexPath.row];
+
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
+}
     
 }
 //- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    return UITableViewCellEditingStyleDelete;
 //}
-
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }

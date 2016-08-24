@@ -16,6 +16,8 @@
 		D68F25A51D6AF3470042E0BE /* HotCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25A31D6AF3470042E0BE /* HotCollectionCell.m */; };
 		D68F25A61D6AF3470042E0BE /* HotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F25A41D6AF3470042E0BE /* HotCollectionCell.xib */; };
 		D68F25AA1D6B05820042E0BE /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25A91D6B05820042E0BE /* HistoryData.m */; };
+		D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */; };
+		D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */; };
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
 		D6EEFA5A1D6C20CC0069A880 /* 我的_设置.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA581D6C20CC0069A880 /* 我的_设置.png */; };
 		D6EEFA5B1D6C20CC0069A880 /* 消息.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA591D6C20CC0069A880 /* 消息.png */; };
@@ -277,6 +279,9 @@
 		D68F25A41D6AF3470042E0BE /* HotCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCollectionCell.xib; sourceTree = "<group>"; };
 		D68F25A81D6B05820042E0BE /* HistoryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryData.h; sourceTree = "<group>"; };
 		D68F25A91D6B05820042E0BE /* HistoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryData.m; sourceTree = "<group>"; };
+		D6DBC3941D6DB903003BA793 /* SnatchRecordingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnatchRecordingCell.h; sourceTree = "<group>"; };
+		D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnatchRecordingCell.m; sourceTree = "<group>"; };
+		D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnatchRecordingCell.xib; sourceTree = "<group>"; };
 		D6E0F3761D6C617A00E962D1 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		D6E0F3771D6C617A00E962D1 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		D6EEFA581D6C20CC0069A880 /* 我的_设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的_设置.png"; sourceTree = "<group>"; };
@@ -1233,6 +1238,9 @@
 				DDF92C2D1D6A9C3D009D5A1E /* SnatchRecordCell.h */,
 				DDF92C2E1D6A9C3D009D5A1E /* SnatchRecordCell.m */,
 				DDF92C2F1D6A9C3D009D5A1E /* SnatchRecordCell.xib */,
+				D6DBC3941D6DB903003BA793 /* SnatchRecordingCell.h */,
+				D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */,
+				D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */,
 				DDF92C301D6A9C3D009D5A1E /* UseRedCell.h */,
 				DDF92C311D6A9C3D009D5A1E /* UseRedCell.m */,
 				DDF92C321D6A9C3D009D5A1E /* UseRedCell.xib */,
@@ -1611,6 +1619,7 @@
 				DDF92D711D6A9C5B009D5A1E /* 首页.png in Resources */,
 				DDF92C691D6A9C3D009D5A1E /* LoginViewController.xib in Resources */,
 				DDF92C381D6A9C3D009D5A1E /* AnnounceCell.xib in Resources */,
+				D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */,
 				DDF92C6B1D6A9C3D009D5A1E /* RegisterViewController.xib in Resources */,
 				DDF92D921D6A9C5B009D5A1E /* sort222_checked.png in Resources */,
 				DDF92C9B1D6A9C3D009D5A1E /* InordertoshareCell.xib in Resources */,
@@ -1891,6 +1900,7 @@
 				DDF92C391D6A9C3D009D5A1E /* BaseViewController.m in Sources */,
 				FCF09F451D6BE8B500CC3B7F /* LuckViewController.m in Sources */,
 				DDF92C5E1D6A9C3D009D5A1E /* ProductCollectionView.m in Sources */,
+				D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */,
 				DDF92CDE1D6A9C4F009D5A1E /* TAAbstractDotView.m in Sources */,
 				DDF92C8A1D6A9C3D009D5A1E /* SettingsController.m in Sources */,
 				DDF92C491D6A9C3D009D5A1E /* CountWayController.m in Sources */,

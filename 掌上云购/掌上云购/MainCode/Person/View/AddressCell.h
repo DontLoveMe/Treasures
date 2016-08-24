@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;//电话
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;//地址
 @property (weak, nonatomic) IBOutlet UIButton *defaultButton;//默认
-
+@property (weak, nonatomic) IBOutlet UIButton *setDfaultBtn;
 @property (nonatomic,strong) AddressModel *model;
 
 @property (nonatomic,copy)void(^selectDefault)(UIButton *);

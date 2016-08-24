@@ -38,17 +38,27 @@
     
     if (_model) {
         if (![self.nameTF.text isEqualToString:_model.receiver]
-            ||![self.phoneTF.text isEqualToString:[_model.mobile stringValue]]||
-            ![self.addressTF.text isEqualToString:[NSString stringWithFormat:@"%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.area[@"name"]]]||
-            ![self.detailAddressTV.text isEqualToString:_model.addressDetailFull]||
-            [self.isDefaul boolValue] != [_model.isDefault boolValue]) {
+            ||![self.phoneTF.text isEqualToString:[_model.mobile stringValue]]
+            ||[_provinceId integerValue] != [_model.province[@"id"] integerValue]
+            ||[_cityId integerValue] != [_model.city[@"id"] integerValue]
+            ||[_areaId integerValue] != [_model.area[@"id"] integerValue]
+            ||![self.detailAddressTV.text isEqualToString:_model.addressDetailFull]
+            ||[self.isDefaul boolValue] != [_model.isDefault boolValue]) {
             
             
             
             AlertController *alert = [[AlertController alloc] initWithTitle:@"修改了信息没有保存，确认现在返回吗？" message:@""];
-            [alert setSureBlock:^{
-                [self.navigationController popViewControllerAnimated:YES];
+            [alert addButtonTitleArray:@[@"取消",@"确认"]];
+            __weak typeof(AlertController*) weakAlert = alert;
+            [alert setClickButtonBlock:^(NSInteger tag) {
+                if (tag == 0) {
+                    [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                }else {
+                    [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
             }];
+            
             [self presentViewController:alert
                                animated:YES
                              completion:nil];
@@ -153,19 +163,18 @@
         _addressTF.text.length == 0 ||
         _detailAddressTV.text.length == 0) {
         
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"请您完善信息！"];
+        [alert addButtonTitleArray:@[@"好"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES
+        completion:nil];
+        }];
         
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                                 message:@"请完善信息" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 [alertController dismissViewControllerAnimated:YES
-                                                                                                     completion:nil];
-                                                             }];
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController
+        [self presentViewController:alert
                            animated:YES
                          completion:nil];
+
     }else {
         if (_model) {
             [self changeAddress];

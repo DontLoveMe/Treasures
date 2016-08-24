@@ -182,7 +182,7 @@
                 <outlet property="peopleNum" destination="ZSb-Zd-elb" id="4HO-76-iRo"/>
                 <outlet property="titleLabel" destination="CSC-pk-p3y" id="qGB-xh-Vfi"/>
             </connections>
-            <point key="canvasLocation" x="278" y="400"/>
+            <point key="canvasLocation" x="248" y="363"/>
         </tableViewCell>
     </objects>
     <resources>
