@@ -410,7 +410,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 0) {
         
+        //图文详情
         GoodsDetailPTController *GDPTVC = [[GoodsDetailPTController alloc] init];
+        GDPTVC.goodsId = [_dataDic objectForKey:@"id"];
         GDPTVC.hidesBottomBarWhenPushed = YES;
         [[self viewController].navigationController pushViewController:GDPTVC
                                                               animated:YES];
@@ -420,7 +422,8 @@
         //往期揭晓
         AnnouncedHistoryController *AHVC = [[AnnouncedHistoryController alloc]init];
         AHVC.hidesBottomBarWhenPushed = YES;
-        
+        AHVC.goodsID = [_dataDic objectForKey:@"id"];
+        AHVC.hidesBottomBarWhenPushed = YES;
         [[self viewController].navigationController pushViewController:AHVC
                                                               animated:YES];
         

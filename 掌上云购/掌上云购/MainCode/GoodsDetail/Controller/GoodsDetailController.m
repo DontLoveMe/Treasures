@@ -42,8 +42,11 @@
     _isJoind = 0;
     _isAnnounced = 1;
     _isPrized = 1;
+    _pageIndex = 1;
     
     _dataDic = [NSDictionary dictionary];
+    //参与记录的数组
+    _joinRecordArr = [NSMutableArray array];
     
     [self initNavBar];
     [self initViews];
@@ -62,6 +65,7 @@
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         NSLogZS(@"上拉了");
         
+        [self requestJoinList:_pageIndex];
         if (!_broughtHistoryView) {
             _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight, KScreenWidth , KScreenHeight - kNavigationBarHeight)];
             _broughtHistoryView.backgroundColor = [UIColor whiteColor];
@@ -79,7 +83,6 @@
         
     }];
     
-    
     [self initTopView];
     [self initCenterView];
     [self initBottonView];
@@ -89,6 +92,8 @@
 #pragma mark - broughtHistoryDelegate
 - (void)pullBack{
     
+    _pageIndex = 1;
+    _joinRecordArr = [NSMutableArray array];
     [UIView animateWithDuration:0.5
                      animations:^{
                          _broughtHistoryView.top = KScreenHeight - kNavigationBarHeight;
@@ -293,13 +298,12 @@
     
     [self requestDetail];
     
-    [self requestJoinList];
-    
 }
 
 - (void)requestDetail{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    #warning 是否登陆
     [params setObject:@{@"productId":_goodsId,
                         @"userId":@"1"}
                forKey:@"paramsMap"];
@@ -345,6 +349,7 @@
                   _isJoind = [[dataDic objectForKey:@"isBuy"] integerValue];
                   NSLogZS(@"参与了么:%ld",[[dataDic objectForKey:@"isBuy"] integerValue]);
                   
+                  _drawId = [dataDic objectForKey:@"drawId"];
                   
                   _oherFunctionTableView.isJoin = _isJoind;
                   _oherFunctionTableView.isAnnounced = _isAnnounced;
@@ -360,12 +365,28 @@
 }
 
 //参与记录
-- (void)requestJoinList{
+- (void)requestJoinList:(NSInteger) pageIndex{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject: forKey:@"paramsMap"];
+    [params setObject:@{@"drawId":_drawId} forKey:@"paramsMap"];
+    [params setObject:[NSNumber numberWithInteger:_pageIndex] forKey:@"page"];
+    [params setObject:@"15" forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsJoinRecords_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+              
+                  _joinRecordArr = [json objectForKey:@"data"];
+                  _broughtHistoryView.dataArr = _joinRecordArr;
+              
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
 
 }
 
@@ -409,6 +430,17 @@
         
     }
 
+}
+
+
+- (void)setDrawId:(NSString *)drawId{
+
+    if (_drawId != drawId) {
+        
+        _drawId = drawId;
+        
+    }
+    
 }
 
 @end

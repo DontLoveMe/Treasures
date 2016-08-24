@@ -234,9 +234,7 @@
     
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
     GDVC.goodsId = [dic objectForKey:@"id"];
-    GDVC.isJoind = 0;
-    GDVC.isAnnounced = 1;
-    GDVC.isPrized = 0;
+    GDVC.drawId = [dic objectForKey:@"drawId"];
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];

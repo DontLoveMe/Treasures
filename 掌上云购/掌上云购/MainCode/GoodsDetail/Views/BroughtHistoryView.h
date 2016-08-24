@@ -25,6 +25,7 @@
     UITableView *_recordTable;
     
 }
+@property (nonatomic,strong)NSArray *dataArr;
 @property (weak,nonatomic)id<BroughtHistoryDelegate> BHdelegate;
 
 @end

@@ -28,6 +28,10 @@
 #define GoodsDetail_URL @"/pcpServer-inf/product/detail"
 //参与记录
 #define GoodsJoinRecords_URL @"/pcpServer-inf/sale/partiList"
+//图文详情
+#define GoodsTPdetail_URL @"/pcpServer-inf/product/detailHtml"
+//历史期数
+#define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
 
 /*---------------收货地址----------------------*/
 //省、市、区

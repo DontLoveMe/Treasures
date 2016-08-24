@@ -71,7 +71,6 @@
         
         _progressImgView.width = self.width * _progress / 100;
 
-        
     }
 
 }
