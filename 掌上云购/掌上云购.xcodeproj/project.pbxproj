@@ -252,6 +252,7 @@
 		DDF92D981D6A9C5B009D5A1E /* 首页-进度条.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D441D6A9C5B009D5A1E /* 首页-进度条.png */; };
 		DDF92D991D6A9C5B009D5A1E /* 首页_搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D451D6A9C5B009D5A1E /* 首页_搜索.png */; };
 		E6D828575B1F69522EEF55A2 /* libPods-掌上云购.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFE321C1B45B348FDA86FA2 /* libPods-掌上云购.a */; };
+		FCABB7381D6DA72A00B0C092 /* 购物车图标.png in Resources */ = {isa = PBXBuildFile; fileRef = FCABB7371D6DA72A00B0C092 /* 购物车图标.png */; };
 		FCEE8E701D6AFA13002FF90D /* PersonalCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE8E6F1D6AFA13002FF90D /* PersonalCenterController.m */; };
 		FCF09F361D6BDF0400CC3B7F /* SunSharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF09F351D6BDF0400CC3B7F /* SunSharingViewController.m */; };
 		FCF09F421D6BE8A900CC3B7F /* IndianaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF09F411D6BE8A900CC3B7F /* IndianaViewController.m */; };
@@ -607,6 +608,7 @@
 		DDF92D431D6A9C5B009D5A1E /* sort312_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sort312_normal.png; sourceTree = "<group>"; };
 		DDF92D441D6A9C5B009D5A1E /* 首页-进度条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页-进度条.png"; sourceTree = "<group>"; };
 		DDF92D451D6A9C5B009D5A1E /* 首页_搜索.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页_搜索.png"; sourceTree = "<group>"; };
+		FCABB7371D6DA72A00B0C092 /* 购物车图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车图标.png"; sourceTree = "<group>"; };
 		FCEE8E6E1D6AFA13002FF90D /* PersonalCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterController.h; sourceTree = "<group>"; };
 		FCEE8E6F1D6AFA13002FF90D /* PersonalCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterController.m; sourceTree = "<group>"; };
 		FCF09F341D6BDF0400CC3B7F /* SunSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunSharingViewController.h; sourceTree = "<group>"; };
@@ -1477,6 +1479,7 @@
 		DDF92D1E1D6A9C5B009D5A1E /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				FCABB7371D6DA72A00B0C092 /* 购物车图标.png */,
 				DDF92D1F1D6A9C5B009D5A1E /* 品牌图片.png */,
 				DDF92D201D6A9C5B009D5A1E /* 商品列表.png */,
 				DDF92D211D6A9C5B009D5A1E /* 商品种类.png */,
@@ -1741,6 +1744,7 @@
 				DDF92CA71D6A9C3D009D5A1E /* UseRedCell.xib in Resources */,
 				DDF92D7C1D6A9C5B009D5A1E /* 按钮+.png in Resources */,
 				DDF92D6B1D6A9C5B009D5A1E /* 定位.png in Resources */,
+				FCABB7381D6DA72A00B0C092 /* 购物车图标.png in Resources */,
 				DDF92C931D6A9C3D009D5A1E /* ConfirmGoodsCell_1.xib in Resources */,
 				DDF92C731D6A9C3D009D5A1E /* ChangeDataController.xib in Resources */,
 				DDF92D521D6A9C5B009D5A1E /* 对勾-暗.png in Resources */,

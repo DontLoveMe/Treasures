@@ -10,15 +10,34 @@
 #import "CartTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
 #import "PayViewController.h"
-@interface CartViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CartViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 {
 
 
     UITableView *_tabview;
     
     NSMutableArray *_dataArray;
+    
+    NSString *_identify;
+
+    
+    BOOL _isData;
 
 }
+
+@property(nonatomic,strong)UIView *backView;
+
+@property(nonatomic,strong)UIImageView *carView;
+
+@property(nonatomic,strong)UILabel *textLabel;
+
+@property(nonatomic,strong)UIButton *buyBtn;
+
+@property(nonatomic,strong)UILabel *likeLabel;
+
+@property(nonatomic,strong)UIScrollView *scrollView;
+
+@property(nonatomic,strong)UICollectionView *collectView;
 
 //商品总数
 @property(nonatomic,strong)UILabel *goodstotal;
@@ -44,21 +63,155 @@
     
     _dataArray = [NSMutableArray array];
     
+    _isData = NO;
+    
     self.title = @"购物车";
     
-    //创建列表
-    [self creatTableView];
+    if (_isData==YES) {
+        
+        //创建列表
+        [self creatTableView];
+        
+        //添加编辑按钮
+        [self creatNav];
+        
+        //创建底部View;
+        [self creatView];
+        
+    }else
+    {
     
-    //添加编辑按钮
-    [self creatNav];
-    
-    //创建底部View;
-    [self creatView];
-    
-    
+     
+        
+        [self creatUI];
+        
+        [self createCollectionView];
+        
+        
+    }
+
     
 }
 
+-(void)creatUI
+{
+
+
+    _backView = [[UIView alloc]init];
+    
+    [self.view addSubview:_backView];
+
+    
+    _backView.backgroundColor = TableViewBackColor;
+    
+    _backView.sd_layout
+    .leftSpaceToView(self.view,0)
+    .topSpaceToView(self.view,0)
+    .widthIs(KScreenWidth)
+    .heightRatioToView(self.view,0.6);
+    
+    _carView = [[UIImageView alloc]init];
+    
+    _carView.image = [UIImage imageNamed:@"购物车图标"];
+    
+    _carView.layer.masksToBounds=YES;
+    _carView.layer.cornerRadius=188/2.0f; //设置为图片宽度的一半出来为圆形
+    _carView.layer.borderWidth=1.0f;
+    
+    [_backView addSubview:_carView];
+    
+    _carView.sd_layout
+    .widthIs(188)
+    .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2)
+    .topSpaceToView(_backView,20)
+    .heightIs(188);
+    
+    
+    _textLabel = [[UILabel alloc]init];
+    
+    _textLabel.text = @"你的清单空空如也";
+    
+    _textLabel.textColor = [UIColor grayColor];
+    
+    [_backView addSubview:_textLabel];
+    
+    _textLabel.sd_layout
+    
+    .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2+25)
+    .topSpaceToView(_carView,20)
+    .widthIs(140)
+    .heightIs(20);
+    
+    _buyBtn = [[UIButton alloc]init];
+    
+    [_buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
+    
+    [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    _buyBtn.backgroundColor = [UIColor redColor];
+    
+    [_backView addSubview:_buyBtn];
+    
+    _buyBtn.sd_layout
+    .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2+40)
+    .topSpaceToView(_textLabel,10)
+    .widthIs(100)
+    .heightIs(40);
+    
+    _likeLabel = [[UILabel alloc]init];
+    
+    _likeLabel.text = @"猜你喜欢";
+    
+    [self.view addSubview:_likeLabel];
+    
+    _likeLabel.sd_layout
+    .leftSpaceToView(self.view,5)
+    .topSpaceToView(_backView,10)
+    .widthIs(100)
+    .heightIs(20);
+
+
+}
+
+//创建下方视图
+- (void)createCollectionView {
+    
+    CGFloat w = (KScreenWidth-8*4)/3;
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(w, w*1.3);
+    layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+    _collectView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-kNavigationBarHeight-kTabBarHeight-10, KScreenWidth, w*1.3+10) collectionViewLayout:layout];
+    
+    _collectView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_collectView];
+    
+    
+    _collectView.delegate = self;
+    _collectView.dataSource = self;
+    
+    _identify = @"collectionCell";
+    [_collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
+   
+}
+
+#pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 10;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor grayColor];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+    cell.backgroundView = imgView;
+    
+    return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 -(void)creatNav
 {
