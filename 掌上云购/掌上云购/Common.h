@@ -32,8 +32,9 @@
 #define GoodsTPdetail_URL @"/pcpServer-inf/product/detailHtml"
 //历史期数
 #define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
-
-/*---------------收货地址----------------------*/
+/*---------------分类模块----------------------*/
+#define CategorysList_URL @"/pcpServer-inf/proCategory/list"
+/*---------------收货地址模块----------------------*/
 //省、市、区
 #define AreaProvince_URL @"/pcpServer-inf/area/province"
 //新增收货地址

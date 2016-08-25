@@ -127,7 +127,7 @@
     _collectionView.collectionViewLayout = layout;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     _collectionView.showsVerticalScrollIndicator = NO;
-    _collectionView.scrollEnabled = NO;
+//    _collectionView.scrollEnabled = NO;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
