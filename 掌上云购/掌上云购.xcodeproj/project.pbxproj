@@ -2030,6 +2030,7 @@
 			baseConfigurationReference = 3EAD386A872052AFECBF954A /* Pods-掌上云购.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2043,6 +2044,7 @@
 			baseConfigurationReference = 7C9A38B08C2D6903B5609665 /* Pods-掌上云购.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
