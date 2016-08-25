@@ -9,6 +9,7 @@
 #import "SunSharingViewController.h"
 #import "SunShareCell.h"
 #import "PersonalCenterController.h"
+#import "SunShareModel.h"
 @interface SunSharingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -22,6 +23,11 @@
     
     NSMutableArray *_dataArray;
     
+    NSInteger           _pageIndex;
+    
+    SunShareModel *_model;
+
+    
 
 }
 
@@ -33,6 +39,8 @@
     [super viewDidLoad];
     
     _dataArray = [NSMutableArray array];
+    
+     _pageIndex = 1;
     
     self.title = @"晒单分享";
     
@@ -46,10 +54,13 @@
     //创建列表
     [self creatTableView];
     
+    //请求数据
+    [self requestData:_pageIndex];
+    
     
     
 }
-
+#pragma mark---列表相关
 -(void)creatTableView
 {
 
@@ -66,7 +77,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return 4;
+    return _dataArray.count;
 
 }
 
@@ -80,6 +91,13 @@
         
         cell  =[[SunShareCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         
+        _model = _dataArray[indexPath.row];
+        
+        
+        [cell configCellWithModel:_model];
+        
+        
+        
         cell.iconView.image = [UIImage imageNamed:@"发现3"];
         
         
@@ -90,22 +108,14 @@
         
         tap.numberOfTouchesRequired = 1;
         
-     [cell.iconView addGestureRecognizer:tap];
+      [cell.iconView addGestureRecognizer:tap];
 
-        
-        cell.nameLabel.text = @"明天5000个赌个金碗";
         
         cell.timeLabel.text = @"14:03";
         
         cell.dateLabel.text = @"08-19";
         
-        cell.commentLabel.text = @"运气好坏莫上头";
         
-        cell.goodsnameLabel.text = @"中国黄金 AU9999投资金20g薄片";
-        
-        cell.issueLabel.text = @"期号:308110806";
-        
-        cell.detailLabel.text = @"贴吧上已经有很多案例了,运气好坏莫上头。理性夺宝,高投入不一定百分百高回报";
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -147,19 +157,64 @@
 
 }
 
+
+#pragma mark---数据源相关
+- (void)requestData:(NSInteger)indexPath{
+
+{
+
+
+   [self showHUD:@"加载中"];
+    
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    [params setObject:@"10" forKey:@"rows"];
+    
+    [params setObject:[NSNumber numberWithInteger:indexPath]
+               forKey:@"page"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+           
+            [self hideSuccessHUD:[json objectForKey:@"msg"]];
+
+              NSArray *rootArray = [json objectForKey:@"data"];
+              
+              for(NSDictionary *dic in rootArray) {
+                  
+                  _model = [[SunShareModel alloc]init];
+                  
+                  [_model setValuesForKeysWithDictionary:dic];
+                  
+                  [_dataArray addObject:_model];
+                  
+              }
+              
+              [_tab reloadData];
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+
+          }];
+
+   
+
+}
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

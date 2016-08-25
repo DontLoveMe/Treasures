@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SunShareModel.h"
 @interface SunShareCell : UITableViewCell
 
 @property(nonatomic,strong)UIImageView *iconView;
@@ -34,5 +34,6 @@
 
 @property(nonatomic,strong)UIImageView *imgThree;
 
+-(void)configCellWithModel:(SunShareModel *)model;
 
 @end

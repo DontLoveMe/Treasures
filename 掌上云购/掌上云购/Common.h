@@ -47,4 +47,8 @@
 //收货地址修改
 #define UpdateArea_URL @"/pcpServer-inf/user/consignee/update"
 
+/*---------------发现模块---------------------*/
+//晒单分享
+#define Sunsharing_URL @"/pcpServer-inf/user/userComment/list"
+
 #endif /* Common_h */

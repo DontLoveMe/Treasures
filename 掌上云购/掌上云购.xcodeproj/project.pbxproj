@@ -252,6 +252,7 @@
 		DDF92D981D6A9C5B009D5A1E /* 首页-进度条.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D441D6A9C5B009D5A1E /* 首页-进度条.png */; };
 		DDF92D991D6A9C5B009D5A1E /* 首页_搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D451D6A9C5B009D5A1E /* 首页_搜索.png */; };
 		E6D828575B1F69522EEF55A2 /* libPods-掌上云购.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFE321C1B45B348FDA86FA2 /* libPods-掌上云购.a */; };
+		FC3689941D6EA052005C1429 /* SunShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3689931D6EA052005C1429 /* SunShareModel.m */; };
 		FCABB7381D6DA72A00B0C092 /* 购物车图标.png in Resources */ = {isa = PBXBuildFile; fileRef = FCABB7371D6DA72A00B0C092 /* 购物车图标.png */; };
 		FCEE8E701D6AFA13002FF90D /* PersonalCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCEE8E6F1D6AFA13002FF90D /* PersonalCenterController.m */; };
 		FCF09F361D6BDF0400CC3B7F /* SunSharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCF09F351D6BDF0400CC3B7F /* SunSharingViewController.m */; };
@@ -608,6 +609,8 @@
 		DDF92D431D6A9C5B009D5A1E /* sort312_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sort312_normal.png; sourceTree = "<group>"; };
 		DDF92D441D6A9C5B009D5A1E /* 首页-进度条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页-进度条.png"; sourceTree = "<group>"; };
 		DDF92D451D6A9C5B009D5A1E /* 首页_搜索.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页_搜索.png"; sourceTree = "<group>"; };
+		FC3689921D6EA052005C1429 /* SunShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunShareModel.h; sourceTree = "<group>"; };
+		FC3689931D6EA052005C1429 /* SunShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunShareModel.m; sourceTree = "<group>"; };
 		FCABB7371D6DA72A00B0C092 /* 购物车图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车图标.png"; sourceTree = "<group>"; };
 		FCEE8E6E1D6AFA13002FF90D /* PersonalCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCenterController.h; sourceTree = "<group>"; };
 		FCEE8E6F1D6AFA13002FF90D /* PersonalCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterController.m; sourceTree = "<group>"; };
@@ -889,6 +892,7 @@
 		DDF92B7C1D6A9C3D009D5A1E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				FC3689911D6EA01D005C1429 /* Model */,
 				DDF92B7D1D6A9C3D009D5A1E /* Controller */,
 				DDF92B841D6A9C3D009D5A1E /* View */,
 			);
@@ -1551,6 +1555,15 @@
 			path = "首页-分类";
 			sourceTree = "<group>";
 		};
+		FC3689911D6EA01D005C1429 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FC3689921D6EA052005C1429 /* SunShareModel.h */,
+				FC3689931D6EA052005C1429 /* SunShareModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1860,6 +1873,7 @@
 				DDF92C801D6A9C3D009D5A1E /* LuckyRecordController.m in Sources */,
 				DDF92CD81D6A9C4F009D5A1E /* UIView+SDAutoLayout.m in Sources */,
 				DDF92C7A1D6A9C3D009D5A1E /* InordertoshareController.m in Sources */,
+				FC3689941D6EA052005C1429 /* SunShareModel.m in Sources */,
 				DDF92C5F1D6A9C3D009D5A1E /* WingNotificationCell.m in Sources */,
 				DDF92CA01D6A9C3D009D5A1E /* RechargeCell.m in Sources */,
 				DDF92C6A1D6A9C3D009D5A1E /* RegisterViewController.m in Sources */,

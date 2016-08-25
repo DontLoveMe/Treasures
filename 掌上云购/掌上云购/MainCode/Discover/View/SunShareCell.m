@@ -164,7 +164,23 @@
     
 }
 
-
+-(void)configCellWithModel:(SunShareModel *)model
+{
+    
+  
+    self.nameLabel.text =model.nickName;
+    
+    self.goodsnameLabel.text = model.productName;
+    
+    self.issueLabel.text = model.drawTimes;
+    
+    self.detailLabel.text = model.content;
+    
+    self.commentLabel.text = model.title;
+    
+    
+    
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
