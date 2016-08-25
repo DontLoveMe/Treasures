@@ -49,6 +49,7 @@
 + (void)allDeleteHistoryData {
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"HistoryData"];
+    
 }
 
 

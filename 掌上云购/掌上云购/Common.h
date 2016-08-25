@@ -33,6 +33,9 @@
 //历史期数
 #define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
 
+/*---------------购物车模块---------------------*/
+#define CartList_URL @"/pcpServer-inf/saleCart/list"
+
 /*---------------收货地址----------------------*/
 //省、市、区
 #define AreaProvince_URL @"/pcpServer-inf/area/province"

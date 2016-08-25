@@ -21,6 +21,7 @@
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
 		D6EEFA5A1D6C20CC0069A880 /* 我的_设置.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA581D6C20CC0069A880 /* 我的_设置.png */; };
 		D6EEFA5B1D6C20CC0069A880 /* 消息.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA591D6C20CC0069A880 /* 消息.png */; };
+		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
 		DD6B523B1D6DA31B00B6297F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52331D6DA31B00B6297F /* 1.png */; };
 		DD6B523C1D6DA31B00B6297F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52341D6DA31B00B6297F /* 2.png */; };
 		DD6B523D1D6DA31B00B6297F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52351D6DA31B00B6297F /* 3.png */; };
@@ -287,6 +288,8 @@
 		D6E0F3771D6C617A00E962D1 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		D6EEFA581D6C20CC0069A880 /* 我的_设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的_设置.png"; sourceTree = "<group>"; };
 		D6EEFA591D6C20CC0069A880 /* 消息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "消息.png"; sourceTree = "<group>"; };
+		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
+		DD1B9E461D6EF01C002E9CE9 /* CartTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTools.m; sourceTree = "<group>"; };
 		DD6B52331D6DA31B00B6297F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		DD6B52341D6DA31B00B6297F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		DD6B52351D6DA31B00B6297F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -688,6 +691,15 @@
 				D6E0F3771D6C617A00E962D1 /* AlertController.m */,
 			);
 			path = "提示框";
+			sourceTree = "<group>";
+		};
+		DD1B9E441D6EF004002E9CE9 /* 购物车逻辑 */ = {
+			isa = PBXGroup;
+			children = (
+				DD1B9E451D6EF01C002E9CE9 /* CartTools.h */,
+				DD1B9E461D6EF01C002E9CE9 /* CartTools.m */,
+			);
+			path = "购物车逻辑";
 			sourceTree = "<group>";
 		};
 		DD6B52321D6DA31B00B6297F /* 刷新Gif */ = {
@@ -1255,6 +1267,7 @@
 		DDF92CAA1D6A9C4F009D5A1E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				DD1B9E441D6EF004002E9CE9 /* 购物车逻辑 */,
 				D6E0F3751D6C617A00E962D1 /* 提示框 */,
 				D68F25A71D6B055B0042E0BE /* 搜索历史数据 */,
 				DDF92CAB1D6A9C4F009D5A1E /* CountDown */,
@@ -1846,6 +1859,7 @@
 				DDF92C4F1D6A9C3D009D5A1E /* AnnounceHistoryCell.m in Sources */,
 				D68F25A01D6AEE970042E0BE /* HotSearchCell.m in Sources */,
 				DDF92CD51D6A9C4F009D5A1E /* CountDown.m in Sources */,
+				DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */,
 				DDF92C7C1D6A9C3D009D5A1E /* ConfirmDataController.m in Sources */,
 				FCFAF0451D6C27800076B806 /* IndianRecordCell.m in Sources */,
 				DDF92C7E1D6A9C3D009D5A1E /* ConfirmGoodsController.m in Sources */,
