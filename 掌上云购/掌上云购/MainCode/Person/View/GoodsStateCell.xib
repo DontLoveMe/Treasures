@@ -113,13 +113,12 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evu-YX-tPA">
                         <rect key="frame" x="178" y="44" width="53" height="23"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="XmN-wK-yix"/>
                             <constraint firstAttribute="width" constant="53" id="kQs-Eu-nYf"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="确认地址">
+                        <state key="normal" title="确认地址" backgroundImage="按钮背景.png">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -128,13 +127,12 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORW-fv-6qW">
                         <rect key="frame" x="236" y="44" width="66" height="23"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="66" id="FWU-6f-hj9"/>
                             <constraint firstAttribute="height" constant="23" id="SdD-HE-2yS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="选择收货地址">
+                        <state key="normal" title="选择收货地址" backgroundImage="按钮背景.png">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -143,13 +141,12 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjD-5V-S4l">
                         <rect key="frame" x="188" y="112" width="53" height="26"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="53" id="9U4-x1-o6q"/>
                             <constraint firstAttribute="height" constant="26" id="MKI-RX-IwW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="延期收货">
+                        <state key="normal" title="延期收货" backgroundImage="按钮背景.png">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -158,13 +155,12 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvG-DY-ysp">
                         <rect key="frame" x="249" y="112" width="53" height="26"/>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="53" id="tgN-kj-gWV"/>
                             <constraint firstAttribute="height" constant="26" id="w0Z-xu-OLg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="确认收货">
+                        <state key="normal" title="确认收货" backgroundImage="按钮背景.png">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -254,6 +250,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="按钮背景.png" width="216" height="64"/>
         <image name="状态-亮.png" width="200" height="200"/>
         <image name="状态-暗.png" width="200" height="200"/>
     </resources>

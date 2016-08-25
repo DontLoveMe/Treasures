@@ -225,7 +225,7 @@
         return  goodsDetailView;
         
     }else if (_isAnnounced == 3){
-    
+        
         NSDictionary *prizeDic = [_dataDic objectForKey:@"saleDraw"];
         //开奖相关
         UIView  *goodsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100.f)];
@@ -328,6 +328,7 @@
             [goodsDetailView addSubview:previewAllButton];
             
         }
+            
         return  goodsDetailView;
         
         

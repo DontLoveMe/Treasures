@@ -15,6 +15,7 @@
 
 }
 
+@property (nonatomic,strong)NSArray *segmentData;
 @property (nonatomic,strong)NSArray *segmentTitles;
 @property (nonatomic,strong)NSArray *imgNames;
 @property (nonatomic,strong)NSArray *selectImgNames;
