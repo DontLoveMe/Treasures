@@ -8,6 +8,7 @@
 
 #import "SnatchRecordController.h"
 #import "SnatchRecordCell.h"
+#import "SnatchRecordingCell.h"
 
 @interface SnatchRecordController ()
 
@@ -16,6 +17,7 @@
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,copy) NSString *identify;
+@property (nonatomic,copy) NSString *identify2;
 
 @property (nonatomic,strong)NSArray *data;
 
@@ -63,11 +65,12 @@
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = 200 + i;
-        button.frame = CGRectMake(KScreenWidth/3*i, 0, KScreenWidth/3, 40);
+        button.frame = CGRectMake(KScreenWidth/3*i, 0, KScreenWidth/3, 30);
         button.backgroundColor = [UIColor whiteColor];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateSelected];
         [button setTitle:titles[i] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
         
@@ -77,14 +80,17 @@
         }
     }
     //按钮下方的横线
-    _lineView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth/3-60)/2, 37, 60, 3)];
-    _lineView.backgroundColor = [UIColor redColor];
+    _lineView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth/3-40)/2, 29, 40, 1)];
+    _lineView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     [self.view addSubview:_lineView];
     
+    
+    _data = @[@"1",@"0",@"1",@"1",@"0",@"0"];
     //创建表视图
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, KScreenWidth, KScreenHeight-40-64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, KScreenWidth, KScreenHeight-30-64) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.showsVerticalScrollIndicator = NO;
     
     _tableView.backgroundColor = [UIColor clearColor];
     
@@ -94,6 +100,10 @@
     _identify = @"SnatchRecordCell";
     UINib *nib = [UINib nibWithNibName:@"SnatchRecordCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
+    
+    _identify2 = @"SnatchRecordingCell";
+    UINib *nib2 = [UINib nibWithNibName:@"SnatchRecordingCell" bundle:nil];
+    [_tableView registerNib:nib2 forCellReuseIdentifier:_identify2];
     
 }
 
@@ -111,19 +121,42 @@
         
         _selectButtonTag = button.tag;
         CGRect frame = _lineView.frame;
-        frame.origin.x = (KScreenWidth/3-60)/2+button.origin.x;
+        frame.origin.x = (KScreenWidth/3-40)/2+button.origin.x;
         _lineView.frame = frame;
     }];
+    
+    switch (button.tag) {
+        case 200:
+            _data = @[@"1",@"0",@"1",@"1",@"0",@"0"];
+            [_tableView reloadData];
+            break;
+        case 201:
+            _data = @[@"0",@"0",@"0",@"0",@"0",@"0"];
+            [_tableView reloadData];
+            break;
+        case 202:
+            _data = @[@"1",@"1",@"1",@"1",@"1",@"1"];
+            [_tableView reloadData];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;
+    return _data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    if ([_data[indexPath.row] boolValue]) {
+        SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
+        return cell;
+    }
+    SnatchRecordingCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify2 forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
     return cell;
@@ -132,16 +165,6 @@
     
     return 160;
 }
-
-//- (void)viewDidAppear:(BOOL)animated{
-//
-//    [super viewDidAppear:animated];
-//    UIImageView *imageVIew = [[UIImageView alloc] initWithFrame:CGRectMake(0, -64, KScreenWidth, 20.f)];
-//    imageVIew.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
-//    [self.view addSubview:imageVIew];
-//
-//}
-
 
 
 @end

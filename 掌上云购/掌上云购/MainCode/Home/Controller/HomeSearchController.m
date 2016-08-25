@@ -69,7 +69,7 @@
     [self.view addSubview:_searchBar];
 //    self.navigationItem.titleView = _searchBar;
     
-    _searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(4.f, _searchBar.bottom + 8.f, KScreenWidth - 8.f, 667.f-64) style:UITableViewStyleGrouped];
+    _searchHistoryTable = [[UITableView alloc] initWithFrame:CGRectMake(0, _searchBar.bottom + 8.f, KScreenWidth, KScreenHeight-64) style:UITableViewStyleGrouped];
     _searchHistoryTable.delegate = self;
     _searchHistoryTable.dataSource = self;
    

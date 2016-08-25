@@ -7,11 +7,12 @@
 //
 
 #import "SegmentView.h"
+#import "UIImageView+AFNetworking.h"
 
 #define kNormalTag 100
 #define kControlHight 40
 #define kNormalColor [UIColor blackColor]
-#define kSelectColor [UIColor orangeColor]
+#define kSelectColor [UIColor whiteColor]
 
 @implementation SegmentView {
     
@@ -51,7 +52,12 @@
         
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (kControlHight-20)/2, 20, 20)];
         imgView.tag = 200;
-        imgView.image = [UIImage imageNamed:names[i]];
+        if ([names[i] hasPrefix:@"http"]) {
+            [imgView setImageWithURL:[NSURL URLWithString:names[i]]];
+        }else {
+            
+            imgView.image = [UIImage imageNamed:names[i]];
+        }
         [control addSubview:imgView];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imgView.frame)+3, 10, self.frame.size.width-30, 20)];
@@ -69,7 +75,7 @@
     //创建control旁边的竖线
     _lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
 //    _lineView.backgroundColor = kSelectColor;
-    _lineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    _lineView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     [self insertSubview:_lineView atIndex:0];
     
     
@@ -108,10 +114,10 @@
     [self scrollRectToVisible:frame animated:YES];
     
     //更改图片
-    UIImageView *imgView = [control viewWithTag:200];
-    if (_selectNames.count>0) {
-        imgView.image = [UIImage imageNamed:_selectNames[control.tag-kNormalTag]];
-    }
+//    UIImageView *imgView = [control viewWithTag:200];
+//    if (_selectNames.count>0) {
+//        imgView.image = [UIImage imageNamed:_selectNames[control.tag-kNormalTag]];
+//    }
     //更改字体颜色
     UILabel *lable = [control viewWithTag:201];
     lable.textColor = kSelectColor;
@@ -121,10 +127,10 @@
 //改变control的状态（还原）
 - (void)changeNormalState:(UIControl *)control {
     //更改图片
-    UIImageView *imgView = [control viewWithTag:200];
-    if (_normalNames.count > 0) {
-        imgView.image = [UIImage imageNamed:_normalNames[control.tag-kNormalTag]];
-    }
+//    UIImageView *imgView = [control viewWithTag:200];
+//    if (_normalNames.count > 0) {
+//        imgView.image = [UIImage imageNamed:_normalNames[control.tag-kNormalTag]];
+//    }
     //更改字体颜色
     UILabel *lable = [control viewWithTag:201];
     lable.textColor = kNormalColor;
