@@ -106,7 +106,7 @@
     
 
                        
-    _collectionView = [[ProductCollectionView alloc] initWithFrame:CGRectMake(100, 36, [UIScreen mainScreen].bounds.size.width-100,[UIScreen mainScreen].bounds.size.height-64-36-49)];
+    _collectionView = [[ProductCollectionView alloc] initWithFrame:CGRectMake(80, 36, [UIScreen mainScreen].bounds.size.width-80,[UIScreen mainScreen].bounds.size.height-64-36-49)];
     _collectionView.hidden = NO;
     [self.view addSubview:_collectionView];
     
@@ -117,7 +117,7 @@
   
 }
 - (void)createSegmentView {
-    SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 44, 100, [UIScreen mainScreen].bounds.size.height - 44) segmentTitles:self.segmentTitles imageNames:self.imgNames selectImgNames:self.selectImgNames];
+    SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 44, 80, [UIScreen mainScreen].bounds.size.height - 44-49-64) segmentTitles:self.segmentTitles imageNames:self.imgNames selectImgNames:self.selectImgNames];
     segView.backgroundColor = [UIColor whiteColor];
     
     [segView setTagBlock:^(NSInteger index) {

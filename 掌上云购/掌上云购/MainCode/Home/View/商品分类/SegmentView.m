@@ -10,7 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 
 #define kNormalTag 100
-#define kControlHight 40
+#define kControlHight 50
 #define kNormalColor [UIColor blackColor]
 #define kSelectColor [UIColor whiteColor]
 
@@ -50,7 +50,7 @@
         [self addSubview:control];
         [control addTarget:self action:@selector(controlAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (kControlHight-20)/2, 20, 20)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, (kControlHight-18)/2, 18, 18)];
         imgView.tag = 200;
         if ([names[i] hasPrefix:@"http"]) {
             [imgView setImageWithURL:[NSURL URLWithString:names[i]]];
@@ -60,11 +60,11 @@
         }
         [control addSubview:imgView];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imgView.frame)+3, 10, self.frame.size.width-30, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imgView.frame)+2, (kControlHight-20)/2, self.frame.size.width-30, 20)];
         label.tag = 201;
         label.text = titles[i];
         label.textColor = kNormalColor;
-        label.font = [UIFont systemFontOfSize:15];
+        label.font = [UIFont systemFontOfSize:12];
         [control addSubview:label];
         
         if (i == 0) {

@@ -16,7 +16,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(frame.size.width/2-0.5, frame.size.width*1.2/2);
+    layout.itemSize = CGSizeMake(frame.size.width/2-0.5, frame.size.width*1.3/2);
     layout.minimumLineSpacing = 1;
     layout.minimumInteritemSpacing = 1;
     
