@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+#import "CartTools.h"
+
 @interface CartViewController : BaseViewController
 
 @end

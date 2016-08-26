@@ -357,6 +357,8 @@
 
     [super viewWillAppear:animated];
     
+    [CartTools addCartList:@[@"1",@"2",@"3",@"4"]];
+    
     [self requestCartList];
 }
 

@@ -11,15 +11,68 @@
 @implementation CartTools
 
 /*
- *购物车逻辑：
- *  以本地和服务器定触发机制合并更新的方式更新和保存。
- *  触发点：登入。登出。结算。app进入后台。
- *  触发操作：1.登入，根据用户id查询服务器上购物车，与本地购物车合并（如productId相同则做数量累加，不同则做矢量增加），合并完成后提交至服务器。
- *          2.登出，触发登出事件。将本地购物车提交至服务器，再退出，退出成功后，清除购物车列表。
- *          3.点击结算按钮时,将本地购物车提交至服务器，获得购物车id，进行结算。
- *          4.APP进入后台，提交一次至后台。
- *  购物车其他操作：数量增减操作。本地进行，在触发点上传。
- *  修改
+ *加入购物车：将选中物品数组与服务器数组合并
+ *前置条件：传入数据的格式处理。只传入关键，有效键值对。（关键：即上传&展示时的必须字段）
+ *加入事件分支：根据商品id，当有该id时，只作数量累加。没有该id时进行矢量累加。
+ *注：关键字段：商品id，商品名，商品类别，商品图片，总需次数，剩余次数，购买次数，购买价格
  */
++ (BOOL)addCartList:(nullable NSArray *)cartArr{
+
+//    //添加时，不能为空
+//    if (cartArr.count == 0) {
+//        
+//        NSLogZS(@"添加不能为空");
+//        return NO;
+//    
+//    }
+    
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath = [paths objectAtIndex:0];
+    //得到完整的文件名
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"cartList.plist"];
+    //判断是否已有此目录文件
+    BOOL isExst = [[NSFileManager defaultManager] fileExistsAtPath:filename];
+    
+    if (isExst) {
+    
+        NSMutableArray *existArr = [NSMutableArray arrayWithContentsOfFile:filename];
+//        (NSMutableArray *)[[NSFileManager defaultManager] contentsOfDirectoryAtPath:filename
+//                                                                                       error:nil];
+        
+        for (int i = 0 ; i < cartArr.count; i ++) {
+            
+            [existArr addObject:cartArr[i]];
+        }
+        [existArr writeToFile:filename atomically:YES];
+        
+    }else{
+    
+        //若不存在，直接将数据存入
+        [cartArr writeToFile:filename atomically:YES];
+        
+    }
+
+    return NO;
+    
+}
+
++ (BOOL)removeGoodsWithIndexPath:(NSInteger)indexPath{
+
+        return NO;
+    
+}
+
++ (BOOL)modefiGoodsWIthIndexPath:(NSInteger)indexPath{
+
+        return NO;
+    
+}
+
++ (CGFloat)cartTotalCost{
+
+        return NO;
+    
+}
 
 @end
