@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ProductCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *productImg;
 @property (weak, nonatomic) IBOutlet UILabel *titleLable;
 
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
-@property (weak, nonatomic) IBOutlet UILabel *sumLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *surplusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *participateButton;
 
 
