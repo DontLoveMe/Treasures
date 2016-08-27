@@ -20,6 +20,7 @@
 #import "UIViewExt.h"
 #import "MD5Security.h"
 #import "MJExtension.h"
+#import "CartTools.h"
 #endif
 
 //主色调

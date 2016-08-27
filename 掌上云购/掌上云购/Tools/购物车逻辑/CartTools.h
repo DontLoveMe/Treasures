@@ -21,12 +21,17 @@
 
 @interface CartTools : NSObject
 
+//增加商品
 + (BOOL)addCartList:(NSArray *)cartArr;
-
+//删除某一栏
 + (BOOL)removeGoodsWithIndexPath:(NSInteger)indexPath;
-
-+ (BOOL)modefiGoodsWIthIndexPath:(NSInteger)indexPath;
-
+//清空购物车
++ (BOOL)realaseCartList;
+//增加某一栏数量
++ (BOOL)addCountWithIndexPath:(NSInteger)indexPath;
+//减少某一栏数量
++ (BOOL)decreaseCountWithIndexPath:(NSInteger)indexPath;
+//计算购物车总价
 + (CGFloat)cartTotalCost;
 
 @end

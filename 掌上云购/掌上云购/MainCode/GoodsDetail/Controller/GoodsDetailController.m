@@ -218,6 +218,7 @@
 
 - (void)buyNowAction:(UIButton *)button{
 
+    [CartTools addCartList:@[@"1",@"2",@"3",@"4"]];
     NSLogZS(@"现在购买");
 
 }
@@ -225,7 +226,19 @@
 - (void)addToCartAction:(UIButton *)button{
 
     NSLogZS(@"加入清单");
-
+    //构建购物车数据模型
+    //*注：关键字段：商品id，*商品名，商品类别，商品图片，总需次数，剩余次数，购买次数，购买价格
+    NSDictionary *goods = @{@"id":[_dataDic objectForKey:@"id"],
+                            @"name":[_dataDic objectForKey:@"name"],
+                            @"proPictureList":[_dataDic objectForKey:@"proPictureList"],
+                            @"totalShare":[_dataDic objectForKey:@"totalShare"],
+                            @"surplusShare":[_dataDic objectForKey:@"surplusShare"],
+                            @"buyTimes":[NSNumber numberWithInteger:1]};
+//                            @"actualPrice":[_dataDic objectForKey:@"actualPrice"]
+                           
+    BOOL isSuccess = [CartTools addCartList:@[goods]];
+    NSLogZS(@"成功了么%d",isSuccess);
+    
 }
 
 - (void)gotoCartAction:(UIButton *)button{
@@ -317,8 +330,8 @@
               if ([json objectForKey:@"flag"]) {
                   
                   //商品图片
-                  NSDictionary  *dataDic = [json objectForKey:@"data"];
-                  NSArray   *picDicArr = [dataDic objectForKey:@"proPictureList"];
+                  _dataDic = [json objectForKey:@"data"];
+                  NSArray   *picDicArr = [_dataDic objectForKey:@"proPictureList"];
                   NSMutableArray *picArr = [NSMutableArray array];
                   for (int i = 0; i < picDicArr.count ; i ++) {
                       
@@ -331,25 +344,25 @@
                   });
                   
                   //商品名
-                  _goodsName.text = [dataDic objectForKey:@"name"];
+                  _goodsName.text = [_dataDic objectForKey:@"name"];
                   
                   //商品状态信息
-                  _oherFunctionTableView.dataDic = dataDic;
+                  _oherFunctionTableView.dataDic = _dataDic;
                   //进度
-//                  _oherFunctionTableView.goodSID = [dataDic objectForKey:@"drawId"];
-//                  NSInteger total =  [[dataDic objectForKey:@"totalShare"] integerValue];
-//                  NSInteger now = [[dataDic objectForKey:@"sellShare"] integerValue];
+//                  _oherFunctionTableView.goodSID = [_dataDic objectForKey:@"drawId"];
+//                  NSInteger total =  [[_dataDic objectForKey:@"totalShare"] integerValue];
+//                  NSInteger now = [[_dataDic objectForKey:@"sellShare"] integerValue];
 //                  _oherFunctionTableView.progress = now * 100 / total ;
                   
                   //夺宝状态
                   //是否揭晓
-                  _isAnnounced = [[dataDic objectForKey:@"status"] integerValue];
+                  _isAnnounced = [[_dataDic objectForKey:@"status"] integerValue];
                   
                   //是否参与
-                  _isJoind = [[dataDic objectForKey:@"isBuy"] integerValue];
-                  NSLogZS(@"参与了么:%ld",[[dataDic objectForKey:@"isBuy"] integerValue]);
+                  _isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
+                  NSLogZS(@"参与了么:%ld",[[_dataDic objectForKey:@"isBuy"] integerValue]);
                   
-                  _drawId = [dataDic objectForKey:@"drawId"];
+                  _drawId = [_dataDic objectForKey:@"drawId"];
                   
                   _oherFunctionTableView.isJoin = _isJoind;
                   _oherFunctionTableView.isAnnounced = _isAnnounced;
