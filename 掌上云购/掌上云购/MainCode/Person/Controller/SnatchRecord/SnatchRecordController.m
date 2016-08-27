@@ -55,6 +55,66 @@
     
     //创建子视图
     [self createSubViews];
+    
+    [self requestData:nil];
+}
+
+- (void)requestData:(NSNumber *)drawStatus{
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"userId"];
+//    [self showHUD:@"加载数据"];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    if (drawStatus == nil) {
+//        [params setObject:@{@"buyUserId":@2} forKey:@"paramsMap"];
+//    }else {
+//        [params setObject:@{@"buyUserId":@2,@"drawStatus":drawStatus} forKey:@"paramsMap"];
+//    }
+//    
+//    [params setObject:@1 forKey:@"page"];
+//    [params setObject:@1 forKey:@"rows"];
+//    
+//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserOrderList_URL];
+//    [ZSTools post:url
+//           params:params
+//          success:^(id json) {
+//              
+//              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+//              [self hideSuccessHUD:json[@"msg"]];
+//              if (isSuccess) {
+//                  _data = json[@"data"];
+//                  [_tableView reloadData];
+//              }
+//              
+//              
+//          } failure:^(NSError *error) {
+//              
+//              [self hideFailHUD:@"加载失败"];
+//              NSLogZS(@"%@",error);
+//          }];
+    NSDictionary *dic = @{
+        @"id": @1,
+        @"name": @"测试数据",
+        @"expirationDate": @"2016-08-16 17:27:06",
+        @"status": @1,
+        @"isBuy": @0,
+        @"saleDraw": @{
+            @"id":@2,
+            @"periodsNumber": @3,
+            @"productId": @4,
+            @"totalShare": @100,
+            @"surplusShare": @0,
+            @"sellShare": @100,
+            @"status": @3,
+            @"drawDate": @"2016-07-16 15:42:02.0",
+            @"drawUserId": @5,
+            @"drawNumber": @"10000086",
+            @"countdownStartDate": @"2016-08-26 16:10:14.0",
+            @"countdownEndDate": @"2016-08-23 10:03:00.0",
+            @"nickName": @"测6",
+            
+        }
+        };
 }
 //创建子视图
 - (void)createSubViews {

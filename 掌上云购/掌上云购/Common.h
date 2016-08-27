@@ -36,8 +36,17 @@
 /*---------------购物车模块---------------------*/
 #define CartList_URL @"/pcpServer-inf/saleCart/list"
 
+/*---------------我的云购模块---------------------*/
+//我的云购记录列表
+#define UserOrderList_URL @"/pcpServer-inf/sale/userOrderList"
+//幸运记录列表
+#define LuckyNumberList_URL @"/pcpServer-inf/sale/luckyNumberList"
+//确认地址接口
+#define ConfirmAddress_URL @"/pcpServer-inf/sale/confirmAddress"
+
 /*---------------分类模块----------------------*/
 #define CategorysList_URL @"/pcpServer-inf/proCategory/list"
+
 /*---------------收货地址模块----------------------*/
 //省、市、区
 #define AreaProvince_URL @"/pcpServer-inf/area/province"
