@@ -188,11 +188,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
     
-    [AddressModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{
-                 @"addressId" : @"id",
-                };
-    }];
     AddressModel *model = [AddressModel mj_objectWithKeyValues:_data[indexPath.row]];
     cell.model = model;
    
