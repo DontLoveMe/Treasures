@@ -21,6 +21,8 @@
 
 @interface CartTools : NSObject
 
+//查询商品
++ (NSArray *)getCartList;
 //增加商品
 + (BOOL)addCartList:(NSArray *)cartArr;
 //删除某一栏

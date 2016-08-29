@@ -21,176 +21,131 @@
     return self;
 }
 
--(void)initWithUI
-{
+-(void)initWithUI{
 
-  
-   _goodsType = [[UIImageView alloc]init];
-    
-    [self.contentView addSubview:_goodsType];
-
-    _goodsType.sd_layout
-    .leftSpaceToView(self.contentView,5)
-    .topSpaceToView(self.contentView,5)
-    .widthIs(40)
-    .heightIs(40);
-    
-
-    
+    //商品图片
     _goodsImg = [[UIImageView alloc]init];
-    
     [self.contentView addSubview:_goodsImg];
-
     _goodsImg.sd_layout
-    .leftSpaceToView(self.contentView,20)
-    .topSpaceToView(_goodsType,2)
-    .widthIs(50)
-    .heightIs(60);
-    
-    
-    
+    .leftSpaceToView(self.contentView,8)
+    .topSpaceToView(self.contentView,8)
+    .widthIs(64)
+    .heightIs(72);
+    //商品分类
+    _goodsType = [[UIImageView alloc]init];
+    [_goodsImg addSubview:_goodsType];
+    _goodsType.sd_layout
+    .leftSpaceToView(_goodsImg,0)
+    .topSpaceToView(_goodsImg,0)
+    .widthIs(12)
+    .heightIs(12);
+    //商品名
     _goodsTitle = [[UILabel alloc]init];
-    
     _goodsTitle.textColor = [UIColor blackColor];
-    
+    _goodsTitle.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:_goodsTitle];
-
-    
     _goodsTitle.sd_layout
-    .leftSpaceToView(_goodsImg,10)
-    .topSpaceToView(self.contentView,10)
-    .widthIs(300)
+    .leftSpaceToView(_goodsImg,8)
+    .topSpaceToView(self.contentView,8)
+    .rightSpaceToView(self.contentView,8)
     .heightIs(20);
-    
-    
-    
+    //商品总量
     _totalNumber = [[UILabel alloc]init];
-    
+    _totalNumber.textColor = [UIColor blackColor];
+    _totalNumber.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:_totalNumber];
-
-    
     _totalNumber.sd_layout
     .leftEqualToView(_goodsTitle)
-    .topSpaceToView(_goodsTitle,10)
-    .widthIs(120)
+    .topSpaceToView(_goodsTitle,4)
+    .widthIs(100)
     .heightIs(20);
-   
-   
-    
-    
+    //商品剩余量
     _surplusNumber = [[UILabel alloc]init];
-    
+    _surplusNumber.textColor = [UIColor blackColor];
+    _surplusNumber.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:_surplusNumber];
-
     _surplusNumber.sd_layout
-    .leftSpaceToView(_totalNumber,3)
+    .leftSpaceToView(_totalNumber,8)
     .topEqualToView(_totalNumber)
     .widthIs(100)
     .heightIs(20);
-    
-    
+    //减少按钮
     _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    _deleteBtn.tag = 11;
-    
+    [_deleteBtn setImage:[UIImage imageNamed:@"按钮-"] forState:UIControlStateNormal];
+    [_deleteBtn addTarget:self
+                action:@selector(reduceAction:)
+      forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_deleteBtn];
-
-    
     _deleteBtn.sd_layout
     .leftEqualToView(_totalNumber)
-    .topSpaceToView(_totalNumber,10)
-    .heightIs(30)
-    .widthIs(30);
-    
-    
-    
+    .topSpaceToView(_totalNumber,4)
+    .heightIs(28)
+    .widthIs(28);
+    //选择量
     _goodsNumLab = [[UILabel alloc]init];
-
+    _goodsNumLab.textColor = [UIColor blackColor];
+    _goodsNumLab.font = [UIFont systemFontOfSize:13];
     _goodsNumLab.textAlignment = NSTextAlignmentCenter;
-    
     [self.contentView addSubview:_goodsNumLab];
-    
     _goodsNumLab.textColor = [UIColor redColor];
-    
     _goodsNumLab.sd_layout
-    .leftSpaceToView(_deleteBtn,10)
+    .leftSpaceToView(_deleteBtn,0)
     .topEqualToView(_deleteBtn)
     .widthIs(50)
-    .heightIs(30);
-    
-    
+    .heightIs(28);
+    //增加按钮
     _addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
+    [_addBtn setImage:[UIImage imageNamed:@"按钮+"] forState:UIControlStateNormal];
+    [_addBtn addTarget:self
+                   action:@selector(addAction:)
+         forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_addBtn];
-
-    
     _addBtn.tag = 12;
-    
     _addBtn.sd_layout
-    .leftSpaceToView(_goodsNumLab,10)
+    .leftSpaceToView(_goodsNumLab,0)
     .topEqualToView(_goodsNumLab)
-    .widthIs(30)
-    .heightIs(30);
-    
-    
+    .widthIs(28)
+    .heightIs(28);
+    //单位
     _passengers = [[UILabel alloc]init];
-    
+    _passengers.text = @"人次";
+    _passengers.textColor = [UIColor blackColor];
+    _passengers.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:_passengers];
-
-    
     _passengers.sd_layout
     .leftSpaceToView(_addBtn,15)
     .topSpaceToView(_surplusNumber,20)
     .widthIs(40)
     .heightIs(10);
-    
-    
-    
+    //价格
     _price = [[UILabel alloc]init];
-    
-    [self.contentView addSubview:_price];
-
-    
+    _price.text = @"10元/次";
     _price.textColor = [UIColor redColor];
-    
+    _price.font = [UIFont systemFontOfSize:13];
+    [self.contentView addSubview:_price];
     _price.sd_layout
     .leftEqualToView(_deleteBtn)
-    .topSpaceToView(_deleteBtn,20)
+    .topSpaceToView(_deleteBtn,4)
     .widthIs(80)
     .heightIs(20);
     
-    
-    _isSelectImg = [[UIImageView alloc]init];
-    
-    [self.contentView addSubview:_isSelectImg];
+}
 
-    
-    _isSelectImg.sd_layout
-    .leftEqualToView(_goodsImg)
-    .topSpaceToView(_goodsImg,10)
-    .widthIs(30)
-    .heightIs(30);
-    
-    
-    
-    _checkboxText = [[UILabel alloc]init];
-    
-    _checkboxText.sd_layout
-    .leftSpaceToView(_isSelectImg,10)
-    .topEqualToView(_isSelectImg)
-    .widthIs(40)
-    .heightIs(20);
-    
-    [self.contentView addSubview:_checkboxText];
-    
+#pragma mark - ButtonAction
+- (void)addAction:(UIButton *)button{
+
+    if ([_functionDelegate respondsToSelector:@selector(addCountAtIndexPath:)]) {
+        [_functionDelegate addCountAtIndexPath:_indexPath];
+    }
     
 }
 
+- (void)reduceAction:(UIButton *)button{
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+    if ([_functionDelegate respondsToSelector:@selector(reduceCountAtIndexPath:)]) {
+        [_functionDelegate reduceCountAtIndexPath:_indexPath];
+    }
 
-    // Configure the view for the selected state
 }
 
 @end

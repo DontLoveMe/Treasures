@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 
 
-////添加用于按钮加减的代理
-//@protocol CartTableViewCellDelegate <NSObject>
-//
-//-(void)btnClick:(UITableViewCell *)cell andFlag:(NSInteger)flag;
-//
-//
-////删除按钮
-//-(void)deleteClickedWithIndexPath:(NSIndexPath *)indexPath;
-//
-//@end
+//增减代理
+@protocol CartFunctionDelegate <NSObject>
+
+//增加事件
+-(void)addCountAtIndexPath:(NSIndexPath *)indexPath;
+
+//减少事件
+-(void)reduceCountAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
 
 @interface CartTableViewCell : UITableViewCell
 
-
+@property(nonatomic,strong)NSIndexPath* indexPath;
 //标记图片
 @property(nonatomic,strong)UIImageView *goodsType;
 
@@ -59,15 +59,12 @@
 //是否选中图片
 @property(nonatomic,strong)UIImageView *isSelectImg;
 
-//复选框文字
-@property(nonatomic,strong)UILabel *checkboxText;
+////复选框文字
+//@property(nonatomic,strong)UILabel *checkboxText;
+//
+////选中状态
+//@property(nonatomic,assign)BOOL selectState;
 
-//选中状态
-@property(nonatomic,assign)BOOL selectState;
-
-
-//@property(nonatomic,assign)id<CartTableViewCellDelegate>delegate;
-
-
+@property (nonatomic ,weak)id <CartFunctionDelegate> functionDelegate;
 
 @end
