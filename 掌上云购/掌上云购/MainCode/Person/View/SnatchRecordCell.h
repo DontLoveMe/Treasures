@@ -7,23 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecordModel.h"
 
 @interface SnatchRecordCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;//标题
 
-@property (weak, nonatomic) IBOutlet UILabel *issueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *peopleNum;
+@property (weak, nonatomic) IBOutlet UILabel *issueLabel;//期号
+@property (weak, nonatomic) IBOutlet UILabel *peopleNum;//参与
 
-@property (weak, nonatomic) IBOutlet UIButton *detailButton;
+@property (weak, nonatomic) IBOutlet UIButton *detailButton;//查看详情
 
-@property (weak, nonatomic) IBOutlet UILabel *getName;
-@property (weak, nonatomic) IBOutlet UILabel *getPeopleN;
+@property (weak, nonatomic) IBOutlet UILabel *getName;//获得者
+@property (weak, nonatomic) IBOutlet UILabel *getPeopleN;//获得者参与人次
 
 @property (weak, nonatomic) IBOutlet UIButton *againButton;
 
-
+@property (nonatomic, strong) RecordModel *rcModel;
 
 @end

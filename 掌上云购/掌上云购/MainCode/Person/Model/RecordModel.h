@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Saledraw,Propicturelist;
-@interface LuckyModel : NSObject
+@interface RecordModel : NSObject
 
 @property (nonatomic, copy) NSString *surplusShare;
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LuckyModel.h"
+#import "RecordModel.h"
 
 @interface LuckyRecordCell : UITableViewCell
 
@@ -21,6 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *goodsButton;//按钮
 
-@property (nonatomic ,strong)LuckyModel *lkModel;
+@property (nonatomic ,strong)RecordModel *lkModel;
 
 @end

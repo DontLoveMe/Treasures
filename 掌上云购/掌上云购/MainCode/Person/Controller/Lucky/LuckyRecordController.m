@@ -8,13 +8,14 @@
 
 #import "LuckyRecordController.h"
 #import "LuckyRecordCell.h"
-#import "LuckyModel.h"
+#import "RecordModel.h"
 
 @interface LuckyRecordController ()
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,copy)NSString *identify;
-@property (nonatomic,strong)NSArray *data;
+@property (nonatomic,strong)NSMutableArray *data;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -44,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"幸运记录";
-   
+    _page = 1;
     [self initNavBar];
 
     [self requestData];
@@ -58,8 +59,8 @@
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"buyUserId":@2} forKey:@"paramsMap"];
-    [params setObject:@1 forKey:@"page"];
-    [params setObject:@1 forKey:@"rows"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,LuckyNumberList_URL];
     [ZSTools post:url
@@ -69,7 +70,22 @@
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
-                  _data = json[@"data"];
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_data removeAllObjects];
+                      _data = dataArr.mutableCopy;
+                      [_tableView.mj_header endRefreshing];
+                  }
+
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_data addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
                   [_tableView reloadData];
               }
               
@@ -96,6 +112,19 @@
     _identify = @"LuckyRecordCell";
     UINib *nib = [UINib nibWithNibName:@"LuckyRecordCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
+    
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestData];
+    }];
+    _tableView.mj_header = header;
+    
+    _tableView.mj_footer = [MJRefreshFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self requestData];
+    }];
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -106,7 +135,7 @@
     
     LuckyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.lkModel = [LuckyModel mj_objectWithKeyValues:_data[indexPath.row]];
+    cell.lkModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

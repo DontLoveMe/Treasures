@@ -84,6 +84,9 @@
                                 <state key="normal" title="再次购买" backgroundImage="按钮背景.png">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="AgainAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="exH-yf-bId"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glz-F3-bPo">
                                 <rect key="frame" x="147" y="86" width="29" height="13"/>
@@ -150,7 +153,17 @@
                     <constraint firstItem="HHf-a1-pMP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="rP7-Lc-FTR"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="272" y="325"/>
+            <connections>
+                <outlet property="imgView" destination="rlP-gH-Lwr" id="GYO-n2-p8j"/>
+                <outlet property="issueLabel" destination="5tT-a9-48h" id="wd8-cU-pMB"/>
+                <outlet property="participateLabel" destination="dlN-Od-iFE" id="gUW-aF-HcX"/>
+                <outlet property="progressLabel" destination="glz-F3-bPo" id="uNH-js-6Fm"/>
+                <outlet property="progressView" destination="a4Z-J2-DJC" id="zLd-aN-Jfj"/>
+                <outlet property="sumLabel" destination="CQf-8v-M4p" id="qTn-yS-Xff"/>
+                <outlet property="surplusLabel" destination="acH-ht-RPy" id="84W-S7-qe3"/>
+                <outlet property="titleLabel" destination="4LV-Me-3wk" id="74r-Vq-xrf"/>
+            </connections>
+            <point key="canvasLocation" x="75" y="323"/>
         </tableViewCell>
     </objects>
     <resources>

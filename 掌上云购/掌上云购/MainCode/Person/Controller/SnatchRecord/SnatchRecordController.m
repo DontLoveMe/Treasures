@@ -9,6 +9,7 @@
 #import "SnatchRecordController.h"
 #import "SnatchRecordCell.h"
 #import "SnatchRecordingCell.h"
+#import "RecordModel.h"
 
 @interface SnatchRecordController ()
 
@@ -57,6 +58,8 @@
     [self createSubViews];
     
     [self requestData:nil];
+    
+    
 }
 
 - (void)requestData:(NSNumber *)drawStatus{
@@ -92,19 +95,23 @@
 //              [self hideFailHUD:@"加载失败"];
 //              NSLogZS(@"%@",error);
 //          }];
-    NSDictionary *dic = @{
+    NSDictionary *dic1 = @{
         @"id": @1,
         @"name": @"测试数据",
         @"expirationDate": @"2016-08-16 17:27:06",
         @"status": @1,
         @"isBuy": @0,
+        @"totalShare": @1000,
+        @"surplusShare": @0,
+        @"sellShare": @10,
         @"saleDraw": @{
             @"id":@2,
             @"periodsNumber": @3,
+            @"drawTimes":@100000001,
             @"productId": @4,
-            @"totalShare": @100,
+            @"totalShare": @1000,
             @"surplusShare": @0,
-            @"sellShare": @100,
+            @"sellShare": @1000,
             @"status": @3,
             @"drawDate": @"2016-07-16 15:42:02.0",
             @"drawUserId": @5,
@@ -112,9 +119,45 @@
             @"countdownStartDate": @"2016-08-26 16:10:14.0",
             @"countdownEndDate": @"2016-08-23 10:03:00.0",
             @"nickName": @"测6",
+            @"qty": @""
             
         }
         };
+    NSDictionary *dic2 = @{
+                          @"id": @1,
+                          @"name": @"测试数据",
+                          @"expirationDate": @"2016-08-16 17:27:06",
+                          @"status": @3,
+                          @"isBuy": @0,
+                          @"totalShare": @1000,
+                          @"surplusShare": @0,
+                          @"sellShare": @10,
+                          @"saleDraw": @{
+                                  @"id":@2,
+                                  @"periodsNumber": @3,
+                                  @"drawTimes":@100000001,
+                                  @"productId": @4,
+                                  @"totalShare": @1000,
+                                  @"surplusShare": @0,
+                                  @"sellShare": @1000,
+                                  @"status": @3,
+                                  @"drawDate": @"2016-07-16 15:42:02.0",
+                                  @"drawUserId": @5,
+                                  @"drawNumber": @"10000086",
+                                  @"countdownStartDate": @"2016-08-26 16:10:14.0",
+                                  @"countdownEndDate": @"2016-08-23 10:03:00.0",
+                                  @"nickName": @"测6",
+                                  @"qty": @"100"
+                                  }
+                          };
+    if (drawStatus == nil) {
+        _data = @[dic1,dic2,dic1,dic2,dic1,dic1,dic2,dic2];
+    }else if ([drawStatus integerValue] == 1) {
+        _data = @[dic1,dic1,dic1,dic1];
+    }else if ([drawStatus integerValue] == 3) {
+        _data = @[dic2,dic2,dic2,dic2];
+    }
+    [_tableView reloadData];
 }
 //创建子视图
 - (void)createSubViews {
@@ -145,7 +188,7 @@
     [self.view addSubview:_lineView];
     
     
-    _data = @[@"1",@"0",@"1",@"1",@"0",@"0"];
+    [self requestData:nil];
     //创建表视图
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, KScreenWidth, KScreenHeight-30-64) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
@@ -187,16 +230,13 @@
     
     switch (button.tag) {
         case 200:
-            _data = @[@"1",@"0",@"1",@"1",@"0",@"0"];
-            [_tableView reloadData];
+            [self requestData:nil];
             break;
         case 201:
-            _data = @[@"0",@"0",@"0",@"0",@"0",@"0"];
-            [_tableView reloadData];
+            [self requestData:@1];
             break;
         case 202:
-            _data = @[@"1",@"1",@"1",@"1",@"1",@"1"];
-            [_tableView reloadData];
+            [self requestData:@3];
             break;
             
         default:
@@ -210,15 +250,18 @@
     return _data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_data[indexPath.row] boolValue]) {
+    RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
+    if (rcModel.status == 3) {
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
+        cell.rcModel = rcModel;
         return cell;
     }
     SnatchRecordingCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify2 forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
+    cell.rcModel = rcModel;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

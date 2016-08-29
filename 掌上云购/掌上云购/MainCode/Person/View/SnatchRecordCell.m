@@ -15,6 +15,18 @@
     // Initialization code
 }
 
+- (void)setRcModel:(RecordModel *)rcModel {
+    _rcModel = rcModel;
+    
+    _titleLabel.text = rcModel.name;
+    _issueLabel.text = [NSString stringWithFormat:@"期号：%@",rcModel.saleDraw.drawTimes
+];
+    _peopleNum.text = [NSString stringWithFormat:@"%@",rcModel.sellShare];
+    _getName.text = rcModel.saleDraw.nickName;
+    _getPeopleN.text = [NSString stringWithFormat:@"%@",rcModel.saleDraw.qty];
+
+}
+
 //查看详情
 - (IBAction)lookDetailAction:(UIButton *)sender {
 }

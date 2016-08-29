@@ -65,4 +65,7 @@
 //晒单分享
 #define Sunsharing_URL @"/pcpServer-inf/user/userComment/list"
 
+/*---------------充值模块---------------------*/
+#define RechargeList_URL @"/pcpServer-inf/saleMoneyRecharge/list"
+
 #endif /* Common_h */

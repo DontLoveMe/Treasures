@@ -8,9 +8,12 @@
 
 #import "RechargeRecordController.h"
 #import "RechargeRecordCell.h"
+#import "RechargeModel.h"
 
 @interface RechargeRecordController ()
 
+@property (nonatomic,strong)NSMutableArray *data;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -46,9 +49,60 @@
     
     self.title = @"充值记录";
     
+    _page = 1;
+    _data = [NSMutableArray array];
+    
     [self initNavBar];
     
+    [self requestData];
+    
     [self createTableView];
+}
+
+- (void)requestData {
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"userId"];
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RechargeList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_data removeAllObjects];
+                          _data = dataArr.mutableCopy;
+                  }
+                  
+                  
+                  [_tableView.mj_header endRefreshing];
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_data addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 
 - (void)createTableView {
@@ -65,10 +119,13 @@
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return _data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     RechargeRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    cell.raModel = [RechargeModel mj_objectWithKeyValues:self.data[indexPath.row]];
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

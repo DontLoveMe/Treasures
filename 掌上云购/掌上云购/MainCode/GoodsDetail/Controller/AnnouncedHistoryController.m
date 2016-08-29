@@ -78,11 +78,7 @@
     header.lastUpdatedTimeLabel.hidden = YES;
     header.stateLabel.hidden = YES;
     _announcedTableView.mj_header = header;
-//    [MJRefreshGifHeader headerWithRefreshingBlock:^{
-//        
 
-//        
-//    }];
     [self.view addSubview:_announcedTableView];
     
 }

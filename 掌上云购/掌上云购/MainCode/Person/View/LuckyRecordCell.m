@@ -17,11 +17,11 @@
     // Initialization code
 }
 
-- (void)setLkModel:(LuckyModel *)lkModel {
+- (void)setLkModel:(RecordModel *)lkModel {
     _lkModel = lkModel;
     
-    _titleLabel.text = _lkModel.saleDraw.nickName;
-    _issueLabel.text = [NSString stringWithFormat:@"%ld",_lkModel.saleDraw.periodsNumber];
+    _titleLabel.text = _lkModel.name;
+    _issueLabel.text = [NSString stringWithFormat:@"%@",_lkModel.saleDraw.drawTimes];
     _sumLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.totalShare];
     _luckyNumLabel.text = _lkModel.saleDraw.drawNumber;
     _participateLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.sellShare];

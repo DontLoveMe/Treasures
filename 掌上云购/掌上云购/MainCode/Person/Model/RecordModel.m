@@ -6,9 +6,9 @@
 //  Copyright © 2016年 nevermore. All rights reserved.
 //
 
-#import "LuckyModel.h"
+#import "RecordModel.h"
 
-@implementation LuckyModel
+@implementation RecordModel
 
 
 + (NSDictionary *)objectClassInArray{
