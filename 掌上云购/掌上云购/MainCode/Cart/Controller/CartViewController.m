@@ -7,7 +7,6 @@
 //
 
 #import "CartViewController.h"
-#import "CartTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
 #import "PayViewController.h"
 @interface CartViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -292,13 +291,9 @@
 -(void)creatTableView{
 
     _tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-180) style:UITableViewStylePlain];
-    
     _tabview.backgroundColor = TableViewBackColor;
-    
     _tabview.dataSource = self;
-    
     _tabview.delegate = self;
-    
     [self.view addSubview:_tabview];
    
 }
@@ -306,7 +301,7 @@
 #pragma mark----UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 3;
+    return _dataArray.count;
 
 }
 
@@ -315,40 +310,53 @@
     
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
+    NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
     if (!cell) {
         
         cell = [[CartTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+     }
+    cell.functionDelegate = self;
+    
+    cell.indexPath = indexPath;
+    
+    cell.goodsTitle.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
         
+    cell.totalNumber.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"totalShare"]];
         
-        cell.goodsTitle.text = @"Apple iPhone6S Plus 128G 颜色随机";
+    cell.surplusNumber.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"surplusShare"]];
+
+    cell.goodsType.image = [UIImage imageNamed:@"商品种类"];
         
-        cell.totalNumber.text = @"总需809人次,";
-        
-        cell.surplusNumber.text = @"剩余737人次";
-        
-        cell.passengers.text = @"人次";
-        
-        cell.price.text = @"10元/人次";
-        
-        [cell.deleteBtn setImage:[UIImage imageNamed:@"按钮-"] forState:UIControlStateNormal];
-        
-        [cell.addBtn setImage:[UIImage imageNamed:@"按钮+"] forState:UIControlStateNormal];
-        
-        [cell.isSelectImg setImage:[UIImage imageNamed:@"复选框-未选中"]];
-        
-        cell.goodsType.image = [UIImage imageNamed:@"商品种类"];
-        
-        cell.goodsImg.image = [UIImage imageNamed:@"品牌图片"];
+    cell.goodsImg.image = [UIImage imageNamed:@"品牌图片"];
        
-        cell.goodsNumLab.text = @"1";
-    }
+    cell.goodsNumLab.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
     
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return 160;
+    return 112;
+    
+}
+
+//增加事件
+-(void)addCountAtIndexPath:(NSIndexPath *)indexPath{
+
+    NSLogZS(@"增加了");
+    [CartTools addCountWithIndexPath:indexPath.row];
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [_tabview reloadData];
+    
+}
+
+//减少事件
+-(void)reduceCountAtIndexPath:(NSIndexPath *)indexPath{
+
+    NSLogZS(@"减少了");
+    [CartTools decreaseCountWithIndexPath:indexPath.row];
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [_tabview reloadData];
     
 }
 
@@ -357,24 +365,27 @@
 
     [super viewWillAppear:animated];
     
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [_tabview reloadData];
+    
     [self requestCartList];
     
 }
 
 - (void)requestCartList{
 
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"buyUserId"];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartList_URL];
-    
-    [ZSTools post:url
-           params:params
-          success:^(id json) {
-              
-          } failure:^(NSError *error) {
-              
-          }];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:@"1" forKey:@"buyUserId"];
+//    
+//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartList_URL];
+//    
+//    [ZSTools post:url
+//           params:params
+//          success:^(id json) {
+//              
+//          } failure:^(NSError *error) {
+//              
+//          }];
     
 }
 
