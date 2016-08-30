@@ -8,11 +8,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
                 <outlet property="actionButton" destination="tXo-q0-jMq" id="vxy-zR-IFw"/>
+                <outlet property="agreeButton" destination="QwW-eb-LWK" id="suV-E8-m6p"/>
+                <outlet property="bottomView" destination="7Fc-HT-ohh" id="AQw-gf-YJb"/>
                 <outlet property="passwrodTF" destination="sNp-jh-NwF" id="GLK-pY-Web"/>
                 <outlet property="rePasswordTF" destination="6br-PE-aeC" id="hSe-wt-SrQ"/>
+                <outlet property="userDgtBtn" destination="YnT-eI-nOU" id="dqI-i1-RlU"/>
                 <outlet property="usernameTF" destination="geF-O9-mzf" id="QDB-gY-DRB"/>
                 <outlet property="validataButton" destination="yGF-4p-Orr" id="Lgk-5c-Ib6"/>
                 <outlet property="validateTF" destination="41H-fZ-dyh" id="Fij-wn-szH"/>
+                <outlet property="vdBtnHeight" destination="nYe-2i-0mg" id="ztb-o9-opx"/>
+                <outlet property="vdTFHeight" destination="lDO-Tu-acp" id="L3M-jO-p4c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="geF-O9-mzf">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="geF-O9-mzf">
                     <rect key="frame" x="0.0" y="5" width="600" height="35"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -30,16 +35,16 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="先获取验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="41H-fZ-dyh">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="41H-fZ-dyh">
                     <rect key="frame" x="0.0" y="42" width="484" height="35"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="lDO-Tu-acp"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="设置密码" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNp-jh-NwF">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请设置密码" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNp-jh-NwF">
                     <rect key="frame" x="0.0" y="79" width="600" height="35"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -48,7 +53,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6br-PE-aeC">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6br-PE-aeC">
                     <rect key="frame" x="0.0" y="116" width="600" height="35"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -137,11 +142,10 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXo-q0-jMq">
                     <rect key="frame" x="15" y="187" width="570" height="37"/>
-                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="ezM-td-b5z"/>
                     </constraints>
-                    <state key="normal" title="立即注册">
+                    <state key="normal" title="立即注册" backgroundImage="按钮背景.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -175,6 +179,10 @@
                         <action selector="userDelegateAction:" destination="-1" eventType="touchUpInside" id="8jo-Wg-BK1"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fc-HT-ohh">
+                    <rect key="frame" x="0.0" y="232" width="600" height="368"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -187,13 +195,17 @@
                 <constraint firstItem="1Fw-4b-7Gp" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="9bt-PX-hGa"/>
                 <constraint firstItem="plG-Cn-Xzm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Av1-2f-6wY"/>
                 <constraint firstItem="bBm-5G-j70" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="BnV-wS-d79"/>
+                <constraint firstItem="7Fc-HT-ohh" firstAttribute="top" secondItem="tXo-q0-jMq" secondAttribute="bottom" constant="8" id="Bsx-y6-AKK"/>
                 <constraint firstItem="450-WC-8Me" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="Gzn-dA-V8Q"/>
                 <constraint firstItem="geF-O9-mzf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Iaf-b5-XQh"/>
                 <constraint firstItem="41H-fZ-dyh" firstAttribute="top" secondItem="geF-O9-mzf" secondAttribute="bottom" constant="2" id="KGE-Sk-hyN"/>
                 <constraint firstItem="sNp-jh-NwF" firstAttribute="top" secondItem="yGF-4p-Orr" secondAttribute="bottom" constant="2" id="KZO-Z3-Bms"/>
                 <constraint firstItem="geF-O9-mzf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="KaU-ZC-U7r"/>
                 <constraint firstAttribute="trailing" secondItem="tXo-q0-jMq" secondAttribute="trailing" constant="15" id="Nup-Ls-z1X"/>
+                <constraint firstAttribute="trailing" secondItem="7Fc-HT-ohh" secondAttribute="trailing" id="PSh-Nq-ivr"/>
+                <constraint firstItem="7Fc-HT-ohh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Q3c-mc-Bky"/>
                 <constraint firstItem="41H-fZ-dyh" firstAttribute="leading" secondItem="geF-O9-mzf" secondAttribute="leading" id="TCN-2z-Vnf"/>
+                <constraint firstAttribute="bottom" secondItem="7Fc-HT-ohh" secondAttribute="bottom" id="THJ-87-6sP"/>
                 <constraint firstItem="yGF-4p-Orr" firstAttribute="trailing" secondItem="geF-O9-mzf" secondAttribute="trailing" constant="-3" id="TSI-kt-UUQ"/>
                 <constraint firstItem="450-WC-8Me" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="13" id="V2d-d1-ycJ"/>
                 <constraint firstItem="6br-PE-aeC" firstAttribute="leading" secondItem="geF-O9-mzf" secondAttribute="leading" id="VNH-pF-mVi"/>
@@ -217,7 +229,7 @@
                 <constraint firstItem="8r2-lS-Cbv" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="wqT-5u-Ljy"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
-            <point key="canvasLocation" x="170" y="137"/>
+            <point key="canvasLocation" x="133" y="157"/>
         </view>
     </objects>
     <resources>

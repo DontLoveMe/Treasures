@@ -46,6 +46,7 @@
    
     [self setTextField];
 }
+//设置输入框两边的图片
 - (void)setTextField {
     _userNameTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"用户"]];
     _userNameTF.leftViewMode = UITextFieldViewModeAlways;
@@ -54,12 +55,13 @@
     _passwordTF.leftViewMode = UITextFieldViewModeAlways;
     
     UIButton *plaintextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    plaintextBtn.size = CGSizeMake(25, 25);
-    [plaintextBtn setBackgroundImage:[UIImage imageNamed:@"明文"] forState:UIControlStateNormal];
+    plaintextBtn.size = CGSizeMake(40, 25);
+    [plaintextBtn setImage:[UIImage imageNamed:@"明文"] forState:UIControlStateNormal];
     [plaintextBtn addTarget:self action:@selector(plaintextAction:) forControlEvents:UIControlEventTouchUpInside];
     _passwordTF.rightView = plaintextBtn;
     _passwordTF.rightViewMode = UITextFieldViewModeAlways;
 }
+//明暗文切换
 - (void)plaintextAction:(UIButton *)button{
     _passwordTF.secureTextEntry = !_passwordTF.secureTextEntry;
 }
@@ -102,9 +104,36 @@
               NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
+                  //把信息存到NSUserDefaults
+                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                  for (int i = 0; i < userDic.allKeys.count; i ++) {
+                      
+                      if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+                          
+                          [userDic removeObjectForKey:userDic.allKeys[i]];
+                          i = 0;
+                      }
+                      if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+                          NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+                          for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                              if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
+                                  [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                                  j = 0;
+                              }
+                              userDic[@"userLoginDto"] = userLoginDic;
+                          }
+                          
+                      }
+                  }
                   
-                  UIWindow *window = [UIApplication sharedApplication].keyWindow;
-                  window.rootViewController = [[TabbarViewcontroller alloc] init];
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  
+                  [defaults setObject:userDic forKey:@"userDic"];
+                  
+                  [defaults synchronize];
+
+                  
+                  [self dismissViewControllerAnimated:YES completion:nil];
                   
               }
               
@@ -125,9 +154,13 @@
 }
 //微信登录
 - (IBAction)wechatLogin:(UIButton *)sender {
+    
 }
 //QQ登录
 - (IBAction)QQLogin:(UIButton *)sender {
+}
+//微博登录
+- (IBAction)weiboLogin:(UIButton *)sender {
 }
 
 //#pragma mark - 监听键盘事件

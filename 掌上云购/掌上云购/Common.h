@@ -18,8 +18,12 @@
 #define Login_URL   @"/pcpServer-inf/user/login"
 //会员注册
 #define Regist_URL  @"/pcpServer-inf/user/register"
+//修改密码
+#define UpdatePWD_URL @"/pcpServer-inf/user/updatepass"
 //找回密码
-#define FindPWD_URL @"/pcpServer-inf/user/updatepass"
+#define FindPWD_URL @"/pcpServer-inf/user/resetpass"
+//请求验证码
+#define SendCode_URL @"/pcpServer-inf/sms/sendCode"
 
 /*---------------首页商品模块---------------------*/
 //商品列表
