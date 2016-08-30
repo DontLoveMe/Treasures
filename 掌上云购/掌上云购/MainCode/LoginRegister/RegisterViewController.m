@@ -41,12 +41,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.barTintColor = [UIColor colorFromHexRGB:@"1685FE"];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:20]};
+    self.view.backgroundColor = [UIColor colorFromHexRGB:@"E6E6E6"];
+    
     _countDown = [[CountDown alloc] init];
     
     [self initNavBar];
     
+    _usernameTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 0)];
+    _usernameTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    _validateTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 0)];
+    _validateTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    _passwrodTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 0)];
+    _passwrodTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    _rePasswordTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 0)];
+    _rePasswordTF.leftViewMode = UITextFieldViewModeAlways;
 }
 //获得验证码
 - (IBAction)getCaptchaAction:(UIButton *)sender {
@@ -68,7 +79,7 @@
             [timeButton setTitle:@"重新获取验证码" forState:UIControlStateNormal];
         }else{
             timeButton.enabled = NO;
-            [timeButton setTitle:[NSString stringWithFormat:@"%lds后重新获取",(long)totoalSecond] forState:UIControlStateNormal];
+            [timeButton setTitle:[NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond] forState:UIControlStateNormal];
         }
         
     }];

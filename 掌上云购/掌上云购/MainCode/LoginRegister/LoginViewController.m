@@ -16,9 +16,52 @@
 
 @implementation LoginViewController
 
+#pragma mark - 导航栏
+- (void)initNavBar{
+    
+    self.navigationItem.backBarButtonItem = nil;
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40.f, 25.f)];
+    leftButton.tag = 101;
+    [leftButton setTitle:@"取消" forState:UIControlStateNormal];
+//    [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
+//                          forState:UIControlStateNormal];
+    [leftButton addTarget:self
+                   action:@selector(NavAction:)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+}
+
+- (void)NavAction:(UIButton *)button{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"登录";
+    self.view.backgroundColor = [UIColor colorFromHexRGB:@"E6E6E6"];
+    [self initNavBar];
+   
+    [self setTextField];
+}
+- (void)setTextField {
+    _userNameTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"用户"]];
+    _userNameTF.leftViewMode = UITextFieldViewModeAlways;
     
+    _passwordTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"密码"]];
+    _passwordTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIButton *plaintextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    plaintextBtn.size = CGSizeMake(25, 25);
+    [plaintextBtn setBackgroundImage:[UIImage imageNamed:@"明文"] forState:UIControlStateNormal];
+    [plaintextBtn addTarget:self action:@selector(plaintextAction:) forControlEvents:UIControlEventTouchUpInside];
+    _passwordTF.rightView = plaintextBtn;
+    _passwordTF.rightViewMode = UITextFieldViewModeAlways;
+}
+- (void)plaintextAction:(UIButton *)button{
+    _passwordTF.secureTextEntry = !_passwordTF.secureTextEntry;
 }
 //注册
 - (IBAction)registerActiion:(UIButton *)sender {
@@ -87,43 +130,43 @@
 - (IBAction)QQLogin:(UIButton *)sender {
 }
 
-#pragma mark - 监听键盘事件
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-    
-}
+//#pragma mark - 监听键盘事件
+//- (void)viewWillAppear:(BOOL)animated{
+//    
+////    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+////    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+//    
+//}
+//
+//- (void)viewDidDisappear:(BOOL)animated{
+//    
+//    [super viewDidDisappear:animated];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+//    
+//}
 
-- (void)viewDidDisappear:(BOOL)animated{
-    
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-}
+//- (void)keyboardWasShown:(NSNotification*)aNotification{
+//    
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
-- (void)keyboardWasShown:(NSNotification*)aNotification{
-    
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    if (KScreenHeight - kNavigationBarHeight - _userNameTF.bottom > kbSize.height - 60) {
-            CGRect rect1 = self.view.frame;
-            rect1.origin.y = kbSize.height - KScreenHeight + kNavigationBarHeight + _userNameTF.bottom - 60;
-        self.view.frame = rect1;
-    }
+//    if (KScreenHeight - kNavigationBarHeight - _userNameTF.bottom > kbSize.height - 60) {
+//            CGRect rect1 = self.view.frame;
+//            rect1.origin.y = kbSize.height - KScreenHeight + kNavigationBarHeight + _userNameTF.bottom - 60;
+//        self.view.frame = rect1;
+//    }
 
     
-}
+//}
 
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
-    
-    CGRect rect1 = self.view.frame;
-    rect1.origin.y = 0;
-    self.view.frame = rect1;
-    
-}
+//- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
+//    
+//    CGRect rect1 = self.view.frame;
+//    rect1.origin.y = 0;
+//    self.view.frame = rect1;
+//    
+//}
 
 #pragma mark - 键盘收起事件
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

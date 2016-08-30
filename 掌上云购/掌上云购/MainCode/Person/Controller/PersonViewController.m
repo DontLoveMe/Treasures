@@ -26,6 +26,12 @@
 @property (nonatomic,copy)NSString *identify;
 @property (nonatomic,strong)NSArray *data;
 
+@property (nonatomic,strong)UIImageView *bgIconView;
+@property (nonatomic,strong)UILabel *titleLabel;
+@property (nonatomic,strong)UIButton *msgBtn;
+@property (nonatomic,strong)UIButton *setBtn;
+
+
 @end
 
 @implementation PersonViewController
@@ -38,8 +44,8 @@
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:20];
-    [_collectionView addSubview:label];
-    
+    [self.view insertSubview:label aboveSubview:_collectionView];
+    _titleLabel = label;
     
     UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-40, 30, 25.f, 25.f)];
     rightButton.tag = 101;
@@ -49,8 +55,8 @@
     [rightButton addTarget:self
                    action:@selector(NavAction:)
          forControlEvents:UIControlEventTouchUpInside];
-    [_collectionView addSubview:rightButton];
-//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    [self.view insertSubview:rightButton aboveSubview:_collectionView];
+    _msgBtn = rightButton;
     
     UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-75, 30, 25.f, 25.f)];
     rightButton1.tag = 102;
@@ -60,9 +66,9 @@
     [rightButton1 addTarget:self
                     action:@selector(NavAction:)
           forControlEvents:UIControlEventTouchUpInside];
-    [_collectionView addSubview:rightButton1];
-//    UIBarButtonItem *rightItem1 = [[UIBarButtonItem alloc]initWithCustomView:rightButton1];
-//    self.navigationItem.rightBarButtonItems = @[rightItem,rightItem1];
+
+    [self.view insertSubview:rightButton1 aboveSubview:_collectionView];
+    _setBtn = rightButton1;
     
 }
 
@@ -73,6 +79,7 @@
     }else if (button.tag == 102) {//设置
         
         SettingsController *setVC = [[SettingsController alloc] init];
+        self.navigationController.navigationBar.hidden = NO;
         setVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:setVC animated:YES];
     }
@@ -105,11 +112,28 @@
 
     [self initCollectionView];
   
+    [self initBgHeaderView];
+}
+
+- (void)initBgHeaderView {
+    
+    _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 228)];
+    [self.view insertSubview:_bgIconView belowSubview:_collectionView];
+    
+    _bgIconView.image = [UIImage imageNamed:@"发现5"];
+    //  毛玻璃样式
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    //  毛玻璃视图
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    effectView.alpha = 0.85;
+    effectView.frame = CGRectMake(0, 0, KScreenWidth, 228);
+    [_bgIconView addSubview:effectView];
 }
 
 - (void)initCollectionView {
     self.data = @[@"云购记录",@"幸运记录",@"我的红包",@"我的晒单",@"充值记录",@"云购客服"];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.view.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((KScreenWidth-2)/3, (KScreenWidth-2)/3);
@@ -118,9 +142,10 @@
     layout.minimumInteritemSpacing = 1;
     layout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
     
-    _collectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+//    _collectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.collectionViewLayout = layout;
-//    _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+    _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     _collectionView.showsVerticalScrollIndicator = NO;
 //    _collectionView.scrollEnabled = NO;
     _collectionView.delegate = self;
@@ -183,7 +208,7 @@
     if (kind == UICollectionElementKindSectionHeader) {
         // 去重用队列取可用的header
         PersonHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"PersonHeaderView" forIndexPath:indexPath];
-        headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        headerView.backgroundColor = [UIColor clearColor];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
         [headerView.iconView addGestureRecognizer:tap];
@@ -207,14 +232,17 @@
     switch (indexPath.row) {
         case 0://云购记录
         {
-            SnatchRecordController *seVC = [[SnatchRecordController alloc] init];
-            self.navigationController.navigationBar.hidden = NO;
-            seVC.hidesBottomBarWhenPushed = YES;
-//            seVC.navigationController.navigationBar.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
-//            [seVC.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-            [self.navigationController pushViewController:seVC animated:YES];
-//            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//            window.rootViewController = [[LoginViewController alloc] init];
+//            SnatchRecordController *seVC = [[SnatchRecordController alloc] init];
+//            self.navigationController.navigationBar.hidden = NO;
+//            seVC.hidesBottomBarWhenPushed = YES;
+//
+//            [self.navigationController pushViewController:seVC animated:YES];
+
+//           LoginViewController *lVC = [[LoginViewController alloc] init];
+            LoginViewController *LLVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+//            (LoginViewController *)[[BaseViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:LLVC];
+            [self presentViewController:nav animated:YES completion:nil];
         }
             break;
         case 1://幸运记录
@@ -262,10 +290,34 @@
             break;
     }
 }
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    
-//    NSLog(@"%f",scrollView.contentOffset.y);
-//}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    NSLog(@"%f",-scrollView.contentOffset.y);
+    
+    //取得表视图的偏移量
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY <= 0) {
+        //计算放大倍数
+        CGFloat scale = (170+ABS(offsetY))/170;
+        
+        _bgIconView.transform = CGAffineTransformMakeScale(scale, scale);
+        _bgIconView.top = 0;
+        _titleLabel.top = 30;
+        _msgBtn.top = 30;
+        _setBtn.top = 30;
+
+        
+    }else {
+        
+        _bgIconView.top = -offsetY;
+        _titleLabel.top = -offsetY + 30;
+        _msgBtn.top = -offsetY + 30;
+        _setBtn.top = -offsetY + 30;
+    }
+   
+    //使titleLabel与headerImgView底部重合
+//    _titleLabel.bottom = _headerImgView.bottom;
+}
 
 
 @end

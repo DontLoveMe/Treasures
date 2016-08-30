@@ -24,6 +24,10 @@
 		D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */; };
 		D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */; };
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
+		D6ED178C1D751E0B00C5CDB1 /* 微博logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */; };
+		D6ED178E1D752BA300C5CDB1 /* 用户.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178D1D752BA300C5CDB1 /* 用户.png */; };
+		D6ED17901D752CCA00C5CDB1 /* 密码.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178F1D752CCA00C5CDB1 /* 密码.png */; };
+		D6ED17921D752F7900C5CDB1 /* 明文.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED17911D752F7900C5CDB1 /* 明文.png */; };
 		D6EEFA5A1D6C20CC0069A880 /* 我的_设置.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA581D6C20CC0069A880 /* 我的_设置.png */; };
 		D6EEFA5B1D6C20CC0069A880 /* 消息.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA591D6C20CC0069A880 /* 消息.png */; };
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
@@ -300,6 +304,10 @@
 		D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnatchRecordingCell.xib; sourceTree = "<group>"; };
 		D6E0F3761D6C617A00E962D1 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		D6E0F3771D6C617A00E962D1 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "微博logo.png"; sourceTree = "<group>"; };
+		D6ED178D1D752BA300C5CDB1 /* 用户.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户.png"; sourceTree = "<group>"; };
+		D6ED178F1D752CCA00C5CDB1 /* 密码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码.png"; sourceTree = "<group>"; };
+		D6ED17911D752F7900C5CDB1 /* 明文.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "明文.png"; sourceTree = "<group>"; };
 		D6EEFA581D6C20CC0069A880 /* 我的_设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的_设置.png"; sourceTree = "<group>"; };
 		D6EEFA591D6C20CC0069A880 /* 消息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "消息.png"; sourceTree = "<group>"; };
 		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
@@ -1506,6 +1514,10 @@
 		DDF92D191D6A9C5B009D5A1E /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				D6ED17911D752F7900C5CDB1 /* 明文.png */,
+				D6ED178F1D752CCA00C5CDB1 /* 密码.png */,
+				D6ED178D1D752BA300C5CDB1 /* 用户.png */,
+				D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */,
 				DDF92D1A1D6A9C5B009D5A1E /* QQlogo.png */,
 				DDF92D1B1D6A9C5B009D5A1E /* 微信logo.png */,
 				DDF92D1C1D6A9C5B009D5A1E /* 掌上云购logo.png */,
@@ -1659,6 +1671,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6ED17901D752CCA00C5CDB1 /* 密码.png in Resources */,
 				DD6B523C1D6DA31B00B6297F /* 2.png in Resources */,
 				DDF92D681D6A9C5B009D5A1E /* 横线.png in Resources */,
 				DDF92D8C1D6A9C5B009D5A1E /* sort100_checked.png in Resources */,
@@ -1674,11 +1687,13 @@
 				D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */,
 				DDF92C6B1D6A9C3D009D5A1E /* RegisterViewController.xib in Resources */,
 				DDF92D921D6A9C5B009D5A1E /* sort222_checked.png in Resources */,
+				D6ED17921D752F7900C5CDB1 /* 明文.png in Resources */,
 				DDF92C9B1D6A9C3D009D5A1E /* InordertoshareCell.xib in Resources */,
 				DDF92D511D6A9C5B009D5A1E /* 双框.png in Resources */,
 				DDF92C791D6A9C3D009D5A1E /* InordertoDetailController.xib in Resources */,
 				DDF92D701D6A9C5B009D5A1E /* 首页-selected.png in Resources */,
 				DDF92D471D6A9C5B009D5A1E /* 37x-Checkmark@2x.png in Resources */,
+				D6ED178C1D751E0B00C5CDB1 /* 微博logo.png in Resources */,
 				DDF92D5B1D6A9C5B009D5A1E /* 按钮框.png in Resources */,
 				DD6B52421D6DA31B00B6297F /* 8.png in Resources */,
 				DDF92D7F1D6A9C5B009D5A1E /* 10元标记.png in Resources */,
@@ -1743,6 +1758,7 @@
 				DDF92D971D6A9C5B009D5A1E /* sort312_normal.png in Resources */,
 				DDF92C581D6A9C3D009D5A1E /* HomeViewController.xib in Resources */,
 				DD6B523E1D6DA31B00B6297F /* 4.png in Resources */,
+				D6ED178E1D752BA300C5CDB1 /* 用户.png in Resources */,
 				DDF92D891D6A9C5B009D5A1E /* shop.png in Resources */,
 				DDF92CA31D6A9C3D009D5A1E /* RechargeRecordCell.xib in Resources */,
 				DDF92D761D6A9C5B009D5A1E /* 返回.png in Resources */,

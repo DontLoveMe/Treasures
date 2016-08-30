@@ -10,7 +10,7 @@
 
 @interface PersonHeaderView : UICollectionReusableView
 
-@property (weak, nonatomic) IBOutlet UIImageView *bgIconView;
+//@property (weak, nonatomic) IBOutlet UIImageView *bgIconView;
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;//头像
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;//名字
 @property (weak, nonatomic) IBOutlet UIButton *balanceButton;//余额

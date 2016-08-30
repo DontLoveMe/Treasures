@@ -6,9 +6,9 @@
 //  Copyright © 2016年 nevermore. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTF;
 @property (weak, nonatomic) IBOutlet UITextField *validateTF;
