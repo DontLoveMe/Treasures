@@ -285,6 +285,14 @@
 -(void)Clicked:(UIButton *)btn{
 
     NSLog(@"编辑");
+    if (btn.selected ) {
+        btn.selected = NO;
+        [_tabview setEditing:NO animated:YES];
+    }else{
+        btn.selected = YES;
+        [_tabview setEditing:YES animated:YES];
+    }
+
     
 }
 
@@ -339,6 +347,23 @@
     return 112;
     
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    return YES;
+}
+
+// 这个回调很关键，返回Cell的编辑样式。
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+
+}
+
 
 //增加事件
 -(void)addCountAtIndexPath:(NSIndexPath *)indexPath{
