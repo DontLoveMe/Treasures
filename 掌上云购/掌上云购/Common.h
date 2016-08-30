@@ -34,7 +34,10 @@
 #define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
 
 /*---------------购物车模块---------------------*/
+//查询云购物车数据
 #define CartList_URL @"/pcpServer-inf/saleCart/list"
+//上传本地购物车
+#define CartListUpload_URL @"/pcpServer-inf/saleCart/add"
 
 /*---------------我的云购模块---------------------*/
 //我的云购记录列表
