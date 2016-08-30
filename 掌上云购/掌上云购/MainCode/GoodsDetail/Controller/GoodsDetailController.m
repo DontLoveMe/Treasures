@@ -190,7 +190,7 @@
         [_cartBottomButton setTitle:@"进入购物车" forState:UIControlStateNormal];
         [_cartBottomButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [_cartBottomButton addTarget:self
-                              action:@selector(addToCartAction:)
+                              action:@selector(gotoCartAction:)
                     forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:_cartBottomButton];
         
@@ -244,6 +244,27 @@
 - (void)gotoCartAction:(UIButton *)button{
 
     NSLogZS(@"进入购物车");
+    id next = [self nextResponder];
+    while (next != nil) {
+        
+        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+            
+            //获得标签控制器
+            TabbarViewcontroller *tb = next;
+            //修改索引
+            tb.selectedIndex = 3;
+            //原选中标签修改
+            tb.selectedItem.isSelected = NO;
+            //选中新标签
+            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:3];
+            item.isSelected = YES;
+            //设置为上一个选中
+            tb.selectedItem = item;
+            
+            return;
+        }
+        next = [next nextResponder];
+    }
     
 }
 

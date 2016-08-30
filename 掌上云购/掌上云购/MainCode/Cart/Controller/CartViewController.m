@@ -374,20 +374,102 @@
 
 - (void)requestCartList{
 
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:@"1" forKey:@"buyUserId"];
-//    
-//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartList_URL];
-//    
-//    [ZSTools post:url
-//           params:params
-//          success:^(id json) {
-//              
-//          } failure:^(NSError *error) {
-//              
-//          }];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"buyUserId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartList_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSArray *dataArr = [json objectForKey:@"data"];
+              NSMutableArray *cloudArr = [NSMutableArray array];
+              for (int i = 0 ; i < dataArr.count; i ++) {
+                  
+                  NSDictionary *dic = [dataArr objectAtIndex:i];
+                  NSInteger numbers = 1;
+                  if (![[dic objectForKey:@"buyNumbers"] isEqual:[NSNull null]]) {
+                      numbers = [[dic objectForKey:@"buyNumbers"] integerValue];
+                  }
+
+                  NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
+                                        @"name":[dic objectForKey:@"name"],
+//                              @"proPictureList":[dic objectForKey:@"proPictureList"],
+                                  @"totalShare":[dic objectForKey:@"totalShare"],
+                                @"surplusShare":[dic objectForKey:@"surplusShare"],
+                                    @"buyTimes":[NSNumber numberWithInteger:numbers]};
+                  [cloudArr addObject:goods];
+                      
+                  }
+              if (cloudArr.count > 0) {
+                  bool issuccess = [CartTools addCartList:cloudArr];
+                  
+                  if (issuccess) {
+                      
+                      _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                      [_tabview reloadData];
+                      
+                  }
+                  
+              }else{
+              
+                  
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    
+    [self updateCartList];
+    
+}
+
+- (void)updateCartList{
+
+    
+    NSArray *uploadArr = [NSArray arrayWithArray:[CartTools getCartList]];
+    NSMutableArray *updateList = [NSMutableArray array];
+    for (int i = 0; i < uploadArr.count; i ++) {
+        
+        NSDictionary *dic = [uploadArr objectAtIndex:i];
+        NSDictionary *updateDic = @{@"productId":[dic objectForKey:@"id"],
+                                    @"qty":[dic objectForKey:@"buyTimes"],
+                                    @"buyUserId":@"1",
+                                    @"buyNum":@"10"};
+        [updateList addObject:updateDic];
+    }
+    
+//    NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
+//                            @"name":[dic objectForKey:@"name"],
+//                            //                              @"proPictureList":[dic objectForKey:@"proPictureList"],
+//                            @"totalShare":[dic objectForKey:@"totalShare"],
+//                            @"surplusShare":[dic objectForKey:@"surplusShare"],
+//                            @"buyTimes":[NSNumber numberWithInteger:numbers]};
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"buyUserId"];
+    [params setObject:updateList forKey:@"list"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartListUpload_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSLogZS(@"%@",[json objectForKey:@"msg"]);
+              
+          } failure:^(NSError *error) {
+              
+              NSLogZS(@"%@",error);
+          }];
+    
+}
 
 @end

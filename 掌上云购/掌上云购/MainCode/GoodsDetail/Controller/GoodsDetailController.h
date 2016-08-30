@@ -8,6 +8,9 @@
 
 #import "BaseViewController.h"
 
+#import "TabbarViewController.h"
+#import "TabbarItem.h"
+
 #import "SDCycleScrollView.h"
 #import "WingNotificationTableView.h"
 #import "GoodsDetailFunctionTableView.h"
