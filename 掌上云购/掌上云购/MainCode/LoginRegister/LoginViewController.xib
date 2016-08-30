@@ -165,9 +165,10 @@
                     <state key="normal" backgroundImage="微博logo.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="highlighted" backgroundImage="QQlogo.png"/>
+                    <state key="highlighted" backgroundImage="微博logo.png"/>
                     <connections>
                         <action selector="QQLogin:" destination="-1" eventType="touchUpInside" id="c43-UQ-SxT"/>
+                        <action selector="weiboLogin:" destination="-1" eventType="touchUpInside" id="n81-ti-WXY"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adh-yP-nwB">
@@ -199,8 +200,8 @@
                         <constraint firstAttribute="height" constant="23" id="7CY-Nj-paU"/>
                         <constraint firstAttribute="width" constant="75" id="txC-60-Hhr"/>
                     </constraints>
-                    <state key="normal" title="忘记密码">
-                        <color key="titleColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="忘记密码?">
+                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="forgottenPassword:" destination="-1" eventType="touchUpInside" id="DEt-2l-0GM"/>

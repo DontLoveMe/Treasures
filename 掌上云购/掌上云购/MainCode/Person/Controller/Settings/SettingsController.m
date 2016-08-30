@@ -8,6 +8,7 @@
 
 #import "SettingsController.h"
 #import "AlertController.h"
+#import "RegisterViewController.h"
 
 @interface SettingsController ()
 
@@ -117,7 +118,11 @@
     switch (indexPath.row) {
         case 0://密码修改
         {
-            
+            RegisterViewController *rVC = [[RegisterViewController alloc] init];
+            rVC.isRegistOrmodify = 2;
+            rVC.title = @"密码修改";
+            UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
+            [self presentViewController:rnVC animated:YES completion:nil];
         }
             break;
         case 1://通知设置
@@ -237,5 +242,24 @@
 #pragma mark - 退出
 - (void)exitAction:(UIButton *)button {
     
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"是否退出登录！"];
+    [alert addButtonTitleArray:@[@"否",@"是"]];
+    __weak typeof(AlertController *) weakAlert = alert;
+    __weak typeof(self) weakSelf = self;
+    [alert setClickButtonBlock:^(NSInteger tag) {
+        if (tag == 0) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }else {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userDic"];
+            
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+        
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    return;
 }
 @end

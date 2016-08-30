@@ -75,9 +75,16 @@
 - (void)NavAction:(UIButton *)button{
     
     if (button.tag == 101) {//信息
-        
+        //判断是否登录
+        if (![self isLogin]) {
+            return;
+        }
     }else if (button.tag == 102) {//设置
         
+        //判断是否登录
+        if (![self isLogin]) {
+            return;
+        }
         SettingsController *setVC = [[SettingsController alloc] init];
         self.navigationController.navigationBar.hidden = NO;
         setVC.hidesBottomBarWhenPushed = YES;
@@ -113,6 +120,7 @@
     [self initCollectionView];
   
     [self initBgHeaderView];
+    
 }
 
 - (void)initBgHeaderView {
@@ -165,10 +173,17 @@
 #pragma mark - 按钮的点击
 //余额
 - (void)balanceAction:(UIButton *)sender {
+    //判断是否登录
+    if (![self isLogin]) {
+        return;
+    }
 }
 //充值
 - (void)rechargeAction:(UIButton *)sender {
-    
+    //判断是否登录
+    if (![self isLogin]) {
+        return;
+    }
     RechargeController *reVC = [[RechargeController alloc] init];
     self.navigationController.navigationBar.hidden = NO;
     reVC.hidesBottomBarWhenPushed = YES;
@@ -176,9 +191,16 @@
 }
 //积分
 - (void)integralAction:(UIButton *)sender {
+    //判断是否登录
+    if (![self isLogin]) {
+        return;
+    }
 }
 - (void)tapAction:(UITapGestureRecognizer *)tap {
-    
+    //判断是否登录
+    if (![self isLogin]) {
+        return;
+    }
     AboutMeController *amVC = [[AboutMeController alloc] init];
     self.navigationController.navigationBar.hidden = NO;
     amVC.hidesBottomBarWhenPushed = YES;
@@ -229,20 +251,21 @@
 //}
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    //判断是否登录
+    if (![self isLogin]) {
+        return;
+    }
+    
     switch (indexPath.row) {
         case 0://云购记录
         {
-//            SnatchRecordController *seVC = [[SnatchRecordController alloc] init];
-//            self.navigationController.navigationBar.hidden = NO;
-//            seVC.hidesBottomBarWhenPushed = YES;
-//
-//            [self.navigationController pushViewController:seVC animated:YES];
+            SnatchRecordController *seVC = [[SnatchRecordController alloc] init];
+            self.navigationController.navigationBar.hidden = NO;
+            seVC.hidesBottomBarWhenPushed = YES;
 
-//           LoginViewController *lVC = [[LoginViewController alloc] init];
-            LoginViewController *LLVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-//            (LoginViewController *)[[BaseViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:LLVC];
-            [self presentViewController:nav animated:YES completion:nil];
+            [self.navigationController pushViewController:seVC animated:YES];
+
+           
         }
             break;
         case 1://幸运记录
@@ -292,7 +315,7 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    NSLog(@"%f",-scrollView.contentOffset.y);
+//    NSLog(@"%f",-scrollView.contentOffset.y);
     
     //取得表视图的偏移量
     CGFloat offsetY = scrollView.contentOffset.y;
@@ -319,5 +342,15 @@
 //    _titleLabel.bottom = _headerImgView.bottom;
 }
 
+- (BOOL)isLogin{
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if (userDic == nil) {
+        LoginViewController *lVC = [[LoginViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        return NO;
+    }
+    return YES;
+}
 
 @end

@@ -32,11 +32,6 @@
 
 - (void)initSubViews:(NSString *)title message:(NSString *)message{
     
-    if (message==nil||message.length == 0) {
-        _bgH = 70;
-    }else {
-        _bgH = 100;
-    }
     _bgView = [[UIView alloc] initWithFrame:CGRectMake(40, (KScreenHeight-200)/2, KScreenWidth-40*2, _bgH)];
     _bgView.backgroundColor = [UIColor whiteColor];
     //    backView.layer.shadowRadius = 40;
@@ -48,7 +43,7 @@
     CGFloat w = _bgView.frame.size.width;
     CGFloat th = titleRect.size.height;
     
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, w, th)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, w-20, th)];
     _titleLabel.numberOfLines = 2;
     _titleLabel.text = title;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -57,7 +52,7 @@
     [_bgView addSubview:_titleLabel];
     
     CGRect msgRect = [message boundingRectWithSize:CGSizeMake(_bgView.frame.size.width, 50) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]} context:nil];
-    _msgLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20+th, w, msgRect.size.height)];
+    _msgLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20+th, w-20, msgRect.size.height)];
     _msgLabel.numberOfLines = 2;
     _msgLabel.text = message;
     _msgLabel.textAlignment = NSTextAlignmentCenter;
@@ -65,6 +60,14 @@
     _msgLabel.font = [UIFont systemFontOfSize:15];
     [_bgView addSubview:_msgLabel];
     
+    if (message==nil||message.length == 0) {
+        _bgH = titleRect.size.height+30;
+    }else {
+        _bgH = titleRect.size.height + msgRect.size.height+30;
+    }
+    CGRect frame = _bgView.frame;
+    frame.size.height = _bgH;
+    _bgView.frame = frame;
 }
 //添加按钮
 - (void)addButtonTitleArray:(NSArray *)titleArray{
