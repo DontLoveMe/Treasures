@@ -16,16 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Cart/Controller/CartViewController.m"
-            timestampString = "494232914.300287"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Cart/View/CartTableViewCell.m"
+            timestampString = "494322483.613637"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
-            landmarkName = "-updateCartList"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-setEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

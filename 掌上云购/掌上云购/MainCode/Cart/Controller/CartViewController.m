@@ -7,96 +7,81 @@
 //
 
 #import "CartViewController.h"
-#import "UIView+SDAutoLayout.h"
-#import "PayViewController.h"
-@interface CartViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
-{
 
+@interface CartViewController ()
 
-    UITableView *_tabview;
-    
-    NSMutableArray *_dataArray;
-    
-    NSString *_identify;
-
-    
-    BOOL _isData;
-
-}
-
-@property(nonatomic,strong)UIView *backView;
-
-@property(nonatomic,strong)UIImageView *carView;
-
-@property(nonatomic,strong)UILabel *textLabel;
-
-@property(nonatomic,strong)UIButton *buyBtn;
-
-@property(nonatomic,strong)UILabel *likeLabel;
-
-@property(nonatomic,strong)UIScrollView *scrollView;
-
-@property(nonatomic,strong)UICollectionView *collectView;
-
-//商品总数
-@property(nonatomic,strong)UILabel *goodstotal;
-
-//商品总价格
-@property(nonatomic,strong)UILabel *pricetotal;
-
-//商品总钱数
-@property(nonatomic,strong)UILabel *pricesum;
-
-//警示语
-@property(nonatomic,strong)UILabel *warntext;
-
-//结算按钮
-@property(nonatomic,strong)UIButton *settlebtn;
 @end
 
 @implementation CartViewController
+-(void)creatNav{
+    
+    //设置右视图
+    _rightbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    
+    [_rightbtn setTitle:@"编辑" forState:UIControlStateNormal];
+    
+    [_rightbtn setTitle:@"完成" forState:UIControlStateSelected];
+    
+    [_rightbtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    [_rightbtn addTarget:self action:@selector(Clicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *custom = [[UIBarButtonItem alloc]initWithCustomView:_rightbtn];
+    
+    self.navigationItem.rightBarButtonItem = custom;
+    
+}
+
+#pragma mark----编辑事件
+-(void)Clicked:(UIButton *)btn{
+    
+    NSLog(@"编辑");
+    if (btn.selected) {
+        btn.selected = NO;
+        [_tabview setEditing:NO animated:YES];
+        specialTag = 0;
+        [_tabview reloadData];
+    }else{
+        btn.selected = YES;
+        [_tabview setEditing:YES animated:YES];
+        specialTag = 1;
+        [_tabview reloadData];
+    }
+    
+}
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    _dataArray = [NSMutableArray array];
-    
-    _isData = YES;
-    
     self.title = @"购物车";
     
-    if (_isData==YES) {
-        
-        //创建列表
-        [self creatTableView];
-        
-        //添加编辑按钮
-        [self creatNav];
-        
-        //创建底部View;
-        [self creatView];
-        
-    }else{
+    //购物车视图
+    _dataArray = [NSMutableArray array];
+    //是否在编辑状态下
+    specialTag = 0;
     
-        [self creatUI];
-        
-        [self createCollectionView];
-        
-    }
+    //导航栏
+    [self creatNav];
+    
+    //购物车无数据视图
+    [self initBlankViews];
+    
+    //购物车视图;
+    [self creatView];
 
 }
 
--(void)creatUI{
+-(void)initBlankViews{
     
     _backView = [[UIView alloc]init];
     [self.view addSubview:_backView];
+    _backView.hidden = NO;
     _backView.backgroundColor = TableViewBackColor;
     _backView.sd_layout
     .leftSpaceToView(self.view,0)
     .topSpaceToView(self.view,0)
     .widthIs(KScreenWidth)
-    .heightRatioToView(self.view,0.6);
+    .heightRatioToView(self.view,1);
     
     _carView = [[UIImageView alloc]init];
     _carView.image = [UIImage imageNamed:@"购物车图标"];
@@ -131,20 +116,6 @@
     .widthIs(100)
     .heightIs(40);
     
-    _likeLabel = [[UILabel alloc]init];
-    _likeLabel.text = @"猜你喜欢";
-    [self.view addSubview:_likeLabel];
-    _likeLabel.sd_layout
-    .leftSpaceToView(self.view,5)
-    .topSpaceToView(_backView,10)
-    .widthIs(100)
-    .heightIs(20);
-
-}
-
-//创建下方视图
-- (void)createCollectionView {
-    
     CGFloat w = (KScreenWidth-8*4)/3;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(w, w*1.3);
@@ -154,14 +125,18 @@
     _collectView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-kNavigationBarHeight-kTabBarHeight-10, KScreenWidth, w*1.3+10) collectionViewLayout:layout];
     
     _collectView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_collectView];
+    [_backView addSubview:_collectView];
     
     _collectView.delegate = self;
     _collectView.dataSource = self;
     
     _identify = @"collectionCell";
     [_collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
-   
+
+    _likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.f, _collectView.top - 24.f, KScreenWidth - 10.f, 24.f)];
+    _likeLabel.text = @"猜你喜欢";
+    [_backView addSubview:_likeLabel];
+    
 }
 
 #pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
@@ -186,46 +161,30 @@
     
 }
 
--(void)creatNav{
-
-    //设置右视图
-    UIButton *rightbtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    
-    [rightbtn setTitle:@"编辑" forState:UIControlStateNormal];
-    
-    [rightbtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    
-    [rightbtn addTarget:self action:@selector(Clicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *custom = [[UIBarButtonItem alloc]initWithCustomView:rightbtn];
-    
-    self.navigationItem.rightBarButtonItem = custom;
-    
-
-}
-
 -(void)creatView{
 
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight-180, KScreenWidth, KScreenHeight)];
-    view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:view];
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64, KScreenWidth, 64.f)];
+    _bottomView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_bottomView];
     
     //商品总数
     _goodstotal = [[UILabel alloc]init];
     _goodstotal.text = @"共 3 件商品,";
+    _goodstotal.font = [UIFont systemFontOfSize:15];
     _goodstotal.textColor = [UIColor grayColor];
-    [view addSubview:_goodstotal];
+    [_bottomView addSubview:_goodstotal];
     _goodstotal.sd_layout
-    .leftSpaceToView(view,5)
-    .topSpaceToView(view,5)
+    .leftSpaceToView(_bottomView,8)
+    .topSpaceToView(_bottomView,8)
     .widthIs(100)
     .heightIs(20);
     
     //商品总价格
     _pricetotal = [[UILabel alloc]init];
     _pricetotal.text = @"总计:";
+    _pricetotal.font = [UIFont systemFontOfSize:15];
     _pricetotal.textColor = [UIColor grayColor];
-    [view addSubview:_pricetotal];
+    [_bottomView addSubview:_pricetotal];
     _pricetotal.sd_layout
     .leftSpaceToView(_goodstotal,5)
     .topEqualToView(_goodstotal)
@@ -236,7 +195,8 @@
     _pricesum = [[UILabel alloc]init];
     _pricesum.textColor = [UIColor redColor];
     _pricesum.text = @"21元";
-    [view addSubview:_pricesum];
+    _pricesum.font = [UIFont systemFontOfSize:15];
+    [_bottomView addSubview:_pricesum];
     
     _pricesum.sd_layout
     .leftSpaceToView(_pricetotal,3)
@@ -244,11 +204,11 @@
     .widthIs(40)
     .heightIs(20);
     
-    
     _warntext = [[UILabel alloc]init];
     _warntext.text = @"夺宝有危险,参与需谨慎";
+    _warntext.font = [UIFont systemFontOfSize:15];
     _warntext.textColor = [UIColor grayColor];
-    [view addSubview:_warntext];
+    [_bottomView addSubview:_warntext];
     _warntext.sd_layout
     .leftEqualToView(_goodstotal)
     .topSpaceToView(_goodstotal,10)
@@ -262,12 +222,19 @@
     [_settlebtn setTitle:@"结算" forState:UIControlStateNormal];
     [_settlebtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_settlebtn addTarget:self action:@selector(PayClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:_settlebtn];
+    [_bottomView addSubview:_settlebtn];
     _settlebtn.sd_layout
-    .rightSpaceToView(view,10)
-    .topSpaceToView(view,20)
+    .rightSpaceToView(_bottomView,10)
+    .topSpaceToView(_bottomView,20)
     .widthIs(60)
     .heightIs(30);
+    
+    _tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f) style:UITableViewStylePlain];
+    _tabview.backgroundColor = TableViewBackColor;
+    _tabview.dataSource = self;
+    _tabview.delegate = self;
+    [_tabview setEditing:NO animated:YES];
+    [self.view addSubview:_tabview];
     
 }
 
@@ -280,32 +247,6 @@
 
 }
 
-
-#pragma mark----编辑事件
--(void)Clicked:(UIButton *)btn{
-
-    NSLog(@"编辑");
-    if (btn.selected ) {
-        btn.selected = NO;
-        [_tabview setEditing:NO animated:YES];
-    }else{
-        btn.selected = YES;
-        [_tabview setEditing:YES animated:YES];
-    }
-
-    
-}
-
--(void)creatTableView{
-
-    _tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-180) style:UITableViewStylePlain];
-    _tabview.backgroundColor = TableViewBackColor;
-    _tabview.dataSource = self;
-    _tabview.delegate = self;
-    [self.view addSubview:_tabview];
-   
-}
-
 #pragma mark----UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
@@ -315,7 +256,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
@@ -329,9 +269,9 @@
     
     cell.goodsTitle.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"name"]];
         
-    cell.totalNumber.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"totalShare"]];
+    cell.totalNumber.text = [NSString stringWithFormat:@"总需人数:%@",[dic objectForKey:@"totalShare"]];
         
-    cell.surplusNumber.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"surplusShare"]];
+    cell.surplusNumber.text = [NSString stringWithFormat:@"当前人数:%@",[dic objectForKey:@"surplusShare"]];
 
     cell.goodsType.image = [UIImage imageNamed:@"商品种类"];
         
@@ -348,22 +288,35 @@
     
 }
 
+//监听右滑删除按钮点击事件
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [CartTools removeGoodsWithIndexPath:indexPath.row];
+    _dataArray = [[CartTools getCartList] mutableCopy];
+    [_tabview reloadData];
     
 }
 
+//
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
 
     return YES;
 }
 
-// 这个回调很关键，返回Cell的编辑样式。
+// 设置Cell的编辑样式。
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (specialTag) {
+        
+        return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+   
+    }else{
     
-    return UITableViewCellEditingStyleDelete|UITableViewCellEditingStyleInsert;
+        return UITableViewCellEditingStyleDelete;
+    
+    }
 
 }
-
 
 //增加事件
 -(void)addCountAtIndexPath:(NSIndexPath *)indexPath{
@@ -390,10 +343,24 @@
 
     [super viewWillAppear:animated];
     
-    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-    [_tabview reloadData];
+//    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    if (_dataArray.count == 0) {
     
-    [self requestCartList];
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = YES;
+        
+    }else{
+        
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = NO;
+        [_tabview reloadData];
+    
+    }
+//    [self requestCartList];
     
 }
 
@@ -493,6 +460,7 @@
           } failure:^(NSError *error) {
               
               NSLogZS(@"%@",error);
+              
           }];
     
 }
