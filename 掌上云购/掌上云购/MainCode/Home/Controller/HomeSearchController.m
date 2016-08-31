@@ -97,31 +97,31 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return _historyData.count;
+        return 1;
     }
-    return 1;
+    return _historyData.count;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        
-        SeachHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeachHistoryCell" forIndexPath:indexPath];
-        cell.titleLabel.text = _historyData[indexPath.row];
-        
+        HotSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HotSearchCell" forIndexPath:indexPath];
         __weak typeof(self) weakSelf = self;
-        [cell setDeleteIndex:^(UIButton *sender) {
-            [weakSelf deleteIndex:indexPath.row];
+        [cell setHotSearchString:^(NSString *hotString){
+            [weakSelf searchRequestData:hotString];
         }];
         
         return cell;
     }
-    HotSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HotSearchCell" forIndexPath:indexPath];
+    SeachHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeachHistoryCell" forIndexPath:indexPath];
+    cell.titleLabel.text = _historyData[indexPath.row];
+    
     __weak typeof(self) weakSelf = self;
-    [cell setHotSearchString:^(NSString *hotString){
-        [weakSelf searchRequestData:hotString];
+    [cell setDeleteIndex:^(UIButton *sender) {
+        [weakSelf deleteIndex:indexPath.row];
     }];
+    
     return cell;
     
 }
@@ -135,6 +135,9 @@
     label.font = [UIFont systemFontOfSize:16];
     [headerView addSubview:label];
     if (section == 0) {
+        label.text = @"热门搜索";
+    }else {
+        
         label.text = @"历史搜索";
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -142,8 +145,6 @@
         [button setBackgroundImage:[UIImage imageNamed:@"搜索_全删"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(allDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView addSubview:button];
-    }else {
-        label.text = @"热门搜索";
     }
     
     
@@ -154,9 +155,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 40;
+        return 90;
     }
-    return 90;
+    return 40;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -165,7 +166,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         [self searchRequestData:_historyData[indexPath.row]];
     }
     
@@ -178,21 +179,21 @@
     
     [HistoryData addHistoryData:searchBar.text];
     _historyData = [HistoryData getHistoryData];
-    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
 }
 - (void)allDeleteAction:(UIButton *)button{
     
     [HistoryData allDeleteHistoryData];
     _historyData = [HistoryData getHistoryData];
     
-    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
 }
 - (void)deleteIndex:(NSInteger )index{
     
     [HistoryData deleteHistoryData:index];
     _historyData = [HistoryData getHistoryData];
     
-    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

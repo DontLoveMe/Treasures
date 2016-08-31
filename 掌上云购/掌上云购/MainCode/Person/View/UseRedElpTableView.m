@@ -8,6 +8,7 @@
 
 #import "UseRedElpTableView.h"
 #import "UseRedCell.h"
+#import "RedEnvelopeModel.h"
 
 @implementation UseRedElpTableView {
     
@@ -74,14 +75,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UseRedCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
-    if ([self.data[indexPath.row] integerValue]==0) {
-        cell.stateLabel.text = @"过期";
-        cell.stateLabel.textColor = [UIColor redColor];
-        
-    }else {
-        cell.stateLabel.text = @"可用";
-        cell.stateLabel.textColor = [UIColor blackColor];
-    }
+    cell.reModel = [RedEnvelopeModel mj_objectWithKeyValues:self.data[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

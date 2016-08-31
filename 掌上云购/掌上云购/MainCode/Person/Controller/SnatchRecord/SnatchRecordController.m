@@ -20,7 +20,9 @@
 @property (nonatomic,copy) NSString *identify;
 @property (nonatomic,copy) NSString *identify2;
 
-@property (nonatomic,strong)NSArray *data;
+@property (nonatomic,strong)NSMutableArray *data;
+
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -52,6 +54,9 @@
     
     self.title = @"云购记录";
     
+    _page = 1;
+    _data = [NSMutableArray array];
+    
     [self initNavBar];
     
     //创建子视图
@@ -66,98 +71,53 @@
     //取出存储的用户信息
     //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     //    NSNumber *userId = userDic[@"userId"];
-//    [self showHUD:@"加载数据"];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    if (drawStatus == nil) {
-//        [params setObject:@{@"buyUserId":@2} forKey:@"paramsMap"];
-//    }else {
-//        [params setObject:@{@"buyUserId":@2,@"drawStatus":drawStatus} forKey:@"paramsMap"];
-//    }
-//    
-//    [params setObject:@1 forKey:@"page"];
-//    [params setObject:@1 forKey:@"rows"];
-//    
-//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserOrderList_URL];
-//    [ZSTools post:url
-//           params:params
-//          success:^(id json) {
-//              
-//              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-//              [self hideSuccessHUD:json[@"msg"]];
-//              if (isSuccess) {
-//                  _data = json[@"data"];
-//                  [_tableView reloadData];
-//              }
-//              
-//              
-//          } failure:^(NSError *error) {
-//              
-//              [self hideFailHUD:@"加载失败"];
-//              NSLogZS(@"%@",error);
-//          }];
-    NSDictionary *dic1 = @{
-        @"id": @1,
-        @"name": @"测试数据",
-        @"expirationDate": @"2016-08-16 17:27:06",
-        @"status": @1,
-        @"isBuy": @0,
-        @"totalShare": @1000,
-        @"surplusShare": @0,
-        @"sellShare": @10,
-        @"saleDraw": @{
-            @"id":@2,
-            @"periodsNumber": @3,
-            @"drawTimes":@100000001,
-            @"productId": @4,
-            @"totalShare": @1000,
-            @"surplusShare": @0,
-            @"sellShare": @1000,
-            @"status": @3,
-            @"drawDate": @"2016-07-16 15:42:02.0",
-            @"drawUserId": @5,
-            @"drawNumber": @"10000086",
-            @"countdownStartDate": @"2016-08-26 16:10:14.0",
-            @"countdownEndDate": @"2016-08-23 10:03:00.0",
-            @"nickName": @"测6",
-            @"qty": @""
-            
-        }
-        };
-    NSDictionary *dic2 = @{
-                          @"id": @1,
-                          @"name": @"测试数据",
-                          @"expirationDate": @"2016-08-16 17:27:06",
-                          @"status": @3,
-                          @"isBuy": @0,
-                          @"totalShare": @1000,
-                          @"surplusShare": @0,
-                          @"sellShare": @10,
-                          @"saleDraw": @{
-                                  @"id":@2,
-                                  @"periodsNumber": @3,
-                                  @"drawTimes":@100000001,
-                                  @"productId": @4,
-                                  @"totalShare": @1000,
-                                  @"surplusShare": @0,
-                                  @"sellShare": @1000,
-                                  @"status": @3,
-                                  @"drawDate": @"2016-07-16 15:42:02.0",
-                                  @"drawUserId": @5,
-                                  @"drawNumber": @"10000086",
-                                  @"countdownStartDate": @"2016-08-26 16:10:14.0",
-                                  @"countdownEndDate": @"2016-08-23 10:03:00.0",
-                                  @"nickName": @"测6",
-                                  @"qty": @"100"
-                                  }
-                          };
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (drawStatus == nil) {
-        _data = @[dic1,dic2,dic1,dic2,dic1,dic1,dic2,dic2];
-    }else if ([drawStatus integerValue] == 1) {
-        _data = @[dic1,dic1,dic1,dic1];
-    }else if ([drawStatus integerValue] == 3) {
-        _data = @[dic2,dic2,dic2,dic2];
+        [params setObject:@{@"buyUserId":@2} forKey:@"paramsMap"];
+    }else {
+        [params setObject:@{@"buyUserId":@2,@"drawStatus":drawStatus} forKey:@"paramsMap"];
     }
-    [_tableView reloadData];
+    
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@1 forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserOrderList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_data removeAllObjects];
+                      _data = dataArr.mutableCopy;
+                      
+                      [_tableView.mj_footer resetNoMoreData];
+                      [_tableView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_data addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+   
 }
 //创建子视图
 - (void)createSubViews {
@@ -208,6 +168,21 @@
     UINib *nib2 = [UINib nibWithNibName:@"SnatchRecordingCell" bundle:nil];
     [_tableView registerNib:nib2 forCellReuseIdentifier:_identify2];
     
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self changeStateData:_selectButtonTag];
+        
+    }];
+    _tableView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self changeStateData:_selectButtonTag];;
+    }];
+    _tableView.mj_footer = footer;
+    
 }
 
 #pragma mark - 按钮的点击
@@ -227,8 +202,12 @@
         frame.origin.x = (KScreenWidth/3-40)/2+button.origin.x;
         _lineView.frame = frame;
     }];
+    [self changeStateData:button.tag];
     
-    switch (button.tag) {
+}
+
+- (void)changeStateData:(NSInteger)tag {
+    switch (tag) {
         case 200:
             [self requestData:nil];
             break;
@@ -251,7 +230,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
-    if (rcModel.status == 3) {
+    if (rcModel.saleDraw) {
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];

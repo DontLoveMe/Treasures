@@ -74,7 +74,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor colorFromHexRGB:@"E6E6E6"];
 //    self.title = @"添加地址";
     [self initNavBar];
     
