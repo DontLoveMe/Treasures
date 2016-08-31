@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */; };
 		D63CD6FF1D713B3500658365 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D63CD6FE1D713B3500658365 /* RecordModel.m */; };
 		D64BEE9A1D74183900A6158B /* PersonHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64BEE981D74183900A6158B /* PersonHeaderView.m */; };
 		D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D64BEE991D74183900A6158B /* PersonHeaderView.xib */; };
@@ -24,6 +25,8 @@
 		D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */; };
 		D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */; };
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
+		D6E598C61D76C85D002B1520 /* 按钮框_暗.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E598C41D76C85C002B1520 /* 按钮框_暗.png */; };
+		D6E598C71D76C85D002B1520 /* 按钮框_亮.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E598C51D76C85C002B1520 /* 按钮框_亮.png */; };
 		D6ED178C1D751E0B00C5CDB1 /* 微博logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */; };
 		D6ED178E1D752BA300C5CDB1 /* 用户.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178D1D752BA300C5CDB1 /* 用户.png */; };
 		D6ED17901D752CCA00C5CDB1 /* 密码.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178F1D752CCA00C5CDB1 /* 密码.png */; };
@@ -278,6 +281,8 @@
 		3EAD386A872052AFECBF954A /* Pods-掌上云购.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-掌上云购.debug.xcconfig"; path = "Pods/Target Support Files/Pods-掌上云购/Pods-掌上云购.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9A38B08C2D6903B5609665 /* Pods-掌上云购.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-掌上云购.release.xcconfig"; path = "Pods/Target Support Files/Pods-掌上云购/Pods-掌上云购.release.xcconfig"; sourceTree = "<group>"; };
 		7FFE321C1B45B348FDA86FA2 /* libPods-掌上云购.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-掌上云购.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D63721FB1D76757400FEE6C8 /* RedEnvelopeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeModel.h; sourceTree = "<group>"; };
+		D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeModel.m; sourceTree = "<group>"; };
 		D63CD6FD1D713B3500658365 /* RecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
 		D63CD6FE1D713B3500658365 /* RecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
 		D64BEE971D74183900A6158B /* PersonHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonHeaderView.h; sourceTree = "<group>"; };
@@ -304,6 +309,8 @@
 		D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnatchRecordingCell.xib; sourceTree = "<group>"; };
 		D6E0F3761D6C617A00E962D1 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		D6E0F3771D6C617A00E962D1 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		D6E598C41D76C85C002B1520 /* 按钮框_暗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮框_暗.png"; sourceTree = "<group>"; };
+		D6E598C51D76C85C002B1520 /* 按钮框_亮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮框_亮.png"; sourceTree = "<group>"; };
 		D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "微博logo.png"; sourceTree = "<group>"; };
 		D6ED178D1D752BA300C5CDB1 /* 用户.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "用户.png"; sourceTree = "<group>"; };
 		D6ED178F1D752CCA00C5CDB1 /* 密码.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "密码.png"; sourceTree = "<group>"; };
@@ -1239,6 +1246,8 @@
 				D63CD6FE1D713B3500658365 /* RecordModel.m */,
 				D64BEE9C1D743A4200A6158B /* RechargeModel.h */,
 				D64BEE9D1D743A4200A6158B /* RechargeModel.m */,
+				D63721FB1D76757400FEE6C8 /* RedEnvelopeModel.h */,
+				D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1460,6 +1469,8 @@
 				DDF92CF31D6A9C5B009D5A1E /* 云购记录.png */,
 				DDF92CF41D6A9C5B009D5A1E /* 充值记录.png */,
 				DDF92CF51D6A9C5B009D5A1E /* 双框.png */,
+				D6E598C41D76C85C002B1520 /* 按钮框_暗.png */,
+				D6E598C51D76C85C002B1520 /* 按钮框_亮.png */,
 				DDF92CF61D6A9C5B009D5A1E /* 对勾-暗.png */,
 				DDF92CF71D6A9C5B009D5A1E /* 对勾.png */,
 				DDF92CF81D6A9C5B009D5A1E /* 幸运记录.png */,
@@ -1688,6 +1699,7 @@
 				DDF92C6B1D6A9C3D009D5A1E /* RegisterViewController.xib in Resources */,
 				DDF92D921D6A9C5B009D5A1E /* sort222_checked.png in Resources */,
 				D6ED17921D752F7900C5CDB1 /* 明文.png in Resources */,
+				D6E598C71D76C85D002B1520 /* 按钮框_亮.png in Resources */,
 				DDF92C9B1D6A9C3D009D5A1E /* InordertoshareCell.xib in Resources */,
 				DDF92D511D6A9C5B009D5A1E /* 双框.png in Resources */,
 				DDF92C791D6A9C3D009D5A1E /* InordertoDetailController.xib in Resources */,
@@ -1722,6 +1734,7 @@
 				DD6B52401D6DA31B00B6297F /* 6.png in Resources */,
 				DDF92D671D6A9C5B009D5A1E /* 揭晓-钟表.png in Resources */,
 				DDF92D7B1D6A9C5B009D5A1E /* 复选框-选中.png in Resources */,
+				D6E598C61D76C85D002B1520 /* 按钮框_暗.png in Resources */,
 				DDF92C651D6A9C3D009D5A1E /* ProductTableCell.xib in Resources */,
 				DDF92D581D6A9C5B009D5A1E /* 我的-箭头.png in Resources */,
 				DDF92D901D6A9C5B009D5A1E /* sort106_checked.png in Resources */,
@@ -1913,6 +1926,7 @@
 				DDF92C4F1D6A9C3D009D5A1E /* AnnounceHistoryCell.m in Sources */,
 				D68F25A01D6AEE970042E0BE /* HotSearchCell.m in Sources */,
 				DDF92CD51D6A9C4F009D5A1E /* CountDown.m in Sources */,
+				D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */,
 				DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */,
 				DDF92C7C1D6A9C3D009D5A1E /* ConfirmDataController.m in Sources */,
 				FCFAF0451D6C27800076B806 /* IndianRecordCell.m in Sources */,

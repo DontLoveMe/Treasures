@@ -25,6 +25,8 @@
 //请求验证码
 #define SendCode_URL @"/pcpServer-inf/sms/sendCode"
 
+/*---------------分类模块----------------------*/
+#define CategorysList_URL @"/pcpServer-inf/proCategory/list"
 /*---------------首页商品模块---------------------*/
 //商品列表
 #define GoodsList_URL @"/pcpServer-inf/product/list"
@@ -50,9 +52,10 @@
 #define LuckyNumberList_URL @"/pcpServer-inf/sale/luckyNumberList"
 //确认地址接口
 #define ConfirmAddress_URL @"/pcpServer-inf/sale/confirmAddress"
-
-/*---------------分类模块----------------------*/
-#define CategorysList_URL @"/pcpServer-inf/proCategory/list"
+//可用红包列表接口
+#define RedPacketList_URL @"/pcpServer-inf/red/packet/list"
+//已使用/失效红包列表接口
+#define RedPacketDisabledList_URL @"/pcpServer-inf/red/packet/disabledList"
 
 /*---------------收货地址模块----------------------*/
 //省、市、区
@@ -73,6 +76,9 @@
 #define Sunsharing_URL @"/pcpServer-inf/user/userComment/list"
 
 /*---------------充值模块---------------------*/
+//充值记录列表
 #define RechargeList_URL @"/pcpServer-inf/saleMoneyRecharge/list"
+//微信充值
+#define WeixinRecharge_URL @"/pcpServer-inf/saleMoneyRecharge/weixinRecharge"
 
 #endif /* Common_h */

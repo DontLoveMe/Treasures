@@ -62,12 +62,12 @@
 - (void)requestData {
     //取出存储的用户信息
     //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+    //    NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
     [params setObject:@(_page) forKey:@"page"];
-    [params setObject:@10 forKey:@"rows"];
+    [params setObject:@20 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RechargeList_URL];
     [ZSTools post:url
            params:params
@@ -79,11 +79,11 @@
                   NSArray *dataArr = json[@"data"];
                   if (_page == 1) {
                       [_data removeAllObjects];
-                          _data = dataArr.mutableCopy;
+                      _data = dataArr.mutableCopy;
+                      
+                      [_tableView.mj_footer resetNoMoreData];
+                      [_tableView.mj_header endRefreshing];
                   }
-                  
-                  
-                  [_tableView.mj_header endRefreshing];
                   
                   if (_page != 1 && _page != 0) {
                       if (dataArr.count > 0) {
@@ -115,6 +115,22 @@
     
     _identify = @"RechargeRecordCell";
     [_tableView registerNib:[UINib nibWithNibName:@"RechargeRecordCell" bundle:nil] forCellReuseIdentifier:_identify];
+    
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self requestData];
+        
+    }];
+    _tableView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self requestData];
+    }];
+    _tableView.mj_footer = footer;
+
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource

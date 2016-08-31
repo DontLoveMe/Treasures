@@ -58,7 +58,9 @@
     
     [self createSubviews];
     
-    [self createCollectionView];
+//    [self createCollectionView];
+    [self requestUserRedEnvelope];
+    [self requestNoUserRedEnvelope];
 }
 
 - (void)createSubviews {
@@ -100,12 +102,89 @@
     
     _noUseTableView = [[UseRedElpTableView alloc] initWithFrame:CGRectMake(KScreenWidth, 0, KScreenWidth, _scrollView.height)];
     [_scrollView addSubview:_noUseTableView];
+
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestUserRedEnvelope];
+    }];
+    _useTableView.mj_header = useHeader;
     
-//    _useTableView.data = @[@"1",@"1"];
-//    _useTableView.noView.hidden = YES;
+    MJRefreshNormalHeader *noUseHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self requestNoUserRedEnvelope];
+    }];
+    _noUseTableView.mj_header = noUseHeader;
+}
+
+- (void)requestUserRedEnvelope {
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"userId"];
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
+    [params setObject:@1 forKey:@"page"];
+    [params setObject:@200 forKey:@"rows"];
     
-    _noUseTableView.data = @[@"0",@"0"];
-    _noUseTableView.noView.hidden = YES;
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RedPacketList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  _useTableView.data = json[@"data"];
+                  if (_useTableView.data.count>0) {
+                      _useTableView.noView.hidden = YES;
+                  }else {
+                      _useTableView.noView.hidden = NO;
+                  }
+                  [_useTableView reloadData];
+                  [_useTableView.mj_header endRefreshing];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)requestNoUserRedEnvelope {
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"userId"];
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
+    [params setObject:@1 forKey:@"page"];
+    [params setObject:@200 forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RedPacketDisabledList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  _noUseTableView.data = json[@"data"];
+                  
+                  if (_noUseTableView.data.count>0) {
+                      _noUseTableView.noView.hidden = YES;
+                      
+                  }else {
+                      _noUseTableView.noView.hidden = NO;
+                  }
+                  [_noUseTableView reloadData];
+                  [_noUseTableView.mj_header endRefreshing];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 
 #pragma mark - ScrollView delegate

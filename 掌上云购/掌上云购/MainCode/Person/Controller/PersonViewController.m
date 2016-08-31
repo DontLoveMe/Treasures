@@ -133,8 +133,9 @@
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     //  毛玻璃视图
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    effectView.alpha = 0.85;
-    effectView.frame = CGRectMake(0, 0, KScreenWidth, 228);
+    effectView.alpha = 0.9;
+//    effectView.hidden = 0.2;
+    effectView.frame = _bgIconView.bounds;
     [_bgIconView addSubview:effectView];
 }
 

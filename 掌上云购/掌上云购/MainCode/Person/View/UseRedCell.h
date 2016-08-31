@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RedEnvelopeModel.h"
 
 @interface UseRedCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *redImgView;
@@ -15,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *beginTimeLb;//生效日期
 @property (weak, nonatomic) IBOutlet UILabel *endLabel;//有效期至
 @property (weak, nonatomic) IBOutlet UILabel *conditionLabel;//使用条件
+
+@property (nonatomic, strong)RedEnvelopeModel *reModel;
 
 @end
