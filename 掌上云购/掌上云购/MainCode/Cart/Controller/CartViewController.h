@@ -15,37 +15,51 @@
 
 @interface CartViewController :BaseViewController <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CartFunctionDelegate>{
     
-    UIButton    *_rightbtn;
+    UIButton        *_rightbtn;
     //购物车列表
-    UITableView *_tabview;
+    UITableView     *_tabview;
     //底部视图
-    UIView      *_bottomView;
-    //无列表视图
-    UIView      *_backView;
-    UIImageView *_carView;
-    UILabel     *_textLabel;
-    UIButton    *_buyBtn;
-    UILabel     *_likeLabel;
-    UICollectionView *_collectView;
+    UIView          *_bottomView;
     //商品总数
-    UILabel     *_goodstotal;
+    UILabel         *_goodstotal;
     //商品总价格
-    UILabel     *_pricetotal;
+    UILabel         *_pricetotal;
     //商品总钱数
-    UILabel     *_pricesum;
+    UILabel         *_pricesum;
     //警示语
-    UILabel     *_warntext;
+    UILabel         *_warntext;
     //结算按钮
-    UIButton    *_settlebtn;
+    UIButton        *_settlebtn;
     
-    //购物车数据
-    NSMutableArray *_dataArray;
-    //单元格标示符
-    NSString *_identify;
-    //是否为编辑模式
-    NSInteger specialTag;
+    //底部翻转视图
+    UIView          *_deleteView;
+    
+    //全选按钮
+    UIButton        *_allSelectButton;
+    //全选label
+    UILabel         *_allSelectLabel;
+    //已选label
+    UILabel         *_selectedNumLabel;
+    //删除按钮
+    UIButton        *_deleteButton;
+    
+    //无列表视图
+    UIView          *_backView;
+    UIImageView     *_carView;
+    UILabel         *_textLabel;
+    UIButton        *_buyBtn;
+    UILabel         *_likeLabel;
+    UICollectionView *_collectView;
 
-    
+    //购物车数据
+    NSMutableArray  *_dataArray;
+    //单元格标示符
+    NSString        *_identify;
+    //是否为编辑模式
+    NSInteger       specialTag;
+    //已选数量
+    NSInteger       selectNum;
+
 }
 
 @end

@@ -39,11 +39,17 @@
     if (btn.selected) {
         btn.selected = NO;
         [_tabview setEditing:NO animated:YES];
+        _deleteView.hidden = YES;
+        _bottomView.hidden = NO;
         specialTag = 0;
         [_tabview reloadData];
+        
     }else{
+        
         btn.selected = YES;
         [_tabview setEditing:YES animated:YES];
+        _deleteView.hidden = NO;
+        _bottomView.hidden = YES;
         specialTag = 1;
         [_tabview reloadData];
     }
@@ -59,6 +65,8 @@
     _dataArray = [NSMutableArray array];
     //是否在编辑状态下
     specialTag = 0;
+    //已选数量
+    selectNum = 0;
     
     //导航栏
     [self creatNav];
@@ -163,10 +171,60 @@
 
 -(void)creatView{
 
+    _deleteView = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64, KScreenWidth, 64.f)];
+    _deleteView.backgroundColor = [UIColor whiteColor];
+    _deleteView.hidden = YES;
+    [self.view addSubview:_deleteView];
+    
+    //全选按钮
+    _allSelectButton  = [[UIButton alloc] initWithFrame:CGRectMake(12.f, 24.f, 16.f, 16.f)];
+    _allSelectButton.layer.cornerRadius = 8.f;
+    _allSelectButton.layer.masksToBounds = YES;
+    [_allSelectButton setBackgroundImage:[UIImage imageNamed:@"复选框-未选中"] forState:UIControlStateNormal];
+    [_allSelectButton setBackgroundImage:[UIImage imageNamed:@"复选框-选中"] forState:UIControlStateSelected
+     ];
+    [_allSelectButton addTarget:self
+                         action:@selector(allSelectAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_deleteView addSubview:_allSelectButton];
+    
+    //删除按钮
+    _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 96, 16.f, 84.f, 32.f)];
+    _deleteButton.layer.borderWidth = 1;
+    _deleteButton.layer.borderColor = [[UIColor redColor] CGColor];
+    _deleteButton.layer.cornerRadius = 5.f;
+    _deleteButton.layer.masksToBounds = YES;
+    [_deleteButton setTitle:@"确认删除" forState:UIControlStateNormal];
+    [_deleteButton setTitle:@"确认删除" forState:UIControlStateSelected];
+    [_deleteButton setTitleColor:[UIColor redColor]
+                        forState:UIControlStateNormal];
+    [_deleteButton setTitleColor:[UIColor redColor]
+                        forState:UIControlStateSelected];
+    _deleteButton.titleLabel.font = [UIFont systemFontOfSize: 13];
+    [_deleteButton addTarget:self
+                      action:@selector(deleteAction:)
+            forControlEvents:UIControlEventTouchUpInside];
+    [_deleteView addSubview:_deleteButton];
+    //全选label
+    _allSelectLabel = [[UILabel alloc] initWithFrame:CGRectMake(_allSelectButton.right + 16.f, 8.f, KScreenWidth - 124, 20.f)];
+    _allSelectLabel.text = @"全选";
+    _allSelectLabel.textAlignment = NSTextAlignmentLeft;
+    _allSelectLabel.font = [UIFont systemFontOfSize:13];
+    _allSelectLabel.textColor = [UIColor darkGrayColor];
+    [_deleteView addSubview:_allSelectLabel];
+    //已选label
+    _selectedNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(_allSelectButton.right + 16.f, _allSelectLabel.bottom + 8.f, KScreenWidth - 124, 20.f)];
+    _selectedNumLabel.text = @"已选几件";
+    _selectedNumLabel.font = [UIFont systemFontOfSize:12];
+    _selectedNumLabel.textAlignment = NSTextAlignmentLeft;
+    _selectedNumLabel.textColor = [UIColor darkGrayColor];
+    [_deleteView addSubview:_selectedNumLabel];;
+
+    
     _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64, KScreenWidth, 64.f)];
     _bottomView.backgroundColor = [UIColor whiteColor];
+    _bottomView.hidden = NO;
     [self.view addSubview:_bottomView];
-    
+
     //商品总数
     _goodstotal = [[UILabel alloc]init];
     _goodstotal.text = @"共 3 件商品,";
@@ -238,13 +296,54 @@
     
 }
 
-#pragma mark---结算按钮事件
+#pragma mark---按钮事件
 -(void)PayClicked:(UIButton *)btn{
 
     PayViewController *VC = [[PayViewController alloc]init];
     
     [self.navigationController pushViewController:VC animated:YES];
 
+}
+
+- (void)allSelectAction:(UIButton *)btn{
+
+    if (btn.selected) {
+        
+        btn.selected = NO;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            [_tabview deselectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]
+                                    animated:YES];
+        }
+        selectNum = 0;
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+    
+    }else{
+    
+        btn.selected = YES;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            [_tabview selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:YES
+                            scrollPosition:UITableViewScrollPositionNone];
+            
+        }
+        selectNum = _dataArray.count;
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+    }
+    
+}
+
+- (void)deleteAction:(UIButton *)button{
+
+    NSArray *selectArr = _tabview.indexPathsForSelectedRows;
+    
+    for (int i = 0 ; i < selectArr.count; i ++) {
+        
+        NSIndexPath *indexPath = [selectArr objectAtIndex:i];
+        [CartTools removeGoodsWithIndexPath:indexPath.row];
+        
+    }
+    
 }
 
 #pragma mark----UITableViewDataSource
@@ -318,6 +417,40 @@
 
 }
 
+//单元格点击事件
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    //是否在编辑模式下
+    if (specialTag) {
+        
+        selectNum ++;
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+        
+    }else{
+        
+        
+        
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0){
+
+    //是否在编辑模式下
+    if (specialTag) {
+        
+        selectNum --;
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+        
+    }else{
+        
+        
+        
+    }
+    
+}
+
+//自己添加的delegate
 //增加事件
 -(void)addCountAtIndexPath:(NSIndexPath *)indexPath{
 
@@ -343,7 +476,7 @@
 
     [super viewWillAppear:animated];
     
-//    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
     if (_dataArray.count == 0) {
     
         _tabview.hidden = YES;
@@ -353,9 +486,9 @@
         
     }else{
         
-        _tabview.hidden = YES;
-        _bottomView.hidden = YES;
-        _backView.hidden = NO;
+        _tabview.hidden = NO;
+        _bottomView.hidden = NO;
+        _backView.hidden = YES;
         _rightbtn.hidden = NO;
         [_tabview reloadData];
     
