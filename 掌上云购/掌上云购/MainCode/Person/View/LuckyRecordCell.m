@@ -20,29 +20,20 @@
 - (void)setLkModel:(RecordModel *)lkModel {
     _lkModel = lkModel;
     
+    Propicturelist *plist = _lkModel.proPictureList[0];
+    
+    NSURL *url = [NSURL URLWithString:plist.img650];
+    [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+    
     _titleLabel.text = _lkModel.name;
     _issueLabel.text = [NSString stringWithFormat:@"%@",_lkModel.saleDraw.drawTimes];
     _sumLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.totalShare];
-    _luckyNumLabel.text = _lkModel.saleDraw.drawNumber;
+    _luckyNumLabel.text = _lkModel.saleDraw.drawTimes;
     _participateLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.sellShare];
-    _timeLabel.text = _lkModel.saleDraw.countdownEndDate;
+    _timeLabel.text = _lkModel.saleDraw.drawDate;
 }
 
-- (void)setDic:(NSDictionary *)dic {
-//    _dic = dic;
-//    _titleLabel.text = _dic[@"name"];
-//    if ([_dic[@"isGoods"] boolValue]) {
-//        if ([_dic[@"isSure"] boolValue]) {
-//            [_goodsButton setTitle:@"已发货" forState:UIControlStateNormal];
-//        }else {
-//            [_goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
-//        }
-//    }else {
-//        [_goodsButton setTitle:@"商品确认" forState:UIControlStateNormal];
-// 
-//    }
-    
-}
+
 //确认收货
 - (IBAction)goodsAction:(UIButton *)sender {
 //    if ([_dic[@"isGoods"] boolValue]) {
@@ -59,7 +50,8 @@
 //        [[self viewController].navigationController pushViewController:cgVC animated:YES];
 //
 //    }
-    [self confirmAddress];
+    self.suerBlock();
+    
 }
 
 - (void)confirmAddress {

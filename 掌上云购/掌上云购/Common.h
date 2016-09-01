@@ -61,7 +61,7 @@
 //省、市、区
 #define AreaProvince_URL @"/pcpServer-inf/area/province"
 //新增收货地址
-#define AddArea_URL @"/pcpServer-inf/user/consignee/ add"
+#define AddArea_URL @"/pcpServer-inf/user/consignee/add"
 //默认收货地址
 #define DefaultArea_URL @"/pcpServer-inf/user/consignee/default"
 //收货地址列表

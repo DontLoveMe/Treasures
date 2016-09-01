@@ -61,11 +61,11 @@
 
 - (void)requestData {
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"id"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
+    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@20 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RechargeList_URL];

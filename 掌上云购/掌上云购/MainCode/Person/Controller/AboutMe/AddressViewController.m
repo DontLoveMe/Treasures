@@ -89,11 +89,11 @@
 }
 - (void)requestData {
     //取出存储的用户信息
-//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-//    NSNumber *userId = userDic[@"userId"];
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@1 forKey:@"userId"];
+    [params setObject:userId forKey:@"userId"];
     
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,AreaList_URL];
@@ -123,11 +123,11 @@
         return;
     }
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"修改默认地址"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@1 forKey:@"userId"];
+    [params setObject:userId forKey:@"userId"];
     [params setObject:addressId forKey:@"id"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,DefaultArea_URL];
     [ZSTools post:url
@@ -154,7 +154,7 @@
     
     //取出存储的用户信息
     //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+    //    NSNumber *userId = userDic[@"id"];
     [self showHUD:@"删除地址"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    [params setObject:@1 forKey:@"userId"];

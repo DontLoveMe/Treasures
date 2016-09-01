@@ -8,6 +8,7 @@
 
 #import "InordertoshareCell.h"
 #import "HisCenterController.h"
+#import "PersonalCenterController.h"
 
 
 @implementation InordertoshareCell {
@@ -64,14 +65,14 @@
     NSDate *date = [dateFormatter dateFromString:_iSModel.createDate];
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"MM-dd HH:mm"];
-    //用[NSDate date]可以获取系统当前时间
+    
     NSString *currentDateStr = [dateFormatter stringFromDate:date];
     _dateLabel.text = currentDateStr;
     
     _titleLabel.text = _iSModel.title;
 
     _productNameLabel.text = [NSString stringWithFormat:@"获得商品：%@",_iSModel.productName];
-    _drawTimesLabel.text = [NSString stringWithFormat:@"期号：：%@",_iSModel.drawTimes];
+    _drawTimesLabel.text = [NSString stringWithFormat:@"期号：%@",_iSModel.drawTimes];
     _contentLabel.text = _iSModel.content;
     
     CGRect contentRect = [ _iSModel.content boundingRectWithSize:CGSizeMake(KScreenWidth-57, 35) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
@@ -79,7 +80,7 @@
     NSArray *photoUrllist = _iSModel.photoUrllist;
     for (int i = 0; i < _imgViews.count; i ++) {
         UIImageView *imgView = _imgViews[i];
-        imgView.backgroundColor = [UIColor grayColor];
+//        imgView.backgroundColor = [UIColor grayColor];
         CGFloat w =  (KScreenWidth-48-8)/3;
         CGFloat h = 90;
         CGFloat x = (w+4)*(i%3);
@@ -98,7 +99,7 @@
 }
 //头像按钮的点击
 - (IBAction)iconAction:(UIButton *)sender {
-    HisCenterController *hcVC = [[HisCenterController alloc] init];
+    PersonalCenterController *hcVC = [[PersonalCenterController alloc] init];
     [[self viewController].navigationController pushViewController:hcVC animated:YES];
 }
 

@@ -10,6 +10,7 @@
 
 @interface InordertoDetailController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, assign)NSInteger shareID;
 
 @end

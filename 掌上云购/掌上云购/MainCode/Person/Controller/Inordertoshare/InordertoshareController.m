@@ -10,14 +10,20 @@
 #import "InordertoshareCell.h"
 #import "InordertoDetailController.h"
 #import "InordertoshareModel.h"
+#import "LuckyRecordCell.h"
+#import "RecordModel.h"
+#import "AddShareController.h"
 
 @interface InordertoshareController ()
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,copy)NSString *identify;
+@property (nonatomic,copy)NSString *identify1;
 
 @property (nonatomic,strong)NSMutableArray *data;
 @property (nonatomic,assign)NSInteger page;
+
+@property (nonatomic,strong)NSArray *luckyData;
 
 @end
 
@@ -53,17 +59,56 @@
     
     [self initNavBar];
     
+    [self requestLuckyData];
+    
     [self requestData];
     
     [self createTabelView];
 }
-- (void)requestData {
+- (void)requestLuckyData {
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"id"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
+    [params setObject:@{@"buyUserId":userId} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,LuckyNumberList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+                  NSMutableArray *arr = dataArr.mutableCopy;
+                  for (int i = 0; i<arr.count;i++) {
+                      NSDictionary *dic = arr[i];
+                      if ([dic[@"sunOrder"] boolValue]) {
+                          [arr removeObjectAtIndex:i];
+                      }
+                  }
+                  _luckyData = arr;
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)requestData {
+    //取出存储的用户信息
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@10 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
@@ -74,6 +119,7 @@
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
+                 
                   NSArray *dataArr = json[@"data"];
                   if (_page == 1) {
                       [_data removeAllObjects];
@@ -94,7 +140,6 @@
                   }
                   [_tableView reloadData];
               }
-              
               
           } failure:^(NSError *error) {
               
@@ -117,6 +162,10 @@
     UINib *nib = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
     
+    _identify1 = @"LuckyRecordCell";
+    UINib *nib1 = [UINib nibWithNibName:@"LuckyRecordCell" bundle:nil];
+    [_tableView registerNib:nib1 forCellReuseIdentifier:_identify1];
+    
     MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page = 1;
         [self requestData];
@@ -135,16 +184,40 @@
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return self.luckyData.count;
+    }
     return self.data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        LuckyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify1 forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.goodsButton setTitle:@"晒单奖红包" forState:UIControlStateNormal];
+        RecordModel *rModel = [RecordModel mj_objectWithKeyValues:self.luckyData[indexPath.row]];
+        cell.lkModel = rModel;
+        
+        __weak typeof(self) weakSelf = self;
+        [cell setSuerBlock:^{
+            AddShareController *asVC = [[AddShareController alloc] init];
+            asVC.lkModel = rModel;
+            [weakSelf.navigationController pushViewController:asVC animated:YES];
+        }];
+        
+        return cell;
+    }
     InordertoshareCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
     cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    if (indexPath.section == 0) {
+        return 155;
+    }
     //计算单元格高度
     InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
     NSString *content = iSModel.content;
@@ -165,11 +238,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
     
-    InordertoDetailController *indVC = [[InordertoDetailController alloc] init];
-    indVC.shareID = iSModel.ID;
-    [self.navigationController pushViewController:indVC animated:YES];
+    if (indexPath.section == 0) {
+        
+    }else {
+        InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+        
+        InordertoDetailController *indVC = [[InordertoDetailController alloc] init];
+        indVC.shareID = iSModel.ID;
+        [self.navigationController pushViewController:indVC animated:YES];
+
+    }
 }
 /*测试数据
  self.data = @[

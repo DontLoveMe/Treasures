@@ -69,14 +69,14 @@
 
 - (void)requestData:(NSNumber *)drawStatus{
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (drawStatus == nil) {
-        [params setObject:@{@"buyUserId":@2} forKey:@"paramsMap"];
+        [params setObject:@{@"buyUserId":userId} forKey:@"paramsMap"];
     }else {
-        [params setObject:@{@"buyUserId":@2,@"drawStatus":drawStatus} forKey:@"paramsMap"];
+        [params setObject:@{@"buyUserId":@1,@"drawStatus":drawStatus} forKey:@"paramsMap"];
     }
     
     [params setObject:@(_page) forKey:@"page"];

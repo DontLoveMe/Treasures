@@ -246,11 +246,11 @@
 
 - (void)rechargeRequest {
     //取出存储的用户信息
-//        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-//        NSNumber *userId = userDic[@"id"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"正在充值"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@1 forKey:@"userId"];
+    [params setObject:userId forKey:@"userId"];
     [params setObject:_moneyStr forKey:@"virtualMoney"];
     [params setObject:_moneyStr forKey:@"fee"];
     [params setObject:@1 forKey:@"rechargeType"];

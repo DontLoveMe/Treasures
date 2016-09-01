@@ -7,8 +7,17 @@
 //
 
 #import "InordertoDetailController.h"
+#import "InordertoshareModel.h"
 
 @interface InordertoDetailController ()
+
+@property (nonatomic,strong)UIImageView *iconView;
+@property (nonatomic,strong)UILabel *nikeName;
+@property (nonatomic,strong)UILabel *timeLabel;
+@property (nonatomic,strong)UIView *bgView;
+@property (nonatomic,strong)UILabel *contentLabel;
+@property (nonatomic,strong)NSArray *labels;
+@property (nonatomic,strong)NSArray *imgViews;
 
 @end
 
@@ -78,6 +87,68 @@
     [self initNavBar];
     
     [self requestData];
+    
+    [self createSubviews];
+}
+
+- (void)createSubviews {
+    _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    _iconView.image = [UIImage imageNamed:@"我的-头像"];
+    [_scrollView addSubview:_iconView];
+    
+    
+    _nikeName = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, KScreenWidth - 160, 40)];
+//    _nikeName.backgroundColor = [UIColor grayColor];
+    _nikeName.text = @"";
+    _nikeName.textColor = [UIColor blackColor];
+    _nikeName.textAlignment = NSTextAlignmentLeft;
+    _nikeName.font = [UIFont systemFontOfSize:16];
+    [_scrollView addSubview:_nikeName];
+    
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth-100, 10, 90, 40)];
+//    _timeLabel.backgroundColor = [UIColor grayColor];
+    _timeLabel.text = @"08-21 21:00";
+    _timeLabel.textColor = [UIColor blackColor];
+    _timeLabel.textAlignment = NSTextAlignmentRight;
+    _timeLabel.font = [UIFont systemFontOfSize:16];
+    [_scrollView addSubview:_timeLabel];
+    
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, 55, KScreenWidth-30, 105)];
+    _bgView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    [_scrollView addSubview:_bgView];
+    NSMutableArray *lbArr = [NSMutableArray array];
+    for (int i = 0; i < 4; i++) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+25*i, _bgView.width-20, 20)];
+        label.tag = 100;
+        label.text = @"";
+        label.textColor = [UIColor blackColor];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.font = [UIFont systemFontOfSize:14];
+        [self.bgView addSubview:label];
+        [lbArr addObject:label];
+    }
+    _labels = lbArr;
+    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_bgView.frame)+5, KScreenWidth-30, 16)];
+//    _contentLabel.backgroundColor = [UIColor grayColor];
+    _contentLabel.text = @"";
+    _contentLabel.numberOfLines = 0;
+    _contentLabel.textColor = [UIColor blackColor];
+    _contentLabel.textAlignment = NSTextAlignmentLeft;
+    _contentLabel.font = [UIFont systemFontOfSize:16];
+    [_scrollView addSubview:_contentLabel];
+    
+    NSMutableArray *imgViewArr = [NSMutableArray array];
+    for (int i = 0; i < 6; i ++) {
+//        UIImage *img = [UIImage imageNamed:@"揭晓-图片.jpg"];
+        
+        UIImageView *imgView = [[UIImageView alloc]init];
+        imgView.contentMode = UIViewContentModeScaleAspectFit;
+        imgView.hidden = YES;
+        
+        [imgViewArr addObject:imgView];
+    }
+    _imgViews = imgViewArr;
+//    _scrollView.contentSize = CGSizeMake(KScreenWidth, _imgViews[0]);
 }
 - (void)requestData {
     
@@ -92,25 +163,8 @@
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
-                  NSArray *dataArr = json[@"data"];
-//                  if (_page == 1) {
-//                      [_data removeAllObjects];
-//                      _data = dataArr.mutableCopy;
-//                      
-//                      [_tableView.mj_footer resetNoMoreData];
-//                      [_tableView.mj_header endRefreshing];
-//                  }
-//                  
-//                  if (_page != 1 && _page != 0) {
-//                      if (dataArr.count > 0) {
-//                          _page ++;
-//                          [_data addObjectsFromArray:dataArr];
-//                          [_tableView.mj_footer endRefreshing];
-//                      }else {
-//                          [_tableView.mj_footer endRefreshingWithNoMoreData];
-//                      }
-//                  }
-//                  [_tableView reloadData];
+                  InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:json[@"data"]];
+                  [self setSubViews:iSModel];
               }
               
               
@@ -121,5 +175,62 @@
           }];
 }
 
+- (void)setSubViews:(InordertoshareModel *)iSModel {
+    
+    _nikeName.text = iSModel.nickName;
+    
+    //转时间格式
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFormatter dateFromString:iSModel.createDate];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"MM-dd HH:mm"];
+    
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+    _timeLabel.text = currentDateStr;
+    
+    NSArray *mdArr = @[[NSString stringWithFormat:@"获得商品：%@",iSModel.productName],
+                       [NSString stringWithFormat:@"期号：%@",iSModel.drawTimes],
+                       [NSString stringWithFormat:@"参与人次：%@",@"573"],
+                       [NSString stringWithFormat:@"幸运号码：%@",@"10000086"]];
+    for (int i = 0;i < _labels.count; i ++) {
+        UILabel *lable = _labels[i];
+        lable.text = mdArr[i];
+    }
+    
+    _contentLabel.text = iSModel.content;
+    
+    CGRect contentRect = [ iSModel.content boundingRectWithSize:CGSizeMake(KScreenWidth-30, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
+    
+    NSArray *photoUrllist = iSModel.photoUrllist;
+    __block UIImage *img = [UIImage new];
+    __block CGFloat imgViewHeight = 0;
+    for (int i = 0; i < _imgViews.count; i ++) {
+        UIImageView *imgView = _imgViews[i];
+//        imgView.backgroundColor = [UIColor grayColor];
+        [_scrollView addSubview:imgView];
+        if (i > photoUrllist.count-1||photoUrllist == nil||photoUrllist.count == 0) {
+            imgView.hidden = YES;
+            
+        }else {
+            imgView.hidden = NO;
+            NSURL *url = [NSURL URLWithString:photoUrllist[i]];
+//            NSURL *url = [NSURL URLWithString:@"http://192.168.0.252:8000/pcpfiles/jpg/2016/08/31/3ff88c12626c4906afc5b8ba3a337c97.jpg"];
+            __weak typeof(UIImageView *) weakImg = imgView;
 
+            [imgView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                
+                weakImg.image = image;
+                
+                weakImg.frame = CGRectMake(15, CGRectGetMaxY(_bgView.frame)+contentRect.size.height+10+img.size.height*i, KScreenWidth-30, image.size.height);
+                imgViewHeight += image.size.height;
+                
+                img = image;
+            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                
+            }];
+        }
+    }
+    _scrollView.contentSize = CGSizeMake(KScreenWidth, _iconView.height+_bgView.height+ contentRect.size.height+imgViewHeight+50);
+}
 @end

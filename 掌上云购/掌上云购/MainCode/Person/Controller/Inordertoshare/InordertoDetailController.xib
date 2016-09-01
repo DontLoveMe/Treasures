@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InordertoDetailController">
             <connections>
+                <outlet property="scrollView" destination="ZIV-zI-Neu" id="2RJ-Ss-3Qo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +15,18 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-zI-Neu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ZIV-zI-Neu" secondAttribute="bottom" id="Fsh-Dl-sC5"/>
+                <constraint firstItem="ZIV-zI-Neu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Y85-vQ-t9P"/>
+                <constraint firstItem="ZIV-zI-Neu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aNZ-xf-Y3a"/>
+                <constraint firstAttribute="trailing" secondItem="ZIV-zI-Neu" secondAttribute="trailing" id="h7K-9C-bBQ"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
