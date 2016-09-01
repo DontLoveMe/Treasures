@@ -46,11 +46,11 @@
     
     //初始化数据
     _goodsArr = [NSMutableArray array];
+    //banner数据
+    _bannerArr = [NSMutableArray array];
     
     [self initNavBar];
     [self initViews];
-    
-    [self requestData];
     
 }
 
@@ -65,6 +65,8 @@
     [self initTopView];
     [self initCenterView];
     [self initBottomView];
+    
+    [self requsetBanner];
 
 }
 
@@ -72,9 +74,8 @@
 - (void)initTopView{
 
     //轮播图
-    NSArray *imgArr = @[[UIImage imageNamed:@"首页轮播_1.jpg"],[UIImage imageNamed:@"首页轮播_2.jpg"],[UIImage imageNamed:@"首页轮播_3.jpg"]];
-    _topBannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth *200 / 375) imagesGroup:imgArr];
-    _topBannerView.placeholderImage = [UIImage imageNamed:@"placeholder"];
+    _topBannerView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth *200 / 375) imagesGroup:nil];
+    _topBannerView.placeholderImage = [UIImage imageNamed:@"首页轮播_1.jpg"];
     _topBannerView.infiniteLoop = YES;
     _topBannerView.delegate = self;
     _topBannerView.dotColor = [UIColor whiteColor];
@@ -101,14 +102,14 @@
 
 - (void)WingNotificationTableViewTimerInvalidate{
     
-    NSLogZS(@"在这里重新加载网络数据");
+    [self requestPrizeList];
     
 }
 
 - (void)initCenterView{
 
-    _functionView = [[UIView alloc] initWithFrame:CGRectMake(0, _topBannerView.bottom, KScreenWidth, 120.f)];
-    _functionView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
+    _functionView = [[UIView alloc] initWithFrame:CGRectMake(0, _topBannerView.bottom, KScreenWidth, 112.f)];
+    _functionView.backgroundColor = [UIColor colorFromHexRGB:@"D0D0D0"];
     [_bgScrollView addSubview:_functionView];
     
     NSArray *titleArr = @[@"分类",@"十元专区",@"极速专区",@"晒单"];
@@ -129,7 +130,6 @@
 - (void)controlAction:(HomeFunctionControl *)control{
 
     NSLogZS(@"选择了这个功能");
-    
     SegmentController *SVC = [[SegmentController alloc] init];
     [self.navigationController pushViewController:SVC
                                          animated:YES];
@@ -137,23 +137,49 @@
 }
 
 - (void)initBottomView{
-
-    _kindControl = [[UISegmentedControl alloc] initWithItems:@[@"人气",@"最新",@"进度",@"总需人次"]];
-    _kindControl.frame = CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f);
-    [_kindControl addTarget:self
-                     action:@selector(selectAction:)
-           forControlEvents:UIControlEventTouchDragInside];
-    [_bgScrollView addSubview:_kindControl];
+    
+    _segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f)];
+    _segmentView.backgroundColor = [UIColor whiteColor];
+    [_bgScrollView addSubview:_segmentView];
+    
+    NSArray *segmentArr = @[@"人气",@"最新",@"最新",@"总需人次"];
+    float width = KScreenWidth / 4;
+    for (int i = 0 ; i < segmentArr.count; i ++) {
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width * i, 0, width, 39.f)];
+        [button setTitle:segmentArr[i]
+                forState:UIControlStateNormal];
+        [button setTitle:segmentArr[i]
+                forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor colorFromHexRGB:@"6F6F6F"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorFromHexRGB:@"6F6F6F"] forState:UIControlStateSelected];
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
+        button.tag = 100 + i;
+        [button addTarget:self
+                   action:@selector(selectAction:)
+         forControlEvents:UIControlEventTouchUpInside];
+        [_segmentView addSubview:button];
+        
+    }
+    
+    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom, KScreenWidth, 1)];
+    lineView.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
+    [_bgScrollView addSubview:lineView];
+    
+    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom - 1, KScreenWidth / 4, 2)];
+    selectImg.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+    selectImg.tag = 50;
+    [_bgScrollView addSubview:selectImg];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    //设置滑动方向为水平
+    //设置滑动方向
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     //设置单元格的间隙
-    layout.minimumInteritemSpacing = 10;
-    layout.minimumLineSpacing = 10;
-    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _kindControl.bottom + 4.f, KScreenWidth, 400.f) collectionViewLayout:layout];
+    layout.minimumInteritemSpacing = 1;
+    layout.minimumLineSpacing = 1;
+    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 400.f) collectionViewLayout:layout];
     _goodsList.scrollEnabled = NO;
-    _goodsList.backgroundColor = [UIColor redColor];
+    _goodsList.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
     _goodsList.delegate = self;
     _goodsList.dataSource = self;
     [_goodsList registerNib:[UINib nibWithNibName:@"HomeGoodsCell"
@@ -163,9 +189,18 @@
     
 }
 
-- (void)selectAction:(UISegmentedControl *)control{
+- (void)selectAction:(UIButton *)button{
 
-    NSInteger selectIndext = control.selectedSegmentIndex;
+    NSInteger selectIndext = button.tag - 100;
+    
+    UIImageView *imageView = [_bgScrollView viewWithTag:50];
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                        
+                         imageView.centerX = button.centerX;
+                         
+                     }];
+    
     switch (selectIndext) {
         case 0:
             [self requestGoodsList:@"3"];
@@ -201,6 +236,8 @@
     
     cell.goodsName.text = [dic objectForKey:@"name"];
     cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%@%%",[dic objectForKey:@"sellShare"]];
+    NSArray *picList = [dic objectForKey:@"proPictureList"];
+    [cell.goodsPic setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
     NSLogZS(@"%@",dic);
     
     return cell;
@@ -208,23 +245,22 @@
 //设置单元格的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake((KScreenWidth - 40) / 2  , 180);
+    return CGSizeMake((KScreenWidth - 1) / 2  , (KScreenWidth - 1) * 11 / 20);
     
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
 
-    return UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
     
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLogZS(@"选择了第%ld个",indexPath.row);
-    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-    [self.navigationController pushViewController:GDVC
-                                         animated:YES];
-    
+//    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+//    [self.navigationController pushViewController:GDVC
+//                                         animated:YES];
+//    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -238,52 +274,6 @@
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];
-    
-//    if (indexPath.row == 0) {
-//        
-//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-//        GDVC.goodsId = [dic objectForKey:@"id"];
-//        GDVC.isJoind = 0;
-//        GDVC.isAnnounced = 1;
-//        GDVC.isPrized = 0;
-//        GDVC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:GDVC
-//                                             animated:YES];
-//        
-//    }else if (indexPath.row == 1) {
-//        
-//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-//        GDVC.goodsId = [dic objectForKey:@"id"];
-//        GDVC.isJoind = 1;
-//        GDVC.isAnnounced = 1;
-//        GDVC.isPrized = 0;
-//        GDVC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:GDVC
-//                                             animated:YES];
-//        
-//    }else if (indexPath.row == 2) {
-//        
-//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-//        GDVC.goodsId = [dic objectForKey:@"id"];
-//        GDVC.isJoind = 0;
-//        GDVC.isAnnounced = 2;
-//        GDVC.isPrized = 0;
-//        GDVC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:GDVC
-//                                             animated:YES];
-//        
-//    }else if (indexPath.row == 3) {
-//        
-//        GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-//        GDVC.goodsId = [dic objectForKey:@"id"];
-//        GDVC.isJoind = 1;
-//        GDVC.isAnnounced = 2;
-//        GDVC.isPrized = 0;
-//        GDVC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:GDVC
-//                                             animated:YES];
-//        
-//    }
 
 }
 
@@ -291,6 +281,10 @@
 
     [super viewWillAppear:animated];
     
+    [self requestData];
+    
+    [self requestPrizeList];
+
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _goodsList.bottom);
 
 }
@@ -302,6 +296,7 @@
 
 }
 
+//商品列表
 - (void)requestGoodsList:(NSString *)kindStr{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -317,6 +312,67 @@
               if ([json objectForKey:@"flag"]) {
                   _goodsArr = [json objectForKey:@"data"];
                   [_goodsList reloadData];
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+
+}
+
+//首页banner
+- (void)requsetBanner{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"type"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,HomeBanner_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+                  _bannerArr = [json objectForKey:@"data"];
+                  NSMutableArray *picArr = [NSMutableArray array];
+                  for (int i = 0; i < _bannerArr.count; i ++) {
+                      
+                      NSDictionary *dic = [_bannerArr objectAtIndex:i];
+                      [picArr addObject:[dic objectForKey:@"imageUrl"]];
+                      
+                  }
+                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                      _topBannerView.imageURLStringsGroup = picArr;
+                  });
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+    
+}
+
+//获奖者公告
+- (void)requestPrizeList{
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,HomePrizeList_URL];
+    
+    [ZSTools post:url
+           params:nil
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+                  
+                  NSArray *dataArr = [json objectForKey:@"data"];
+                  NSMutableArray *msgArr = [NSMutableArray array];
+                  for (int i = 0; i < dataArr.count; i ++) {
+                      
+                      NSDictionary *dic = [dataArr objectAtIndex:i];
+                      NSString *msgStr = [NSString stringWithFormat:@"恭喜%@中了%@",[dic objectForKey:@"nickName"],[dic objectForKey:@"productName"]];
+                      [msgArr addObject:msgStr];
+                      
+                  }
+                  _wingTable.dataArr = msgArr;
               }
               
           } failure:^(NSError *error) {

@@ -44,6 +44,10 @@
 		DD6B52411D6DA31B00B6297F /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52391D6DA31B00B6297F /* 7.png */; };
 		DD6B52421D6DA31B00B6297F /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B523A1D6DA31B00B6297F /* 8.png */; };
 		DD89FC331D6C7A6300DBAB16 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD89FC321D6C7A6300DBAB16 /* ProgressView.m */; };
+		DDA46D971D78443E0043A797 /* 分类.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA46D931D78443E0043A797 /* 分类.png */; };
+		DDA46D981D78443E0043A797 /* 极速专区.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA46D941D78443E0043A797 /* 极速专区.png */; };
+		DDA46D991D78443E0043A797 /* 晒单.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA46D951D78443E0043A797 /* 晒单.png */; };
+		DDA46D9A1D78443E0043A797 /* 十元专区.png in Resources */ = {isa = PBXBuildFile; fileRef = DDA46D961D78443E0043A797 /* 十元专区.png */; };
 		DDF92B3D1D6A9B15009D5A1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92B3C1D6A9B15009D5A1E /* main.m */; };
 		DDF92B401D6A9B15009D5A1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92B3F1D6A9B15009D5A1E /* AppDelegate.m */; };
 		DDF92B481D6A9B15009D5A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF92B471D6A9B15009D5A1E /* Assets.xcassets */; };
@@ -332,6 +336,10 @@
 		DD6B523A1D6DA31B00B6297F /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		DD89FC311D6C7A6300DBAB16 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		DD89FC321D6C7A6300DBAB16 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
+		DDA46D931D78443E0043A797 /* 分类.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "分类.png"; sourceTree = "<group>"; };
+		DDA46D941D78443E0043A797 /* 极速专区.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "极速专区.png"; sourceTree = "<group>"; };
+		DDA46D951D78443E0043A797 /* 晒单.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "晒单.png"; sourceTree = "<group>"; };
+		DDA46D961D78443E0043A797 /* 十元专区.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "十元专区.png"; sourceTree = "<group>"; };
 		DDF92B381D6A9B15009D5A1E /* 掌上云购.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上云购.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF92B3C1D6A9B15009D5A1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DDF92B3E1D6A9B15009D5A1E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1560,6 +1568,10 @@
 		DDF92D271D6A9C5B009D5A1E /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				DDA46D931D78443E0043A797 /* 分类.png */,
+				DDA46D941D78443E0043A797 /* 极速专区.png */,
+				DDA46D951D78443E0043A797 /* 晒单.png */,
+				DDA46D961D78443E0043A797 /* 十元专区.png */,
 				D68F259B1D6AEA200042E0BE /* 搜索_全删.png */,
 				D68F25991D6AE9850042E0BE /* 搜索_删除.png */,
 				DDF92D281D6A9C5B009D5A1E /* 商品详情 */,
@@ -1688,6 +1700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6ED17901D752CCA00C5CDB1 /* 密码.png in Resources */,
+				DDA46D981D78443E0043A797 /* 极速专区.png in Resources */,
 				DD6B523C1D6DA31B00B6297F /* 2.png in Resources */,
 				DDF92D681D6A9C5B009D5A1E /* 横线.png in Resources */,
 				DDF92D8C1D6A9C5B009D5A1E /* sort100_checked.png in Resources */,
@@ -1705,6 +1718,7 @@
 				DDF92D921D6A9C5B009D5A1E /* sort222_checked.png in Resources */,
 				D6ED17921D752F7900C5CDB1 /* 明文.png in Resources */,
 				D6E598C71D76C85D002B1520 /* 按钮框_亮.png in Resources */,
+				DDA46D9A1D78443E0043A797 /* 十元专区.png in Resources */,
 				DDF92C9B1D6A9C3D009D5A1E /* InordertoshareCell.xib in Resources */,
 				DDF92D511D6A9C5B009D5A1E /* 双框.png in Resources */,
 				DDF92C791D6A9C3D009D5A1E /* InordertoDetailController.xib in Resources */,
@@ -1777,6 +1791,7 @@
 				DDF92C581D6A9C3D009D5A1E /* HomeViewController.xib in Resources */,
 				DD6B523E1D6DA31B00B6297F /* 4.png in Resources */,
 				D6ED178E1D752BA300C5CDB1 /* 用户.png in Resources */,
+				DDA46D971D78443E0043A797 /* 分类.png in Resources */,
 				DDF92D891D6A9C5B009D5A1E /* shop.png in Resources */,
 				DDF92CA31D6A9C3D009D5A1E /* RechargeRecordCell.xib in Resources */,
 				DDF92D761D6A9C5B009D5A1E /* 返回.png in Resources */,
@@ -1817,6 +1832,7 @@
 				DDF92D781D6A9C5B009D5A1E /* 商品列表.png in Resources */,
 				DDF92C8B1D6A9C3D009D5A1E /* SettingsController.xib in Resources */,
 				DDF92D541D6A9C5B009D5A1E /* 幸运记录.png in Resources */,
+				DDA46D991D78443E0043A797 /* 晒单.png in Resources */,
 				DDF92C9D1D6A9C3D009D5A1E /* LuckyRecordCell.xib in Resources */,
 				D68F25961D6AE8DA0042E0BE /* SeachHistoryCell.xib in Resources */,
 				DDF92D8F1D6A9C5B009D5A1E /* sort104_normal.png in Resources */,

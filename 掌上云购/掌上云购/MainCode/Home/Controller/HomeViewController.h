@@ -32,11 +32,14 @@
     UIView              *_functionView;
     
     //商品展示
-    UISegmentedControl  *_kindControl;
+    UIView              *_segmentView;
     UICollectionView    *_goodsList;
     
     //数据
     NSMutableArray      *_goodsArr;
+    
+    //banner数据
+    NSMutableArray      *_bannerArr;
 
 }
 @end

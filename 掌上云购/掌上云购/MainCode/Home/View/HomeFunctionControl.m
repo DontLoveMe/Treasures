@@ -51,7 +51,7 @@
     [self addSubview:_themeImg];
     
     _themeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _themeImg.bottom + 4.f, self.width, 20.f)];
-    _themeLabel.textColor = [UIColor blackColor];
+    _themeLabel.textColor = [UIColor colorFromHexRGB:@"6F6F6F"];
     _themeLabel.font = [UIFont systemFontOfSize:12];
     _themeLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_themeLabel];
@@ -63,7 +63,7 @@
     if (_controlFlag != controlFlag) {
         
         _controlFlag = controlFlag;
-        [_themeImg setImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+        [_themeImg setImage:[UIImage imageNamed:_controlFlag]];
         _themeLabel.text = _controlFlag;
         
     }

@@ -68,9 +68,9 @@ forCellReuseIdentifier:@"WingNotification_Cell"];
         
         _dataArr = dataArr;
         [self reloadData];
-        
+        self.alpha = 1;
         _currentProcess = 0;
-        _timer = [NSTimer scheduledTimerWithTimeInterval:2
+        _timer = [NSTimer scheduledTimerWithTimeInterval:3
                                                   target:self
                                                 selector:@selector(timeAction)
                                                 userInfo:nil
@@ -95,6 +95,10 @@ forCellReuseIdentifier:@"WingNotification_Cell"];
                                  
                                  [_timerDelegate WingNotificationTableViewTimerInvalidate];
                              }
+                             
+                         }completion:^(BOOL finished) {
+                             
+                             self.contentOffset = CGPointMake(0, 0);
                              
                          }];
         
@@ -122,7 +126,7 @@ forCellReuseIdentifier:@"WingNotification_Cell"];
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     WingNotificationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WingNotification_Cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.3];
+    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.notificationLabel.text = _dataArr[indexPath.row];
     return cell;

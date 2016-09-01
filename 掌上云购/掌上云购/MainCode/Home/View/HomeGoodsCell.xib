@@ -25,7 +25,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="rk2-jd-LS5"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -34,7 +34,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="0sE-WQ-9QM"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -50,7 +50,10 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="首页-进度条.png" translatesAutoresizingMaskIntoConstraints="NO" id="abZ-zq-gN6">
-                        <rect key="frame" x="16" y="187" width="109" height="17"/>
+                        <rect key="frame" x="16" y="187" width="109" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="d83-F8-0Rc"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -60,7 +63,6 @@
                 <constraint firstAttribute="trailing" secondItem="w9l-2s-ifk" secondAttribute="trailing" constant="16" id="48o-ON-Vge"/>
                 <constraint firstItem="PPW-WN-FjM" firstAttribute="leading" secondItem="b4V-UQ-fgd" secondAttribute="trailing" constant="4" id="5yN-fH-GPS"/>
                 <constraint firstItem="w9l-2s-ifk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="76r-p1-iX7"/>
-                <constraint firstAttribute="bottom" secondItem="abZ-zq-gN6" secondAttribute="bottom" constant="12" id="AAw-wy-Z8g"/>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="36" id="BRN-Ix-dRN"/>
                 <constraint firstItem="PPW-WN-FjM" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="12" id="Krz-Sj-isc"/>
                 <constraint firstItem="abZ-zq-gN6" firstAttribute="top" secondItem="b4V-UQ-fgd" secondAttribute="bottom" constant="4" id="LMH-Pm-gk4"/>

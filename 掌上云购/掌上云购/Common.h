@@ -28,6 +28,10 @@
 /*---------------分类模块----------------------*/
 #define CategorysList_URL @"/pcpServer-inf/proCategory/list"
 /*---------------首页商品模块---------------------*/
+//首页banner
+#define HomeBanner_URL @"/pcpServer-inf/cmsBanner/list"
+//首页公告通知
+#define HomePrizeList_URL @"/pcpServer-inf/saleDraw/drawComment"
 //商品列表
 #define GoodsList_URL @"/pcpServer-inf/product/list"
 //商品详情
