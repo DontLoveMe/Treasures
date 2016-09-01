@@ -189,11 +189,11 @@
 //添加地址
 - (void)addAddress {
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@1 forKey:@"userId"];
+    [params setObject:userId forKey:@"userId"];
     if (_provinceId) {
         [params setObject:@{@"id":_provinceId} forKey:@"province"];
     }
@@ -233,11 +233,11 @@
 //修改地址
 - (void)changeAddress {
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@1 forKey:@"userId"];
+    [params setObject:userId forKey:@"userId"];
     [params setObject:_model.addressId forKey:@"id"];
     if (_provinceId) {
         [params setObject:@{@"id":_provinceId} forKey:@"province"];

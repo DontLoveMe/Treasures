@@ -122,13 +122,6 @@
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="揭晓-图片.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-6j-FMd">
-                                <rect key="frame" x="8" y="23" width="85" height="85"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="6nK-9z-e5D"/>
-                                    <constraint firstAttribute="width" constant="85" id="qDY-W7-Bw3"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9z-C1-AX9">
                                 <rect key="frame" x="212" y="118" width="100" height="21"/>
                                 <constraints>
@@ -143,6 +136,13 @@
                                     <action selector="goodsAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3RJ-oA-52s"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="揭晓-图片.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7XU-6j-FMd">
+                                <rect key="frame" x="8" y="23" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="6nK-9z-e5D"/>
+                                    <constraint firstAttribute="width" constant="85" id="qDY-W7-Bw3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

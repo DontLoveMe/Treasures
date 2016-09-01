@@ -54,11 +54,11 @@
 
 - (void)requestData {
     //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"buyUserId":@1} forKey:@"paramsMap"];
+    [params setObject:@{@"buyUserId":userId} forKey:@"paramsMap"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@10 forKey:@"rows"];
     
@@ -140,11 +140,44 @@
     
     LuckyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.lkModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
+    RecordModel *rModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
+    cell.lkModel = rModel;
+    __weak typeof(self) weakSelf = self;
+    [cell setSuerBlock:^{
+        [weakSelf confirmAddress:rModel];
+    }];
+    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 155;
 }
-
+- (void)confirmAddress:(RecordModel *)rmodel {
+    //取出存储的用户信息
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        NSNumber *userId = userDic[@"id"];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"buyUserId"];
+    [params setObject:rmodel.ID forKey:@"productId"];
+    [params setObject:@(rmodel.saleDraw.periodsNumber) forKey:@"buyPeriods"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmAddress_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              
+              if (isSuccess) {
+                  NSLogZS(@"确认地址");
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              
+              NSLogZS(@"%@",error);
+          }];
+}
 @end

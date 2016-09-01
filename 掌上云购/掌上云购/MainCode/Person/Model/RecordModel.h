@@ -35,13 +35,15 @@
 
 @property (nonatomic, strong) NSNumber *companyId;
 
-@property (nonatomic, copy) NSString *isSunOrder;
+@property (nonatomic, strong) NSNumber *isSunOrder;
 
-@property (nonatomic, copy) NSString *isMany;
+@property (nonatomic, strong)NSNumber *sunOrder;
+
+@property (nonatomic, strong)NSNumber *isMany;
 
 @property (nonatomic, copy) NSString *name;
 
-@property (nonatomic, copy) NSString *isSyncShop;
+@property (nonatomic, strong)NSNumber *isSyncShop;
 
 @property (nonatomic, copy) NSString *proNumber;
 
