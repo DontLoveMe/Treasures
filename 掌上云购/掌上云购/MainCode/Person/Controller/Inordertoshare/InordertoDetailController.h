@@ -10,4 +10,6 @@
 
 @interface InordertoDetailController : BaseViewController
 
+@property (nonatomic, assign)NSInteger shareID;
+
 @end

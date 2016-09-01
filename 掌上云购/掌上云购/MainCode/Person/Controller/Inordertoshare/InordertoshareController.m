@@ -9,11 +9,15 @@
 #import "InordertoshareController.h"
 #import "InordertoshareCell.h"
 #import "InordertoDetailController.h"
+#import "InordertoshareModel.h"
 
 @interface InordertoshareController ()
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,copy)NSString *identify;
+
+@property (nonatomic,strong)NSMutableArray *data;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -44,9 +48,59 @@
     
     self.title = @"晒单记录";
     
+    _page = 1;
+    _data = [NSMutableArray array];
+    
     [self initNavBar];
     
+    [self requestData];
+    
     [self createTabelView];
+}
+- (void)requestData {
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"userId":@1} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_data removeAllObjects];
+                      _data = dataArr.mutableCopy;
+                      
+                      [_tableView.mj_footer resetNoMoreData];
+                      [_tableView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_data addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 
 - (void)createTabelView {
@@ -63,23 +117,74 @@
     UINib *nib = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
     
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self requestData];
+        
+    }];
+    _tableView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self requestData];
+    }];
+    _tableView.mj_footer = footer;
+    
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     InordertoshareCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 226;
+
+    //计算单元格高度
+    InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+    NSString *content = iSModel.content;
+    CGRect contentRect = [content boundingRectWithSize:CGSizeMake(KScreenWidth-57, 35) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+    NSArray *photoUrllist = iSModel.photoUrllist;
+    CGFloat height;
+    if (photoUrllist.count == 0) {
+        height = 0;
+    }else if (photoUrllist.count <4){
+        height = 90;
+    }else if (photoUrllist.count < 7){
+        height = 90*2;
+    }
+    
+    return height + contentRect.size.height + 120;
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
     
     InordertoDetailController *indVC = [[InordertoDetailController alloc] init];
+    indVC.shareID = iSModel.ID;
     [self.navigationController pushViewController:indVC animated:YES];
 }
+/*测试数据
+ self.data = @[
+ @{ @"id": @5,
+ @"saleOrderDetailId": @1,
+ @"drawTimes": @"201423213",
+ @"content": @"321adas暗色调",
+ @"createDate": @"2016-08-31 14:56:03",
+ @"nickName": @"22",
+ @"productName": @"Apple iPhone 6s (A1700) 64G 玫瑰金色 移动联通电信4G手机",
+ @"title": @"231",
+ @"photoUrllist": @[
+ @"http://192.168.0.252:8000/pcpfiles/png/2016/08/23/70442847a3e5483d850850f2dd3ed472.png",
+ @"http://192.168.0.252:8000/pcpfiles/png/2016/08/23/70442847a3e5483d850850f2dd3ed472.png",
+ @"http://192.168.0.252:8000/pcpfiles/png/2016/08/23/70442847a3e5483d850850f2dd3ed472.png"
+ ]}].mutableCopy;
+ */
 @end

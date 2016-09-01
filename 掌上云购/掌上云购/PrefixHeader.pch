@@ -21,6 +21,8 @@
 #import "MD5Security.h"
 #import "MJExtension.h"
 #import "CartTools.h"
+#import "UIImageView+AFNetworking.h"
+#import "UIButton+AFNetworking.h"
 #endif
 
 //主色调
