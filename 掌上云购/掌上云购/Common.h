@@ -72,8 +72,12 @@
 #define UpdateArea_URL @"/pcpServer-inf/user/consignee/update"
 
 /*---------------发现模块---------------------*/
-//晒单分享
+//晒单分享列表
 #define Sunsharing_URL @"/pcpServer-inf/user/userComment/list"
+//晒单详情
+#define SunshareDetail_URL @"/pcpServer-inf/user/userComment/detail"
+//新增晒单
+#define InsertSunshare_URL @"/pcpServer-inf/user/userComment/insert"
 
 /*---------------充值模块---------------------*/
 //充值记录列表

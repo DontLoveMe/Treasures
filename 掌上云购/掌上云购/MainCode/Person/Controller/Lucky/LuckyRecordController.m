@@ -58,7 +58,7 @@
     //    NSNumber *userId = userDic[@"userId"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"buyUserId":@2} forKey:@"paramsMap"];
+    [params setObject:@{@"buyUserId":@1} forKey:@"paramsMap"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@10 forKey:@"rows"];
     

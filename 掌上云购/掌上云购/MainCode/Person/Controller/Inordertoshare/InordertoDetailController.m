@@ -77,7 +77,48 @@
     
     [self initNavBar];
     
+    [self requestData];
+}
+- (void)requestData {
     
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"id":@(_shareID)} forKey:@"paramsMap"];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SunshareDetail_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+//                  if (_page == 1) {
+//                      [_data removeAllObjects];
+//                      _data = dataArr.mutableCopy;
+//                      
+//                      [_tableView.mj_footer resetNoMoreData];
+//                      [_tableView.mj_header endRefreshing];
+//                  }
+//                  
+//                  if (_page != 1 && _page != 0) {
+//                      if (dataArr.count > 0) {
+//                          _page ++;
+//                          [_data addObjectsFromArray:dataArr];
+//                          [_tableView.mj_footer endRefreshing];
+//                      }else {
+//                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+//                      }
+//                  }
+//                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 
 
