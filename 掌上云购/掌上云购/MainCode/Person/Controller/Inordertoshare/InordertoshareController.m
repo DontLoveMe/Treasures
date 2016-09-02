@@ -156,7 +156,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    _tableView.separatorColor = [UIColor blackColor];
+    _tableView.separatorStyle =UITableViewCellSeparatorStyleNone ;
     
     _identify = @"InordertoshareCell";
     UINib *nib = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];

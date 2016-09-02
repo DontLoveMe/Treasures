@@ -54,8 +54,8 @@
 - (void)setISModel:(InordertoshareModel *)iSModel {
     _iSModel = iSModel;
     
-
-//    NSURL *url = [NSURL URLWithString:str];
+//    NSString *urlStr = _iSModel.userPhotoUrl;
+//    NSURL *url = [NSURL URLWithString:urlStr];
 //    [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的_头像"]];
     
     _nameLabel.text = _iSModel.nickName;

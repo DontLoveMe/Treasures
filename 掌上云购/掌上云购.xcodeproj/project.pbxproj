@@ -25,6 +25,20 @@
 		D68F25A51D6AF3470042E0BE /* HotCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25A31D6AF3470042E0BE /* HotCollectionCell.m */; };
 		D68F25A61D6AF3470042E0BE /* HotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F25A41D6AF3470042E0BE /* HotCollectionCell.xib */; };
 		D68F25AA1D6B05820042E0BE /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25A91D6B05820042E0BE /* HistoryData.m */; };
+		D6C09BEE1D79150F00C092A7 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BDA1D79150F00C092A7 /* NSBundle+TZImagePicker.m */; };
+		D6C09BEF1D79150F00C092A7 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BDC1D79150F00C092A7 /* TZAssetCell.m */; };
+		D6C09BF01D79150F00C092A7 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BDE1D79150F00C092A7 /* TZAssetModel.m */; };
+		D6C09BF11D79150F00C092A7 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BE01D79150F00C092A7 /* TZImageManager.m */; };
+		D6C09BF21D79150F00C092A7 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6C09BE11D79150F00C092A7 /* TZImagePickerController.bundle */; };
+		D6C09BF41D79150F00C092A7 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BE51D79150F00C092A7 /* TZPhotoPickerController.m */; };
+		D6C09BF51D79150F00C092A7 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BE71D79150F00C092A7 /* TZPhotoPreviewCell.m */; };
+		D6C09BF61D79150F00C092A7 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BE91D79150F00C092A7 /* TZPhotoPreviewController.m */; };
+		D6C09BF71D79150F00C092A7 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BEB1D79150F00C092A7 /* TZVideoPlayerController.m */; };
+		D6C09BF81D79150F00C092A7 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BED1D79150F00C092A7 /* UIView+Layout.m */; };
+		D6C09BFB1D7916CD00C092A7 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFA1D7916CD00C092A7 /* TZTestCell.m */; };
+		D6C09BFE1D7916DA00C092A7 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */; };
+		D6C09C011D791A1900C092A7 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09C001D791A1900C092A7 /* TZImagePickerController.m */; };
+		D6C09C031D79274000C092A7 /* 删除.png in Resources */ = {isa = PBXBuildFile; fileRef = D6C09C021D79274000C092A7 /* 删除.png */; };
 		D6CB578D1D6E893F0043181F /* 按钮背景.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CB578C1D6E893F0043181F /* 按钮背景.png */; };
 		D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */; };
 		D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */; };
@@ -317,6 +331,32 @@
 		D68F25A41D6AF3470042E0BE /* HotCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotCollectionCell.xib; sourceTree = "<group>"; };
 		D68F25A81D6B05820042E0BE /* HistoryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryData.h; sourceTree = "<group>"; };
 		D68F25A91D6B05820042E0BE /* HistoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryData.m; sourceTree = "<group>"; };
+		D6C09BD91D79150F00C092A7 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		D6C09BDA1D79150F00C092A7 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
+		D6C09BDB1D79150F00C092A7 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		D6C09BDC1D79150F00C092A7 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		D6C09BDD1D79150F00C092A7 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		D6C09BDE1D79150F00C092A7 /* TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		D6C09BDF1D79150F00C092A7 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		D6C09BE01D79150F00C092A7 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		D6C09BE11D79150F00C092A7 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		D6C09BE41D79150F00C092A7 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		D6C09BE51D79150F00C092A7 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		D6C09BE61D79150F00C092A7 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		D6C09BE71D79150F00C092A7 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		D6C09BE81D79150F00C092A7 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		D6C09BE91D79150F00C092A7 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		D6C09BEA1D79150F00C092A7 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		D6C09BEB1D79150F00C092A7 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		D6C09BEC1D79150F00C092A7 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		D6C09BED1D79150F00C092A7 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		D6C09BF91D7916CD00C092A7 /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
+		D6C09BFA1D7916CD00C092A7 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		D6C09BFC1D7916DA00C092A7 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
+		D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
+		D6C09BFF1D791A1900C092A7 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		D6C09C001D791A1900C092A7 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		D6C09C021D79274000C092A7 /* 删除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删除.png"; sourceTree = "<group>"; };
 		D6CB578C1D6E893F0043181F /* 按钮背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮背景.png"; sourceTree = "<group>"; };
 		D6DBC3941D6DB903003BA793 /* SnatchRecordingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnatchRecordingCell.h; sourceTree = "<group>"; };
 		D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnatchRecordingCell.m; sourceTree = "<group>"; };
@@ -731,6 +771,34 @@
 				D68F25A91D6B05820042E0BE /* HistoryData.m */,
 			);
 			path = "搜索历史数据";
+			sourceTree = "<group>";
+		};
+		D6C09BD81D79150F00C092A7 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				D6C09BD91D79150F00C092A7 /* NSBundle+TZImagePicker.h */,
+				D6C09BDA1D79150F00C092A7 /* NSBundle+TZImagePicker.m */,
+				D6C09BDB1D79150F00C092A7 /* TZAssetCell.h */,
+				D6C09BDC1D79150F00C092A7 /* TZAssetCell.m */,
+				D6C09BDD1D79150F00C092A7 /* TZAssetModel.h */,
+				D6C09BDE1D79150F00C092A7 /* TZAssetModel.m */,
+				D6C09BDF1D79150F00C092A7 /* TZImageManager.h */,
+				D6C09BE01D79150F00C092A7 /* TZImageManager.m */,
+				D6C09BE11D79150F00C092A7 /* TZImagePickerController.bundle */,
+				D6C09BFF1D791A1900C092A7 /* TZImagePickerController.h */,
+				D6C09C001D791A1900C092A7 /* TZImagePickerController.m */,
+				D6C09BE41D79150F00C092A7 /* TZPhotoPickerController.h */,
+				D6C09BE51D79150F00C092A7 /* TZPhotoPickerController.m */,
+				D6C09BE61D79150F00C092A7 /* TZPhotoPreviewCell.h */,
+				D6C09BE71D79150F00C092A7 /* TZPhotoPreviewCell.m */,
+				D6C09BE81D79150F00C092A7 /* TZPhotoPreviewController.h */,
+				D6C09BE91D79150F00C092A7 /* TZPhotoPreviewController.m */,
+				D6C09BEA1D79150F00C092A7 /* TZVideoPlayerController.h */,
+				D6C09BEB1D79150F00C092A7 /* TZVideoPlayerController.m */,
+				D6C09BEC1D79150F00C092A7 /* UIView+Layout.h */,
+				D6C09BED1D79150F00C092A7 /* UIView+Layout.m */,
+			);
+			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
 		D6E0F3751D6C617A00E962D1 /* 提示框 */ = {
@@ -1195,6 +1263,8 @@
 				D66FF4451D78106B001C4B6E /* AddShareController.h */,
 				D66FF4461D78106B001C4B6E /* AddShareController.m */,
 				D66FF4471D78106B001C4B6E /* AddShareController.xib */,
+				D6C09BFC1D7916DA00C092A7 /* LxGridViewFlowLayout.h */,
+				D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */,
 			);
 			path = Inordertoshare;
 			sourceTree = "<group>";
@@ -1278,6 +1348,8 @@
 		DDF92C0C1D6A9C3D009D5A1E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6C09BF91D7916CD00C092A7 /* TZTestCell.h */,
+				D6C09BFA1D7916CD00C092A7 /* TZTestCell.m */,
 				DDF92C0D1D6A9C3D009D5A1E /* AddressCell.h */,
 				DDF92C0E1D6A9C3D009D5A1E /* AddressCell.m */,
 				DDF92C0F1D6A9C3D009D5A1E /* AddressCell.xib */,
@@ -1331,6 +1403,7 @@
 		DDF92CAA1D6A9C4F009D5A1E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D6C09BD81D79150F00C092A7 /* TZImagePickerController */,
 				DD1B9E441D6EF004002E9CE9 /* 购物车逻辑 */,
 				D6E0F3751D6C617A00E962D1 /* 提示框 */,
 				D68F25A71D6B055B0042E0BE /* 搜索历史数据 */,
@@ -1485,6 +1558,7 @@
 		DDF92CF11D6A9C5B009D5A1E /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				D6C09C021D79274000C092A7 /* 删除.png */,
 				D66FF4871D784FB0001C4B6E /* 加.png */,
 				D6CB578C1D6E893F0043181F /* 按钮背景.png */,
 				D6EEFA581D6C20CC0069A880 /* 我的_设置.png */,
@@ -1745,6 +1819,7 @@
 				DDF92D4B1D6A9C5B009D5A1E /* 发现4.png in Resources */,
 				DD6B523B1D6DA31B00B6297F /* 1.png in Resources */,
 				DDF92D591D6A9C5B009D5A1E /* 我的晒单.png in Resources */,
+				D6C09BF21D79150F00C092A7 /* TZImagePickerController.bundle in Resources */,
 				DDF92D621D6A9C5B009D5A1E /* 选中.png in Resources */,
 				DDF92D6C1D6A9C5B009D5A1E /* 我的-selected.png in Resources */,
 				DDF92D981D6A9C5B009D5A1E /* 首页-进度条.png in Resources */,
@@ -1841,6 +1916,7 @@
 				DDF92C6D1D6A9C3D009D5A1E /* AboutMeController.xib in Resources */,
 				DDF92B481D6A9B15009D5A1E /* Assets.xcassets in Resources */,
 				DDF92C481D6A9C3D009D5A1E /* AnnouncedHistoryController.xib in Resources */,
+				D6C09C031D79274000C092A7 /* 删除.png in Resources */,
 				D68F25A61D6AF3470042E0BE /* HotCollectionCell.xib in Resources */,
 				DDF92D781D6A9C5B009D5A1E /* 商品列表.png in Resources */,
 				DDF92C8B1D6A9C3D009D5A1E /* SettingsController.xib in Resources */,
@@ -1933,18 +2009,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C09BFB1D7916CD00C092A7 /* TZTestCell.m in Sources */,
 				DDF92C6C1D6A9C3D009D5A1E /* AboutMeController.m in Sources */,
+				D6C09BF71D79150F00C092A7 /* TZVideoPlayerController.m in Sources */,
 				FCEE8E701D6AFA13002FF90D /* PersonalCenterController.m in Sources */,
 				DDF92C461D6A9C3D009D5A1E /* SunShareCell.m in Sources */,
 				DDF92CD91D6A9C4F009D5A1E /* MD5Security.m in Sources */,
 				DDF92C8C1D6A9C3D009D5A1E /* SnatchRecordController.m in Sources */,
 				FCFAF0421D6BEA820076B806 /* SelectView.m in Sources */,
 				D64BEE9E1D743A4200A6158B /* RechargeModel.m in Sources */,
+				D6C09C011D791A1900C092A7 /* TZImagePickerController.m in Sources */,
 				DDF92C3A1D6A9C3D009D5A1E /* CartViewController.m in Sources */,
 				DDF92C681D6A9C3D009D5A1E /* LoginViewController.m in Sources */,
 				DDF92C911D6A9C3D009D5A1E /* AreaPickerView.m in Sources */,
 				DDF92C5B1D6A9C3D009D5A1E /* HomeFunctionControl.m in Sources */,
 				DDF92CDF1D6A9C4F009D5A1E /* TAAnimatedDotView.m in Sources */,
+				D6C09BF51D79150F00C092A7 /* TZPhotoPreviewCell.m in Sources */,
 				DDF92C9C1D6A9C3D009D5A1E /* LuckyRecordCell.m in Sources */,
 				DDF92C3F1D6A9C3D009D5A1E /* PayFirstKindCell.m in Sources */,
 				DDF92CDD1D6A9C4F009D5A1E /* NSData+SDDataCache.m in Sources */,
@@ -1955,6 +2035,7 @@
 				DDF92C511D6A9C3D009D5A1E /* BroughtHistoryCell.m in Sources */,
 				DDF92C6E1D6A9C3D009D5A1E /* AddAddressController.m in Sources */,
 				DDF92C3C1D6A9C3D009D5A1E /* PayViewController.m in Sources */,
+				D6C09BEF1D79150F00C092A7 /* TZAssetCell.m in Sources */,
 				DDF92CA21D6A9C3D009D5A1E /* RechargeRecordCell.m in Sources */,
 				D68F25AA1D6B05820042E0BE /* HistoryData.m in Sources */,
 				DDF92C4F1D6A9C3D009D5A1E /* AnnounceHistoryCell.m in Sources */,
@@ -1968,11 +2049,13 @@
 				DDF92CDA1D6A9C4F009D5A1E /* UIViewExt.m in Sources */,
 				D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */,
 				DDF92C741D6A9C3D009D5A1E /* CustomerCareController.m in Sources */,
+				D6C09BF61D79150F00C092A7 /* TZPhotoPreviewController.m in Sources */,
 				DDF92C761D6A9C3D009D5A1E /* HisCenterController.m in Sources */,
 				DDF92CE51D6A9C4F009D5A1E /* UIColor+RGB.m in Sources */,
 				DDF92C371D6A9C3D009D5A1E /* AnnounceCell.m in Sources */,
 				DDF92B591D6A9C35009D5A1E /* TabbarViewcontroller.m in Sources */,
 				FCF09F481D6BE8F500CC3B7F /* SunViewController.m in Sources */,
+				D6C09BF01D79150F00C092A7 /* TZAssetModel.m in Sources */,
 				DDF92C801D6A9C3D009D5A1E /* LuckyRecordController.m in Sources */,
 				DDF92CD81D6A9C4F009D5A1E /* UIView+SDAutoLayout.m in Sources */,
 				DDF92C7A1D6A9C3D009D5A1E /* InordertoshareController.m in Sources */,
@@ -1980,7 +2063,9 @@
 				DDF92C5F1D6A9C3D009D5A1E /* WingNotificationCell.m in Sources */,
 				DDF92CA01D6A9C3D009D5A1E /* RechargeCell.m in Sources */,
 				DDF92C6A1D6A9C3D009D5A1E /* RegisterViewController.m in Sources */,
+				D6C09BF11D79150F00C092A7 /* TZImageManager.m in Sources */,
 				DDF92B401D6A9B15009D5A1E /* AppDelegate.m in Sources */,
+				D6C09BEE1D79150F00C092A7 /* NSBundle+TZImagePicker.m in Sources */,
 				DDF92CDB1D6A9C4F009D5A1E /* AreaData.m in Sources */,
 				FCF09F421D6BE8A900CC3B7F /* IndianaViewController.m in Sources */,
 				DDF92C941D6A9C3D009D5A1E /* ConfirmGoodsCell_2.m in Sources */,
@@ -1994,6 +2079,7 @@
 				DDF92C861D6A9C3D009D5A1E /* RechargeRecordController.m in Sources */,
 				D68F25A51D6AF3470042E0BE /* HotCollectionCell.m in Sources */,
 				DDF92C401D6A9C3D009D5A1E /* PayThreeKindCell.m in Sources */,
+				D6C09BF81D79150F00C092A7 /* UIView+Layout.m in Sources */,
 				DDF92C921D6A9C3D009D5A1E /* ConfirmGoodsCell_1.m in Sources */,
 				DDF92C881D6A9C3D009D5A1E /* RedEnvelopeController.m in Sources */,
 				DDF92C8F1D6A9C3D009D5A1E /* AddressCell.m in Sources */,
@@ -2003,11 +2089,13 @@
 				DDF92CD61D6A9C4F009D5A1E /* ZSTools.m in Sources */,
 				DDF92C351D6A9C3D009D5A1E /* AnnounceViewController.m in Sources */,
 				DDF92B581D6A9C35009D5A1E /* TabbarItem.m in Sources */,
+				D6C09BF41D79150F00C092A7 /* TZPhotoPickerController.m in Sources */,
 				DDF92CE21D6A9C4F009D5A1E /* SDCollectionViewCell.m in Sources */,
 				DDF92CE01D6A9C4F009D5A1E /* TADotView.m in Sources */,
 				DDF92C981D6A9C3D009D5A1E /* GoodsStateCell.m in Sources */,
 				DDF92C471D6A9C3D009D5A1E /* AnnouncedHistoryController.m in Sources */,
 				DDF92CE31D6A9C4F009D5A1E /* SDCycleScrollView.m in Sources */,
+				D6C09BFE1D7916DA00C092A7 /* LxGridViewFlowLayout.m in Sources */,
 				DDF92C4D1D6A9C3D009D5A1E /* GoodsDetailPTController.m in Sources */,
 				DDF92C8E1D6A9C3D009D5A1E /* AddressModel.m in Sources */,
 				DDF92C421D6A9C3D009D5A1E /* DiscoverViewController.m in Sources */,

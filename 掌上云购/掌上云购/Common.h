@@ -75,6 +75,12 @@
 //收货地址修改
 #define UpdateArea_URL @"/pcpServer-inf/user/consignee/update"
 
+/*---------------用户信息---------------------*/
+//用户信息
+#define UserInfo_URL @"/pcpServer-inf/user/getUserInfo"
+//用户信息修改
+#define EditUserInfo_URL @"/pcpServer-inf/user/editUserInfo"
+
 /*---------------发现模块---------------------*/
 //晒单分享列表
 #define Sunsharing_URL @"/pcpServer-inf/user/userComment/list"
@@ -88,5 +94,9 @@
 #define RechargeList_URL @"/pcpServer-inf/saleMoneyRecharge/list"
 //微信充值
 #define WeixinRecharge_URL @"/pcpServer-inf/saleMoneyRecharge/weixinRecharge"
+
+/*---------------文件上传---------------------*/
+//文件上传
+#define UpdataFile_URL @"/pcpfiles/file/upload"
 
 #endif /* Common_h */
