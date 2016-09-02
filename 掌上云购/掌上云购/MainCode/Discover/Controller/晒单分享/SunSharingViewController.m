@@ -10,211 +10,180 @@
 #import "SunShareCell.h"
 #import "PersonalCenterController.h"
 #import "SunShareModel.h"
+#import "InordertoshareCell.h"
+#import "InordertoDetailController.h"
+#import "InordertoshareModel.h"
 @interface SunSharingViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,copy)NSString *identify;
+
+@property (nonatomic,strong)NSMutableArray *data;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
 @implementation SunSharingViewController
 
-{
 
-
-    UITableView *_tab;
+#pragma mark - 导航栏
+- (void)initNavBar{
     
-    NSMutableArray *_dataArray;
+    self.navigationItem.backBarButtonItem = nil;
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    leftButton.tag = 101;
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
+                          forState:UIControlStateNormal];
+    [leftButton addTarget:self
+                   action:@selector(NavAction:)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
-    NSInteger           _pageIndex;
-    
-    SunShareModel *_model;
-
-    
-
 }
 
-
+- (void)NavAction:(UIButton *)button{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    _dataArray = [NSMutableArray array];
-    
-     _pageIndex = 1;
-    
     self.title = @"晒单分享";
     
-    UIImage *image =[[UIImage imageNamed:@"返回"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    _page = 1;
+    _data = [NSMutableArray array];
     
-    UIBarButtonItem *imageButton =[[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(leftClick:)];
+    [self initNavBar];
+    [self requestData];
     
-    self.navigationItem.leftBarButtonItem = imageButton;
-    
-    
-    //创建列表
-    [self creatTableView];
-    
-    //请求数据
-    [self requestData:_pageIndex];
+    [self createTabelView];
     
     
     
 }
-#pragma mark---列表相关
--(void)creatTableView
-{
-
-    _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
-    
-    _tab.dataSource = self;
-    
-    _tab.delegate = self;
-    
-    [self.view addSubview:_tab];
-
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-
-    return _dataArray.count;
-
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-
-    SunShareCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-    if (!cell) {
-        
-        cell  =[[SunShareCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-        
-        _model = _dataArray[indexPath.row];
-        
-        
-        [cell configCellWithModel:_model];
-        
-        
-        
-        cell.iconView.image = [UIImage imageNamed:@"发现3"];
-        
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-        
-        tap.numberOfTapsRequired = 1;
-        
-        
-        tap.numberOfTouchesRequired = 1;
-        
-      [cell.iconView addGestureRecognizer:tap];
-
-        
-        cell.timeLabel.text = @"14:03";
-        
-        cell.dateLabel.text = @"08-19";
-        
-        
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.imgOne.image = [UIImage imageNamed:@"发现4"];
-        
-        cell.imgTwo.image = [UIImage imageNamed:@"发现5"];
-        
-        cell.imgThree.image = [UIImage imageNamed:@"发现6"];
-        
-    }
-    
-    return cell;
-
-}
-
--(void)tap:(UITapGestureRecognizer *)tap
-{
-
-    PersonalCenterController *VC = [[PersonalCenterController alloc]init];
-    
-    [self.navigationController pushViewController:VC animated:YES];
-    
-
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    return 280;
-    
-
-
-}
-
--(void)leftClick:(UIButton *)btn
-{
-
-    [self.navigationController popViewControllerAnimated:YES];
-
-}
-
-
-#pragma mark---数据源相关
-- (void)requestData:(NSInteger)indexPath{
-
-{
-
-
-   [self showHUD:@"加载中"];
-    
-    
+- (void)requestData {
+    //取出存储的用户信息
+//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+//    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    [params setObject:@"10" forKey:@"rows"];
-    
-    [params setObject:[NSNumber numberWithInteger:indexPath]
-               forKey:@"page"];
-    
+//    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
-    
     [ZSTools post:url
            params:params
           success:^(id json) {
               
-           
-            [self hideSuccessHUD:[json objectForKey:@"msg"]];
-
-              NSArray *rootArray = [json objectForKey:@"data"];
-              
-              for(NSDictionary *dic in rootArray) {
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
                   
-                  _model = [[SunShareModel alloc]init];
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_data removeAllObjects];
+                      _data = dataArr.mutableCopy;
+                      
+                      [_tableView.mj_footer resetNoMoreData];
+                      [_tableView.mj_header endRefreshing];
+                  }
                   
-                  [_model setValuesForKeysWithDictionary:dic];
-                  
-                  [_dataArray addObject:_model];
-                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_data addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
               }
-              
-              [_tab reloadData];
-              
               
           } failure:^(NSError *error) {
               
               [self hideFailHUD:@"加载失败"];
-
+              NSLogZS(@"%@",error);
           }];
+}
 
+- (void)createTabelView {
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStylePlain];
+    [self.view addSubview:_tableView];
+    
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.separatorStyle =UITableViewCellSeparatorStyleNone ;
+    
+    _identify = @"InordertoshareCell";
+    UINib *nib = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];
+    [_tableView registerNib:nib forCellReuseIdentifier:_identify];
+    
+    
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self requestData];
+        
+    }];
+    _tableView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self requestData];
+    }];
+    _tableView.mj_footer = footer;
+    
+}
+
+#pragma mark - UITableViewDelegate,UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.data.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
+    InordertoshareCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    //计算单元格高度
+    InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+    NSString *content = iSModel.content;
+    CGRect contentRect = [content boundingRectWithSize:CGSizeMake(KScreenWidth-57, 35) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
+    NSArray *photoUrllist = iSModel.photoUrllist;
+    CGFloat height;
+    if (photoUrllist.count == 0) {
+        height = 0;
+    }else if (photoUrllist.count <4){
+        height = 90;
+    }else if (photoUrllist.count < 7){
+        height = 90*2;
+    }
+    
+    return height + contentRect.size.height + 120;
+    
+    
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+
+        InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+        
+        InordertoDetailController *indVC = [[InordertoDetailController alloc] init];
+        indVC.shareID = iSModel.ID;
+        [self.navigationController pushViewController:indVC animated:YES];
+
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 
 @end

@@ -36,6 +36,8 @@
 
 @property (nonatomic, copy) NSString *photoUrl;
 
+@property (nonatomic, copy) NSString *userPhotoUrl;
+
 @property (nonatomic, copy) NSString *nickName;
 
 @property (nonatomic, copy) NSString *drawTimes;

@@ -52,6 +52,7 @@
     
     [self initNavBar];
     
+    [self getUserInfo];
     
     _data = @[@"头像管理",@"ID",@"昵称",@"手机号码",@"绑定邮箱",@"地址管理"];
     _iconImg = [UIImage imageNamed:@"无"];
@@ -65,6 +66,36 @@
 
 }
 
+- (void)getUserInfo {
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+ 
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserInfo_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                
+                  
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)editUserInfo {
+    
+}
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _data.count;

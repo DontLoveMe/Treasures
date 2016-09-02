@@ -117,7 +117,7 @@
 - (void)requestUserRedEnvelope {
     //取出存储的用户信息
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-        NSNumber *userId = userDic[@"userId"];
+        NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
