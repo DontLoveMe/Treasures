@@ -148,11 +148,5 @@
 
 }
 
-#pragma mark - 重写set方法
-- (void)setEditing:(BOOL)editing{
-
-
-
-}
 
 @end

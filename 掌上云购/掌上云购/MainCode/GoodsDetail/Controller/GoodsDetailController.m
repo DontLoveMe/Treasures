@@ -40,7 +40,6 @@
 #warning 商品详情可以从父控制器传过来
     self.title = @"商品详情";
     _isJoind = 0;
-    _isAnnounced = 1;
     _isPrized = 1;
     _pageIndex = 1;
     
@@ -63,7 +62,6 @@
     [self.view addSubview:_bgScrollView];
     
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        NSLogZS(@"上拉了");
         
         [self requestJoinList:_pageIndex];
         if (!_broughtHistoryView) {
@@ -218,14 +216,12 @@
 
 - (void)buyNowAction:(UIButton *)button{
 
-    [CartTools addCartList:@[@"1",@"2",@"3",@"4"]];
     NSLogZS(@"现在购买");
 
 }
 
 - (void)addToCartAction:(UIButton *)button{
 
-    NSLogZS(@"加入清单");
     //构建购物车数据模型
     //*注：关键字段：商品id，*商品名，商品类别，商品图片，总需次数，剩余次数，购买次数，购买价格
     NSDictionary *goods = @{@"id":[_dataDic objectForKey:@"id"],
@@ -237,7 +233,7 @@
 //                            @"actualPrice":[_dataDic objectForKey:@"actualPrice"]
                            
     BOOL isSuccess = [CartTools addCartList:@[goods]];
-    NSLogZS(@"成功了么%d",isSuccess);
+    NSLogZS(@"加入清单，成功了么%d",isSuccess);
     
 }
 
@@ -376,8 +372,6 @@
 //                  _oherFunctionTableView.progress = now * 100 / total ;
                   
                   //夺宝状态
-                  //是否揭晓
-                  _isAnnounced = [[_dataDic objectForKey:@"status"] integerValue];
                   
                   //是否参与
                   _isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
@@ -386,7 +380,6 @@
                   _drawId = [_dataDic objectForKey:@"drawId"];
                   
                   _oherFunctionTableView.isJoin = _isJoind;
-                  _oherFunctionTableView.isAnnounced = _isAnnounced;
                   _oherFunctionTableView.isPrized = _isPrized;
                   [_oherFunctionTableView reloadData];
                   

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ProgressView.h"
+
+@protocol homeGoodsCellDelegate <NSObject>
+
+@optional
+- (void)addToCartWithIndexpath:(NSIndexPath *)nowIndexpath;
+
+@end
+
 @interface HomeGoodsCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *goodsPic;
@@ -16,9 +25,16 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *progressView;
+@property (weak, nonatomic) IBOutlet ProgressView *progressView;
 
 - (IBAction)addToCart:(id)sender;
 
+@property (nonatomic,strong)UIImageView *activityImgview;
+
+@property (nonatomic ,strong)NSDictionary *dataDic;
+
+@property (nonatomic ,strong)NSIndexPath *nowIndexpath;
+
+@property (weak ,nonatomic)id <homeGoodsCellDelegate> delegate;
 
 @end

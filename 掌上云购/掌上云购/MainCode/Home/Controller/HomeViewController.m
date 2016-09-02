@@ -235,10 +235,19 @@
     NSDictionary *dic = [_goodsArr objectAtIndex:indexPath.row];
     
     cell.goodsName.text = [dic objectForKey:@"name"];
-    cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%@%%",[dic objectForKey:@"sellShare"]];
+    NSInteger progressCount = [[dic objectForKey:@"sellshare"] floatValue] * 100 / [[dic objectForKey:@"totalShare"] floatValue];
+    cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%ld%%",progressCount];
+    cell.progressView.progress = 50;
     NSArray *picList = [dic objectForKey:@"proPictureList"];
-    [cell.goodsPic setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
-    NSLogZS(@"%@",dic);
+    if (picList.count != 0) {
+        
+        [cell.goodsPic setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
+    
+    }
+
+    cell.nowIndexpath = indexPath;
+    cell.delegate = self;
+    cell.dataDic = dic;
     
     return cell;
 }
@@ -271,9 +280,41 @@
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
     GDVC.goodsId = [dic objectForKey:@"id"];
     GDVC.drawId = [dic objectForKey:@"drawId"];
+    GDVC.isAnnounced = 1;
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];
+
+}
+
+#pragma mark - 加入购物车成功的动画
+- (void)addToCartWithIndexpath:(NSIndexPath *)nowIndexpath{
+
+    //数据
+    NSDictionary *dic = [_goodsArr objectAtIndex:nowIndexpath.row];
+    
+    //设置动画图片初始位置
+    HomeGoodsCell *cell = (HomeGoodsCell *)[_goodsList cellForItemAtIndexPath:nowIndexpath];
+    
+    UIImageView *activityImgview = [[UIImageView alloc] initWithFrame:CGRectMake(nowIndexpath.row % 2 * (cell.width + 1) + 36, nowIndexpath.row / 2 * (cell.height + 1) + 16.f + _goodsList.top, cell.goodsPic.width,cell.goodsPic.height)];
+    //设置图片
+    NSArray *picList = [dic objectForKey:@"proPictureList"];
+    [activityImgview setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
+    [_bgScrollView addSubview:activityImgview];
+    
+    [UIView animateWithDuration:1.5
+                     animations:^{
+                         
+                         CGAffineTransform transform = CGAffineTransformMakeTranslation(KScreenWidth * 7 / 10 - activityImgview.centerX, KScreenHeight - kNavigationBarHeight - kTabBarHeight - activityImgview.centerY + _bgScrollView.contentOffset.y);
+                         transform = CGAffineTransformScale(transform, 0.01, 0.01);
+                         activityImgview.transform = CGAffineTransformRotate(transform, 2 * M_PI_2);
+                         //
+                     }completion:^(BOOL finished) {
+                         
+                         //动画结束后隐藏图片
+                         activityImgview.hidden = YES;
+                         
+                     }];
 
 }
 

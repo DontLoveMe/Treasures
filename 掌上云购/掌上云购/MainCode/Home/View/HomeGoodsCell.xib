@@ -30,18 +30,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="揭晓进度90%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4V-UQ-fgd">
-                        <rect key="frame" x="16" y="168" width="117" height="15"/>
+                        <rect key="frame" x="16" y="168" width="109" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="0sE-WQ-9QM"/>
+                            <constraint firstAttribute="height" constant="15" id="o5y-WM-nag"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPW-WN-FjM">
-                        <rect key="frame" x="137" y="176" width="44" height="32"/>
+                        <rect key="frame" x="133" y="176" width="48" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="JHn-Xd-ErQ"/>
+                            <constraint firstAttribute="width" constant="48" id="4xb-v0-Ee8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="加入清单"/>
@@ -49,44 +49,44 @@
                             <action selector="addToCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ux2-13-5kg"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="首页-进度条.png" translatesAutoresizingMaskIntoConstraints="NO" id="abZ-zq-gN6">
-                        <rect key="frame" x="16" y="187" width="109" height="16"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ut-Ew-BjT" customClass="ProgressView">
+                        <rect key="frame" x="16" y="187" width="77" height="8"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="d83-F8-0Rc"/>
+                            <constraint firstAttribute="height" constant="8" id="UpD-aP-dUt"/>
                         </constraints>
-                    </imageView>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="1ut-Ew-BjT" secondAttribute="trailing" constant="104" id="2aN-Gi-4Db"/>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="2kk-o8-46h"/>
                 <constraint firstAttribute="trailing" secondItem="w9l-2s-ifk" secondAttribute="trailing" constant="16" id="48o-ON-Vge"/>
-                <constraint firstItem="PPW-WN-FjM" firstAttribute="leading" secondItem="b4V-UQ-fgd" secondAttribute="trailing" constant="4" id="5yN-fH-GPS"/>
                 <constraint firstItem="w9l-2s-ifk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="76r-p1-iX7"/>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="36" id="BRN-Ix-dRN"/>
-                <constraint firstItem="PPW-WN-FjM" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="12" id="Krz-Sj-isc"/>
-                <constraint firstItem="abZ-zq-gN6" firstAttribute="top" secondItem="b4V-UQ-fgd" secondAttribute="bottom" constant="4" id="LMH-Pm-gk4"/>
-                <constraint firstAttribute="bottom" secondItem="PPW-WN-FjM" secondAttribute="bottom" constant="8" id="Pcn-Iw-0aP"/>
-                <constraint firstItem="b4V-UQ-fgd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="TdC-GG-SMF"/>
-                <constraint firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="16" id="WFm-hb-NNd"/>
-                <constraint firstItem="PPW-WN-FjM" firstAttribute="leading" secondItem="abZ-zq-gN6" secondAttribute="trailing" constant="12" id="bh6-L9-DRO"/>
-                <constraint firstItem="b4V-UQ-fgd" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="4" id="jQe-1i-psH"/>
+                <constraint firstItem="1ut-Ew-BjT" firstAttribute="top" secondItem="b4V-UQ-fgd" secondAttribute="bottom" constant="4" id="ETU-4K-5x8"/>
+                <constraint firstItem="PPW-WN-FjM" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="12" id="IJQ-gb-WLP"/>
+                <constraint firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="16" id="XGG-Ja-AY2"/>
+                <constraint firstItem="b4V-UQ-fgd" firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="-56" id="btz-qe-N1o"/>
+                <constraint firstItem="b4V-UQ-fgd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="gUG-QJ-sEJ"/>
+                <constraint firstAttribute="bottom" secondItem="PPW-WN-FjM" secondAttribute="bottom" constant="12" id="mU9-x1-EAE"/>
+                <constraint firstItem="b4V-UQ-fgd" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="4" id="mnl-XJ-u9E"/>
                 <constraint firstAttribute="trailing" secondItem="Lqv-gY-nRW" secondAttribute="trailing" constant="36" id="rtS-Kq-ApF"/>
-                <constraint firstItem="abZ-zq-gN6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="shU-1a-2d0"/>
                 <constraint firstItem="w9l-2s-ifk" firstAttribute="top" secondItem="Lqv-gY-nRW" secondAttribute="bottom" constant="8" id="ucJ-iA-s06"/>
+                <constraint firstItem="1ut-Ew-BjT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="yPC-EQ-nOO"/>
             </constraints>
             <size key="customSize" width="197" height="216"/>
             <connections>
                 <outlet property="goodsName" destination="w9l-2s-ifk" id="Oil-9Q-AFk"/>
                 <outlet property="goodsPic" destination="Lqv-gY-nRW" id="gyd-D9-smO"/>
                 <outlet property="progressLabel" destination="b4V-UQ-fgd" id="6Nx-N0-FTh"/>
-                <outlet property="progressView" destination="abZ-zq-gN6" id="8C2-XM-LMs"/>
+                <outlet property="progressView" destination="1ut-Ew-BjT" id="p0l-eU-IO9"/>
             </connections>
             <point key="canvasLocation" x="439.5" y="412"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="揭晓-钟表.png" width="120" height="149"/>
-        <image name="首页-进度条.png" width="111" height="7"/>
     </resources>
 </document>

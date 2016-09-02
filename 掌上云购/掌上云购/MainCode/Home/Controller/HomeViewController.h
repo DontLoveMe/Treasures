@@ -17,7 +17,7 @@
 #import "GoodsDetailController.h"
 #import "HomeSearchController.h"
 
-@interface HomeViewController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+@interface HomeViewController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,homeGoodsCellDelegate>{
  
     //背景
     UIScrollView        *_bgScrollView;

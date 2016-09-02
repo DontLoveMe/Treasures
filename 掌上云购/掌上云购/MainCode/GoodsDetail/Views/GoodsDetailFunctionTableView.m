@@ -101,7 +101,7 @@
         
         //期号
         UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, siloganLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
-        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawId"]];
+        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
         issueLabel.textColor = [UIColor redColor];
@@ -227,6 +227,8 @@
     }else if (_isAnnounced == 3){
         
         NSDictionary *prizeDic = [_dataDic objectForKey:@"saleDraw"];
+        if ([prizeDic isEqual:[NSNull null]]) {
+            return nil;        }
         //开奖相关
         UIView  *goodsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100.f)];
         goodsDetailView.backgroundColor = [UIColor whiteColor];
