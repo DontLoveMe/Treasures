@@ -22,6 +22,9 @@
     
     UIImage *_iconImg;
     UIImageView *_iconImgView;
+    
+    NSDictionary *_userInfo;
+    NSString *_filePath;
 }
 
 #pragma mark - 导航栏
@@ -52,9 +55,9 @@
     
     [self initNavBar];
     
-    [self getUserInfo];
+//    [self getUserInfo];
     
-    _data = @[@"头像管理",@"ID",@"昵称",@"手机号码",@"绑定邮箱",@"地址管理"];
+    _data = @[@"头像管理",@"ID",@"昵称",@"手机号码管理",@"绑定邮箱",@"地址管理"];
     _iconImg = [UIImage imageNamed:@"无"];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStylePlain];
@@ -64,6 +67,11 @@
     _tableView.dataSource = self;
     
 
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self getUserInfo];
 }
 
 - (void)getUserInfo {
@@ -82,8 +90,36 @@
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:[json objectForKey:@"msg"]];
               if (isSuccess) {
-                
+                  _userInfo = json[@"data"];
+                  [_tableView reloadData];
                   
+                  //更新存到NSUserDefaults信息
+                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                  for (int i = 0; i < userDic.allKeys.count; i ++) {
+                      
+                      if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+                          
+                          [userDic removeObjectForKey:userDic.allKeys[i]];
+                          i = 0;
+                      }
+                      if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+                          NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+                          for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                              if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
+                                  [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                                  j = 0;
+                              }
+                              userDic[@"userLoginDto"] = userLoginDic;
+                          }
+                          
+                      }
+                  }
+                  
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  
+                  [defaults setObject:userDic forKey:@"userDic"];
+                  
+                  [defaults synchronize];
               }
               
               
@@ -94,6 +130,64 @@
           }];
 }
 - (void)editUserInfo {
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+    [params setObject:_userInfo[@"nickName"] forKey:@"nickName"];
+    if (_filePath.length>0) {
+        [params setObject:_filePath forKey:@"photo_url"];
+    }else{
+        return;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserInfo_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  
+                  [self getUserInfo];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)uploadPicwithFile{
+    
+    NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+    NSString *nameStr = [NSString stringWithFormat:@"image1.png"];
+    NSData *imageData = UIImageJPEGRepresentation(_iconImg, 0.1);
+    [dataDic setObject:imageData forKey:nameStr];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", BASE_URL,UpdataFile_URL];
+    
+    
+    [ZSTools post:url
+           params:nil
+             data:dataDic
+          success:^(id result) {
+              NSLogZS(@"返回数据:%@",result);
+              BOOL resultFlag = [[result objectForKey:@"flag"] boolValue];
+              if (resultFlag) {
+                  _filePath = result[@"data"][@"filePath"];
+                  [self editUserInfo];
+              }else{
+                  [self hideFailHUD:@"上传失败"];
+              }
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"上传失败"];
+              
+          }];
     
 }
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -108,6 +202,8 @@
     
     cell.textLabel.text = _data[indexPath.row];
     
+    if (_userInfo) {
+        
     switch (indexPath.row) {
         case 0:
         {
@@ -117,36 +213,69 @@
             _iconImgView.backgroundColor = [UIColor redColor];
             _iconImgView.layer.cornerRadius = 25;
             _iconImgView.layer.masksToBounds = YES;
-            _iconImgView.image = _iconImg;
-            [cell addSubview:_iconImgView];
             
+            _iconImgView.image = [UIImage imageNamed:@"我的-头像"];
+            NSString *photoUrl = _userInfo[@"photoUrl"];
+            if (![photoUrl isEqual:[NSNull null]]) {
+                [_iconImgView setImageWithURL:[NSURL URLWithString:photoUrl] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+                
+            }
+            
+            [cell addSubview:_iconImgView];
             
         }
             break;
         case 1:
-            cell.detailTextLabel.text = @"342422545324";
+        {
+            
+            NSString *idStr = [NSString stringWithFormat:@"%@",_userInfo[@"id"]];
+            cell.detailTextLabel.text = idStr;
+        }
             break;
         case 2:
-            cell.detailTextLabel.text = @"某某";
+        {
+            
+            NSString *nickName = _userInfo[@"nickName"];
+            if (![nickName isEqual:[NSNull null]]) {
+                
+                cell.detailTextLabel.text = nickName;
+            }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
             break;
         case 3:
-            cell.detailTextLabel.text = @"1383838388";
+        {
+            NSString *telepHone =[NSString stringWithFormat:@"%@",_userInfo[@"mobile"]];
+            cell.detailTextLabel.text = telepHone;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
             break;
         case 4:
-            cell.detailTextLabel.text = @"123456789@qq.com";
+        {
+            if (![_userInfo[@"email"] isEqual:[NSNull null]]) {
+                NSString *email =[NSString stringWithFormat:@"%@",_userInfo[@"email"]];
+                cell.detailTextLabel.text = email;
+            }
+            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
             break;
         case 5:
-//            cell.detailTextLabel.text = @"长沙岳麓区";
+        {
+            NSString *address = _userInfo[@"address"];
+            if (![address isEqual:[NSNull null]]) {
+                cell.detailTextLabel.text = _userInfo[@"address"];
+            }
+            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            
             break;
             
         default:
             break;
     }
-    
+    }
     
     
     return cell;
@@ -273,7 +402,8 @@
         //取得照片
         UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
         _iconImg = originalImage;
-        [_tableView reloadData];
+        [self uploadPicwithFile];
+//        [_tableView reloadData];
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

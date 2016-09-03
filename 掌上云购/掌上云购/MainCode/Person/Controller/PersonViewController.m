@@ -109,6 +109,12 @@
 //    self.view.backgroundColor= [UIColor colorWithWhite:0.9 alpha:1];
 #warning 返回动画导航栏下面视图慢些
     self.navigationController.navigationBar.hidden = YES;
+
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
+        [_bgIconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+    }
+    [_collectionView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -133,8 +139,7 @@
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     //  毛玻璃视图
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    effectView.alpha = 0.9;
-//    effectView.hidden = 0.2;
+    effectView.alpha = 0.8;
     effectView.frame = _bgIconView.bounds;
     [_bgIconView addSubview:effectView];
 }
@@ -221,6 +226,9 @@
         
         cell.titleLabel.text = self.data[indexPath.row];
         cell.iconView.image = [UIImage imageNamed:self.data[indexPath.row]];
+    }else{
+        cell.titleLabel.text = @"";
+        cell.iconView.image = nil;
     }
     
     return cell;
@@ -239,6 +247,16 @@
         [headerView.balanceButton addTarget:self action:@selector(balanceAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView.rechargeButton addTarget:self action:@selector(rechargeAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView.integralButton addTarget:self action:@selector(integralAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        //设置头像
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        
+        if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
+            [headerView.iconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+        }
+        if (![userDic[@"nickName"] isEqual:[NSNull null]]) {
+            headerView.nameLabel.text = userDic[@"nickName"];
+        }
         
         return headerView;
     }
@@ -322,7 +340,7 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY <= 0) {
         //计算放大倍数
-        CGFloat scale = (170+ABS(offsetY))/170;
+        CGFloat scale = (225+ABS(offsetY))/225;
         
         _bgIconView.transform = CGAffineTransformMakeScale(scale, scale);
         _bgIconView.top = 0;

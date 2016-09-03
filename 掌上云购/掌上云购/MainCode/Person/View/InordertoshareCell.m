@@ -54,9 +54,12 @@
 - (void)setISModel:(InordertoshareModel *)iSModel {
     _iSModel = iSModel;
     
-//    NSString *urlStr = _iSModel.userPhotoUrl;
-//    NSURL *url = [NSURL URLWithString:urlStr];
-//    [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的_头像"]];
+    _iconButton.layer.cornerRadius = _iconButton.width/2;
+    _iconButton.layer.masksToBounds = YES;
+    
+    NSString *urlStr = _iSModel.userPhotoUrl;
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的_头像"]];
     
     _nameLabel.text = _iSModel.nickName;
     //转时间格式
@@ -99,7 +102,7 @@
 }
 //头像按钮的点击
 - (IBAction)iconAction:(UIButton *)sender {
-    PersonalCenterController *hcVC = [[PersonalCenterController alloc] init];
+    HisCenterController *hcVC = [[HisCenterController alloc] init];
     [[self viewController].navigationController pushViewController:hcVC animated:YES];
 }
 
