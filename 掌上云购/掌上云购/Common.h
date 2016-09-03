@@ -85,6 +85,8 @@
 #define UserInfo_URL @"/pcpServer-inf/user/getUserInfo"
 //用户信息修改
 #define EditUserInfo_URL @"/pcpServer-inf/user/editUserInfo"
+//用户信息修改
+#define BindingEmail_URL @"/pcpServer-inf/user/bindingEmail"
 
 /*---------------发现模块---------------------*/
 //晒单分享列表

@@ -83,8 +83,11 @@
 //修改昵称
 - (void)changeName {
     
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    
+    
     _nameTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
-    _nameTF.text = @"原来昵称";
+    _nameTF.placeholder = userDic[@"nickName"];
     _nameTF.clearButtonMode = UITextFieldViewModeAlways;
     _nameTF.borderStyle = UITextBorderStyleRoundedRect;
     _nameTF.font = [UIFont systemFontOfSize:14];
@@ -164,6 +167,35 @@
     //    60s的倒计时
     NSTimeInterval aMinutes = 60;
     [self startWithStartDate:[NSDate date] finishDate:[NSDate dateWithTimeIntervalSinceNow:aMinutes] timeButton:button];
+    if (_phoneTF.text.length==0) {
+        return;
+    }
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:userId
+                   forKey:@"userId"];
+    [params setObject:_phoneTF.text
+               forKey:@"phone"];
+    [params setObject:@"1"
+               forKey:@"smsType"];
+    NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,SendCode_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
+              BOOL flag = [[json objectForKey:@"flag"] boolValue];
+              if (flag == 1) {
+                  
+                  _verifyTF.text = json[@"data"];
+                  
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
     
 }
 //此方法用两个NSDate对象做参数进行倒计时
@@ -202,12 +234,114 @@
 
 }
 - (void)getChangeName {
-    NSLogZS(@"昵称%@",_nameTF.text);
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+    
+    if (_nameTF.text>0) {
+        [params setObject:_nameTF.text forKey:@"nickName"];
+    }else{
+        return;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserInfo_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  
+                  [self.navigationController popViewControllerAnimated:YES];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 - (void)getChangePhone {
-    NSLogZS(@"手机%@验证码%@",_phoneTF.text,_verifyTF.text);
+//    NSLogZS(@"手机%@验证码%@",_phoneTF.text,_verifyTF.text);
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+    if (_verifyTF.text>0) {
+        
+        [params setObject:_verifyTF.text forKey:@"captcha"];
+    }else{
+        return;
+    }
+    if (_phoneTF.text>0) {
+        [params setObject:_phoneTF.text forKey:@"phone"];
+    }else{
+        return;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserInfo_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  
+                  [self.navigationController popViewControllerAnimated:YES];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 - (void)getBindEmail {
      NSLogZS(@"邮箱%@确认邮箱%@",_emailTF.text,_reEmailTF.text);
+    
+    if (![_emailTF.text isEqualToString:_reEmailTF.text]) {
+        
+    }
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+    
+    if (_emailTF.text>0) {
+        
+        [params setObject:_emailTF.text forKey:@"email"];
+    }else{
+        return;
+    }
+   
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,BindingEmail_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  
+                  [self.navigationController popViewControllerAnimated:YES];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 @end

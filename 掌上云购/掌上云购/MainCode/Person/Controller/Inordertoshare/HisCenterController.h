@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
-@interface HisCenterController : BaseViewController
+@interface HisCenterController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic,assign)NSInteger userId;
 
 @end
