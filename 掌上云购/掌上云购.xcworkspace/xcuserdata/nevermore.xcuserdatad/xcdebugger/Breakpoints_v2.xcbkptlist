@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Announce/Controller/AnnounceViewController.m"
-            timestampString = "494580056.73466"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/Tools/&#x8d2d;&#x7269;&#x8f66;&#x903b;&#x8f91;/CartTools.m"
+            timestampString = "494583389.986112"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "+addCartList:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/Tools/&#x8d2d;&#x7269;&#x8f66;&#x903b;&#x8f91;/CartTools.m"
+            timestampString = "494583393.67614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "+addCartList:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

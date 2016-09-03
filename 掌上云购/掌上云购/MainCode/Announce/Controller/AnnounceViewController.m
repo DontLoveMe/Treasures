@@ -110,7 +110,7 @@
    
     NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-    GDVC.goodsId = [dic objectForKey:@"id"];
+    GDVC.goodsId = [dic objectForKey:@"productId"];
     
     
     
