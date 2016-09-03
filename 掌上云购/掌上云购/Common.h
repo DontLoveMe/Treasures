@@ -43,6 +43,11 @@
 //历史期数
 #define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
 
+
+/*---------------最新揭晓模块---------------------*/
+//最新揭晓列表
+#define NewnestAnnounceList_URL @"/pcpServer-inf/saleDraw/announce"
+
 /*---------------购物车模块---------------------*/
 //查询云购物车数据
 #define CartList_URL @"/pcpServer-inf/saleCart/list"

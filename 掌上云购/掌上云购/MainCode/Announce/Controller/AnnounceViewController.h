@@ -8,6 +8,12 @@
 
 #import "BaseViewController.h"
 
-@interface AnnounceViewController : BaseViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+#import "GoodsDetailController.h"
+
+@interface AnnounceViewController : BaseViewController<UICollectionViewDelegate,UICollectionViewDataSource>{
+
+    NSMutableArray *_dataArr;
+
+}
 
 @end

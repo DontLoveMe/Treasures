@@ -13,18 +13,12 @@
 @interface AnnounceViewController ()
 
 @property (nonatomic,strong)UICollectionView *collectionView;
-@property (nonatomic,strong)NSArray *data;
+@property (nonatomic,strong)NSMutableArray *data;
 @property (nonatomic,copy)NSString *identify;
 
 @end
 
 @implementation AnnounceViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //请求数据
-    [self requestData];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,10 +27,43 @@
     //创建collectionView
     [self createCollectionView];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    //请求数据
+    [self requestData];
+}
+
 //请求数据
 - (void)requestData {
-    self.data= @[@"2016-08-26 17:30:56:000",@"2016-08-26 16:50:56:000",@"2016-08-26 16:40:56:000",@"2016-08-26 16:30:56:000",@"2016-08-26 16:20:56:000",@"2016-08-26 14:15:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000"];
-//    self.data = @[@"2016-08-26 14:03:56:000"];
+    
+//    self.data= @[@"2016-09-03 09:43:56:000",@"2016-08-26 16:50:56:000",@"2016-08-26 16:40:56:000",@"2016-08-26 16:30:56:000",@"2016-08-26 16:20:56:000",@"2016-08-26 14:15:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000"];
+    _dataArr = [NSMutableArray array];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"page"];
+    [params setObject:@"20" forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,NewnestAnnounceList_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              _dataArr = [json objectForKey:@"data"];
+              _data = [NSMutableArray array];
+              for (NSInteger i = 1; i < _dataArr.count ; i ++) {
+                  
+                  NSDictionary *dataDic = [_dataArr objectAtIndex:i];
+                  [_data addObject:[dataDic objectForKey:@"countdownEndDate"]];
+                  
+              }
+              [_collectionView reloadData];
+              
+          } failure:^(NSError *error) {
+              
+          }];
+    
     
 }
 //创建collectionView
@@ -81,6 +108,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
+    NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
+    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+    GDVC.goodsId = [dic objectForKey:@"id"];
+    
+    
+    
+//    GDVC.drawId = [dic objectForKey:@"drawId"];
+    GDVC.isAnnounced = 2;
+    GDVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:GDVC
+                                         animated:YES];
+    
 }
 
 @end
