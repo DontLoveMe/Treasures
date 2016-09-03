@@ -192,6 +192,7 @@
                 <outlet property="getPeopleN" destination="Tqa-Hz-hEn" id="Prd-LA-OUg"/>
                 <outlet property="imgView" destination="gVY-Px-9bo" id="w2T-iq-4rd"/>
                 <outlet property="issueLabel" destination="Ebk-rs-Dn8" id="6PR-Qb-oWb"/>
+                <outlet property="luckyView" destination="GC3-Mb-oSe" id="fHR-um-9EB"/>
                 <outlet property="peopleNum" destination="ZSb-Zd-elb" id="4HO-76-iRo"/>
                 <outlet property="titleLabel" destination="CSC-pk-p3y" id="qGB-xh-Vfi"/>
             </connections>
