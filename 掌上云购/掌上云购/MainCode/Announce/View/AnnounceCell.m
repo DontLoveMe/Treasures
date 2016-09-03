@@ -19,6 +19,7 @@
 }
 
 - (void)setStr:(NSString *)str  {
+    
     _str = str;
     self.countDown = [[CountDown alloc] init];
     __weak __typeof(self) weakSelf= self;
@@ -28,13 +29,18 @@
         weakSelf.timeLabel.text = [self getNowTimeWithString:_str];
    
     }];
+    
 }
+
 //得到时间间隔
 -(NSString *)getNowTimeWithString:(NSString *)aTimeString{
     NSDateFormatter* formater = [[NSDateFormatter alloc] init];
     [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
+    
+    NSDateFormatter* formater2 = [[NSDateFormatter alloc] init];
+    [formater2 setDateFormat:@"yyyy-MM-dd HH:mm:ss.S"];
     // 截止时间date格式
-    NSDate  *expireDate = [formater dateFromString:aTimeString];
+    NSDate  *expireDate = [formater2 dateFromString:aTimeString];
     NSDate  *nowDate = [NSDate date];
     // 当前时间字符串格式
     NSString *nowDateStr = [formater stringFromDate:nowDate];
@@ -82,6 +88,7 @@
         _unveilLabel.hidden = YES;
         
         return @"已经结束！";
+        
     }else {
         
         _getUserLabel.hidden = YES;
@@ -92,11 +99,17 @@
         _timeIconView.hidden = NO;
         _timeLabel.hidden = NO;
         _unveilLabel.hidden = NO;
+        
     }
+    
     if (hours>0) {
+        
         return [NSString stringWithFormat:@"%@:%@:%@:%@",hoursStr , minutesStr,secondsStr,millisecondStr];
+    
     }
+    
     return [NSString stringWithFormat:@"%@:%@:%@", minutesStr,secondsStr,millisecondStr];
+
 }
 
 @end
