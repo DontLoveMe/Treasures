@@ -64,7 +64,7 @@
                 if (oldGoodsID == newGoodsID) {
                     
                     haveSame = 1;
-                    
+                    UIScrollView
                 }
                 
                 if (haveSame == 1) {
