@@ -388,6 +388,9 @@
 - (void)getUserInfo {
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        return;
+    }
     NSNumber *userId = userDic[@"id"];
 //    [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];

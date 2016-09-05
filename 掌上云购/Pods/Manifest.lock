@@ -18,6 +18,14 @@ PODS:
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
+  - MOBFoundation (2.0.8)
+  - ShareSDK3 (3.4.0):
+    - ShareSDK3/ShareSDK (= 3.4.0)
+  - ShareSDK3/ShareSDK (3.4.0)
+  - ShareSDK3/ShareSDKPlatforms/QQ (3.4.0)
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.4.0)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.4.0)
+  - ShareSDK3/ShareSDKUI (3.4.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0.0)
@@ -25,6 +33,12 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
+  - MOBFoundation (~> 2.0.8)
+  - ShareSDK3 (~> 3.4.0)
+  - ShareSDK3/ShareSDKPlatforms/QQ (~> 3.4.0)
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (~> 3.4.0)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (~> 3.4.0)
+  - ShareSDK3/ShareSDKUI (~> 3.4.0)
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
@@ -32,7 +46,9 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MOBFoundation: 6f2006b941bd4002e2689a638d04c6b535c4cc64
+  ShareSDK3: df89140111729eae7a2bf06688372af969322a37
 
-PODFILE CHECKSUM: 968f7aca453406eb52ced296f27bc83dd5601582
+PODFILE CHECKSUM: 27cb6bb58925e2fa0a48638fc8c73b1f15b42106
 
-COCOAPODS: 1.1.0.beta.1
+COCOAPODS: 1.0.1

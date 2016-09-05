@@ -34,8 +34,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
-			<key>License</key>
-			<string>MIT</string>
 			<key>Title</key>
 			<string>AFNetworking</string>
 			<key>Type</key>
@@ -245,8 +243,6 @@ THE SOFTWARE.
    See the License for the specific language governing permissions and
    limitations under the License.
 </string>
-			<key>License</key>
-			<string>BSD / Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>JSONKit-NoWarning</string>
 			<key>Type</key>
@@ -273,8 +269,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</string>
-			<key>License</key>
-			<string>MIT</string>
 			<key>Title</key>
 			<string>MBProgressHUD</string>
 			<key>Type</key>
@@ -302,8 +296,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
-			<key>License</key>
-			<string>MIT</string>
 			<key>Title</key>
 			<string>MJExtension</string>
 			<key>Type</key>
@@ -331,10 +323,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
-			<key>License</key>
-			<string>MIT</string>
 			<key>Title</key>
 			<string>MJRefresh</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright &#169; 2012-2015 mob</string>
+			<key>Title</key>
+			<string>MOBFoundation</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>Copyright &#169; 2012-2015 mob</string>
+			<key>Title</key>
+			<string>ShareSDK3</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
