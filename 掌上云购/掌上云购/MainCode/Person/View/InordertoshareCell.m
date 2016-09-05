@@ -103,6 +103,7 @@
 //头像按钮的点击
 - (IBAction)iconAction:(UIButton *)sender {
     HisCenterController *hcVC = [[HisCenterController alloc] init];
+    hcVC.buyUserId = _iSModel.buyUserId;
     [[self viewController].navigationController pushViewController:hcVC animated:YES];
 }
 

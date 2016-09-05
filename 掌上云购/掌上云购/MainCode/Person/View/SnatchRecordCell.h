@@ -22,6 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *getName;//获得者
 @property (weak, nonatomic) IBOutlet UILabel *getPeopleN;//获得者参与人次
+@property (weak, nonatomic) IBOutlet UIImageView *luckyView;
 
 @property (weak, nonatomic) IBOutlet UIButton *againButton;
 

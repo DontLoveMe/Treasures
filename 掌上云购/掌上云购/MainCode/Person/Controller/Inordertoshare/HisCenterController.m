@@ -12,6 +12,7 @@
 #import "RecordModel.h"
 #import "InordertoshareCell.h"
 #import "InordertoshareModel.h"
+#import "InordertoDetailController.h"
 
 @interface HisCenterController ()
 @property (nonatomic,strong)UIImageView *lineView;
@@ -25,7 +26,8 @@
 //0.云购记录；1.幸运记录；2.我的晒单
 @property (nonatomic,assign)NSInteger type;
 
-@property (nonatomic,assign)NSArray *data;
+@property (nonatomic,strong)NSMutableArray *dataListArr;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -56,8 +58,14 @@
     [super viewDidLoad];
     
     self.title = @"TA的个人中心";
-    
+    _selectButtonTag = 200;
+    _page = 1;
+    _dataListArr = [NSMutableArray array];
     [self initNavBar];
+    
+    [self getUserInfo];
+    
+    [self requestSnatchData];
  
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.showsVerticalScrollIndicator = NO;
@@ -75,12 +83,209 @@
     
     UINib *nib3 = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];
     [_tableView registerNib:nib3 forCellReuseIdentifier:@"InordertoshareCell"];
-
     
+    
+//    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        _page = 1;
+//
+//        if (_type == 2) {
+//            [self requestShareData];
+//        }
+//    }];
+//    _tableView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        if (_type == 2) {
+            [self requestShareData];
+        }
+//        [self requestData];
+    }];
+    _tableView.mj_footer = footer;
+
+
+    //创建头视图
     [self initBgHeaderView];
     [self createTableHeaderView];
     
 }
+#pragma mark - 数据请求
+- (void)getUserInfo {
+    //取出存储的用户信息
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(_buyUserId) forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserInfo_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  NSDictionary *userInfo = json[@"data"];
+                  if (![userInfo[@"photoUrl"] isEqual:[NSNull null]]) {
+                      
+                      [_iconView setImageWithURL:[NSURL URLWithString:userInfo[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+                      
+                      [_bgIconView setImageWithURL:[NSURL URLWithString:userInfo[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+                      
+                      
+                  }
+                  if (![userInfo[@"nickName"] isEqual:[NSNull null]]) {
+                      _nikeNLabel.text = userInfo[@"nickName"];
+                  }
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)requestSnatchData{
+    //取出存储的用户信息
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    if (drawStatus == nil) {
+        [params setObject:@{@"buyUserId":@(_buyUserId)} forKey:@"paramsMap"];
+//    }else {
+//        [params setObject:@{@"buyUserId":@1,@"drawStatus":@1} forKey:@"paramsMap"];
+//    }
+    
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserOrderList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_dataListArr removeAllObjects];
+                      _dataListArr = dataArr.mutableCopy;
+                      
+//                      [_tableView.mj_footer resetNoMoreData];
+//                      [_tableView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_dataListArr addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+    
+}
+- (void)requestLuckyData {
+    //取出存储的用户信息
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"buyUserId":@(_buyUserId)} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,LuckyNumberList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_dataListArr removeAllObjects];
+                      _dataListArr = dataArr.mutableCopy;
+                      
+//                      [_tableView.mj_footer resetNoMoreData];
+//                      [_tableView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_dataListArr addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)requestShareData {
+    //取出存储的用户信息
+    [self showHUD:@"加载数据"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"userId":@(_buyUserId)} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@10 forKey:@"rows"];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:json[@"msg"]];
+              if (isSuccess) {
+                  
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_dataListArr removeAllObjects];
+                      _dataListArr = dataArr.mutableCopy;
+                      
+//                      [_tableView.mj_footer resetNoMoreData];
+//                      [_tableView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_dataListArr addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_tableView reloadData];
+              }
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+#pragma mark - 视图创建
+//创建头视图
 - (void)initBgHeaderView {
     
     _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 160)];
@@ -101,6 +306,8 @@
     UIImageView *tableHeaderView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 160)];
 //    tableHeaderView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     _iconView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth-90)/2, 30, 90, 90)];
+    _iconView.layer.cornerRadius = _iconView.width/2;
+    _iconView.layer.masksToBounds = YES;
     _iconView.image = [UIImage imageNamed:@"发现5"];
     [tableHeaderView addSubview:_iconView];
     
@@ -116,42 +323,44 @@
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _dataListArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_type == 0){
-        RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
+        RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
         if (rcModel.status == 3) {
             SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor clearColor];
-//            cell.rcModel = rcModel;
+            cell.rcModel = rcModel;
             return cell;
         }
         SnatchRecordingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordingCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
-//        cell.rcModel = rcModel;
+        cell.rcModel = rcModel;
         return cell;
     }else if (_type == 1) {
-        RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
+        RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
-//        cell.rcModel = rcModel;
+        cell.luckyView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.7];
+        cell.rcModel = rcModel;
         return cell;
     }
 
     InordertoshareCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InordertoshareCell" forIndexPath:indexPath];
-//    cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+    cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_type == 0||_type == 1) {
         return 160;
     }
+   
     //计算单元格高度
-    InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
+    InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
     NSString *content = iSModel.content;
     CGRect contentRect = [content boundingRectWithSize:CGSizeMake(KScreenWidth-57, 35) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
     NSArray *photoUrllist = iSModel.photoUrllist;
@@ -179,18 +388,19 @@
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = 200 + i;
+        button.selected = NO;
         button.frame = CGRectMake(KScreenWidth/3*i, 0, KScreenWidth/3, 30);
         button.backgroundColor = [UIColor whiteColor];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateSelected];
+//        [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateSelected];
         [button setTitle:titles[i] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:13];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView addSubview:button];
         
-        if (i == 0) {
-            button.selected = YES;
-            _selectButtonTag = 200;
+        if (i == _selectButtonTag - 200) {
+//            button.selected = YES;
+//            _selectButtonTag = 200;
         }
     }
     //按钮下方的横线
@@ -202,12 +412,12 @@
 #pragma mark - 按钮的点击
 - (void)buttonAction:(UIButton *)button {
     
-    UIButton *selectButton = [self.view viewWithTag:_selectButtonTag];
-    
-    if (button.tag != _selectButtonTag) {
-        selectButton.selected = NO;
-        button.selected = YES;
-    }
+//    UIButton *selectButton = [self.view viewWithTag:_selectButtonTag];
+//    
+//    if (button.tag != _selectButtonTag) {
+//        selectButton.selected = NO;
+//        button.selected = YES;
+//    }
     
     [UIView animateWithDuration:0.15 animations:^{
         
@@ -225,17 +435,24 @@
         case 200:
 //            [self requestData:nil];
             _type = 0;
-            [_tableView reloadData];
+            _page = 1;
+            [_dataListArr removeAllObjects];
+//            [_tableView reloadData];
             break;
         case 201:
 //            [self requestData:@1];
             _type = 1;
-            [_tableView reloadData];
+            _page = 1;
+            [_dataListArr removeAllObjects];
+            [self requestLuckyData];
             break;
         case 202:
 //            [self requestData:@3];
             _type = 2;
-            [_tableView reloadData];
+            _page = 1;
+            [_dataListArr removeAllObjects];
+            [self requestShareData];
+//            [_tableView reloadData];
             break;
             
         default:
@@ -243,6 +460,19 @@
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_type == 0) {
+        
+    }else if (_type == 1){
+        
+    }else if (_type == 2) {
+        InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
+        
+        InordertoDetailController *indVC = [[InordertoDetailController alloc] init];
+        indVC.shareID = iSModel.ID;
+        [self.navigationController pushViewController:indVC animated:YES];
+
+    }
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
@@ -264,4 +494,5 @@
     //使titleLabel与headerImgView底部重合
     //    _titleLabel.bottom = _headerImgView.bottom;
 }
+
 @end
