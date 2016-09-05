@@ -55,8 +55,8 @@
 #define CartListUpload_URL @"/pcpServer-inf/saleCart/add"
 //提交订单
 #define SubmitCartList_URL @"/pcpServer-inf/saleCart/submitPayment"
-//支付订单
-#define PayOrder_URL @"/pcpServer-inf/saleOrderPay/orderpay"
+////支付订单
+//#define PayOrder_URL @"/pcpServer-inf/saleOrderPay/orderpay"
 
 /*---------------我的云购模块---------------------*/
 //我的云购记录列表
