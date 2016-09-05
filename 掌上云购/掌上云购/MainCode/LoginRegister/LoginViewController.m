@@ -154,13 +154,66 @@
 }
 //微信登录
 - (IBAction)wechatLogin:(UIButton *)sender {
-    
+    [ShareSDK getUserInfo:SSDKPlatformTypeWechat
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             
+             NSLog(@"uid=%@",user.uid);
+             NSLog(@"%@",user.credential);
+             NSLog(@"token=%@",user.credential.token);
+             NSLog(@"nickname=%@",user.nickname);
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+         }
+         
+     }];
 }
 //QQ登录
 - (IBAction)QQLogin:(UIButton *)sender {
+    [ShareSDK getUserInfo:SSDKPlatformTypeQQ
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             
+             NSLog(@"uid=%@",user.uid);
+             NSLog(@"%@",user.credential);
+             NSLog(@"token=%@",user.credential.token);
+             NSLog(@"nickname=%@",user.nickname);
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+         }
+         
+     }];
 }
 //微博登录
 - (IBAction)weiboLogin:(UIButton *)sender {
+    [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             
+             NSLog(@"uid=%@",user.uid);
+             NSLog(@"%@",user.credential);
+             NSLog(@"token=%@",user.credential.token);
+             NSLog(@"nickname=%@",user.nickname);
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+         }
+         
+     }];
 }
 
 //#pragma mark - 监听键盘事件

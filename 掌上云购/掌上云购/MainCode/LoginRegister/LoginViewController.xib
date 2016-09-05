@@ -39,8 +39,8 @@
                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="sTG-Y2-WDZ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第三方登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-a7-XFK">
-                    <rect key="frame" x="265" y="392" width="70" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他方式登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-a7-XFK">
+                    <rect key="frame" x="258" y="392" width="84" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -167,7 +167,6 @@
                     </state>
                     <state key="highlighted" backgroundImage="微博logo.png"/>
                     <connections>
-                        <action selector="QQLogin:" destination="-1" eventType="touchUpInside" id="c43-UQ-SxT"/>
                         <action selector="weiboLogin:" destination="-1" eventType="touchUpInside" id="n81-ti-WXY"/>
                     </connections>
                 </button>

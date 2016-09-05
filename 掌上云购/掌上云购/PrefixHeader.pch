@@ -23,6 +23,8 @@
 #import "CartTools.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIButton+AFNetworking.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 #endif
 
 //主色调
