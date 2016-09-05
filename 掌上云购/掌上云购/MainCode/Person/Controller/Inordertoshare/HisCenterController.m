@@ -98,10 +98,15 @@
         if (_page == 1) {
             _page = 2;
         }
-        if (_type == 2) {
+        if (_type == 0){
+            [self requestSnatchData];
+        }else if (_type == 1) {
+            [self requestLuckyData];
+        }
+        else if (_type == 2) {
             [self requestShareData];
         }
-//        [self requestData];
+
     }];
     _tableView.mj_footer = footer;
 
@@ -351,6 +356,7 @@
     }
 
     InordertoshareCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InordertoshareCell" forIndexPath:indexPath];
+    cell.iconButton.userInteractionEnabled = NO;
     cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
     return cell;
 }
@@ -419,13 +425,13 @@
 //        button.selected = YES;
 //    }
     
-    [UIView animateWithDuration:0.15 animations:^{
-        
+//    [UIView animateWithDuration:0.15 animations:^{
+//        
         _selectButtonTag = button.tag;
-        CGRect frame = _lineView.frame;
-        frame.origin.x = button.origin.x;
-        _lineView.frame = frame;
-    }];
+//        CGRect frame = _lineView.frame;
+//        frame.origin.x = button.origin.x;
+//        _lineView.frame = frame;
+//    }];
     [self changeStateData:button.tag];
     
 }
@@ -436,6 +442,7 @@
 //            [self requestData:nil];
             _type = 0;
             _page = 1;
+            [_tableView.mj_footer resetNoMoreData];
             [_dataListArr removeAllObjects];
 //            [_tableView reloadData];
             break;
@@ -443,6 +450,7 @@
 //            [self requestData:@1];
             _type = 1;
             _page = 1;
+            [_tableView.mj_footer resetNoMoreData];
             [_dataListArr removeAllObjects];
             [self requestLuckyData];
             break;
@@ -450,6 +458,7 @@
 //            [self requestData:@3];
             _type = 2;
             _page = 1;
+            [_tableView.mj_footer resetNoMoreData];
             [_dataListArr removeAllObjects];
             [self requestShareData];
 //            [_tableView reloadData];

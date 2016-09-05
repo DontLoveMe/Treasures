@@ -19,6 +19,7 @@
 #import "SettingsController.h"
 #import "PersonCell.h"
 #import "PersonHeaderView.h"
+#import "MessageController.h"
 
 
 @interface PersonViewController ()
@@ -79,6 +80,10 @@
         if (![self isLogin]) {
             return;
         }
+        MessageController *msgVC = [[MessageController alloc] init];
+        self.navigationController.navigationBar.hidden = NO;
+        msgVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:msgVC animated:YES];
     }else if (button.tag == 102) {//设置
         
         //判断是否登录
@@ -110,11 +115,12 @@
 #warning 返回动画导航栏下面视图慢些
     self.navigationController.navigationBar.hidden = YES;
 
-    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
-        [_bgIconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
-    }
-    [_collectionView reloadData];
+    [self getUserInfo];
+//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+//    if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
+//        [_bgIconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+//    }
+//    [_collectionView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -257,6 +263,13 @@
         if (![userDic[@"nickName"] isEqual:[NSNull null]]) {
             headerView.nameLabel.text = userDic[@"nickName"];
         }
+        if (![userDic[@"money"] isEqual:[NSNull null]]) {
+            NSString *money = [NSString stringWithFormat:@"余额：%@",userDic[@"money"]];
+            [headerView.balanceButton setTitle:money forState:UIControlStateNormal];
+        }
+        if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
+            [_bgIconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+        }
         
         return headerView;
     }
@@ -370,6 +383,62 @@
         return NO;
     }
     return YES;
+}
+
+- (void)getUserInfo {
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+//    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserInfo_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+//              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+//                  _userInfo = json[@"data"];
+//                  [_tableView reloadData];
+                  
+                  //更新存到NSUserDefaults信息
+                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                  for (int i = 0; i < userDic.allKeys.count; i ++) {
+                      
+                      if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+                          
+                          [userDic removeObjectForKey:userDic.allKeys[i]];
+                          i = 0;
+                      }
+                      if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+                          NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+                          for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                              if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
+                                  [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                                  j = 0;
+                              }
+                              userDic[@"userLoginDto"] = userLoginDic;
+                          }
+                          
+                      }
+                  }
+                  
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  
+                  [defaults setObject:userDic forKey:@"userDic"];
+                  
+                  [defaults synchronize];
+              }
+              [_collectionView reloadData];
+              
+          } failure:^(NSError *error) {
+              
+//              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 
 @end
