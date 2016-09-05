@@ -140,10 +140,25 @@
 -(void)PayClicked:(UIButton *)btn{
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
+    [params setObject:@"1" forKey:@"buyUserId"];
+    [params setObject:@"0" forKey:@"payType"];
+    [params setObject:@"30" forKey:@"balanceConsume"];
+    [params setObject:@"0" forKey:@"cashConsume"];
+    NSInteger buyNum = 1;
+    [params setObject:@[@{@"productId":@"17",
+                          @"Qty":@"15",
+                          @"buyNum":[NSNumber numberWithInteger:buyNum]}]
+               forKey:@"orderDetailList"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
-
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+          } failure:^(NSError *error) {
+              
+          }];
  
 }
 
