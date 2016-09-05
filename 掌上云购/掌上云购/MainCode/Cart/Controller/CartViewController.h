@@ -12,6 +12,8 @@
 #import "CartTools.h"
 #import "UIView+SDAutoLayout.h"
 #import "PayViewController.h"
+#import "TabbarViewController.h"
+#import "TabbarItem.h"
 
 @interface CartViewController :BaseViewController <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CartFunctionDelegate>{
     

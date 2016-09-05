@@ -30,20 +30,19 @@
 
 @end
 
-@implementation PayViewController
-{
+@implementation PayViewController{
 
     UITableView *_tab;
     
-    NSMutableArray *_dataArray;
+//    NSMutableArray *_dataArray;
 
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    _dataArray = [NSMutableArray array];
+//    
+//    _dataArray = [NSMutableArray array];
     
     self.title = @"支付";
     
@@ -74,7 +73,7 @@
     
     //商品总数
     _goodstotal = [[UILabel alloc]init];
-    _goodstotal.text = @"共 3 件商品,";
+    _goodstotal.text = @"共 0 件商品,";
     _goodstotal.textColor = [UIColor grayColor];
     _goodstotal.font = [UIFont systemFontOfSize:15];
     [view addSubview:_goodstotal];
@@ -99,7 +98,7 @@
     //商品总钱数
     _pricesum = [[UILabel alloc]init];
     _pricesum.textColor = [UIColor redColor];
-    _pricesum.text = @"21元";
+    _pricesum.text = @"0元";
     _pricesum.font = [UIFont systemFontOfSize:15];
     [view addSubview:_pricesum];
     _pricesum.sd_layout
@@ -107,7 +106,6 @@
     .topEqualToView(_pricetotal)
     .widthIs(40)
     .heightIs(20);
-    
     
     _warntext = [[UILabel alloc]init];
     _warntext.text = @"夺宝有危险,参与需谨慎";
@@ -142,21 +140,51 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"1" forKey:@"buyUserId"];
     [params setObject:@"0" forKey:@"payType"];
-    [params setObject:@"30" forKey:@"balanceConsume"];
     [params setObject:@"0" forKey:@"cashConsume"];
-    NSInteger buyNum = 1;
-    [params setObject:@[@{@"productId":@"17",
-                          @"Qty":@"15",
-                          @"buyNum":[NSNumber numberWithInteger:buyNum]}]
-               forKey:@"orderDetailList"];
+    
+    //余额支付数量
+    NSMutableArray *cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    NSMutableArray  *BuyArr = [NSMutableArray array];
+    NSInteger totalPrice = 0;
+    for (int i = 0; i < cartArr.count; i ++) {
+        
+        NSDictionary *dic = [cartArr objectAtIndex:i];
+        NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+        NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+        totalPrice = totalPrice + singlePrice * num;
+        
+        NSDictionary *buyDic = @{@"productId":[dic objectForKey:@"id"],
+                                @"Qty":[dic objectForKey:@"buyTimes"],
+                                @"buyNum":@"1"};
+        [BuyArr addObject:buyDic];
+    }
+    
+    [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
+    [params setObject:BuyArr forKey:@"orderDetailList"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
     
+    [self showHUD:@"正在支付"];
     [ZSTools post:url
            params:params
           success:^(id json) {
               
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              if (isSuccess) {
+                  
+                  [self hideSuccessHUD:@"支付成功"];
+                  [CartTools realaseCartList];
+                  [self.navigationController popViewControllerAnimated:YES];
+                  
+              }else{
+                  
+                  [self hideFailHUD:@"支付失败"];
+                  
+              }
+              
           } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"支付失败"];
               
           }];
  
@@ -172,13 +200,11 @@
     
     _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
     _tab.dataSource = self;
     
     _tab.delegate = self;
     
     [self.view addSubview:_tab];
-
 
 }
 
@@ -198,7 +224,10 @@
             
             cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             
-            cell.goodsTotal.text = @"共 1 件商品";
+            NSArray *carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            
+            //计算总价
+            cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品",carArr.count];
             
             cell.backgroundColor = TableViewBackColor;
             
@@ -210,17 +239,27 @@
         
         return cell;
         
-
-    }else if (indexPath.row==1)
-    {
-    
+    }else if (indexPath.row==1){
+  
+#warning 这里得判断余额够不够
         PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
         if (!cell) {
             
             cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             
-            cell.goodsTotal.text = @"余额支付:1234";
+            NSArray *cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            
+            NSInteger totalPrice = 0;
+            for (int i = 0; i < cartArr.count; i ++) {
+                
+                NSDictionary *dic = [cartArr objectAtIndex:i];
+                NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+                NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+                totalPrice = totalPrice + singlePrice * num;
+            }
+            
+            cell.goodsTotal.text = [NSString stringWithFormat:@"余额支付:%ld元",totalPrice];
             
             cell.backgroundColor = TableViewBackColor;
             
@@ -232,22 +271,15 @@
         
         return cell;
 
-      
-    
-    
-    }else if (indexPath.row==2)
-    {
-    
+    }else if (indexPath.row==2){
     
         PayTwoKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
         if (!cell) {
-            
+#warning 这里得判断有没有红包
             cell = [[PayTwoKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             
                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            
             
             cell.redText.text = @"红包抵扣";
             
@@ -259,17 +291,11 @@
             
             cell.money.text = @"125币";
             
-            
         }
         
         return cell;
         
-
-      
-    
-    }else if (indexPath.row==3)
-    {
-    
+    }else if (indexPath.row==3){
         
         PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
@@ -283,19 +309,12 @@
             
             [cell.radio setImage:[UIImage imageNamed:@"我的-头像"] forState:UIControlStateNormal];
             
-            
-            
-    
         }
         
         return cell;
         
+    }else if (indexPath.row==4)    {
 
-    }else if (indexPath.row==4)
-    {
-    
-        
-        
         PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
         if (!cell) {
@@ -312,9 +331,7 @@
         
         return cell;
         
-
-    }else
-    {
+    }else{
         
         PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
@@ -332,15 +349,12 @@
         
         return cell;
         
-
     }
     
 }
 
-
 #pragma mark---UITableViewDelegate
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.row==0) {
         return 60;
@@ -364,28 +378,9 @@
  
 }
 
-
-
-
--(void)leftClick:(UIButton *)btn
-{
+-(void)leftClick:(UIButton *)btn{
 
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

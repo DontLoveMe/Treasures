@@ -117,6 +117,9 @@
     [_buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _buyBtn.backgroundColor = [UIColor redColor];
+    [_buyBtn addTarget:self
+                action:@selector(buyAction:)
+      forControlEvents:UIControlEventTouchUpInside];
     [_backView addSubview:_buyBtn];
     _buyBtn.sd_layout
     .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2+40)
@@ -297,6 +300,32 @@
 }
 
 #pragma mark---按钮事件
+- (void)buyAction:(UIButton *)button{
+
+//    id next = [self nextResponder];
+//    while (next != nil) {
+//        
+//        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+//            
+//            //获得标签控制器
+//            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
+//            //修改索引
+//            tb.selectedIndex = 0;
+//            //原选中标签修改
+//            tb.selectedItem.isSelected = NO;
+//            //选中新标签
+//            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
+//            item.isSelected = YES;
+//            //设置为上一个选中
+//            tb.selectedItem = item;
+//            
+//            return;
+//        }
+//        next = [next nextResponder];
+//    }
+
+}
+
 -(void)PayClicked:(UIButton *)btn{
 
     PayViewController *VC = [[PayViewController alloc]init];
@@ -349,6 +378,7 @@
             _bottomView.hidden = YES;
             _backView.hidden = NO;
             _rightbtn.hidden = YES;
+            _deleteView.hidden = YES;
             
         }else{
             
@@ -356,6 +386,21 @@
             _bottomView.hidden = NO;
             _backView.hidden = YES;
             _rightbtn.hidden = NO;
+            _deleteView.hidden = YES;
+            [_tabview setEditing:NO animated:YES];
+            _bottomView.hidden = NO;
+            specialTag = 0;
+            //计算总价
+            _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+            NSInteger totalPrice = 0;
+            for (int i = 0; i < _dataArray.count; i ++) {
+                
+                NSDictionary *dic = [_dataArray objectAtIndex:i];
+                NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+                NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+                totalPrice = totalPrice + singlePrice * num;
+            }
+            _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
             [_tabview reloadData];
             
         }
@@ -410,7 +455,36 @@
     
     [CartTools removeGoodsWithIndexPath:indexPath.row];
     _dataArray = [[CartTools getCartList] mutableCopy];
-    [_tabview reloadData];
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    if (_dataArray.count == 0) {
+        
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = YES;
+        _deleteView.hidden = YES;
+        
+    }else{
+        
+        _tabview.hidden = NO;
+        _bottomView.hidden = NO;
+        _backView.hidden = YES;
+        _rightbtn.hidden = NO;
+        _deleteView.hidden = YES;
+        //计算总价
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            NSDictionary *dic = [_dataArray objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        [_tabview reloadData];
+        
+    }
     
 }
 
@@ -475,7 +549,35 @@
     NSLogZS(@"增加了");
     [CartTools addCountWithIndexPath:indexPath.row];
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-    [_tabview reloadData];
+    if (_dataArray.count == 0) {
+        
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = YES;
+        _deleteView.hidden = YES;
+        
+    }else{
+        
+        _tabview.hidden = NO;
+        _bottomView.hidden = NO;
+        _backView.hidden = YES;
+        _rightbtn.hidden = NO;
+        _deleteView.hidden = YES;
+        //计算总价
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            NSDictionary *dic = [_dataArray objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        [_tabview reloadData];
+        
+    }
     
 }
 
@@ -485,7 +587,35 @@
     NSLogZS(@"减少了");
     [CartTools decreaseCountWithIndexPath:indexPath.row];
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-    [_tabview reloadData];
+    if (_dataArray.count == 0) {
+        
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = YES;
+        _deleteView.hidden = YES;
+        
+    }else{
+        
+        _tabview.hidden = NO;
+        _bottomView.hidden = NO;
+        _backView.hidden = YES;
+        _rightbtn.hidden = NO;
+        _deleteView.hidden = YES;
+        //计算总价
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            NSDictionary *dic = [_dataArray objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        [_tabview reloadData];
+        
+    }
     
 }
 
@@ -501,6 +631,7 @@
         _bottomView.hidden = YES;
         _backView.hidden = NO;
         _rightbtn.hidden = YES;
+        _deleteView.hidden = YES;
         
     }else{
         
@@ -508,6 +639,18 @@
         _bottomView.hidden = NO;
         _backView.hidden = YES;
         _rightbtn.hidden = NO;
+        _deleteView.hidden = YES;
+        //计算总价
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            NSDictionary *dic = [_dataArray objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
         [_tabview reloadData];
     
     }
@@ -577,7 +720,6 @@
 
 - (void)updateCartList{
 
-    
     NSArray *uploadArr = [NSArray arrayWithArray:[CartTools getCartList]];
     NSMutableArray *updateList = [NSMutableArray array];
     for (int i = 0; i < uploadArr.count; i ++) {
@@ -589,13 +731,6 @@
                                     @"buyNum":@"10"};
         [updateList addObject:updateDic];
     }
-    
-//    NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
-//                            @"name":[dic objectForKey:@"name"],
-//                            //                              @"proPictureList":[dic objectForKey:@"proPictureList"],
-//                            @"totalShare":[dic objectForKey:@"totalShare"],
-//                            @"surplusShare":[dic objectForKey:@"surplusShare"],
-//                            @"buyTimes":[NSNumber numberWithInteger:numbers]};
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"1" forKey:@"buyUserId"];

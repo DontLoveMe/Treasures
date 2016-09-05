@@ -39,8 +39,8 @@
                             @"proPictureList":picArr,
                             @"totalShare":[_dataDic objectForKey:@"totalShare"],
                             @"surplusShare":[_dataDic objectForKey:@"surplusShare"],
-                            @"buyTimes":[NSNumber numberWithInteger:1]};
-    //                            @"actualPrice":[_dataDic objectForKey:@"actualPrice"]
+                            @"buyTimes":[NSNumber numberWithInteger:1],
+                            @"singlePrice":[_dataDic objectForKey:@"singlePrice"]};
     
     BOOL isSuccess = [CartTools addCartList:@[goods]];
     if (isSuccess) {
