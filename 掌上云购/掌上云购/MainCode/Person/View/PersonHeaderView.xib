@@ -33,7 +33,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Ncb-Xc-UNH"/>
                     </constraints>
-                    <state key="normal" title="余额：888">
+                    <state key="normal" title="余额：">
                         <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -50,7 +50,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="BTf-w8-ScZ"/>
                     </constraints>
-                    <state key="normal" title="积分：888">
+                    <state key="normal" title="积分：">
                         <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
