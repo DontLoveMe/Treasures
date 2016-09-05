@@ -270,7 +270,7 @@
             //原选中标签修改
             tb.selectedItem.isSelected = NO;
             //选中新标签
-            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:3];
+            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:4];
             item.isSelected = YES;
             //设置为上一个选中
             tb.selectedItem = item;

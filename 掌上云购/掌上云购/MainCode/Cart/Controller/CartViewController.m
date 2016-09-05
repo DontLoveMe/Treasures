@@ -117,6 +117,9 @@
     [_buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _buyBtn.backgroundColor = [UIColor redColor];
+    [_buyBtn addTarget:self
+                action:@selector(buyAction:)
+      forControlEvents:UIControlEventTouchUpInside];
     [_backView addSubview:_buyBtn];
     _buyBtn.sd_layout
     .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2+40)
@@ -297,6 +300,32 @@
 }
 
 #pragma mark---按钮事件
+- (void)buyAction:(UIButton *)button{
+
+//    id next = [self nextResponder];
+//    while (next != nil) {
+//        
+//        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+//            
+//            //获得标签控制器
+//            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
+//            //修改索引
+//            tb.selectedIndex = 0;
+//            //原选中标签修改
+//            tb.selectedItem.isSelected = NO;
+//            //选中新标签
+//            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
+//            item.isSelected = YES;
+//            //设置为上一个选中
+//            tb.selectedItem = item;
+//            
+//            return;
+//        }
+//        next = [next nextResponder];
+//    }
+
+}
+
 -(void)PayClicked:(UIButton *)btn{
 
     PayViewController *VC = [[PayViewController alloc]init];
