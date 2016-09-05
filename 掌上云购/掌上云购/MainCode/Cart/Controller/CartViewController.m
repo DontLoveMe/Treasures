@@ -577,7 +577,6 @@
 
 - (void)updateCartList{
 
-    
     NSArray *uploadArr = [NSArray arrayWithArray:[CartTools getCartList]];
     NSMutableArray *updateList = [NSMutableArray array];
     for (int i = 0; i < uploadArr.count; i ++) {
@@ -589,13 +588,6 @@
                                     @"buyNum":@"10"};
         [updateList addObject:updateDic];
     }
-    
-//    NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
-//                            @"name":[dic objectForKey:@"name"],
-//                            //                              @"proPictureList":[dic objectForKey:@"proPictureList"],
-//                            @"totalShare":[dic objectForKey:@"totalShare"],
-//                            @"surplusShare":[dic objectForKey:@"surplusShare"],
-//                            @"buyTimes":[NSNumber numberWithInteger:numbers]};
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"1" forKey:@"buyUserId"];
