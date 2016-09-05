@@ -224,13 +224,31 @@
 
     //构建购物车数据模型
     //*注：关键字段：商品id，*商品名，商品类别，商品图片，总需次数，剩余次数，购买次数，购买价格
+    NSMutableArray *picArr = [[_dataDic objectForKey:@"proPictureList"] mutableCopy];
+    for (int i = 0; i < picArr.count; i ++) {
+        
+        NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+        for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+            
+            if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                
+                [dic removeObjectForKey:dic.allKeys[j]];
+                
+            }
+            
+        }
+        [picArr replaceObjectAtIndex:i withObject:dic];
+        
+    }
+    
     NSDictionary *goods = @{@"id":[_dataDic objectForKey:@"id"],
                             @"name":[_dataDic objectForKey:@"name"],
-                            @"proPictureList":[_dataDic objectForKey:@"proPictureList"],
+                            @"proPictureList":picArr,
                             @"totalShare":[_dataDic objectForKey:@"totalShare"],
                             @"surplusShare":[_dataDic objectForKey:@"surplusShare"],
-                            @"buyTimes":[NSNumber numberWithInteger:1]};
-//                            @"actualPrice":[_dataDic objectForKey:@"actualPrice"]
+                            @"buyTimes":[NSNumber numberWithInteger:1],
+                            @"singlePrice":[_dataDic objectForKey:@"singlePrice"]};
+
                            
     BOOL isSuccess = [CartTools addCartList:@[goods]];
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
