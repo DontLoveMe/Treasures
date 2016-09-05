@@ -342,6 +342,24 @@
         NSIndexPath *indexPath = [selectArr objectAtIndex:i];
         [CartTools removeGoodsWithIndexPath:indexPath.row];
         
+        _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+        if (_dataArray.count == 0) {
+            
+            _tabview.hidden = YES;
+            _bottomView.hidden = YES;
+            _backView.hidden = NO;
+            _rightbtn.hidden = YES;
+            
+        }else{
+            
+            _tabview.hidden = NO;
+            _bottomView.hidden = NO;
+            _backView.hidden = YES;
+            _rightbtn.hidden = NO;
+            [_tabview reloadData];
+            
+        }
+        
     }
     
 }
@@ -493,6 +511,7 @@
         [_tabview reloadData];
     
     }
+#warning 登陆的时候必须合并
 //    [self requestCartList];
     
 }

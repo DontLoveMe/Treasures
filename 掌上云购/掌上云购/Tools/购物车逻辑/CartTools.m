@@ -56,6 +56,14 @@
             NSString *newGoodsID = [[cartArr objectAtIndex:i] objectForKey:@"id"];
             NSInteger existCount = existArr.count;
             NSInteger   haveSame = 0;
+            
+            if (existCount <= 0) {
+                
+                [existArr addObject:cartArr[i]];
+                continue;
+                
+            }
+            
             //遍历已存在的数组
             for (NSInteger j = existCount - 1; j >= 0; j --) {
                 
@@ -64,7 +72,7 @@
                 if (oldGoodsID == newGoodsID) {
                     
                     haveSame = 1;
-                    UIScrollView
+                    
                 }
                 
                 if (haveSame == 1) {

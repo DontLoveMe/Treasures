@@ -22,51 +22,33 @@
 
 }
 
--(void)initWithUI
-{
+-(void)initWithUI{
 
-   
-    
-    
     _view = [[UIView alloc]init];
-    
     _view.backgroundColor = [UIColor whiteColor];
-    
-    
     [self.contentView addSubview:_view];
-    
     _view.sd_layout
     .leftSpaceToView(self.contentView,0)
     .topSpaceToView(self.contentView,6)
     .widthIs(KScreenWidth)
     .heightIs(40);
     
-    _goodsTotal = [[UILabel alloc]init];
-    
-    [_view addSubview:_goodsTotal];
-    
-    _goodsTotal.sd_layout
-    .leftSpaceToView(_view,5)
-    .topSpaceToView(_view,6)
-    .widthIs(130)
-    .heightIs(20);
-    
-    
-    
     _iconView = [[UIImageView alloc]init];
-    
     [_view addSubview:_iconView];
-    
     _iconView.sd_layout
-    .rightSpaceToView(_view,5)
-    .topEqualToView(_goodsTotal)
-    .widthIs(15)
-    .heightIs(20);
+    .rightSpaceToView(_view,8)
+    .topSpaceToView(_view,12)
+    .widthIs(24)
+    .heightIs(16);
     
+    _goodsTotal = [[UILabel alloc]init];
+    [_view addSubview:_goodsTotal];
+    _goodsTotal.sd_layout
+    .leftSpaceToView(_view,8)
+    .topSpaceToView(_view,8)
+    .widthIs(KScreenWidth - 20 - 24)
+    .heightIs(28);
     
-    
- 
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

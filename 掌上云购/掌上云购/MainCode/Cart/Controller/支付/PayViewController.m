@@ -64,8 +64,7 @@
 }
 
 
--(void)creatView
-{
+-(void)creatView{
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight-180, KScreenWidth, KScreenHeight)];
     
@@ -75,13 +74,10 @@
     
     //商品总数
     _goodstotal = [[UILabel alloc]init];
-    
     _goodstotal.text = @"共 3 件商品,";
-    
     _goodstotal.textColor = [UIColor grayColor];
-    
+    _goodstotal.font = [UIFont systemFontOfSize:15];
     [view addSubview:_goodstotal];
-    
     _goodstotal.sd_layout
     .leftSpaceToView(view,5)
     .topSpaceToView(view,5)
@@ -90,13 +86,10 @@
     
     //商品总价格
     _pricetotal = [[UILabel alloc]init];
-    
     _pricetotal.text = @"总计:";
-    
     _pricetotal.textColor = [UIColor grayColor];
-    
+    _pricetotal.font = [UIFont systemFontOfSize:15];
     [view addSubview:_pricetotal];
-    
     _pricetotal.sd_layout
     .leftSpaceToView(_goodstotal,5)
     .topEqualToView(_goodstotal)
@@ -105,13 +98,10 @@
     
     //商品总钱数
     _pricesum = [[UILabel alloc]init];
-    
     _pricesum.textColor = [UIColor redColor];
-    
     _pricesum.text = @"21元";
-    
+    _pricesum.font = [UIFont systemFontOfSize:15];
     [view addSubview:_pricesum];
-    
     _pricesum.sd_layout
     .leftSpaceToView(_pricetotal,3)
     .topEqualToView(_pricetotal)
@@ -120,13 +110,10 @@
     
     
     _warntext = [[UILabel alloc]init];
-    
     _warntext.text = @"夺宝有危险,参与需谨慎";
-    
     _warntext.textColor = [UIColor grayColor];
-    
+    _warntext.font = [UIFont systemFontOfSize:15];
     [view addSubview:_warntext];
-    
     _warntext.sd_layout
     .leftEqualToView(_goodstotal)
     .topSpaceToView(_goodstotal,10)
@@ -134,20 +121,12 @@
     .heightIs(20);
     
     _settlebtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
     _settlebtn.layer.masksToBounds = YES;
-    
     _settlebtn.layer.cornerRadius = 5;
-    
     _settlebtn.backgroundColor = [UIColor redColor];
-    
     [_settlebtn setTitle:@"提交" forState:UIControlStateNormal];
-    
     [_settlebtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
     [_settlebtn addTarget:self action:@selector(PayClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [view addSubview:_settlebtn];
     
     _settlebtn.sd_layout
@@ -156,20 +135,21 @@
     .widthIs(60)
     .heightIs(30);
     
-    
-    
 }
 
--(void)PayClicked:(UIButton *)btn
-{
+-(void)PayClicked:(UIButton *)btn{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>]
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
 
  
 }
 
 
 
--(void)creatTableView
-{
+-(void)creatTableView{
 
     _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-180) style:UITableViewStylePlain];
     
@@ -188,15 +168,13 @@
 }
 
 #pragma mark-----UITableViewDataSource
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     return 6;
 
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.row==0) {
         PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -341,10 +319,6 @@
         
 
     }
-    
-
-    
-    
     
 }
 
