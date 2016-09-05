@@ -255,6 +255,7 @@
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userDic"];
             
             [weakSelf.navigationController popViewControllerAnimated:YES];
+
         }
         
     }];

@@ -115,32 +115,38 @@
 #warning 返回动画导航栏下面视图慢些
     self.navigationController.navigationBar.hidden = YES;
 
-    [self getUserInfo];
-//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-//    if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
-//        [_bgIconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
-//    }
-//    [_collectionView reloadData];
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        [_collectionView reloadData];
+    }else {
+        
+        [self getUserInfo];
+    }
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"个人中心";
+    
     [self initNavBar];
 
     [self initCollectionView];
   
     [self initBgHeaderView];
     
+    if (![self isLogin]) {
+        return;
+    }
 }
-
+#pragma mark - 视图初始化
 - (void)initBgHeaderView {
     
     _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 228)];
     [self.view insertSubview:_bgIconView belowSubview:_collectionView];
     
-    _bgIconView.image = [UIImage imageNamed:@"发现5"];
+//    _bgIconView.image = [UIImage imageNamed:@"发现5"];
     //  毛玻璃样式
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     //  毛玻璃视图
@@ -257,18 +263,27 @@
         //设置头像
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         
-        if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
+        if (userDic[@"photoUrl"] != nil&&![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
             [headerView.iconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+        }else {
+            headerView.iconView.image = [UIImage imageNamed:@"我的-头像"];
         }
-        if (![userDic[@"nickName"] isEqual:[NSNull null]]) {
+        if (userDic[@"nickName"]!=nil&&![userDic[@"nickName"] isEqual:[NSNull null]]) {
             headerView.nameLabel.text = userDic[@"nickName"];
+        }else {
+            headerView.nameLabel.text = @"未登录";
         }
-        if (![userDic[@"money"] isEqual:[NSNull null]]) {
+        if (userDic[@"money"]!=nil&&![userDic[@"money"] isEqual:[NSNull null]]) {
             NSString *money = [NSString stringWithFormat:@"余额：%@",userDic[@"money"]];
             [headerView.balanceButton setTitle:money forState:UIControlStateNormal];
+        }else{
+            NSString *money = [NSString stringWithFormat:@"余额：0"];
+            [headerView.balanceButton setTitle:money forState:UIControlStateNormal];
         }
-        if (![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
+        if (userDic[@"photoUrl"]!=nil&&![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
             [_bgIconView setImageWithURL:[NSURL URLWithString:userDic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+        }else {
+            _bgIconView.image = [UIImage imageNamed:@"我的-头像"];
         }
         
         return headerView;
@@ -373,7 +388,7 @@
     //使titleLabel与headerImgView底部重合
 //    _titleLabel.bottom = _headerImgView.bottom;
 }
-
+#pragma mark - 判断是否登录
 - (BOOL)isLogin{
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if (userDic == nil) {

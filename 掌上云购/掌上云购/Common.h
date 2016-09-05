@@ -18,6 +18,10 @@
 #define Login_URL   @"/pcpServer-inf/user/login"
 //会员注册
 #define Regist_URL  @"/pcpServer-inf/user/register"
+//第三方登录
+#define ThirdLogin_URL @"/pcpServer-inf/userThirdLogin/thirdLogin"
+//第三方登录绑定手机
+#define ThirdLoginPhone_URL @"/pcpServer-inf/userThirdLogin/thirdLoginPhone"
 //修改密码
 #define UpdatePWD_URL @"/pcpServer-inf/user/updatepass"
 //找回密码
@@ -26,13 +30,15 @@
 #define SendCode_URL @"/pcpServer-inf/sms/sendCode"
 
 /*---------------分类模块----------------------*/
+//分类名列表
 #define CategorysList_URL @"/pcpServer-inf/proCategory/list"
+
 /*---------------首页商品模块---------------------*/
 //首页banner
 #define HomeBanner_URL @"/pcpServer-inf/cmsBanner/list"
 //首页公告通知
 #define HomePrizeList_URL @"/pcpServer-inf/saleDraw/drawComment"
-//商品列表
+//商品列表（搜索）
 #define GoodsList_URL @"/pcpServer-inf/product/list"
 //商品详情
 #define GoodsDetail_URL @"/pcpServer-inf/product/detail"
@@ -42,6 +48,10 @@
 #define GoodsTPdetail_URL @"/pcpServer-inf/product/detailHtml"
 //历史期数
 #define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
+//历史期数
+#define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
+//猜你喜欢
+#define LoveProduct_URL @"/pcpServer-inf/product/love"
 
 
 /*---------------最新揭晓模块---------------------*/

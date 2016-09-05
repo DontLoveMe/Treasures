@@ -36,7 +36,10 @@
 
 - (void)NavAction:(UIButton *)button{
     
+//    self.presentingViewController.view.alpha = 0;
+//    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)viewDidLoad {
@@ -52,7 +55,8 @@
     //设置输入框
     [self setTextField];
 }
-//判断注册、找回密码、密码修改界面
+#pragma mark - 判断界面
+//判断注册、找回密码、密码修改、绑定手机界面
 - (void)registOrmodify {
     
     if (_isRegistOrmodify == 0) {
@@ -76,7 +80,7 @@
         [_actionButton setTitle:@"确认找回"
                        forState:UIControlStateNormal];
         
-    }else {
+    }else if(_isRegistOrmodify == 2){
         
         _usernameTF.placeholder = @"请输入旧密码";
         _validateTF.hidden = YES;
@@ -90,10 +94,19 @@
         _vdBtnHeight.constant = 0;
         [_actionButton setTitle:@"密码修改"
                        forState:UIControlStateNormal];
+    }else if (_isRegistOrmodify == 3) {
+        _usernameTF.placeholder = @"请输入手机号码";
+        _passwrodTF.hidden = YES;
+        _rePasswordTF.hidden = YES;
+        _userDgtBtn.hidden = YES;
+        _agreeButton.hidden = YES;
+        _bottomView.hidden = NO;
+        [_actionButton setTitle:@"绑定手机"
+                       forState:UIControlStateNormal];
     }
 }
 
-
+#pragma mark - 设置输入框
 - (void)setTextField {
     //输入框光标左移一点位置
     _usernameTF.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 0)];
@@ -135,7 +148,7 @@
         _rePasswordTF.secureTextEntry = !_rePasswordTF.secureTextEntry;
     }
 }
-
+#pragma mark - 按钮的点击
 //获得验证码
 - (IBAction)getCaptchaAction:(UIButton *)sender {
     
@@ -220,13 +233,16 @@
 
         [self findPassword];
     
-    }else {
+    }else if(_isRegistOrmodify == 2){
         
         [self changePassword];
+    }else if (_isRegistOrmodify == 3) {
+        
+        [self bindPhone];
     }
     
 }
-
+#pragma mark - 注册
 - (void)regist {
     
     if (_usernameTF.text.length == 0) {
@@ -276,8 +292,11 @@
               NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
+                  //把信息存到NSUserDefaults
+                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                  [self saveDataForUserUserDefaults:userDic];
+                  [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                   
-                  [self dismissViewControllerAnimated:YES completion:nil];
                   
               }
               
@@ -285,6 +304,7 @@
               
           }];
 }
+#pragma mark - 找回密码
 - (void)findPassword {
     
     if (_usernameTF.text.length == 0) {
@@ -343,7 +363,7 @@
               
           }];
 }
-
+#pragma mark - 修改密码
 - (void)changePassword {
     
     if (_usernameTF.text.length == 0) {
@@ -394,6 +414,58 @@
               
           }];
 }
+#pragma mark - 绑定手机
+- (void)bindPhone {
+    
+    if (_usernameTF.text.length == 0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入手机号码！"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (_validateTF.text.length == 0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入验证码！"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+ 
+    NSMutableDictionary *params = [_userParams mutableCopy];
+    
+    [params setObject:_validateTF.text forKey:@"captcha"];
+    [params setObject:_usernameTF.text forKey:@"Mobile"];
+
+    
+    NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLoginPhone_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
+              BOOL flag = [[json objectForKey:@"flag"] boolValue];
+              if (flag == 1) {
+                  //把信息存到NSUserDefaults
+                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                  [self saveDataForUserUserDefaults:userDic];
+                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                  
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+}
+#pragma mark - 下方按钮的点击
 //关于
 - (IBAction)aboutUsAction:(UIButton *)sender {
 }
@@ -402,6 +474,36 @@
 }
 //隐私协议
 - (IBAction)privacyPolicAction:(UIButton *)sender {
+}
+#pragma mark - 保存信息
+- (void)saveDataForUserUserDefaults:(NSMutableDictionary *)userDic {
+    for (int i = 0; i < userDic.allKeys.count; i ++) {
+        
+        if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+            
+            [userDic removeObjectForKey:userDic.allKeys[i]];
+            i = 0;
+        }
+        if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+            NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+            for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
+                    [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                    j = 0;
+                }
+                userDic[@"userLoginDto"] = userLoginDic;
+            }
+            
+        }
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:userDic forKey:@"userDic"];
+    
+    [defaults synchronize];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)dealloc{
     

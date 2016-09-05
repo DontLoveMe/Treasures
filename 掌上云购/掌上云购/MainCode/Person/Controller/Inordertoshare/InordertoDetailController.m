@@ -9,6 +9,14 @@
 #import "InordertoDetailController.h"
 #import "InordertoshareModel.h"
 
+
+// 弹出分享菜单需要导入的头文件
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+// 自定义分享菜单栏需要导入的头文件
+#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
+//自定义分享编辑界面所需要导入的头文件
+#import <ShareSDKUI/SSUIEditorViewStyle.h>
+
 @interface InordertoDetailController ()
 
 @property (nonatomic,strong)UIImageView *iconView;
@@ -18,6 +26,8 @@
 @property (nonatomic,strong)UILabel *contentLabel;
 @property (nonatomic,strong)NSArray *labels;
 @property (nonatomic,strong)NSArray *imgViews;
+
+@property (nonatomic,strong)InordertoshareModel *iShareModel;
 
 @end
 
@@ -56,25 +66,41 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }else if (button.tag == 102) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"分享方式"
-                                                                                 message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"QQ，微信"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 [alertController dismissViewControllerAnimated:YES
-                                                                                                     completion:nil];
-                                                             }];
-        UIAlertAction *cancelAction1 = [UIAlertAction actionWithTitle:@"取消"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 [alertController dismissViewControllerAnimated:YES
-                                                                                                     completion:nil];
-                                                             }];
-        [alertController addAction:cancelAction];
-        [alertController addAction:cancelAction1];
-        [self presentViewController:alertController
-                           animated:YES
-                         completion:nil];
+        
+        //创建分享参数
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:_iShareModel.content
+                                         images:_iShareModel.photoUrllist//传入要分享的图片
+                                            url:[NSURL URLWithString:@"http://mob.com"]
+                                          title:_iShareModel.title
+                                           type:SSDKContentTypeAuto];
+        
+        [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor colorFromHexRGB:ThemeColor]];
+        //设置编辑界面标题颜色
+        [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+        //设置取消发布标签文本颜色
+        [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+        [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+        //设置分享编辑界面状态栏风格
+        [SSUIEditorViewStyle setStatusBarStyle:UIStatusBarStyleDefault];
+        //设置简单分享菜单样式
+        [SSUIShareActionSheetStyle setShareActionSheetStyle:ShareActionSheetStyleSystem];
+        
+        //分享
+        [ShareSDK showShareActionSheet:nil
+         //将要自定义顺序的平台传入items参数中
+                                 items:@[@(SSDKPlatformTypeSinaWeibo),
+                                         @(SSDKPlatformTypeWechat),
+                                         @(SSDKPlatformTypeQQ)]
+                           shareParams:shareParams
+                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                   
+                       if (error) {
+                           NSLogZS(@"分享成功");
+                       }else {
+                           NSLogZS(@"%@",error);
+                       }
+                   }];
     }
     
 }
@@ -164,6 +190,7 @@
               [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
                   InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:json[@"data"]];
+                  _iShareModel = iSModel;
                   [self setSubViews:iSModel];
               }
               

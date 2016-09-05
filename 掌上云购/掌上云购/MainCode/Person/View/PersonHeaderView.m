@@ -15,7 +15,7 @@
     //设置头像
     _iconView.layer.cornerRadius = _iconView.width/2;
     _iconView.layer.masksToBounds = YES;
-    _iconView.image = [UIImage imageNamed:@"发现5"];
+//    _iconView.image = [UIImage imageNamed:@"发现5"];
     
 //    _bgIconView.image = _iconView.image;
 //    //  毛玻璃样式

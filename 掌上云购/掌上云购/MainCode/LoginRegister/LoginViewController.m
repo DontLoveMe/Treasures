@@ -45,6 +45,18 @@
     [self initNavBar];
    
     [self setTextField];
+    
+    //取消分享平台授权
+    if ([ShareSDK hasAuthorized:SSDKPlatformTypeSinaWeibo]) {
+        [ShareSDK cancelAuthorize:SSDKPlatformTypeSinaWeibo];
+    }
+    if ([ShareSDK hasAuthorized:SSDKPlatformTypeWechat]) {
+        [ShareSDK cancelAuthorize:SSDKPlatformTypeWechat];
+    }
+    if ([ShareSDK hasAuthorized:SSDKPlatformTypeQQ]) {
+        [ShareSDK cancelAuthorize:SSDKPlatformTypeQQ];
+    }
+
 }
 //设置输入框两边的图片
 - (void)setTextField {
@@ -65,6 +77,7 @@
 - (void)plaintextAction:(UIButton *)button{
     _passwordTF.secureTextEntry = !_passwordTF.secureTextEntry;
 }
+#pragma mark - 按钮的点击
 //注册
 - (IBAction)registerActiion:(UIButton *)sender {
     
@@ -106,34 +119,7 @@
               if (flag == 1) {
                   //把信息存到NSUserDefaults
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
-                  for (int i = 0; i < userDic.allKeys.count; i ++) {
-                      
-                      if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
-                          
-                          [userDic removeObjectForKey:userDic.allKeys[i]];
-                          i = 0;
-                      }
-                      if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
-                          NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
-                          for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
-                              if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
-                                  [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
-                                  j = 0;
-                              }
-                              userDic[@"userLoginDto"] = userLoginDic;
-                          }
-                          
-                      }
-                  }
-                  
-                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                  
-                  [defaults setObject:userDic forKey:@"userDic"];
-                  
-                  [defaults synchronize];
-
-                  
-                  [self dismissViewControllerAnimated:YES completion:nil];
+                  [self saveDataForUserUserDefaults:userDic];
                   
               }
               
@@ -160,10 +146,7 @@
          if (state == SSDKResponseStateSuccess)
          {
              
-             NSLog(@"uid=%@",user.uid);
-             NSLog(@"%@",user.credential);
-             NSLog(@"token=%@",user.credential.token);
-             NSLog(@"nickname=%@",user.nickname);
+             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:user.icon createBy:@"2" updateBy:@"2"];
          }
          
          else
@@ -181,15 +164,14 @@
          if (state == SSDKResponseStateSuccess)
          {
              
-             NSLog(@"uid=%@",user.uid);
-             NSLog(@"%@",user.credential);
-             NSLog(@"token=%@",user.credential.token);
-             NSLog(@"nickname=%@",user.nickname);
+    
+             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:user.icon createBy:@"2" updateBy:@"2"];
          }
          
          else
          {
              NSLog(@"%@",error);
+            
          }
          
      }];
@@ -201,11 +183,8 @@
      {
          if (state == SSDKResponseStateSuccess)
          {
-             
-             NSLog(@"uid=%@",user.uid);
-             NSLog(@"%@",user.credential);
-             NSLog(@"token=%@",user.credential.token);
-             NSLog(@"nickname=%@",user.nickname);
+         
+             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"3" photoUrl:user.icon createBy:@"2" updateBy:@"2"];
          }
          
          else
@@ -215,10 +194,83 @@
          
      }];
 }
-
+#pragma mark - 第三方登录请求
+- (void)userThirdLoginAccount:(NSString *)account
+                         name:(NSString *)name
+                  accountType:(NSString *)accountType
+                     photoUrl:(NSString *)photoUrl
+                     createBy:(NSString *)createBy
+                     updateBy:(NSString *)updateBy {
+    
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    [params setObject:account forKey:@"account"];
+    [params setObject:name forKey:@"name"];
+    [params setObject:accountType forKey:@"accountType"];
+    [params setObject:photoUrl forKey:@"photoUrl"];
+    [params setObject:createBy forKey:@"createBy"];
+    [params setObject:updateBy forKey:@"updateBy"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLogin_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
+              BOOL flag = [[json objectForKey:@"flag"] boolValue];
+              if (flag) {
+                  //把信息存到NSUserDefaults
+                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                  [self saveDataForUserUserDefaults:userDic];
+                  
+              }else {
+                  RegisterViewController *rVC = [[RegisterViewController alloc] init];
+                  rVC.isRegistOrmodify = 3;
+                  rVC.title = @"绑定手机";
+                  rVC.userParams = params.copy;
+                  UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
+                  [self presentViewController:rnVC animated:YES completion:nil];
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+    
+    
+}
+- (void)saveDataForUserUserDefaults:(NSMutableDictionary *)userDic {
+    for (int i = 0; i < userDic.allKeys.count; i ++) {
+        
+        if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+            
+            [userDic removeObjectForKey:userDic.allKeys[i]];
+            i = 0;
+        }
+        if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+            NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+            for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
+                    [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                    j = 0;
+                }
+                userDic[@"userLoginDto"] = userLoginDic;
+            }
+            
+        }
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:userDic forKey:@"userDic"];
+    
+    [defaults synchronize];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 //#pragma mark - 监听键盘事件
 //- (void)viewWillAppear:(BOOL)animated{
-//    
+//
 ////    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
 ////    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 //    
