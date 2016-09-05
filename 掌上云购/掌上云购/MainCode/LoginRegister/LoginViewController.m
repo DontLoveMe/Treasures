@@ -225,12 +225,12 @@
                   [self saveDataForUserUserDefaults:userDic];
                   
               }else {
-                  RegisterViewController *rVC = [[RegisterViewController alloc] init];
-                  rVC.isRegistOrmodify = 3;
-                  rVC.title = @"绑定手机";
-                  rVC.userParams = params.copy;
-                  UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
-                  [self presentViewController:rnVC animated:YES completion:nil];
+//                  RegisterViewController *rVC = [[RegisterViewController alloc] init];
+//                  rVC.isRegistOrmodify = 3;
+//                  rVC.title = @"绑定手机";
+////                  rVC.userParams = params.copy;
+//                  UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
+//                  [self presentViewController:rnVC animated:YES completion:nil];
               }
               
           } failure:^(NSError *error) {

@@ -95,6 +95,7 @@
         [_actionButton setTitle:@"密码修改"
                        forState:UIControlStateNormal];
     }else if (_isRegistOrmodify == 3) {
+        self.title = @"绑定手机";
         _usernameTF.placeholder = @"请输入手机号码";
         _passwrodTF.hidden = YES;
         _rePasswordTF.hidden = YES;
@@ -440,8 +441,10 @@
         return;
     }
  
-    NSMutableDictionary *params = [_userParams mutableCopy];
-    
+//    NSMutableDictionary *params = [_userParams mutableCopy];
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:dic[@"id"] forKey:@"id"];
     [params setObject:_validateTF.text forKey:@"captcha"];
     [params setObject:_usernameTF.text forKey:@"Mobile"];
 

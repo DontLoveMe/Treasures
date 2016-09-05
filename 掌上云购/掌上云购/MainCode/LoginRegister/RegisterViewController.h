@@ -27,6 +27,6 @@
 //0代表注册,1代表找回密码,2代表修改密码,3第三方登录绑定手机。默认为0。
 @property (nonatomic,assign)NSInteger isRegistOrmodify;
 
-@property (nonatomic,strong)NSDictionary *userParams;
+//@property (nonatomic,strong)NSDictionary *userParams;
 
 @end
