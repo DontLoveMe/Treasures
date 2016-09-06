@@ -8,20 +8,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HotCollectionCell">
-            <rect key="frame" x="0.0" y="0.0" width="133" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="133" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="按钮框.png" translatesAutoresizingMaskIntoConstraints="NO" id="XCx-nD-9zn">
-                        <rect key="frame" x="0.0" y="0.0" width="133" height="50"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="按钮框_亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="XCx-nD-9zn">
+                        <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-51-3bQ">
-                        <rect key="frame" x="0.0" y="14" width="133" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-51-3bQ">
+                        <rect key="frame" x="168" y="14" width="133" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sZD-LM-PBs"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -37,14 +37,14 @@
                 <constraint firstItem="XCx-nD-9zn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="qCN-OR-jAj"/>
                 <constraint firstItem="4Im-51-3bQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rUa-Ko-QHz"/>
             </constraints>
-            <size key="customSize" width="133" height="50"/>
+            <size key="customSize" width="482" height="50"/>
             <connections>
                 <outlet property="titleLabel" destination="4Im-51-3bQ" id="s42-xJ-sOk"/>
             </connections>
-            <point key="canvasLocation" x="319.5" y="292"/>
+            <point key="canvasLocation" x="326" y="292"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="按钮框.png" width="471" height="200"/>
+        <image name="按钮框_亮.png" width="471" height="200"/>
     </resources>
 </document>

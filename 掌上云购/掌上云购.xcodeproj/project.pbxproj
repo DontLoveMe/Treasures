@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D625D9F71D7E6D5600316A49 /* SearchGoodsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D625D9F51D7E6D5600316A49 /* SearchGoodsController.m */; };
+		D625D9F81D7E6D5600316A49 /* SearchGoodsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D625D9F61D7E6D5600316A49 /* SearchGoodsController.xib */; };
+		D625D9FC1D7E8EDD00316A49 /* SearchGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D625D9FA1D7E8EDD00316A49 /* SearchGoodsCell.m */; };
+		D625D9FD1D7E8EDD00316A49 /* SearchGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D625D9FB1D7E8EDD00316A49 /* SearchGoodsCell.xib */; };
+		D625DA071D7EA96100316A49 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D625DA061D7EA96100316A49 /* GoodsModel.m */; };
 		D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */; };
 		D63CD6FF1D713B3500658365 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D63CD6FE1D713B3500658365 /* RecordModel.m */; };
 		D64BEE9A1D74183900A6158B /* PersonHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64BEE981D74183900A6158B /* PersonHeaderView.m */; };
@@ -18,6 +23,9 @@
 		D66FF4881D784FB0001C4B6E /* 加.png in Resources */ = {isa = PBXBuildFile; fileRef = D66FF4871D784FB0001C4B6E /* 加.png */; };
 		D674196F1D7D177200B655A5 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D674196D1D7D177200B655A5 /* MessageController.m */; };
 		D67419701D7D177200B655A5 /* MessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D674196E1D7D177200B655A5 /* MessageController.xib */; };
+		D68C534D1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */; };
+		D68C53501D7EDF6200E9D72B /* 购物车.png in Resources */ = {isa = PBXBuildFile; fileRef = D68C534E1D7EDF6200E9D72B /* 购物车.png */; };
+		D68C53511D7EDF6200E9D72B /* 热门搜索.png in Resources */ = {isa = PBXBuildFile; fileRef = D68C534F1D7EDF6200E9D72B /* 热门搜索.png */; };
 		D68F25951D6AE8DA0042E0BE /* SeachHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25931D6AE8D90042E0BE /* SeachHistoryCell.m */; };
 		D68F25961D6AE8DA0042E0BE /* SeachHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F25941D6AE8D90042E0BE /* SeachHistoryCell.xib */; };
 		D68F259A1D6AE9850042E0BE /* 搜索_删除.png in Resources */ = {isa = PBXBuildFile; fileRef = D68F25991D6AE9850042E0BE /* 搜索_删除.png */; };
@@ -305,6 +313,14 @@
 		3EAD386A872052AFECBF954A /* Pods-掌上云购.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-掌上云购.debug.xcconfig"; path = "Pods/Target Support Files/Pods-掌上云购/Pods-掌上云购.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9A38B08C2D6903B5609665 /* Pods-掌上云购.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-掌上云购.release.xcconfig"; path = "Pods/Target Support Files/Pods-掌上云购/Pods-掌上云购.release.xcconfig"; sourceTree = "<group>"; };
 		7FFE321C1B45B348FDA86FA2 /* libPods-掌上云购.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-掌上云购.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D625D9F41D7E6D5600316A49 /* SearchGoodsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGoodsController.h; sourceTree = "<group>"; };
+		D625D9F51D7E6D5600316A49 /* SearchGoodsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGoodsController.m; sourceTree = "<group>"; };
+		D625D9F61D7E6D5600316A49 /* SearchGoodsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchGoodsController.xib; sourceTree = "<group>"; };
+		D625D9F91D7E8EDD00316A49 /* SearchGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGoodsCell.h; sourceTree = "<group>"; };
+		D625D9FA1D7E8EDD00316A49 /* SearchGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGoodsCell.m; sourceTree = "<group>"; };
+		D625D9FB1D7E8EDD00316A49 /* SearchGoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchGoodsCell.xib; sourceTree = "<group>"; };
+		D625DA051D7EA96100316A49 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
+		D625DA061D7EA96100316A49 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
 		D63721FB1D76757400FEE6C8 /* RedEnvelopeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeModel.h; sourceTree = "<group>"; };
 		D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeModel.m; sourceTree = "<group>"; };
 		D63CD6FD1D713B3500658365 /* RecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
@@ -323,6 +339,10 @@
 		D674196C1D7D177200B655A5 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
 		D674196D1D7D177200B655A5 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
 		D674196E1D7D177200B655A5 /* MessageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageController.xib; sourceTree = "<group>"; };
+		D68C534B1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
+		D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
+		D68C534E1D7EDF6200E9D72B /* 购物车.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车.png"; sourceTree = "<group>"; };
+		D68C534F1D7EDF6200E9D72B /* 热门搜索.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "热门搜索.png"; sourceTree = "<group>"; };
 		D68F25921D6AE8D90042E0BE /* SeachHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeachHistoryCell.h; sourceTree = "<group>"; };
 		D68F25931D6AE8D90042E0BE /* SeachHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeachHistoryCell.m; sourceTree = "<group>"; };
 		D68F25941D6AE8D90042E0BE /* SeachHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeachHistoryCell.xib; sourceTree = "<group>"; };
@@ -753,6 +773,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D625D9FE1D7EA0CE00316A49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D625DA051D7EA96100316A49 /* GoodsModel.h */,
+				D625DA061D7EA96100316A49 /* GoodsModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D674196B1D7D174E00B655A5 /* Message */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +801,8 @@
 				D68F259D1D6AEE970042E0BE /* HotSearchCell.h */,
 				D68F259E1D6AEE970042E0BE /* HotSearchCell.m */,
 				D68F259F1D6AEE970042E0BE /* HotSearchCell.xib */,
+				D68C534B1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.h */,
+				D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */,
 				D68F25A21D6AF3470042E0BE /* HotCollectionCell.h */,
 				D68F25A31D6AF3470042E0BE /* HotCollectionCell.m */,
 				D68F25A41D6AF3470042E0BE /* HotCollectionCell.xib */,
@@ -1133,6 +1164,7 @@
 		DDF92BA21D6A9C3D009D5A1E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D625D9FE1D7EA0CE00316A49 /* Model */,
 				DDF92BA31D6A9C3D009D5A1E /* Controller */,
 				DDF92BAD1D6A9C3D009D5A1E /* View */,
 			);
@@ -1145,6 +1177,9 @@
 				DDF92BA41D6A9C3D009D5A1E /* HomeSearchController.h */,
 				DDF92BA51D6A9C3D009D5A1E /* HomeSearchController.m */,
 				DDF92BA61D6A9C3D009D5A1E /* HomeSearchController.xib */,
+				D625D9F41D7E6D5600316A49 /* SearchGoodsController.h */,
+				D625D9F51D7E6D5600316A49 /* SearchGoodsController.m */,
+				D625D9F61D7E6D5600316A49 /* SearchGoodsController.xib */,
 				DDF92BA71D6A9C3D009D5A1E /* HomeViewController.h */,
 				DDF92BA81D6A9C3D009D5A1E /* HomeViewController.m */,
 				DDF92BA91D6A9C3D009D5A1E /* HomeViewController.xib */,
@@ -1170,6 +1205,9 @@
 				DDF92BB71D6A9C3D009D5A1E /* WingNotificationCell.xib */,
 				DDF92BB81D6A9C3D009D5A1E /* WingNotificationTableView.h */,
 				DDF92BB91D6A9C3D009D5A1E /* WingNotificationTableView.m */,
+				D625D9F91D7E8EDD00316A49 /* SearchGoodsCell.h */,
+				D625D9FA1D7E8EDD00316A49 /* SearchGoodsCell.m */,
+				D625D9FB1D7E8EDD00316A49 /* SearchGoodsCell.xib */,
 				D68F25911D6AE8240042E0BE /* 搜索 */,
 				DDF92BBA1D6A9C3D009D5A1E /* 商品分类 */,
 			);
@@ -1669,6 +1707,8 @@
 		DDF92D271D6A9C5B009D5A1E /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				D68C534E1D7EDF6200E9D72B /* 购物车.png */,
+				D68C534F1D7EDF6200E9D72B /* 热门搜索.png */,
 				DDA46D931D78443E0043A797 /* 分类.png */,
 				DDA46D941D78443E0043A797 /* 极速专区.png */,
 				DDA46D951D78443E0043A797 /* 晒单.png */,
@@ -1824,6 +1864,7 @@
 				DDF92D511D6A9C5B009D5A1E /* 双框.png in Resources */,
 				DDF92C791D6A9C3D009D5A1E /* InordertoDetailController.xib in Resources */,
 				DDF92D701D6A9C5B009D5A1E /* 首页-selected.png in Resources */,
+				D68C53501D7EDF6200E9D72B /* 购物车.png in Resources */,
 				DDF92D471D6A9C5B009D5A1E /* 37x-Checkmark@2x.png in Resources */,
 				D6ED178C1D751E0B00C5CDB1 /* 微博logo.png in Resources */,
 				DDF92D5B1D6A9C5B009D5A1E /* 按钮框.png in Resources */,
@@ -1873,6 +1914,7 @@
 				DD6B52411D6DA31B00B6297F /* 7.png in Resources */,
 				DDF92CA51D6A9C3D009D5A1E /* SnatchRecordCell.xib in Resources */,
 				DDF92D661D6A9C5B009D5A1E /* 揭晓-图片.jpg in Resources */,
+				D68C53511D7EDF6200E9D72B /* 热门搜索.png in Resources */,
 				DDF92C5A1D6A9C3D009D5A1E /* SegmentController.xib in Resources */,
 				D66FF4491D78106B001C4B6E /* AddShareController.xib in Resources */,
 				DDF92C871D6A9C3D009D5A1E /* RechargeRecordController.xib in Resources */,
@@ -1921,6 +1963,7 @@
 				DDF92C7B1D6A9C3D009D5A1E /* InordertoshareController.xib in Resources */,
 				DDF92C501D6A9C3D009D5A1E /* AnnounceHistoryCell.xib in Resources */,
 				DDF92D7D1D6A9C5B009D5A1E /* 按钮-.png in Resources */,
+				D625D9F81D7E6D5600316A49 /* SearchGoodsController.xib in Resources */,
 				DDF92CDC1D6A9C4F009D5A1E /* areaData.plist in Resources */,
 				DDF92D6E1D6A9C5B009D5A1E /* 未选中背景.png in Resources */,
 				D6CB578D1D6E893F0043181F /* 按钮背景.png in Resources */,
@@ -1953,6 +1996,7 @@
 				FCABB7381D6DA72A00B0C092 /* 购物车图标.png in Resources */,
 				DDF92C931D6A9C3D009D5A1E /* ConfirmGoodsCell_1.xib in Resources */,
 				DDF92C731D6A9C3D009D5A1E /* ChangeDataController.xib in Resources */,
+				D625D9FD1D7E8EDD00316A49 /* SearchGoodsCell.xib in Resources */,
 				DDF92D521D6A9C5B009D5A1E /* 对勾-暗.png in Resources */,
 				DDF92D4F1D6A9C5B009D5A1E /* 云购记录.png in Resources */,
 				DDF92C4A1D6A9C3D009D5A1E /* CountWayController.xib in Resources */,
@@ -2066,6 +2110,7 @@
 				DDF92CDA1D6A9C4F009D5A1E /* UIViewExt.m in Sources */,
 				D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */,
 				DDF92C741D6A9C3D009D5A1E /* CustomerCareController.m in Sources */,
+				D625D9F71D7E6D5600316A49 /* SearchGoodsController.m in Sources */,
 				D6C09BF61D79150F00C092A7 /* TZPhotoPreviewController.m in Sources */,
 				DDF92C761D6A9C3D009D5A1E /* HisCenterController.m in Sources */,
 				DDF92CE51D6A9C4F009D5A1E /* UIColor+RGB.m in Sources */,
@@ -2075,6 +2120,7 @@
 				D6C09BF01D79150F00C092A7 /* TZAssetModel.m in Sources */,
 				DDF92C801D6A9C3D009D5A1E /* LuckyRecordController.m in Sources */,
 				DDF92CD81D6A9C4F009D5A1E /* UIView+SDAutoLayout.m in Sources */,
+				D625DA071D7EA96100316A49 /* GoodsModel.m in Sources */,
 				DDF92C7A1D6A9C3D009D5A1E /* InordertoshareController.m in Sources */,
 				FC3689941D6EA052005C1429 /* SunShareModel.m in Sources */,
 				DDF92C5F1D6A9C3D009D5A1E /* WingNotificationCell.m in Sources */,
@@ -2088,6 +2134,7 @@
 				DDF92C941D6A9C3D009D5A1E /* ConfirmGoodsCell_2.m in Sources */,
 				DDF92C541D6A9C3D009D5A1E /* GoodsDetailFunctionTableView.m in Sources */,
 				DDF92C721D6A9C3D009D5A1E /* ChangeDataController.m in Sources */,
+				D625D9FC1D7E8EDD00316A49 /* SearchGoodsCell.m in Sources */,
 				FCF09F361D6BDF0400CC3B7F /* SunSharingViewController.m in Sources */,
 				DDF92CA61D6A9C3D009D5A1E /* UseRedCell.m in Sources */,
 				D66FF4481D78106B001C4B6E /* AddShareController.m in Sources */,
@@ -2100,6 +2147,7 @@
 				DDF92C921D6A9C3D009D5A1E /* ConfirmGoodsCell_1.m in Sources */,
 				DDF92C881D6A9C3D009D5A1E /* RedEnvelopeController.m in Sources */,
 				DDF92C8F1D6A9C3D009D5A1E /* AddressCell.m in Sources */,
+				D68C534D1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m in Sources */,
 				D68F25951D6AE8DA0042E0BE /* SeachHistoryCell.m in Sources */,
 				DDF92C531D6A9C3D009D5A1E /* BroughtHistoryView.m in Sources */,
 				DDF92C9E1D6A9C3D009D5A1E /* PersonCell.m in Sources */,

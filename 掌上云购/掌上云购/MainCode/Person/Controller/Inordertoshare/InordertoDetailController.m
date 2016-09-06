@@ -70,7 +70,7 @@
         //创建分享参数
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:_iShareModel.content
-                                         images:_iShareModel.photoUrllist//传入要分享的图片
+                                         images:[self getImage]//传入要分享的图片
                                             url:[NSURL URLWithString:@"http://mob.com"]
                                           title:_iShareModel.title
                                            type:SSDKContentTypeAuto];
@@ -104,7 +104,17 @@
     }
     
 }
-
+// 从view上截图
+- (UIImage *)getImage {
+    
+    UIGraphicsBeginImageContextWithOptions(_scrollView.contentSize, NO, 1.0);  //NO，YES 控制是否透明
+    [_scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    // 生成后的image
+    
+    return image;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     

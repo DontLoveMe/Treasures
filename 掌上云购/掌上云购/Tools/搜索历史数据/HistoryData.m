@@ -22,8 +22,11 @@
 
     if ([self getHistoryData].count > 0) {
         dataArr = [self getHistoryData].mutableCopy;
-        if ([historyStr isEqualToString:[self getHistoryData][0]]) {
-            return;
+
+        for (NSString *str in [self getHistoryData]) {
+            if ([historyStr isEqualToString:str]) {
+                return;
+            }
         }
         [dataArr insertObject:historyStr atIndex:0];
     }else{
