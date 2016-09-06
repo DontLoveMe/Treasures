@@ -10,6 +10,7 @@
 #import "SeachHistoryCell.h"
 #import "HotSearchCell.h"
 #import "HistoryData.h"
+#import "SearchGoodsController.h"
 
 @interface HomeSearchController ()
 
@@ -29,6 +30,7 @@
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
+    
     
 }
 
@@ -50,12 +52,19 @@
     [self initViews];
     
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _historyData = [HistoryData getHistoryData];
+    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+}
 
+
+#pragma mark - 视图初始化
 - (void)initViews{
 
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(4, 4, KScreenWidth - 8.f, 28.f)];
     _searchBar.barStyle = UIBarStyleBlackTranslucent;
-
+    _searchBar.placeholder = @"搜索";
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.barTintColor = [UIColor whiteColor];
     _searchBar.delegate = self;
@@ -85,10 +94,12 @@
 //    [self.view addSubview:_separateLine];
     
 }
-
+#pragma mark - 搜索
 - (void)searchRequestData:(NSString *)searchStr {
     NSLogZS(@"%@",searchStr);
-    
+    SearchGoodsController *searchVC = [[SearchGoodsController alloc] init];
+    searchVC.searchStr = searchStr;
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -125,6 +136,7 @@
     return cell;
     
 }
+#pragma mark - 头视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor whiteColor];
@@ -132,16 +144,20 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 200, 30)];
     
     label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:16];
+    label.font = [UIFont systemFontOfSize:15];
     [headerView addSubview:label];
     if (section == 0) {
+        UIImageView *hotImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"热门搜索"]];
+        hotImgView.frame = CGRectMake(5, 5, 23, 23);
+        [headerView addSubview:hotImgView];
+        label.frame = CGRectMake(CGRectGetMaxX(hotImgView.frame) + 3, 5, 200, 30);
         label.text = @"热门搜索";
     }else {
         
         label.text = @"历史搜索";
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(KScreenWidth-40, 5, 25, 28);
+        button.frame = CGRectMake(KScreenWidth-40, 8, 21, 23);
         [button setBackgroundImage:[UIImage imageNamed:@"搜索_全删"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(allDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView addSubview:button];
@@ -172,10 +188,12 @@
     
 }
 
-
+#pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
     [searchBar resignFirstResponder];
+    
+    [self searchRequestData:searchBar.text];
     
     [HistoryData addHistoryData:searchBar.text];
     _historyData = [HistoryData getHistoryData];

@@ -16,19 +16,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qu-69-qLL">
-                        <rect key="frame" x="14" y="9" width="256" height="21"/>
+                        <rect key="frame" x="14" y="9" width="259" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="V0l-iu-mMo"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNm-JR-39J">
-                        <rect key="frame" x="284" y="6" width="28" height="28"/>
+                        <rect key="frame" x="287" y="7" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="28" id="5ff-Bt-68F"/>
-                            <constraint firstAttribute="height" constant="28" id="rhf-lu-kLT"/>
+                            <constraint firstAttribute="width" constant="25" id="5ff-Bt-68F"/>
+                            <constraint firstAttribute="height" constant="25" id="rhf-lu-kLT"/>
                         </constraints>
                         <state key="normal" backgroundImage="搜索_删除.png"/>
                         <connections>
@@ -41,7 +41,7 @@
                     <constraint firstItem="PNm-JR-39J" firstAttribute="leading" secondItem="2Qu-69-qLL" secondAttribute="trailing" constant="14" id="O2J-OW-7lX"/>
                     <constraint firstItem="2Qu-69-qLL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="Y1A-ms-R6D"/>
                     <constraint firstItem="2Qu-69-qLL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="Zjv-Nf-xH0"/>
-                    <constraint firstItem="PNm-JR-39J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="a9M-Tk-tBq"/>
+                    <constraint firstItem="PNm-JR-39J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="a9M-Tk-tBq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -75,4 +75,13 @@
 
 }
 
+- (void)layoutSubviews{
+
+    [super layoutSubviews];
+
+    _bgImgView.width = self.width;
+    _progressImgView.width = self.width * _progress / 100;
+
+}
+
 @end
