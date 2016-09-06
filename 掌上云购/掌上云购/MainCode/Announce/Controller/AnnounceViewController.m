@@ -7,13 +7,10 @@
 //
 
 #import "AnnounceViewController.h"
-#import "AnnounceCell.h"
-
 
 @interface AnnounceViewController ()
 
 @property (nonatomic,strong)UICollectionView *collectionView;
-@property (nonatomic,strong)NSMutableArray *data;
 @property (nonatomic,copy)NSString *identify;
 
 @end
@@ -26,12 +23,15 @@
     
     //创建collectionView
     [self createCollectionView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     //请求数据
     [self requestData];
+    
 }
 
 //请求数据
@@ -51,21 +51,14 @@
           success:^(id json) {
               
               _dataArr = [json objectForKey:@"data"];
-              _data = [NSMutableArray array];
-              for (NSInteger i = 1; i < _dataArr.count ; i ++) {
-                  
-                  NSDictionary *dataDic = [_dataArr objectAtIndex:i];
-                  [_data addObject:[dataDic objectForKey:@"countdownEndDate"]];
-                  
-              }
               [_collectionView reloadData];
               
           } failure:^(NSError *error) {
               
           }];
     
-    
 }
+
 //创建collectionView
 - (void)createCollectionView {
     
@@ -89,21 +82,83 @@
     UINib *nib = [UINib nibWithNibName:@"AnnounceCell" bundle:nil];
     [_collectionView registerNib:nib forCellWithReuseIdentifier:_identify];
     
-    
 }
 
 #pragma mark - collectionViewDelegate,collectViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.data.count;
+    return _dataArr.count;
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     AnnounceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
+    cell.indexpath = indexPath;
+    cell.announceDelegate = self;
     cell.backgroundColor = [UIColor whiteColor];
-    cell.str = _data[indexPath.row];
+    NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
+    //图片
+    if (![[dic objectForKey:@"productImg"] isKindOfClass:[NSNull class]]) {
+        
+        [cell.imgView setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"productImg"]]
+                     placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+        
+    }else{
+        
+        [cell.imgView setImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+        
+    }
+    //商品名
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"productName"]];
+    //期号
+    cell.numberLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"drawTimes"]];
+    
+    if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
+        
+        //倒计时时间
+        cell.str = [dic objectForKey:@"countdownEndDate"];
+        
+        cell.getUserLabel.hidden = YES;
+        cell.peopleNumLb.hidden = YES;
+        cell.luckyLabel.hidden = YES;
+        cell.announceTimeLb.hidden = YES;
+        
+        cell.timeIconView.hidden = NO;
+        cell.timeLabel.hidden = NO;
+        cell.unveilLabel.hidden = NO;
+        
+    }else{
+    
+        cell.getUserLabel.hidden = NO;
+        cell.peopleNumLb.hidden = NO;
+        cell.luckyLabel.hidden = NO;
+        cell.announceTimeLb.hidden = NO;
+        
+        cell.timeIconView.hidden = YES;
+        cell.timeLabel.hidden = YES;
+        cell.unveilLabel.hidden = YES;
+        
+        cell.getUserLabel.text = [NSString stringWithFormat:@"获奖用户 %@",[dic objectForKey:@"nickName"]];
+        cell.peopleNumLb.text = [NSString stringWithFormat:@"参与次数 %ld",[[dic objectForKey:@"sellShare"] integerValue]];
+        cell.luckyLabel.text = [NSString stringWithFormat:@"幸运号码 %ld",[[dic objectForKey:@"drawNumber"] integerValue]];
+        cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %ld",[[dic objectForKey:@"drawDate"] integerValue]];
+        
+    }
+    
+    //    @property (weak, nonatomic) IBOutlet UIImageView *imgView;
+    //    @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+    //    @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+    //    @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+    //    @property (weak, nonatomic) IBOutlet UIImageView *timeIconView;
+    //    @property (weak, nonatomic) IBOutlet UILabel *unveilLabel;
+    //    @property (weak, nonatomic) IBOutlet UILabel *getUserLabel;
+    //    @property (weak, nonatomic) IBOutlet UILabel *peopleNumLb;
+    //    @property (weak, nonatomic) IBOutlet UILabel *luckyLabel;
+    //    @property (weak, nonatomic) IBOutlet UILabel *announceTimeLb;
+    
     return cell;
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,13 +167,39 @@
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
     GDVC.goodsId = [dic objectForKey:@"productId"];
     
-    
-    
 //    GDVC.drawId = [dic objectForKey:@"drawId"];
     GDVC.isAnnounced = 2;
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];
+    
+}
+
+- (void)countEnd:(NSIndexPath *)indexPath{
+
+    AnnounceCell *cell = (AnnounceCell *)[_collectionView cellForItemAtIndexPath:indexPath];
+    
+    NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
+    
+    [self requestAnnouncedWithCell:cell
+                           withDic:dic];
+    
+}
+
+- (void)requestAnnouncedWithCell:(AnnounceCell *)cell withDic:(NSDictionary *)dic{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:[dic objectForKey:@"id"] forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,NewnestAnnounceDetail_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+          } failure:^(NSError *error) {
+              
+          }];
     
 }
 

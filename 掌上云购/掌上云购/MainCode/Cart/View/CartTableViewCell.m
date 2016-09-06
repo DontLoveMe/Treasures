@@ -119,7 +119,7 @@
     .heightIs(10);
     //价格
     _price = [[UILabel alloc]init];
-    _price.text = @"10元/次";
+    _price.text = @"元/次";
     _price.textColor = [UIColor redColor];
     _price.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:_price];

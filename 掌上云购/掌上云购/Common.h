@@ -57,6 +57,8 @@
 /*---------------最新揭晓模块---------------------*/
 //最新揭晓列表
 #define NewnestAnnounceList_URL @"/pcpServer-inf/saleDraw/announce"
+//最新揭晓详情
+#define NewnestAnnounceDetail_URL @"/pcpServer-inf/saleDraw/drawAnnounce"
 
 /*---------------购物车模块---------------------*/
 //查询云购物车数据

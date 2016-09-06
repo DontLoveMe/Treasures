@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CountDown.h"
 
+@protocol AnnounceCellDelegate <NSObject>
+
+@optional
+- (void)countEnd:(NSIndexPath *)indexPath;
+
+@end
+
 @interface AnnounceCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -25,5 +32,8 @@
 @property (strong, nonatomic)  CountDown *countDown;
 
 @property (nonatomic,copy) NSString *str;
+@property (nonatomic,strong)NSIndexPath *indexpath;
+
+@property (weak ,nonatomic)id<AnnounceCellDelegate> announceDelegate;
 
 @end

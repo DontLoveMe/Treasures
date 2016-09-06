@@ -18,6 +18,7 @@
  
 }
 
+
 - (void)setStr:(NSString *)str  {
     
     _str = str;
@@ -34,11 +35,12 @@
 
 //得到时间间隔
 -(NSString *)getNowTimeWithString:(NSString *)aTimeString{
+    
     NSDateFormatter* formater = [[NSDateFormatter alloc] init];
     [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
     
     NSDateFormatter* formater2 = [[NSDateFormatter alloc] init];
-    [formater2 setDateFormat:@"yyyy-MM-dd HH:mm:ss.S"];
+    [formater2 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     // 截止时间date格式
     NSDate  *expireDate = [formater2 dateFromString:aTimeString];
     NSDate  *nowDate = [NSDate date];
@@ -67,27 +69,24 @@
         secondsStr = [NSString stringWithFormat:@"0%d", seconds];
     else
         secondsStr = [NSString stringWithFormat:@"%d",seconds];
+    
     if (millisecond<100) {
-        millisecondStr = [NSString stringWithFormat:@"0%d",millisecond];
+        millisecondStr = [NSString stringWithFormat:@"0%d",millisecond/10];
     }else if (millisecond<10) {
-        millisecondStr = [NSString stringWithFormat:@"00%d",millisecond];
+        millisecondStr = [NSString stringWithFormat:@"00%d",millisecond/10];
     }else{
-        millisecondStr = [NSString stringWithFormat:@"%d",millisecond];
+        millisecondStr = [NSString stringWithFormat:@"%d",millisecond/10];
     }
     if (hours<=0&&minutes<=0&&seconds<=0&&millisecond<=0) {
+        
         [self.countDown destoryTimer];
         
+        if ([_announceDelegate respondsToSelector:@selector(countEnd:)]) {
+            
+            [_announceDelegate countEnd:_indexpath];
         
-        _getUserLabel.hidden = NO;
-        _peopleNumLb.hidden = NO;
-        _luckyLabel.hidden = NO;
-        _announceTimeLb.hidden = NO;
-        
-        _timeIconView.hidden = YES;
-        _timeLabel.hidden = YES;
-        _unveilLabel.hidden = YES;
-        
-        return @"已经结束！";
+        }
+        return @"正在计算开奖结果";
         
     }else {
         

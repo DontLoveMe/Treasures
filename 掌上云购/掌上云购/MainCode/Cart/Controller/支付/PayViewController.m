@@ -163,7 +163,7 @@
     [params setObject:BuyArr forKey:@"orderDetailList"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
-    
+    [CartTools realaseCartList];
     [self showHUD:@"正在支付"];
     [ZSTools post:url
            params:params
@@ -173,7 +173,6 @@
               if (isSuccess) {
                   
                   [self hideSuccessHUD:@"支付成功"];
-                  [CartTools realaseCartList];
                   [self.navigationController popViewControllerAnimated:YES];
                   
               }else{
@@ -189,8 +188,6 @@
           }];
  
 }
-
-
 
 -(void)creatTableView{
 
@@ -357,23 +354,29 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.row==0) {
+        
         return 60;
-    }else if (indexPath.row==1)
-    {
+        
+    }else if (indexPath.row==1){
     
         return 60;
-    }else if (indexPath.row==2)
-    {
+        
+    }else if (indexPath.row==2){
     
         return 120;
-    }else if (indexPath.row==3)
-    {
+        
+    }else if (indexPath.row==3){
+        
         return 90;
-    }else if (indexPath.row==4)
-    {
+        
+    }else if (indexPath.row==4){
+        
         return 90;
+        
     }else{
+        
         return 90;
+        
     }
  
 }
@@ -381,6 +384,7 @@
 -(void)leftClick:(UIButton *)btn{
 
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 @end

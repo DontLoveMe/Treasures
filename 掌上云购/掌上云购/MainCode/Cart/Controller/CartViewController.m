@@ -441,6 +441,8 @@
        
     cell.goodsNumLab.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
     
+    cell.price.text = [NSString stringWithFormat:@"%@元/次",[dic objectForKey:@"singlePrice"]];
+    
     return cell;
 }
 

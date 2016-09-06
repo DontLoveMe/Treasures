@@ -362,7 +362,8 @@
            params:params
           success:^(id json) {
               
-              if ([json objectForKey:@"flag"]) {
+              bool isSuccess = [[json objectForKey:@"flag"] boolValue];
+              if (isSuccess) {
                   
                   //商品图片
                   _dataDic = [json objectForKey:@"data"];
@@ -400,6 +401,10 @@
                   _oherFunctionTableView.isJoin = _isJoind;
                   _oherFunctionTableView.isPrized = _isPrized;
                   [_oherFunctionTableView reloadData];
+                  
+              }else{
+              
+                  NSLog(@"后台报错了");
                   
               }
               

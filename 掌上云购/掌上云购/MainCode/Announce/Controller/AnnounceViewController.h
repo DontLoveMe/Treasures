@@ -10,7 +10,9 @@
 
 #import "GoodsDetailController.h"
 
-@interface AnnounceViewController : BaseViewController<UICollectionViewDelegate,UICollectionViewDataSource>{
+#import "AnnounceCell.h"
+
+@interface AnnounceViewController : BaseViewController<UICollectionViewDelegate,UICollectionViewDataSource,AnnounceCellDelegate>{
 
     NSMutableArray *_dataArr;
 
