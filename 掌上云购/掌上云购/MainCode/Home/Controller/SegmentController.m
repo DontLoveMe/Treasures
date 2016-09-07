@@ -11,11 +11,12 @@
 #import "ProductCollectionView.h"
 #import "ProductTableView.h"
 #import "HomeSearchController.h"
+#import "GoodsDetailController.h"
 
 @interface SegmentController ()<UICollectionViewDelegate>
 
 @property (nonatomic,strong)ProductCollectionView *collectionView;
-
+@property (nonatomic,strong)UIButton *selectBtn;
 
 @end
 
@@ -92,10 +93,19 @@
                 forState:UIControlStateNormal];
         [button setTitleColor:[UIColor darkGrayColor]
                      forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor]
+                     forState:UIControlStateSelected];
         [button addTarget:self
                    action:@selector(ButtonAction:)
          forControlEvents:UIControlEventTouchUpInside];
         [_topKindView addSubview:button];
+        
+        
+        if (i == 0) {
+            _selectBtn = button;
+            _selectBtn.selected = YES;
+        }
+        
         if (i != titleArr.count - 1) {
             UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(button.frame)-1, 8.f, 1, 22.f)];
             line.backgroundColor = [UIColor darkGrayColor];
@@ -110,24 +120,34 @@
     _collectionView.hidden = NO;
     [self.view addSubview:_collectionView];
     
-    _collectionView.data = @[@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品"];
+//    _collectionView.data = @[@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品"];
     
     _collectionView.delegate = self;
     
   
 }
 - (void)createSegmentView {
-    SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 44, 80, [UIScreen mainScreen].bounds.size.height - 44-49-64) segmentTitles:self.segmentTitles imageNames:self.imgNames selectImgNames:self.selectImgNames];
+    SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 36, 80, [UIScreen mainScreen].bounds.size.height-36-49-64) segmentTitles:self.segmentTitles imageNames:self.imgNames selectImgNames:self.selectImgNames];
     segView.backgroundColor = [UIColor whiteColor];
     
+    __weak typeof(self) weakSelf = self;
     [segView setTagBlock:^(NSInteger index) {
         NSLog(@"选择竖排分类回调%ld",(long)index);
-        NSArray *data = @[_segmentTitles[index],_segmentTitles[index],_segmentTitles[index],_segmentTitles[index],_segmentTitles[index],_segmentTitles[index],_segmentTitles[index],_segmentTitles[index],];;
-        _collectionView.data = data;
-        NSLog(@"%@",self.segmentData[index][@"name"]);
+        NSDictionary *dic = _segmentData[index];
+        
+        _segmentID = [dic[@"id"] stringValue];
+        if (index == 0) {
+            _segmentID = nil;
+        }
+        [weakSelf requestGoodsList:@"3"];
     }];
+    segView.index = _index;
     [self.view addSubview:segView];
+    
+//    _segmentID = self.segmentData[0][@"id"];
+    [self requestGoodsList:@"3"];
 }
+#pragma mark - 数据请求
 - (void)requestSegmentData {
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CategorysList_URL];
     
@@ -150,17 +170,95 @@
               
           }];
 }
+
+//商品列表
+- (void)requestGoodsList:(NSString *)kindStr{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (_segmentID) {
+        [params setObject:@{@"orderType":kindStr,
+                            @"categoryId":_segmentID
+                            }
+                   forKey:@"paramsMap"];
+    }else {
+        
+        [params setObject:@{@"orderType":kindStr}
+                   forKey:@"paramsMap"];
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([json objectForKey:@"flag"]) {
+                  _collectionView.data = json[@"data"];
+                  [_collectionView reloadData];
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+    
+}
+
 - (void)ButtonAction:(UIButton *)button{
+    
+    
+    
+    
+//    NSArray *titleArr = @[@"类别",@"人气",@"最新",@"最热",@"总需人次⇅"];
+//    NSString *titleStr = [titleArr objectAtIndex:button.tag - 100];
+//    NSLog(@"选择了：%@",titleStr);
+    switch (button.tag - 100) {
+        case 1:
+            [self requestGoodsList:@"3"];
+            break;
+        case 2:
+            [self requestGoodsList:@"2"];
+            break;
+        case 3:
+            [self requestGoodsList:@"1"];
+            break;
+        case 4:
+            if (_selectBtn.tag == button.tag) {
+//                button.selected = !button.selected;
+                static BOOL isAscendingOrder;
+                isAscendingOrder = !isAscendingOrder;
+                if (isAscendingOrder) {
+                    [self requestGoodsList:@"4"];
+                }else {
+                    [self requestGoodsList:@"5"];
+                }
+            }else {
+                [self requestGoodsList:@"4"];
 
-    NSArray *titleArr = @[@"类别",@"人气",@"最新",@"最热",@"总需人次⇅"];
-    NSString *titleStr = [titleArr objectAtIndex:button.tag - 100];
-    NSLog(@"选择了：%@",titleStr);
-
+            }
+            break;
+        default:
+            break;
+    }
+    if (_selectBtn.tag != button.tag) {
+        _selectBtn.selected = NO;
+        _selectBtn = button;
+        _selectBtn.selected = YES;
+        
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"%@",indexPath);
+    NSDictionary *dic = [_collectionView.data objectAtIndex:indexPath.row];
+    
+    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+    GDVC.goodsId = [dic objectForKey:@"id"];
+    GDVC.drawId = [dic objectForKey:@"drawId"];
+    GDVC.isAnnounced = 1;
+    GDVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:GDVC
+                                         animated:YES];
 
 }
 

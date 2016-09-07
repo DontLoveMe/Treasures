@@ -9,6 +9,8 @@
 #import "LuckyRecordController.h"
 #import "LuckyRecordCell.h"
 #import "RecordModel.h"
+#import "ConfirmDataController.h"
+#import "ConfirmGoodsController.h"
 
 @interface LuckyRecordController ()
 
@@ -153,31 +155,17 @@
     return 155;
 }
 - (void)confirmAddress:(RecordModel *)rmodel {
-    //取出存储的用户信息
-        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-        NSNumber *userId = userDic[@"id"];
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:userId forKey:@"buyUserId"];
-    [params setObject:rmodel.ID forKey:@"productId"];
-    [params setObject:@(rmodel.saleDraw.periodsNumber) forKey:@"buyPeriods"];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmAddress_URL];
-    [ZSTools post:url
-           params:params
-          success:^(id json) {
-              
-              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              
-              if (isSuccess) {
-                  NSLogZS(@"确认地址");
-              }
-              
-              
-          } failure:^(NSError *error) {
-              
-              
-              NSLogZS(@"%@",error);
-          }];
+    ConfirmDataController *cdVC = [[ConfirmDataController alloc] init];
+    cdVC.rcModel = rmodel;
+    [self.navigationController pushViewController:cdVC animated:YES];
+        //    }else {
+        //        ConfirmGoodsController *cgVC = [[ConfirmGoodsController alloc] init];
+        //        [[self viewController].navigationController pushViewController:cgVC animated:YES];
+        //
+        //    }
+
+    
 }
 @end

@@ -38,9 +38,9 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25.f, 20.f)];
     rightButton.tag = 102;
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"购物车.png"]
                            forState:UIControlStateNormal];
     [rightButton addTarget:self
                     action:@selector(NavAction:)
@@ -65,8 +65,34 @@
 }
 
 - (void)NavAction:(UIButton *)button{
+    if (button.tag == 101) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else {
+        NSLogZS(@"进入购物车");
+        id next = [self nextResponder];
+        while (next != nil) {
+            
+            if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+                
+                //获得标签控制器
+                TabbarViewcontroller *tb = next;
+                //修改索引
+                tb.selectedIndex = 3;
+                //原选中标签修改
+                tb.selectedItem.isSelected = NO;
+                //选中新标签
+                TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:4];
+                item.isSelected = YES;
+                //设置为上一个选中
+                tb.selectedItem = item;
+                
+                return;
+            }
+            next = [next nextResponder];
+        }
+
+    }
     
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -132,7 +158,10 @@
     GoodsDetailController *gsdtVC = [[GoodsDetailController alloc] init];
     GoodsModel *gsModel = [GoodsModel mj_objectWithKeyValues:self.seachData[indexPath.row]];
     gsdtVC.goodsId = gsModel.ID;
+    gsdtVC.drawId = gsModel.drawId;
+    gsdtVC.isAnnounced = 1;
     [self.navigationController pushViewController:gsdtVC animated:YES];
+    
     
 }
 

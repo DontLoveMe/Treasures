@@ -16,7 +16,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rqs-Ke-tgH">
                         <rect key="frame" x="0.0" y="0.0" width="165" height="131"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone 6s plus 对双方都十分的舒服" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsX-iY-g5r">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone 6s plus " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsX-iY-g5r">
                         <rect key="frame" x="8" y="132" width="151" height="29"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="29" id="B1M-GP-783"/>
@@ -56,10 +56,10 @@
                             <constraint firstAttribute="width" constant="40" id="giw-UU-Ifl"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AU8-tT-Wvl">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AU8-tT-Wvl" customClass="ProgressView">
                         <rect key="frame" x="8" y="192" width="106" height="9"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -104,7 +104,10 @@
             <connections>
                 <outlet property="participateButton" destination="fNd-uo-MmN" id="OaJ-br-KZV"/>
                 <outlet property="productImg" destination="Rqs-Ke-tgH" id="JO6-t8-gJu"/>
-                <outlet property="titleLable" destination="EsX-iY-g5r" id="IXA-37-2KE"/>
+                <outlet property="progressLb" destination="CjR-3X-5Ju" id="6zc-4G-woX"/>
+                <outlet property="progressView" destination="AU8-tT-Wvl" id="d0s-71-mzj"/>
+                <outlet property="titleLabel" destination="EsX-iY-g5r" id="uJn-Ob-dIV"/>
+                <outlet property="totalLabel" destination="ldj-kw-UFB" id="2iO-eD-zJn"/>
             </connections>
             <point key="canvasLocation" x="274.5" y="285"/>
         </collectionViewCell>
