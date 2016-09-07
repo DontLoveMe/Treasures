@@ -77,7 +77,7 @@
     self.view.backgroundColor = [UIColor colorFromHexRGB:@"E6E6E6"];
 //    self.title = @"添加地址";
     [self initNavBar];
-    
+    _isDefaul = @0;
     _addressTF.delegate = self;
     _detailAddressTV.delegate = self;
     
@@ -207,7 +207,10 @@
     [params setObject:_nameTF.text forKey:@"receiver"];
     [params setObject:_phoneTF.text forKey:@"mobile"];
     [params setObject:_detailAddressTV.text forKey:@"addressDetailFull"];
+    
+        
     [params setObject:_isDefaul forKey:@"isDefault"];
+    
     
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,AddArea_URL];

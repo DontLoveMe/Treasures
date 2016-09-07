@@ -8,6 +8,7 @@
 
 #import "RedEnvelopeController.h"
 #import "UseRedElpTableView.h"
+#import "LoveView.h"
 
 @interface RedEnvelopeController ()
 
@@ -58,7 +59,7 @@
     
     [self createSubviews];
     
-//    [self createCollectionView];
+    [self createCollectionView];
     [self requestUserRedEnvelope];
     [self requestNoUserRedEnvelope];
 }
@@ -235,27 +236,29 @@
     
     CGFloat w = (KScreenWidth-8*4)/3;
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(w, w*1.3);
-    layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    layout.itemSize = CGSizeMake(w, w*1.3);
+//    layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
+//    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//    
+//    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-10-64, KScreenWidth, w*1.3+10) collectionViewLayout:layout];
+//    _collectionView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:_collectionView];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-10-64, KScreenWidth, w*1.3+10) collectionViewLayout:layout];
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_collectionView];
+    LoveView *loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-10-64, KScreenWidth, w*1.3+10)];
+    [self.view addSubview:loveView];
     
-    
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    
-    _identify = @"collectionCell";
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
-    
-    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-20, 120, 20)];
-    _loveLabel.text = @"猜你喜欢";
-    _loveLabel.textColor = [UIColor blackColor];
-    _loveLabel.font = [UIFont systemFontOfSize:16];
-    [self.view addSubview:_loveLabel];
+//    _collectionView.delegate = self;
+//    _collectionView.dataSource = self;
+//    
+//    _identify = @"collectionCell";
+//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
+//    
+//    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-20, 120, 20)];
+//    _loveLabel.text = @"猜你喜欢";
+//    _loveLabel.textColor = [UIColor blackColor];
+//    _loveLabel.font = [UIFont systemFontOfSize:16];
+//    [self.view addSubview:_loveLabel];
 }
 
 #pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
