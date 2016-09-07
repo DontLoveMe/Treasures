@@ -19,6 +19,8 @@
 @property (nonatomic,strong)NSArray *segmentTitles;
 @property (nonatomic,strong)NSArray *imgNames;
 @property (nonatomic,strong)NSArray *selectImgNames;
+@property (nonatomic,copy)NSString *segmentID;
 
+@property (nonatomic,assign)NSInteger index;
 
 @end

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GoodsStateCellDelegate <NSObject>
+
+@optional
+- (void)clickButtonBackTag:(NSInteger)tag;
+
+@end
+
 @interface GoodsStateCell : UITableViewCell
 /* 1获得商品2确认收货地址3商品派发4确认收货5已签收*/
 @property (weak, nonatomic) IBOutlet UIImageView *stateView1;
@@ -26,22 +33,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel3;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel4;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel5;
 
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;//立即晒单
 @property (weak, nonatomic) IBOutlet UIButton *sureAddress;//确认地址
 @property (weak, nonatomic) IBOutlet UIButton *selectAddress;//选择地址
 @property (weak, nonatomic) IBOutlet UIButton *delayReceipt;//延期收货
 @property (weak, nonatomic) IBOutlet UIButton *sureReceipt;//确认收货
 
-
-
-
-
-
-
-
-
-
-
+@property (nonatomic,weak)id<GoodsStateCellDelegate> delegate;
 
 @end

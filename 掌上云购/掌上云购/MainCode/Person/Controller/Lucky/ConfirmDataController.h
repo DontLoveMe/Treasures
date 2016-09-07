@@ -7,9 +7,13 @@
 //
 
 #import "BaseViewController.h"
+#import "RecordModel.h"
+#import "GoodsStateCell.h"
 
-@interface ConfirmDataController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ConfirmDataController : BaseViewController<UITableViewDelegate,UITableViewDataSource,GoodsStateCellDelegate>
 
 @property (nonatomic,assign)NSInteger state;
+
+@property (nonatomic,strong)RecordModel *rcModel;
 
 @end

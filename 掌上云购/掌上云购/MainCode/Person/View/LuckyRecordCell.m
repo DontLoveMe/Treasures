@@ -54,34 +54,6 @@
     
 }
 
-- (void)confirmAddress {
-    //取出存储的用户信息
-    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    //    NSNumber *userId = userDic[@"userId"];
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@2 forKey:@"buyUserId"];
-    [params setObject:_lkModel.ID forKey:@"productId"];
-    [params setObject:@(_lkModel.saleDraw.periodsNumber) forKey:@"buyPeriods"];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmAddress_URL];
-    [ZSTools post:url
-           params:params
-          success:^(id json) {
-              
-              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              
-              if (isSuccess) {
-                 
-              }
-              
-              
-          } failure:^(NSError *error) {
-              
-              
-              NSLogZS(@"%@",error);
-          }];
-}
 
 - (UIViewController *)viewController {
     

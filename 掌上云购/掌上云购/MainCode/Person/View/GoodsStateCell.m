@@ -23,11 +23,13 @@
     AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"是否使用默认地址?"];
     [alert addButtonTitleArray:@[@"否",@"是"]];
     __weak typeof(AlertController*) weakAlert = alert;
+    __weak typeof(self) weakSelf = self;
     [alert setClickButtonBlock:^(NSInteger tag) {
         if (tag == 0) {
             [weakAlert dismissViewControllerAnimated:YES completion:nil];
         }else {
-            
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf.delegate clickButtonBackTag:sender.tag-200];
         }
     }];
     [[self viewController] presentViewController:alert
@@ -50,11 +52,13 @@
     AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?"];
     [alert addButtonTitleArray:@[@"取消",@"确认"]];
     __weak typeof(AlertController*) weakAlert = alert;
+    __weak typeof(self) weakSelf = self;
     [alert setClickButtonBlock:^(NSInteger tag) {
         if (tag == 0) {//取消
             [weakAlert dismissViewControllerAnimated:YES completion:nil];
         }else {//确认
-            
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf.delegate clickButtonBackTag:sender.tag-200];
         }
     }];
     [[self viewController] presentViewController:alert
@@ -66,17 +70,23 @@
     AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认收货么?"];
     [alert addButtonTitleArray:@[@"取消",@"确认"]];
     __weak typeof(AlertController*) weakAlert = alert;
+    __weak typeof(self) weakSelf = self;
     [alert setClickButtonBlock:^(NSInteger tag) {
         if (tag == 0) {//取消
             [weakAlert dismissViewControllerAnimated:YES completion:nil];
         }else {//确认
-            
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            [weakSelf.delegate clickButtonBackTag:sender.tag-200];
         }
     }];
     [[self viewController] presentViewController:alert
                                         animated:YES
                                       completion:nil];
     
+}
+//立即晒单
+- (IBAction)shareAction:(UIButton *)sender {
+    [self.delegate clickButtonBackTag:sender.tag-200];
 }
 
 - (UIViewController *)viewController {

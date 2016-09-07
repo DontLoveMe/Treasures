@@ -8,6 +8,7 @@
 
 #import "ProductCollectionView.h"
 #import "ProductCell.h"
+#import "GoodsModel.h"
 
 @implementation ProductCollectionView {
     
@@ -51,8 +52,8 @@
     
     ProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
-    
-    cell.titleLable.text = self.data[indexPath.row];
+    cell.gsModel = [GoodsModel mj_objectWithKeyValues:self.data[indexPath.row]];
+//    cell.titleLabel.text = self.data[indexPath.row];
     return cell;
 }
 

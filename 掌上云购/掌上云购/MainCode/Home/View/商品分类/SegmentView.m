@@ -44,10 +44,15 @@
 - (void)initSubviews:(NSArray *)titles
           imageNames:(NSArray *)names {
     
+    
     for (int i = 0; i < titles.count; i ++) {
         UIControl *control = [[UIControl alloc] initWithFrame:CGRectMake(0, kControlHight*i, self.frame.size.width, kControlHight)];
         control.tag = kNormalTag + i;
         [self addSubview:control];
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, kControlHight-1, self.frame.size.width, 1)];
+        line.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+        [control addSubview:line];
+        
         [control addTarget:self action:@selector(controlAction:) forControlEvents:UIControlEventTouchUpInside];
         
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, (kControlHight-18)/2, 18, 18)];
@@ -73,21 +78,25 @@
         }
     }
     //创建control旁边的竖线
-    _lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+    _lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, kControlHight)];
 //    _lineView.backgroundColor = kSelectColor;
     _lineView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     [self insertSubview:_lineView atIndex:0];
     
     
     self.contentSize = CGSizeMake(self.frame.size.width, kControlHight*titles.count);
+    UIImageView *verticalLine = [[UIImageView alloc] initWithFrame:CGRectMake(self.contentSize.width-1, 0, 1, self.contentSize.height)];
+    verticalLine.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+    [self addSubview:verticalLine];
 }
 //设置开始的索引
 - (void)setIndex:(NSInteger)index {
     _index = index;
     UIControl *indexControl = [self viewWithTag:_index+kNormalTag];
-    UIControl *selectControl = [self viewWithTag:_selectTag];
-    [self changeNormalState:selectControl];
-    [self changeSelectState:indexControl];
+//    UIControl *selectControl = [self viewWithTag:_selectTag];
+//    [self changeNormalState:selectControl];
+//    [self changeSelectState:indexControl];
+    [self controlAction:indexControl];
 }
 //control的点击事件
 - (void)controlAction:(UIControl *)control {

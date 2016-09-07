@@ -213,6 +213,7 @@
     [params setObject:updateBy forKey:@"updateBy"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLogin_URL];
+//    NSString *url = @"http://192.168.0.164:8080/pcpi/userThirdLogin/thirdLogin";
     [ZSTools post:url
            params:params
           success:^(id json) {

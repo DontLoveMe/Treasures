@@ -8,7 +8,8 @@
 
 #import "ConfirmDataController.h"
 #import "LuckyRecordCell.h"
-#import "GoodsStateCell.h"
+#import "AddShareController.h"
+//#import "GoodsStateCell.h"
 
 @interface ConfirmDataController ()
 
@@ -84,6 +85,7 @@
     if (indexPath.section == 0) {
         GoodsStateCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify1 forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
         cell.sureAddress.hidden = YES;
         cell.selectAddress.hidden = YES;
         cell.delayReceipt.hidden = YES;
@@ -104,13 +106,14 @@
             cell.timeLabel2.text = @"";
             cell.timeLabel3.text = @"";
             cell.timeLabel4.text = @"";
-            cell.timeLabel5.text = @"";
+            cell.shareBtn.hidden = YES;
             
             cell.sureAddress.hidden = NO;
             cell.selectAddress.hidden = NO;
             cell.delayReceipt.hidden = YES;
             cell.sureReceipt.hidden = YES;
         }else {
+            
             cell.stateView1.highlighted = YES;
             cell.stateView2.highlighted = YES;
             cell.stateView3.highlighted = YES;
@@ -125,10 +128,9 @@
             cell.timeLabel2.highlighted = YES;
             cell.timeLabel3.highlighted = YES;
             cell.timeLabel4.highlighted = YES;
-            
             cell.timeLabel4.text = @"";
-            cell.timeLabel5.text = @"";
             
+            cell.shareBtn.hidden = YES;
             cell.sureAddress.hidden = YES;
             cell.selectAddress.hidden = YES;
             cell.delayReceipt.hidden = NO;
@@ -158,6 +160,7 @@
     
     LuckyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
     cell.goodsButton.hidden = YES;
+    cell.lkModel = _rcModel;
     cell.contentView.backgroundColor = [UIColor colorFromHexRGB:@"EBEBF1"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -190,6 +193,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
-
-
+//tag值：0确认地址2延期收货3确认收货4立即晒单
+- (void)clickButtonBackTag:(NSInteger)tag {
+    if (tag == 0) {
+        [self confirmAddress];
+    }else if (tag == 2){
+        
+    }else if (tag == 3) {
+        
+    }else if (tag == 4) {
+        AddShareController *addSVC = [[AddShareController alloc] init];
+        addSVC.lkModel = _rcModel;
+        [self.navigationController pushViewController:addSVC animated:YES];
+    }
+}
+- (void)confirmAddress{
+   // 取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"buyUserId"];
+    [params setObject:_rcModel.ID forKey:@"productId"];
+    [params setObject:@(_rcModel.saleDraw.periodsNumber) forKey:@"buyPeriods"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmAddress_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              NSLogZS(@"%@",json[@"msg"]);
+              if (isSuccess) {
+                  NSLogZS(@"确认地址");
+                  _state = 1;
+                   _sectionArr = @[@"  商品状态",@"  物流信息",@"  地址信息",@"  商品信息"];
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              
+              NSLogZS(@"%@",error);
+          }];
+}
 @end
