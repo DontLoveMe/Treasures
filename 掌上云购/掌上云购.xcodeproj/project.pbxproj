@@ -53,6 +53,8 @@
 		D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */; };
 		D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */; };
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
+		D6E54FD51D8013F600FDBC15 /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E54FD41D8013F600FDBC15 /* LoveView.m */; };
+		D6E54FD71D80155400FDBC15 /* RedEnvelopeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */; };
 		D6E598C61D76C85D002B1520 /* 按钮框_暗.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E598C41D76C85C002B1520 /* 按钮框_暗.png */; };
 		D6E598C71D76C85D002B1520 /* 按钮框_亮.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E598C51D76C85C002B1520 /* 按钮框_亮.png */; };
 		D6ED178C1D751E0B00C5CDB1 /* 微博logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */; };
@@ -163,7 +165,6 @@
 		DDF92C851D6A9C3D009D5A1E /* RechargeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF92BF91D6A9C3D009D5A1E /* RechargeController.xib */; };
 		DDF92C861D6A9C3D009D5A1E /* RechargeRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92BFB1D6A9C3D009D5A1E /* RechargeRecordController.m */; };
 		DDF92C871D6A9C3D009D5A1E /* RechargeRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF92BFC1D6A9C3D009D5A1E /* RechargeRecordController.xib */; };
-		DDF92C881D6A9C3D009D5A1E /* RedEnvelopeController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92BFF1D6A9C3D009D5A1E /* RedEnvelopeController.m */; };
 		DDF92C891D6A9C3D009D5A1E /* RedEnvelopeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF92C001D6A9C3D009D5A1E /* RedEnvelopeController.xib */; };
 		DDF92C8A1D6A9C3D009D5A1E /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92C031D6A9C3D009D5A1E /* SettingsController.m */; };
 		DDF92C8B1D6A9C3D009D5A1E /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDF92C041D6A9C3D009D5A1E /* SettingsController.xib */; };
@@ -388,6 +389,9 @@
 		D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnatchRecordingCell.xib; sourceTree = "<group>"; };
 		D6E0F3761D6C617A00E962D1 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		D6E0F3771D6C617A00E962D1 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		D6E54FD31D8013F600FDBC15 /* LoveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoveView.h; sourceTree = "<group>"; };
+		D6E54FD41D8013F600FDBC15 /* LoveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoveView.m; sourceTree = "<group>"; };
+		D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeController.m; sourceTree = "<group>"; };
 		D6E598C41D76C85C002B1520 /* 按钮框_暗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮框_暗.png"; sourceTree = "<group>"; };
 		D6E598C51D76C85C002B1520 /* 按钮框_亮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮框_亮.png"; sourceTree = "<group>"; };
 		D6ED178B1D751E0B00C5CDB1 /* 微博logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "微博logo.png"; sourceTree = "<group>"; };
@@ -556,7 +560,6 @@
 		DDF92BFB1D6A9C3D009D5A1E /* RechargeRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeRecordController.m; sourceTree = "<group>"; };
 		DDF92BFC1D6A9C3D009D5A1E /* RechargeRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RechargeRecordController.xib; sourceTree = "<group>"; };
 		DDF92BFE1D6A9C3D009D5A1E /* RedEnvelopeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeController.h; sourceTree = "<group>"; };
-		DDF92BFF1D6A9C3D009D5A1E /* RedEnvelopeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeController.m; sourceTree = "<group>"; };
 		DDF92C001D6A9C3D009D5A1E /* RedEnvelopeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedEnvelopeController.xib; sourceTree = "<group>"; };
 		DDF92C021D6A9C3D009D5A1E /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		DDF92C031D6A9C3D009D5A1E /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
@@ -1356,7 +1359,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF92BFE1D6A9C3D009D5A1E /* RedEnvelopeController.h */,
-				DDF92BFF1D6A9C3D009D5A1E /* RedEnvelopeController.m */,
+				D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */,
 				DDF92C001D6A9C3D009D5A1E /* RedEnvelopeController.xib */,
 			);
 			path = RedEnvelope;
@@ -1450,6 +1453,8 @@
 				DDF92C321D6A9C3D009D5A1E /* UseRedCell.xib */,
 				DDF92C331D6A9C3D009D5A1E /* UseRedElpTableView.h */,
 				DDF92C341D6A9C3D009D5A1E /* UseRedElpTableView.m */,
+				D6E54FD31D8013F600FDBC15 /* LoveView.h */,
+				D6E54FD41D8013F600FDBC15 /* LoveView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2117,6 +2122,7 @@
 				DDF92C371D6A9C3D009D5A1E /* AnnounceCell.m in Sources */,
 				DDF92B591D6A9C35009D5A1E /* TabbarViewcontroller.m in Sources */,
 				FCF09F481D6BE8F500CC3B7F /* SunViewController.m in Sources */,
+				D6E54FD71D80155400FDBC15 /* RedEnvelopeController.m in Sources */,
 				D6C09BF01D79150F00C092A7 /* TZAssetModel.m in Sources */,
 				DDF92C801D6A9C3D009D5A1E /* LuckyRecordController.m in Sources */,
 				DDF92CD81D6A9C4F009D5A1E /* UIView+SDAutoLayout.m in Sources */,
@@ -2145,7 +2151,6 @@
 				DDF92C401D6A9C3D009D5A1E /* PayThreeKindCell.m in Sources */,
 				D6C09BF81D79150F00C092A7 /* UIView+Layout.m in Sources */,
 				DDF92C921D6A9C3D009D5A1E /* ConfirmGoodsCell_1.m in Sources */,
-				DDF92C881D6A9C3D009D5A1E /* RedEnvelopeController.m in Sources */,
 				DDF92C8F1D6A9C3D009D5A1E /* AddressCell.m in Sources */,
 				D68C534D1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m in Sources */,
 				D68F25951D6AE8DA0042E0BE /* SeachHistoryCell.m in Sources */,
@@ -2197,6 +2202,7 @@
 				DDF92C4B1D6A9C3D009D5A1E /* GoodsDetailController.m in Sources */,
 				DDF92C841D6A9C3D009D5A1E /* RechargeController.m in Sources */,
 				DDF92C451D6A9C3D009D5A1E /* DiscoverCell.m in Sources */,
+				D6E54FD51D8013F600FDBC15 /* LoveView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

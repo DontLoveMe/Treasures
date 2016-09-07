@@ -21,6 +21,7 @@
     NSString *_identify;
     NSString *_identify1;
     NSArray *_sectionArr;
+    NSString *_defaultArea;
 }
 
 #pragma mark - 导航栏
@@ -57,7 +58,7 @@
         
     }
     
-    
+    [self requestAreaData];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStyleGrouped];
     [self.view addSubview:_tableView];
@@ -98,11 +99,12 @@
             cell.stateLabel1.highlighted = YES;
             cell.stateLabel2.highlighted = YES;
             
-            cell.stateLabel2.text = @"确认收货地址\nxxxxxxxxxxxxx地址明细";
-            
+//            cell.stateLabel2.text = @"确认收货地址\nxxxxxxxxxxxxx地址明细";
+            cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址\n%@",_defaultArea];
             cell.timeLabel1.highlighted = YES;
             cell.timeLabel2.highlighted = YES;
-        
+            
+            cell.timeLabel1.text = @"";
             cell.timeLabel2.text = @"";
             cell.timeLabel3.text = @"";
             cell.timeLabel4.text = @"";
@@ -207,6 +209,8 @@
         [self.navigationController pushViewController:addSVC animated:YES];
     }
 }
+#pragma mark - 数据请求
+//确认地址
 - (void)confirmAddress{
    // 取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
@@ -238,4 +242,47 @@
               NSLogZS(@"%@",error);
           }];
 }
+- (void)requestAreaData {
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"userId"];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,AreaList_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  NSArray *area = json[@"data"];
+                  if (area.count == 0) {
+                      return;
+                  }
+                  for (NSDictionary *dic in area) {
+                      if(dic[@"isDefault"]) {
+                          if ([dic[@"city"][@"name"]isEqualToString:dic[@"area"][@"name"]]) {
+                              _defaultArea = [NSString stringWithFormat:@"%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"addressDetailFull"]];
+                          }else{
+                              _defaultArea = [NSString stringWithFormat:@"%@%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"area"][@"name"],dic[@"addressDetailFull"]];
+                          }
+                          
+                          [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                      }
+                  }
+                  
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+
 @end
