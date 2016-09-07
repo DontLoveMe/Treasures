@@ -70,12 +70,15 @@ forCellReuseIdentifier:@"WingNotification_Cell"];
         [self reloadData];
         self.alpha = 1;
         _currentProcess = 0;
+        if (_timer) {
+            [_timer invalidate];
+            
+        }
         _timer = [NSTimer scheduledTimerWithTimeInterval:3
                                                   target:self
                                                 selector:@selector(timeAction)
                                                 userInfo:nil
                                                  repeats:YES];
-        
     }
 
 }

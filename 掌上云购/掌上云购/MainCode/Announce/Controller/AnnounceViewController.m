@@ -142,7 +142,7 @@
         cell.getUserLabel.text = [NSString stringWithFormat:@"获奖用户 %@",[dic objectForKey:@"nickName"]];
         cell.peopleNumLb.text = [NSString stringWithFormat:@"参与次数 %ld",[[dic objectForKey:@"sellShare"] integerValue]];
         cell.luckyLabel.text = [NSString stringWithFormat:@"幸运号码 %ld",[[dic objectForKey:@"drawNumber"] integerValue]];
-        cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %ld",[[dic objectForKey:@"drawDate"] integerValue]];
+        cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dic objectForKey:@"drawDate"]];
         
     }
     
@@ -196,6 +196,22 @@
     [ZSTools post:url
            params:params
           success:^(id json) {
+              
+              NSDictionary *dataDic = [json objectForKey:@"data"];
+              cell.getUserLabel.hidden = NO;
+              cell.peopleNumLb.hidden = NO;
+              cell.luckyLabel.hidden = NO;
+              cell.announceTimeLb.hidden = NO;
+              
+              cell.timeIconView.hidden = YES;
+              cell.timeLabel.hidden = YES;
+              cell.unveilLabel.hidden = YES;
+              
+              cell.getUserLabel.text = [NSString stringWithFormat:@"获奖用户 %@",[dataDic objectForKey:@"nickName"]];
+              cell.peopleNumLb.text = [NSString stringWithFormat:@"参与次数 %ld",[[dataDic objectForKey:@"sellShare"] integerValue]];
+              cell.luckyLabel.text = [NSString stringWithFormat:@"幸运号码 %ld",[[dataDic objectForKey:@"drawNumber"] integerValue]];
+              cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dataDic objectForKey:@"drawDate"]];
+              
               
           } failure:^(NSError *error) {
               
