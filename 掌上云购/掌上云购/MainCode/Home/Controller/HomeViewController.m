@@ -130,9 +130,21 @@
 - (void)controlAction:(HomeFunctionControl *)control{
 
     NSLogZS(@"选择了这个功能");
-    SegmentController *SVC = [[SegmentController alloc] init];
-    [self.navigationController pushViewController:SVC
-                                         animated:YES];
+    if (control.tag != 3) {
+       
+        SegmentController *SVC = [[SegmentController alloc] init];
+        SVC.index = control.tag;
+        [self.navigationController pushViewController:SVC
+                                             animated:YES];
+        
+    }else{
+    
+        SunSharingViewController *VC = [[SunSharingViewController alloc]init];
+        VC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:VC animated:YES];
+        
+    }
+
     
 }
 
@@ -235,9 +247,9 @@
     NSDictionary *dic = [_goodsArr objectAtIndex:indexPath.row];
     
     cell.goodsName.text = [dic objectForKey:@"name"];
-    NSInteger progressCount = [[dic objectForKey:@"sellshare"] floatValue] * 100 / [[dic objectForKey:@"totalShare"] floatValue];
+    NSInteger progressCount = [[dic objectForKey:@"sellShare"] floatValue] * 100 / [[dic objectForKey:@"totalShare"] floatValue];
     cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%ld%%",progressCount];
-    cell.progressView.progress = 50;
+    cell.progressView.progress = progressCount;
     NSArray *picList = [dic objectForKey:@"proPictureList"];
     if (picList.count != 0) {
         

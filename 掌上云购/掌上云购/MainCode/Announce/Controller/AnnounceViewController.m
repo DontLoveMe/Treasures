@@ -94,6 +94,9 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     AnnounceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
+    if (cell.countDown) {
+        [cell.countDown destoryTimer];
+    }
     cell.indexpath = indexPath;
     cell.announceDelegate = self;
     cell.backgroundColor = [UIColor whiteColor];

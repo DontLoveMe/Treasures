@@ -16,6 +16,7 @@
 
 #import "GoodsDetailController.h"
 #import "HomeSearchController.h"
+#import "SunSharingViewController.h"
 
 @interface HomeViewController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,homeGoodsCellDelegate>{
  

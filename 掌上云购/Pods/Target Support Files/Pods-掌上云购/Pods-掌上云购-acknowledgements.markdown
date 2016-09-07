@@ -301,6 +301,10 @@ THE SOFTWARE.
 
 Copyright © 2012-2015 mob
 
+## SS-BaiduPushSDK
+
+LICENSE ©2016 Baidu, Inc. All rights reserved.
+
 ## ShareSDK3
 
 Copyright © 2012-2015 mob

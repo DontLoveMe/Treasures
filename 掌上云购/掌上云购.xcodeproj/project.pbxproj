@@ -1813,7 +1813,7 @@
 				TargetAttributes = {
 					DDF92B371D6A9B15009D5A1E = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 84W6EV66WN;
+						DevelopmentTeam = T6WLX84T96;
 					};
 				};
 			};
@@ -2060,7 +2060,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2307,7 +2307,7 @@
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg.raise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2324,7 +2324,7 @@
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg.raise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
