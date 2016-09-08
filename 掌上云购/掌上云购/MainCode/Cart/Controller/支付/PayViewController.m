@@ -138,9 +138,11 @@
 -(void)PayClicked:(UIButton *)btn{
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-
     
-    [params setObject:@"1" forKey:@"buyUserId"];
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    
+    [params setObject:userId forKey:@"buyUserId"];
     [params setObject:@"0" forKey:@"payType"];
     [params setObject:@"0" forKey:@"cashConsume"];
     
@@ -172,6 +174,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
                   [self hideSuccessHUD:@"支付成功"];
