@@ -63,17 +63,6 @@
         
         cell.iconView.image = [UIImage imageNamed:@"发现3"];
         
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-        
-        tap.numberOfTapsRequired = 1;
-        
-        
-        tap.numberOfTouchesRequired = 1;
-        
-        [cell.iconView addGestureRecognizer:tap];
-        
-        
         cell.nameLabel.text = @"明天5000个赌个金碗";
         
         cell.timeLabel.text = @"14:03";

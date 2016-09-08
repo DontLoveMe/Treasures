@@ -259,7 +259,7 @@
         
         //参与次数
         UILabel *joinCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 16.f, 20.f)];
-        joinCountLabel.text = [NSString stringWithFormat:@"本期参与：%ld次",[[prizeDic objectForKey:@"qty"] integerValue]];
+        joinCountLabel.text = [NSString stringWithFormat:@"本期参与：%ld",[[prizeDic objectForKey:@"qty"] integerValue]];
         joinCountLabel.textAlignment = NSTextAlignmentLeft;
         joinCountLabel.font = [UIFont systemFontOfSize:13];
         joinCountLabel.textColor = [UIColor darkGrayColor];
@@ -437,7 +437,7 @@
     }else if (indexPath.row == 3) {
         NSLogZS(@"请上拉");
     }else{
-        NSLogZS(@"点击了第%ld个单元格",indexPath.row);
+        NSLogZS(@"点击了第%ld个单元格",(long)indexPath.row);
     }
     
 }

@@ -128,9 +128,9 @@
            params:params
           success:^(id json) {
              
-              BOOL flag = [json objectForKey:@"flag"];
+              BOOL isSuccess = [json objectForKey:@"flag"];
               [self hideSuccessHUD:json[@"msg"]];
-              if (flag) {
+              if (isSuccess) {
                   self.seachData = json[@"data"];
                   [_tableView reloadData];
               }

@@ -390,6 +390,7 @@
 }
 #pragma mark - 判断是否登录
 - (BOOL)isLogin{
+    
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if (userDic == nil) {
         LoginViewController *lVC = [[LoginViewController alloc] init];
@@ -398,6 +399,7 @@
         return NO;
     }
     return YES;
+    
 }
 
 - (void)getUserInfo {

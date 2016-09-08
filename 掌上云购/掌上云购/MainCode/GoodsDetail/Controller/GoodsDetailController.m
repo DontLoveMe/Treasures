@@ -351,11 +351,22 @@
 - (void)requestDetail{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    #warning 是否登陆
-    [params setObject:@{@"productId":_goodsId,
-                        @"userId":@"1"}
-               forKey:@"paramsMap"];
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic != nil){
+        
+        NSNumber *userId = userDic[@"id"];
+        [params setObject:@{@"productId":_goodsId,
+                            @"userId":userId}
+                   forKey:@"paramsMap"];
+        
+    }else{
     
+        [params setObject:@{@"productId":_goodsId}
+                   forKey:@"paramsMap"];
+    
+    }
+
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsDetail_URL];
     
     [ZSTools post:url

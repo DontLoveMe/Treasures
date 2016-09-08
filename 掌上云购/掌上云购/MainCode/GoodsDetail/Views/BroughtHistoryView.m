@@ -132,7 +132,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NSLogZS(@"点击了第%ld个单元格",indexPath.row);
+    NSLogZS(@"点击了第%ld个单元格",(long)indexPath.row);
     
 }
 

@@ -127,7 +127,6 @@
                
            }];
 
-
 }
 //关于
 - (IBAction)aboutUsAction:(UIButton *)sender {
@@ -267,8 +266,63 @@
     
     [defaults synchronize];
     
+    [self requestCartList];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
+
+- (void)requestCartList{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [params setObject:userId forKey:@"buyUserId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartList_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSArray *dataArr = [json objectForKey:@"data"];
+              NSMutableArray *cloudArr = [NSMutableArray array];
+              for (int i = 0 ; i < dataArr.count; i ++) {
+                  
+                  NSDictionary *dic = [dataArr objectAtIndex:i];
+                  NSInteger numbers = 1;
+                  if (![[dic objectForKey:@"buyNumbers"] isEqual:[NSNull null]]) {
+                      numbers = [[dic objectForKey:@"buyNumbers"] integerValue];
+                  }
+                  
+                  NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
+                                          @"name":[dic objectForKey:@"name"],
+                                          //                              @"proPictureList":[dic objectForKey:@"proPictureList"],
+                                          @"totalShare":[dic objectForKey:@"totalShare"],
+                                          @"surplusShare":[dic objectForKey:@"surplusShare"],
+                                          @"buyTimes":[NSNumber numberWithInteger:numbers]};
+                  [cloudArr addObject:goods];
+                  
+              }
+              if (cloudArr.count > 0) {
+                  
+                  [CartTools addCartList:cloudArr];
+                  
+              }else{
+                  
+                  
+              }
+              
+          } failure:^(NSError *error) {
+             
+              NSLogZS(@"合并购物车失败");
+              
+          }];
+    
+}
+
+
 //#pragma mark - 监听键盘事件
 //- (void)viewWillAppear:(BOOL)animated{
 //

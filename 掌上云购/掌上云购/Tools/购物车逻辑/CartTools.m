@@ -238,11 +238,4 @@
     
 }
 
-#warning 这里计算总数
-+ (CGFloat)cartTotalCost{
-
-        return NO;
-    
-}
-
 @end

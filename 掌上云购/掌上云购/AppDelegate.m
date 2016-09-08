@@ -104,18 +104,14 @@
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     }else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+        UIUserNotificationType myTypes = UIUserNotificationTypeBadge|UIUserNotificationTypeAlert|UIUserNotificationTypeSound;
+        [[UIApplication sharedApplication]registerForRemoteNotifications];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:myTypes
+                                                                                                              categories:nil]];
     }
     
-    //     在 App 启动时注册百度云推送服务，需要提供 Apikey
-//    [BPush registerChannel:launchOptions
-//                    apiKey:@"IgbPfZuQk1t1VL8v57eM1IVq"
-//                  pushMode:BPushModeDevelopment
-//           withFirstAction:nil
-//          withSecondAction:nil
-//              withCategory:nil
-//                   isDebug:YES];
+    //在 App 启动时注册百度云推送服务，需要提供 Apikey
     [BPush registerChannel:launchOptions
                     apiKey:@"kRYXondRVDtp9eodsFNwVFxH"
                   pushMode:BPushModeDevelopment

@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "LoginViewController.h"
 
 @interface PersonViewController : BaseViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 

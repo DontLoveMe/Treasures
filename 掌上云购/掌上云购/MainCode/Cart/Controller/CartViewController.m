@@ -302,35 +302,73 @@
 #pragma mark---按钮事件
 - (void)buyAction:(UIButton *)button{
 
-//    id next = [self nextResponder];
-//    while (next != nil) {
-//        
-//        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
-//            
-//            //获得标签控制器
-//            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
-//            //修改索引
-//            tb.selectedIndex = 0;
-//            //原选中标签修改
-//            tb.selectedItem.isSelected = NO;
-//            //选中新标签
-//            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
-//            item.isSelected = YES;
-//            //设置为上一个选中
-//            tb.selectedItem = item;
-//            
-//            return;
-//        }
-//        next = [next nextResponder];
-//    }
+    id next = [self nextResponder];
+    while (next != nil) {
+        
+        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+            
+            //获得标签控制器
+            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
+            //修改索引
+            tb.selectedIndex = 0;
+            //原选中标签修改
+            tb.selectedItem.isSelected = NO;
+            //选中新标签
+            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
+            item.isSelected = YES;
+            //设置为上一个选中
+            tb.selectedItem = item;
+            
+            return;
+        }
+        next = [next nextResponder];
+    }
 
 }
 
 -(void)PayClicked:(UIButton *)btn{
 
-    PayViewController *VC = [[PayViewController alloc]init];
-    
-    [self.navigationController pushViewController:VC animated:YES];
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic != nil){
+
+        PayViewController *VC = [[PayViewController alloc]init];
+        
+        [self.navigationController pushViewController:VC animated:YES];
+        
+    }else{
+        
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                         message:@"您尚未登录，是否马上登录?"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ensureAction = [UIAlertAction actionWithTitle:@"好的"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+                                                                 LoginViewController *lVC = [[LoginViewController alloc] init];
+                                                                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+                                                                 [self presentViewController:nav animated:YES completion:nil];
+                                                                 
+                                                             }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+                                                                 [alertVC dismissViewControllerAnimated:YES
+                                                                                             completion:^{
+                                                                                                 
+                                                                                             }];
+                                                                 
+                                                             }];
+        [alertVC addAction:ensureAction];
+        [alertVC addAction:cancelAction];
+        [self presentViewController:alertVC
+                           animated:YES
+                         completion:nil];
+        
+    }
 
 }
 
@@ -345,7 +383,7 @@
                                     animated:YES];
         }
         selectNum = 0;
-        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
     
     }else{
     
@@ -357,7 +395,7 @@
             
         }
         selectNum = _dataArray.count;
-        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
     }
     
 }
@@ -391,7 +429,7 @@
             _bottomView.hidden = NO;
             specialTag = 0;
             //计算总价
-            _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+            _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
             NSInteger totalPrice = 0;
             for (int i = 0; i < _dataArray.count; i ++) {
                 
@@ -400,7 +438,7 @@
                 NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
                 totalPrice = totalPrice + singlePrice * num;
             }
-            _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+            _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
             [_tabview reloadData];
             
         }
@@ -474,7 +512,7 @@
         _rightbtn.hidden = NO;
         _deleteView.hidden = YES;
         //计算总价
-        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
         NSInteger totalPrice = 0;
         for (int i = 0; i < _dataArray.count; i ++) {
             
@@ -483,7 +521,7 @@
             NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
             totalPrice = totalPrice + singlePrice * num;
         }
-        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
         [_tabview reloadData];
         
     }
@@ -518,7 +556,7 @@
     if (specialTag) {
         
         selectNum ++;
-        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
         
     }else{
         
@@ -534,7 +572,7 @@
     if (specialTag) {
         
         selectNum --;
-        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",selectNum];
+        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
         
     }else{
         
@@ -567,7 +605,7 @@
         _rightbtn.hidden = NO;
         _deleteView.hidden = YES;
         //计算总价
-        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
         NSInteger totalPrice = 0;
         for (int i = 0; i < _dataArray.count; i ++) {
             
@@ -576,7 +614,7 @@
             NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
             totalPrice = totalPrice + singlePrice * num;
         }
-        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
         [_tabview reloadData];
         
     }
@@ -605,7 +643,7 @@
         _rightbtn.hidden = NO;
         _deleteView.hidden = YES;
         //计算总价
-        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
         NSInteger totalPrice = 0;
         for (int i = 0; i < _dataArray.count; i ++) {
             
@@ -614,7 +652,7 @@
             NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
             totalPrice = totalPrice + singlePrice * num;
         }
-        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
         [_tabview reloadData];
         
     }
@@ -643,7 +681,7 @@
         _rightbtn.hidden = NO;
         _deleteView.hidden = YES;
         //计算总价
-        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",_dataArray.count];
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
         NSInteger totalPrice = 0;
         for (int i = 0; i < _dataArray.count; i ++) {
             
@@ -652,90 +690,48 @@
             NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
             totalPrice = totalPrice + singlePrice * num;
         }
-        _pricesum.text = [NSString stringWithFormat:@"%ld 元",totalPrice];
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
         [_tabview reloadData];
     
     }
-#warning 登陆的时候必须合并
-//    [self requestCartList];
-    
-}
 
-- (void)requestCartList{
-
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"buyUserId"];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartList_URL];
-    
-    [ZSTools post:url
-           params:params
-          success:^(id json) {
-              
-              NSArray *dataArr = [json objectForKey:@"data"];
-              NSMutableArray *cloudArr = [NSMutableArray array];
-              for (int i = 0 ; i < dataArr.count; i ++) {
-                  
-                  NSDictionary *dic = [dataArr objectAtIndex:i];
-                  NSInteger numbers = 1;
-                  if (![[dic objectForKey:@"buyNumbers"] isEqual:[NSNull null]]) {
-                      numbers = [[dic objectForKey:@"buyNumbers"] integerValue];
-                  }
-
-                  NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
-                                        @"name":[dic objectForKey:@"name"],
-//                              @"proPictureList":[dic objectForKey:@"proPictureList"],
-                                  @"totalShare":[dic objectForKey:@"totalShare"],
-                                @"surplusShare":[dic objectForKey:@"surplusShare"],
-                                    @"buyTimes":[NSNumber numberWithInteger:numbers]};
-                  [cloudArr addObject:goods];
-                      
-                  }
-              if (cloudArr.count > 0) {
-                  bool issuccess = [CartTools addCartList:cloudArr];
-                  
-                  if (issuccess) {
-                      
-                      _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-                      [_tabview reloadData];
-                      
-                  }
-                  
-              }else{
-              
-                  
-              }
-              
-          } failure:^(NSError *error) {
-              
-          }];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
 
     [super viewWillDisappear:animated];
     
-    [self updateCartList];
-    
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if (userDic) {
+        [self updateCartList];
+    }else{
+        return;
+    }
 }
 
 - (void)updateCartList{
 
     NSArray *uploadArr = [NSArray arrayWithArray:[CartTools getCartList]];
     NSMutableArray *updateList = [NSMutableArray array];
+    
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    
     for (int i = 0; i < uploadArr.count; i ++) {
         
         NSDictionary *dic = [uploadArr objectAtIndex:i];
         NSDictionary *updateDic = @{@"productId":[dic objectForKey:@"id"],
                                     @"qty":[dic objectForKey:@"buyTimes"],
-                                    @"buyUserId":@"1",
+                                    @"buyUserId":userId,
                                     @"buyNum":@"10"};
         [updateList addObject:updateDic];
+    
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"buyUserId"];
+    [params setObject:userId forKey:@"buyUserId"];
     [params setObject:updateList forKey:@"list"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CartListUpload_URL];

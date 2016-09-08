@@ -229,14 +229,12 @@
 
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.section==0&&indexPath.row==0) {
         
         
         SunSharingViewController *VC = [[SunSharingViewController alloc]init];
-        
         
         VC.hidesBottomBarWhenPushed = YES;
         

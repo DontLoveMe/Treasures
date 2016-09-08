@@ -124,6 +124,6 @@
         default:
             break;
     }
-    NSLogZS(@"%ld",sender.selectedSegmentIndex);
+    NSLogZS(@"%ld",(long)sender.selectedSegmentIndex);
 }
 @end

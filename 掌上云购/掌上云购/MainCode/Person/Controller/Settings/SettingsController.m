@@ -254,6 +254,8 @@
             
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userDic"];
             
+            [CartTools realaseCartList];
+            
             [weakSelf.navigationController popViewControllerAnimated:YES];
 
         }

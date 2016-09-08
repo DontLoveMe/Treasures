@@ -138,6 +138,8 @@
 -(void)PayClicked:(UIButton *)btn{
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    
     [params setObject:@"1" forKey:@"buyUserId"];
     [params setObject:@"0" forKey:@"payType"];
     [params setObject:@"0" forKey:@"cashConsume"];
@@ -224,7 +226,7 @@
             NSArray *carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
             
             //计算总价
-            cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品",carArr.count];
+            cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)carArr.count];
             
             cell.backgroundColor = TableViewBackColor;
             
@@ -256,7 +258,7 @@
                 totalPrice = totalPrice + singlePrice * num;
             }
             
-            cell.goodsTotal.text = [NSString stringWithFormat:@"余额支付:%ld元",totalPrice];
+            cell.goodsTotal.text = [NSString stringWithFormat:@"余额支付:%ld元",(long)totalPrice];
             
             cell.backgroundColor = TableViewBackColor;
             
