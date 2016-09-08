@@ -138,7 +138,7 @@
             treasureNum.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
-            treasureNum.text = @"夺宝号码：20160817237891";
+            treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
             treasureNum.textColor = [UIColor darkGrayColor];
             [goodsDetailView addSubview:treasureNum];
             
@@ -148,6 +148,9 @@
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [previewAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             previewAllButton.backgroundColor = [UIColor whiteColor];
+            [previewAllButton addTarget:self
+                                 action:@selector(previewAll:)
+                       forControlEvents:UIControlEventTouchUpInside];
             [goodsDetailView addSubview:previewAllButton];
             
         }
@@ -432,7 +435,11 @@
         
     }else if (indexPath.row == 2) {
         
-        
+        //晒单分享
+        SunSharingViewController *VC = [[SunSharingViewController alloc]init];
+        VC.hidesBottomBarWhenPushed = YES;
+        VC.productID = [_dataDic objectForKey:@"id"];
+        [[self viewController].navigationController pushViewController:VC animated:YES];
     
     }else if (indexPath.row == 3) {
         NSLogZS(@"请上拉");
@@ -452,6 +459,16 @@
     [[self viewController].navigationController pushViewController:CWVC
                                                           animated:YES];
 
+}
+
+- (void)previewAll:(UIButton *)button{
+
+    NSLogZS(@"点击查看全部了");
+    PreviewAllController *PAVC = [[PreviewAllController alloc] init];
+    PAVC.dataDic = _dataDic;
+    [[self viewController].navigationController pushViewController:PAVC
+                                                          animated:YES];
+    
 }
 
 //取到视图控制器

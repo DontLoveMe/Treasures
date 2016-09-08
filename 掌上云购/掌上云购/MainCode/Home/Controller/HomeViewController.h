@@ -13,12 +13,13 @@
 #import "WingNotificationTableView.h"
 #import "HomeFunctionControl.h"
 #import "HomeGoodsCell.h"
+#import "HomeGoodsHeadView.h"
 
 #import "GoodsDetailController.h"
 #import "HomeSearchController.h"
 #import "SunSharingViewController.h"
 
-@interface HomeViewController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,homeGoodsCellDelegate>{
+@interface HomeViewController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,homeGoodsCellDelegate,UIScrollViewDelegate>{
  
     //背景
     UIScrollView        *_bgScrollView;

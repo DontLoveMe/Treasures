@@ -126,7 +126,7 @@
     [params setObject:@{@"productId":_goodsID}
                forKey:@"paramsMap"];
     [params setObject:@"10" forKey:@"rows"];
-    [params setObject:[NSNumber numberWithInteger:indexPath]
+    [params setObject:[NSNumber numberWithInteger:indexPath + 1]
                forKey:@"page"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsHistoryPrize_URL];

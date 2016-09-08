@@ -59,7 +59,7 @@
 
     _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
-    
+    _bgScrollView.delegate = self;
     [self.view addSubview:_bgScrollView];
     
     [self initTopView];
@@ -174,14 +174,14 @@
         
     }
     
-    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom, KScreenWidth, 1)];
+    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 39, KScreenWidth, 1)];
     lineView.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
-    [_bgScrollView addSubview:lineView];
+    [_segmentView addSubview:lineView];
     
-    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom - 1, KScreenWidth / 4, 2)];
+    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 39, KScreenWidth / 4, 2)];
     selectImg.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     selectImg.tag = 50;
-    [_bgScrollView addSubview:selectImg];
+    [_segmentView addSubview:selectImg];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     //设置滑动方向
@@ -190,6 +190,20 @@
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
     _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f) collectionViewLayout:layout];
+    
+    MJRefreshHeader *header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        
+        _bgScrollView.contentOffset = CGPointMake(0, _functionView.bottom + 4);
+        _segmentView.frame = CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f);
+        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f);
+        _bgScrollView.scrollEnabled = YES;
+        [_goodsList.mj_header endRefreshing];
+        _goodsList.scrollEnabled = NO;
+        _bgScrollView.delegate = self;
+        
+    }];
+    _goodsList.mj_header = header;
+    
     _goodsList.scrollEnabled = NO;
     _goodsList.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
     _goodsList.delegate = self;
@@ -197,7 +211,10 @@
     [_goodsList registerNib:[UINib nibWithNibName:@"HomeGoodsCell"
                                            bundle:[NSBundle mainBundle]]
  forCellWithReuseIdentifier:@"HomeGoods_Cell"];
-//    [_goodsList registerClass:[HeaderCRView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:Identifier];
+    [_goodsList registerNib:[UINib nibWithNibName:@"HomeGoodsHeadView"
+                                           bundle:[NSBundle mainBundle]]
+ forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+        withReuseIdentifier:@"HomeGoodsHead_View"];
     [_bgScrollView  addSubview:_goodsList];
     
 }
@@ -264,6 +281,15 @@
     
     return cell;
 }
+
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//    //从缓存中获取 Headercell
+//    HomeGoodsHeadView *cell = (HomeGoodsHeadView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeGoodsHead_View" forIndexPath:indexPath];
+//    return cell;
+//}
+
 //设置单元格的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -275,20 +301,6 @@
 
     return UIEdgeInsetsMake(0, 0, 0, 0);
     
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-
-    return CGSizeMake(KScreenWidth, 100);
-
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-//    [self.navigationController pushViewController:GDVC
-//                                         animated:YES];
-//    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -443,6 +455,30 @@
           } failure:^(NSError *error) {
               
           }];
+
+}
+
+#pragma mark - 监听bgscrollview的滑动
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    CGFloat offset_y = scrollView.contentOffset.y;
+    NSLog(@"%f",offset_y - _segmentView.top);
+    if (offset_y >= _segmentView.top) {
+        
+        scrollView.delegate = nil;
+        _segmentView.frame = CGRectMake(0, offset_y, KScreenWidth, 40.f);
+        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f);
+        _bgScrollView.scrollEnabled = NO;
+        _goodsList.scrollEnabled = YES;
+    }
+    
+}
+
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//
+//}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 
 }
 

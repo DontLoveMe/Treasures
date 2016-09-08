@@ -50,8 +50,6 @@
     [self initNavBar];
     [self initViews];
     
-    [self requestData];
-    
 }
 
 #pragma mark - 创建子视图
@@ -211,7 +209,7 @@
         [_bottomView addSubview:_newOrderNumLabel];
     
     }
-    
+    [self requestData];
 }
 
 - (void)buyNowAction:(UIButton *)button{
@@ -341,6 +339,7 @@
     
 }
 
+
 #pragma mark 请求网络数据
 - (void)requestData{
     
@@ -468,7 +467,6 @@
         }else if (_isAnnounced == 3){
             
             _oherFunctionTableView.height = 308.f;
-
             
         }
         _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);

@@ -66,6 +66,8 @@
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
 		DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */; };
 		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
+		DD5607671D8147D60054B1A8 /* PreviewAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607651D8147D60054B1A8 /* PreviewAllController.m */; };
+		DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607661D8147D60054B1A8 /* PreviewAllController.xib */; };
 		DD6B523B1D6DA31B00B6297F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52331D6DA31B00B6297F /* 1.png */; };
 		DD6B523C1D6DA31B00B6297F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52341D6DA31B00B6297F /* 2.png */; };
 		DD6B523D1D6DA31B00B6297F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52351D6DA31B00B6297F /* 3.png */; };
@@ -407,6 +409,9 @@
 		DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGoodsHeadView.h; sourceTree = "<group>"; };
 		DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGoodsHeadView.m; sourceTree = "<group>"; };
 		DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGoodsHeadView.xib; sourceTree = "<group>"; };
+		DD5607641D8147D60054B1A8 /* PreviewAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewAllController.h; sourceTree = "<group>"; };
+		DD5607651D8147D60054B1A8 /* PreviewAllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewAllController.m; sourceTree = "<group>"; };
+		DD5607661D8147D60054B1A8 /* PreviewAllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewAllController.xib; sourceTree = "<group>"; };
 		DD6B52331D6DA31B00B6297F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		DD6B52341D6DA31B00B6297F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		DD6B52351D6DA31B00B6297F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -1148,6 +1153,9 @@
 				DDF92B941D6A9C3D009D5A1E /* GoodsDetailPTController.h */,
 				DDF92B951D6A9C3D009D5A1E /* GoodsDetailPTController.m */,
 				DDF92B961D6A9C3D009D5A1E /* GoodsDetailPTController.xib */,
+				DD5607641D8147D60054B1A8 /* PreviewAllController.h */,
+				DD5607651D8147D60054B1A8 /* PreviewAllController.m */,
+				DD5607661D8147D60054B1A8 /* PreviewAllController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1971,6 +1979,7 @@
 				DDF92D8A1D6A9C5B009D5A1E /* sort0_checked.png in Resources */,
 				DDF92C631D6A9C3D009D5A1E /* ProductCell.xib in Resources */,
 				DDF92C991D6A9C3D009D5A1E /* GoodsStateCell.xib in Resources */,
+				DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */,
 				DDF92D851D6A9C5B009D5A1E /* 喇叭图标.png in Resources */,
 				DDF92C7F1D6A9C3D009D5A1E /* ConfirmGoodsController.xib in Resources */,
 				DDF92D571D6A9C5B009D5A1E /* 我的-头像.png in Resources */,
@@ -2126,6 +2135,7 @@
 				D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */,
 				DDF92C741D6A9C3D009D5A1E /* CustomerCareController.m in Sources */,
 				D625D9F71D7E6D5600316A49 /* SearchGoodsController.m in Sources */,
+				DD5607671D8147D60054B1A8 /* PreviewAllController.m in Sources */,
 				D6C09BF61D79150F00C092A7 /* TZPhotoPreviewController.m in Sources */,
 				DDF92C761D6A9C3D009D5A1E /* HisCenterController.m in Sources */,
 				DDF92CE51D6A9C4F009D5A1E /* UIColor+RGB.m in Sources */,
