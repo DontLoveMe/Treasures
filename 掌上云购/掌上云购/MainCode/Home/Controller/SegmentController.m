@@ -18,6 +18,9 @@
 @property (nonatomic,strong)ProductCollectionView *collectionView;
 @property (nonatomic,strong)UIButton *selectBtn;
 
+@property (nonatomic,strong)NSMutableArray *data;
+@property (nonatomic,assign)NSInteger page;
+
 @end
 
 @implementation SegmentController
@@ -63,6 +66,9 @@
     [super viewDidLoad];
     self.title = @"掌上云购";
     
+    _page = 1;
+    _data = [NSMutableArray array];
+    
     [self requestSegmentData];
 
     [self initNavBar];
@@ -101,7 +107,7 @@
         [_topKindView addSubview:button];
         
         
-        if (i == 0) {
+        if (i == 1) {
             _selectBtn = button;
             _selectBtn.selected = YES;
         }
@@ -120,6 +126,54 @@
     _collectionView.hidden = NO;
     [self.view addSubview:_collectionView];
     
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        switch (_selectBtn.tag - 100) {
+            case 1:
+                [self requestGoodsList:@"3"];
+                break;
+            case 2:
+                [self requestGoodsList:@"2"];
+                break;
+            case 3:
+                [self requestGoodsList:@"1"];
+                break;
+            case 4:
+                [self requestGoodsList:@"4"];
+                
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    _collectionView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        switch (_selectBtn.tag - 100) {
+            case 1:
+                [self requestGoodsList:@"3"];
+                break;
+            case 2:
+                [self requestGoodsList:@"2"];
+                break;
+            case 3:
+                [self requestGoodsList:@"1"];
+                break;
+            case 4:
+                [self requestGoodsList:@"4"];
+                
+                break;
+            default:
+                break;
+        }
+    }];
+    _collectionView.mj_footer = footer;
+    
+    
 //    _collectionView.data = @[@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品"];
     
     _collectionView.delegate = self;
@@ -134,7 +188,7 @@
     [segView setTagBlock:^(NSInteger index) {
         NSLog(@"选择竖排分类回调%ld",(long)index);
         NSDictionary *dic = _segmentData[index];
-        
+        _page = 1;
         _segmentID = [dic[@"id"] stringValue];
         if (index == 0) {
             _segmentID = nil;
@@ -185,7 +239,8 @@
         [params setObject:@{@"orderType":kindStr}
                    forKey:@"paramsMap"];
     }
-    
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@20 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
     
     [ZSTools post:url
@@ -193,8 +248,31 @@
           success:^(id json) {
               
               if ([json objectForKey:@"flag"]) {
-                  _collectionView.data = json[@"data"];
+                  NSArray *dataArr = json[@"data"];
                   [_collectionView reloadData];
+                  if (_page == 1) {
+                      [_data removeAllObjects];
+                      _data = dataArr.mutableCopy;
+                      _collectionView.data = _data;
+                      [_collectionView.mj_footer resetNoMoreData];
+                      [_collectionView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_data addObjectsFromArray:dataArr];
+                          
+                          _collectionView.data = _data;
+                          [_collectionView.mj_footer endRefreshing];
+                          
+                      }else {
+                          [_collectionView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  
+                  [_collectionView reloadData];
+
               }
               
           } failure:^(NSError *error) {
@@ -211,6 +289,7 @@
 //    NSArray *titleArr = @[@"类别",@"人气",@"最新",@"最热",@"总需人次⇅"];
 //    NSString *titleStr = [titleArr objectAtIndex:button.tag - 100];
 //    NSLog(@"选择了：%@",titleStr);
+    _page = 1;
     switch (button.tag - 100) {
         case 1:
             [self requestGoodsList:@"3"];
@@ -226,7 +305,7 @@
 //                button.selected = !button.selected;
                 static BOOL isAscendingOrder;
                 isAscendingOrder = !isAscendingOrder;
-                if (isAscendingOrder) {
+                if (!isAscendingOrder) {
                     [self requestGoodsList:@"4"];
                 }else {
                     [self requestGoodsList:@"5"];

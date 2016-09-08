@@ -24,9 +24,13 @@
     
     _titleLabel.text = _rcModel.name;
     _issueLabel.text = [NSString stringWithFormat:@"期号：%@",_rcModel.saleDraw.drawTimes];
-    _sumLabel.text = [NSString stringWithFormat:@"总需人次：%@人次",_rcModel.totalShare];
-    _surplusLabel.text =[NSString stringWithFormat:@"剩余人次：：%@人次",_rcModel.surplusShare];
-    _participateLabel.text = [NSString stringWithFormat:@"本期参与人次：%@人次",_rcModel.sellShare];
+    _sumLabel.text = [NSString stringWithFormat:@"总需人次：%ld人次",(long)_rcModel.saleDraw.totalShare];
+    _surplusLabel.text =[NSString stringWithFormat:@"剩余人次：：%ld人次",(long)_rcModel.saleDraw.surplusShare];
+    _participateLabel.text = [NSString stringWithFormat:@"本期参与人次：%ld人次",(long)_rcModel.saleDraw.sellShare];
+    
+    NSInteger prograss = _rcModel.saleDraw.sellShare*100/_rcModel.saleDraw.totalShare;
+    _progressView.progress = prograss;
+    _progressLabel.text = [NSString stringWithFormat:@"%ld%%",prograss];
 }
 
 - (IBAction)AgainAction:(UIButton *)sender {

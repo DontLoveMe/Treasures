@@ -31,7 +31,10 @@
     
     _titleLabel.text = _gsModel.name;
     _totalLabel.text = [NSString stringWithFormat:@"总需人次：%ld",_gsModel.totalShare];
-  
+    NSInteger progress = _gsModel.sellShare*100/_gsModel.totalShare;
+    _progressView.progress = progress;
+    
+    _progressLb.text = [NSString stringWithFormat:@"%ld%%",progress];
     
 }
 

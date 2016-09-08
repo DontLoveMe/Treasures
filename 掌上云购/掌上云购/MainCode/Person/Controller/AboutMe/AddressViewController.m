@@ -106,6 +106,15 @@
               if (isSuccess) {
                   NSArray *arr = json[@"data"];
                   _data = arr.mutableCopy;
+                  
+                  if(arr.count == 1) {
+                      NSDictionary *areaDic = arr[0];
+                      if (![areaDic[@"isDefault"] boolValue]) {
+                          [self setDefault:areaDic[@"id"]];
+                      }
+                  }
+                  
+                  
                   [_tableView reloadData];
                   
               }
