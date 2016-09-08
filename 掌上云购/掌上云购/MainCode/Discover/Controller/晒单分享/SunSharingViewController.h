@@ -10,4 +10,6 @@
 
 @interface SunSharingViewController : BaseViewController
 
+@property (nonatomic ,copy)NSString *productID;
+
 @end

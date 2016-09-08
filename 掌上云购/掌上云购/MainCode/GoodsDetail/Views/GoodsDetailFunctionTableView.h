@@ -12,6 +12,8 @@
 #import "AnnouncedHistoryController.h"
 #import "GoodsDetailPTController.h"
 #import "CountWayController.h"
+#import "PreviewAllController.h"
+#import "SunSharingViewController.h"
 
 @interface GoodsDetailFunctionTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
