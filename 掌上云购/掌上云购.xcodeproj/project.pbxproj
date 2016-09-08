@@ -64,6 +64,8 @@
 		D6EEFA5A1D6C20CC0069A880 /* 我的_设置.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA581D6C20CC0069A880 /* 我的_设置.png */; };
 		D6EEFA5B1D6C20CC0069A880 /* 消息.png in Resources */ = {isa = PBXBuildFile; fileRef = D6EEFA591D6C20CC0069A880 /* 消息.png */; };
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
+		DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */; };
+		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
 		DD6B523B1D6DA31B00B6297F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52331D6DA31B00B6297F /* 1.png */; };
 		DD6B523C1D6DA31B00B6297F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52341D6DA31B00B6297F /* 2.png */; };
 		DD6B523D1D6DA31B00B6297F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52351D6DA31B00B6297F /* 3.png */; };
@@ -402,6 +404,9 @@
 		D6EEFA591D6C20CC0069A880 /* 消息.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "消息.png"; sourceTree = "<group>"; };
 		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
 		DD1B9E461D6EF01C002E9CE9 /* CartTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTools.m; sourceTree = "<group>"; };
+		DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGoodsHeadView.h; sourceTree = "<group>"; };
+		DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGoodsHeadView.m; sourceTree = "<group>"; };
+		DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGoodsHeadView.xib; sourceTree = "<group>"; };
 		DD6B52331D6DA31B00B6297F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		DD6B52341D6DA31B00B6297F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		DD6B52351D6DA31B00B6297F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -1213,6 +1218,9 @@
 				D625D9FB1D7E8EDD00316A49 /* SearchGoodsCell.xib */,
 				D68F25911D6AE8240042E0BE /* 搜索 */,
 				DDF92BBA1D6A9C3D009D5A1E /* 商品分类 */,
+				DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */,
+				DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */,
+				DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1915,6 +1923,7 @@
 				DDF92D811D6A9C5B009D5A1E /* 商品_2.png in Resources */,
 				DDF92C4E1D6A9C3D009D5A1E /* GoodsDetailPTController.xib in Resources */,
 				DDF92D611D6A9C5B009D5A1E /* 红包.png in Resources */,
+				DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */,
 				DDF92C521D6A9C3D009D5A1E /* BroughtHistoryCell.xib in Resources */,
 				DD6B52411D6DA31B00B6297F /* 7.png in Resources */,
 				DDF92CA51D6A9C3D009D5A1E /* SnatchRecordCell.xib in Resources */,
@@ -2099,6 +2108,7 @@
 				DDF92C3E1D6A9C3D009D5A1E /* CartTableViewCell.m in Sources */,
 				DDF92C701D6A9C3D009D5A1E /* AddressViewController.m in Sources */,
 				DDF92C511D6A9C3D009D5A1E /* BroughtHistoryCell.m in Sources */,
+				DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */,
 				DDF92C6E1D6A9C3D009D5A1E /* AddAddressController.m in Sources */,
 				DDF92C3C1D6A9C3D009D5A1E /* PayViewController.m in Sources */,
 				D6C09BEF1D79150F00C092A7 /* TZAssetCell.m in Sources */,

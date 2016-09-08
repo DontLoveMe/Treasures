@@ -189,7 +189,7 @@
     //设置单元格的间隙
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
-    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 400.f) collectionViewLayout:layout];
+    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f) collectionViewLayout:layout];
     _goodsList.scrollEnabled = NO;
     _goodsList.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
     _goodsList.delegate = self;
@@ -197,6 +197,7 @@
     [_goodsList registerNib:[UINib nibWithNibName:@"HomeGoodsCell"
                                            bundle:[NSBundle mainBundle]]
  forCellWithReuseIdentifier:@"HomeGoods_Cell"];
+//    [_goodsList registerClass:[HeaderCRView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:Identifier];
     [_bgScrollView  addSubview:_goodsList];
     
 }
@@ -276,6 +277,12 @@
     
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+
+    return CGSizeMake(KScreenWidth, 100);
+
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     
 //    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
@@ -311,7 +318,12 @@
     UIImageView *activityImgview = [[UIImageView alloc] initWithFrame:CGRectMake(nowIndexpath.row % 2 * (cell.width + 1) + 36, nowIndexpath.row / 2 * (cell.height + 1) + 16.f + _goodsList.top, cell.goodsPic.width,cell.goodsPic.height)];
     //设置图片
     NSArray *picList = [dic objectForKey:@"proPictureList"];
-    [activityImgview setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
+    if (picList.count != 0) {
+        
+        [activityImgview setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
+        
+    }
+    
     [_bgScrollView addSubview:activityImgview];
     
     [UIView animateWithDuration:1.5
