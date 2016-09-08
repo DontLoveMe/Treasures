@@ -50,7 +50,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1dS-Tk-NuO">
-                        <rect key="frame" x="16" y="48.5" width="1" height="231.5"/>
+                        <rect key="frame" x="16" y="53" width="1" height="227"/>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="2YN-AO-IRo"/>
@@ -252,7 +252,7 @@
                     <constraint firstItem="maV-7d-4p8" firstAttribute="top" secondItem="Ebj-hE-GgE" secondAttribute="bottom" constant="15" id="Bru-4W-col"/>
                     <constraint firstItem="SDP-wO-3iD" firstAttribute="top" secondItem="JMQ-jR-oqL" secondAttribute="bottom" constant="9" id="Em4-mC-nj1"/>
                     <constraint firstItem="F0C-cS-guW" firstAttribute="top" secondItem="7Kt-s9-qLj" secondAttribute="bottom" constant="17" id="GQc-3R-SiF"/>
-                    <constraint firstItem="1dS-Tk-NuO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="40.5" id="Jkw-BW-aol"/>
+                    <constraint firstItem="1dS-Tk-NuO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="45" id="Jkw-BW-aol"/>
                     <constraint firstItem="vnf-KF-vAM" firstAttribute="top" secondItem="SXg-sq-bCn" secondAttribute="bottom" constant="5" id="Lf2-X2-AJH"/>
                     <constraint firstItem="of7-CJ-MCV" firstAttribute="top" secondItem="IaR-hW-iKN" secondAttribute="bottom" constant="12" id="NNK-RJ-gDH"/>
                     <constraint firstItem="JMQ-jR-oqL" firstAttribute="top" secondItem="ewg-JG-6aT" secondAttribute="bottom" constant="4" id="O8W-ub-S7A"/>

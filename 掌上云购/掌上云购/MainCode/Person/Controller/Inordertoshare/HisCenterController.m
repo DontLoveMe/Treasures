@@ -444,6 +444,7 @@
             _page = 1;
             [_tableView.mj_footer resetNoMoreData];
             [_dataListArr removeAllObjects];
+            [self requestSnatchData];
 //            [_tableView reloadData];
             break;
         case 201:

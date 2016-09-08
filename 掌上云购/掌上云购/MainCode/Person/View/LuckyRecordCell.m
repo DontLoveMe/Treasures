@@ -20,17 +20,29 @@
 - (void)setLkModel:(RecordModel *)lkModel {
     _lkModel = lkModel;
     
-    Propicturelist *plist = _lkModel.proPictureList[0];
+    NSArray *pArr = _lkModel.proPictureList;
+    if (pArr.count>0) {
+        Propicturelist *prtLs = pArr[0];
+        NSURL *url = [NSURL URLWithString:prtLs.img650];
+        [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+    }
     
-    NSURL *url = [NSURL URLWithString:plist.img650];
-    [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+//    NSURL *url = [NSURL URLWithString:plist.img650];
+//    [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
     
     _titleLabel.text = _lkModel.name;
     _issueLabel.text = [NSString stringWithFormat:@"%@",_lkModel.saleDraw.drawTimes];
     _sumLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.totalShare];
-    _luckyNumLabel.text = _lkModel.saleDraw.drawTimes;
+    _luckyNumLabel.text = _lkModel.saleDraw.drawNumber;
     _participateLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.sellShare];
     _timeLabel.text = _lkModel.saleDraw.drawDate;
+    
+    
+    if ([_lkModel.isVirtualgoods boolValue]) {
+        [_goodsButton setTitle:@"确认商品" forState:UIControlStateNormal];
+    }else {
+        [_goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
+    }
 }
 
 

@@ -15,15 +15,9 @@
              @"ID" : @"id",
              @"pictureList":@"proPictureList"};
 }
-+ (NSDictionary *)objectClassInArray{
-    return @{@"proAttrList" : [Proattrlist class]};
-}
-@end
-
-
-
-@implementation Proattrlist
 
 @end
+
+
 
 

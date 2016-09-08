@@ -76,8 +76,8 @@
     NSNumber *userId = userDic[@"id"];
     [self showHUD:@""];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    if (userDic[@"nickName"]) {
-        [params setObject:userDic[@"nickName"] forKey:@"createBy"];
+    if (![userId isKindOfClass:[NSNull class]]) {
+        [params setObject:userId forKey:@"createBy"];
     }else {
         [params setObject:@"" forKey:@"createBy"];
     }
@@ -87,8 +87,8 @@
     }else{
         [params setObject:@"" forKey:@"drawTimes"];
     }
-    if (_lkModel.saleDraw.productId) {
-        [params setObject:_lkModel.saleDraw.productId forKey:@"saleOrderDetailId"];
+    if (_lkModel.orderDetailId) {
+        [params setObject:@(_lkModel.orderDetailId) forKey:@"saleOrderDetailId"];
     }else{
         [params setObject:@"" forKey:@"saleOrderDetailId"];
     }
@@ -168,7 +168,7 @@
                       [self uploadPicwithFile:_selectedPhotos withIndex:index + 1];
                   }else{
                       
-//                      [self hideSuccessHUD:@"上传成功"];
+                      [self hideSuccessHUD:@"上传成功"];
                   }
                   
               }else{

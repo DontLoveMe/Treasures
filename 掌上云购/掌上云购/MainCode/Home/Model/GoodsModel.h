@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Proattrlist;
+
 @interface GoodsModel : NSObject
 
 @property (nonatomic, copy) NSString *categoryId;
@@ -49,7 +49,7 @@
 
 @property (nonatomic, assign) NSInteger totalShare;
 
-@property (nonatomic, strong) NSArray<Proattrlist *> *proAttrList;
+@property (nonatomic, strong) NSArray<NSDictionary *> *proAttrList;
 
 @property (nonatomic, copy) NSString *createBy;
 
@@ -87,9 +87,4 @@
 
 @end
 
-@interface Proattrlist : NSObject
-
-@property (nonatomic, copy) NSString *attrValue;
-
-@end
 
