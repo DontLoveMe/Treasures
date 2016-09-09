@@ -33,6 +33,8 @@
 + (BOOL)addCountWithIndexPath:(NSInteger)indexPath;
 //减少某一栏数量
 + (BOOL)decreaseCountWithIndexPath:(NSInteger)indexPath;
+//包尾
++ (BOOL)allRestWithIndexPath:(NSInteger)indexPath;
 //计算购物车总价
 + (CGFloat)cartTotalCost;
 

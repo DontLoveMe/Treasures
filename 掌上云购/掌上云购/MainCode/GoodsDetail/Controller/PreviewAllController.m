@@ -98,10 +98,8 @@
         }else{
             [joinNumStr deleteCharactersInRange:NSMakeRange(0, text.length)];
         }
-
         
         theScanner = [NSScanner scannerWithString:joinNumStr];
-        NSLog(@"%@",text);
         
     }
     

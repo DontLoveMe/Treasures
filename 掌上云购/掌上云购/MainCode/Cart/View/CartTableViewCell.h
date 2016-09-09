@@ -18,6 +18,9 @@
 //减少事件
 -(void)reduceCountAtIndexPath:(NSIndexPath *)indexPath;
 
+//包尾事件
+-(void)allRestAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @interface CartTableViewCell : UITableViewCell
@@ -64,6 +67,9 @@
 //
 ////选中状态
 //@property(nonatomic,assign)BOOL selectState;
+
+//包尾按钮
+@property (nonatomic,strong)UIButton    *allRestButton;
 
 @property (nonatomic ,weak)id <CartFunctionDelegate> functionDelegate;
 
