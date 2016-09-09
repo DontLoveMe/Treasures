@@ -33,20 +33,20 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQI-kr-5xF">
-                        <rect key="frame" x="20" y="43" width="1" height="231.5"/>
+                        <rect key="frame" x="20" y="48" width="1" height="226.5"/>
                         <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="EBR-SH-vey"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
                         <rect key="frame" x="10" y="41" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="YAN-i9-naT"/>
                             <constraint firstAttribute="height" constant="20" id="q4U-yC-fx7"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
                         <rect key="frame" x="10" y="76" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="LQM-RC-lzW"/>
@@ -171,7 +171,7 @@
                     <constraint firstItem="cAN-IG-U5M" firstAttribute="leading" secondItem="DQI-kr-5xF" secondAttribute="trailing" constant="30" id="GuL-RW-Uo4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ETv-i7-X29" secondAttribute="trailing" constant="-8" id="I7u-bo-JQ9"/>
                     <constraint firstItem="Omb-8z-tfL" firstAttribute="top" secondItem="JCD-61-iIg" secondAttribute="bottom" constant="15" id="JTj-V8-hFy"/>
-                    <constraint firstItem="DQI-kr-5xF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="35" id="LsM-Az-L4o"/>
+                    <constraint firstItem="DQI-kr-5xF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="40" id="LsM-Az-L4o"/>
                     <constraint firstItem="TXH-Hw-xIi" firstAttribute="top" secondItem="fkI-az-2cH" secondAttribute="bottom" constant="29" id="PpN-Jl-hgp"/>
                     <constraint firstItem="Jdw-h3-IAW" firstAttribute="leading" secondItem="TXH-Hw-xIi" secondAttribute="trailing" constant="16" id="Qkk-iM-JSX"/>
                     <constraint firstItem="FUo-Qu-fKD" firstAttribute="leading" secondItem="cAN-IG-U5M" secondAttribute="trailing" constant="8" id="RFg-M2-H2s"/>
@@ -205,6 +205,7 @@
         <image name="双框.png" width="662" height="328"/>
         <image name="按钮框.png" width="471" height="200"/>
         <image name="未选中.png" width="200" height="200"/>
+        <image name="状态-亮.png" width="200" height="200"/>
         <image name="状态-暗.png" width="200" height="200"/>
         <image name="选中.png" width="200" height="200"/>
     </resources>

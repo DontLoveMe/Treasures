@@ -71,6 +71,9 @@
     if (indexPath.section == 0) {
         ConfirmGoodsCell_1 *cell = [tableView dequeueReusableCellWithIdentifier:@"ConfirmGoodsCell_1" forIndexPath:indexPath];
 
+        cell.titleLabel.text = _orderDic[@"productName"];
+        cell.participateLabel.text = [NSString stringWithFormat:@"参与人次：%@",_orderDic[@"qty"]];
+        
         return cell;
     }
 //    ConfirmGoodsCell_2 *cell = [tableView dequeueReusableCellWithIdentifier:@"ConfirmGoodsCell_2" forIndexPath:indexPath];

@@ -37,12 +37,7 @@
     _participateLabel.text = [NSString stringWithFormat:@"%ld人次",_lkModel.saleDraw.sellShare];
     _timeLabel.text = _lkModel.saleDraw.drawDate;
     
-    
-    if ([_lkModel.isVirtualgoods boolValue]) {
-        [_goodsButton setTitle:@"确认商品" forState:UIControlStateNormal];
-    }else {
-        [_goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
-    }
+
 }
 
 

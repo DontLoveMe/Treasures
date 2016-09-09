@@ -11,5 +11,7 @@
 @interface LoveView : UIView<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UICollectionView *collectionView;
+@property (nonatomic,strong)UILabel *loveLabel;
+@property (nonatomic,strong)NSArray *loveData;
 
 @end
