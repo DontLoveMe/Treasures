@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface RedEnvelopeController : BaseViewController<UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface RedEnvelopeController : BaseViewController<UIScrollViewDelegate>
 
 @end

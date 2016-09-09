@@ -7,6 +7,9 @@
 //
 
 #import "LoveView.h"
+#import "LoveCell.h"
+#import "GoodsModel.h"
+#import "GoodsDetailController.h"
 
 @implementation LoveView {
     NSString *_identify;
@@ -35,17 +38,37 @@
     }
     return self;
 }
-
+- (void)requestLoveData {
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,LoveProduct_URL];
+    
+    
+    [ZSTools post:url
+           params:nil
+          success:^(id json) {
+              
+              BOOL flag = [json objectForKey:@"flag"];
+              if (flag) {
+                  self.loveData = json[@"data"];
+                  [_collectionView reloadData];
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+}
 - (void)initSubviews {
+    [self requestLoveData];
+    
+    self.backgroundColor = [UIColor whiteColor];
     
     CGFloat w = (self.width-8*4)/3;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(w, w*1.3);
+    layout.itemSize = CGSizeMake(w, w*1.4);
     layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 25, self.width, w*1.3+10) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 25, self.width, w*1.4+10) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_collectionView];
     
@@ -53,32 +76,54 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
-    _identify = @"collectionCell";
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
+    _identify = @"LoveCell";
+    [_collectionView registerNib:[UINib nibWithNibName:@"LoveCell" bundle:nil] forCellWithReuseIdentifier:_identify];
     
-//    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-20, 120, 20)];
-//    _loveLabel.text = @"猜你喜欢";
-//    _loveLabel.textColor = [UIColor blackColor];
-//    _loveLabel.font = [UIFont systemFontOfSize:16];
-//    [self.view addSubview:_loveLabel];
+    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-20, 120, 20)];
+    _loveLabel.text = @"猜你喜欢";
+    _loveLabel.textColor = [UIColor blackColor];
+    _loveLabel.font = [UIFont systemFontOfSize:16];
+    [self addSubview:_loveLabel];
     
 }
+#pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return _loveData.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor grayColor];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
-    cell.backgroundView = imgView;
+    LoveCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
+    GoodsModel *gsModel = [GoodsModel mj_objectWithKeyValues:_loveData[indexPath.row]];
+    cell.gsModel = gsModel;
+   
     
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    GoodsDetailController *gsdtVC = [[GoodsDetailController alloc] init];
+    GoodsModel *gsModel = [GoodsModel mj_objectWithKeyValues:self.loveData[indexPath.row]];
+    gsdtVC.goodsId = gsModel.ID;
+    gsdtVC.drawId = gsModel.drawId;
+    gsdtVC.isAnnounced = 1;
+    [[self viewController].navigationController pushViewController:gsdtVC animated:YES];
 }
 - (void)layoutSubviews {
     
 }
-
+- (UIViewController *)viewController {
+    
+    UIResponder *next = self.nextResponder;
+    
+    do {
+        
+        if ([next isKindOfClass:[UIViewController class]]) {
+            
+            return (UIViewController *)next;
+        }
+        
+        next = next.nextResponder;
+        
+    } while (next != nil);
+    
+    return nil;
+}
 @end

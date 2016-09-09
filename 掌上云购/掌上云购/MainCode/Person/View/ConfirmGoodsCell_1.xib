@@ -67,7 +67,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择使用方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ii-Ta-UCF">
-                        <rect key="frame" x="88" y="99" width="224" height="17"/>
+                        <rect key="frame" x="88" y="96.5" width="224" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -75,7 +75,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="5ii-Ta-UCF" firstAttribute="leading" secondItem="sA1-79-0tR" secondAttribute="trailing" id="5Vz-ze-3ZA"/>
-                    <constraint firstAttribute="bottom" secondItem="5ii-Ta-UCF" secondAttribute="bottom" constant="5" id="9sj-ed-jof"/>
+                    <constraint firstAttribute="bottom" secondItem="5ii-Ta-UCF" secondAttribute="bottom" constant="7" id="9sj-ed-jof"/>
                     <constraint firstAttribute="trailing" secondItem="5ii-Ta-UCF" secondAttribute="trailing" constant="8" id="9ze-tW-aBH"/>
                     <constraint firstItem="gJt-5l-QDN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AmH-lD-Fj2"/>
                     <constraint firstItem="znZ-kg-ggd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="BAR-Aw-rQi"/>
@@ -94,6 +94,13 @@
                     <constraint firstItem="gJt-5l-QDN" firstAttribute="leading" secondItem="vap-RD-kyP" secondAttribute="trailing" constant="2" id="yjT-gc-4cp"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="luckyView" destination="gJt-5l-QDN" id="eh1-vD-8e0"/>
+                <outlet property="participateLabel" destination="vap-RD-kyP" id="0hT-Ub-FaX"/>
+                <outlet property="stateLabel" destination="5ii-Ta-UCF" id="1gh-1k-HjG"/>
+                <outlet property="titleLabel" destination="znZ-kg-ggd" id="34s-qc-WQO"/>
+                <outlet property="titleView" destination="iut-43-bh7" id="Vp5-T8-KpT"/>
+            </connections>
             <point key="canvasLocation" x="278" y="380.5"/>
         </tableViewCell>
     </objects>

@@ -10,4 +10,11 @@
 
 @interface ConfirmGoodsCell_1 : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *participateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *titleView;
+@property (weak, nonatomic) IBOutlet UIImageView *luckyView;
+
 @end

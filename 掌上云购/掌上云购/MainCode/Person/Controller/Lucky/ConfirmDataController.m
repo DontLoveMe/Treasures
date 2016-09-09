@@ -143,11 +143,11 @@
             cell.timeLabel4.text = @"";
             
             cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
-            if (![_orderDic[@"createDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel1.text = [self dateForString:_orderDic[@"createDate"]];
+            if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel1.text = _orderDic[@"drawDate"];
             }
             if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel2.text = [self dateForString:_orderDic[@"confirmGoodsAddressDate"]];
+                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
             }
             cell.timeLabel3.text = @"";
             cell.timeLabel4.text = @"";
@@ -220,7 +220,7 @@
         return cell;
 
     }
-    if (_state == 2 || _state == 3 || _state == 4) {
+    if (_sectionArr.count>2) {
         if (indexPath.section == 1||indexPath.section == 2) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellStyleSubtitle"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

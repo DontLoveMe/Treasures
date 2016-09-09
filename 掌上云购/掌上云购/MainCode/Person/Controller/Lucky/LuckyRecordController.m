@@ -148,7 +148,11 @@
     [cell setSuerBlock:^{
         [weakSelf confirmAddress:rModel];
     }];
-    
+    if ([rModel.isVirtualgoods boolValue]) {
+        [cell.goodsButton setTitle:@"确认商品" forState:UIControlStateNormal];
+    }else {
+        [cell.goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
+    }
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -26,7 +26,7 @@
     UICollectionView *_collectionView;
     NSString *_identify;
     
-    UILabel *_loveLabel;//猜你喜欢label
+    LoveView *_loveView;//猜你喜欢label
 }
 
 #pragma mark - 导航栏
@@ -59,7 +59,7 @@
     
     [self createSubviews];
     
-    [self createCollectionView];
+    [self createBottomView];
     [self requestUserRedEnvelope];
     [self requestNoUserRedEnvelope];
 }
@@ -136,6 +136,7 @@
                   _useTableView.data = json[@"data"];
                   if (_useTableView.data.count>0) {
                       _useTableView.noView.hidden = YES;
+                      _loveView.hidden = YES;
                   }else {
                       _useTableView.noView.hidden = NO;
                   }
@@ -172,7 +173,7 @@
                   
                   if (_noUseTableView.data.count>0) {
                       _noUseTableView.noView.hidden = YES;
-                      
+                      _loveView.hidden = YES;
                   }else {
                       _noUseTableView.noView.hidden = NO;
                   }
@@ -232,48 +233,14 @@
 }
 
 //创建下方视图
-- (void)createCollectionView {
+- (void)createBottomView {
     
     CGFloat w = (KScreenWidth-8*4)/3;
     
-//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake(w, w*1.3);
-//    layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
-//    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//    
-//    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-10-64, KScreenWidth, w*1.3+10) collectionViewLayout:layout];
-//    _collectionView.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:_collectionView];
+    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-35-64, KScreenWidth, w*1.4+35)];
+    [self.view addSubview:_loveView];
     
-    LoveView *loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-10-64, KScreenWidth, w*1.3+10)];
-    [self.view addSubview:loveView];
-    
-//    _collectionView.delegate = self;
-//    _collectionView.dataSource = self;
-//    
-//    _identify = @"collectionCell";
-//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
-//    
-//    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-20, 120, 20)];
-//    _loveLabel.text = @"猜你喜欢";
-//    _loveLabel.textColor = [UIColor blackColor];
-//    _loveLabel.font = [UIFont systemFontOfSize:16];
-//    [self.view addSubview:_loveLabel];
+
 }
 
-#pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
-}
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor grayColor];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
-    cell.backgroundView = imgView;
-    
-    return cell;
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
 @end

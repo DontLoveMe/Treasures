@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LoveCell">
+            <rect key="frame" x="0.0" y="0.0" width="148" height="148"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="148" height="148"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ycE-4Y-Iwt">
+                        <rect key="frame" x="0.0" y="0.0" width="148" height="106"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWn-Kr-gSy">
+                        <rect key="frame" x="2" y="107" width="144" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="cGF-5k-IyN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O66-sP-Xer" customClass="ProgressView">
+                        <rect key="frame" x="2" y="133" width="144" height="13"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="D7Z-Pr-NsZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="IWn-Kr-gSy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="0x1-kU-9Gu"/>
+                <constraint firstAttribute="trailing" secondItem="ycE-4Y-Iwt" secondAttribute="trailing" id="3ns-N6-ylw"/>
+                <constraint firstItem="O66-sP-Xer" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="ExS-de-Rt9"/>
+                <constraint firstAttribute="trailing" secondItem="IWn-Kr-gSy" secondAttribute="trailing" constant="2" id="Ld8-71-Xz7"/>
+                <constraint firstItem="O66-sP-Xer" firstAttribute="top" secondItem="IWn-Kr-gSy" secondAttribute="bottom" constant="2" id="Qhs-uM-fYb"/>
+                <constraint firstAttribute="trailing" secondItem="O66-sP-Xer" secondAttribute="trailing" constant="2" id="RF0-5P-YAD"/>
+                <constraint firstAttribute="bottom" secondItem="O66-sP-Xer" secondAttribute="bottom" constant="2" id="Zre-mI-eDr"/>
+                <constraint firstItem="ycE-4Y-Iwt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="raA-jG-80v"/>
+                <constraint firstItem="ycE-4Y-Iwt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="t68-Df-gfb"/>
+                <constraint firstItem="IWn-Kr-gSy" firstAttribute="top" secondItem="ycE-4Y-Iwt" secondAttribute="bottom" constant="1" id="vCc-ng-63a"/>
+            </constraints>
+            <size key="customSize" width="148" height="148"/>
+            <connections>
+                <outlet property="imgView" destination="ycE-4Y-Iwt" id="CYa-uW-lGM"/>
+                <outlet property="progressView" destination="O66-sP-Xer" id="6P1-AX-YgF"/>
+                <outlet property="titleLabel" destination="IWn-Kr-gSy" id="Kjx-gQ-ZFa"/>
+            </connections>
+            <point key="canvasLocation" x="252" y="221"/>
+        </collectionViewCell>
+    </objects>
+</document>
