@@ -76,6 +76,17 @@
 #define LuckyNumberList_URL @"/pcpServer-inf/sale/luckyNumberList"
 //确认地址接口
 #define ConfirmAddress_URL @"/pcpServer-inf/sale/confirmAddress"
+//订单详情接口
+#define SaleOrderStatus_URL @"/pcpServer-inf/sale/saleOrderStatus"
+//确定收货
+#define ConfirmReceipt_URL @"/pcpServer-inf/sale/confirmReceipt"
+//确定物品
+#define ConfirmGoods_URL @"/pcpServer-inf/sale/confirmGoods"
+//延期收货
+#define DeferredReceipt_URL @"/pcpServer-inf/sale/deferredReceipt"
+//已发卡密或充值到余额
+#define RechargeBalance_URL @"/pcpServer-inf/sale/rechargeBalance"
+
 //可用红包列表接口
 #define RedPacketList_URL @"/pcpServer-inf/red/packet/list"
 //已使用/失效红包列表接口

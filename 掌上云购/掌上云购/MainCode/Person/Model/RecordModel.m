@@ -10,12 +10,12 @@
 
 @implementation RecordModel
 
-
-+ (NSDictionary *)objectClassInArray{
-    return @{@"proPictureList" : [Propicturelist class]};
-}
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"ID":@"id"};
+}
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"proPictureList" : [Propicturelist class], @"proAttrList" : [Proattrlist class]};
 }
 @end
 @implementation Saledraw
@@ -30,7 +30,8 @@
 
 @end
 
+@implementation Proattrlist
 
-
+@end
 
 

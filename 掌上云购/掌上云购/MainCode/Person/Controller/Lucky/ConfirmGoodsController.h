@@ -7,11 +7,15 @@
 //
 
 #import "BaseViewController.h"
+#import "RecordModel.h"
+
 
 @interface ConfirmGoodsController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *againButton;
+
+@property (nonatomic,strong)RecordModel *reModel;
 
 @end

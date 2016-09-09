@@ -157,14 +157,17 @@
 - (void)confirmAddress:(RecordModel *)rmodel {
     
     
-    ConfirmDataController *cdVC = [[ConfirmDataController alloc] init];
-    cdVC.rcModel = rmodel;
-    [self.navigationController pushViewController:cdVC animated:YES];
-        //    }else {
-        //        ConfirmGoodsController *cgVC = [[ConfirmGoodsController alloc] init];
-        //        [[self viewController].navigationController pushViewController:cgVC animated:YES];
-        //
-        //    }
+    
+    if ([rmodel.isVirtualgoods boolValue]) {
+        ConfirmGoodsController *cgVC = [[ConfirmGoodsController alloc] init];
+        cgVC.reModel = rmodel;
+        [self.navigationController pushViewController:cgVC animated:YES];
+    }else {
+        ConfirmDataController *cdVC = [[ConfirmDataController alloc] init];
+        cdVC.rcModel = rmodel;
+        [self.navigationController pushViewController:cdVC animated:YES];
+    }
+       
 
     
 }

@@ -233,7 +233,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
-    if (rcModel.status == 3) {
+    if (rcModel.saleDraw.status == 3) {
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];

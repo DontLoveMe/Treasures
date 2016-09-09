@@ -9,6 +9,8 @@
 #import "ConfirmDataController.h"
 #import "LuckyRecordCell.h"
 #import "AddShareController.h"
+#import "AlertController.h"
+#import "AddressViewController.h"
 //#import "GoodsStateCell.h"
 
 @interface ConfirmDataController ()
@@ -22,6 +24,7 @@
     NSString *_identify1;
     NSArray *_sectionArr;
     NSString *_defaultArea;
+    NSDictionary *_orderDic;
 }
 
 #pragma mark - 导航栏
@@ -60,6 +63,9 @@
     
     [self requestAreaData];
     
+    [self requestSaleOrderStatus];
+    
+    
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStyleGrouped];
     [self.view addSubview:_tableView];
     
@@ -95,6 +101,9 @@
             
             cell.stateView1.highlighted = YES;
             cell.stateView2.highlighted = YES;
+            cell.stateView3.highlighted = NO;
+            cell.stateView4.highlighted = NO;
+            cell.stateView5.highlighted = NO;
             
             cell.stateLabel1.highlighted = YES;
             cell.stateLabel2.highlighted = YES;
@@ -114,34 +123,100 @@
             cell.selectAddress.hidden = NO;
             cell.delayReceipt.hidden = YES;
             cell.sureReceipt.hidden = YES;
-        }else {
+        }else if(_state == 1){
             
             cell.stateView1.highlighted = YES;
             cell.stateView2.highlighted = YES;
-            cell.stateView3.highlighted = YES;
-            cell.stateView4.highlighted = YES;
+            cell.stateView3.highlighted = NO;
+            cell.stateView4.highlighted = NO;
+            cell.stateView5.highlighted = NO;
             
             cell.stateLabel1.highlighted = YES;
             cell.stateLabel2.highlighted = YES;
-            cell.stateLabel3.highlighted = YES;
-            cell.stateLabel4.highlighted = YES;
+            cell.stateLabel3.highlighted = NO;
+            cell.stateLabel4.highlighted = NO;
             
             cell.timeLabel1.highlighted = YES;
             cell.timeLabel2.highlighted = YES;
-            cell.timeLabel3.highlighted = YES;
-            cell.timeLabel4.highlighted = YES;
+            cell.timeLabel3.highlighted = NO;
+            cell.timeLabel4.highlighted = NO;
+            cell.timeLabel4.text = @"";
+            
+            if (![_orderDic[@"createDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel1.text = [self dateForString:_orderDic[@"createDate"]];
+            }
+            if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel2.text = [self dateForString:_orderDic[@"confirmGoodsAddressDate"]];
+            }
+            cell.timeLabel3.text = @"";
             cell.timeLabel4.text = @"";
             
             cell.shareBtn.hidden = YES;
             cell.sureAddress.hidden = YES;
             cell.selectAddress.hidden = YES;
+            cell.delayReceipt.hidden = YES;
+            cell.sureReceipt.hidden = YES;
+           
+        }else {
+            cell.stateView1.highlighted = YES;
+            cell.stateView2.highlighted = YES;
+            cell.stateView3.highlighted = YES;
+            cell.stateView4.highlighted = YES;
+            cell.stateView5.highlighted = NO;
+            
+            cell.stateLabel1.highlighted = YES;
+            cell.stateLabel2.highlighted = YES;
+            cell.stateLabel3.highlighted = YES;
+            cell.stateLabel4.highlighted = YES;
+            cell.stateLabel5.highlighted = NO;
+            
+            cell.timeLabel1.highlighted = YES;
+            cell.timeLabel2.highlighted = YES;
+            cell.timeLabel3.highlighted = YES;
+            cell.timeLabel4.highlighted = YES;
+    
+            
+            if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel1.text = _orderDic[@"drawDate"];
+            }
+            if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+            }
+            if (![_orderDic[@"deliverDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel3.text = _orderDic[@"deliverDate"];
+            }
+            cell.timeLabel4.text = @"";
+            
+            cell.sureAddress.hidden = YES;
+            cell.selectAddress.hidden = YES;
             cell.delayReceipt.hidden = NO;
             cell.sureReceipt.hidden = NO;
+            
+            if (_state == 3) {
+                cell.shareBtn.hidden = NO;
+                cell.delayReceipt.hidden = YES;
+                cell.sureReceipt.hidden = YES;
+                cell.stateView5.highlighted = YES;
+                cell.stateLabel5.highlighted = YES;
+                if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
+                    cell.timeLabel4.text = [self dateForString:_orderDic[@"confirmGoodsReceiptDate"]];
+                }
+            }else {
+                cell.shareBtn.hidden = YES;
+                cell.delayReceipt.hidden = YES;
+                cell.sureReceipt.hidden = YES;
+                cell.stateView5.highlighted = YES;
+                cell.stateLabel5.highlighted = YES;
+                if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
+                    cell.timeLabel4.text = [self dateForString:_orderDic[@"confirmGoodsReceiptDate"]];
+                }
+                
+            }
         }
         return cell;
 
     }
-    if (_state == 1) {
+    if (_state == 2 || _state == 3 || _state == 4) {
         if (indexPath.section == 1||indexPath.section == 2) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellStyleSubtitle"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -150,11 +225,21 @@
             cell.detailTextLabel.numberOfLines = 2;
 
             if (indexPath.section == 1) {
-                cell.textLabel.text = @"物流公司：韵达";
-                cell.detailTextLabel.text = @"\n快递单号：123453457";
+                if (![_orderDic[@"invoiceCompany"] isKindOfClass:[NSNull class]]) {
+                    cell.textLabel.text = [NSString stringWithFormat:@"物流公司：%@",_orderDic[@"invoiceCompany"]];
+                }
+                if (![_orderDic[@"invoiceCode"] isKindOfClass:[NSNull class]]) {
+                    
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"\n快递单号：%@",_orderDic[@"invoiceCode"]];
+                }
             }else {
-                cell.textLabel.text = @"姓名：李四  联系方式（1524*＊＊＊123)";
-                cell.detailTextLabel.text = @"\n快递地址：岳麓区银杉路";
+                if (![_orderDic[@"consigneeName"] isKindOfClass:[NSNull class]]) {
+                    cell.textLabel.text = [NSString stringWithFormat:@"姓名：%@  联系方式（%@)",_orderDic[@"consigneeName"],_orderDic[@"mobile"]];
+                }
+                if (![_orderDic[@"addressDetailFull"] isKindOfClass:[NSNull class]]) {
+                    
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"\n快递地址：%@",_orderDic[@"addressDetailFull"]];
+                }
             }
             return cell;
         }
@@ -201,8 +286,10 @@
         [self confirmAddress];
     }else if (tag == 2){
         
-    }else if (tag == 3) {
+        [self deferredReceipt];
         
+    }else if (tag == 3) {
+        [self confirmReceipt];
     }else if (tag == 4) {
         AddShareController *addSVC = [[AddShareController alloc] init];
         addSVC.lkModel = _rcModel;
@@ -212,14 +299,33 @@
 #pragma mark - 数据请求
 //确认地址
 - (void)confirmAddress{
+    if (_defaultArea.length == 0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"请选择默认地址?没有请添加"];
+        [alert addButtonTitleArray:@[@"取消",@"选择"]];
+        __weak typeof(AlertController*) weakAlert = alert;
+        __weak typeof(self) weakSelf = self;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {//取消
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }else {//选择
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                AddressViewController *avc = [[AddressViewController alloc] init];
+                [weakSelf.navigationController pushViewController:avc animated:YES];
+
+            }
+        }];
+        [self presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
+        return;
+    }
    // 取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"buyUserId"];
-    [params setObject:_rcModel.ID forKey:@"productId"];
-    [params setObject:@(_rcModel.saleDraw.periodsNumber) forKey:@"buyPeriods"];
+    [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmAddress_URL];
     [ZSTools post:url
@@ -230,9 +336,8 @@
               NSLogZS(@"%@",json[@"msg"]);
               if (isSuccess) {
                   NSLogZS(@"确认地址");
-                  _state = 1;
-                   _sectionArr = @[@"  商品状态",@"  物流信息",@"  地址信息",@"  商品信息"];
-                  [_tableView reloadData];
+
+                  [self requestSaleOrderStatus];
               }
               
               
@@ -242,6 +347,7 @@
               NSLogZS(@"%@",error);
           }];
 }
+//请求地址信息 
 - (void)requestAreaData {
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
@@ -261,6 +367,7 @@
               if (isSuccess) {
                   NSArray *area = json[@"data"];
                   if (area.count == 0) {
+                      
                       return;
                   }
                   for (NSDictionary *dic in area) {
@@ -285,4 +392,113 @@
           }];
 }
 
+- (void)requestSaleOrderStatus {
+    //取出存储的用户信息
+//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+//    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SaleOrderStatus_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  _orderDic = json[@"data"];
+                  
+                  NSInteger status = [_orderDic[@"status"] integerValue];
+                  _state = status;
+                  if (status == 0) {
+                      
+                      _sectionArr = @[@"  商品状态",@"  商品信息"];
+                  }else {
+                      
+                      _sectionArr = @[@"  商品状态",@"  物流信息",@"  地址信息",@"  商品信息"];
+                  }
+                  
+                  
+                 [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+//确定收货
+- (void)confirmReceipt {
+    // 取出存储的用户信息
+//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+//    NSNumber *userId = userDic[@"id"];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:userId forKey:@"buyUserId"];
+    [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmReceipt_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              NSLogZS(@"%@",json[@"msg"]);
+              if (isSuccess) {
+                  NSLogZS(@"确定收货");
+                  
+                  [self requestSaleOrderStatus];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              
+              NSLogZS(@"%@",error);
+          }];
+}
+//延期收货
+-(void)deferredReceipt {
+    // 取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"id"];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    //    [params setObject:userId forKey:@"buyUserId"];
+    [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmReceipt_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              NSLogZS(@"%@",json[@"msg"]);
+              if (isSuccess) {
+                  NSLogZS(@"延期收货");
+                  
+                  [self requestSaleOrderStatus];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              
+              NSLogZS(@"%@",error);
+          }];
+}
+- (NSString *)dateForString:(NSString *)dateStr {
+    // 格式化时间
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    // 毫秒值转化为秒
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[dateStr doubleValue]/ 1000.0];
+    NSString* dateString = [formatter stringFromDate:date];
+    return dateString;
+}
 @end
