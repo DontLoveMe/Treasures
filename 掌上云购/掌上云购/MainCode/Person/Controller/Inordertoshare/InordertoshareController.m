@@ -85,8 +85,9 @@
               if (isSuccess) {
                   NSArray *dataArr = json[@"data"];
                   NSMutableArray *arr = dataArr.mutableCopy;
-                  for (int i = 0; i<arr.count;i++) {
+                  for (NSInteger i = arr.count-1; i>=0;i--) {
                       NSDictionary *dic = arr[i];
+                      
                       if ([dic[@"sunOrder"] boolValue]) {
                           [arr removeObjectAtIndex:i];
                       }

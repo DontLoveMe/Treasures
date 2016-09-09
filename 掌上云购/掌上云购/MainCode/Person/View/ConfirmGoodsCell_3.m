@@ -7,18 +7,40 @@
 //
 
 #import "ConfirmGoodsCell_3.h"
+#import "AddShareController.h"
 
 @implementation ConfirmGoodsCell_3
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+}
+- (IBAction)copYAction:(UIButton *)sender {
+    
+}
+- (IBAction)sunShareAction:(UIButton *)sender {
+    
+    AddShareController *addSVC = [[AddShareController alloc] init];
+    
+    [[self viewController].navigationController pushViewController:addSVC animated:YES];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (UIViewController *)viewController {
+    
+    UIResponder *next = self.nextResponder;
+    
+    do {
+        
+        if ([next isKindOfClass:[UIViewController class]]) {
+            
+            return (UIViewController *)next;
+        }
+        
+        next = next.nextResponder;
+        
+    } while (next != nil);
+    
+    return nil;
 }
 
 @end

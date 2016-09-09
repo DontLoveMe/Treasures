@@ -91,6 +91,9 @@
 #define RedPacketList_URL @"/pcpServer-inf/red/packet/list"
 //已使用/失效红包列表接口
 #define RedPacketDisabledList_URL @"/pcpServer-inf/red/packet/disabledList"
+//消息列表接口
+#define MessageList_URL @"/pcpServer-inf/messageSite/list"
+
 
 /*---------------收货地址模块----------------------*/
 //省、市、区

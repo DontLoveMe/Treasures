@@ -39,14 +39,14 @@
                             <constraint firstAttribute="width" constant="1" id="EBR-SH-vey"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
                         <rect key="frame" x="10" y="41" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="YAN-i9-naT"/>
                             <constraint firstAttribute="height" constant="20" id="q4U-yC-fx7"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
                         <rect key="frame" x="10" y="76" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="LQM-RC-lzW"/>
@@ -99,7 +99,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXH-Hw-xIi">
+                    <button opaque="NO" tag="100" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXH-Hw-xIi">
                         <rect key="frame" x="51" y="124" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="4LN-gz-YzJ"/>
@@ -108,8 +108,11 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <state key="normal" backgroundImage="未选中.png"/>
                         <state key="selected" backgroundImage="选中.png"/>
+                        <connections>
+                            <action selector="mannerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="keZ-iX-VWr"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hty-ba-Rru">
+                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hty-ba-Rru">
                         <rect key="frame" x="51" y="162" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="QiA-GB-mHF"/>
@@ -118,8 +121,11 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <state key="normal" backgroundImage="未选中.png"/>
                         <state key="selected" backgroundImage="选中.png"/>
+                        <connections>
+                            <action selector="mannerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BDX-lG-ccV"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAN-IG-U5M">
+                    <button opaque="NO" tag="102" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAN-IG-U5M">
                         <rect key="frame" x="51" y="202" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="0ls-bQ-E9J"/>
@@ -128,6 +134,9 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <state key="normal" backgroundImage="未选中.png"/>
                         <state key="selected" backgroundImage="选中.png"/>
+                        <connections>
+                            <action selector="agreeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IJI-dy-iUR"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-Qu-fKD">
                         <rect key="frame" x="74" y="201" width="173" height="18"/>
@@ -140,13 +149,16 @@
                             <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAE-gS-2Ne">
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAE-gS-2Ne">
                         <rect key="frame" x="235" y="234" width="66" height="23"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="f0X-pJ-zjO"/>
                             <constraint firstAttribute="width" constant="66" id="wVa-0v-sTt"/>
                         </constraints>
                         <state key="normal" title="确定" backgroundImage="按钮框.png"/>
+                        <connections>
+                            <action selector="sureAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CXP-mn-5tb"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="方式二" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSr-TF-bnY">
                         <rect key="frame" x="82" y="160" width="215" height="19"/>
@@ -198,7 +210,18 @@
                     <constraint firstItem="JCD-61-iIg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="yuR-by-F7i"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="278" y="407.5"/>
+            <connections>
+                <outlet property="agreeBtn" destination="cAN-IG-U5M" id="46F-aj-PgK"/>
+                <outlet property="mannerBtn1" destination="TXH-Hw-xIi" id="gGA-yW-Jy5"/>
+                <outlet property="mannerBtn2" destination="hty-ba-Rru" id="Xua-DP-Tje"/>
+                <outlet property="stateLabel1" destination="8fl-rb-Ugp" id="vCv-KO-zkW"/>
+                <outlet property="stateLable2" destination="fkI-az-2cH" id="cU6-KE-TmX"/>
+                <outlet property="stateView1" destination="JCD-61-iIg" id="b6z-wb-Egp"/>
+                <outlet property="stateView2" destination="Omb-8z-tfL" id="lHt-M4-92v"/>
+                <outlet property="sureBtn" destination="lAE-gS-2Ne" id="wjl-cp-jMd"/>
+                <outlet property="timeLabel1" destination="6uK-0Y-HJj" id="kji-2U-sEt"/>
+            </connections>
+            <point key="canvasLocation" x="273" y="367.5"/>
         </tableViewCell>
     </objects>
     <resources>

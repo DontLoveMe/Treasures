@@ -8,9 +8,11 @@
 
 #import "BaseViewController.h"
 #import "RecordModel.h"
+#import "ConfirmGoodsCell_1.h"
+#import "ConfirmGoodsCell_2.h"
+#import "ConfirmGoodsCell_3.h"
 
-
-@interface ConfirmGoodsController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ConfirmGoodsController : BaseViewController<UITableViewDelegate,UITableViewDataSource,ConfirmGoodsCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *label;

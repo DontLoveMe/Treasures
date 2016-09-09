@@ -15,10 +15,32 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (IBAction)mannerAction:(UIButton *)sender {
+    
+    sender.selected = YES;
+    [self.delegate clickButtonBackTag:sender.tag];
+    if (sender.tag == 100) {
+        
+        UIButton *mannerBtn = [self.contentView viewWithTag:101];
+        mannerBtn.selected = NO;
+    }else {
+        
+        UIButton *mannerBtn = [self.contentView viewWithTag:100];
+        mannerBtn.selected = NO;
+    }
+    
 }
+
+- (IBAction)agreeAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    [self.delegate clickButtonBackTag:sender.tag];
+}
+
+- (IBAction)sureAction:(UIButton *)sender {
+    [self.delegate clickButtonBackTag:sender.tag];
+  
+
+}
+
 
 @end
