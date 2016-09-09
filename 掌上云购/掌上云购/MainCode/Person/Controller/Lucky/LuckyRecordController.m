@@ -160,7 +160,7 @@
     
     if ([rmodel.isVirtualgoods boolValue]) {
         ConfirmGoodsController *cgVC = [[ConfirmGoodsController alloc] init];
-        cgVC.reModel = rmodel;
+        cgVC.rcModel = rmodel;
         [self.navigationController pushViewController:cgVC animated:YES];
     }else {
         ConfirmDataController *cdVC = [[ConfirmDataController alloc] init];

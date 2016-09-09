@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *againButton;
 
-@property (nonatomic,strong)RecordModel *reModel;
+@property (nonatomic,strong)RecordModel *rcModel;
 
 @end

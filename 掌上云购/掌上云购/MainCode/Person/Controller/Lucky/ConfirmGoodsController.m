@@ -13,6 +13,8 @@
 
 @interface ConfirmGoodsController ()
 
+@property (nonatomic,strong)NSDictionary *orderDic;
+
 @end
 
 @implementation ConfirmGoodsController
@@ -43,6 +45,8 @@
     self.title = @"商品确认";
     [self initNavBar];
     
+    [self requestSaleOrderStatus];
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
@@ -66,6 +70,7 @@
     
     if (indexPath.section == 0) {
         ConfirmGoodsCell_1 *cell = [tableView dequeueReusableCellWithIdentifier:@"ConfirmGoodsCell_1" forIndexPath:indexPath];
+
         return cell;
     }
 //    ConfirmGoodsCell_2 *cell = [tableView dequeueReusableCellWithIdentifier:@"ConfirmGoodsCell_2" forIndexPath:indexPath];
@@ -94,6 +99,36 @@
 }
 - (IBAction)againPartake:(UIButton *)sender {
     
+}
+
+- (void)requestSaleOrderStatus {
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SaleOrderStatus_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                 
+                  _orderDic = json[@"data"];
+                  [_tableView reloadData];
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
 }
 
 @end

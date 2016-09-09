@@ -142,6 +142,7 @@
             cell.timeLabel4.highlighted = NO;
             cell.timeLabel4.text = @"";
             
+            cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
             if (![_orderDic[@"createDate"] isKindOfClass:[NSNull class]]) {
                 cell.timeLabel1.text = [self dateForString:_orderDic[@"createDate"]];
             }
@@ -158,6 +159,7 @@
             cell.sureReceipt.hidden = YES;
            
         }else {
+            
             cell.stateView1.highlighted = YES;
             cell.stateView2.highlighted = YES;
             cell.stateView3.highlighted = YES;
@@ -169,6 +171,8 @@
             cell.stateLabel3.highlighted = YES;
             cell.stateLabel4.highlighted = YES;
             cell.stateLabel5.highlighted = NO;
+            
+            cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
             
             cell.timeLabel1.highlighted = YES;
             cell.timeLabel2.highlighted = YES;
@@ -199,7 +203,7 @@
                 cell.stateView5.highlighted = YES;
                 cell.stateLabel5.highlighted = YES;
                 if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
-                    cell.timeLabel4.text = [self dateForString:_orderDic[@"confirmGoodsReceiptDate"]];
+                    cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
                 }
             }else {
                 cell.shareBtn.hidden = YES;
@@ -208,7 +212,7 @@
                 cell.stateView5.highlighted = YES;
                 cell.stateLabel5.highlighted = YES;
                 if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
-                    cell.timeLabel4.text = [self dateForString:_orderDic[@"confirmGoodsReceiptDate"]];
+                    cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
                 }
                 
             }
