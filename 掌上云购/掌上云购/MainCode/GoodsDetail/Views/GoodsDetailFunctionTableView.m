@@ -164,14 +164,14 @@
         
         //期号
         UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
-        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawId"]];
+        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
         issueLabel.textColor = [UIColor darkGrayColor];
         [goodsDetailView addSubview:issueLabel];
         
         UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
-        countDownLabel.text = @"揭晓倒计时：2016.8.20 17:24:30";
+        countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
         countDownLabel.textColor = [UIColor redColor];
@@ -212,7 +212,7 @@
             treasureNum.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
-            treasureNum.text = @"夺宝号码：20160817237891";
+            treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
             treasureNum.textColor = [UIColor darkGrayColor];
             [goodsDetailView addSubview:treasureNum];
             
@@ -222,6 +222,9 @@
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [previewAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             previewAllButton.backgroundColor = [UIColor whiteColor];
+            [previewAllButton addTarget:self
+                                 action:@selector(previewAll:)
+                       forControlEvents:UIControlEventTouchUpInside];
             [goodsDetailView addSubview:previewAllButton];
             
         }
@@ -230,15 +233,16 @@
     }else if (_isAnnounced == 3){
         
         NSDictionary *prizeDic = [_dataDic objectForKey:@"saleDraw"];
-        if ([prizeDic isEqual:[NSNull null]]) {
-            return nil;        }
+//        if ([prizeDic isEqual:[NSNull null]]) {
+//            return nil;
+//        }
         //开奖相关
         UIView  *goodsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100.f)];
         goodsDetailView.backgroundColor = [UIColor whiteColor];
         
         //获奖者name
         UILabel *prizeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
-        prizeNameLabel.text = [NSString stringWithFormat:@"获奖者:%@",[prizeDic objectForKey:@"nickName"]];
+//        prizeNameLabel.text = [NSString stringWithFormat:@"获奖者:%@",[prizeDic objectForKey:@"nickName"]];
         prizeNameLabel.textAlignment = NSTextAlignmentLeft;
         prizeNameLabel.font = [UIFont systemFontOfSize:13];
         prizeNameLabel.textColor = [UIColor redColor];
@@ -246,7 +250,7 @@
         
         //获奖者id
         UILabel *prizeIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, prizeNameLabel.bottom, KScreenWidth - 16.f, 20.f)];
-        prizeIdLabel.text = [NSString stringWithFormat:@"获奖者ID:%@",[prizeDic objectForKey:@"drawNumber"]];
+//        prizeIdLabel.text = [NSString stringWithFormat:@"获奖者ID:%@",[prizeDic objectForKey:@"drawNumber"]];
         prizeIdLabel.textAlignment = NSTextAlignmentLeft;
         prizeIdLabel.font = [UIFont systemFontOfSize:13];
         prizeIdLabel.textColor = [UIColor darkGrayColor];
@@ -254,7 +258,7 @@
         
         //期号
         UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, prizeIdLabel.bottom, KScreenWidth - 16.f, 20.f)];
-        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[prizeDic objectForKey:@"drawId"]];
+        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
         issueLabel.textColor = [UIColor darkGrayColor];
@@ -262,7 +266,7 @@
         
         //参与次数
         UILabel *joinCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 16.f, 20.f)];
-        joinCountLabel.text = [NSString stringWithFormat:@"本期参与：%ld",[[prizeDic objectForKey:@"qty"] integerValue]];
+//        joinCountLabel.text = [NSString stringWithFormat:@"本期参与：%ld",[[prizeDic objectForKey:@"qty"] integerValue]];
         joinCountLabel.textAlignment = NSTextAlignmentLeft;
         joinCountLabel.font = [UIFont systemFontOfSize:13];
         joinCountLabel.textColor = [UIColor darkGrayColor];
@@ -270,7 +274,7 @@
         
         //揭晓时间
         UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, joinCountLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
-        countDownLabel.text = [NSString stringWithFormat:@"揭晓时间：%ld",[[prizeDic objectForKey:@"drawTimes"] integerValue]];
+        countDownLabel.text = [NSString stringWithFormat:@"时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
         countDownLabel.textColor = [UIColor redColor];
@@ -278,7 +282,7 @@
         
         //幸运号码
         UILabel *luckyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, countDownLabel.bottom, KScreenWidth - 16.f, 20.f)];
-        luckyNumLabel.text =[NSString stringWithFormat:@"幸运号码：%@",[prizeDic objectForKey:@"drawNumber"]];
+//        luckyNumLabel.text =[NSString stringWithFormat:@"幸运号码：%@",[prizeDic objectForKey:@"drawNumber"]];
         luckyNumLabel.textAlignment = NSTextAlignmentLeft;
         luckyNumLabel.font = [UIFont systemFontOfSize:13];
         luckyNumLabel.textColor = [UIColor redColor];
@@ -320,7 +324,7 @@
             treasureNum.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
-            treasureNum.text = @"夺宝号码：20160817237891";
+            treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
             treasureNum.textColor = [UIColor darkGrayColor];
             [goodsDetailView addSubview:treasureNum];
             
@@ -330,13 +334,14 @@
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [previewAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             previewAllButton.backgroundColor = [UIColor whiteColor];
+            [previewAllButton addTarget:self
+                                 action:@selector(previewAll:)
+                       forControlEvents:UIControlEventTouchUpInside];
             [goodsDetailView addSubview:previewAllButton];
             
         }
             
         return  goodsDetailView;
-        
-        
     }
     
     return nil;

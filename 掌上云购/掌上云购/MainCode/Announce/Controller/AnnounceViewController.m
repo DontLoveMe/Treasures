@@ -37,12 +37,11 @@
 //请求数据
 - (void)requestData {
     
-//    self.data= @[@"2016-09-03 09:43:56:000",@"2016-08-26 16:50:56:000",@"2016-08-26 16:40:56:000",@"2016-08-26 16:30:56:000",@"2016-08-26 16:20:56:000",@"2016-08-26 14:15:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000",@"2016-08-26 14:10:56:000"];
     _dataArr = [NSMutableArray array];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"1" forKey:@"page"];
-    [params setObject:@"20" forKey:@"rows"];
+    [params setObject:@"30" forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,NewnestAnnounceList_URL];
     
@@ -171,7 +170,7 @@
     GDVC.goodsId = [dic objectForKey:@"productId"];
     
 //    GDVC.drawId = [dic objectForKey:@"drawId"];
-    GDVC.isAnnounced = 2;
+    GDVC.isAnnounced = 3;
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];

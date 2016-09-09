@@ -189,13 +189,13 @@
     //设置单元格的间隙
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
-    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f) collectionViewLayout:layout];
+    layout.itemSize = CGSizeMake((KScreenWidth - 1) / 2  , (KScreenWidth - 1) * 11 / 20);    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f) collectionViewLayout:layout];
     
     MJRefreshHeader *header = [MJRefreshHeader headerWithRefreshingBlock:^{
         
         _bgScrollView.contentOffset = CGPointMake(0, _functionView.bottom + 4);
         _segmentView.frame = CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f);
-        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f);
+        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f);
         _bgScrollView.scrollEnabled = YES;
         [_goodsList.mj_header endRefreshing];
         _goodsList.scrollEnabled = NO;
@@ -282,20 +282,6 @@
     return cell;
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    //从缓存中获取 Headercell
-//    HomeGoodsHeadView *cell = (HomeGoodsHeadView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeGoodsHead_View" forIndexPath:indexPath];
-//    return cell;
-//}
-
-//设置单元格的尺寸
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return CGSizeMake((KScreenWidth - 1) / 2  , (KScreenWidth - 1) * 11 / 20);
-    
-}
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
 
@@ -462,24 +448,15 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
     CGFloat offset_y = scrollView.contentOffset.y;
-    NSLog(@"%f",offset_y - _segmentView.top);
     if (offset_y >= _segmentView.top) {
         
         scrollView.delegate = nil;
         _segmentView.frame = CGRectMake(0, offset_y, KScreenWidth, 40.f);
-        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, 700.f);
+        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f);
         _bgScrollView.scrollEnabled = NO;
         _goodsList.scrollEnabled = YES;
     }
     
-}
-
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-//
-//}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-
 }
 
 @end
