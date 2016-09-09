@@ -408,6 +408,7 @@
                   
                   _drawId = [_dataDic objectForKey:@"drawId"];
                   
+                  
                   _oherFunctionTableView.isJoin = _isJoind;
                   _oherFunctionTableView.isPrized = _isPrized;
                   [_oherFunctionTableView reloadData];
