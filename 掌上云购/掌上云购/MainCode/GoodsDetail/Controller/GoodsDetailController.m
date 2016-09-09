@@ -354,15 +354,36 @@
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if(userDic != nil){
         
-        NSNumber *userId = userDic[@"id"];
-        [params setObject:@{@"productId":_goodsId,
-                            @"userId":userId}
-                   forKey:@"paramsMap"];
+        if (_isAnnounced != 1) {
+            
+            NSNumber *userId = userDic[@"id"];
+            [params setObject:@{@"drawId":_drawId,
+                                @"productId":_goodsId,
+                                @"userId":userId}
+                       forKey:@"paramsMap"];
+        }else{
+        
+            NSNumber *userId = userDic[@"id"];
+            [params setObject:@{@"productId":_goodsId,
+                                @"userId":userId}
+                       forKey:@"paramsMap"];
+        
+        }
         
     }else{
     
-        [params setObject:@{@"productId":_goodsId}
-                   forKey:@"paramsMap"];
+        if (_isAnnounced != 1) {
+            
+            [params setObject:@{@"drawId":_drawId,
+                                @"productId":_goodsId}
+                       forKey:@"paramsMap"];
+            
+        }else{
+            
+            [params setObject:@{@"productId":_goodsId}
+                       forKey:@"paramsMap"];
+            
+        }
     
     }
 

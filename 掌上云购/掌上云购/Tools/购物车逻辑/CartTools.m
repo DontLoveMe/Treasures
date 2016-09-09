@@ -180,7 +180,14 @@
             //购买次数加一
             NSMutableDictionary *indexPathDic = [existArr objectAtIndex:indexPath];
             NSInteger times = [[indexPathDic objectForKey:@"buyTimes"] integerValue];
-            times ++;
+            NSInteger totle = [[indexPathDic objectForKey:@"totalShare"] integerValue];
+            NSInteger superShare = [[indexPathDic objectForKey:@"surplusShare"] integerValue];
+            if (totle - superShare > times) {
+            
+                times ++;
+                
+            }
+            
             [indexPathDic setObject:[NSNumber numberWithInteger:times] forKey:@"buyTimes"];
             [existArr replaceObjectAtIndex:indexPath withObject:indexPathDic];
             return [existArr writeToFile:filename atomically:YES];

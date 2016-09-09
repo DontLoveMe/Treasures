@@ -129,6 +129,10 @@
     .widthIs(80)
     .heightIs(20);
     
+//    //包尾
+//    _allRestButton = [[UIButton alloc] i];
+//    [_allRestButton setTitle:@"包尾" forState:<#(UIControlState)#>]
+    
 }
 
 #pragma mark - ButtonAction

@@ -65,6 +65,9 @@
 ////选中状态
 //@property(nonatomic,assign)BOOL selectState;
 
+//包尾按钮
+@property (nonatomic,strong)UIButton    *allRestButton;
+
 @property (nonatomic ,weak)id <CartFunctionDelegate> functionDelegate;
 
 @end
