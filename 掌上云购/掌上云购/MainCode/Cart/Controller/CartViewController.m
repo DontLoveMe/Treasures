@@ -262,7 +262,7 @@
     _pricesum.sd_layout
     .leftSpaceToView(_pricetotal,3)
     .topEqualToView(_pricetotal)
-    .widthIs(40)
+    .widthIs(80)
     .heightIs(20);
     
     _warntext = [[UILabel alloc]init];
@@ -404,7 +404,7 @@
 
     NSArray *selectArr = _tabview.indexPathsForSelectedRows;
     
-    for (int i = 0 ; i < selectArr.count; i ++) {
+    for (NSInteger i = selectArr.count - 1 ; i >= 0; i --) {
         
         NSIndexPath *indexPath = [selectArr objectAtIndex:i];
         [CartTools removeGoodsWithIndexPath:indexPath.row];
@@ -439,12 +439,11 @@
                 totalPrice = totalPrice + singlePrice * num;
             }
             _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
-            [_tabview reloadData];
             
         }
-        
+
     }
-    
+    [_tabview reloadData];
 }
 
 #pragma mark----UITableViewDataSource
@@ -471,7 +470,7 @@
         
     cell.totalNumber.text = [NSString stringWithFormat:@"总需人数:%@",[dic objectForKey:@"totalShare"]];
         
-    cell.surplusNumber.text = [NSString stringWithFormat:@"当前人数:%@",[dic objectForKey:@"surplusShare"]];
+    cell.surplusNumber.text = [NSString stringWithFormat:@"剩余人数:%@",[dic objectForKey:@"surplusShare"]];
 
     cell.goodsType.image = [UIImage imageNamed:@"商品种类"];
         
@@ -658,6 +657,43 @@
     }
     
 }
+
+-(void)allRestAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [CartTools allRestWithIndexPath:indexPath.row];
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    if (_dataArray.count == 0) {
+        
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = YES;
+        _deleteView.hidden = YES;
+        
+    }else{
+        
+        _tabview.hidden = NO;
+        _bottomView.hidden = NO;
+        _backView.hidden = YES;
+        _rightbtn.hidden = NO;
+        _deleteView.hidden = YES;
+        //计算总价
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            NSDictionary *dic = [_dataArray objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
+        [_tabview reloadData];
+        
+    }
+    
+}
+
 
 #pragma mark - 加载数据
 - (void)viewWillAppear:(BOOL)animated{

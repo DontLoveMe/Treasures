@@ -274,7 +274,7 @@
         
         //揭晓时间
         UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, joinCountLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
-        countDownLabel.text = [NSString stringWithFormat:@"时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        countDownLabel.text = [NSString stringWithFormat:@"揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
         countDownLabel.textColor = [UIColor redColor];
@@ -289,7 +289,7 @@
         [goodsDetailView addSubview:luckyNumLabel];
         
         //查看计算方式
-        UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f,countDownLabel.bottom, 64.f, 20.f)];
+        UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f,countDownLabel.bottom - 28.f, 64.f, 20.f)];
         [previewCountWayButton setTitle:@"计算详情"
                                forState:UIControlStateNormal];
         previewCountWayButton.titleLabel.font = [UIFont systemFontOfSize:13];

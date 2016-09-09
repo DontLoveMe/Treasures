@@ -130,8 +130,18 @@
     .heightIs(20);
     
 //    //包尾
-//    _allRestButton = [[UIButton alloc] i];
-//    [_allRestButton setTitle:@"包尾" forState:<#(UIControlState)#>]
+    _allRestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_allRestButton setTitle:@"包尾" forState:UIControlStateNormal];
+    [_allRestButton addTarget:self
+                       action:@selector(allRestAction:)
+             forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_allRestButton];
+    
+    _allRestButton.sd_layout
+    .leftSpaceToView(_passengers,8)
+    .topEqualToView(_addBtn)
+    .widthIs(60)
+    .heightIs(30);
     
 }
 
@@ -150,6 +160,14 @@
         [_functionDelegate reduceCountAtIndexPath:_indexPath];
     }
 
+}
+
+- (void)allRestAction:(UIButton *)button{
+
+    if ([_functionDelegate respondsToSelector:@selector(allRestAtIndexPath:)]) {
+        [_functionDelegate allRestAtIndexPath:_indexPath];
+    }
+    
 }
 
 

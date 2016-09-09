@@ -18,6 +18,9 @@
 //减少事件
 -(void)reduceCountAtIndexPath:(NSIndexPath *)indexPath;
 
+//包尾事件
+-(void)allRestAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @interface CartTableViewCell : UITableViewCell

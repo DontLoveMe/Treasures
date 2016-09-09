@@ -425,10 +425,8 @@
                   
                   //是否参与
                   _isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
-                  NSLogZS(@"参与了么:%ld",[[_dataDic objectForKey:@"isBuy"] integerValue]);
                   
                   _drawId = [_dataDic objectForKey:@"drawId"];
-                  
                   
                   _oherFunctionTableView.isJoin = _isJoind;
                   _oherFunctionTableView.isPrized = _isPrized;

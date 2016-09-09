@@ -77,9 +77,25 @@
                 
                 if (haveSame == 1) {
                     
+                    //修改商品的进度
+                    NSInteger newSurplusShare  =  [[[cartArr objectAtIndex:i] objectForKey:@"surplusShare"] integerValue];
+                    [[existArr objectAtIndex:j] setObject:[NSNumber numberWithInteger:newSurplusShare] forKey:@"surplusShare"];
+                    
+                    //修改购买数量
                     NSInteger oldTime = [[[existArr objectAtIndex:j] objectForKey:@"buyTimes"] integerValue];
                     NSInteger newTime = [[[cartArr objectAtIndex:i] objectForKey:@"buyTimes"] integerValue];
-                    [[existArr objectAtIndex:j] setObject:[NSNumber numberWithInteger:oldTime + newTime] forKey:@"buyTimes"];
+                    NSInteger totleTime = newTime + oldTime;
+                    NSInteger superShare = [[[cartArr objectAtIndex:i] objectForKey:@"surplusShare"] integerValue];
+                    if (totleTime > superShare) {
+                    
+                        [[existArr objectAtIndex:j] setObject:[NSNumber numberWithInteger:superShare] forKey:@"buyTimes"];
+                        
+                    }else{
+                    
+                        [[existArr objectAtIndex:j] setObject:[NSNumber numberWithInteger:totleTime] forKey:@"buyTimes"];
+                        
+                    }
+                    
                     break;
                     
                 }else if (haveSame == 0 && j == 0){
@@ -180,9 +196,8 @@
             //购买次数加一
             NSMutableDictionary *indexPathDic = [existArr objectAtIndex:indexPath];
             NSInteger times = [[indexPathDic objectForKey:@"buyTimes"] integerValue];
-            NSInteger totle = [[indexPathDic objectForKey:@"totalShare"] integerValue];
             NSInteger superShare = [[indexPathDic objectForKey:@"surplusShare"] integerValue];
-            if (totle - superShare > times) {
+            if (superShare > times) {
             
                 times ++;
                 
@@ -243,6 +258,50 @@
         
     }
     
+}
+
++ (BOOL)allRestWithIndexPath:(NSInteger)indexPath{
+
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath = [paths objectAtIndex:0];
+    //得到完整的文件名
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"cartList.plist"];
+    //判断是否已有此目录文件
+    BOOL isExst = [[NSFileManager defaultManager] fileExistsAtPath:filename];
+    if (isExst) {
+    
+        //已存在
+        NSMutableArray *existArr = [NSMutableArray arrayWithContentsOfFile:filename];
+        if (indexPath >= existArr.count) {
+            
+            NSLogZS(@"越界了");
+            return NO;
+            
+        }else{
+            
+            //包尾：剩下的全部买了
+            NSMutableDictionary *indexPathDic = [existArr objectAtIndex:indexPath];
+            NSInteger times = [[indexPathDic objectForKey:@"buyTimes"] integerValue];
+            NSInteger superShare = [[indexPathDic objectForKey:@"surplusShare"] integerValue];
+            if (superShare > times) {
+                
+                times = superShare;
+                
+            }
+            
+            [indexPathDic setObject:[NSNumber numberWithInteger:times] forKey:@"buyTimes"];
+            [existArr replaceObjectAtIndex:indexPath withObject:indexPathDic];
+            return [existArr writeToFile:filename atomically:YES];
+            
+        }
+    
+    }else{
+    
+        return NO;
+        
+    }
+
 }
 
 @end
