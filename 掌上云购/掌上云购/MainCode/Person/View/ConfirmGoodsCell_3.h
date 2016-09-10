@@ -26,10 +26,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *mannerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cardNoLabel;
-@property (weak, nonatomic) IBOutlet UILabel *passwordLb;
-@property (weak, nonatomic) IBOutlet UILabel *rechargeLb;
-@property (weak, nonatomic) IBOutlet UIButton *copYBtn1;
-@property (weak, nonatomic) IBOutlet UIButton *copYBtn2;
+//@property (weak, nonatomic) IBOutlet UILabel *passwordLb;
+//@property (weak, nonatomic) IBOutlet UILabel *rechargeLb;
+//@property (weak, nonatomic) IBOutlet UIButton *copYBtn1;
+//@property (weak, nonatomic) IBOutlet UIButton *copYBtn2;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 
 

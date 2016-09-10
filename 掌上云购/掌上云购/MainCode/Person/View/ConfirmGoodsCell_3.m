@@ -15,9 +15,7 @@
     [super awakeFromNib];
     
 }
-- (IBAction)copYAction:(UIButton *)sender {
-    
-}
+
 - (IBAction)sunShareAction:(UIButton *)sender {
     
     AddShareController *addSVC = [[AddShareController alloc] init];

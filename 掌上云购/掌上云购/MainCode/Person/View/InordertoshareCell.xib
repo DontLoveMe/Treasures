@@ -36,9 +36,12 @@
                             <action selector="iconAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E0u-Cd-ive"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDJ-dK-lrw">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDJ-dK-lrw" customClass="UIImageView">
                         <rect key="frame" x="48" y="49" width="273" height="88.5"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="内容背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="TrU-4a-yLU">
+                                <rect key="frame" x="-10" y="0.0" width="283" height="89"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="晒单标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmn-iu-TMS">
                                 <rect key="frame" x="3" y="0.0" width="264" height="21"/>
                                 <constraints>
@@ -73,9 +76,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Ysq-eO-ADT" secondAttribute="trailing" constant="6" id="5BC-pf-rGV"/>
+                            <constraint firstItem="TrU-4a-yLU" firstAttribute="leading" secondItem="yDJ-dK-lrw" secondAttribute="leading" constant="-10" id="FeL-mw-Ecb"/>
                             <constraint firstItem="pyB-Ab-ieN" firstAttribute="top" secondItem="GQB-5e-Ufc" secondAttribute="bottom" constant="4" id="HQG-Cc-elQ"/>
                             <constraint firstItem="GQB-5e-Ufc" firstAttribute="top" secondItem="vmn-iu-TMS" secondAttribute="bottom" constant="1" id="IiQ-ci-K7k"/>
                             <constraint firstItem="vmn-iu-TMS" firstAttribute="top" secondItem="yDJ-dK-lrw" secondAttribute="top" id="Obb-Fc-CFA"/>
@@ -84,8 +88,11 @@
                             <constraint firstItem="GQB-5e-Ufc" firstAttribute="leading" secondItem="yDJ-dK-lrw" secondAttribute="leading" constant="3" id="WGZ-59-MgJ"/>
                             <constraint firstItem="Ysq-eO-ADT" firstAttribute="top" secondItem="pyB-Ab-ieN" secondAttribute="bottom" constant="5" id="X9t-lT-gzx"/>
                             <constraint firstAttribute="trailing" secondItem="GQB-5e-Ufc" secondAttribute="trailing" constant="6" id="hek-JA-CYa"/>
+                            <constraint firstAttribute="trailing" secondItem="TrU-4a-yLU" secondAttribute="trailing" id="hhF-XR-nIK"/>
+                            <constraint firstAttribute="bottom" secondItem="TrU-4a-yLU" secondAttribute="bottom" id="mpb-SJ-H9T"/>
                             <constraint firstItem="Ysq-eO-ADT" firstAttribute="leading" secondItem="yDJ-dK-lrw" secondAttribute="leading" constant="3" id="mrD-EK-QqG"/>
                             <constraint firstItem="vmn-iu-TMS" firstAttribute="leading" secondItem="yDJ-dK-lrw" secondAttribute="leading" constant="3" id="rbw-UX-JZi"/>
+                            <constraint firstItem="TrU-4a-yLU" firstAttribute="top" secondItem="yDJ-dK-lrw" secondAttribute="top" id="u7A-vR-T10"/>
                             <constraint firstItem="pyB-Ab-ieN" firstAttribute="leading" secondItem="yDJ-dK-lrw" secondAttribute="leading" constant="3" id="veL-VV-lEO"/>
                         </constraints>
                     </view>
@@ -128,6 +135,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="内容背景.png" width="319" height="199"/>
         <image name="我的-头像.png" width="131" height="131"/>
     </resources>
 </document>

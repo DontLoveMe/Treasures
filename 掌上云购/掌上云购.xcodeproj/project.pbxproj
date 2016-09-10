@@ -19,6 +19,12 @@
 		D64BEE9A1D74183900A6158B /* PersonHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64BEE981D74183900A6158B /* PersonHeaderView.m */; };
 		D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D64BEE991D74183900A6158B /* PersonHeaderView.xib */; };
 		D64BEE9E1D743A4200A6158B /* RechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D64BEE9D1D743A4200A6158B /* RechargeModel.m */; };
+		D650144F1D84100D004B8A3E /* 内容背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D650144D1D84100D004B8A3E /* 内容背景@2x.png */; };
+		D65014501D84100D004B8A3E /* 内容背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D650144E1D84100D004B8A3E /* 内容背景@3x.png */; };
+		D65014531D8411C2004B8A3E /* 按钮背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65014511D8411C2004B8A3E /* 按钮背景@2x.png */; };
+		D65014541D8411C2004B8A3E /* 按钮背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65014521D8411C2004B8A3E /* 按钮背景@3x.png */; };
+		D65014571D84123F004B8A3E /* 幸运标识@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65014551D84123F004B8A3E /* 幸运标识@2x.png */; };
+		D65014581D84123F004B8A3E /* 幸运标识@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65014561D84123F004B8A3E /* 幸运标识@3x.png */; };
 		D66FF4441D77C110001C4B6E /* InordertoshareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D66FF4431D77C110001C4B6E /* InordertoshareModel.m */; };
 		D66FF4481D78106B001C4B6E /* AddShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = D66FF4461D78106B001C4B6E /* AddShareController.m */; };
 		D66FF4491D78106B001C4B6E /* AddShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66FF4471D78106B001C4B6E /* AddShareController.xib */; };
@@ -51,7 +57,6 @@
 		D6C09BFE1D7916DA00C092A7 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */; };
 		D6C09C011D791A1900C092A7 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09C001D791A1900C092A7 /* TZImagePickerController.m */; };
 		D6C09C031D79274000C092A7 /* 删除.png in Resources */ = {isa = PBXBuildFile; fileRef = D6C09C021D79274000C092A7 /* 删除.png */; };
-		D6CB578D1D6E893F0043181F /* 按钮背景.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CB578C1D6E893F0043181F /* 按钮背景.png */; };
 		D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */; };
 		D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */; };
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
@@ -340,6 +345,12 @@
 		D64BEE991D74183900A6158B /* PersonHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonHeaderView.xib; sourceTree = "<group>"; };
 		D64BEE9C1D743A4200A6158B /* RechargeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeModel.h; sourceTree = "<group>"; };
 		D64BEE9D1D743A4200A6158B /* RechargeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeModel.m; sourceTree = "<group>"; };
+		D650144D1D84100D004B8A3E /* 内容背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "内容背景@2x.png"; sourceTree = "<group>"; };
+		D650144E1D84100D004B8A3E /* 内容背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "内容背景@3x.png"; sourceTree = "<group>"; };
+		D65014511D8411C2004B8A3E /* 按钮背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮背景@2x.png"; sourceTree = "<group>"; };
+		D65014521D8411C2004B8A3E /* 按钮背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮背景@3x.png"; sourceTree = "<group>"; };
+		D65014551D84123F004B8A3E /* 幸运标识@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运标识@2x.png"; sourceTree = "<group>"; };
+		D65014561D84123F004B8A3E /* 幸运标识@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运标识@3x.png"; sourceTree = "<group>"; };
 		D66FF4421D77C110001C4B6E /* InordertoshareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InordertoshareModel.h; sourceTree = "<group>"; };
 		D66FF4431D77C110001C4B6E /* InordertoshareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InordertoshareModel.m; sourceTree = "<group>"; };
 		D66FF4451D78106B001C4B6E /* AddShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddShareController.h; sourceTree = "<group>"; };
@@ -392,7 +403,6 @@
 		D6C09BFF1D791A1900C092A7 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
 		D6C09C001D791A1900C092A7 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
 		D6C09C021D79274000C092A7 /* 删除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删除.png"; sourceTree = "<group>"; };
-		D6CB578C1D6E893F0043181F /* 按钮背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮背景.png"; sourceTree = "<group>"; };
 		D6DBC3941D6DB903003BA793 /* SnatchRecordingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnatchRecordingCell.h; sourceTree = "<group>"; };
 		D6DBC3951D6DB903003BA793 /* SnatchRecordingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnatchRecordingCell.m; sourceTree = "<group>"; };
 		D6DBC3961D6DB903003BA793 /* SnatchRecordingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnatchRecordingCell.xib; sourceTree = "<group>"; };
@@ -1641,9 +1651,12 @@
 		DDF92CF11D6A9C5B009D5A1E /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				D65014551D84123F004B8A3E /* 幸运标识@2x.png */,
+				D65014561D84123F004B8A3E /* 幸运标识@3x.png */,
 				D6C09C021D79274000C092A7 /* 删除.png */,
+				D65014511D8411C2004B8A3E /* 按钮背景@2x.png */,
+				D65014521D8411C2004B8A3E /* 按钮背景@3x.png */,
 				D66FF4871D784FB0001C4B6E /* 加.png */,
-				D6CB578C1D6E893F0043181F /* 按钮背景.png */,
 				D6EEFA581D6C20CC0069A880 /* 我的_设置.png */,
 				D6EEFA591D6C20CC0069A880 /* 消息.png */,
 				DDF92CF21D6A9C5B009D5A1E /* 云购客服.png */,
@@ -1672,6 +1685,8 @@
 				DDF92D071D6A9C5B009D5A1E /* 银联支付.png */,
 				DDF92D081D6A9C5B009D5A1E /* 默认-暗.png */,
 				DDF92D091D6A9C5B009D5A1E /* 默认.png */,
+				D650144D1D84100D004B8A3E /* 内容背景@2x.png */,
+				D650144E1D84100D004B8A3E /* 内容背景@3x.png */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -1959,13 +1974,16 @@
 				DDF92D791D6A9C5B009D5A1E /* 商品种类.png in Resources */,
 				DDF92C6F1D6A9C3D009D5A1E /* AddAddressController.xib in Resources */,
 				DDF92C831D6A9C3D009D5A1E /* PersonViewController.xib in Resources */,
+				D65014501D84100D004B8A3E /* 内容背景@3x.png in Resources */,
 				DDF92D5C1D6A9C5B009D5A1E /* 支付宝支付.png in Resources */,
 				DDF92D4D1D6A9C5B009D5A1E /* 发现6.png in Resources */,
 				DD6B523D1D6DA31B00B6297F /* 3.png in Resources */,
 				DDF92D971D6A9C5B009D5A1E /* sort312_normal.png in Resources */,
 				DDF92C581D6A9C3D009D5A1E /* HomeViewController.xib in Resources */,
+				D65014531D8411C2004B8A3E /* 按钮背景@2x.png in Resources */,
 				DD6B523E1D6DA31B00B6297F /* 4.png in Resources */,
 				D6ED178E1D752BA300C5CDB1 /* 用户.png in Resources */,
+				D650144F1D84100D004B8A3E /* 内容背景@2x.png in Resources */,
 				DDA46D971D78443E0043A797 /* 分类.png in Resources */,
 				DDF92D891D6A9C5B009D5A1E /* shop.png in Resources */,
 				DDF92CA31D6A9C3D009D5A1E /* RechargeRecordCell.xib in Resources */,
@@ -1988,6 +2006,7 @@
 				DDF92C631D6A9C3D009D5A1E /* ProductCell.xib in Resources */,
 				DDF92C991D6A9C3D009D5A1E /* GoodsStateCell.xib in Resources */,
 				DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */,
+				D65014581D84123F004B8A3E /* 幸运标识@3x.png in Resources */,
 				DDF92D851D6A9C5B009D5A1E /* 喇叭图标.png in Resources */,
 				DDF92C7F1D6A9C3D009D5A1E /* ConfirmGoodsController.xib in Resources */,
 				DDF92D571D6A9C5B009D5A1E /* 我的-头像.png in Resources */,
@@ -1997,7 +2016,6 @@
 				D625D9F81D7E6D5600316A49 /* SearchGoodsController.xib in Resources */,
 				DDF92CDC1D6A9C4F009D5A1E /* areaData.plist in Resources */,
 				DDF92D6E1D6A9C5B009D5A1E /* 未选中背景.png in Resources */,
-				D6CB578D1D6E893F0043181F /* 按钮背景.png in Resources */,
 				DDF92D871D6A9C5B009D5A1E /* 首页轮播_2.jpg in Resources */,
 				DDF92C811D6A9C3D009D5A1E /* LuckyRecordController.xib in Resources */,
 				DDF92C561D6A9C3D009D5A1E /* HomeSearchController.xib in Resources */,
@@ -2040,9 +2058,11 @@
 				DDF92C4C1D6A9C3D009D5A1E /* GoodsDetailController.xib in Resources */,
 				DD6B523F1D6DA31B00B6297F /* 5.png in Resources */,
 				DDF92D751D6A9C5B009D5A1E /* 掌上云购logo.png in Resources */,
+				D65014541D8411C2004B8A3E /* 按钮背景@3x.png in Resources */,
 				DDF92C891D6A9C3D009D5A1E /* RedEnvelopeController.xib in Resources */,
 				D648916F1D825113003889B0 /* LoveCell.xib in Resources */,
 				DDF92D771D6A9C5B009D5A1E /* 品牌图片.png in Resources */,
+				D65014571D84123F004B8A3E /* 幸运标识@2x.png in Resources */,
 				DDF92D6A1D6A9C5B009D5A1E /* 定位-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -48,47 +48,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Home/Controller/SegmentController.m"
-            timestampString = "495083900.516292"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "-requestSegmentData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Lucky/ConfirmGoodsController.m"
-            timestampString = "495099561.243771"
+            timestampString = "495190509.322155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
-            landmarkName = "-rechargeBalance"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Lucky/ConfirmGoodsController.m"
-            timestampString = "495099785.164057"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-requestSaleOrderStatus"
             landmarkType = "5">
          </BreakpointContent>

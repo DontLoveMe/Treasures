@@ -150,6 +150,7 @@
     }];
     if ([rModel.isVirtualgoods boolValue]) {
         [cell.goodsButton setTitle:@"确认商品" forState:UIControlStateNormal];
+        
     }else {
         [cell.goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
     }

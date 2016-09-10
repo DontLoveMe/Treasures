@@ -44,8 +44,8 @@
     
     GoodsDetailController *gsDTVC = [[GoodsDetailController alloc] init];
     gsDTVC.goodsId = _rcModel.ID;
-    gsDTVC.drawId = _rcModel.drawId;
-    gsDTVC.isAnnounced = 2;
+//    gsDTVC.drawId = _rcModel.drawId;
+    gsDTVC.isAnnounced = 1;
     [[self viewController].navigationController pushViewController:gsDTVC animated:YES];
 }
 - (UIViewController *)viewController {
