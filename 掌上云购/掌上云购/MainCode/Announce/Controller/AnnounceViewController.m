@@ -119,8 +119,10 @@
     if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
         
         //倒计时时间
-        cell.str = [dic objectForKey:@"countdownEndDate"];
-        
+        if (![[dic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
+            cell.str = [dic objectForKey:@"countdownEndDate"];
+        }
+
         cell.getUserLabel.hidden = YES;
         cell.peopleNumLb.hidden = YES;
         cell.luckyLabel.hidden = YES;
@@ -147,17 +149,6 @@
         cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dic objectForKey:@"drawDate"]];
         
     }
-    
-    //    @property (weak, nonatomic) IBOutlet UIImageView *imgView;
-    //    @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-    //    @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
-    //    @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-    //    @property (weak, nonatomic) IBOutlet UIImageView *timeIconView;
-    //    @property (weak, nonatomic) IBOutlet UILabel *unveilLabel;
-    //    @property (weak, nonatomic) IBOutlet UILabel *getUserLabel;
-    //    @property (weak, nonatomic) IBOutlet UILabel *peopleNumLb;
-    //    @property (weak, nonatomic) IBOutlet UILabel *luckyLabel;
-    //    @property (weak, nonatomic) IBOutlet UILabel *announceTimeLb;
     
     return cell;
     

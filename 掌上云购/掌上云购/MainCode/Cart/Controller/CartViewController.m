@@ -473,9 +473,16 @@
     cell.surplusNumber.text = [NSString stringWithFormat:@"剩余人数:%@",[dic objectForKey:@"surplusShare"]];
 
     cell.goodsType.image = [UIImage imageNamed:@"商品种类"];
-        
-    cell.goodsImg.image = [UIImage imageNamed:@"品牌图片"];
-       
+    
+    NSArray *picArr = [dic objectForKey:@"proPictureList"];
+    if (picArr.count > 0) {
+        NSDictionary *picDic = [picArr firstObject];
+        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"品牌图片"]];
+    }else{
+        cell.goodsImg.image = [UIImage imageNamed:@"品牌图片"];
+    }
+
+    
     cell.goodsNumLab.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
     
     cell.price.text = [NSString stringWithFormat:@"%@元/次",[dic objectForKey:@"singlePrice"]];

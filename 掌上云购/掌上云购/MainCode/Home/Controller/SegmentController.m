@@ -180,6 +180,7 @@
     
   
 }
+
 - (void)createSegmentView {
     SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 36, 80, [UIScreen mainScreen].bounds.size.height-36-49-64) segmentTitles:self.segmentTitles imageNames:self.imgNames selectImgNames:self.selectImgNames];
     segView.backgroundColor = [UIColor whiteColor];
@@ -201,6 +202,7 @@
 //    _segmentID = self.segmentData[0][@"id"];
     [self requestGoodsList:@"3"];
 }
+
 #pragma mark - 数据请求
 - (void)requestSegmentData {
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CategorysList_URL];

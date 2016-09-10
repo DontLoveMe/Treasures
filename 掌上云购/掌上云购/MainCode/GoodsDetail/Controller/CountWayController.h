@@ -8,26 +8,20 @@
 
 #import "BaseViewController.h"
 
-@interface CountWayController : BaseViewController{
+@interface CountWayController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
 
-    //计算公式
-    UILabel     *_formulaLabel;
+    UITableView             *_descriptionTable;
     
-    //a数值
-    UIView      *_characterAView;
-    //描述
-    UILabel     *_characterAdescriptionLabel;
-    UILabel     *_characterAdataLabel;
+    NSMutableDictionary     *_dataDic;
     
-    //b数值
-    UIView      *_characterBView;
-    //描述
-    UILabel     *_characterBdescriptionLabel;
-    UILabel     *_characterBdataLabel;
+    NSArray                 *_titleArr;
     
-    //计算结果
-    UILabel     *_resultLabel;
-
+    NSArray                 *_valueArr;
+    
+    NSInteger               _isOpen;
+    
+    NSMutableArray          *_AvalueArr;
+    
 }
 
 @property (nonatomic,assign)NSInteger isAnnounced;
