@@ -51,6 +51,8 @@
 #define GoodsHistoryPrize_URL @"/pcpServer-inf/saleDraw/pastList"
 //猜你喜欢
 #define LoveProduct_URL @"/pcpServer-inf/product/love"
+//计算方法
+#define CountWay_URL @"/pcpServer-inf/sale/computationalFormula"
 
 
 /*---------------最新揭晓模块---------------------*/

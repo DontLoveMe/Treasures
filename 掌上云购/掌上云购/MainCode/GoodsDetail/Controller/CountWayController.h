@@ -31,5 +31,6 @@
 }
 
 @property (nonatomic,assign)NSInteger isAnnounced;
+@property (nonatomic,copy)NSString *drawID;
 
 @end

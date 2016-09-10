@@ -461,6 +461,7 @@
     NSLogZS(@"查看计算方法了");
     CountWayController *CWVC = [[CountWayController alloc] init];
     CWVC.isAnnounced = _isAnnounced;
+    CWVC.drawID = [_dataDic objectForKey:@"drawId"];
     [[self viewController].navigationController pushViewController:CWVC
                                                           animated:YES];
 
