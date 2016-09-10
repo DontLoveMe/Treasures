@@ -41,6 +41,8 @@
     
     [self initViews];
     
+    [self requsetData];
+    
 }
 
 - (void)initViews{
@@ -108,6 +110,24 @@
     _resultLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:_resultLabel];
 
+}
+
+- (void)requsetData{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:_drawID forKey:@"drawId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CountWay_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+          } failure:^(NSError *error) {
+              
+          }];
+    
+    
 }
 
 @end
