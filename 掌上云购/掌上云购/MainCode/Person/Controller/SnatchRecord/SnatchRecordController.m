@@ -212,12 +212,15 @@
 - (void)changeStateData:(NSInteger)tag {
     switch (tag) {
         case 200:
+            _page = 1;
             [self requestData:nil];
             break;
         case 201:
+            _page = 1;
             [self requestData:@1];
             break;
         case 202:
+            _page = 1;
             [self requestData:@3];
             break;
             

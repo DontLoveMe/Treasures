@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _userNameTF.delegate = self;
 }
 
 - (IBAction)mannerAction:(UIButton *)sender {
@@ -21,14 +22,30 @@
     [self.delegate clickButtonBackTag:sender.tag];
     if (sender.tag == 100) {
         
-        UIButton *mannerBtn = [self.contentView viewWithTag:101];
-        mannerBtn.selected = NO;
-    }else {
+        UIButton *mannerBtn1 = [self.contentView viewWithTag:101];
+        mannerBtn1.selected = NO;
+        UIButton *mannerBtn2 = [self.contentView viewWithTag:102];
+        mannerBtn2.selected = NO;
         
-        UIButton *mannerBtn = [self.contentView viewWithTag:100];
-        mannerBtn.selected = NO;
+        _userNameTF.placeholder = @"请输入手机号码";
+    }else if(sender.tag == 101) {
+        
+        UIButton *mannerBtn1 = [self.contentView viewWithTag:100];
+        mannerBtn1.selected = NO;
+        UIButton *mannerBtn2 = [self.contentView viewWithTag:102];
+        mannerBtn2.selected = NO;
+        
+        _userNameTF.placeholder = @"请输入掌上元购账号";
+    }else {
+        UIButton *mannerBtn1 = [self.contentView viewWithTag:100];
+        mannerBtn1.selected = NO;
+        UIButton *mannerBtn2 = [self.contentView viewWithTag:101];
+        mannerBtn2.selected = NO;
+        
+        _userNameTF.placeholder = @"请输入支付宝账号";
+
     }
-    
+    NSLog(@"%@",_userNameTF.text);
 }
 
 - (IBAction)agreeAction:(UIButton *)sender {
@@ -37,10 +54,22 @@
 }
 
 - (IBAction)sureAction:(UIButton *)sender {
+    [self.delegate getUserName:_userNameTF.text];
+    [_userNameTF resignFirstResponder];
     [self.delegate clickButtonBackTag:sender.tag];
   
 
 }
 
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_userNameTF resignFirstResponder];
+    
+    [self.delegate getUserName:textField.text];
+    return YES;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_userNameTF resignFirstResponder];
+    
+    [self.delegate getUserName:_userNameTF.text];
+}
 @end

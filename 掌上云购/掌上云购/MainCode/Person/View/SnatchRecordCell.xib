@@ -131,17 +131,17 @@
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GC3-Mb-oSe">
-                                <rect key="frame" x="268" y="26" width="45" height="45"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="幸运标识.png" translatesAutoresizingMaskIntoConstraints="NO" id="GC3-Mb-oSe">
+                                <rect key="frame" x="244" y="15" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Jdg-DE-EoE"/>
-                                    <constraint firstAttribute="width" constant="45" id="K8u-ay-LxX"/>
+                                    <constraint firstAttribute="height" constant="60" id="32h-ye-oHC"/>
+                                    <constraint firstAttribute="width" constant="60" id="cZo-eg-EsI"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uzA-tO-PUN" firstAttribute="top" secondItem="GC3-Mb-oSe" secondAttribute="bottom" constant="38" id="1wH-XZ-gGq"/>
                             <constraint firstItem="CSC-pk-p3y" firstAttribute="leading" secondItem="gVY-Px-9bo" secondAttribute="trailing" constant="8" id="2tJ-lA-mg5"/>
                             <constraint firstItem="XG7-V2-UZY" firstAttribute="leading" secondItem="ZSb-Zd-elb" secondAttribute="trailing" constant="2.5" id="3VI-8Q-rwT"/>
                             <constraint firstItem="Mq0-Eb-pZf" firstAttribute="leading" secondItem="tSH-bU-eKi" secondAttribute="trailing" constant="8" id="4Qh-Gc-0zr"/>
@@ -166,13 +166,14 @@
                             <constraint firstItem="XG7-V2-UZY" firstAttribute="centerY" secondItem="ZSb-Zd-elb" secondAttribute="centerY" id="jqG-7x-gMh"/>
                             <constraint firstItem="ZSb-Zd-elb" firstAttribute="centerY" secondItem="I2X-so-grE" secondAttribute="centerY" id="k02-s1-51h"/>
                             <constraint firstItem="uzA-tO-PUN" firstAttribute="leading" secondItem="Sy0-Q2-7AB" secondAttribute="leading" constant="5" id="knK-ec-hEz"/>
+                            <constraint firstItem="GC3-Mb-oSe" firstAttribute="top" secondItem="Sy0-Q2-7AB" secondAttribute="top" constant="15" id="mqx-51-9K6"/>
                             <constraint firstAttribute="trailing" secondItem="Ebk-rs-Dn8" secondAttribute="trailing" constant="8" id="pAT-ei-dIR"/>
                             <constraint firstItem="8tq-0F-Lv4" firstAttribute="leading" secondItem="KZo-XN-c1Y" secondAttribute="trailing" id="r6a-GG-dyr"/>
                             <constraint firstItem="ZSb-Zd-elb" firstAttribute="leading" secondItem="I2X-so-grE" secondAttribute="trailing" id="r6k-PN-whU"/>
+                            <constraint firstAttribute="trailing" secondItem="GC3-Mb-oSe" secondAttribute="trailing" constant="16" id="t2u-1C-C72"/>
                             <constraint firstItem="Ebk-rs-Dn8" firstAttribute="leading" secondItem="gVY-Px-9bo" secondAttribute="trailing" constant="8" id="tds-6m-zCO"/>
                             <constraint firstItem="gVY-Px-9bo" firstAttribute="leading" secondItem="Sy0-Q2-7AB" secondAttribute="leading" constant="10" id="txd-dp-g1c"/>
                             <constraint firstItem="tSH-bU-eKi" firstAttribute="leading" secondItem="Tqa-Hz-hEn" secondAttribute="trailing" id="u2u-PA-AcX"/>
-                            <constraint firstAttribute="trailing" secondItem="GC3-Mb-oSe" secondAttribute="trailing" constant="7" id="vtX-AO-uIz"/>
                             <constraint firstItem="I2X-so-grE" firstAttribute="bottom" secondItem="gVY-Px-9bo" secondAttribute="bottom" constant="-4.5" id="zfh-Ck-Sez"/>
                         </constraints>
                     </view>
@@ -200,7 +201,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="按钮背景.png" width="216" height="64"/>
+        <image name="幸运标识.png" width="64" height="64"/>
+        <image name="按钮背景.png" width="40" height="20"/>
         <image name="揭晓-图片.jpg" width="800" height="600"/>
         <image name="横线.png" width="425" height="2"/>
     </resources>

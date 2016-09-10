@@ -37,14 +37,19 @@
 
 //查看详情
 - (IBAction)lookDetailAction:(UIButton *)sender {
+    GoodsDetailController *gsDTVC = [[GoodsDetailController alloc] init];
+    gsDTVC.goodsId = _rcModel.ID ;
+    gsDTVC.drawId = _rcModel.drawId;
+    gsDTVC.isAnnounced = 3;
+    [[self viewController].navigationController pushViewController:gsDTVC animated:YES];
 }
 //再次购买
 - (IBAction)againShopAction:(UIButton *)sender {
     
     GoodsDetailController *gsDTVC = [[GoodsDetailController alloc] init];
     gsDTVC.goodsId = _rcModel.ID ;
-    gsDTVC.drawId = _rcModel.drawId;
-    gsDTVC.isAnnounced = 3;
+//    gsDTVC.drawId = _rcModel.drawId;
+    gsDTVC.isAnnounced = 1;
     [[self viewController].navigationController pushViewController:gsDTVC animated:YES];
 }
 - (UIViewController *)viewController {

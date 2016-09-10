@@ -11,9 +11,10 @@
 
 @optional
 - (void)clickButtonBackTag:(NSInteger)tag;
+- (void)getUserName:(NSString *)userName;
 
 @end
-@interface ConfirmGoodsCell_2 : UITableViewCell
+@interface ConfirmGoodsCell_2 : UITableViewCell<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *stateView1;
 @property (weak, nonatomic) IBOutlet UIImageView *stateView2;
@@ -24,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *mannerBtn2;
 @property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mannerBtn3;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTF;
 
 @property (nonatomic,weak)id<ConfirmGoodsCellDelegate> delegate;
 
