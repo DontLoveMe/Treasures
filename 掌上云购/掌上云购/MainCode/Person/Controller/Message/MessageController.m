@@ -7,6 +7,8 @@
 //
 
 #import "MessageController.h"
+#import "RedEnvelopeController.h"
+#import "SnatchRecordController.h"
 
 @interface MessageController ()
 
@@ -94,7 +96,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = self.msgList[indexPath.row][@"title"];
+    NSDictionary *msgDic = self.msgList[indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
+    if (![msgDic[@"content"] isKindOfClass:[NSNull class]]) {
+        cell.textLabel.text = msgDic[@"content"];
+    }else {
+        NSInteger msgType = [msgDic[@"msgType"] integerValue];
+        if (msgType == 1) {
+             cell.textLabel.text = @"红包消息";
+        }else if (msgType == 2) {
+            cell.textLabel.text = @"揭晓消息";
+        }else {
+            cell.textLabel.text = @"其他消息";
+        }
+        
+    }
+    
     
     return cell;
 }
@@ -102,5 +119,17 @@
     return 30;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *msgDic = self.msgList[indexPath.row];
+    NSInteger msgType = [msgDic[@"msgType"] integerValue];
+    if (msgType == 1) {
+        RedEnvelopeController *rdVc = [[RedEnvelopeController alloc] init];
+        [self.navigationController pushViewController:rdVc animated:YES];
+    }else if (msgType == 2) {
+        
+        SnatchRecordController *srVc = [[SnatchRecordController alloc] init];
+        [self.navigationController pushViewController:srVc animated:YES];
+    }else {
+        
+    }
 }
 @end
