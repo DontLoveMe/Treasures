@@ -29,7 +29,7 @@
 #endif
 
 //主色调
-#define ThemeColor @"1685FE"
+#define ThemeColor @"12A6F1"
 
 //取得屏幕的宽、高
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width

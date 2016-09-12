@@ -30,10 +30,10 @@
 - (void)_createTabbarView{
     
     // 按钮的图片数组
-    NSArray *imageArray = @[@"首页",@"揭晓",@"发现",@"购物车",@"我的"];
+    NSArray *imageArray = @[@"夺宝",@"最新揭晓",@"发现",@"清单",@"我的云购"];
     
     // 按钮的标题数组
-    NSArray *titleArray = @[@"首页",@"揭晓",@"发现",@"购物车",@"我的"];
+    NSArray *titleArray = @[@"夺宝",@"最新揭晓",@"发现",@"清单",@"我的云购"];
     
     // 按钮的宽、高
     CGFloat width = KScreenWidth / (float)titleArray.count;
