@@ -280,7 +280,7 @@
         return;
     }
     if (_phoneTF.text>0) {
-        [params setObject:_phoneTF.text forKey:@"phone"];
+        [params setObject:_phoneTF.text forKey:@"mobile"];
     }else{
         return;
     }

@@ -102,7 +102,7 @@
     GoodsDetailController *gsdtVC = [[GoodsDetailController alloc] init];
     GoodsModel *gsModel = [GoodsModel mj_objectWithKeyValues:self.loveData[indexPath.row]];
     gsdtVC.goodsId = gsModel.ID;
-    gsdtVC.drawId = gsModel.drawId;
+//    gsdtVC.drawId = gsModel.drawId;
     gsdtVC.isAnnounced = 1;
     [[self viewController].navigationController pushViewController:gsdtVC animated:YES];
 }

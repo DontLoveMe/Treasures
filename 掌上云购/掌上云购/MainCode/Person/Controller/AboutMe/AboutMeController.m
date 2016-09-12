@@ -134,7 +134,7 @@
     NSNumber *userId = userDic[@"id"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"id"];
-    [params setObject:_userInfo[@"nickName"] forKey:@"nickName"];
+//    [params setObject:_userInfo[@"nickName"] forKey:@"nickName"];
     if (_filePath.length>0) {
         [params setObject:_filePath forKey:@"photo_url"];
     }else{

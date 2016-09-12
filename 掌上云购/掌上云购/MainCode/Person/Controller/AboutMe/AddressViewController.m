@@ -219,7 +219,7 @@
     button.frame = CGRectMake(20, 20, KScreenWidth-40, 40);
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:@"添加地址" forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"按钮背景_长"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addAddressAction:) forControlEvents:UIControlEventTouchUpInside];
     [footView addSubview:button];
     

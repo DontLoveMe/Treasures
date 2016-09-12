@@ -195,23 +195,26 @@
     CGFloat pageWidth = _scrollView.frame.size.width;
     
     NSInteger page = (_scrollView.contentOffset.x - pageWidth/2)/pageWidth + 1;
-    
+   
     //改变选中button的样式
     [self changeButtonState:page + 200];
 }
 - (void)buttonAction:(UIButton *)button {
     if (button.tag != _selectBtnTag) {
-        UIButton *selectBtn = [self.view viewWithTag:_selectBtnTag];
-        selectBtn.selected = NO;
+        
         //改变选中button的样式
         [self changeButtonState:button.tag];
         //去选中那一页
         [self goToPage:button.tag - 200];
+        
      }
 
 }
 //改变选中button的样式
 - (void)changeButtonState:(NSInteger)tag {
+    if(tag == _selectBtnTag) return;
+    UIButton *selectBtn = [self.view viewWithTag:_selectBtnTag];
+    selectBtn.selected = NO;
     UIButton *button = [self.view viewWithTag:tag];
     button.selected = YES;
     _selectBtnTag = tag;
@@ -229,7 +232,7 @@
     frame.origin.y = 0;
     frame.size = _scrollView.frame.size;
     [_scrollView scrollRectToVisible:frame animated:YES];
-
+    
 }
 
 //创建下方视图
