@@ -62,14 +62,18 @@
 #pragma mark - 视图初始化
 - (void)initViews{
 
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(4, 4, KScreenWidth - 8.f, 28.f)];
-    _searchBar.barStyle = UIBarStyleBlackTranslucent;
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(4, 10, KScreenWidth - 8.f, 28.f)];
+    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"搜索背景"] forState:UIControlStateNormal];
+    
+    _searchBar.barStyle = UIBarStyleBlack;
+//    _searchBar.backgroundColor = [UIColor whiteColor];
     _searchBar.placeholder = @"搜索";
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    _searchBar.barTintColor = [UIColor whiteColor];
+//    _searchBar.barTintColor = [UIColor whiteColor];
     _searchBar.delegate = self;
     
     UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
+//    searchField.background = [UIImage imageNamed:@"搜索背景"];
     // 输入文本颜色
     searchField.textColor = [UIColor blackColor];
     // 默认文本颜色
@@ -118,6 +122,7 @@
     
     if (indexPath.section == 0) {
         HotSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HotSearchCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         __weak typeof(self) weakSelf = self;
         [cell setHotSearchString:^(NSString *hotString){
             [weakSelf searchRequestData:hotString];
@@ -125,14 +130,18 @@
         
         return cell;
     }
-    SeachHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeachHistoryCell" forIndexPath:indexPath];
-    cell.titleLabel.text = _historyData[indexPath.row];
-    
-    __weak typeof(self) weakSelf = self;
-    [cell setDeleteIndex:^(UIButton *sender) {
-        [weakSelf deleteIndex:indexPath.row];
-    }];
-    
+//    SeachHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeachHistoryCell" forIndexPath:indexPath];
+//    cell.titleLabel.text = _historyData[indexPath.row];
+//    
+//    __weak typeof(self) weakSelf = self;
+//    [cell setDeleteIndex:^(UIButton *sender) {
+//        [weakSelf deleteIndex:indexPath.row];
+//    }];
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    cell.textLabel.text = _historyData[indexPath.row];
+    cell.textLabel.textColor = [UIColor grayColor];
+//    cell.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
@@ -157,8 +166,11 @@
         label.text = @"历史搜索";
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(KScreenWidth-40, 8, 21, 23);
-        [button setBackgroundImage:[UIImage imageNamed:@"搜索_全删"] forState:UIControlStateNormal];
+        button.frame = CGRectMake(KScreenWidth-70, 8, 60, 23);
+        [button setTitle:@"清空记录" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
+        [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
+//        [button setBackgroundImage:[UIImage imageNamed:@"搜索_全删"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(allDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView addSubview:button];
     }
@@ -173,7 +185,7 @@
     if (indexPath.section == 0) {
         return 90;
     }
-    return 40;
+    return 30;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

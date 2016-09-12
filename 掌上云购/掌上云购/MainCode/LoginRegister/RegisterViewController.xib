@@ -134,35 +134,30 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwW-eb-LWK">
                     <rect key="frame" x="196" y="162" width="15" height="15"/>
-                    <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ZdQ-wb-t0j"/>
                         <constraint firstAttribute="width" constant="15" id="gOK-oS-iRD"/>
                     </constraints>
+                    <state key="normal" backgroundImage="勾选.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXo-q0-jMq">
                     <rect key="frame" x="15" y="187" width="570" height="37"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="ezM-td-b5z"/>
                     </constraints>
-                    <state key="normal" title="立即注册" backgroundImage="按钮背景.png">
+                    <state key="normal" title="立即注册" backgroundImage="按钮背景_长.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="registerAction:" destination="-1" eventType="touchUpInside" id="Wej-G0-ZIW"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="掌上云购logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZs-IG-ZJo">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="掌上云购.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZs-IG-ZJo">
                     <rect key="frame" x="215" y="286" width="170" height="135"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="170" id="Ag1-D3-rDc"/>
                         <constraint firstAttribute="height" constant="135" id="w25-nA-Etj"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="横线.png" translatesAutoresizingMaskIntoConstraints="NO" id="plG-Cn-Xzm">
-                    <rect key="frame" x="15" y="244" width="570" height="2"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="2" id="Wnt-df-1Xm"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnT-eI-nOU">
@@ -193,7 +188,6 @@
                 <constraint firstAttribute="trailing" secondItem="geF-O9-mzf" secondAttribute="trailing" id="8fk-zc-2ZW"/>
                 <constraint firstItem="YnT-eI-nOU" firstAttribute="top" secondItem="6br-PE-aeC" secondAttribute="bottom" constant="11" id="8pm-74-Xpn"/>
                 <constraint firstItem="1Fw-4b-7Gp" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="9bt-PX-hGa"/>
-                <constraint firstItem="plG-Cn-Xzm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Av1-2f-6wY"/>
                 <constraint firstItem="bBm-5G-j70" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="BnV-wS-d79"/>
                 <constraint firstItem="7Fc-HT-ohh" firstAttribute="top" secondItem="tXo-q0-jMq" secondAttribute="bottom" constant="8" id="Bsx-y6-AKK"/>
                 <constraint firstItem="450-WC-8Me" firstAttribute="centerY" secondItem="kjV-qd-1Gz" secondAttribute="centerY" id="Gzn-dA-V8Q"/>
@@ -208,12 +202,11 @@
                 <constraint firstAttribute="bottom" secondItem="7Fc-HT-ohh" secondAttribute="bottom" id="THJ-87-6sP"/>
                 <constraint firstItem="yGF-4p-Orr" firstAttribute="trailing" secondItem="geF-O9-mzf" secondAttribute="trailing" constant="-3" id="TSI-kt-UUQ"/>
                 <constraint firstItem="450-WC-8Me" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="13" id="V2d-d1-ycJ"/>
+                <constraint firstItem="TZs-IG-ZJo" firstAttribute="top" secondItem="tXo-q0-jMq" secondAttribute="bottom" constant="62" id="VDm-Ax-gVo"/>
                 <constraint firstItem="6br-PE-aeC" firstAttribute="leading" secondItem="geF-O9-mzf" secondAttribute="leading" id="VNH-pF-mVi"/>
                 <constraint firstItem="sNp-jh-NwF" firstAttribute="leading" secondItem="geF-O9-mzf" secondAttribute="leading" id="YI3-d2-qjY"/>
                 <constraint firstItem="sNp-jh-NwF" firstAttribute="trailing" secondItem="geF-O9-mzf" secondAttribute="trailing" id="Zk2-Ub-Kmt"/>
-                <constraint firstItem="plG-Cn-Xzm" firstAttribute="top" secondItem="tXo-q0-jMq" secondAttribute="bottom" constant="20" id="aNW-LW-IFf"/>
                 <constraint firstItem="yGF-4p-Orr" firstAttribute="top" secondItem="geF-O9-mzf" secondAttribute="bottom" constant="2" id="c3v-99-UgT"/>
-                <constraint firstAttribute="trailing" secondItem="plG-Cn-Xzm" secondAttribute="trailing" constant="15" id="fhi-px-Yii"/>
                 <constraint firstItem="6br-PE-aeC" firstAttribute="top" secondItem="sNp-jh-NwF" secondAttribute="bottom" constant="2" id="fsv-wp-qTE"/>
                 <constraint firstItem="1Fw-4b-7Gp" firstAttribute="leading" secondItem="kjV-qd-1Gz" secondAttribute="trailing" constant="10" id="gWR-Wb-npm"/>
                 <constraint firstItem="450-WC-8Me" firstAttribute="leading" secondItem="1Fw-4b-7Gp" secondAttribute="trailing" constant="8" id="hRe-S5-xDX"/>
@@ -221,7 +214,6 @@
                 <constraint firstItem="YnT-eI-nOU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="miD-3h-fgO"/>
                 <constraint firstItem="tXo-q0-jMq" firstAttribute="top" secondItem="YnT-eI-nOU" secondAttribute="bottom" constant="10" id="nCL-24-HvV"/>
                 <constraint firstItem="6br-PE-aeC" firstAttribute="trailing" secondItem="geF-O9-mzf" secondAttribute="trailing" id="q9U-Q8-tML"/>
-                <constraint firstItem="TZs-IG-ZJo" firstAttribute="top" secondItem="plG-Cn-Xzm" secondAttribute="bottom" constant="40" id="sWk-s5-0y2"/>
                 <constraint firstItem="tXo-q0-jMq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="ven-ol-5gW"/>
                 <constraint firstItem="tXo-q0-jMq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vrK-eI-BA2"/>
                 <constraint firstItem="TZs-IG-ZJo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wMM-Pr-Xw7"/>
@@ -233,9 +225,10 @@
         </view>
     </objects>
     <resources>
-        <image name="按钮背景.png" width="216" height="64"/>
-        <image name="掌上云购logo.png" width="2051" height="1701"/>
-        <image name="横线.png" width="425" height="2"/>
+        <image name="勾选.png" width="9" height="9"/>
+        <image name="按钮背景.png" width="70" height="20"/>
+        <image name="按钮背景_长.png" width="351" height="34"/>
+        <image name="掌上云购.png" width="106" height="88"/>
         <image name="竖线.png" width="2" height="597"/>
     </resources>
 </document>

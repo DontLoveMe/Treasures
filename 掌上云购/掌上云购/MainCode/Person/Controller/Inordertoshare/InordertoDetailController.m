@@ -141,7 +141,7 @@
     _nikeName.font = [UIFont systemFontOfSize:16];
     [_scrollView addSubview:_nikeName];
     
-    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth-100, 10, 90, 40)];
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth-110, 10, 100, 40)];
 //    _timeLabel.backgroundColor = [UIColor grayColor];
     _timeLabel.text = @"08-21 21:00";
     _timeLabel.textColor = [UIColor blackColor];
@@ -149,11 +149,11 @@
     _timeLabel.font = [UIFont systemFontOfSize:16];
     [_scrollView addSubview:_timeLabel];
     
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, 55, KScreenWidth-30, 105)];
-    _bgView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, 55, KScreenWidth-30, 125)];
+    _bgView.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
     [_scrollView addSubview:_bgView];
     NSMutableArray *lbArr = [NSMutableArray array];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+25*i, _bgView.width-20, 20)];
         label.tag = 100;
         label.text = @"";
@@ -229,7 +229,8 @@
     NSArray *mdArr = @[[NSString stringWithFormat:@"获得商品：%@",iSModel.productName],
                        [NSString stringWithFormat:@"期号：%@",iSModel.drawTimes],
                        [NSString stringWithFormat:@"参与人次：%@",@"573"],
-                       [NSString stringWithFormat:@"幸运号码：%@",@"10000086"]];
+                       [NSString stringWithFormat:@"幸运号码：%@",@"10000086"],
+                       [NSString stringWithFormat:@"揭晓时间：%@",@"2016/10/19 08:10"]];
     for (int i = 0;i < _labels.count; i ++) {
         UILabel *lable = _labels[i];
         lable.text = mdArr[i];

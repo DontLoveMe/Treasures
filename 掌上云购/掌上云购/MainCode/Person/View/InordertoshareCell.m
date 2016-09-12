@@ -58,8 +58,13 @@
     _iconButton.layer.masksToBounds = YES;
     
     NSString *urlStr = _iSModel.userPhotoUrl;
-    NSURL *url = [NSURL URLWithString:urlStr];
-    [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的_头像"]];
+    if (urlStr.length == 0) {
+        [_iconButton setBackgroundImage:[UIImage imageNamed:@"我的_头像"] forState:UIControlStateNormal];
+    }else {
+        NSURL *url = [NSURL URLWithString:urlStr];
+        [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的_头像"]];
+    }
+    
     
     _nameLabel.text = _iSModel.nickName;
     //转时间格式

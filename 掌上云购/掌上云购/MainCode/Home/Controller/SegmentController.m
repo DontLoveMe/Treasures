@@ -188,6 +188,9 @@
     __weak typeof(self) weakSelf = self;
     [segView setTagBlock:^(NSInteger index) {
         NSLog(@"选择竖排分类回调%ld",(long)index);
+        if (_segmentData.count == 0) {
+            return;
+        }
         NSDictionary *dic = _segmentData[index];
         _page = 1;
         _segmentID = [dic[@"id"] stringValue];

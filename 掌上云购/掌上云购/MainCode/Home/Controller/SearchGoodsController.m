@@ -51,6 +51,9 @@
     _searchBar = [[UISearchBar alloc] init];
     _searchBar.barStyle = UIBarStyleBlackTranslucent;
     _searchBar.placeholder = @"搜索";
+    [_searchBar setImage:[UIImage imageNamed:@"首页_搜索"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    [_searchBar setImage:[UIImage imageNamed:@"搜索_删除"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"搜索背景_白"] forState:UIControlStateNormal];
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.barTintColor = [UIColor whiteColor];
     _searchBar.delegate = self;
@@ -146,6 +149,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SearchGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchGoodsCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.gsModel = [GoodsModel mj_objectWithKeyValues:self.seachData[indexPath.row]];
     
     return cell;
@@ -158,7 +162,7 @@
     GoodsDetailController *gsdtVC = [[GoodsDetailController alloc] init];
     GoodsModel *gsModel = [GoodsModel mj_objectWithKeyValues:self.seachData[indexPath.row]];
     gsdtVC.goodsId = gsModel.ID;
-    gsdtVC.drawId = gsModel.drawId;
+//    gsdtVC.drawId = gsModel.drawId;
     gsdtVC.isAnnounced = 1;
     [self.navigationController pushViewController:gsdtVC animated:YES];
     

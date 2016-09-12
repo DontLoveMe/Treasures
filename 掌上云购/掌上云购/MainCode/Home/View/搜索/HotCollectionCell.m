@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UIImage *img = [UIImage imageNamed:@"搜索标签背景"];
+    img = [img stretchableImageWithLeftCapWidth:10 topCapHeight:0];
+    _bgImgView.image = img;
 }
 
 @end

@@ -13,11 +13,11 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="按钮框_亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="XCx-nD-9zn">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="搜索背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="XCx-nD-9zn">
                         <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-51-3bQ">
-                        <rect key="frame" x="168" y="14" width="133" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-51-3bQ">
+                        <rect key="frame" x="0.0" y="14" width="482" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="sZD-LM-PBs"/>
                         </constraints>
@@ -39,12 +39,13 @@
             </constraints>
             <size key="customSize" width="482" height="50"/>
             <connections>
+                <outlet property="bgImgView" destination="XCx-nD-9zn" id="gg1-5C-9Jq"/>
                 <outlet property="titleLabel" destination="4Im-51-3bQ" id="s42-xJ-sOk"/>
             </connections>
-            <point key="canvasLocation" x="326" y="292"/>
+            <point key="canvasLocation" x="185" y="179"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="按钮框_亮.png" width="471" height="200"/>
+        <image name="搜索背景.png" width="311" height="29"/>
     </resources>
 </document>

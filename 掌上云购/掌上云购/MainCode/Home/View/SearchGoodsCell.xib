@@ -32,26 +32,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOr-sr-N4g" customClass="ProgressView">
-                        <rect key="frame" x="87" y="44" width="175" height="10"/>
+                        <rect key="frame" x="87" y="44" width="163" height="10"/>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="RRo-M2-XKi"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTq-FG-mho">
-                        <rect key="frame" x="267" y="36" width="50" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="17" id="Jo7-h9-Txx"/>
-                            <constraint firstAttribute="width" constant="50" id="tTb-uz-CSz"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="加入清单" backgroundImage="按钮框_亮.png">
-                            <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="addToCart:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TuQ-0f-r10"/>
-                        </connections>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总需人次：10000人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iW2-46-k65">
                         <rect key="frame" x="87" y="61" width="90.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -59,15 +45,29 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余人次：10000人" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qU-zH-MGD">
-                        <rect key="frame" x="178" y="61.5" width="90.5" height="12"/>
+                        <rect key="frame" x="178" y="61" width="90.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTq-FG-mho">
+                        <rect key="frame" x="260" y="36" width="50" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Jo7-h9-Txx"/>
+                            <constraint firstAttribute="width" constant="50" id="tTb-uz-CSz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="加入清单" backgroundImage="加入清单.png">
+                            <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="addToCart:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TuQ-0f-r10"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TOr-sr-N4g" firstAttribute="leading" secondItem="jwK-Vk-jLl" secondAttribute="trailing" constant="5" id="0cj-2i-mJE"/>
-                    <constraint firstItem="hTq-FG-mho" firstAttribute="leading" secondItem="TOr-sr-N4g" secondAttribute="trailing" constant="5" id="0nO-1G-UvR"/>
+                    <constraint firstItem="hTq-FG-mho" firstAttribute="leading" secondItem="TOr-sr-N4g" secondAttribute="trailing" constant="10" id="0nO-1G-UvR"/>
                     <constraint firstAttribute="trailing" secondItem="rUM-sy-2QZ" secondAttribute="trailing" constant="53" id="2x8-F7-oeA"/>
                     <constraint firstItem="rUM-sy-2QZ" firstAttribute="leading" secondItem="jwK-Vk-jLl" secondAttribute="trailing" constant="5" id="7ad-f1-GRa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0qU-zH-MGD" secondAttribute="bottom" constant="8" id="8va-5o-Qma"/>
@@ -79,7 +79,7 @@
                     <constraint firstItem="jwK-Vk-jLl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Zps-IM-bvs"/>
                     <constraint firstItem="0qU-zH-MGD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TOr-sr-N4g" secondAttribute="trailing" id="nMa-Ix-zFr"/>
                     <constraint firstItem="TOr-sr-N4g" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="4.25" id="qvr-gG-atf"/>
-                    <constraint firstAttribute="trailing" secondItem="hTq-FG-mho" secondAttribute="trailing" constant="3" id="rck-X1-o3u"/>
+                    <constraint firstAttribute="trailing" secondItem="hTq-FG-mho" secondAttribute="trailing" constant="10" id="rck-X1-o3u"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iW2-46-k65" secondAttribute="bottom" constant="8" id="tge-2x-9xu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hTq-FG-mho" secondAttribute="trailing" constant="-8" id="zGC-DS-dhD"/>
                 </constraints>
@@ -101,7 +101,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="按钮框_亮.png" width="471" height="200"/>
+        <image name="加入清单.png" width="49" height="17"/>
         <image name="揭晓-图片.jpg" width="800" height="600"/>
     </resources>
 </document>

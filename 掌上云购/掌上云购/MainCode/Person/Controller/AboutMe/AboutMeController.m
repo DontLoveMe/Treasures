@@ -209,9 +209,9 @@
         {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             _iconImgView = nil;
-            _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-75, 10, 50, 50)];
+            _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-75, 3, 35, 35)];
             _iconImgView.backgroundColor = [UIColor redColor];
-            _iconImgView.layer.cornerRadius = 25;
+            _iconImgView.layer.cornerRadius = 35.f/2;
             _iconImgView.layer.masksToBounds = YES;
             
             _iconImgView.image = [UIImage imageNamed:@"我的-头像"];
@@ -281,9 +281,9 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 70;
-    }
+//    if (indexPath.row == 0) {
+//        return 70;
+//    }
     return 40;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

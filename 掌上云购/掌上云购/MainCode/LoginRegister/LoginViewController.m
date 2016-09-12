@@ -61,9 +61,13 @@
 //设置输入框两边的图片
 - (void)setTextField {
     _userNameTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"用户"]];
+    _userNameTF.leftView.contentMode = UIViewContentModeCenter;
+    _userNameTF.leftView.frame = CGRectMake(0, 0, 35, 43);
     _userNameTF.leftViewMode = UITextFieldViewModeAlways;
     
     _passwordTF.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"密码"]];
+    _passwordTF.leftView.contentMode = UIViewContentModeCenter;
+    _passwordTF.leftView.frame = CGRectMake(0, 0, 35, 43);
     _passwordTF.leftViewMode = UITextFieldViewModeAlways;
     
     UIButton *plaintextBtn = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -37,11 +37,14 @@
                         <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQB-vt-eok">
-                    <rect key="frame" x="126" y="228" width="124" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQB-vt-eok">
+                    <rect key="frame" x="125.5" y="228" width="124.5" height="40"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="充值">
-                        <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="titleEdgeInsets" minX="-46" minY="0.0" maxX="25" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="26" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="充值" image="按钮背景.png">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKW-MD-1H0">
@@ -50,7 +53,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="BTf-w8-ScZ"/>
                     </constraints>
-                    <state key="normal" title="积分：">
+                    <state key="normal">
                         <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -83,5 +86,6 @@
     </objects>
     <resources>
         <image name="我的-头像.png" width="131" height="131"/>
+        <image name="按钮背景.png" width="70" height="20"/>
     </resources>
 </document>

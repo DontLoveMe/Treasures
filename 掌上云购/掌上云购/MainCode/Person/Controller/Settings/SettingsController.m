@@ -9,6 +9,7 @@
 #import "SettingsController.h"
 #import "AlertController.h"
 #import "RegisterViewController.h"
+#import "AboutMeController.h"
 
 @interface SettingsController ()
 
@@ -51,7 +52,7 @@
     [self initNavBar];
     
     
-    _data = @[@"密码修改",@"通知设置",@"常见问题",@"版本信息",@"清除缓存"];
+    _data = @[@"个人资料",@"密码修改",@"通知设置",@"常见问题",@"版本信息",@"清除缓存"];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 40*_data.count) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
@@ -61,10 +62,10 @@
     
     
     UIButton *exitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    exitBtn.frame = CGRectMake(30, CGRectGetMaxY(_tableView.frame)+20, KScreenWidth-60, 40);
-    [exitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [exitBtn setTitle:@"退出账户登录" forState:UIControlStateNormal];
-    [exitBtn setBackgroundImage:[UIImage imageNamed:@"按钮框"] forState:UIControlStateNormal];
+    exitBtn.frame = CGRectMake(15, CGRectGetMaxY(_tableView.frame)+20, KScreenWidth-30, 37);
+    [exitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [exitBtn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [exitBtn setBackgroundImage:[UIImage imageNamed:@"按钮背景_长"] forState:UIControlStateNormal];
     [exitBtn addTarget:self action:@selector(exitAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:exitBtn];
 }
@@ -86,17 +87,20 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 1:
-            cell.detailTextLabel.text = @"推送未授权";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 2:
-            cell.detailTextLabel.text = @"标识";
+            cell.detailTextLabel.text = @"推送未授权";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 3:
-            cell.detailTextLabel.text = @"V1.1";
+            cell.detailTextLabel.text = @"标识";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 4:
+            cell.detailTextLabel.text = @"V1.1";
+            break;
+        case 5:
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",[self folderSizeWithPath:[self getPath]]];
             break;
             
@@ -118,6 +122,14 @@
     switch (indexPath.row) {
         case 0://密码修改
         {
+            AboutMeController *amVC = [[AboutMeController alloc] init];
+            self.navigationController.navigationBar.hidden = NO;
+            amVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:amVC animated:YES];
+        }
+            break;
+        case 1://密码修改
+        {
             RegisterViewController *rVC = [[RegisterViewController alloc] init];
             rVC.isRegistOrmodify = 2;
             rVC.title = @"密码修改";
@@ -125,23 +137,23 @@
             [self presentViewController:rnVC animated:YES completion:nil];
         }
             break;
-        case 1://通知设置
+        case 2://通知设置
         {
         
         }
             break;
-        case 2://常见问题
+        case 3://常见问题
         {
             
         }
             break;
-        case 3://版本信息
+        case 4://版本信息
         {
             
             
         }
             break;
-        case 4://清楚缓存
+        case 5://清楚缓存
         {
             [self clearCacheAlertView];
            

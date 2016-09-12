@@ -32,15 +32,16 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="dA0-R8-HBJ"/>
                     </constraints>
-                    <state key="normal" title="登   录" backgroundImage="按钮背景.png">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="登   录" backgroundImage="按钮背景_长.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="sTG-Y2-WDZ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他方式登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-a7-XFK">
-                    <rect key="frame" x="258" y="392" width="84" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择其他方式登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-a7-XFK">
+                    <rect key="frame" x="244" y="392" width="112" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -61,7 +62,7 @@
                         <constraint firstAttribute="height" constant="40" id="VFs-50-abg"/>
                         <constraint firstAttribute="width" constant="40" id="l6e-pL-GKD"/>
                     </constraints>
-                    <state key="normal" backgroundImage="微信logo.png"/>
+                    <state key="normal" backgroundImage="微信.png"/>
                     <state key="highlighted" backgroundImage="微信logo.png"/>
                     <connections>
                         <action selector="wechatLogin:" destination="-1" eventType="touchUpInside" id="fRz-aL-Jbp"/>
@@ -73,7 +74,7 @@
                         <constraint firstAttribute="width" constant="40" id="Q4E-KN-LH1"/>
                         <constraint firstAttribute="height" constant="40" id="lcb-i5-vJm"/>
                     </constraints>
-                    <state key="normal" backgroundImage="QQlogo.png">
+                    <state key="normal" backgroundImage="QQ.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="highlighted" backgroundImage="QQlogo.png"/>
@@ -162,7 +163,7 @@
                         <constraint firstAttribute="width" constant="40" id="JcN-jM-8ae"/>
                         <constraint firstAttribute="height" constant="40" id="kmK-Qx-MJO"/>
                     </constraints>
-                    <state key="normal" backgroundImage="微博logo.png">
+                    <state key="normal" backgroundImage="微博.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="highlighted" backgroundImage="微博logo.png"/>
@@ -180,19 +181,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0o-LI-W8O">
-                    <rect key="frame" x="15" y="196" width="570" height="40"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="2Mp-l4-Z27"/>
-                    </constraints>
-                    <state key="normal" title="注册">
-                        <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="registerActiion:" destination="-1" eventType="touchUpInside" id="1Su-mF-OEV"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIx-qn-Dsd">
                     <rect key="frame" x="515" y="103" width="75" height="23"/>
                     <constraints>
@@ -204,6 +192,20 @@
                     </state>
                     <connections>
                         <action selector="forgottenPassword:" destination="-1" eventType="touchUpInside" id="DEt-2l-0GM"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0o-LI-W8O">
+                    <rect key="frame" x="15" y="199" width="570" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="2Mp-l4-Z27"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="注  册" backgroundImage="按钮背景_白.png">
+                        <color key="titleColor" red="0.070588235294117646" green="0.5607843137254902" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="registerActiion:" destination="-1" eventType="touchUpInside" id="1Su-mF-OEV"/>
                     </connections>
                 </button>
             </subviews>
@@ -219,7 +221,7 @@
                 <constraint firstItem="adh-yP-nwB" firstAttribute="top" secondItem="wfl-g4-g5h" secondAttribute="bottom" constant="8" id="Kyx-Yl-HAB"/>
                 <constraint firstItem="UkN-vc-gxx" firstAttribute="leading" secondItem="1LR-E8-BxZ" secondAttribute="trailing" constant="25" id="MGG-yE-kSG"/>
                 <constraint firstItem="h6G-3g-Fct" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="NpN-mj-g8s"/>
-                <constraint firstItem="m0o-LI-W8O" firstAttribute="top" secondItem="h6G-3g-Fct" secondAttribute="bottom" constant="2" id="OJt-wy-3rX"/>
+                <constraint firstItem="m0o-LI-W8O" firstAttribute="top" secondItem="h6G-3g-Fct" secondAttribute="bottom" constant="5" id="OJt-wy-3rX"/>
                 <constraint firstItem="UkN-vc-gxx" firstAttribute="bottom" secondItem="wfl-g4-g5h" secondAttribute="bottom" id="PPr-mp-QHB"/>
                 <constraint firstItem="6ii-7K-Ety" firstAttribute="top" secondItem="1LR-E8-BxZ" secondAttribute="bottom" constant="83" id="Pj3-j3-F30"/>
                 <constraint firstItem="9np-7T-ksN" firstAttribute="centerY" secondItem="3IS-5p-Hj0" secondAttribute="centerY" id="Q2C-QM-ip2"/>
@@ -252,10 +254,14 @@
         </view>
     </objects>
     <resources>
+        <image name="QQ.png" width="40" height="40"/>
         <image name="QQlogo.png" width="128" height="128"/>
+        <image name="微信.png" width="40" height="40"/>
         <image name="微信logo.png" width="128" height="128"/>
+        <image name="微博.png" width="40" height="40"/>
         <image name="微博logo.png" width="128" height="128"/>
-        <image name="按钮背景.png" width="216" height="64"/>
+        <image name="按钮背景_白.png" width="906" height="200"/>
+        <image name="按钮背景_长.png" width="351" height="34"/>
         <image name="竖线.png" width="2" height="597"/>
     </resources>
 </document>
