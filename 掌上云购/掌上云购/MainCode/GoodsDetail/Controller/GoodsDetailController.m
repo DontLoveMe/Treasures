@@ -143,7 +143,7 @@
     
     _goodsName = [[UILabel alloc] initWithFrame:CGRectMake(12.f, _topGoodImgView.bottom , KScreenWidth - 24.f, 40.f)];
     _goodsName.numberOfLines = 0;
-    _goodsName.textColor = [UIColor redColor];
+    _goodsName.textColor = [UIColor darkGrayColor];
     _goodsName.font = [UIFont systemFontOfSize:13.f];
     _goodsName.textAlignment = NSTextAlignmentLeft;
     [_bgScrollView addSubview:_goodsName];
@@ -160,31 +160,38 @@
 
 - (void)initBottonView{
     
-    _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
+    _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
     _bottomView.backgroundColor = [UIColor whiteColor];
+    _bottomView.image = [UIImage imageNamed:@"标签栏背景"];
     [self.view addSubview:_bottomView];
+//    UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"横线_灰"]];
+//    line.frame = CGRectMake(0, 0, KScreenWidth, 1);
+//    [_bottomView addSubview:line];
     
     if (_isAnnounced == 1) {
     
-        _buyNowButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth / 3, kTabBarHeight)];
+        _buyNowButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth*2 / 5-10, 30)];
         [_buyNowButton setTitle:@"立即购买" forState:UIControlStateNormal];
-        [_buyNowButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [_buyNowButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
+        [_buyNowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_buyNowButton addTarget:self
                           action:@selector(buyNowAction:)
                 forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:_buyNowButton];
         
-        _addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth / 3, 0, KScreenWidth / 3, kTabBarHeight)];
+        _addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*2 / 5+10, 10, KScreenWidth*2 / 5-10, 30)];
         [_addToCartButton setTitle:@"加入清单" forState:UIControlStateNormal];
-        [_addToCartButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [_addToCartButton setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
+        [_addToCartButton setBackgroundImage:[UIImage imageNamed:@"按钮框_亮"] forState:UIControlStateNormal];
         [_addToCartButton addTarget:self
                              action:@selector(addToCartAction:)
                    forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:_addToCartButton];
         
-        _cartBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth * 2 / 3, 0, KScreenWidth / 3, kTabBarHeight)];
-        [_cartBottomButton setTitle:@"进入购物车" forState:UIControlStateNormal];
-        [_cartBottomButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        _cartBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*4 / 5, 0, KScreenWidth*1 / 5, kTabBarHeight)];
+//        [_cartBottomButton setTitle:@"进入购物车" forState:UIControlStateNormal];
+//        [_cartBottomButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [_cartBottomButton setImage:[UIImage imageNamed:@"清单-selected"] forState:UIControlStateNormal];
         [_cartBottomButton addTarget:self
                               action:@selector(gotoCartAction:)
                     forControlEvents:UIControlEventTouchUpInside];
@@ -192,18 +199,20 @@
         
     }else{
     
-        _gotoNewOrderButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth * 2 / 3, 0, KScreenWidth / 3, kTabBarHeight)];
-        [_gotoNewOrderButton setTitle:@"前往新一期"
+        _gotoNewOrderButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth * 2 / 3+15, 10, KScreenWidth / 3-30, 30)];
+        [_gotoNewOrderButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
+        _gotoNewOrderButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_gotoNewOrderButton setTitle:@"前往购买"
                              forState:UIControlStateNormal];
-        [_gotoNewOrderButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [_gotoNewOrderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_cartBottomButton addTarget:self
                               action:@selector(addToNewOrderAction:)
                     forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:_gotoNewOrderButton];
         
         _newOrderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth * 2 / 3, kTabBarHeight)];
-        _newOrderNumLabel.text = @"新一期正在火热进行";
-        _newOrderNumLabel.textColor = [UIColor redColor];
+        _newOrderNumLabel.text = @"  新一期正在火热进行中";
+        _newOrderNumLabel.textColor = [UIColor darkGrayColor];
         _newOrderNumLabel.font = [UIFont systemFontOfSize:13];
         _newOrderNumLabel.textAlignment = NSTextAlignmentLeft;
         [_bottomView addSubview:_newOrderNumLabel];

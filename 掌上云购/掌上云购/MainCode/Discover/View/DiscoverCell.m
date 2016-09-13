@@ -31,30 +31,31 @@
     
     _iconView.sd_layout
     .leftSpaceToView(self.contentView,5)
-    .topSpaceToView(self.contentView,10)
-    .widthIs(60)
-    .heightIs(60);
+    .topSpaceToView(self.contentView,7)
+    .widthIs(50)
+    .heightIs(50);
     
     _titleLabel = [[UILabel alloc]init];
-    
+    _titleLabel.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:_titleLabel];
     
     
     _titleLabel.sd_layout
     .leftSpaceToView(_iconView,10)
-    .topSpaceToView(self.contentView,20)
-    .widthIs(200)
+    .topSpaceToView(self.contentView,10)
+    .rightSpaceToView(self.contentView,10)
     .heightIs(20);
     
     
     _detailLabel = [[UILabel alloc]init];
-    
+    _detailLabel.font = [UIFont systemFontOfSize:13];
+    _detailLabel.textColor = [UIColor grayColor];
     [self.contentView addSubview:_detailLabel];
     
     _detailLabel.sd_layout
     .leftEqualToView(_titleLabel)
     .topSpaceToView(_titleLabel,10)
-    .widthIs(300)
+    .rightSpaceToView(self.contentView,10)
     .heightIs(20);
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -73,7 +73,7 @@
     }else
     {
     
-        return 5;
+        return 3;
     }
 
 }
@@ -100,7 +100,7 @@
         
         cell.titleLabel.text = @"晒单分享";
         
-        cell.detailLabel.text = @"没错,就是我中的!来咬我啊!";
+        cell.detailLabel.text = @"听说晒单和中奖更配哦";
         
     }
         return cell;
@@ -143,7 +143,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             
-            cell.iconView.image = [UIImage imageNamed:@"发现3"];
+            cell.iconView.image = [UIImage imageNamed:@"发现2"];
             
             cell.titleLabel.text = @"激情观战奥运会";
             
@@ -169,7 +169,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             
-            cell.iconView.image = [UIImage imageNamed:@"发现4"];
+            cell.iconView.image = [UIImage imageNamed:@"发现2"];
             
             cell.titleLabel.text = @"提车现场豪车秀";
             
@@ -192,7 +192,7 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-            cell.iconView.image = [UIImage imageNamed:@"发现5"];
+            cell.iconView.image = [UIImage imageNamed:@"发现2"];
             
             cell.titleLabel.text = @"充值送万元礼包";
             
@@ -215,7 +215,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             
-            cell.iconView.image = [UIImage imageNamed:@"发现6"];
+            cell.iconView.image = [UIImage imageNamed:@"发现2"];
             
             cell.titleLabel.text = @"苹果商品全价购";
             
@@ -243,17 +243,35 @@
     }
 
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return nil;
+    }
+    UILabel *label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor whiteColor];
+    label.text = @"  最新活动";
+    label.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.font = [UIFont systemFontOfSize:13];
+    return label;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0&&indexPath.row==0) {
         
-        return 80;
+        return 65;
     }else
     {
-        return 80;
+        return 65;
     }
 
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0.01;
+    }
+    return 20;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

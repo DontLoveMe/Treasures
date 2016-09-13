@@ -22,7 +22,7 @@
     
     [_rightbtn setTitle:@"完成" forState:UIControlStateSelected];
     
-    [_rightbtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [_rightbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [_rightbtn addTarget:self action:@selector(Clicked:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -93,39 +93,41 @@
     
     _carView = [[UIImageView alloc]init];
     _carView.image = [UIImage imageNamed:@"购物车图标"];
-    _carView.layer.masksToBounds=YES;
-    _carView.layer.cornerRadius=188/2.0f; //设置为图片宽度的一半出来为圆形
-    _carView.layer.borderWidth=1.0f;
+//    _carView.layer.masksToBounds=YES;
+//    _carView.layer.cornerRadius=188/2.0f; //设置为图片宽度的一半出来为圆形
+//    _carView.layer.borderWidth=1.0f;
     [_backView addSubview:_carView];
     _carView.sd_layout
-    .widthIs(188)
+    .widthIs(150)
     .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2)
     .topSpaceToView(_backView,20)
-    .heightIs(188);
+    .heightIs(150);
     
     _textLabel = [[UILabel alloc]init];
     _textLabel.text = @"你的清单空空如也";
     _textLabel.textColor = [UIColor grayColor];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
     [_backView addSubview:_textLabel];
     _textLabel.sd_layout
-    .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2+25)
-    .topSpaceToView(_carView,20)
-    .widthIs(140)
+    .leftSpaceToView(_backView,0)
+    .topSpaceToView(_carView,10)
+    .rightSpaceToView(_backView,0)
     .heightIs(20);
     
     _buyBtn = [[UIButton alloc]init];
     [_buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
     [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _buyBtn.backgroundColor = [UIColor redColor];
+    [_buyBtn setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
+//    _buyBtn.backgroundColor = [UIColor redColor];
     [_buyBtn addTarget:self
                 action:@selector(buyAction:)
       forControlEvents:UIControlEventTouchUpInside];
     [_backView addSubview:_buyBtn];
     _buyBtn.sd_layout
-    .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2+40)
+    .centerXEqualToView(_carView)
     .topSpaceToView(_textLabel,10)
     .widthIs(100)
-    .heightIs(40);
+    .heightIs(30);
     
     CGFloat w = (KScreenWidth-8*4)/3;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -133,43 +135,9 @@
     layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _collectView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-kNavigationBarHeight-kTabBarHeight-10, KScreenWidth, w*1.3+10) collectionViewLayout:layout];
+    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.3-kNavigationBarHeight-kTabBarHeight-49, KScreenWidth, w*1.3+10)];
     
-    _collectView.backgroundColor = [UIColor whiteColor];
-    [_backView addSubview:_collectView];
-    
-    _collectView.delegate = self;
-    _collectView.dataSource = self;
-    
-    _identify = @"collectionCell";
-    [_collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:_identify];
-
-    _likeLabel = [[UILabel alloc]initWithFrame:CGRectMake(5.f, _collectView.top - 24.f, KScreenWidth - 10.f, 24.f)];
-    _likeLabel.text = @"猜你喜欢";
-    [_backView addSubview:_likeLabel];
-    
-}
-
-#pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
-    return 10;
-
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor grayColor];
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
-    cell.backgroundView = imgView;
-    
-    return cell;
-
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [_backView addSubview:_loveView];
 }
 
 -(void)creatView{

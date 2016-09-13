@@ -29,7 +29,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         _normalNames = names;
-        _selectNames = selectNames;
+        if (selectNames == nil) {
+            
+        }else {
+            _selectNames = selectNames;
+        }
+        
         //初始化子视图
         [self initSubviews:titles imageNames:names];
         
@@ -55,20 +60,22 @@
         
         [control addTarget:self action:@selector(controlAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, (kControlHight-18)/2, 18, 18)];
-        imgView.tag = 200;
-        if ([names[i] hasPrefix:@"http"]) {
-            [imgView setImageWithURL:[NSURL URLWithString:names[i]]];
-        }else {
-            
-            imgView.image = [UIImage imageNamed:names[i]];
-        }
-        [control addSubview:imgView];
+//        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, (kControlHight-18)/2, 18, 18)];
+//        imgView.tag = 200;
+//        if ([names[i] hasPrefix:@"http"]) {
+//            [imgView setImageWithURL:[NSURL URLWithString:names[i]]];
+//        }else {
+//            
+//            imgView.image = [UIImage imageNamed:names[i]];
+//        }
+//        [control addSubview:imgView];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imgView.frame)+2, (kControlHight-20)/2, self.frame.size.width-30, 20)];
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imgView.frame)+2, (kControlHight-20)/2, self.frame.size.width-30, 20)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, (kControlHight-20)/2, self.frame.size.width, 20)];
         label.tag = 201;
         label.text = titles[i];
         label.textColor = kNormalColor;
+        label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:12];
         [control addSubview:label];
         

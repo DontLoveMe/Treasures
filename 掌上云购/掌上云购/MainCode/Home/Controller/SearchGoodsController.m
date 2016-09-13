@@ -168,6 +168,32 @@
     
     
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 20;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    
+    UILabel *resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-120, 20)];
+    resultLabel.text = [NSString stringWithFormat:@"搜索结果：%@(%ld)",_searchStr,self.seachData.count];
+    resultLabel.textColor = [UIColor grayColor];
+    resultLabel.textAlignment = NSTextAlignmentLeft;
+    resultLabel.font = [UIFont systemFontOfSize:12];
+    [headerView addSubview:resultLabel];
+   
+    UIButton *allButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    allButton.frame = CGRectMake(KScreenWidth-100, 0, 100, 20);
+    allButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [allButton setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
+    [allButton setTitle:@"全部加入清单" forState:UIControlStateNormal];
+    
+    [allButton addTarget:self action:@selector(allButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:allButton];
+    
+    return headerView;
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
@@ -182,4 +208,48 @@
     [_searchBar resignFirstResponder];
 }
 
+- (void)allButtonAction:(UIButton *)button{
+    if (_seachData.count == 0) {
+        return;
+    }
+    for (int i = 0; i < _seachData.count; i++) {
+        
+        GoodsModel *gsModel = [GoodsModel mj_objectWithKeyValues:self.seachData[i]];
+        NSMutableArray *picArr = [gsModel.pictureList mutableCopy];
+        for (int i = 0; i < picArr.count; i ++) {
+            
+            NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+            for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+                
+                if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                    
+                    [dic removeObjectForKey:dic.allKeys[j]];
+                    
+                }
+                
+            }
+            [picArr replaceObjectAtIndex:i withObject:dic];
+            
+        }
+        
+        NSDictionary *goods = @{@"id":gsModel.ID,
+                                @"name":gsModel.name,
+                                @"proPictureList":picArr,
+                                @"totalShare":@(gsModel.totalShare),
+                                @"surplusShare":@(gsModel.surplusShare),
+                                @"buyTimes":[NSNumber numberWithInteger:1],
+                                @"singlePrice":@(gsModel.singlePrice)};
+        
+        BOOL isSuccess = [CartTools addCartList:@[goods]];
+        if (isSuccess) {
+            
+            //        if ([_delegate respondsToSelector:@selector(addToCartWithIndexpath:)]) {
+            //            [_delegate addToCartWithIndexpath:_nowIndexpath];
+            //
+            //        }
+        }
+        NSLogZS(@"加入清单，成功了么%d",isSuccess);
+    }
+    
+}
 @end

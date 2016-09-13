@@ -139,7 +139,7 @@
                         <constraint firstAttribute="height" constant="15" id="ZdQ-wb-t0j"/>
                         <constraint firstAttribute="width" constant="15" id="gOK-oS-iRD"/>
                     </constraints>
-                    <state key="normal" backgroundImage="勾选.png"/>
+                    <state key="normal" backgroundImage="选中.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXo-q0-jMq">
                     <rect key="frame" x="15" y="187" width="570" height="37"/>
@@ -225,10 +225,10 @@
         </view>
     </objects>
     <resources>
-        <image name="勾选.png" width="9" height="9"/>
         <image name="按钮背景.png" width="70" height="20"/>
         <image name="按钮背景_长.png" width="351" height="34"/>
         <image name="掌上云购.png" width="106" height="88"/>
         <image name="竖线.png" width="2" height="597"/>
+        <image name="选中.png" width="9" height="9"/>
     </resources>
 </document>

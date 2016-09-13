@@ -34,7 +34,7 @@
     _noView = [[UIView alloc] initWithFrame:CGRectMake((frame.size.width-220)/2, (frame.size.height-240)/2-50, 220, 240)];
 //    _noView.backgroundColor = [UIColor grayColor];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((_noView.width-150)/2, 15, 150, 150)];
-    imgView.image = [UIImage imageNamed:@"无"];
+    imgView.image = [UIImage imageNamed:@"无红包"];
     [_noView addSubview:imgView];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

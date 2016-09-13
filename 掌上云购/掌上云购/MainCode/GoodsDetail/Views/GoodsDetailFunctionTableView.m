@@ -93,7 +93,7 @@
         goodsDetailView.backgroundColor = [UIColor whiteColor];
         //标语
         UILabel *siloganLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
-        siloganLabel.text = @"只要参与，就有机遇";
+        siloganLabel.text = @"您还没有参加哦，赶快试试吧，万一中了呢？";
         siloganLabel.textAlignment = NSTextAlignmentLeft;
         siloganLabel.font = [UIFont systemFontOfSize:13];
         siloganLabel.textColor = [UIColor darkGrayColor];
@@ -101,10 +101,10 @@
         
         //期号
         UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, siloganLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
-        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
+        issueLabel.text = [NSString stringWithFormat:@"期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
-        issueLabel.textColor = [UIColor redColor];
+        issueLabel.textColor = [UIColor darkGrayColor];
         [goodsDetailView addSubview:issueLabel];
         
         //进度条
@@ -117,7 +117,7 @@
         if (_isJoin == 0) {
             
             UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, progressImg.bottom + 4.f, KScreenWidth, 20.f)];
-            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             noJoinLabel.textAlignment = NSTextAlignmentCenter;
             noJoinLabel.font = [UIFont systemFontOfSize:13];
             noJoinLabel.text = @"你还未参与本商品夺宝";
@@ -127,27 +127,28 @@
         }else if (_isJoin == 1){
             
             UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, progressImg.bottom + 4.f, KScreenWidth, 20.f)];
-            JoinedLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            JoinedLabel.backgroundColor = [UIColor orangeColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
-            JoinedLabel.text = @"你参与了：782次";
-            JoinedLabel.textColor = [UIColor darkGrayColor];
+            JoinedLabel.text = [NSString stringWithFormat:@"你参与了:%@人次",[_dataDic objectForKey:@"buyNumberCount"]];
+            JoinedLabel.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:JoinedLabel];
             
             UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth, 20.f)];
-            treasureNum.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            treasureNum.backgroundColor = [UIColor orangeColor];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
             treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
-            treasureNum.textColor = [UIColor darkGrayColor];
+            treasureNum.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:treasureNum];
             
             UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, progressImg.bottom + 8.f, 64.f, 32.f)];
             [previewAllButton setTitle:@"查看全部"
                               forState:UIControlStateNormal];
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
-            [previewAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            previewAllButton.backgroundColor = [UIColor whiteColor];
+            [previewAllButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
+            previewAllButton.backgroundColor = [UIColor clearColor];
             [previewAllButton addTarget:self
                                  action:@selector(previewAll:)
                        forControlEvents:UIControlEventTouchUpInside];
@@ -164,25 +165,28 @@
         
         //期号
         UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
-        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
+        issueLabel.text = [NSString stringWithFormat:@"期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
-        issueLabel.textColor = [UIColor darkGrayColor];
+        issueLabel.textColor = [UIColor whiteColor];
+        issueLabel.backgroundColor = [UIColor orangeColor];
         [goodsDetailView addSubview:issueLabel];
         
         UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
         countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
-        countDownLabel.textColor = [UIColor redColor];
+        countDownLabel.textColor = [UIColor whiteColor];
+        countDownLabel.backgroundColor = [UIColor orangeColor];
         [goodsDetailView addSubview:countDownLabel];
         
         UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, 8.f, 64.f, 32.f)];
-        [previewCountWayButton setTitle:@"计算方式"
+        [previewCountWayButton setTitle:@"计算详情"
                           forState:UIControlStateNormal];
         previewCountWayButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        [previewCountWayButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        previewCountWayButton.backgroundColor = [UIColor whiteColor];
+        [previewCountWayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        previewCountWayButton.backgroundColor = [UIColor clearColor];
+        [previewCountWayButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
         [previewCountWayButton addTarget:self
                                   action:@selector(countWayAction:)
                         forControlEvents:UIControlEventTouchUpInside];
@@ -191,7 +195,7 @@
         if (_isJoin == 0) {
             
             UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
-            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             noJoinLabel.textAlignment = NSTextAlignmentCenter;
             noJoinLabel.font = [UIFont systemFontOfSize:13];
             noJoinLabel.text = @"你还未参与本商品夺宝";
@@ -201,27 +205,28 @@
         }else if (_isJoin == 1){
             
             UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
-            JoinedLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            JoinedLabel.backgroundColor = [UIColor orangeColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
-            JoinedLabel.text = @"你参与了：782次";
-            JoinedLabel.textColor = [UIColor darkGrayColor];
+            JoinedLabel.text = [NSString stringWithFormat:@"你参与了:%@",[_dataDic objectForKey:@"buyNumberCount"]];
+            JoinedLabel.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:JoinedLabel];
             
             UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth, 20.f)];
-            treasureNum.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            treasureNum.backgroundColor = [UIColor orangeColor];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
             treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
-            treasureNum.textColor = [UIColor darkGrayColor];
+            treasureNum.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:treasureNum];
             
             UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, countDownLabel.bottom + 8.f, 64.f, 32.f)];
             [previewAllButton setTitle:@"查看全部"
                               forState:UIControlStateNormal];
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
-            [previewAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            previewAllButton.backgroundColor = [UIColor whiteColor];
+            [previewAllButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            previewAllButton.backgroundColor = [UIColor clearColor];
+            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
             [previewAllButton addTarget:self
                                  action:@selector(previewAll:)
                        forControlEvents:UIControlEventTouchUpInside];
@@ -303,7 +308,7 @@
         if (_isJoin == 0) {
             
             UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
-            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             noJoinLabel.textAlignment = NSTextAlignmentCenter;
             noJoinLabel.font = [UIFont systemFontOfSize:13];
             noJoinLabel.text = @"你还未参与本商品夺宝";
@@ -313,27 +318,28 @@
         }else if (_isJoin == 1){
             
             UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
-            JoinedLabel.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            JoinedLabel.backgroundColor = [UIColor orangeColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
-            JoinedLabel.text = @"你参与了：782次";
-            JoinedLabel.textColor = [UIColor darkGrayColor];
+            JoinedLabel.text = [NSString stringWithFormat:@"你参与了:%@",[_dataDic objectForKey:@"buyNumberCount"]];
+            JoinedLabel.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:JoinedLabel];
             
             UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth, 20.f)];
-            treasureNum.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+            treasureNum.backgroundColor = [UIColor orangeColor];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
             treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
-            treasureNum.textColor = [UIColor darkGrayColor];
+            treasureNum.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:treasureNum];
             
             UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, countDownLabel.bottom + 8.f, 64.f, 32.f)];
             [previewAllButton setTitle:@"查看全部"
                               forState:UIControlStateNormal];
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
-            [previewAllButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            previewAllButton.backgroundColor = [UIColor whiteColor];
+            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
+            [previewAllButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            previewAllButton.backgroundColor = [UIColor clearColor];
             [previewAllButton addTarget:self
                                  action:@selector(previewAll:)
                        forControlEvents:UIControlEventTouchUpInside];

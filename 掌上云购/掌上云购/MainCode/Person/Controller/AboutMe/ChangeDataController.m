@@ -189,8 +189,6 @@
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
                   
-                  _verifyTF.text = json[@"data"];
-                  
               }
               
           } failure:^(NSError *error) {

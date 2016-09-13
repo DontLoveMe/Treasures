@@ -34,23 +34,16 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQI-kr-5xF">
                         <rect key="frame" x="20" y="48" width="1" height="306.5"/>
-                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="o69-2J-Tsl"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
-                        <rect key="frame" x="10" y="41" width="20" height="20"/>
+                        <rect key="frame" x="14" y="44" width="13" height="13"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="4pD-Z4-xU9"/>
-                            <constraint firstAttribute="width" constant="20" id="cBZ-dk-MQh"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
-                        <rect key="frame" x="10" y="76" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="49B-2a-YCg"/>
-                            <constraint firstAttribute="height" constant="20" id="ls3-1V-VYx"/>
+                            <constraint firstAttribute="height" constant="13" id="4pD-Z4-xU9"/>
+                            <constraint firstAttribute="width" constant="13" id="cBZ-dk-MQh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您获得该商品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fl-rb-Ugp">
@@ -194,24 +187,31 @@
                             <action selector="mannerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pdu-SH-gW8"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
+                        <rect key="frame" x="14" y="79" width="13" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="13" id="49B-2a-YCg"/>
+                            <constraint firstAttribute="height" constant="13" id="ls3-1V-VYx"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="IVm-2s-jIP" firstAttribute="top" secondItem="WSr-TF-bnY" secondAttribute="bottom" constant="13" id="0mV-Pk-f7b"/>
                     <constraint firstItem="DQI-kr-5xF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="4IT-FT-3u4"/>
                     <constraint firstItem="TXH-Hw-xIi" firstAttribute="leading" secondItem="DQI-kr-5xF" secondAttribute="trailing" constant="30" id="5fK-bj-zpq"/>
-                    <constraint firstItem="fkI-az-2cH" firstAttribute="leading" secondItem="Omb-8z-tfL" secondAttribute="trailing" constant="8" id="5qY-VG-qPD"/>
+                    <constraint firstItem="fkI-az-2cH" firstAttribute="leading" secondItem="Omb-8z-tfL" secondAttribute="trailing" constant="11" id="5qY-VG-qPD"/>
                     <constraint firstItem="ehd-hu-AyH" firstAttribute="leading" secondItem="TXH-Hw-xIi" secondAttribute="leading" id="8MJ-ef-X6Z"/>
                     <constraint firstItem="2lR-j2-Ho1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="B2y-zI-7Ii"/>
                     <constraint firstItem="DQI-kr-5xF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="40" id="Byw-XC-wMT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="AtX-ch-0Aa" secondAttribute="trailing" constant="10" id="DSH-0Z-OJH"/>
-                    <constraint firstItem="8fl-rb-Ugp" firstAttribute="centerY" secondItem="JCD-61-iIg" secondAttribute="centerY" id="EQo-wJ-Mst"/>
-                    <constraint firstItem="8fl-rb-Ugp" firstAttribute="leading" secondItem="JCD-61-iIg" secondAttribute="trailing" constant="8" id="HcC-7n-003"/>
+                    <constraint firstItem="8fl-rb-Ugp" firstAttribute="centerY" secondItem="JCD-61-iIg" secondAttribute="centerY" constant="1" id="EQo-wJ-Mst"/>
+                    <constraint firstItem="8fl-rb-Ugp" firstAttribute="leading" secondItem="JCD-61-iIg" secondAttribute="trailing" constant="11" id="HcC-7n-003"/>
                     <constraint firstItem="TXH-Hw-xIi" firstAttribute="top" secondItem="fkI-az-2cH" secondAttribute="bottom" constant="30" id="LNL-h0-upP"/>
-                    <constraint firstItem="Omb-8z-tfL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="PWT-mp-fxx"/>
+                    <constraint firstItem="Omb-8z-tfL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="PWT-mp-fxx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="lAE-gS-2Ne" secondAttribute="trailing" constant="11" id="Q3f-Jn-Ex6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="lAE-gS-2Ne" secondAttribute="bottom" constant="9.5" id="VKL-3R-9BF"/>
                     <constraint firstItem="hty-ba-Rru" firstAttribute="top" secondItem="TXH-Hw-xIi" secondAttribute="bottom" constant="22" id="WBV-De-lJZ"/>
-                    <constraint firstItem="Omb-8z-tfL" firstAttribute="top" secondItem="JCD-61-iIg" secondAttribute="bottom" constant="15" id="Xd7-oX-Cg0"/>
+                    <constraint firstItem="Omb-8z-tfL" firstAttribute="top" secondItem="JCD-61-iIg" secondAttribute="bottom" constant="22" id="Xd7-oX-Cg0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IVm-2s-jIP" secondAttribute="trailing" constant="10" id="Ysy-lx-BtD"/>
                     <constraint firstItem="WSr-TF-bnY" firstAttribute="centerY" secondItem="hty-ba-Rru" secondAttribute="centerY" id="Zyh-gC-pLe"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Jdw-h3-IAW" secondAttribute="trailing" constant="15" id="aHj-Fv-NcD"/>
@@ -228,9 +228,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="WSr-TF-bnY" secondAttribute="trailing" constant="15" id="j5d-tM-yiW"/>
                     <constraint firstItem="Jdw-h3-IAW" firstAttribute="centerY" secondItem="TXH-Hw-xIi" secondAttribute="centerY" id="jJ5-SU-lG4"/>
                     <constraint firstItem="6uK-0Y-HJj" firstAttribute="centerY" secondItem="JCD-61-iIg" secondAttribute="centerY" id="kD3-21-5lw"/>
-                    <constraint firstItem="JCD-61-iIg" firstAttribute="top" secondItem="ETv-i7-X29" secondAttribute="bottom" constant="8" id="kPS-6S-E7D"/>
+                    <constraint firstItem="JCD-61-iIg" firstAttribute="top" secondItem="ETv-i7-X29" secondAttribute="bottom" constant="11" id="kPS-6S-E7D"/>
                     <constraint firstItem="AtX-ch-0Aa" firstAttribute="top" secondItem="fkI-az-2cH" secondAttribute="bottom" constant="16" id="kck-DU-U6Y"/>
-                    <constraint firstItem="JCD-61-iIg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="koE-4d-eWC"/>
+                    <constraint firstItem="JCD-61-iIg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="koE-4d-eWC"/>
                     <constraint firstAttribute="trailingMargin" secondItem="aVu-uS-j4S" secondAttribute="trailing" constant="15" id="krp-Hp-Fqz"/>
                     <constraint firstItem="2lR-j2-Ho1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="o4a-2Q-C1T"/>
                     <constraint firstAttribute="bottomMargin" secondItem="DQI-kr-5xF" secondAttribute="bottom" constant="-8" id="p1O-2e-73t"/>
@@ -265,9 +265,9 @@
     <resources>
         <image name="双框.png" width="662" height="328"/>
         <image name="按钮框.png" width="471" height="200"/>
-        <image name="未选中.png" width="200" height="200"/>
-        <image name="状态-亮.png" width="200" height="200"/>
-        <image name="状态-暗.png" width="200" height="200"/>
-        <image name="选中.png" width="200" height="200"/>
+        <image name="未选中.png" width="10" height="10"/>
+        <image name="状态-亮.png" width="7" height="7"/>
+        <image name="状态-暗.png" width="7" height="7"/>
+        <image name="选中.png" width="9" height="9"/>
     </resources>
 </document>

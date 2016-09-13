@@ -41,7 +41,7 @@
     GoodsDetailFunctionTableView *_oherFunctionTableView;
     
     //底部视图
-    UIView              *_bottomView;
+    UIImageView         *_bottomView;
     //立即购买按钮
     UIButton            *_buyNowButton;
     //加入清单按钮

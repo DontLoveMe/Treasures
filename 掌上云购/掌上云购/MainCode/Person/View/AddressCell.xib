@@ -74,8 +74,8 @@
                             <constraint firstAttribute="height" constant="16" id="u8J-UL-VoM"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <state key="normal" backgroundImage="默认-暗.png"/>
-                        <state key="selected" backgroundImage="默认.png"/>
+                        <state key="normal" backgroundImage="状态-暗.png"/>
+                        <state key="selected" backgroundImage="状态-亮.png"/>
                         <connections>
                             <action selector="defaultAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pqc-nD-MwZ"/>
                         </connections>
@@ -115,7 +115,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="默认-暗.png" width="215" height="200"/>
-        <image name="默认.png" width="200" height="200"/>
+        <image name="状态-亮.png" width="7" height="7"/>
+        <image name="状态-暗.png" width="7" height="7"/>
     </resources>
 </document>

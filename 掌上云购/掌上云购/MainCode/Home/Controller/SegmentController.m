@@ -13,6 +13,8 @@
 #import "HomeSearchController.h"
 #import "GoodsDetailController.h"
 
+#define segmentViewWidth 60
+
 @interface SegmentController ()<UICollectionViewDelegate>
 
 @property (nonatomic,strong)ProductCollectionView *collectionView;
@@ -20,6 +22,7 @@
 
 @property (nonatomic,strong)NSMutableArray *data;
 @property (nonatomic,assign)NSInteger page;
+@property (nonatomic,strong)NSDictionary *segmentDic;
 
 @end
 
@@ -122,7 +125,7 @@
     
 
                        
-    _collectionView = [[ProductCollectionView alloc] initWithFrame:CGRectMake(80, 36, [UIScreen mainScreen].bounds.size.width-80,[UIScreen mainScreen].bounds.size.height-64-36-49)];
+    _collectionView = [[ProductCollectionView alloc] initWithFrame:CGRectMake(segmentViewWidth, 36, [UIScreen mainScreen].bounds.size.width-segmentViewWidth,[UIScreen mainScreen].bounds.size.height-64-36-49)];
     _collectionView.hidden = NO;
     [self.view addSubview:_collectionView];
     
@@ -130,16 +133,20 @@
         _page = 1;
         switch (_selectBtn.tag - 100) {
             case 1:
-                [self requestGoodsList:@"3"];
+                _orderType = @"3";
+                [self requestGoodsList];
                 break;
             case 2:
-                [self requestGoodsList:@"2"];
+                _orderType = @"2";
+                [self requestGoodsList];
                 break;
             case 3:
-                [self requestGoodsList:@"1"];
+                _orderType = @"1";
+                [self requestGoodsList];
                 break;
             case 4:
-                [self requestGoodsList:@"4"];
+                _orderType = @"4";
+                [self requestGoodsList];
                 
                 break;
             default:
@@ -155,16 +162,20 @@
         }
         switch (_selectBtn.tag - 100) {
             case 1:
-                [self requestGoodsList:@"3"];
+                _orderType = @"3";
+                [self requestGoodsList];
                 break;
             case 2:
-                [self requestGoodsList:@"2"];
+                _orderType = @"2";
+                [self requestGoodsList];
                 break;
             case 3:
-                [self requestGoodsList:@"1"];
+                _orderType = @"1";
+                [self requestGoodsList];
                 break;
             case 4:
-                [self requestGoodsList:@"4"];
+                _orderType = @"4";
+                [self requestGoodsList];
                 
                 break;
             default:
@@ -182,7 +193,7 @@
 }
 
 - (void)createSegmentView {
-    SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 36, 80, [UIScreen mainScreen].bounds.size.height-36-49-64) segmentTitles:self.segmentTitles imageNames:self.imgNames selectImgNames:self.selectImgNames];
+    SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 36, segmentViewWidth, [UIScreen mainScreen].bounds.size.height-36-49-64) segmentTitles:self.segmentTitles imageNames:nil selectImgNames:nil];
     segView.backgroundColor = [UIColor whiteColor];
     
     __weak typeof(self) weakSelf = self;
@@ -192,36 +203,35 @@
             return;
         }
         NSDictionary *dic = _segmentData[index];
+        _segmentDic = dic;
         _page = 1;
-        _segmentID = [dic[@"id"] stringValue];
-        if (index == 0) {
-            _segmentID = nil;
-        }
-        [weakSelf requestGoodsList:@"3"];
+
+        [weakSelf requestGoodsList];
     }];
     segView.index = _index;
-    [self.view addSubview:segView];
     
-//    _segmentID = self.segmentData[0][@"id"];
-    [self requestGoodsList:@"3"];
+    [self.view addSubview:segView];
+
 }
 
 #pragma mark - 数据请求
 - (void)requestSegmentData {
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CategorysList_URL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@{@"showClient":@1} forKey:@"paramsMap"];
     
     [ZSTools post:url
-           params:nil
+           params:params
           success:^(id json) {
               
               self.segmentData = json[@"rows"];
               NSMutableArray *titles = [NSMutableArray array];
-              NSMutableArray *imgUrls = [NSMutableArray array];
+//              NSMutableArray *imgUrls = [NSMutableArray array];
               for (NSDictionary *dic in self.segmentData) {
                   [titles addObject:dic[@"name"]];
-                  [imgUrls addObject:[NSString stringWithFormat:@"%@%@",@"http://192.168.0.252:8000/pcpfiles/",dic[@"pictureLogo"]]];
+//                  [imgUrls addObject:[NSString stringWithFormat:@"%@%@",@"http://192.168.0.252:8000/pcpfiles/",dic[@"pictureLogo"]]];
               }
-              self.imgNames = imgUrls.copy;
+//              self.imgNames = imgUrls.copy;
               
               self.segmentTitles = titles.copy;
               [self createSegmentView];
@@ -231,17 +241,28 @@
 }
 
 //商品列表
-- (void)requestGoodsList:(NSString *)kindStr{
+- (void)requestGoodsList{
+    if (!_segmentDic) return;
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    if (_segmentID) {
-        [params setObject:@{@"orderType":kindStr,
-                            @"categoryId":_segmentID
+    if ([_segmentDic[@"isFixe"] boolValue]) {
+        NSString *fixeType = _segmentDic[@"fixeType"];
+        if (_orderType == nil) {
+            _orderType = @"3";
+        }
+        [params setObject:@{@"orderType":_orderType,
+                            @"fixeType":fixeType
                             }
                    forKey:@"paramsMap"];
+
     }else {
-        
-        [params setObject:@{@"orderType":kindStr}
+        if ([_segmentDic[@"id"] isKindOfClass:[NSNull class]]) {
+            return;
+        }
+        NSString *categoryId = _segmentDic[@"id"];
+        [params setObject:@{@"orderType":_orderType,
+                            @"categoryId":categoryId
+                            }
                    forKey:@"paramsMap"];
     }
     [params setObject:@(_page) forKey:@"page"];
@@ -297,13 +318,16 @@
     _page = 1;
     switch (button.tag - 100) {
         case 1:
-            [self requestGoodsList:@"3"];
+            _orderType = @"3";
+            [self requestGoodsList];
             break;
         case 2:
-            [self requestGoodsList:@"2"];
+            _orderType =@"2";
+            [self requestGoodsList];
             break;
         case 3:
-            [self requestGoodsList:@"1"];
+            _orderType =@"1";
+            [self requestGoodsList];
             break;
         case 4:
             if (_selectBtn.tag == button.tag) {
@@ -311,12 +335,15 @@
                 static BOOL isAscendingOrder;
                 isAscendingOrder = !isAscendingOrder;
                 if (!isAscendingOrder) {
-                    [self requestGoodsList:@"4"];
+                    _orderType =@"4";
+                    [self requestGoodsList];
                 }else {
-                    [self requestGoodsList:@"5"];
+                    _orderType =@"5";
+                    [self requestGoodsList];
                 }
             }else {
-                [self requestGoodsList:@"4"];
+                _orderType = @"4";
+                [self requestGoodsList];
 
             }
             break;

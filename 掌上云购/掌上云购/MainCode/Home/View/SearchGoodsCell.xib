@@ -15,6 +15,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="单元格背景.png" translatesAutoresizingMaskIntoConstraints="NO" id="78j-FI-rPn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="揭晓-图片.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jwK-Vk-jLl">
                         <rect key="frame" x="5" y="5" width="77" height="77"/>
                         <constraints>
@@ -71,16 +74,20 @@
                     <constraint firstAttribute="trailing" secondItem="rUM-sy-2QZ" secondAttribute="trailing" constant="53" id="2x8-F7-oeA"/>
                     <constraint firstItem="rUM-sy-2QZ" firstAttribute="leading" secondItem="jwK-Vk-jLl" secondAttribute="trailing" constant="5" id="7ad-f1-GRa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0qU-zH-MGD" secondAttribute="bottom" constant="8" id="8va-5o-Qma"/>
+                    <constraint firstAttribute="bottom" secondItem="78j-FI-rPn" secondAttribute="bottom" id="Coi-q8-LDa"/>
                     <constraint firstItem="iW2-46-k65" firstAttribute="leading" secondItem="jwK-Vk-jLl" secondAttribute="trailing" constant="5" id="Drb-9V-3e3"/>
+                    <constraint firstItem="78j-FI-rPn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Hh8-a0-1jw"/>
                     <constraint firstItem="jwK-Vk-jLl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="L0v-XX-326"/>
                     <constraint firstItem="rUM-sy-2QZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Mez-tC-RFa"/>
                     <constraint firstItem="hTq-FG-mho" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ppk-RQ-Yp0"/>
                     <constraint firstItem="0qU-zH-MGD" firstAttribute="leading" secondItem="iW2-46-k65" secondAttribute="trailing" constant="0.5" id="VMf-ns-hH4"/>
                     <constraint firstItem="jwK-Vk-jLl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Zps-IM-bvs"/>
+                    <constraint firstItem="78j-FI-rPn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dVk-aE-2hN"/>
                     <constraint firstItem="0qU-zH-MGD" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TOr-sr-N4g" secondAttribute="trailing" id="nMa-Ix-zFr"/>
                     <constraint firstItem="TOr-sr-N4g" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="4.25" id="qvr-gG-atf"/>
                     <constraint firstAttribute="trailing" secondItem="hTq-FG-mho" secondAttribute="trailing" constant="10" id="rck-X1-o3u"/>
                     <constraint firstAttribute="bottomMargin" secondItem="iW2-46-k65" secondAttribute="bottom" constant="8" id="tge-2x-9xu"/>
+                    <constraint firstAttribute="trailing" secondItem="78j-FI-rPn" secondAttribute="trailing" id="xqF-Ij-8pO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hTq-FG-mho" secondAttribute="trailing" constant="-8" id="zGC-DS-dhD"/>
                 </constraints>
                 <variation key="default">
@@ -102,6 +109,7 @@
     </objects>
     <resources>
         <image name="加入清单.png" width="49" height="17"/>
+        <image name="单元格背景.png" width="375" height="88"/>
         <image name="揭晓-图片.jpg" width="800" height="600"/>
     </resources>
 </document>

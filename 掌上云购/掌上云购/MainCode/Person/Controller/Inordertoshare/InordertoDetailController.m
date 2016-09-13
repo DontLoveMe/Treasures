@@ -149,17 +149,19 @@
     _timeLabel.font = [UIFont systemFontOfSize:16];
     [_scrollView addSubview:_timeLabel];
     
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, 55, KScreenWidth-30, 125)];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, 55, KScreenWidth-30, 150)];
     _bgView.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
     [_scrollView addSubview:_bgView];
     NSMutableArray *lbArr = [NSMutableArray array];
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+25*i, _bgView.width-20, 20)];
-        label.tag = 100;
-        label.text = @"";
+        label.tag = 100+i;
         label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont systemFontOfSize:14];
+        if (i == 0) {
+            label.font = [UIFont boldSystemFontOfSize:16];
+        }
         [self.bgView addSubview:label];
         [lbArr addObject:label];
     }
@@ -197,7 +199,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:json[@"msg"]];
+              [self hideSuccessHUD:@"数据加载成功"];
               if (isSuccess) {
                   InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:json[@"data"]];
                   _iShareModel = iSModel;
@@ -226,7 +228,7 @@
     NSString *currentDateStr = [dateFormatter stringFromDate:date];
     _timeLabel.text = currentDateStr;
     
-    NSArray *mdArr = @[[NSString stringWithFormat:@"获得商品：%@",iSModel.productName],
+    NSArray *mdArr = @[iSModel.title,[NSString stringWithFormat:@"获得商品：%@",iSModel.productName],
                        [NSString stringWithFormat:@"期号：%@",iSModel.drawTimes],
                        [NSString stringWithFormat:@"参与人次：%@",@"573"],
                        [NSString stringWithFormat:@"幸运号码：%@",@"10000086"],

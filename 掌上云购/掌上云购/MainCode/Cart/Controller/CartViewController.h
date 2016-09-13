@@ -14,8 +14,9 @@
 #import "PayViewController.h"
 #import "TabbarViewController.h"
 #import "TabbarItem.h"
+#import "LoveView.h"
 
-@interface CartViewController :BaseViewController <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CartFunctionDelegate>{
+@interface CartViewController :BaseViewController <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,CartFunctionDelegate>{
     
     UIButton        *_rightbtn;
     //购物车列表
@@ -51,7 +52,7 @@
     UILabel         *_textLabel;
     UIButton        *_buyBtn;
     UILabel         *_likeLabel;
-    UICollectionView *_collectView;
+    LoveView        *_loveView;
 
     //购物车数据
     NSMutableArray  *_dataArray;

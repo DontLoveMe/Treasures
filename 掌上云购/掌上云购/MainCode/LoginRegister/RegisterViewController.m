@@ -179,7 +179,7 @@
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
                   
-                  _validateTF.text = json[@"data"];
+
                   
               }
               

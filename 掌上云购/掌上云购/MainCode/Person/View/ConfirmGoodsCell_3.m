@@ -13,7 +13,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    _stateView1.highlighted = YES;
+    _stateView2.highlighted = YES;
+    _stateView3.highlighted = YES;
+    _stateView4.highlighted = YES;
 }
 
 - (IBAction)sunShareAction:(UIButton *)sender {
