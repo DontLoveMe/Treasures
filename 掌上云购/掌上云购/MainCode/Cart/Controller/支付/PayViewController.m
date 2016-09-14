@@ -309,7 +309,7 @@
             
             cell.wechat.text = @"微信支付";
             
-            [cell.radio setImage:[UIImage imageNamed:@"我的-头像"] forState:UIControlStateNormal];
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
             
         }
         
@@ -327,7 +327,7 @@
             
             cell.wechat.text = @"支付宝支付";
             
-            [cell.radio setImage:[UIImage imageNamed:@"我的-头像"] forState:UIControlStateNormal];
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
             
         }
         
@@ -345,7 +345,7 @@
             
             cell.wechat.text = @"银联支付";
             
-            [cell.radio setImage:[UIImage imageNamed:@"我的-头像"] forState:UIControlStateNormal];
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
             
         }
         
