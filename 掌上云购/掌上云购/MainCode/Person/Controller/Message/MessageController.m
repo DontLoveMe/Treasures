@@ -7,13 +7,12 @@
 //
 
 #import "MessageController.h"
-#import "RedEnvelopeController.h"
-#import "SnatchRecordController.h"
+#import "MsgViewController.h"
 
 @interface MessageController ()
 
 @property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic,strong)NSMutableArray *msgList;
+@property (nonatomic,strong)NSArray *msgType;
 
 
 @end
@@ -41,10 +40,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"消息";
+    self.title = @"消息中心";
     [self initNavBar];
     
-    [self requestMsgData];
+    _msgType = @[@"红包消息",@"揭晓消息",@"其他消息"];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
@@ -55,81 +54,46 @@
     _tableView.dataSource = self;
 }
 
-- (void)requestMsgData {
-    //取出存储的用户信息
-        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-        NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载中"];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
-    
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,MessageList_URL];
-    [ZSTools post:url
-           params:params
-          success:^(id json) {
-              
-              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
-              if (isSuccess) {
-                  
-                  self.msgList = json[@"data"];
-                  [_tableView reloadData];
-              }
-              
-              
-          } failure:^(NSError *error) {
-              
-              [self hideFailHUD:@"加载失败"];
-              NSLogZS(@"%@",error);
-          }];
-
-}
-
 #pragma mark - UITableViewDelegate,UITableViewDataSource
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 0;
-//}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.msgList.count;
+    return _msgType.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSDictionary *msgDic = self.msgList[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
-    if (![msgDic[@"content"] isKindOfClass:[NSNull class]]) {
-        cell.textLabel.text = msgDic[@"content"];
-    }else {
-        NSInteger msgType = [msgDic[@"msgType"] integerValue];
-        if (msgType == 1) {
-             cell.textLabel.text = @"红包消息";
-        }else if (msgType == 2) {
-            cell.textLabel.text = @"揭晓消息";
-        }else {
-            cell.textLabel.text = @"其他消息";
-        }
-        
-    }
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.textLabel.text = _msgType[indexPath.row];
+    
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 30;
+    return 40;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *msgDic = self.msgList[indexPath.row];
-    NSInteger msgType = [msgDic[@"msgType"] integerValue];
-    if (msgType == 1) {
-        RedEnvelopeController *rdVc = [[RedEnvelopeController alloc] init];
-        [self.navigationController pushViewController:rdVc animated:YES];
-    }else if (msgType == 2) {
-        
-        SnatchRecordController *srVc = [[SnatchRecordController alloc] init];
-        [self.navigationController pushViewController:srVc animated:YES];
-    }else {
-        
+   // 类型（4：红包消息，2：揭晓消息，3：其他消息）
+        MsgViewController *msgVc = [[MsgViewController alloc] init];
+    switch (indexPath.row) {
+        case 0:
+            msgVc.msgType = 4;
+            msgVc.title = @"红包消息";
+            break;
+        case 1:
+            msgVc.msgType = 2;
+            msgVc.title = @"揭晓消息";
+            break;
+        case 2:
+            msgVc.msgType = 3;
+            msgVc.title = @"其他消息";
+            break;
+            
+        default:
+            break;
     }
+    
+        [self.navigationController pushViewController:msgVc animated:YES];
+   
 }
 @end

@@ -13,10 +13,8 @@
 //商品总数
 @property(nonatomic,strong)UILabel *goodsTotal;
 
-
 @property(nonatomic,strong)UIImageView *iconView;
 
+@property(nonatomic,strong)UIButton *radio;
 
-//cell背景View
-@property(nonatomic,strong)UIView *view;
 @end

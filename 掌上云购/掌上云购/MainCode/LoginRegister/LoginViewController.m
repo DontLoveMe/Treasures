@@ -290,6 +290,10 @@
            params:params
           success:^(id json) {
               
+              BOOL flag = [[json objectForKey:@"flag"] boolValue];
+              
+              if (!flag) return;
+              
               NSArray *dataArr = [json objectForKey:@"data"];
               NSMutableArray *cloudArr = [NSMutableArray array];
               for (int i = 0 ; i < dataArr.count; i ++) {

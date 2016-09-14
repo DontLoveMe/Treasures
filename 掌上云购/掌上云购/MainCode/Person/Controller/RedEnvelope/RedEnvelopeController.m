@@ -167,7 +167,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:json[@"msg"]];
+              [self hideSuccessHUD:@"数据加载成功"];
               if (isSuccess) {
                   _noUseTableView.data = json[@"data"];
                   

@@ -301,7 +301,7 @@
     if(userDic != nil){
 
         PayViewController *VC = [[PayViewController alloc]init];
-        
+        VC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:VC animated:YES];
         
     }else{

@@ -350,7 +350,7 @@
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
-        cell.luckyView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.7];
+//        cell.luckyView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.7];
         cell.rcModel = rcModel;
         return cell;
     }

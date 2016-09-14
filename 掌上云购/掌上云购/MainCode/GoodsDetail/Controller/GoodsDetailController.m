@@ -366,8 +366,11 @@
         if (_isAnnounced != 1) {
             
             NSNumber *userId = userDic[@"id"];
+//            [params setObject:@{@"drawId":_drawId,
+//                                @"productId":_goodsId,
+//                                @"userId":userId}
+//                       forKey:@"paramsMap"];
             [params setObject:@{@"drawId":_drawId,
-                                @"productId":_goodsId,
                                 @"userId":userId}
                        forKey:@"paramsMap"];
         }else{

@@ -11,6 +11,9 @@
 #import "PayTwoKindCell.h"
 #import "PayThreeKindCell.h"
 #import "UIView+SDAutoLayout.h"
+#import "RedEnvelopeController.h"
+
+
 @interface PayViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 //商品总数
@@ -37,7 +40,26 @@
 //    NSMutableArray *_dataArray;
 
 }
+#pragma mark - 导航栏
+- (void)initNavBar{
+    
+    self.navigationItem.backBarButtonItem = nil;
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    leftButton.tag = 101;
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
+                          forState:UIControlStateNormal];
+    [leftButton addTarget:self
+                   action:@selector(NavAction:)
+         forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+}
 
+- (void)NavAction:(UIButton *)button{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -45,14 +67,7 @@
 //    _dataArray = [NSMutableArray array];
     
     self.title = @"支付";
-    
-    
-    UIImage *image =[[UIImage imageNamed:@"返回"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    UIBarButtonItem *imageButton =[[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(leftClick:)];
-    
-    self.navigationItem.leftBarButtonItem = imageButton;
-    
+    [self initNavBar];
     
     //创建列表
     [self creatTableView];
@@ -65,7 +80,7 @@
 
 -(void)creatView{
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight-180, KScreenWidth, KScreenHeight)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, KScreenHeight-125, KScreenWidth, 125)];
     
     view.backgroundColor = [UIColor whiteColor];
     
@@ -80,19 +95,7 @@
     _goodstotal.sd_layout
     .leftSpaceToView(view,5)
     .topSpaceToView(view,5)
-    .widthIs(100)
-    .heightIs(20);
-    
-    //商品总价格
-    _pricetotal = [[UILabel alloc]init];
-    _pricetotal.text = @"总计:";
-    _pricetotal.textColor = [UIColor grayColor];
-    _pricetotal.font = [UIFont systemFontOfSize:15];
-    [view addSubview:_pricetotal];
-    _pricetotal.sd_layout
-    .leftSpaceToView(_goodstotal,5)
-    .topEqualToView(_goodstotal)
-    .widthIs(40)
+    .widthIs(90)
     .heightIs(20);
     
     //商品总钱数
@@ -102,9 +105,9 @@
     _pricesum.font = [UIFont systemFontOfSize:15];
     [view addSubview:_pricesum];
     _pricesum.sd_layout
-    .leftSpaceToView(_pricetotal,3)
-    .topEqualToView(_pricetotal)
-    .widthIs(40)
+    .leftSpaceToView(_goodstotal,3)
+    .topEqualToView(_goodstotal)
+    .widthIs(100)
     .heightIs(20);
     
     _warntext = [[UILabel alloc]init];
@@ -121,7 +124,7 @@
     _settlebtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     _settlebtn.layer.masksToBounds = YES;
     _settlebtn.layer.cornerRadius = 5;
-    _settlebtn.backgroundColor = [UIColor redColor];
+    [_settlebtn setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
     [_settlebtn setTitle:@"提交" forState:UIControlStateNormal];
     [_settlebtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_settlebtn addTarget:self action:@selector(PayClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -133,6 +136,24 @@
     .widthIs(60)
     .heightIs(30);
     
+    
+    [self changeBottomView];
+}
+- (void)changeBottomView {
+    
+    
+    NSArray *cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)cartArr.count];
+    NSInteger totalPrice = 0;
+    for (int i = 0; i < cartArr.count; i ++) {
+        
+        NSDictionary *dic = [cartArr objectAtIndex:i];
+        NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+        NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+        totalPrice = totalPrice + singlePrice * num;
+    }
+    
+    _pricesum.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
 }
 
 -(void)PayClicked:(UIButton *)btn{
@@ -196,11 +217,10 @@
 
 -(void)creatTableView{
 
-    _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-180) style:UITableViewStylePlain];
-    
+    _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49) style:UITableViewStylePlain];
     _tab.backgroundColor = TableViewBackColor;
     
-    _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _tab.dataSource = self;
     
@@ -213,7 +233,7 @@
 #pragma mark-----UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 6;
+    return 7;
 
 }
 
@@ -227,15 +247,11 @@
             cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             
             NSArray *carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-            
-            //计算总价
             cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)carArr.count];
-            
-            cell.backgroundColor = TableViewBackColor;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            cell.iconView.image = [UIImage imageNamed:@"商品列表"];
+            cell.iconView.image = [UIImage imageNamed:@"箭头-下"];
             
         }
         
@@ -243,6 +259,19 @@
         
     }else if (indexPath.row==1){
   
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+      
+#warning 这里得判断有没有红包
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.text = @"红包抵扣";
+         
+        return cell;
+
+    }else if (indexPath.row==2){
+    
+        
 #warning 这里得判断余额够不够
         PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
@@ -260,136 +289,85 @@
                 NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
                 totalPrice = totalPrice + singlePrice * num;
             }
-            
-            cell.goodsTotal.text = [NSString stringWithFormat:@"余额支付:%ld元",(long)totalPrice];
-            
-            cell.backgroundColor = TableViewBackColor;
+
+            cell.goodsTotal.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            cell.iconView.image = [UIImage imageNamed:@"商品列表"];
+            cell.iconView.hidden = YES;
+            cell.radio.hidden = NO;
+            cell.radio.selected = YES;
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateSelected];
+            cell.radio.tag = 200;
+            [cell.radio addTarget:self action:@selector(selectAtion:) forControlEvents:UIControlEventTouchUpInside];
             
         }
         
-        return cell;
-
-    }else if (indexPath.row==2){
-    
-        PayTwoKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        
-        if (!cell) {
-#warning 这里得判断有没有红包
-            cell = [[PayTwoKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            
-               cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            cell.redText.text = @"红包抵扣";
-            
-            cell.choiceText.text = @"无可用红包";
-            
-            cell.view.backgroundColor = [UIColor whiteColor];
-            
-            cell.otherText.text = @"其它支付方式";
-            
-            cell.money.text = @"125币";
-            
-        }
         
         return cell;
         
     }else if (indexPath.row==3){
         
-        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
-        if (!cell) {
-            
-            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            
-            cell.iconView.image = [UIImage imageNamed:@"微信支付"];
-            
-            cell.wechat.text = @"微信支付";
-            
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            
-        }
+#warning 这里得判断余额够不够
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         
-        return cell;
+      
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.text = @"其他支付方式";
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+        cell.detailTextLabel.text = @"1云币";
         
-    }else if (indexPath.row==4)    {
-
-        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        if (!cell) {
-            
-            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            
-            cell.iconView.image = [UIImage imageNamed:@"支付宝支付"];
-            
-            cell.wechat.text = @"支付宝支付";
-            
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            
-        }
         
-        return cell;
-        
-    }else{
-        
-        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        
-        if (!cell) {
-            
-            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            
-            cell.iconView.image = [UIImage imageNamed:@"银联支付"];
-            
-            cell.wechat.text = @"银联支付";
-            
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            
-        }
         
         return cell;
         
     }
+
+        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+        NSArray *titles = @[@"微信支付",@"支付宝支付",@"银联支付"];
+        if (!cell) {
+            
+            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-4]];
+            
+            cell.wechat.text = titles[indexPath.row-4];
+            
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateSelected];
+            cell.radio.tag = 300 + indexPath.row-4;
+            [cell.radio addTarget:self action:@selector(selectAtion:) forControlEvents:UIControlEventTouchUpInside];
+            
+        }
+        
+        return cell;
     
 }
 
 #pragma mark---UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if (indexPath.row==0) {
-        
-        return 60;
-        
-    }else if (indexPath.row==1){
-    
-        return 60;
-        
-    }else if (indexPath.row==2){
-    
-        return 120;
-        
-    }else if (indexPath.row==3){
-        
-        return 90;
-        
-    }else if (indexPath.row==4){
-        
-        return 90;
-        
-    }else{
-        
-        return 90;
-        
-    }
+    return 50;
  
 }
-
--(void)leftClick:(UIButton *)btn{
-
-    [self.navigationController popViewControllerAnimated:YES];
-    
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 1) {
+        RedEnvelopeController *redEVC = [[RedEnvelopeController alloc] init];
+        [self.navigationController pushViewController:redEVC animated:YES];
+    }
+}
+
+- (void)selectAtion:(UIButton *)button {
+    button.selected = !button.selected;
+   
+}
 @end

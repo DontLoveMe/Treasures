@@ -23,31 +23,35 @@
 }
 
 -(void)initWithUI{
-
-    _view = [[UIView alloc]init];
-    _view.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:_view];
-    _view.sd_layout
-    .leftSpaceToView(self.contentView,0)
-    .topSpaceToView(self.contentView,6)
-    .widthIs(KScreenWidth)
-    .heightIs(40);
-    
-    _iconView = [[UIImageView alloc]init];
-    [_view addSubview:_iconView];
-    _iconView.sd_layout
-    .rightSpaceToView(_view,8)
-    .topSpaceToView(_view,12)
-    .widthIs(24)
-    .heightIs(16);
     
     _goodsTotal = [[UILabel alloc]init];
-    [_view addSubview:_goodsTotal];
+    _goodsTotal.font = [UIFont systemFontOfSize:15];
+    [self.contentView addSubview:_goodsTotal];
     _goodsTotal.sd_layout
-    .leftSpaceToView(_view,8)
-    .topSpaceToView(_view,8)
-    .widthIs(KScreenWidth - 20 - 24)
-    .heightIs(28);
+    .leftSpaceToView(self.contentView,14)
+    .centerYEqualToView(self.contentView)
+    .widthIs(KScreenWidth - 80)
+    .heightIs(20);
+    
+    
+    _iconView = [[UIImageView alloc]init];
+    [self.contentView addSubview:_iconView];
+    _iconView.sd_layout
+    .rightSpaceToView(self.contentView,11)
+    .centerYEqualToView(self.contentView)
+    .widthIs(16)
+    .heightIs(9);
+    
+    _radio = [UIButton buttonWithType:UIButtonTypeCustom];
+    _radio.hidden = YES;
+    [self.contentView addSubview:_radio]
+    ;
+    
+    _radio.sd_layout
+    .rightSpaceToView(self.contentView,11)
+    .centerYEqualToView(_iconView)
+    .widthIs(20)
+    .heightIs(20);
     
 }
 

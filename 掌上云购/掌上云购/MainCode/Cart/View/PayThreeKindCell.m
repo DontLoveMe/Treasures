@@ -31,8 +31,8 @@
     [self.contentView addSubview:_iconView];
     
     _iconView.sd_layout
-    .leftSpaceToView(self.contentView,10)
-    .topSpaceToView(self.contentView,15)
+    .leftSpaceToView(self.contentView,14)
+    .topSpaceToView(self.contentView,5)
     .widthIs(40)
     .heightIs(40);
     
@@ -42,8 +42,8 @@
     
     _wechat.sd_layout
     .leftSpaceToView(_iconView,10)
-    .topSpaceToView(self.contentView,20)
-    .widthIs(80)
+    .centerYEqualToView(_iconView)
+    .widthIs(100)
     .heightIs(20);
     
     _radio = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -52,17 +52,11 @@
     ;
     
     _radio.sd_layout
-    .rightSpaceToView(self.contentView,10)
-    .topSpaceToView(self.contentView,10)
-    .widthIs(40)
-    .heightIs(40);
+    .rightSpaceToView(self.contentView,11)
+    .centerYEqualToView(_iconView)
+    .widthIs(20)
+    .heightIs(20);
     
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

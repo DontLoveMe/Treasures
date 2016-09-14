@@ -240,6 +240,7 @@
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
+        cell.luckyView.hidden = YES;
         cell.rcModel = rcModel;
         return cell;
     }

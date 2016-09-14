@@ -115,12 +115,16 @@
 #warning 返回动画导航栏下面视图慢些
     self.navigationController.navigationBar.hidden = YES;
 
+    
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if(userDic == nil){
         [_collectionView reloadData];
     }else {
         
         [self getUserInfo];
+    }
+    if (![self isLogin]) {
+        return;
     }
 
 }
@@ -136,9 +140,6 @@
   
     [self initBgHeaderView];
     
-    if (![self isLogin]) {
-        return;
-    }
 }
 #pragma mark - 视图初始化
 - (void)initBgHeaderView {

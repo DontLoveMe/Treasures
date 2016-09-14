@@ -371,7 +371,20 @@
               if (isSuccess) {
                   NSArray *area = json[@"data"];
                   if (area.count == 0) {
-                      
+                      AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"请添加地址！"];
+                      [alert addButtonTitleArray:@[@"取消",@"添加"]];
+                      __weak typeof(AlertController*) weakAlert = alert;
+                      __weak typeof(self) weakSelf = self;
+                      [alert setClickButtonBlock:^(NSInteger tag) {
+                          if (tag == 0) {//取消
+                              [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                          }else {//选择
+                              [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                              AddressViewController *avc = [[AddressViewController alloc] init];
+                              [weakSelf.navigationController pushViewController:avc animated:YES];
+                              
+                          }
+                      }];
                       return;
                   }
                   for (NSDictionary *dic in area) {

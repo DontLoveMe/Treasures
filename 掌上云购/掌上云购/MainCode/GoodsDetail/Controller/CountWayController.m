@@ -79,8 +79,12 @@
                   
                   NSDictionary *dic = [_dataDic objectForKey:@"bNumValue"];
                   NSString *bValueStr = [dic objectForKey:@"openCode"];
-                  NSString *bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","
-                                                       withString:@""];
+                  NSString *bValueResultStr;
+                  if ([bValueStr isEqual:[NSNull null]]) {
+                      bValueResultStr = @"";
+                  }else {
+                      bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","withString:@""];
+                  }
 
                   NSMutableString *numStr = [[_dataDic objectForKey:@"msg"] mutableCopy];
                   NSString *resultStr = [numStr substringWithRange:NSMakeRange(numStr.length - 8, 8)];
