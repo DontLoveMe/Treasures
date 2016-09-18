@@ -152,7 +152,7 @@
     [dataDic setObject:imageData forKey:nameStr];
     
     
-    NSString *url = [NSString stringWithFormat:@"%@%@", BASE_URL,UpdataFile_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@", PIC_URL,UpdataFile_URL];
 
     
     [ZSTools post:url
