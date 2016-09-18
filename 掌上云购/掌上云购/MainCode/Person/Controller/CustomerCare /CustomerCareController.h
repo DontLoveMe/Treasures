@@ -9,10 +9,7 @@
 #import "BaseViewController.h"
 
 @interface CustomerCareController : BaseViewController
-<UITableViewDelegate,UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentCtl;
-@property (nonatomic, strong)NSArray *data;
+
 
 @end

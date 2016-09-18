@@ -47,7 +47,10 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestAreaData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -61,7 +64,7 @@
         
     }
     
-    [self requestAreaData];
+//    [self requestAreaData];
     
     [self requestSaleOrderStatus];
     

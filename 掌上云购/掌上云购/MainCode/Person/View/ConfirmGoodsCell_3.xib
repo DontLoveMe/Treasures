@@ -151,7 +151,7 @@
                             <constraint firstAttribute="width" constant="45" id="36D-hv-9gQ"/>
                             <constraint firstAttribute="height" constant="19" id="uMt-c3-Pz9"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="去晒单" backgroundImage="按钮背景.png">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>

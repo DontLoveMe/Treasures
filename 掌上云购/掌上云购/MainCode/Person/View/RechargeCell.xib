@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mir-JT-Vn7">
-                        <rect key="frame" x="49" y="13" width="221" height="19"/>
+                        <rect key="frame" x="49" y="13" width="234" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19" id="dZ2-Gn-KZt"/>
                         </constraints>
@@ -32,14 +32,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZl-2V-HhI">
-                        <rect key="frame" x="278" y="8" width="28" height="28"/>
+                        <rect key="frame" x="291" y="14.5" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="28" id="ZrP-au-ZzM"/>
-                            <constraint firstAttribute="height" constant="28" id="ruT-Xs-4vm"/>
+                            <constraint firstAttribute="width" constant="15" id="ZrP-au-ZzM"/>
+                            <constraint firstAttribute="height" constant="15" id="ruT-Xs-4vm"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <state key="normal" backgroundImage="对勾-暗.png"/>
-                        <state key="selected" backgroundImage="对勾.png">
+                        <state key="normal" backgroundImage="状态-暗.png"/>
+                        <state key="selected" backgroundImage="状态-亮.png">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -63,7 +63,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="对勾-暗.png" width="200" height="200"/>
-        <image name="对勾.png" width="200" height="200"/>
+        <image name="状态-亮.png" width="7" height="7"/>
+        <image name="状态-暗.png" width="7" height="7"/>
     </resources>
 </document>

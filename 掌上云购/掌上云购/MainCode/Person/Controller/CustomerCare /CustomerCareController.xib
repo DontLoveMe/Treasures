@@ -7,8 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomerCareController">
             <connections>
-                <outlet property="segmentCtl" destination="U7P-bs-nS0" id="fMU-tX-W0r"/>
-                <outlet property="tableView" destination="1Sg-fD-bbK" id="jDu-Gi-3xl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,38 +14,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="U7P-bs-nS0">
-                    <rect key="frame" x="0.0" y="627" width="375" height="41"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="mxI-z6-T9u"/>
-                    </constraints>
-                    <segments>
-                        <segment title="购买咨询"/>
-                        <segment title="收货问题"/>
-                        <segment title="物流与售后"/>
-                        <segment title="其他"/>
-                    </segments>
-                    <color key="tintColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <action selector="segmentAction:" destination="-1" eventType="valueChanged" id="u1D-ub-1vL"/>
-                    </connections>
-                </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="1Sg-fD-bbK">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="627"/>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                </tableView>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="U7P-bs-nS0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9pR-GJ-76G"/>
-                <constraint firstAttribute="trailing" secondItem="1Sg-fD-bbK" secondAttribute="trailing" id="GCe-6n-Dk9"/>
-                <constraint firstItem="1Sg-fD-bbK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UEY-0S-k8y"/>
-                <constraint firstAttribute="bottom" secondItem="U7P-bs-nS0" secondAttribute="bottom" id="gtH-jE-dSC"/>
-                <constraint firstItem="1Sg-fD-bbK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hjz-7O-WUz"/>
-                <constraint firstAttribute="trailing" secondItem="U7P-bs-nS0" secondAttribute="trailing" id="ogl-Da-eDh"/>
-                <constraint firstItem="U7P-bs-nS0" firstAttribute="top" secondItem="1Sg-fD-bbK" secondAttribute="bottom" id="oil-wI-r2i"/>
-            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="210.5" y="122.5"/>
         </view>

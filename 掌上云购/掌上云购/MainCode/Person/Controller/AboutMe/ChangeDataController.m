@@ -42,8 +42,8 @@
     UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40.f, 25.f)];
 //    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [rightButton setTitle:@"确定" forState:UIControlStateNormal];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"按钮框"]
-                          forState:UIControlStateNormal];
+//    [rightButton setBackgroundImage:[UIImage imageNamed:@"按钮框"]
+//                          forState:UIControlStateNormal];
     [rightButton addTarget:self
                    action:@selector(sureAction:)
          forControlEvents:UIControlEventTouchUpInside];
@@ -94,13 +94,13 @@
     _nameTF.textColor = [UIColor blackColor];
    [self.view addSubview:_nameTF];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, KScreenWidth, 20)];
-//    label.backgroundColor = [UIColor grayColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"由6-20个字符、可由中文、数字、\"_\"、\"-\"组成";
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:12];
-    [self.view addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, KScreenWidth, 20)];
+////    label.backgroundColor = [UIColor grayColor];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.text = @"由6-20个字符、可由中文、数字、\"_\"、\"-\"组成";
+//    label.textColor = [UIColor blackColor];
+//    label.font = [UIFont systemFontOfSize:12];
+//    [self.view addSubview:label];
 }
 
 //修改手机号码

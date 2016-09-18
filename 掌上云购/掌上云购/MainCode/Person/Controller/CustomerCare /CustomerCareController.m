@@ -10,6 +10,8 @@
 
 @interface CustomerCareController ()
 
+@property (nonatomic,strong)UIWebView *webView;
+
 @end
 
 @implementation CustomerCareController
@@ -31,8 +33,13 @@
 }
 
 - (void)NavAction:(UIButton *)button{
+    
+    if (_webView.canGoBack) {
+        [_webView goBack];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -41,89 +48,22 @@
     self.title = @"客服";
     
     [self initNavBar];
+//    self.navigationController.navigationBar.hidden = YES;
+    //创建UIWebView：
     
-    self.data = @[@"1.什么是掌上云购？",
-                  @"2.我的商品什么时候发货？",
-                  @"3.如何获取实物类商品？",
-                  @"4.获得的商品如何保修？",
-                  @"5.商品破损发错怎么办？",];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, -44, KScreenWidth, KScreenHeight-20)];
     
-
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.showsVerticalScrollIndicator = NO;
+//    _webView.scalesPageToFit = YES;//自动对页面进行缩放以适应屏幕
+ 
+    [self.view addSubview:_webView];
     
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-}
-
-#pragma mark - UITableViewDelegate,UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    }
-    return self.data.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
-    if (indexPath.section == 0) {
-        cell.textLabel.text = @"新手指引";
-    }else {
-        
-        cell.textLabel.text = self.data[indexPath.row];
-    }
-    return cell;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 25;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0.01;
-    }
-    return 30;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return nil;
-    }
-    UILabel *label = [[UILabel alloc] init];
-    label.backgroundColor = [UIColor whiteColor];
-    label.text = @"    热点问题:";
-    label.textColor = [UIColor blackColor];
-    label.textAlignment = NSTextAlignmentLeft;
-    label.font = [UIFont systemFontOfSize:15];
+    NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASE_URL,ArticleContent_URL];
+    NSURL* url = [NSURL URLWithString:urlStr];//创建URL
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
+    [_webView loadRequest:request];//加载
     
-    return label;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-}
-
-
-
-- (IBAction)segmentAction:(UISegmentedControl *)sender {
     
-    switch (sender.selectedSegmentIndex) {
-        case 0:
-            
-            break;
-        case 1:
-            
-            break;
-        case 2:
-            
-            break;
-        case 3:
-            
-            break;
-            
-        default:
-            break;
-    }
-    NSLogZS(@"%ld",(long)sender.selectedSegmentIndex);
 }
+
+
 @end

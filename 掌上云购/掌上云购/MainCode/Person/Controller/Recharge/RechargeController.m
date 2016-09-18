@@ -73,8 +73,8 @@
     moneyLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:moneyLabel];
     
-    _moneys = @[@"20",@"50",@"100",@"200",@"500",@"其他金额"];
-    _moneyStr = @"20";
+    _moneys = @[@"50",@"100",@"200",@"500",@"1000",@"其他金额"];
+    _moneyStr = @"50";
     
     CGFloat w = (KScreenWidth-15*4)/3;
     CGFloat y = CGRectGetMaxY(moneyLabel.frame)+8;

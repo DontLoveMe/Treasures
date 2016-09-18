@@ -41,14 +41,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gJt-5l-QDN">
-                        <rect key="frame" x="252" y="11" width="60" height="60"/>
-                        <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="js6-Ov-QAc"/>
-                            <constraint firstAttribute="height" constant="60" id="vgp-Tx-Ry2"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品状态：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sA1-79-0tR">
                         <rect key="frame" x="8" y="96" width="80" height="19.5"/>
                         <constraints>
@@ -72,30 +64,40 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qye-Ax-rtc">
+                        <rect key="frame" x="255" y="26" width="57" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Zzg-r3-vjS"/>
+                            <constraint firstAttribute="width" constant="57" id="xdX-fo-bK7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="恭喜" backgroundImage="按钮背景.png">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Qye-Ax-rtc" firstAttribute="leading" secondItem="vap-RD-kyP" secondAttribute="trailing" constant="5" id="56l-dn-szN"/>
                     <constraint firstItem="5ii-Ta-UCF" firstAttribute="leading" secondItem="sA1-79-0tR" secondAttribute="trailing" id="5Vz-ze-3ZA"/>
                     <constraint firstAttribute="bottom" secondItem="5ii-Ta-UCF" secondAttribute="bottom" constant="7" id="9sj-ed-jof"/>
                     <constraint firstAttribute="trailing" secondItem="5ii-Ta-UCF" secondAttribute="trailing" constant="8" id="9ze-tW-aBH"/>
-                    <constraint firstItem="gJt-5l-QDN" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AmH-lD-Fj2"/>
                     <constraint firstItem="znZ-kg-ggd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="BAR-Aw-rQi"/>
-                    <constraint firstItem="gJt-5l-QDN" firstAttribute="leading" secondItem="znZ-kg-ggd" secondAttribute="trailing" constant="2" id="MBE-iV-71e"/>
                     <constraint firstItem="vap-RD-kyP" firstAttribute="leading" secondItem="iut-43-bh7" secondAttribute="trailing" constant="2" id="Mbg-mH-vhV"/>
                     <constraint firstItem="5jj-AC-ecr" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="NZn-YU-GQ1"/>
                     <constraint firstItem="vap-RD-kyP" firstAttribute="top" secondItem="znZ-kg-ggd" secondAttribute="bottom" constant="8" id="PaD-ES-LCA"/>
                     <constraint firstItem="znZ-kg-ggd" firstAttribute="leading" secondItem="iut-43-bh7" secondAttribute="trailing" constant="2" id="QkU-Aq-d9b"/>
                     <constraint firstItem="5jj-AC-ecr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Qmd-wg-fN8"/>
+                    <constraint firstItem="Qye-Ax-rtc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="S9w-Ki-ru0"/>
                     <constraint firstItem="iut-43-bh7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="YLA-Az-rGd"/>
                     <constraint firstItem="iut-43-bh7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="fAa-C4-x6q"/>
-                    <constraint firstItem="gJt-5l-QDN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="fAq-Uf-lkT"/>
                     <constraint firstItem="5jj-AC-ecr" firstAttribute="top" secondItem="iut-43-bh7" secondAttribute="bottom" constant="12" id="oGS-aK-P8C"/>
                     <constraint firstItem="sA1-79-0tR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="rJ8-Av-yDU"/>
+                    <constraint firstItem="Qye-Ax-rtc" firstAttribute="leading" secondItem="znZ-kg-ggd" secondAttribute="trailing" constant="5" id="soc-aO-eLk"/>
+                    <constraint firstItem="Qye-Ax-rtc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="18" id="u1w-qM-cbZ"/>
                     <constraint firstAttribute="bottom" secondItem="sA1-79-0tR" secondAttribute="bottom" constant="5" id="wZ6-p4-V9y"/>
-                    <constraint firstItem="gJt-5l-QDN" firstAttribute="leading" secondItem="vap-RD-kyP" secondAttribute="trailing" constant="2" id="yjT-gc-4cp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="luckyView" destination="gJt-5l-QDN" id="eh1-vD-8e0"/>
                 <outlet property="participateLabel" destination="vap-RD-kyP" id="0hT-Ub-FaX"/>
                 <outlet property="stateLabel" destination="5ii-Ta-UCF" id="1gh-1k-HjG"/>
                 <outlet property="titleLabel" destination="znZ-kg-ggd" id="34s-qc-WQO"/>
@@ -104,4 +106,7 @@
             <point key="canvasLocation" x="278" y="380.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="按钮背景.png" width="70" height="20"/>
+    </resources>
 </document>
