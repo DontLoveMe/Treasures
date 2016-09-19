@@ -80,35 +80,23 @@
 }
 
 #pragma mark - UITableViewDelegate,UItableViewDatasource
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//
-//    return _dataArr.count;
-//
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return _dataArr.count;
     
 }
 
-//- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    
-//    UILabel *headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 24.f)];
-//    headLabel.text = @"2016-08-01";
-//    headLabel.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.3];
-//    headLabel.textAlignment = NSTextAlignmentLeft;
-//    headLabel.font = [UIFont systemFontOfSize:14];
-//    return headLabel;
-//
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     BroughtHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BroughtHistory_Cell"
                                                                 forIndexPath:indexPath];
     NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
-//    [cell.headPic setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+    if (![[dic objectForKey:@"photoUrl"] isKindOfClass:[NSNull class]]) {
+        [cell.headPic setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+    }else{
+        [cell.headPic setImage:[UIImage imageNamed:@"我的-头像"]];
+    }
+
     cell.userName.text = [dic objectForKey:@"nickName"];
     cell.joinTimes.text = [NSString stringWithFormat:@"参与了:%@次",[dic objectForKey:@"qty"]];
     cell.userIP.text = [NSString stringWithFormat:@"ip：%@",[dic objectForKey:@"buyIp"]];

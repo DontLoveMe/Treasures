@@ -377,15 +377,9 @@
 		DDF92D7C1D6A9C5B009D5A1E /* 按钮+.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D241D6A9C5B009D5A1E /* 按钮+.png */; };
 		DDF92D7D1D6A9C5B009D5A1E /* 按钮-.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D251D6A9C5B009D5A1E /* 按钮-.png */; };
 		DDF92D7F1D6A9C5B009D5A1E /* 10元标记.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D291D6A9C5B009D5A1E /* 10元标记.png */; };
-		DDF92D801D6A9C5B009D5A1E /* 商品_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D2A1D6A9C5B009D5A1E /* 商品_1.png */; };
-		DDF92D811D6A9C5B009D5A1E /* 商品_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D2B1D6A9C5B009D5A1E /* 商品_2.png */; };
-		DDF92D821D6A9C5B009D5A1E /* 商品_3.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D2C1D6A9C5B009D5A1E /* 商品_3.png */; };
-		DDF92D831D6A9C5B009D5A1E /* 商品_4.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D2D1D6A9C5B009D5A1E /* 商品_4.png */; };
-		DDF92D841D6A9C5B009D5A1E /* 商品_5.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D2E1D6A9C5B009D5A1E /* 商品_5.png */; };
 		DDF92D861D6A9C5B009D5A1E /* 首页轮播_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D311D6A9C5B009D5A1E /* 首页轮播_1.jpg */; };
 		DDF92D871D6A9C5B009D5A1E /* 首页轮播_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D321D6A9C5B009D5A1E /* 首页轮播_2.jpg */; };
 		DDF92D881D6A9C5B009D5A1E /* 首页轮播_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D331D6A9C5B009D5A1E /* 首页轮播_3.jpg */; };
-		DDF92D891D6A9C5B009D5A1E /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D351D6A9C5B009D5A1E /* shop.png */; };
 		DDF92D8A1D6A9C5B009D5A1E /* sort0_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D361D6A9C5B009D5A1E /* sort0_checked.png */; };
 		DDF92D8B1D6A9C5B009D5A1E /* sort0_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D371D6A9C5B009D5A1E /* sort0_normal.png */; };
 		DDF92D8C1D6A9C5B009D5A1E /* sort100_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D381D6A9C5B009D5A1E /* sort100_checked.png */; };
@@ -916,15 +910,9 @@
 		DDF92D241D6A9C5B009D5A1E /* 按钮+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮+.png"; sourceTree = "<group>"; };
 		DDF92D251D6A9C5B009D5A1E /* 按钮-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮-.png"; sourceTree = "<group>"; };
 		DDF92D291D6A9C5B009D5A1E /* 10元标记.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10元标记.png"; sourceTree = "<group>"; };
-		DDF92D2A1D6A9C5B009D5A1E /* 商品_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商品_1.png"; sourceTree = "<group>"; };
-		DDF92D2B1D6A9C5B009D5A1E /* 商品_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商品_2.png"; sourceTree = "<group>"; };
-		DDF92D2C1D6A9C5B009D5A1E /* 商品_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商品_3.png"; sourceTree = "<group>"; };
-		DDF92D2D1D6A9C5B009D5A1E /* 商品_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商品_4.png"; sourceTree = "<group>"; };
-		DDF92D2E1D6A9C5B009D5A1E /* 商品_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商品_5.png"; sourceTree = "<group>"; };
 		DDF92D311D6A9C5B009D5A1E /* 首页轮播_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "首页轮播_1.jpg"; sourceTree = "<group>"; };
 		DDF92D321D6A9C5B009D5A1E /* 首页轮播_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "首页轮播_2.jpg"; sourceTree = "<group>"; };
 		DDF92D331D6A9C5B009D5A1E /* 首页轮播_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "首页轮播_3.jpg"; sourceTree = "<group>"; };
-		DDF92D351D6A9C5B009D5A1E /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 		DDF92D361D6A9C5B009D5A1E /* sort0_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sort0_checked.png; sourceTree = "<group>"; };
 		DDF92D371D6A9C5B009D5A1E /* sort0_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sort0_normal.png; sourceTree = "<group>"; };
 		DDF92D381D6A9C5B009D5A1E /* sort100_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sort100_checked.png; sourceTree = "<group>"; };
@@ -2065,11 +2053,6 @@
 				D60216621D87A24500316614 /* 三点-白@2x.png */,
 				D60216631D87A24500316614 /* 三点-白@3x.png */,
 				DDF92D291D6A9C5B009D5A1E /* 10元标记.png */,
-				DDF92D2A1D6A9C5B009D5A1E /* 商品_1.png */,
-				DDF92D2B1D6A9C5B009D5A1E /* 商品_2.png */,
-				DDF92D2C1D6A9C5B009D5A1E /* 商品_3.png */,
-				DDF92D2D1D6A9C5B009D5A1E /* 商品_4.png */,
-				DDF92D2E1D6A9C5B009D5A1E /* 商品_5.png */,
 			);
 			path = "商品详情";
 			sourceTree = "<group>";
@@ -2087,7 +2070,6 @@
 		DDF92D341D6A9C5B009D5A1E /* 首页-分类 */ = {
 			isa = PBXGroup;
 			children = (
-				DDF92D351D6A9C5B009D5A1E /* shop.png */,
 				DDF92D361D6A9C5B009D5A1E /* sort0_checked.png */,
 				DDF92D371D6A9C5B009D5A1E /* sort0_normal.png */,
 				DDF92D381D6A9C5B009D5A1E /* sort100_checked.png */,
@@ -2239,7 +2221,6 @@
 				DDF92C431D6A9C3D009D5A1E /* DiscoverViewController.xib in Resources */,
 				DDF92D691D6A9C5B009D5A1E /* 竖线.png in Resources */,
 				D6A2215E1D8800FD0094C3BC /* 状态-亮@2x.png in Resources */,
-				DDF92D831D6A9C5B009D5A1E /* 商品_4.png in Resources */,
 				DDF92C851D6A9C3D009D5A1E /* RechargeController.xib in Resources */,
 				D65B64771D865CDD00D48834 /* 对勾.png in Resources */,
 				DDF92D861D6A9C5B009D5A1E /* 首页轮播_1.jpg in Resources */,
@@ -2275,7 +2256,6 @@
 				DDF92C711D6A9C3D009D5A1E /* AddressViewController.xib in Resources */,
 				DDF92D8B1D6A9C5B009D5A1E /* sort0_normal.png in Resources */,
 				D6A221561D87FA530094C3BC /* collectionCell背景@2x.png in Resources */,
-				DDF92D811D6A9C5B009D5A1E /* 商品_2.png in Resources */,
 				DD757F391D864E6E00A38058 /* 发现@3x.png in Resources */,
 				D6A221771D88209A0094C3BC /* 发现1@3x.png in Resources */,
 				D60216641D87A24500316614 /* 三点-白@2x.png in Resources */,
@@ -2301,7 +2281,6 @@
 				DDF92C871D6A9C3D009D5A1E /* RechargeRecordController.xib in Resources */,
 				D65B64741D865CDD00D48834 /* 加@3x.png in Resources */,
 				D6A2216A1D8812BD0094C3BC /* 无红包@2x.png in Resources */,
-				DDF92D841D6A9C5B009D5A1E /* 商品_5.png in Resources */,
 				D65B64731D865CDD00D48834 /* 加@2x.png in Resources */,
 				DDF92D951D6A9C5B009D5A1E /* sort2_normal.png in Resources */,
 				D68F25A11D6AEE970042E0BE /* HotSearchCell.xib in Resources */,
@@ -2332,7 +2311,6 @@
 				D6A2215C1D8800FD0094C3BC /* 状态-暗@2x.png in Resources */,
 				DD6B523E1D6DA31B00B6297F /* 4.png in Resources */,
 				D60216611D87A20200316614 /* 三点@3x.png in Resources */,
-				DDF92D891D6A9C5B009D5A1E /* shop.png in Resources */,
 				DD757F3C1D864E6E00A38058 /* 清单@2x.png in Resources */,
 				DDF92CA31D6A9C3D009D5A1E /* RechargeRecordCell.xib in Resources */,
 				DD757F5C1D864FC800A38058 /* 十元专区@2x.png in Resources */,
@@ -2352,9 +2330,7 @@
 				DDF92D931D6A9C5B009D5A1E /* sort222_normal.png in Resources */,
 				D68F259A1D6AE9850042E0BE /* 搜索_删除.png in Resources */,
 				D6BB14B21D894C130045F8EB /* 箭头-右@2x.png in Resources */,
-				DDF92D801D6A9C5B009D5A1E /* 商品_1.png in Resources */,
 				D65B64761D865CDD00D48834 /* 对勾-暗.png in Resources */,
-				DDF92D821D6A9C5B009D5A1E /* 商品_3.png in Resources */,
 				D6A2216B1D8812BD0094C3BC /* 无红包@3x.png in Resources */,
 				D65B64881D865CDD00D48834 /* 我的红包@3x.png in Resources */,
 				D67419701D7D177200B655A5 /* MessageController.xib in Resources */,

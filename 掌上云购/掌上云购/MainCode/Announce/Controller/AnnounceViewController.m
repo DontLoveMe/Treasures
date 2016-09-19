@@ -194,6 +194,10 @@
            params:params
           success:^(id json) {
               
+              if ([[json objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
+                  return ;
+              }
+              
               NSDictionary *dataDic = [json objectForKey:@"data"];
               cell.getUserLabel.hidden = NO;
               cell.peopleNumLb.hidden = NO;
