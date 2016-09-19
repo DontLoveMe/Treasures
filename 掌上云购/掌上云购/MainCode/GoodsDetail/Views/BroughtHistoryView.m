@@ -108,7 +108,7 @@
     BroughtHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BroughtHistory_Cell"
                                                                 forIndexPath:indexPath];
     NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
-    [cell.headPic setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+//    [cell.headPic setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
     cell.userName.text = [dic objectForKey:@"nickName"];
     cell.joinTimes.text = [NSString stringWithFormat:@"参与了:%@次",[dic objectForKey:@"qty"]];
     cell.userIP.text = [NSString stringWithFormat:@"ip：%@",[dic objectForKey:@"buyIp"]];

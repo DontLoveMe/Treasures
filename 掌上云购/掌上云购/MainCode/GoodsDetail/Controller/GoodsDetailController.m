@@ -7,6 +7,7 @@
 //
 
 #import "GoodsDetailController.h"
+#import "UINavigationBar+Awesome.h"
 
 @interface GoodsDetailController ()
 
@@ -15,16 +16,11 @@
 @implementation GoodsDetailController
 
 - (void)initNavBar{
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    
-    [self.navigationController.navigationBar setShadowImage:[self imageWithBgColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]]];
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 28.f, 28.f)];
     leftButton.tag = 101;
-    [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
                           forState:UIControlStateNormal];
     [leftButton addTarget:self
                    action:@selector(NavAction:)
@@ -33,31 +29,26 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
 }
--(UIImage *)imageWithBgColor:(UIColor *)color {
-    
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    
-    UIGraphicsBeginImageContext(rect.size);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
-    
-}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 
 {
+    UIColor * color = [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > 50) {
+        CGFloat alpha = MIN(1, 1 - ((50 + 64 - offsetY) / 64));
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+    } else {
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+    }
     
-    [self.navigationController.navigationBar setBackgroundImage:[self imageWithBgColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:_bgScrollView.contentOffset.y / 300]] forBarMetrics:UIBarMetricsDefault];
-    
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar lt_reset];
 }
 - (void)NavAction:(UIButton *)button{
     
@@ -68,7 +59,7 @@
     [super viewDidLoad];
     
 #warning 商品详情可以从父控制器传过来
-    self.title = @"商品详情";
+//    self.title = @"商品详情";
     
     _isJoind = 0;
     _isPrized = 1;
@@ -86,7 +77,7 @@
 #pragma mark - 创建子视图
 - (void)initViews{
 
-    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -64, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
+    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     _bgScrollView.delegate = self;
     [self.view addSubview:_bgScrollView];
@@ -95,7 +86,7 @@
         
         [self requestJoinList:_pageIndex];
         if (!_broughtHistoryView) {
-            _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight, KScreenWidth , KScreenHeight - kNavigationBarHeight)];
+            _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth , KScreenHeight)];
             _broughtHistoryView.backgroundColor = [UIColor whiteColor];
             _broughtHistoryView.BHdelegate = self;
             [self.view addSubview:_broughtHistoryView];
@@ -192,7 +183,7 @@
 
 - (void)initBottonView{
     
-    _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kNavigationBarHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
+    _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
     _bottomView.backgroundColor = [UIColor whiteColor];
     _bottomView.image = [UIImage imageNamed:@"标签栏背景"];
     [self.view addSubview:_bottomView];
@@ -377,6 +368,11 @@
     }
     
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
+    //导航栏透明
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationController.navigationBar.translucent = YES;
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
 }
 
