@@ -81,6 +81,10 @@
                     NSInteger newSurplusShare  =  [[[cartArr objectAtIndex:i] objectForKey:@"surplusShare"] integerValue];
                     [[existArr objectAtIndex:j] setObject:[NSNumber numberWithInteger:newSurplusShare] forKey:@"surplusShare"];
                     
+                    NSArray *picArr = [[cartArr objectAtIndex:i] objectForKey:@"proPictureList"];
+                    [[existArr objectAtIndex:j] setObject:picArr
+                                                   forKey:@"proPictureList"];
+                    
                     //修改购买数量
                     NSInteger oldTime = [[[existArr objectAtIndex:j] objectForKey:@"buyTimes"] integerValue];
                     NSInteger newTime = [[[cartArr objectAtIndex:i] objectForKey:@"buyTimes"] integerValue];
