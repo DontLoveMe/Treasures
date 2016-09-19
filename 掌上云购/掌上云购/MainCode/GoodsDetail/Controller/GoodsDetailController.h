@@ -18,7 +18,7 @@
 
 #import "UIScrollView+MJRefresh.h"
 
-@interface GoodsDetailController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,BroughtHistoryDelegate>{
+@interface GoodsDetailController : UIViewController<SDCycleScrollViewDelegate,WingTableDelegate,BroughtHistoryDelegate,UIScrollViewDelegate>{
 
     //背景
     UIScrollView        *_bgScrollView;

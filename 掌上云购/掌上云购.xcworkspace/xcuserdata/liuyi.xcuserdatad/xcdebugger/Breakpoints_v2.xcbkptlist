@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/GoodsDetail/Controller/GoodsDetailController.m"
-            timestampString = "495528027.604757"
+            timestampString = "495948064.96669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
             landmarkName = "-requestDetail"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,6 +58,38 @@
             startingLineNumber = "171"
             endingLineNumber = "171"
             landmarkName = "-QQLogin:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Lucky/ConfirmDataController.m"
+            timestampString = "495942639.090455"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/&#x4e8c;&#x7ea7;&#x63a7;&#x5236;&#x5668;/TabbarItem.m"
+            timestampString = "495944244.415945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-setIsSelected:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

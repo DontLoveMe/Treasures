@@ -116,7 +116,7 @@
     for (int i = 0; i < titleArr.count; i ++) {
         
         HomeFunctionControl *functionControl = [[HomeFunctionControl alloc] initWithFrame:CGRectMake(KScreenWidth * i / 4, 0, KScreenWidth / 4, 100.f)];
-        functionControl.tag = i;
+        functionControl.tag = i+300;
         functionControl.controlFlag = titleArr[i];
         [functionControl addTarget:self
                             action:@selector(controlAction:)
@@ -130,12 +130,40 @@
 - (void)controlAction:(HomeFunctionControl *)control{
 
     NSLogZS(@"选择了这个功能");
-    if (control.tag != 3) {
+    if (control.tag != 3+300) {
        
-        SegmentController *SVC = [[SegmentController alloc] init];
-        SVC.index = control.tag;
-        [self.navigationController pushViewController:SVC
-                                             animated:YES];
+        switch (control.tag) {
+            case 300:
+            {
+                SegmentController *SVC = [[SegmentController alloc] init];
+                SVC.index = 0;
+                [self.navigationController pushViewController:SVC
+                                                     animated:YES];
+            }
+                
+                break;
+            case 301:
+            {
+                SegmentController *SVC = [[SegmentController alloc] init];
+                SVC.index = 1;
+                [self.navigationController pushViewController:SVC
+                                                     animated:YES];
+            }
+                
+                break;
+            case 302:
+            {
+                SegmentController *SVC = [[SegmentController alloc] init];
+                SVC.index = 3;
+                [self.navigationController pushViewController:SVC
+                                                     animated:YES];
+            }
+                
+                break;
+                
+            default:
+                break;
+        }
         
     }else{
     
