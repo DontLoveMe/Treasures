@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -63,7 +63,6 @@
                         <constraint firstAttribute="width" constant="40" id="l6e-pL-GKD"/>
                     </constraints>
                     <state key="normal" backgroundImage="微信.png"/>
-                    <state key="highlighted" backgroundImage="微信logo.png"/>
                     <connections>
                         <action selector="wechatLogin:" destination="-1" eventType="touchUpInside" id="fRz-aL-Jbp"/>
                     </connections>
@@ -77,7 +76,6 @@
                     <state key="normal" backgroundImage="QQ.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="highlighted" backgroundImage="QQlogo.png"/>
                     <connections>
                         <action selector="QQLogin:" destination="-1" eventType="touchUpInside" id="hc6-SN-PUP"/>
                     </connections>
@@ -166,7 +164,6 @@
                     <state key="normal" backgroundImage="微博.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="highlighted" backgroundImage="微博logo.png"/>
                     <connections>
                         <action selector="weiboLogin:" destination="-1" eventType="touchUpInside" id="n81-ti-WXY"/>
                     </connections>
@@ -255,11 +252,8 @@
     </objects>
     <resources>
         <image name="QQ.png" width="40" height="40"/>
-        <image name="QQlogo.png" width="128" height="128"/>
         <image name="微信.png" width="40" height="40"/>
-        <image name="微信logo.png" width="128" height="128"/>
         <image name="微博.png" width="40" height="40"/>
-        <image name="微博logo.png" width="128" height="128"/>
         <image name="按钮背景_白.png" width="906" height="200"/>
         <image name="按钮背景_长.png" width="351" height="34"/>
         <image name="竖线.png" width="2" height="597"/>
