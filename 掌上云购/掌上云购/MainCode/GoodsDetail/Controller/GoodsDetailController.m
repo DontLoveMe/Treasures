@@ -33,7 +33,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 
 {
-    UIColor * color = [UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1];
+    UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > 50) {
         CGFloat alpha = MIN(1, 1 - ((50 + 64 - offsetY) / 64));
@@ -49,6 +49,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar lt_reset];
+    self.navigationController.navigationBar.translucent = NO;
 }
 - (void)NavAction:(UIButton *)button{
     
@@ -77,7 +78,7 @@
 #pragma mark - 创建子视图
 - (void)initViews{
 
-    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     _bgScrollView.delegate = self;
     [self.view addSubview:_bgScrollView];
@@ -85,16 +86,21 @@
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
         [self requestJoinList:_pageIndex];
+        UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
+        _bgScrollView.delegate = nil;
+        self.navigationController.navigationBar.translucent = NO;
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:1]];
         if (!_broughtHistoryView) {
             _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth , KScreenHeight)];
             _broughtHistoryView.backgroundColor = [UIColor whiteColor];
             _broughtHistoryView.BHdelegate = self;
-            [self.view addSubview:_broughtHistoryView];
+            [self.view insertSubview:_broughtHistoryView belowSubview:_bottomView];
+//            [self.view addSubview:_broughtHistoryView];
         }
         
         [UIView animateWithDuration:0.5
                          animations:^{
-                             _bgScrollView.top = kNavigationBarHeight - KScreenHeight;
+                             _bgScrollView.top = - KScreenHeight;
                              _broughtHistoryView.top = 0;
                          }completion:^(BOOL finished) {
                              [_bgScrollView.mj_footer endRefreshing];
@@ -115,8 +121,18 @@
     _joinRecordArr = [NSMutableArray array];
     [UIView animateWithDuration:0.5
                      animations:^{
-                         _broughtHistoryView.top = KScreenHeight - kNavigationBarHeight;
+                         _broughtHistoryView.top = KScreenHeight ;
                          _bgScrollView.top = 0;
+                         _bgScrollView.delegate = self;
+                         self.navigationController.navigationBar.translucent = YES;
+                         UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
+                         CGFloat offsetY = _bgScrollView.contentOffset.y;
+                         if (offsetY > 50) {
+                             CGFloat alpha = MIN(1, 1 - ((50 + 64 - offsetY) / 64));
+                             [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+                         } else {
+                             [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+                         }
                      }];
 
 }
@@ -128,8 +144,9 @@
     _topGoodImgView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth *375 / 375) imagesGroup:nil];
     _topGoodImgView.placeholderImage = [UIImage imageNamed:@"placeholder"];
     _topGoodImgView.infiniteLoop = YES;
+    _topGoodImgView.autoScroll = NO;
     _topGoodImgView.delegate = self;
-    _topGoodImgView.dotColor = [UIColor redColor];
+    _topGoodImgView.dotColor = [UIColor colorFromHexRGB:ThemeColor];
     
     _topGoodImgView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     [_bgScrollView addSubview:_topGoodImgView];
@@ -187,9 +204,6 @@
     _bottomView.backgroundColor = [UIColor whiteColor];
     _bottomView.image = [UIImage imageNamed:@"标签栏背景"];
     [self.view addSubview:_bottomView];
-//    UIImageView *line = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"横线_灰"]];
-//    line.frame = CGRectMake(0, 0, KScreenWidth, 1);
-//    [_bottomView addSubview:line];
     
     if (_isAnnounced == 1) {
     
@@ -212,8 +226,6 @@
         [_bottomView addSubview:_addToCartButton];
         
         _cartBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*4 / 5, 0, KScreenWidth*1 / 5, kTabBarHeight)];
-//        [_cartBottomButton setTitle:@"进入购物车" forState:UIControlStateNormal];
-//        [_cartBottomButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [_cartBottomButton setImage:[UIImage imageNamed:@"清单-selected"] forState:UIControlStateNormal];
         [_cartBottomButton addTarget:self
                               action:@selector(gotoCartAction:)
