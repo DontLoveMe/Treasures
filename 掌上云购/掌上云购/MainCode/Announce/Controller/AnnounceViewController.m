@@ -93,8 +93,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     AnnounceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    if (cell.countDown) {
-        [cell.countDown destoryTimer];
+    if (!cell) {
+        cell = [[AnnounceCell alloc] init];
     }
     cell.indexpath = indexPath;
     cell.announceDelegate = self;
@@ -114,7 +114,7 @@
     //商品名
     cell.titleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"productName"]];
     //期号
-    cell.numberLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"drawTimes"]];
+    cell.numberLabel.text = [NSString stringWithFormat:@"期号：%@",[dic objectForKey:@"drawTimes"]];
     
     if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
         
@@ -134,6 +134,9 @@
         
     }else{
     
+        if (cell.countDown) {
+            [cell.countDown destoryTimer];
+        }
         cell.getUserLabel.hidden = NO;
         cell.peopleNumLb.hidden = NO;
         cell.luckyLabel.hidden = NO;
@@ -149,7 +152,8 @@
         cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dic objectForKey:@"drawDate"]];
         
     }
-    
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
     return cell;
     
 }

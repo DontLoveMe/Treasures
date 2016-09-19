@@ -137,6 +137,7 @@
             {
                 SegmentController *SVC = [[SegmentController alloc] init];
                 SVC.index = 0;
+                SVC.title = control.controlFlag;
                 [self.navigationController pushViewController:SVC
                                                      animated:YES];
             }
@@ -146,6 +147,7 @@
             {
                 SegmentController *SVC = [[SegmentController alloc] init];
                 SVC.index = 1;
+                SVC.title = control.controlFlag;
                 [self.navigationController pushViewController:SVC
                                                      animated:YES];
             }
@@ -155,6 +157,7 @@
             {
                 SegmentController *SVC = [[SegmentController alloc] init];
                 SVC.index = 3;
+                 SVC.title = control.controlFlag;
                 [self.navigationController pushViewController:SVC
                                                      animated:YES];
             }
