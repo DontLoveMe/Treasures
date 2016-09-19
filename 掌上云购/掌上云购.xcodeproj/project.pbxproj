@@ -189,6 +189,8 @@
 		DD6B52401D6DA31B00B6297F /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52381D6DA31B00B6297F /* 6.png */; };
 		DD6B52411D6DA31B00B6297F /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B52391D6DA31B00B6297F /* 7.png */; };
 		DD6B52421D6DA31B00B6297F /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B523A1D6DA31B00B6297F /* 8.png */; };
+		DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E611D8FB53E0049EA18 /* 时间@2x.png */; };
+		DD716E641D8FB53E0049EA18 /* 时间@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E621D8FB53E0049EA18 /* 时间@3x.png */; };
 		DD757F321D864E6E00A38058 /* 夺宝-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F1E1D864E6E00A38058 /* 夺宝-selected@2x.png */; };
 		DD757F331D864E6E00A38058 /* 夺宝-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F1F1D864E6E00A38058 /* 夺宝-selected@3x.png */; };
 		DD757F341D864E6E00A38058 /* 夺宝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F201D864E6E00A38058 /* 夺宝@2x.png */; };
@@ -633,6 +635,8 @@
 		DD6B52381D6DA31B00B6297F /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		DD6B52391D6DA31B00B6297F /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
 		DD6B523A1D6DA31B00B6297F /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		DD716E611D8FB53E0049EA18 /* 时间@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@2x.png"; sourceTree = "<group>"; };
+		DD716E621D8FB53E0049EA18 /* 时间@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@3x.png"; sourceTree = "<group>"; };
 		DD757F1E1D864E6E00A38058 /* 夺宝-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝-selected@2x.png"; sourceTree = "<group>"; };
 		DD757F1F1D864E6E00A38058 /* 夺宝-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝-selected@3x.png"; sourceTree = "<group>"; };
 		DD757F201D864E6E00A38058 /* 夺宝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝@2x.png"; sourceTree = "<group>"; };
@@ -1937,6 +1941,8 @@
 		DDF92D0A1D6A9C5B009D5A1E /* 揭晓 */ = {
 			isa = PBXGroup;
 			children = (
+				DD716E611D8FB53E0049EA18 /* 时间@2x.png */,
+				DD716E621D8FB53E0049EA18 /* 时间@3x.png */,
 				DDF92D0B1D6A9C5B009D5A1E /* 揭晓-图片.jpg */,
 				DDF92D0C1D6A9C5B009D5A1E /* 揭晓-钟表.png */,
 				DDF92D0D1D6A9C5B009D5A1E /* 横线.png */,
@@ -2202,6 +2208,7 @@
 				D60216651D87A24500316614 /* 三点-白@3x.png in Resources */,
 				D65B64E01D86AA3A00D48834 /* 搜索标签背景@3x.png in Resources */,
 				DD6B523B1D6DA31B00B6297F /* 1.png in Resources */,
+				DD716E641D8FB53E0049EA18 /* 时间@3x.png in Resources */,
 				DD757F431D864E6E00A38058 /* 我的云购-selected@3x.png in Resources */,
 				D65B647A1D865CDD00D48834 /* 幸运记录@2x.png in Resources */,
 				D6C09BF21D79150F00C092A7 /* TZImagePickerController.bundle in Resources */,
@@ -2286,6 +2293,7 @@
 				DDF92D951D6A9C5B009D5A1E /* sort2_normal.png in Resources */,
 				D68F25A11D6AEE970042E0BE /* HotSearchCell.xib in Resources */,
 				DD757F581D864FC800A38058 /* 极速专区@2x.png in Resources */,
+				DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */,
 				DD757F3A1D864E6E00A38058 /* 清单-selected@2x.png in Resources */,
 				DDF92D7A1D6A9C5B009D5A1E /* 复选框-未选中.png in Resources */,
 				DDF92D8D1D6A9C5B009D5A1E /* sort100_normal.png in Resources */,

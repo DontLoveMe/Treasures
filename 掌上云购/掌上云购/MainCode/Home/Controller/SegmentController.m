@@ -204,6 +204,7 @@
         }
         NSDictionary *dic = _segmentData[index];
         _segmentDic = dic;
+        self.title = dic[@"name"];
         _page = 1;
 
         [weakSelf requestGoodsList];

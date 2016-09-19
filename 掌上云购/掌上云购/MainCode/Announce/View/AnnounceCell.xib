@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,15 +14,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="199" height="258"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="揭晓-图片.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fN9-GE-Xou">
-                        <rect key="frame" x="8" y="8" width="183" height="135.5"/>
+                        <rect key="frame" x="8" y="8" width="183" height="135"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="apple iphone 6s plus 颜色不同是出处不同" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hix-6Q-vLq">
-                        <rect key="frame" x="8" y="145.5" width="183" height="34"/>
+                        <rect key="frame" x="8" y="145" width="183" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="bGz-bp-JYD"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.41568627450980394" green="0.41568627450980394" blue="0.41568627450980394" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00: 00: 000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Qj-5S-aDX">
@@ -34,11 +34,11 @@
                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="揭晓-钟表.png" translatesAutoresizingMaskIntoConstraints="NO" id="I4a-Gx-fPU">
-                        <rect key="frame" x="8" y="204" width="20" height="20"/>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="时间.png" translatesAutoresizingMaskIntoConstraints="NO" id="I4a-Gx-fPU">
+                        <rect key="frame" x="12" y="204" width="16" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="afr-xS-DXM"/>
-                            <constraint firstAttribute="width" constant="20" id="y4h-oY-x2k"/>
+                            <constraint firstAttribute="height" constant="16" id="afr-xS-DXM"/>
+                            <constraint firstAttribute="width" constant="16" id="y4h-oY-x2k"/>
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="即将揭晓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAW-vK-kMT">
@@ -48,9 +48,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="编号：20164321917" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLU-KD-0bL">
-                        <rect key="frame" x="8" y="181.5" width="183" height="14.5"/>
+                        <rect key="frame" x="8" y="181" width="183" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="获得用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-OK-xfE">
@@ -103,12 +103,12 @@
                 <constraint firstItem="ZAW-vK-kMT" firstAttribute="top" secondItem="KLU-KD-0bL" secondAttribute="bottom" constant="8" id="Odc-xu-R1j"/>
                 <constraint firstAttribute="trailing" secondItem="siI-Q6-0QG" secondAttribute="trailing" constant="8" id="Q1b-hE-DhO"/>
                 <constraint firstItem="hix-6Q-vLq" firstAttribute="top" secondItem="fN9-GE-Xou" secondAttribute="bottom" constant="2" id="Q8X-36-pE2"/>
-                <constraint firstItem="I4a-Gx-fPU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="TVS-MN-861"/>
+                <constraint firstItem="I4a-Gx-fPU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="TVS-MN-861"/>
                 <constraint firstAttribute="trailing" secondItem="vIa-q6-XdP" secondAttribute="trailing" constant="8" id="Tr0-IH-QRb"/>
                 <constraint firstItem="vIa-q6-XdP" firstAttribute="top" secondItem="q53-rd-l0t" secondAttribute="bottom" constant="14.5" id="UoA-IU-sbv"/>
                 <constraint firstItem="KLU-KD-0bL" firstAttribute="top" secondItem="hix-6Q-vLq" secondAttribute="bottom" constant="2" id="Vj1-5M-RUv"/>
                 <constraint firstItem="q53-rd-l0t" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ZFO-pS-Kt6"/>
-                <constraint firstItem="3Qj-5S-aDX" firstAttribute="top" secondItem="I4a-Gx-fPU" secondAttribute="bottom" constant="6" id="aHM-qh-wMj"/>
+                <constraint firstItem="3Qj-5S-aDX" firstAttribute="top" secondItem="I4a-Gx-fPU" secondAttribute="bottom" constant="10" id="aHM-qh-wMj"/>
                 <constraint firstItem="ZAW-vK-kMT" firstAttribute="leading" secondItem="I4a-Gx-fPU" secondAttribute="trailing" constant="8" id="bGY-U3-bBa"/>
                 <constraint firstItem="vIa-q6-XdP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="bJ8-TJ-7gn"/>
                 <constraint firstAttribute="trailing" secondItem="hix-6Q-vLq" secondAttribute="trailing" constant="8" id="c1T-DE-mJ0"/>
@@ -139,6 +139,6 @@
     </objects>
     <resources>
         <image name="揭晓-图片.jpg" width="800" height="600"/>
-        <image name="揭晓-钟表.png" width="120" height="149"/>
+        <image name="时间.png" width="13" height="13"/>
     </resources>
 </document>

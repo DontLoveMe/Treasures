@@ -112,6 +112,10 @@
     [params setObject:_userNameTF.text forKey:@"userAccount"];
     [params setObject:[MD5Security MD5String:_passwordTF.text] forKey:@"userPwd"];
     [params setObject:@"4" forKey:@"deviceType"];
+    NSString *channelID = [BPush getChannelId];
+    if (channelID.length != 0) {
+        [params setObject:channelID forKey:@"channelId"];
+    }
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Login_URL];
     [ZSTools post:url

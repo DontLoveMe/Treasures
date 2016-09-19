@@ -107,7 +107,7 @@
     
     }
     
-    return [NSString stringWithFormat:@"%@:%@:%@", minutesStr,secondsStr,millisecondStr];
+    return [NSString stringWithFormat:@"%@ : %@ : %@", minutesStr,secondsStr,millisecondStr];
 
 }
 
