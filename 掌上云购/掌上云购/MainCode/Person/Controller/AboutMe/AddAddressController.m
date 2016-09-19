@@ -42,7 +42,7 @@
             ||[_provinceId integerValue] != [_model.province[@"id"] integerValue]
             ||[_cityId integerValue] != [_model.city[@"id"] integerValue]
             ||[_areaId integerValue] != [_model.area[@"id"] integerValue]
-            ||![self.detailAddressTV.text isEqualToString:_model.addressDetailFull]
+            ||![self.detailAddressTV.text isEqualToString:_model.addressDetail]
             ||[self.isDefaul boolValue] != [_model.isDefault boolValue]) {
             
             
@@ -94,7 +94,7 @@
         self.provinceId = _model.province[@"id"];
         self.cityId = _model.city[@"id"];
         self.areaId = _model.area[@"id"];
-        self.detailAddressTV.text = _model.addressDetailFull;
+        self.detailAddressTV.text = _model.addressDetail;
         self.defaultBtn.selected = [_model.isDefault boolValue];
         self.isDefaul = _model.isDefault;
         [self.addButton setTitle:@"确认修改" forState:UIControlStateNormal];
@@ -255,7 +255,9 @@
     
     [params setObject:_nameTF.text forKey:@"receiver"];
     [params setObject:_phoneTF.text forKey:@"mobile"];
-    [params setObject:_detailAddressTV.text forKey:@"addressDetailFull"];
+    [params setObject:_addressTF.text forKey:@"address_detail_full"];
+    
+    [params setObject:_detailAddressTV.text forKey:@"address_detail"];
     [params setObject:_isDefaul forKey:@"isDefault"];
     
     

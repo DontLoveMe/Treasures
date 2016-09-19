@@ -15,6 +15,11 @@
 @implementation GoodsDetailController
 
 - (void)initNavBar{
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    
+    [self.navigationController.navigationBar setShadowImage:[self imageWithBgColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]]];
     
     self.navigationItem.backBarButtonItem = nil;
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
@@ -28,7 +33,32 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
 }
+-(UIImage *)imageWithBgColor:(UIColor *)color {
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    
+    UIGraphicsBeginImageContext(rect.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
+    
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
 
+{
+    
+    [self.navigationController.navigationBar setBackgroundImage:[self imageWithBgColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:_bgScrollView.contentOffset.y / 300]] forBarMetrics:UIBarMetricsDefault];
+    
+}
 - (void)NavAction:(UIButton *)button{
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -39,6 +69,7 @@
     
 #warning 商品详情可以从父控制器传过来
     self.title = @"商品详情";
+    
     _isJoind = 0;
     _isPrized = 1;
     _pageIndex = 1;
@@ -55,8 +86,9 @@
 #pragma mark - 创建子视图
 - (void)initViews{
 
-    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
+    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -64, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
+    _bgScrollView.delegate = self;
     [self.view addSubview:_bgScrollView];
     
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{

@@ -396,9 +396,9 @@
                   for (NSDictionary *dic in area) {
                       if([dic[@"isDefault"] boolValue]) {
                           if ([dic[@"city"][@"name"]isEqualToString:dic[@"area"][@"name"]]) {
-                              _defaultArea = [NSString stringWithFormat:@"%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"addressDetailFull"]];
+                              _defaultArea = [NSString stringWithFormat:@"%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"addressDetail"]];
                           }else{
-                              _defaultArea = [NSString stringWithFormat:@"%@%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"area"][@"name"],dic[@"addressDetailFull"]];
+                              _defaultArea = [NSString stringWithFormat:@"%@%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"area"][@"name"],dic[@"addressDetail"]];
                           }
                           
                           [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];

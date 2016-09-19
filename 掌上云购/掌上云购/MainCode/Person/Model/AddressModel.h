@@ -12,6 +12,7 @@
 
 /* "id": 1,
  "userId": 1,
+ "addressDetail": "Jiedao258",
  "addressDetailFull": "变河北101号",
  "receiver": "李四",
  "zipCode": "410005",
@@ -37,6 +38,7 @@
 @property (nonatomic,strong)NSNumber *mobile;
 @property (nonatomic,strong)NSNumber *isDefault;
 @property (nonatomic,copy)NSString *addressDetailFull;
+@property (nonatomic,copy)NSString *addressDetail;
 @property (nonatomic,copy)NSString *receiver;
 @property (nonatomic,strong)NSDictionary *province;
 @property (nonatomic,strong)NSDictionary *city;

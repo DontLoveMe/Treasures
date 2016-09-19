@@ -26,14 +26,14 @@
     
     if (![_model.province[@"name"]isKindOfClass:[NSNull class]]) {
         if ([_model.city[@"name"]isEqualToString:_model.area[@"name"]]) {
-            _addressLabel.text = [NSString stringWithFormat:@"地址：%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.addressDetailFull];
+            _addressLabel.text = [NSString stringWithFormat:@"地址：%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.addressDetail];
         }else{
-            _addressLabel.text = [NSString stringWithFormat:@"地址：%@%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.area[@"name"],_model.addressDetailFull];
+            _addressLabel.text = [NSString stringWithFormat:@"地址：%@%@%@%@",_model.province[@"name"],_model.city[@"name"],_model.area[@"name"],_model.addressDetail];
         }
        
     }else {
         
-        _addressLabel.text = _model.addressDetailFull;
+        _addressLabel.text = _model.addressDetail;
     }
     
     if ([_model.isDefault boolValue]) {
