@@ -29,16 +29,16 @@
     _goodsImg.sd_layout
     .leftSpaceToView(self.contentView,8)
     .topSpaceToView(self.contentView,8)
-    .widthIs(64)
-    .heightIs(72);
+    .widthIs(90)
+    .heightIs(85);
     //商品分类
     _goodsType = [[UIImageView alloc]init];
     [_goodsImg addSubview:_goodsType];
     _goodsType.sd_layout
     .leftSpaceToView(_goodsImg,0)
     .topSpaceToView(_goodsImg,0)
-    .widthIs(12)
-    .heightIs(12);
+    .widthIs(15)
+    .heightIs(15);
     //商品名
     _goodsTitle = [[UILabel alloc]init];
     _goodsTitle.textColor = [UIColor blackColor];
@@ -82,8 +82,9 @@
     .heightIs(28)
     .widthIs(28);
     //选择量
-    _goodsNumLab = [[UILabel alloc]init];
+    _goodsNumLab = [[UITextField alloc]init];
     _goodsNumLab.textColor = [UIColor blackColor];
+    _goodsNumLab.keyboardType = UIKeyboardTypeNumberPad;
     _goodsNumLab.font = [UIFont systemFontOfSize:13];
     _goodsNumLab.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_goodsNumLab];
@@ -113,9 +114,9 @@
     _passengers.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:_passengers];
     _passengers.sd_layout
-    .leftSpaceToView(_addBtn,15)
+    .leftSpaceToView(_addBtn,5)
     .topSpaceToView(_surplusNumber,20)
-    .widthIs(40)
+    .widthIs(35)
     .heightIs(10);
     //价格
     _price = [[UILabel alloc]init];
@@ -131,17 +132,19 @@
     
 //    //包尾
     _allRestButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [_allRestButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_allRestButton setTitle:@"包尾" forState:UIControlStateNormal];
+    [_allRestButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
     [_allRestButton addTarget:self
                        action:@selector(allRestAction:)
              forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_allRestButton];
     
     _allRestButton.sd_layout
-    .leftSpaceToView(_passengers,8)
+    .leftSpaceToView(_passengers,5)
     .topEqualToView(_addBtn)
-    .widthIs(60)
-    .heightIs(30);
+    .widthIs(50)
+    .heightIs(25);
     
 }
 

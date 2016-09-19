@@ -78,10 +78,10 @@
     _topBannerView.placeholderImage = [UIImage imageNamed:@"首页轮播_1.jpg"];
     _topBannerView.infiniteLoop = YES;
     _topBannerView.delegate = self;
-    _topBannerView.dotColor = [UIColor whiteColor];
-
-    _topBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    _topBannerView.dotColor = [UIColor colorFromHexRGB:ThemeColor];
+    _topBannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     [_bgScrollView addSubview:_topBannerView];
+
     
     //获奖公告
     _wingTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topBannerView.bottom - 20.f, KScreenWidth, 20.f)];

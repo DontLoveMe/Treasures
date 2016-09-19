@@ -46,16 +46,16 @@ static CGFloat const kAnimateDuration = 1;
 - (void)setDotColor:(UIColor *)dotColor
 {
     _dotColor = dotColor;
-    self.layer.borderColor  = dotColor.CGColor;
+//    self.layer.borderColor  = dotColor.CGColor;
 }
 
 - (void)initialization
 {
     _dotColor = [UIColor whiteColor];
-    self.backgroundColor    = [UIColor clearColor];
+    self.backgroundColor    = [UIColor whiteColor];
     self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
-    self.layer.borderColor  = [UIColor whiteColor].CGColor;
-    self.layer.borderWidth  = 2;
+//    self.layer.borderColor  = [UIColor whiteColor].CGColor;
+//    self.layer.borderWidth  = 2;
 }
 
 
@@ -80,7 +80,7 @@ static CGFloat const kAnimateDuration = 1;
 - (void)animateToDeactiveState
 {
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
         self.transform = CGAffineTransformIdentity;
     } completion:nil];
 }

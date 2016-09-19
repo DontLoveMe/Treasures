@@ -48,7 +48,8 @@
 @property(nonatomic,strong)UILabel *passengers;
 
 //购买数量标签
-@property(nonatomic,strong)UILabel *goodsNumLab;
+//@property(nonatomic,strong)UILabel *goodsNumLab;
+@property(nonatomic,strong)UITextField *goodsNumLab;
 
 //添加数量标签
 @property(nonatomic,strong)UIButton *addBtn;

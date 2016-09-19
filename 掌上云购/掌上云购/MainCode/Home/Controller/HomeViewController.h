@@ -26,7 +26,7 @@
     
     //顶部banner
     SDCycleScrollView   *_topBannerView;
-    
+
     //中奖提示
     WingNotificationTableView *_wingTable;
     

@@ -295,7 +295,7 @@ NSString * const ID = @"cycleCell";
     if (self.pageControlAliment == SDCycleScrollViewPageContolAlimentRight) {
         x = self.mainView.sd_width - size.width - 10;
     }
-    CGFloat y = self.mainView.sd_height - size.height - 10;
+    CGFloat y = self.mainView.sd_height - size.height - 10-10;
     _pageControl.frame = CGRectMake(x, y, size.width, size.height);
     [_pageControl sizeToFit];
 }
