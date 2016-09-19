@@ -8,6 +8,7 @@
 
 #import "RechargeController.h"
 #import "RechargeCell.h"
+#import "RechargeResultController.h"
 
 @interface RechargeController ()
 
@@ -225,6 +226,8 @@
 }
 //确认支付
 - (void)confirmAction:(UIButton *)button {
+    RechargeResultController *rrVC = [[RechargeResultController alloc] init];
+    [self.navigationController pushViewController:rrVC animated:YES];
     if (_moneyStr.length == 0) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                  message:@"请选择充值金额" preferredStyle:UIAlertControllerStyleAlert];
@@ -241,7 +244,7 @@
         return;
     }
     NSLogZS(@"%@--%@",_moneyStr,_mannerStr);
-    [self rechargeRequest];
+//    [self rechargeRequest];
 }
 
 - (void)rechargeRequest {

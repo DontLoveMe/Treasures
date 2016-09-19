@@ -26,7 +26,7 @@
     UICollectionView *_collectionView;
     NSString *_identify;
     
-    LoveView *_loveView;//猜你喜欢label
+    LoveView *_loveView;//猜你喜欢
 }
 
 #pragma mark - 导航栏

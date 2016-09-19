@@ -306,9 +306,9 @@
 #pragma mark - 数据请求
 //确认地址
 - (void)confirmAddress{
-    if (_defaultArea.length == 0) {
+    if (_defaultArea.length == 0||[_defaultArea isEqualToString:@"没有默认地址"]) {
         AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"请选择默认地址?没有请添加"];
-        [alert addButtonTitleArray:@[@"取消",@"选择"]];
+        [alert addButtonTitleArray:@[@"取消",@"选择/添加"]];
         __weak typeof(AlertController*) weakAlert = alert;
         __weak typeof(self) weakSelf = self;
         [alert setClickButtonBlock:^(NSInteger tag) {
@@ -374,6 +374,9 @@
               if (isSuccess) {
                   NSArray *area = json[@"data"];
                   if (area.count == 0) {
+                      
+                      _defaultArea = @"没有默认地址";
+                      
                       AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"请添加地址！"];
                       [alert addButtonTitleArray:@[@"取消",@"添加"]];
                       __weak typeof(AlertController*) weakAlert = alert;
@@ -391,7 +394,7 @@
                       return;
                   }
                   for (NSDictionary *dic in area) {
-                      if(dic[@"isDefault"]) {
+                      if([dic[@"isDefault"] boolValue]) {
                           if ([dic[@"city"][@"name"]isEqualToString:dic[@"area"][@"name"]]) {
                               _defaultArea = [NSString stringWithFormat:@"%@%@%@",dic[@"province"][@"name"],dic[@"city"][@"name"],dic[@"addressDetailFull"]];
                           }else{

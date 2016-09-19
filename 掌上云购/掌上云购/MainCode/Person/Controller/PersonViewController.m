@@ -123,9 +123,6 @@
         
         [self getUserInfo];
     }
-    if (![self isLogin]) {
-        return;
-    }
 
 }
 
@@ -139,7 +136,9 @@
     [self initCollectionView];
   
     [self initBgHeaderView];
-    
+    if (![self isLogin]) {
+        return;
+    }
 }
 #pragma mark - 视图初始化
 - (void)initBgHeaderView {

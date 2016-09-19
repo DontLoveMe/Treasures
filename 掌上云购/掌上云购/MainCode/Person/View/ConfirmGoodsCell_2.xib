@@ -39,7 +39,7 @@
                             <constraint firstAttribute="width" constant="1" id="o69-2J-Tsl"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCD-61-iIg">
                         <rect key="frame" x="14" y="44" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="4pD-Z4-xU9"/>
@@ -187,7 +187,7 @@
                             <action selector="mannerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pdu-SH-gW8"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-8z-tfL">
                         <rect key="frame" x="14" y="79" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="49B-2a-YCg"/>
