@@ -108,6 +108,10 @@
 		D66FF4491D78106B001C4B6E /* AddShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66FF4471D78106B001C4B6E /* AddShareController.xib */; };
 		D674196F1D7D177200B655A5 /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D674196D1D7D177200B655A5 /* MessageController.m */; };
 		D67419701D7D177200B655A5 /* MessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D674196E1D7D177200B655A5 /* MessageController.xib */; };
+		D68551731D8E9233007E84CA /* 无记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D68551711D8E9233007E84CA /* 无记录@2x.png */; };
+		D68551741D8E9233007E84CA /* 无记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D68551721D8E9233007E84CA /* 无记录@3x.png */; };
+		D68551781D8E97F0007E84CA /* RechargeResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = D68551761D8E97F0007E84CA /* RechargeResultController.m */; };
+		D68551791D8E97F0007E84CA /* RechargeResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68551771D8E97F0007E84CA /* RechargeResultController.xib */; };
 		D68C534D1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */; };
 		D68F25951D6AE8DA0042E0BE /* SeachHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25931D6AE8D90042E0BE /* SeachHistoryCell.m */; };
 		D68F25961D6AE8DA0042E0BE /* SeachHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F25941D6AE8D90042E0BE /* SeachHistoryCell.xib */; };
@@ -522,6 +526,11 @@
 		D674196C1D7D177200B655A5 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
 		D674196D1D7D177200B655A5 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
 		D674196E1D7D177200B655A5 /* MessageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageController.xib; sourceTree = "<group>"; };
+		D68551711D8E9233007E84CA /* 无记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无记录@2x.png"; sourceTree = "<group>"; };
+		D68551721D8E9233007E84CA /* 无记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无记录@3x.png"; sourceTree = "<group>"; };
+		D68551751D8E97F0007E84CA /* RechargeResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeResultController.h; sourceTree = "<group>"; };
+		D68551761D8E97F0007E84CA /* RechargeResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeResultController.m; sourceTree = "<group>"; };
+		D68551771D8E97F0007E84CA /* RechargeResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RechargeResultController.xib; sourceTree = "<group>"; };
 		D68C534B1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
 		D68F25921D6AE8D90042E0BE /* SeachHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeachHistoryCell.h; sourceTree = "<group>"; };
@@ -985,6 +994,8 @@
 		D65B64331D865CDD00D48834 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				D68551711D8E9233007E84CA /* 无记录@2x.png */,
+				D68551721D8E9233007E84CA /* 无记录@3x.png */,
 				D65B64341D865CDD00D48834 /* 云购客服@2x.png */,
 				D65B64351D865CDD00D48834 /* 云购客服@3x.png */,
 				D65B64361D865CDD00D48834 /* 云购记录@2x.png */,
@@ -1653,6 +1664,9 @@
 				DDF92BFA1D6A9C3D009D5A1E /* RechargeRecordController.h */,
 				DDF92BFB1D6A9C3D009D5A1E /* RechargeRecordController.m */,
 				DDF92BFC1D6A9C3D009D5A1E /* RechargeRecordController.xib */,
+				D68551751D8E97F0007E84CA /* RechargeResultController.h */,
+				D68551761D8E97F0007E84CA /* RechargeResultController.m */,
+				D68551771D8E97F0007E84CA /* RechargeResultController.xib */,
 			);
 			path = Recharge;
 			sourceTree = "<group>";
@@ -2158,6 +2172,7 @@
 				DDF92C381D6A9C3D009D5A1E /* AnnounceCell.xib in Resources */,
 				D65B64711D865CDD00D48834 /* 内容背景@3x.png in Resources */,
 				D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */,
+				D68551791D8E97F0007E84CA /* RechargeResultController.xib in Resources */,
 				D65B64D01D8688D900D48834 /* 按钮背景_白.png in Resources */,
 				D6A2215D1D8800FD0094C3BC /* 状态-暗@3x.png in Resources */,
 				DDF92C6B1D6A9C3D009D5A1E /* RegisterViewController.xib in Resources */,
@@ -2196,6 +2211,7 @@
 				D65B64851D865CDD00D48834 /* 我的晒单@2x.png in Resources */,
 				D60216581D879C0300316614 /* 按钮框_亮@2x.png in Resources */,
 				DD757F351D864E6E00A38058 /* 夺宝@3x.png in Resources */,
+				D68551741D8E9233007E84CA /* 无记录@3x.png in Resources */,
 				DDF92D981D6A9C5B009D5A1E /* 首页-进度条.png in Resources */,
 				D65B64841D865CDD00D48834 /* 我的_设置@3x.png in Resources */,
 				D65B648B1D865CDD00D48834 /* 按钮框_暗.png in Resources */,
@@ -2379,6 +2395,7 @@
 				D60216551D8786FA00316614 /* 未选中@3x.png in Resources */,
 				DD757F5D1D864FC800A38058 /* 十元专区@3x.png in Resources */,
 				DDF92C931D6A9C3D009D5A1E /* ConfirmGoodsCell_1.xib in Resources */,
+				D68551731D8E9233007E84CA /* 无记录@2x.png in Resources */,
 				DDF92C731D6A9C3D009D5A1E /* ChangeDataController.xib in Resources */,
 				D625D9FD1D7E8EDD00316A49 /* SearchGoodsCell.xib in Resources */,
 				D60216541D8786FA00316614 /* 未选中@2x.png in Resources */,
@@ -2519,6 +2536,7 @@
 				DDF92CD81D6A9C4F009D5A1E /* UIView+SDAutoLayout.m in Sources */,
 				D625DA071D7EA96100316A49 /* GoodsModel.m in Sources */,
 				DDF92C7A1D6A9C3D009D5A1E /* InordertoshareController.m in Sources */,
+				D68551781D8E97F0007E84CA /* RechargeResultController.m in Sources */,
 				FC3689941D6EA052005C1429 /* SunShareModel.m in Sources */,
 				DDF92C5F1D6A9C3D009D5A1E /* WingNotificationCell.m in Sources */,
 				DDF92CA01D6A9C3D009D5A1E /* RechargeCell.m in Sources */,

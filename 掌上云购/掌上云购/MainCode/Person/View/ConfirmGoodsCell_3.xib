@@ -22,7 +22,7 @@
                             <constraint firstAttribute="width" constant="1" id="2YN-AO-IRo"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ebj-hE-GgE">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ebj-hE-GgE">
                         <rect key="frame" x="10" y="51" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="VQz-7s-50v"/>
@@ -46,7 +46,7 @@
                             <constraint firstAttribute="height" constant="1" id="5oR-Yw-G3x"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="maV-7d-4p8">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="maV-7d-4p8">
                         <rect key="frame" x="10" y="84" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="A3b-l8-KXN"/>
@@ -95,7 +95,7 @@
                             <constraint firstAttribute="height" constant="39" id="wY6-RK-UMp"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1zt-r0-bKn">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="1zt-r0-bKn">
                         <rect key="frame" x="10" y="165" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="1gJ-JW-rlP"/>
@@ -122,7 +122,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOz-Zw-lOh">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="状态-暗.png" highlightedImage="状态-亮.png" translatesAutoresizingMaskIntoConstraints="NO" id="GOz-Zw-lOh">
                         <rect key="frame" x="10" y="237" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="2m5-2q-dwz"/>

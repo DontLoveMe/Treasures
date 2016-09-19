@@ -206,8 +206,9 @@
     
     [params setObject:_nameTF.text forKey:@"receiver"];
     [params setObject:_phoneTF.text forKey:@"mobile"];
-    [params setObject:_detailAddressTV.text forKey:@"addressDetailFull"];
+    [params setObject:_addressTF.text forKey:@"address_detail_full"];
     
+    [params setObject:_detailAddressTV.text forKey:@"address_detail"];
         
     [params setObject:_isDefaul forKey:@"isDefault"];
     
