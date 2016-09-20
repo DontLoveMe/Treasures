@@ -95,8 +95,14 @@
     AnnounceHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnnounceHistory_Cell"
                                                                 forIndexPath:indexPath];
     NSDictionary *dic = [_announceHistoryArr objectAtIndex:indexPath.row];
-    
+
     cell.goodsMsgLabel.text = [NSString stringWithFormat:@"期号：%@(揭晓时间：%@)",[dic objectForKey:@"drawTimes"],[dic objectForKey:@"drawDate"]];
+    if (![dic[@"photoUrl"] isKindOfClass:[NSNull class]]){
+        [cell.picImgView setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+    }else {
+        [cell.picImgView setImage:[UIImage imageNamed:@"未加载图片"]];
+    }
+    
     cell.userName.text = [NSString stringWithFormat:@"获奖者：%@",[dic objectForKey:@"nickName"]];
     cell.userId.text = [NSString stringWithFormat:@"用户ID:%@",[dic objectForKey:@"drawUserId"]];
     cell.luckyNum.text = [NSString stringWithFormat:@"幸运号码：%@次",[dic objectForKey:@"drawNumber"]];

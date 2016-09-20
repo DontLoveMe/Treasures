@@ -12,8 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _goodsMsgLabel.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
-    _goodsMsgLabel.textColor = [UIColor redColor];
+//    _goodsMsgLabel.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
+//    _goodsMsgLabel.textColor = [UIColor redColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

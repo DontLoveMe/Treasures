@@ -57,18 +57,18 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HotCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    cell.titleLabel.text = _hotData[indexPath.row][@"name"];
+    cell.titleLabel.text = _hotData[indexPath.row][@"shortName"];
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    self.hotSearchString(_hotData[indexPath.row][@"name"]);
+    self.hotSearchString(_hotData[indexPath.row][@"shortName"]);
 }
 
 #pragma mark - CollectionViewDelegateLeftAlignedLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *hotStr = _hotData[indexPath.row][@"name"];
+    NSString *hotStr = _hotData[indexPath.row][@"shortName"];
     CGRect strRect = [hotStr boundingRectWithSize:CGSizeMake(KScreenWidth-20, 20) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
     return CGSizeMake(strRect.size.width+10, 20);
 }

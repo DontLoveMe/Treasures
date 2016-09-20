@@ -8,6 +8,7 @@
 
 #import "GoodsDetailController.h"
 #import "UINavigationBar+Awesome.h"
+#import "BuyNowController.h"
 
 @interface GoodsDetailController ()
 
@@ -29,14 +30,14 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
 }
-
+#pragma mark - 根据偏移量导航栏渐变
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 
 {
     UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY > 50) {
-        CGFloat alpha = MIN(1, 1 - ((50 + 64 - offsetY) / 64));
+    if (offsetY > 150) {
+        CGFloat alpha = MIN(1, 1 - ((150 + 64 - offsetY) / 64));
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
     } else {
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
@@ -152,7 +153,7 @@
     [_bgScrollView addSubview:_topGoodImgView];
     
     //获奖公告
-    _jionTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.top, KScreenWidth, 20.f)];
+    _jionTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.top+64, KScreenWidth, 20.f)];
     _jionTable.backgroundColor = [UIColor clearColor];
     NSArray *wingArr = @[@"4点12分，王力宏购买了1次",@"5点44分，周杰伦购买了20次",@"8点03分，李小龙购买了3次",@"7点24分，王宝强购买了8次",@"9点33分，习近平购买了50次"];
     _jionTable.dataArr = wingArr;
@@ -256,13 +257,19 @@
     }
     [self requestData];
 }
-
+#pragma mark - 立即购买
 - (void)buyNowAction:(UIButton *)button{
 
     NSLogZS(@"现在购买");
-
+    BuyNowController *bnVC = [[BuyNowController alloc] init];
+    bnVC.delegate = self;
+    bnVC.maxNumber = [_dataDic[@"surplusShare"] integerValue];
+    [self presentViewController:bnVC animated:YES completion:nil];
 }
-
+#pragma mark - BuyNowControllerDelegate
+- (void)backBuyNumber:(NSInteger)buyNumber {
+    NSLog(@"buyNumber%ld",buyNumber);
+}
 - (void)addToCartAction:(UIButton *)button{
 
     //构建购物车数据模型

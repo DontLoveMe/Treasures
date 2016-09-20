@@ -25,7 +25,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="商品_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="4cn-2t-wML">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="未加载图片.png" translatesAutoresizingMaskIntoConstraints="NO" id="4cn-2t-wML">
                         <rect key="frame" x="8" y="28" width="72" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="72" id="9cZ-HT-ngu"/>
@@ -75,17 +75,31 @@
                             <constraint firstAttribute="height" id="gqd-Mj-LHr"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="横线.png" translatesAutoresizingMaskIntoConstraints="NO" id="dcI-h5-pUZ">
+                        <rect key="frame" x="0.0" y="20" width="320" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Pqn-ZC-hG0"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="横线.png" translatesAutoresizingMaskIntoConstraints="NO" id="eoy-Vc-6IA">
+                        <rect key="frame" x="0.0" y="115" width="320" height="6.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="6.5" id="lr5-c2-o4q"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7MW-xY-Kp2" firstAttribute="top" secondItem="sJV-Rs-Zgc" secondAttribute="bottom" id="00L-As-jeu"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ySm-Oc-HFC" secondAttribute="trailing" constant="12" id="2G7-I9-dYK"/>
                     <constraint firstItem="5w1-UD-1BG" firstAttribute="top" secondItem="ySm-Oc-HFC" secondAttribute="bottom" id="3O1-Qi-o3m"/>
                     <constraint firstItem="4cn-2t-wML" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="6L4-rC-jdp"/>
+                    <constraint firstItem="eoy-Vc-6IA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6qv-SM-Dh3"/>
                     <constraint firstItem="4cn-2t-wML" firstAttribute="top" secondItem="sJV-Rs-Zgc" secondAttribute="bottom" constant="8" id="GGX-66-edw"/>
                     <constraint firstAttribute="trailing" secondItem="7MW-xY-Kp2" secondAttribute="trailing" id="GmS-ql-AKv"/>
                     <constraint firstItem="Jdv-oT-mJW" firstAttribute="top" secondItem="5w1-UD-1BG" secondAttribute="bottom" id="HQT-l6-XQL"/>
                     <constraint firstItem="sJV-Rs-Zgc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nn7-ky-xNC"/>
                     <constraint firstAttribute="trailing" secondItem="sJV-Rs-Zgc" secondAttribute="trailing" id="QrF-zh-Iks"/>
+                    <constraint firstItem="dcI-h5-pUZ" firstAttribute="top" secondItem="7MW-xY-Kp2" secondAttribute="bottom" id="SeE-MH-g0D"/>
                     <constraint firstItem="ySm-Oc-HFC" firstAttribute="top" secondItem="sJV-Rs-Zgc" secondAttribute="bottom" constant="8" id="TKq-yC-BWP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="0xz-H0-IXe" secondAttribute="trailing" constant="12" id="YZi-e7-YtZ"/>
                     <constraint firstItem="Jdv-oT-mJW" firstAttribute="leading" secondItem="4cn-2t-wML" secondAttribute="trailing" constant="12" id="bdh-VG-hNR"/>
@@ -94,8 +108,12 @@
                     <constraint firstItem="5w1-UD-1BG" firstAttribute="leading" secondItem="4cn-2t-wML" secondAttribute="trailing" constant="12" id="gJ9-9t-bz1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Jdv-oT-mJW" secondAttribute="trailing" constant="12" id="id0-yt-bX3"/>
                     <constraint firstItem="sJV-Rs-Zgc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jU2-HM-mh8"/>
+                    <constraint firstAttribute="trailing" secondItem="eoy-Vc-6IA" secondAttribute="trailing" id="pW4-2v-luB"/>
                     <constraint firstItem="0xz-H0-IXe" firstAttribute="leading" secondItem="4cn-2t-wML" secondAttribute="trailing" constant="12" id="t4n-bN-gm5"/>
+                    <constraint firstItem="dcI-h5-pUZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tpK-jw-NBd"/>
+                    <constraint firstAttribute="bottom" secondItem="eoy-Vc-6IA" secondAttribute="bottom" id="uJT-IU-a6K"/>
                     <constraint firstItem="ySm-Oc-HFC" firstAttribute="leading" secondItem="4cn-2t-wML" secondAttribute="trailing" constant="12" id="w8z-lu-Yob"/>
+                    <constraint firstAttribute="trailing" secondItem="dcI-h5-pUZ" secondAttribute="trailing" id="y9u-2i-EMD"/>
                     <constraint firstAttribute="trailing" secondItem="5w1-UD-1BG" secondAttribute="trailing" constant="12" id="zdb-49-o9V"/>
                 </constraints>
             </tableViewCellContentView>
@@ -107,10 +125,11 @@
                 <outlet property="userId" destination="5w1-UD-1BG" id="Kbt-2F-Add"/>
                 <outlet property="userName" destination="ySm-Oc-HFC" id="BOz-6k-W0E"/>
             </connections>
-            <point key="canvasLocation" x="226" y="338"/>
+            <point key="canvasLocation" x="226" y="336.875"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="商品_1.png" width="420" height="420"/>
+        <image name="未加载图片.png" width="200" height="200"/>
+        <image name="横线.png" width="425" height="2"/>
     </resources>
 </document>

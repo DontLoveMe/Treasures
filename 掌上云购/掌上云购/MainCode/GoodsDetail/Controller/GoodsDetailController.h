@@ -17,8 +17,9 @@
 #import "BroughtHistoryView.h"
 
 #import "UIScrollView+MJRefresh.h"
+#import "BuyNowController.h"
 
-@interface GoodsDetailController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,BroughtHistoryDelegate,UIScrollViewDelegate>{
+@interface GoodsDetailController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,BroughtHistoryDelegate,UIScrollViewDelegate,BuyNowControllerDelegate>{
 
     //背景
     UIScrollView        *_bgScrollView;

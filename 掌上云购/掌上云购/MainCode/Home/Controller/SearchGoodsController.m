@@ -51,6 +51,7 @@
     _searchBar = [[UISearchBar alloc] init];
     _searchBar.barStyle = UIBarStyleBlackTranslucent;
     _searchBar.placeholder = @"搜索";
+    _searchBar.text = _searchStr;
     [_searchBar setImage:[UIImage imageNamed:@"首页_搜索"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     [_searchBar setImage:[UIImage imageNamed:@"搜索_删除"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
     [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"搜索背景_白"] forState:UIControlStateNormal];

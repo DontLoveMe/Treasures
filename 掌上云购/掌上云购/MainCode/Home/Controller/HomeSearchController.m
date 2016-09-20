@@ -62,10 +62,10 @@
 #pragma mark - 视图初始化
 - (void)initViews{
 
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(4, 10, KScreenWidth - 8.f, 28.f)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(4, 10, KScreenWidth - 8.f, 30.f)];
     [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"搜索背景"] forState:UIControlStateNormal];
     
-    _searchBar.barStyle = UIBarStyleBlack;
+    _searchBar.barStyle = UIBarStyleDefault;
 //    _searchBar.backgroundColor = [UIColor whiteColor];
     _searchBar.placeholder = @"搜索";
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
