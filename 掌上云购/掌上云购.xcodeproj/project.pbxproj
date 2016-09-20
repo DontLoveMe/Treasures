@@ -195,6 +195,7 @@
 		DD6B52421D6DA31B00B6297F /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = DD6B523A1D6DA31B00B6297F /* 8.png */; };
 		DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E611D8FB53E0049EA18 /* 时间@2x.png */; };
 		DD716E641D8FB53E0049EA18 /* 时间@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E621D8FB53E0049EA18 /* 时间@3x.png */; };
+		DD740B161D90C5BB005C4D73 /* 未加载图片.png in Resources */ = {isa = PBXBuildFile; fileRef = DD740B151D90C5BB005C4D73 /* 未加载图片.png */; };
 		DD757F321D864E6E00A38058 /* 夺宝-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F1E1D864E6E00A38058 /* 夺宝-selected@2x.png */; };
 		DD757F331D864E6E00A38058 /* 夺宝-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F1F1D864E6E00A38058 /* 夺宝-selected@3x.png */; };
 		DD757F341D864E6E00A38058 /* 夺宝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F201D864E6E00A38058 /* 夺宝@2x.png */; };
@@ -369,8 +370,6 @@
 		DDF92CE51D6A9C4F009D5A1E /* UIColor+RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92CD41D6A9C4F009D5A1E /* UIColor+RGB.m */; };
 		DDF92D461D6A9C5B009D5A1E /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92CE81D6A9C5B009D5A1E /* 37x-Checkmark.png */; };
 		DDF92D471D6A9C5B009D5A1E /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92CE91D6A9C5B009D5A1E /* 37x-Checkmark@2x.png */; };
-		DDF92D661D6A9C5B009D5A1E /* 揭晓-图片.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D0B1D6A9C5B009D5A1E /* 揭晓-图片.jpg */; };
-		DDF92D671D6A9C5B009D5A1E /* 揭晓-钟表.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D0C1D6A9C5B009D5A1E /* 揭晓-钟表.png */; };
 		DDF92D681D6A9C5B009D5A1E /* 横线.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D0D1D6A9C5B009D5A1E /* 横线.png */; };
 		DDF92D691D6A9C5B009D5A1E /* 竖线.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D0E1D6A9C5B009D5A1E /* 竖线.png */; };
 		DDF92D771D6A9C5B009D5A1E /* 品牌图片.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D1F1D6A9C5B009D5A1E /* 品牌图片.png */; };
@@ -639,6 +638,7 @@
 		DD6B523A1D6DA31B00B6297F /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		DD716E611D8FB53E0049EA18 /* 时间@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@2x.png"; sourceTree = "<group>"; };
 		DD716E621D8FB53E0049EA18 /* 时间@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@3x.png"; sourceTree = "<group>"; };
+		DD740B151D90C5BB005C4D73 /* 未加载图片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未加载图片.png"; sourceTree = "<group>"; };
 		DD757F1E1D864E6E00A38058 /* 夺宝-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝-selected@2x.png"; sourceTree = "<group>"; };
 		DD757F1F1D864E6E00A38058 /* 夺宝-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝-selected@3x.png"; sourceTree = "<group>"; };
 		DD757F201D864E6E00A38058 /* 夺宝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝@2x.png"; sourceTree = "<group>"; };
@@ -904,8 +904,6 @@
 		DDF92CD41D6A9C4F009D5A1E /* UIColor+RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGB.m"; sourceTree = "<group>"; };
 		DDF92CE81D6A9C5B009D5A1E /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		DDF92CE91D6A9C5B009D5A1E /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
-		DDF92D0B1D6A9C5B009D5A1E /* 揭晓-图片.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "揭晓-图片.jpg"; sourceTree = "<group>"; };
-		DDF92D0C1D6A9C5B009D5A1E /* 揭晓-钟表.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "揭晓-钟表.png"; sourceTree = "<group>"; };
 		DDF92D0D1D6A9C5B009D5A1E /* 横线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "横线.png"; sourceTree = "<group>"; };
 		DDF92D0E1D6A9C5B009D5A1E /* 竖线.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "竖线.png"; sourceTree = "<group>"; };
 		DDF92D1F1D6A9C5B009D5A1E /* 品牌图片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "品牌图片.png"; sourceTree = "<group>"; };
@@ -1955,10 +1953,9 @@
 		DDF92D0A1D6A9C5B009D5A1E /* 揭晓 */ = {
 			isa = PBXGroup;
 			children = (
+				DD740B151D90C5BB005C4D73 /* 未加载图片.png */,
 				DD716E611D8FB53E0049EA18 /* 时间@2x.png */,
 				DD716E621D8FB53E0049EA18 /* 时间@3x.png */,
-				DDF92D0B1D6A9C5B009D5A1E /* 揭晓-图片.jpg */,
-				DDF92D0C1D6A9C5B009D5A1E /* 揭晓-钟表.png */,
 				DDF92D0D1D6A9C5B009D5A1E /* 横线.png */,
 				DDF92D0E1D6A9C5B009D5A1E /* 竖线.png */,
 			);
@@ -2175,6 +2172,7 @@
 				DD6B523C1D6DA31B00B6297F /* 2.png in Resources */,
 				DD757F4D1D864ECD00A38058 /* 最新揭晓@3x.png in Resources */,
 				DDF92D681D6A9C5B009D5A1E /* 横线.png in Resources */,
+				DD740B161D90C5BB005C4D73 /* 未加载图片.png in Resources */,
 				DDF92D8C1D6A9C5B009D5A1E /* sort100_checked.png in Resources */,
 				D65B64CE1D86844300D48834 /* 选中@3x.png in Resources */,
 				D60216691D87AA3600316614 /* 按钮框-白@3x.png in Resources */,
@@ -2253,7 +2251,6 @@
 				D6BB14A71D8934300045F8EB /* 微信支付@3x.png in Resources */,
 				DD6B52401D6DA31B00B6297F /* 6.png in Resources */,
 				D65B64981D865CDD00D48834 /* 消息@3x.png in Resources */,
-				DDF92D671D6A9C5B009D5A1E /* 揭晓-钟表.png in Resources */,
 				DDF92D7B1D6A9C5B009D5A1E /* 复选框-选中.png in Resources */,
 				DD757F361D864E6E00A38058 /* 发现-selected@2x.png in Resources */,
 				D6A221531D87D2C20094C3BC /* 单元格背景@3x.png in Resources */,
@@ -2286,7 +2283,6 @@
 				D65B647D1D865CDD00D48834 /* 往期揭晓@3x.png in Resources */,
 				D6A2216E1D8815A40094C3BC /* 购物车图标@2x.png in Resources */,
 				D65B64C31D86808400D48834 /* 用户@2x.png in Resources */,
-				DDF92D661D6A9C5B009D5A1E /* 揭晓-图片.jpg in Resources */,
 				DDF92C5A1D6A9C3D009D5A1E /* SegmentController.xib in Resources */,
 				D65B64CA1D86829500D48834 /* 掌上云购@3x.png in Resources */,
 				D65B646F1D865CDD00D48834 /* 充值记录@3x.png in Resources */,

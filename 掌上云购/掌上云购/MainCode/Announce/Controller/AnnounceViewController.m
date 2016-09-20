@@ -104,11 +104,11 @@
     if (![[dic objectForKey:@"productImg"] isKindOfClass:[NSNull class]]) {
         
         [cell.imgView setImageWithURL:[NSURL URLWithString:[dic objectForKey:@"productImg"]]
-                     placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+                     placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         
     }else{
         
-        [cell.imgView setImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+        [cell.imgView setImage:[UIImage imageNamed:@"未加载图片"]];
         
     }
     //商品名

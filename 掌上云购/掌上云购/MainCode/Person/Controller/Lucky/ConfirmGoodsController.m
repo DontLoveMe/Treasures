@@ -77,7 +77,7 @@
         if (pArr.count>0) {
             Propicturelist *prtLs = pArr[0];
             NSURL *url = [NSURL URLWithString:prtLs.img650];
-            [cell.titleView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+            [cell.titleView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         }
         cell.titleLabel.text = _rcModel.name;
         cell.participateLabel.text = [NSString stringWithFormat:@"参与人次：%ld",_rcModel.saleDraw.sellShare];

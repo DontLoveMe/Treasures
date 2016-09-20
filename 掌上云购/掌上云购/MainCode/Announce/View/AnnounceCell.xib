@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="199" height="258"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="揭晓-图片.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fN9-GE-Xou">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="未加载图片.png" translatesAutoresizingMaskIntoConstraints="NO" id="fN9-GE-Xou">
                         <rect key="frame" x="8" y="8" width="183" height="135"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="apple iphone 6s plus 颜色不同是出处不同" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hix-6Q-vLq">
@@ -138,7 +138,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="揭晓-图片.jpg" width="800" height="600"/>
         <image name="时间.png" width="13" height="13"/>
+        <image name="未加载图片.png" width="200" height="200"/>
     </resources>
 </document>
