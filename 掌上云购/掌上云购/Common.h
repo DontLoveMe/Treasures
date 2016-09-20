@@ -10,11 +10,11 @@
 #define Common_h
 
 //测试服务器
-//#define BASE_URL @"http://192.168.0.252:8889"
+#define BASE_URL @"http://192.168.0.252:8889"
 //测试服务器1
 //#define BASE_URL @"http://192.168.0.117:8080"
 //外网服务器
-#define BASE_URL    @"http://121.43.164.18:8080"
+//#define BASE_URL    @"http://121.43.164.18:8080"
 #define PIC_URL     @"http://121.196.197.222:8080"
 //玲姐服务器
 //#define BASE_URL @"http://192.168.0.252:8889"

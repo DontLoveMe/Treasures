@@ -450,17 +450,23 @@
                   
                   //商品图片
                   _dataDic = [json objectForKey:@"data"];
-                  NSArray   *picDicArr = [_dataDic objectForKey:@"proPictureList"];
-                  NSMutableArray *picArr = [NSMutableArray array];
-                  for (int i = 0; i < picDicArr.count ; i ++) {
-                      
-                      NSDictionary *dic = [picDicArr objectAtIndex:i];
-                      [picArr addObject:[dic objectForKey:@"img650"]];
-                      
+                  if ([_dataDic isEqual:[NSNull null]]) {
+                      return;
                   }
-                  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                      _topGoodImgView.imageURLStringsGroup = picArr;
-                  });
+                  if (![[_dataDic objectForKey:@"proPictureList"] isEqual:[NSNull null]]) {
+                      
+                      NSArray   *picDicArr = [_dataDic objectForKey:@"proPictureList"];
+                      NSMutableArray *picArr = [NSMutableArray array];
+                      for (int i = 0; i < picDicArr.count ; i ++) {
+                          
+                          NSDictionary *dic = [picDicArr objectAtIndex:i];
+                          [picArr addObject:[dic objectForKey:@"img650"]];
+                          
+                      }
+                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                          _topGoodImgView.imageURLStringsGroup = picArr;
+                      });
+                  }
                   
                   //商品名
                   _goodsName.text = [_dataDic objectForKey:@"name"];

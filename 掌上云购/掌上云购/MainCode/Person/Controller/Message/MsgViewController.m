@@ -131,7 +131,10 @@
     //类型（4：红包消息，2：揭晓消息，3：其他消息）
     if (msgType == 4) {
         RedEnvelopeController *rdVc = [[RedEnvelopeController alloc] init];
-        [self.navigationController pushViewController:rdVc animated:YES];
+        if (![msgDic[@"businessId"] isEqual:[NSNull null]]) {
+            rdVc.businessId = msgDic[@"businessId"];
+            [self.navigationController pushViewController:rdVc animated:YES];
+        }
     }else if (msgType == 2) {
         GoodsDetailController *gsVC = [[GoodsDetailController alloc] init];
         if (![msgDic[@"businessId"] isEqual:[NSNull null]]) {

@@ -31,17 +31,24 @@
 }
 
 - (void)createNoView:(CGRect)frame {
-    _noView = [[UIView alloc] initWithFrame:CGRectMake((frame.size.width-220)/2, (frame.size.height-240)/2-50, 220, 240)];
+    _noView = [[UIView alloc] initWithFrame:CGRectMake((frame.size.width-220)/2, (frame.size.height-240)/2-80, 220, 240)];
 //    _noView.backgroundColor = [UIColor grayColor];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((_noView.width-150)/2, 15, 150, 150)];
     imgView.image = [UIImage imageNamed:@"无红包"];
     [_noView addSubview:imgView];
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imgView.frame), _noView.width, 20)];
+    label.text = @"您还没有红包";
+    label.textColor = [UIColor grayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13];
+    [_noView addSubview:label];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((_noView.width-100)/2, CGRectGetMaxY(imgView.frame)+10, 100, 40);
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake((_noView.width-100)/2, CGRectGetMaxY(label.frame)+2, 100, 40);
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:@"立即购买" forState:UIControlStateNormal];
-//    [button setBackgroundImage:[UIImage imageNamed:@"normal"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_noView addSubview:button];
     

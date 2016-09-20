@@ -124,6 +124,8 @@
 		D68F25AA1D6B05820042E0BE /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25A91D6B05820042E0BE /* HistoryData.m */; };
 		D69BBF231D8FBBCC005F360C /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = D69BBF221D8FBBCC005F360C /* UINavigationBar+Awesome.m */; };
 		D69BBF2D1D8FE749005F360C /* 云购-引导页.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D69BBF2C1D8FE749005F360C /* 云购-引导页.jpg */; };
+		D69BBF301D900103005F360C /* 10元标记@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D69BBF2E1D900103005F360C /* 10元标记@2x.png */; };
+		D69BBF311D900103005F360C /* 10元标记@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D69BBF2F1D900103005F360C /* 10元标记@3x.png */; };
 		D6A221521D87D2C20094C3BC /* 单元格背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A221501D87D2C20094C3BC /* 单元格背景@2x.png */; };
 		D6A221531D87D2C20094C3BC /* 单元格背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A221511D87D2C20094C3BC /* 单元格背景@3x.png */; };
 		D6A221561D87FA530094C3BC /* collectionCell背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A221541D87FA530094C3BC /* collectionCell背景@2x.png */; };
@@ -377,7 +379,6 @@
 		DDF92D7B1D6A9C5B009D5A1E /* 复选框-选中.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D231D6A9C5B009D5A1E /* 复选框-选中.png */; };
 		DDF92D7C1D6A9C5B009D5A1E /* 按钮+.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D241D6A9C5B009D5A1E /* 按钮+.png */; };
 		DDF92D7D1D6A9C5B009D5A1E /* 按钮-.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D251D6A9C5B009D5A1E /* 按钮-.png */; };
-		DDF92D7F1D6A9C5B009D5A1E /* 10元标记.png in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D291D6A9C5B009D5A1E /* 10元标记.png */; };
 		DDF92D861D6A9C5B009D5A1E /* 首页轮播_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D311D6A9C5B009D5A1E /* 首页轮播_1.jpg */; };
 		DDF92D871D6A9C5B009D5A1E /* 首页轮播_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D321D6A9C5B009D5A1E /* 首页轮播_2.jpg */; };
 		DDF92D881D6A9C5B009D5A1E /* 首页轮播_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DDF92D331D6A9C5B009D5A1E /* 首页轮播_3.jpg */; };
@@ -547,6 +548,8 @@
 		D69BBF211D8FBBCC005F360C /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		D69BBF221D8FBBCC005F360C /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		D69BBF2C1D8FE749005F360C /* 云购-引导页.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "云购-引导页.jpg"; sourceTree = "<group>"; };
+		D69BBF2E1D900103005F360C /* 10元标记@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10元标记@2x.png"; sourceTree = "<group>"; };
+		D69BBF2F1D900103005F360C /* 10元标记@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10元标记@3x.png"; sourceTree = "<group>"; };
 		D6A221501D87D2C20094C3BC /* 单元格背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "单元格背景@2x.png"; sourceTree = "<group>"; };
 		D6A221511D87D2C20094C3BC /* 单元格背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "单元格背景@3x.png"; sourceTree = "<group>"; };
 		D6A221541D87FA530094C3BC /* collectionCell背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectionCell背景@2x.png"; sourceTree = "<group>"; };
@@ -911,7 +914,6 @@
 		DDF92D231D6A9C5B009D5A1E /* 复选框-选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "复选框-选中.png"; sourceTree = "<group>"; };
 		DDF92D241D6A9C5B009D5A1E /* 按钮+.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮+.png"; sourceTree = "<group>"; };
 		DDF92D251D6A9C5B009D5A1E /* 按钮-.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮-.png"; sourceTree = "<group>"; };
-		DDF92D291D6A9C5B009D5A1E /* 10元标记.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10元标记.png"; sourceTree = "<group>"; };
 		DDF92D311D6A9C5B009D5A1E /* 首页轮播_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "首页轮播_1.jpg"; sourceTree = "<group>"; };
 		DDF92D321D6A9C5B009D5A1E /* 首页轮播_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "首页轮播_2.jpg"; sourceTree = "<group>"; };
 		DDF92D331D6A9C5B009D5A1E /* 首页轮播_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "首页轮播_3.jpg"; sourceTree = "<group>"; };
@@ -2057,13 +2059,14 @@
 		DDF92D281D6A9C5B009D5A1E /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				D69BBF2E1D900103005F360C /* 10元标记@2x.png */,
+				D69BBF2F1D900103005F360C /* 10元标记@3x.png */,
 				D602165A1D87A20200316614 /* 返回-黑@2x.png */,
 				D602165B1D87A20200316614 /* 返回-黑@3x.png */,
 				D602165C1D87A20200316614 /* 三点@2x.png */,
 				D602165D1D87A20200316614 /* 三点@3x.png */,
 				D60216621D87A24500316614 /* 三点-白@2x.png */,
 				D60216631D87A24500316614 /* 三点-白@3x.png */,
-				DDF92D291D6A9C5B009D5A1E /* 10元标记.png */,
 			);
 			path = "商品详情";
 			sourceTree = "<group>";
@@ -2204,7 +2207,6 @@
 				D65B64C91D86829500D48834 /* 掌上云购@2x.png in Resources */,
 				DDF92D471D6A9C5B009D5A1E /* 37x-Checkmark@2x.png in Resources */,
 				DD6B52421D6DA31B00B6297F /* 8.png in Resources */,
-				DDF92D7F1D6A9C5B009D5A1E /* 10元标记.png in Resources */,
 				D60216681D87AA3600316614 /* 按钮框-白@2x.png in Resources */,
 				D65B64831D865CDD00D48834 /* 我的_设置@2x.png in Resources */,
 				DDF92D961D6A9C5B009D5A1E /* sort312_checked.png in Resources */,
@@ -2327,6 +2329,7 @@
 				DD757F5C1D864FC800A38058 /* 十元专区@2x.png in Resources */,
 				D6A221621D8803930094C3BC /* 标签栏背景@2x.png in Resources */,
 				D65B648E1D865CDD00D48834 /* 按钮背景_长@2x.png in Resources */,
+				D69BBF311D900103005F360C /* 10元标记@3x.png in Resources */,
 				DD757F341D864E6E00A38058 /* 夺宝@2x.png in Resources */,
 				D65B648C1D865CDD00D48834 /* 按钮背景@2x.png in Resources */,
 				DD757F5A1D864FC800A38058 /* 晒单@2x.png in Resources */,
@@ -2347,6 +2350,7 @@
 				D67419701D7D177200B655A5 /* MessageController.xib in Resources */,
 				D65B64951D865CDD00D48834 /* 横线_蓝@2x.png in Resources */,
 				DDF92D8A1D6A9C5B009D5A1E /* sort0_checked.png in Resources */,
+				D69BBF301D900103005F360C /* 10元标记@2x.png in Resources */,
 				D65B64961D865CDD00D48834 /* 横线_蓝@3x.png in Resources */,
 				DD757F4C1D864ECD00A38058 /* 最新揭晓@2x.png in Resources */,
 				D60216591D879C0300316614 /* 按钮框_亮@3x.png in Resources */,

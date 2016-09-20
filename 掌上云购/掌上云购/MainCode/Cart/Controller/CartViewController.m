@@ -440,7 +440,7 @@
         
     cell.surplusNumber.text = [NSString stringWithFormat:@"剩余人数:%@",[dic objectForKey:@"surplusShare"]];
 
-    cell.goodsType.image = [UIImage imageNamed:@"商品种类"];
+    cell.goodsType.image = [UIImage imageNamed:@"10元标记"];
     
     NSArray *picArr = [dic objectForKey:@"proPictureList"];
     if (picArr.count > 0) {
