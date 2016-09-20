@@ -8,6 +8,7 @@
 
 #import "ChangeDataController.h"
 #import "CountDown.h"
+#import "AlertController.h"
 
 @interface ChangeDataController ()
 
@@ -86,9 +87,8 @@
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     
-    
     _nameTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
-    _nameTF.placeholder = userDic[@"nickName"];
+    _nameTF.text = userDic[@"nickName"];
     _nameTF.clearButtonMode = UITextFieldViewModeAlways;
     _nameTF.borderStyle = UITextBorderStyleRoundedRect;
     _nameTF.font = [UIFont systemFontOfSize:14];
@@ -106,6 +106,7 @@
 
 //修改手机号码
 - (void)changePhone {
+    
     _oldPhoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
     _oldPhoneTF.clearButtonMode = UITextFieldViewModeAlways;
     _oldPhoneTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -215,7 +216,7 @@
             [timeButton setTitle:@"重新获取验证码" forState:UIControlStateNormal];
         }else{
             timeButton.enabled = NO;
-            [timeButton setTitle:[NSString stringWithFormat:@"%lds后重新获取",(long)totoalSecond] forState:UIControlStateNormal];
+            [timeButton setTitle:[NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond] forState:UIControlStateNormal];
         }
         
     }];
@@ -240,18 +241,30 @@
 }
 - (void)getChangeName {
     
-    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:userId forKey:@"id"];
     
-    if (_nameTF.text>0) {
+    if (_nameTF.text.length>0) {
         [params setObject:_nameTF.text forKey:@"nickName"];
     }else{
+        
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"请完善信息！"];
+        [alert addButtonTitleArray:@[@"好的"]];
+        
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    [params setObject:userId forKey:@"id"];
+    
+    [self showHUD:@"修改中"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserInfo_URL];
     [ZSTools post:url
            params:params
@@ -273,16 +286,28 @@
 }
 - (void)getChangePhone {
 //    NSLogZS(@"手机%@验证码%@",_phoneTF.text,_verifyTF.text);
+    
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"id"];
-    if (_verifyTF.text>0) {
+    if (_verifyTF.text.length>0) {
         
         [params setObject:_verifyTF.text forKey:@"captcha"];
     }else{
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"请完善信息！"];
+        [alert addButtonTitleArray:@[@"好的"]];
+        
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
+       
     }
     if (_phoneTF.text>0) {
         [params setObject:_phoneTF.text forKey:@"mobile"];
@@ -322,11 +347,22 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"id"];
     
-    if (_emailTF.text>0) {
+    if (_emailTF.text.length>0) {
         
         [params setObject:_emailTF.text forKey:@"email"];
     }else{
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"请完善信息！"];
+        [alert addButtonTitleArray:@[@"好的"]];
+        
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
+        
     }
    
     

@@ -14,7 +14,7 @@
 
 @property (nonatomic, copy) NSString *mobile;
 
-@property (nonatomic, assign) long long openingTime;
+@property (nonatomic, copy)NSString  *openingTime;
 
 @property (nonatomic, copy) NSString *fee;
 

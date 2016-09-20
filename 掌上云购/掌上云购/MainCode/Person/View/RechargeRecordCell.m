@@ -41,16 +41,17 @@
         default:
             break;
     }
-    _rechargeType.text = [NSString stringWithFormat:@"充值方式：%@",ratpStr];
+    _rechargeType.text = [NSString stringWithFormat:@"%@已支付",ratpStr];
    
-    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:_raModel.openingTime/1000];
-    NSLog(@"date:%@",[detaildate description]);
+//    NSDate *detaildate=[_raModel.openingTime d];
+//    NSLog(@"date:%@",[detaildate description]);
     //实例化一个NSDateFormatter对象
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+    NSDate *date = [dateFormatter dateFromString:_raModel.openingTime];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *currentDateStr = [dateFormatter stringFromDate: date];
     _openingTime.text = currentDateStr;
     
     _feeLabel.text = [NSString stringWithFormat:@"%@元",_raModel.fee];
