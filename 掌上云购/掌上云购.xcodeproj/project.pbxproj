@@ -202,6 +202,7 @@
 		DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E611D8FB53E0049EA18 /* 时间@2x.png */; };
 		DD716E641D8FB53E0049EA18 /* 时间@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E621D8FB53E0049EA18 /* 时间@3x.png */; };
 		DD740B161D90C5BB005C4D73 /* 未加载图片.png in Resources */ = {isa = PBXBuildFile; fileRef = DD740B151D90C5BB005C4D73 /* 未加载图片.png */; };
+		DD740B3E1D913126005C4D73 /* 下拉刷新.png in Resources */ = {isa = PBXBuildFile; fileRef = DD740B3D1D913126005C4D73 /* 下拉刷新.png */; };
 		DD757F321D864E6E00A38058 /* 夺宝-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F1E1D864E6E00A38058 /* 夺宝-selected@2x.png */; };
 		DD757F331D864E6E00A38058 /* 夺宝-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F1F1D864E6E00A38058 /* 夺宝-selected@3x.png */; };
 		DD757F341D864E6E00A38058 /* 夺宝@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F201D864E6E00A38058 /* 夺宝@2x.png */; };
@@ -652,6 +653,7 @@
 		DD716E611D8FB53E0049EA18 /* 时间@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@2x.png"; sourceTree = "<group>"; };
 		DD716E621D8FB53E0049EA18 /* 时间@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@3x.png"; sourceTree = "<group>"; };
 		DD740B151D90C5BB005C4D73 /* 未加载图片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未加载图片.png"; sourceTree = "<group>"; };
+		DD740B3D1D913126005C4D73 /* 下拉刷新.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉刷新.png"; sourceTree = "<group>"; };
 		DD757F1E1D864E6E00A38058 /* 夺宝-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝-selected@2x.png"; sourceTree = "<group>"; };
 		DD757F1F1D864E6E00A38058 /* 夺宝-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝-selected@3x.png"; sourceTree = "<group>"; };
 		DD757F201D864E6E00A38058 /* 夺宝@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "夺宝@2x.png"; sourceTree = "<group>"; };
@@ -1218,6 +1220,14 @@
 			path = "首页/商品详情/刷新Gif";
 			sourceTree = "<group>";
 		};
+		DD740B3A1D912A46005C4D73 /* 下拉gif */ = {
+			isa = PBXGroup;
+			children = (
+				DD740B3D1D913126005C4D73 /* 下拉刷新.png */,
+			);
+			path = "下拉gif";
+			sourceTree = "<group>";
+		};
 		DD89FC301D6C7A6300DBAB16 /* 进度条 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1551,11 +1561,11 @@
 				D625D9F91D7E8EDD00316A49 /* SearchGoodsCell.h */,
 				D625D9FA1D7E8EDD00316A49 /* SearchGoodsCell.m */,
 				D625D9FB1D7E8EDD00316A49 /* SearchGoodsCell.xib */,
-				D68F25911D6AE8240042E0BE /* 搜索 */,
-				DDF92BBA1D6A9C3D009D5A1E /* 商品分类 */,
 				DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */,
 				DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */,
 				DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */,
+				D68F25911D6AE8240042E0BE /* 搜索 */,
+				DDF92BBA1D6A9C3D009D5A1E /* 商品分类 */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2029,6 +2039,7 @@
 		DDF92D271D6A9C5B009D5A1E /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				DD740B3A1D912A46005C4D73 /* 下拉gif */,
 				D6A221601D8803930094C3BC /* 标签栏背景@2x.png */,
 				D6A221611D8803930094C3BC /* 标签栏背景@3x.png */,
 				D65B64E51D86CB2200D48834 /* 搜索_删除@2x.png */,
@@ -2424,6 +2435,7 @@
 				DDF92D7C1D6A9C5B009D5A1E /* 按钮+.png in Resources */,
 				DD757F651D86517800A38058 /* 首页_搜索@3x.png in Resources */,
 				D65B64C51D86808400D48834 /* 返回@2x.png in Resources */,
+				DD740B3E1D913126005C4D73 /* 下拉刷新.png in Resources */,
 				DD757F641D86517800A38058 /* 首页_搜索@2x.png in Resources */,
 				D60216551D8786FA00316614 /* 未选中@3x.png in Resources */,
 				DD757F5D1D864FC800A38058 /* 十元专区@3x.png in Resources */,
@@ -2755,11 +2767,13 @@
 			baseConfigurationReference = 3EAD386A872052AFECBF954A /* Pods-掌上云购.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg.raise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2772,11 +2786,13 @@
 			baseConfigurationReference = 7C9A38B08C2D6903B5609665 /* Pods-掌上云购.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg.raise;
 				PRODUCT_NAME = "$(TARGET_NAME)";

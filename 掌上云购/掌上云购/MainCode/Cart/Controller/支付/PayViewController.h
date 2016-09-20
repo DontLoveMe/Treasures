@@ -10,4 +10,10 @@
 
 @interface PayViewController : BaseViewController
 
+//是否直接购买(1-购物车，2直接购买)
+@property (nonatomic,copy)NSString *isimidiately;
+
+@property (nonatomic,copy)NSArray *immidiatelyArr;
+
+
 @end
