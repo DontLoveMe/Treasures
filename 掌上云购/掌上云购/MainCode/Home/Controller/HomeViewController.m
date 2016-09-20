@@ -48,6 +48,10 @@
     _goodsArr = [NSMutableArray array];
     //banner数据
     _bannerArr = [NSMutableArray array];
+    //页码
+    _page = 1;
+    //选的第几个
+    _selectIndext = 0;
     
     [self initNavBar];
     [self initViews];
@@ -60,14 +64,74 @@
     _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     _bgScrollView.delegate = self;
+    
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+       
+        _selectIndext = 0;
+        _page = 1;
+        [self requestData];
+        
+        [self requsetBanner];
+        
+        [self requestPrizeList];
+        
+        [self performSelector:@selector(endRefreshAction)
+                   withObject:nil
+                   afterDelay:2.f];
+        
+    }];
+    
+//    NSArray *gifArr = @[[UIImage imageNamed:@"1"],
+//                        [UIImage imageNamed:@"2"],
+//                        [UIImage imageNamed:@"3"],
+//                        [UIImage imageNamed:@"4"],
+//                        [UIImage imageNamed:@"5"],
+//                        [UIImage imageNamed:@"6"],
+//                        [UIImage imageNamed:@"7"],
+//                        [UIImage imageNamed:@"8"]];
+    NSArray *gifArr = @[[UIImage imageNamed:@"下拉刷新"]];
+    [header setImages:gifArr
+             duration:1 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _bgScrollView.mj_header = header;
+    
+    MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        
+        _page = 2;
+        switch (_selectIndext) {
+            case 0:
+                [self requestGoodsList:@"3" withPage:_page];
+                break;
+            case 1:
+                [self requestGoodsList:@"2" withPage:_page];
+                break;
+            case 2:
+                [self requestGoodsList:@"1" withPage:_page];
+                break;
+            case 3:
+                [self requestGoodsList:@"4" withPage:_page];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    _bgScrollView.mj_footer = footer;
+    
     [self.view addSubview:_bgScrollView];
     
     [self initTopView];
     [self initCenterView];
     [self initBottomView];
-    
-    [self requsetBanner];
 
+}
+
+- (void)endRefreshAction{
+
+    [_bgScrollView.mj_header endRefreshing];
+    
 }
 
 #pragma mark - top，center，bottom
@@ -187,6 +251,7 @@
     
     NSArray *segmentArr = @[@"人气",@"最新",@"最新",@"总需人次"];
     float width = KScreenWidth / 4;
+    _selectIndext = 0;
     for (int i = 0 ; i < segmentArr.count; i ++) {
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(width * i, 0, width, 39.f)];
@@ -220,21 +285,8 @@
     //设置单元格的间隙
     layout.minimumInteritemSpacing = 1;
     layout.minimumLineSpacing = 1;
-    layout.itemSize = CGSizeMake((KScreenWidth - 1) / 2  , (KScreenWidth - 1) * 11 / 20);    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f) collectionViewLayout:layout];
-    
-    MJRefreshHeader *header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        
-//        _bgScrollView.contentOffset = CGPointMake(0, _functionView.bottom + 4);
-//        _segmentView.frame = CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f);
-//        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f);
-//        _bgScrollView.scrollEnabled = YES;
-//        [_goodsList.mj_header endRefreshing];
-//        _goodsList.scrollEnabled = NO;
-//        _bgScrollView.delegate = self;
-        
-    }];
-    _goodsList.mj_header = header;
-    
+    layout.itemSize = CGSizeMake((KScreenWidth - 1) / 2  , (KScreenWidth - 1) * 11 / 20);
+    _goodsList = [[UICollectionView alloc] initWithFrame:CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f) collectionViewLayout:layout];
     _goodsList.scrollEnabled = NO;
     _goodsList.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
     _goodsList.delegate = self;
@@ -252,7 +304,7 @@
 
 - (void)selectAction:(UIButton *)button{
 
-    NSInteger selectIndext = button.tag - 100;
+    _selectIndext= button.tag - 100;
     
     UIImageView *imageView = [self.view viewWithTag:50];
     [UIView animateWithDuration:0.5
@@ -261,19 +313,19 @@
                          imageView.centerX = button.centerX;
                          
                      }];
-    
-    switch (selectIndext) {
+    _page = 1;
+    switch (_selectIndext) {
         case 0:
-            [self requestGoodsList:@"3"];
+            [self requestGoodsList:@"3" withPage:_page];
             break;
         case 1:
-            [self requestGoodsList:@"2"];
+            [self requestGoodsList:@"2" withPage:_page];
             break;
         case 2:
-            [self requestGoodsList:@"1"];
+            [self requestGoodsList:@"1" withPage:_page];
             break;
         case 3:
-            [self requestGoodsList:@"4"];
+            [self requestGoodsList:@"4" withPage:_page];
             break;
         default:
             break;
@@ -378,6 +430,8 @@
     
     [self requestData];
     
+    [self requsetBanner];
+    
     [self requestPrizeList];
 
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _goodsList.bottom);
@@ -387,16 +441,33 @@
 #pragma mark 请求网络数据
 - (void)requestData{
 
-    [self requestGoodsList:@"3"];
+    switch (_selectIndext) {
+        case 0:
+            [self requestGoodsList:@"3" withPage:_page];
+            break;
+        case 1:
+            [self requestGoodsList:@"2" withPage:_page];
+            break;
+        case 2:
+            [self requestGoodsList:@"1" withPage:_page];
+            break;
+        case 3:
+            [self requestGoodsList:@"4" withPage:_page];
+            break;
+        default:
+            break;
+    }
 
 }
 
 //商品列表
-- (void)requestGoodsList:(NSString *)kindStr{
+- (void)requestGoodsList:(NSString *)kindStr withPage:(NSInteger)page{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"orderType":kindStr}
                forKey:@"paramsMap"];
+    [params setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [params setObject:@"4" forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
     
@@ -405,7 +476,19 @@
           success:^(id json) {
               
               if ([json objectForKey:@"flag"]) {
-                  _goodsArr = [json objectForKey:@"data"];
+                  
+                  [_bgScrollView.mj_footer endRefreshing];
+                  if (page == 1) {
+                      _goodsArr = [[json objectForKey:@"data"] mutableCopy];
+                  }else{
+                      NSArray *dataArr = [json objectForKey:@"data"];
+                      for (int i = 0; i < dataArr.count; i ++) {
+                          [_goodsArr addObject:dataArr[i]];
+                      }
+                  }
+
+                  _goodsList.height = ((KScreenWidth - 1) * 11 / 20) * _goodsArr.count / 2 + _goodsArr.count - 1;
+                  _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _goodsList.bottom);
                   [_goodsList reloadData];
               }
               
@@ -480,7 +563,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
     CGFloat offset_y = scrollView.contentOffset.y;
-    NSLog(@"%f",offset_y);
     if (_functionView.bottom + 4.f - offset_y < 0) {
     
         _segmentView.top = 0;

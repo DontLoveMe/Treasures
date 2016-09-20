@@ -42,6 +42,9 @@
     
     //banner数据
     NSMutableArray      *_bannerArr;
-
+   
+    NSInteger           _page;
+    NSInteger           _selectIndext;
+    
 }
 @end
