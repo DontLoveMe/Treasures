@@ -96,8 +96,14 @@
     }else{
         [cell.headPic setImage:[UIImage imageNamed:@"我的-头像"]];
     }
+    
+    if (![[dic objectForKey:@"nickName"] isKindOfClass:[NSNull class]]) {
+        
+        cell.userName.text = [dic objectForKey:@"nickName"];
+    }else{
+        cell.userName.text = @"名字消失在了二次元空间";
+    }
 
-    cell.userName.text = [dic objectForKey:@"nickName"];
     cell.joinTimes.text = [NSString stringWithFormat:@"参与了:%@次",[dic objectForKey:@"qty"]];
     cell.userIP.text = [NSString stringWithFormat:@"ip：%@",[dic objectForKey:@"buyIp"]];
     

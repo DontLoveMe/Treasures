@@ -111,7 +111,7 @@
     [self initTopView];
     [self initCenterView];
     [self initBottonView];
-
+    
 }
 
 #pragma mark - broughtHistoryDelegate
@@ -203,6 +203,7 @@
     _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
     _bottomView.backgroundColor = [UIColor whiteColor];
     _bottomView.image = [UIImage imageNamed:@"标签栏背景"];
+    _bottomView.userInteractionEnabled = YES;
     [self.view addSubview:_bottomView];
     
     if (_isAnnounced == 1) {
@@ -291,8 +292,9 @@
                             @"buyTimes":[NSNumber numberWithInteger:1],
                             @"singlePrice":[_dataDic objectForKey:@"singlePrice"]};
 
-                           
     BOOL isSuccess = [CartTools addCartList:@[goods]];
+    [self showHUD:@"正在加入购物车"];
+    [self hideSuccessHUD:@"加入购物车成功"];
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
     
 }

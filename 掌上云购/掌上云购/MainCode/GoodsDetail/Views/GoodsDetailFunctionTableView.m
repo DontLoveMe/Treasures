@@ -93,7 +93,7 @@
         goodsDetailView.backgroundColor = [UIColor whiteColor];
         //标语
         UILabel *siloganLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
-        siloganLabel.text = @"您还没有参加哦，赶快试试吧，万一中了呢？";
+        siloganLabel.text = @"赶快加入夺宝吧，万一中了呢？";
         siloganLabel.textAlignment = NSTextAlignmentLeft;
         siloganLabel.font = [UIFont systemFontOfSize:13];
         siloganLabel.textColor = [UIColor darkGrayColor];
