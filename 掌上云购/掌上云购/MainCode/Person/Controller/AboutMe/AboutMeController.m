@@ -78,7 +78,7 @@
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载中"];
+//    [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"id"];
  
@@ -88,7 +88,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+//              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               if (isSuccess) {
                   _userInfo = json[@"data"];
                   [_tableView reloadData];
@@ -97,7 +97,7 @@
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   for (int i = 0; i < userDic.allKeys.count; i ++) {
                       
-                      if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+                      if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]]) {
                           
                           [userDic removeObjectForKey:userDic.allKeys[i]];
                           i = 0;
@@ -105,7 +105,7 @@
                       if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
                           NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
                           for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
-                              if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
+                              if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]||[[userLoginDic objectForKey:userLoginDic.allKeys[j]] isKindOfClass:[NSNull class]]) {
                                   [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
                                   j = 0;
                               }

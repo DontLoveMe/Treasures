@@ -13,6 +13,7 @@
 
 @property (nonatomic,strong)UITextField *nameTF;
 
+@property (nonatomic,strong)UITextField *oldPhoneTF;
 @property (nonatomic,strong)UITextField *phoneTF;
 @property (nonatomic,strong)UITextField *verifyTF;
 
@@ -105,16 +106,22 @@
 
 //修改手机号码
 - (void)changePhone {
-    
-    _phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
+    _oldPhoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
+    _oldPhoneTF.clearButtonMode = UITextFieldViewModeAlways;
+    _oldPhoneTF.borderStyle = UITextBorderStyleRoundedRect;
+    _oldPhoneTF.font = [UIFont systemFontOfSize:14];
+    _oldPhoneTF.textColor = [UIColor blackColor];
+    _oldPhoneTF.placeholder = @"请输入旧手机号码";
+    [self.view addSubview:_oldPhoneTF];
+    _phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 53, KScreenWidth-10, 35)];
     _phoneTF.clearButtonMode = UITextFieldViewModeAlways;
     _phoneTF.borderStyle = UITextBorderStyleRoundedRect;
     _phoneTF.font = [UIFont systemFontOfSize:14];
     _phoneTF.textColor = [UIColor blackColor];
-    _phoneTF.placeholder = @"请输入手机号码";
+    _phoneTF.placeholder = @"请输入新手机号码";
     [self.view addSubview:_phoneTF];
     
-    _verifyTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 53, KScreenWidth/2, 35)];
+    _verifyTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 93, KScreenWidth/2, 35)];
     _verifyTF.borderStyle = UITextBorderStyleRoundedRect;
     _verifyTF.font = [UIFont systemFontOfSize:14];
     _verifyTF.textColor = [UIColor blackColor];
@@ -123,10 +130,10 @@
     
     UIButton *verifyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    verifyButton.frame = CGRectMake(KScreenWidth/2+5, 53, KScreenWidth/2-10, 35);
-    [verifyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    verifyButton.frame = CGRectMake(KScreenWidth/2+5, 93, KScreenWidth/2-10, 35);
+    [verifyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [verifyButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    verifyButton.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+    [verifyButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
     [verifyButton addTarget:self action:@selector(verifyAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:verifyButton];
     

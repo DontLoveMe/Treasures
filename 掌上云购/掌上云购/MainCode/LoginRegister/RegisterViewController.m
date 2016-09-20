@@ -482,7 +482,7 @@
 - (void)saveDataForUserUserDefaults:(NSMutableDictionary *)userDic {
     for (int i = 0; i < userDic.allKeys.count; i ++) {
         
-        if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]) {
+        if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]]) {
             
             [userDic removeObjectForKey:userDic.allKeys[i]];
             i = 0;
