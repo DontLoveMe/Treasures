@@ -11,6 +11,13 @@
 #import "GoodsModel.h"
 #import "ProgressView.h"
 
+@protocol searchGoodsCellDelegate <NSObject>
+
+@optional
+- (void)addToCartWithIndexpath:(NSIndexPath *)nowIndexpath;
+
+@end
+
 @interface SearchGoodsCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -20,5 +27,9 @@
 @property (weak, nonatomic) IBOutlet ProgressView *progressView;
 
 @property (strong, nonatomic)GoodsModel *gsModel;
+
+@property (nonatomic ,strong)NSIndexPath *nowIndexpath;
+
+@property (weak ,nonatomic)id <searchGoodsCellDelegate> delegate;
 
 @end

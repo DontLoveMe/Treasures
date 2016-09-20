@@ -64,10 +64,11 @@
     BOOL isSuccess = [CartTools addCartList:@[goods]];
     if (isSuccess) {
         
-//        if ([_delegate respondsToSelector:@selector(addToCartWithIndexpath:)]) {
-//            [_delegate addToCartWithIndexpath:_nowIndexpath];
-//            
-//        }
+        if ([_delegate respondsToSelector:@selector(addToCartWithIndexpath:)]) {
+            
+            [_delegate addToCartWithIndexpath:_nowIndexpath];
+            
+        }
     }
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
     

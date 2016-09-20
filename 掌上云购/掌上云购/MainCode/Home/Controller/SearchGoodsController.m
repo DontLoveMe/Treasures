@@ -7,10 +7,6 @@
 //
 
 #import "SearchGoodsController.h"
-#import "SearchGoodsCell.h"
-#import "HistoryData.h"
-#import "GoodsModel.h"
-#import "GoodsDetailController.h"
 
 @interface SearchGoodsController ()
 
@@ -148,10 +144,12 @@
     return self.seachData.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     SearchGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchGoodsCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.nowIndexpath = indexPath;
     cell.gsModel = [GoodsModel mj_objectWithKeyValues:self.seachData[indexPath.row]];
-    
+    cell.delegate = self;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,6 +191,42 @@
     [headerView addSubview:allButton];
     
     return headerView;
+}
+
+#pragma mark - 加入购物车成功的动画
+- (void)addToCartWithIndexpath:(NSIndexPath *)nowIndexpath{
+    
+    //数据
+    NSDictionary *dic = [_seachData objectAtIndex:nowIndexpath.row];
+    
+    //设置动画图片初始位置
+    SearchGoodsCell *cell = (SearchGoodsCell *)[_tableView cellForRowAtIndexPath:nowIndexpath];
+    
+    UIImageView *activityImgview = [[UIImageView alloc] initWithFrame:CGRectMake(nowIndexpath.row % 2 * (cell.width + 1) + 36, nowIndexpath.row / 2 * (cell.height + 1) + 16.f + _tableView.top, cell.imgView.width,cell.imgView.height)];
+    //设置图片
+    NSArray *picList = [dic objectForKey:@"proPictureList"];
+    if (picList.count != 0) {
+        
+        [activityImgview setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
+        
+    }
+    
+    [self.view addSubview:activityImgview];
+    
+    [UIView animateWithDuration:1.5
+                     animations:^{
+                         
+                         CGAffineTransform transform = CGAffineTransformMakeTranslation(KScreenWidth - 20 - activityImgview.centerX, -activityImgview.centerY);
+                         transform = CGAffineTransformScale(transform, 0.01, 0.01);
+                         activityImgview.transform = CGAffineTransformRotate(transform, 2 * M_PI_2);
+                         //
+                     }completion:^(BOOL finished) {
+                         
+                         //动画结束后隐藏图片
+                         activityImgview.hidden = YES;
+                         
+                     }];
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

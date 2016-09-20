@@ -7,8 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "SearchGoodsCell.h"
+#import "HistoryData.h"
+#import "GoodsModel.h"
+#import "GoodsDetailController.h"
 
-@interface SearchGoodsController : BaseViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface SearchGoodsController : BaseViewController<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,searchGoodsCellDelegate>
 
 @property (nonatomic,copy)NSString *searchStr;
 
