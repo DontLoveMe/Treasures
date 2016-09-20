@@ -123,7 +123,9 @@
 #define UserInfo_URL @"/pcpServer-inf/user/getUserInfo"
 //用户信息修改
 #define EditUserInfo_URL @"/pcpServer-inf/user/editUserInfo"
-//用户信息修改
+//手机号码修改
+#define EditUserMobile_URL @"/pcpServer-inf/user/editUserMobile"
+//绑定邮箱
 #define BindingEmail_URL @"/pcpServer-inf/user/bindingEmail"
 
 /*---------------发现模块---------------------*/

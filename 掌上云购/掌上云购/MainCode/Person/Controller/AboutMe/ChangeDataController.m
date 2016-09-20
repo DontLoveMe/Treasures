@@ -107,11 +107,17 @@
 //修改手机号码
 - (void)changePhone {
     
+     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    
     _oldPhoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
     _oldPhoneTF.clearButtonMode = UITextFieldViewModeAlways;
     _oldPhoneTF.borderStyle = UITextBorderStyleRoundedRect;
     _oldPhoneTF.font = [UIFont systemFontOfSize:14];
     _oldPhoneTF.textColor = [UIColor blackColor];
+    if (![userDic[@"mobile"] isKindOfClass:[NSNull class]]) {
+        
+        _oldPhoneTF.text = userDic[@"mobile"];
+    }
     _oldPhoneTF.placeholder = @"请输入旧手机号码";
     [self.view addSubview:_oldPhoneTF];
     _phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 53, KScreenWidth-10, 35)];
@@ -309,19 +315,25 @@
         return;
        
     }
-    if (_phoneTF.text>0) {
-        [params setObject:_phoneTF.text forKey:@"mobile"];
+    if (_oldPhoneTF.text.length>0) {
+        [params setObject:_oldPhoneTF.text forKey:@"mobile"];
+    }else{
+        return;
+    }
+    if (_phoneTF.text.length>0) {
+        [params setObject:_phoneTF.text forKey:@"newMobile"];
     }else{
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserInfo_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserMobile_URL];
     [ZSTools post:url
            params:params
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
                   [self.navigationController popViewControllerAnimated:YES];
@@ -338,7 +350,17 @@
      NSLogZS(@"邮箱%@确认邮箱%@",_emailTF.text,_reEmailTF.text);
     
     if (![_emailTF.text isEqualToString:_reEmailTF.text]) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"两次输入邮箱不同！请重新输入"];
+        [alert addButtonTitleArray:@[@"好的"]];
         
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
     }
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];

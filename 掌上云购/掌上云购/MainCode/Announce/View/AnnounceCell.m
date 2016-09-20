@@ -15,15 +15,21 @@
     [super awakeFromNib];
     
 
- 
+ [self.countDown destoryTimer];
 }
 
 
 - (void)setStr:(NSString *)str  {
     
     _str = str;
-    self.countDown = [[CountDown alloc] init];
+    if (self.countDown) {
+        [self.countDown destoryTimer];
+    }else {
+        self.countDown = [[CountDown alloc] init];
+    }
+    
     __weak __typeof(self) weakSelf= self;
+    
     weakSelf.timeLabel.text = _str;
     [self.countDown countDownWithPER_SECBlock:^{
         //        NSLog(@"倒计时");
@@ -86,6 +92,7 @@
             [_announceDelegate countEnd:_indexpath];
         
         }
+        
         return @"正在计算开奖结果";
         
     }else {
@@ -99,15 +106,15 @@
         _timeLabel.hidden = NO;
         _unveilLabel.hidden = NO;
         
-    }
-    
-    if (hours>0) {
+        if (hours>0) {
+            
+            return [NSString stringWithFormat:@"%@:%@:%@:%@",hoursStr , minutesStr,secondsStr,millisecondStr];
+            
+        }
         
-        return [NSString stringWithFormat:@"%@:%@:%@:%@",hoursStr , minutesStr,secondsStr,millisecondStr];
-    
+        return [NSString stringWithFormat:@"%@ : %@ : %@", minutesStr,secondsStr,millisecondStr];
     }
     
-    return [NSString stringWithFormat:@"%@ : %@ : %@", minutesStr,secondsStr,millisecondStr];
 
 }
 

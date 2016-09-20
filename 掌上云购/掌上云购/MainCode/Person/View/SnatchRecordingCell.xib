@@ -107,7 +107,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="揭晓-图片.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-gH-Lwr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="未加载图片.png" translatesAutoresizingMaskIntoConstraints="NO" id="rlP-gH-Lwr">
                                 <rect key="frame" x="10" y="8" width="85" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="YVc-3F-m2f"/>
@@ -167,7 +167,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="按钮背景.png" width="216" height="64"/>
-        <image name="揭晓-图片.jpg" width="800" height="600"/>
+        <image name="按钮背景.png" width="70" height="20"/>
+        <image name="未加载图片.png" width="200" height="200"/>
     </resources>
 </document>

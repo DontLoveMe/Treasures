@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,copy)NSString *identify;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -21,6 +22,8 @@
     [super viewDidLoad];
     self.title = @"正在揭晓";
     
+    _dataArr = [NSMutableArray array];
+    _page = 1;
     //创建collectionView
     [self createCollectionView];
     
@@ -36,21 +39,41 @@
 
 //请求数据
 - (void)requestData {
-    
-    _dataArr = [NSMutableArray array];
-    
+
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"page"];
-    [params setObject:@"30" forKey:@"rows"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@"20" forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,NewnestAnnounceList_URL];
     
     [ZSTools post:url
            params:params
           success:^(id json) {
-              
-              _dataArr = [json objectForKey:@"data"];
-              [_collectionView reloadData];
+              BOOL flag = [json[@"flag"] boolValue];
+              if (flag) {
+                  
+//                  _dataArr = [json objectForKey:@"data"];
+//                  [_collectionView reloadData];
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_dataArr removeAllObjects];
+                      _dataArr = dataArr.mutableCopy;
+                      
+                      [_collectionView.mj_footer resetNoMoreData];
+                      [_collectionView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_dataArr addObjectsFromArray:dataArr];
+                          [_collectionView.mj_footer endRefreshing];
+                      }else {
+                          [_collectionView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  [_collectionView reloadData];
+              }
               
           } failure:^(NSError *error) {
               
@@ -80,6 +103,21 @@
     _identify = @"AnnounceCell";
     UINib *nib = [UINib nibWithNibName:@"AnnounceCell" bundle:nil];
     [_collectionView registerNib:nib forCellWithReuseIdentifier:_identify];
+    
+    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self requestData];
+        
+    }];
+    _collectionView.mj_header = useHeader;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self requestData];
+    }];
+    _collectionView.mj_footer = footer;
     
 }
 
@@ -136,6 +174,9 @@
     
         if (cell.countDown) {
             [cell.countDown destoryTimer];
+        }
+        if (![[dic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
+            cell.str = [dic objectForKey:@"countdownEndDate"];
         }
         cell.getUserLabel.hidden = NO;
         cell.peopleNumLb.hidden = NO;
