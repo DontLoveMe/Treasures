@@ -121,7 +121,11 @@
         NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
+    if (_businessId == nil) {
+        [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
+    }else {
+        [params setObject:@{@"userId":userId,@"batchNumber":_businessId} forKey:@"paramsMap"];
+    }
     [params setObject:@1 forKey:@"page"];
     [params setObject:@200 forKey:@"rows"];
     
@@ -157,7 +161,11 @@
         NSNumber *userId = userDic[@"id"];
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
+    if (_businessId == nil) {
+        [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
+    }else {
+        [params setObject:@{@"userId":userId,@"batchNumber":_businessId} forKey:@"paramsMap"];
+    }
     [params setObject:@1 forKey:@"page"];
     [params setObject:@200 forKey:@"rows"];
     

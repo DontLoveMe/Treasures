@@ -10,4 +10,6 @@
 
 @interface RedEnvelopeController : BaseViewController<UIScrollViewDelegate>
 
+@property (nonatomic,strong)NSNumber *businessId;
+
 @end

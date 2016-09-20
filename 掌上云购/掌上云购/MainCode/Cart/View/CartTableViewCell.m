@@ -37,8 +37,8 @@
     _goodsType.sd_layout
     .leftSpaceToView(_goodsImg,0)
     .topSpaceToView(_goodsImg,0)
-    .widthIs(15)
-    .heightIs(15);
+    .widthIs(20)
+    .heightIs(20);
     //商品名
     _goodsTitle = [[UILabel alloc]init];
     _goodsTitle.textColor = [UIColor blackColor];

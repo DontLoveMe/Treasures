@@ -51,7 +51,7 @@
 //    self.navigationController.navigationBar.hidden = YES;
     //创建UIWebView：
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, -44, KScreenWidth, KScreenHeight-20)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64)];
     
 //    _webView.scalesPageToFit = YES;//自动对页面进行缩放以适应屏幕
  
