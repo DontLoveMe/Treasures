@@ -9,6 +9,7 @@
 #import "UseRedElpTableView.h"
 #import "UseRedCell.h"
 #import "RedEnvelopeModel.h"
+#import "TabbarViewcontroller.h"
 
 @implementation UseRedElpTableView {
     
@@ -56,7 +57,28 @@
     [self addSubview:_noView];
 }
 - (void)buttonAction:(UIButton *)button {
-    
+    id next = [self nextResponder];
+    while (next != nil) {
+        
+        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+            
+            //获得标签控制器
+            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
+            //修改索引
+            tb.selectedIndex = 0;
+            //原选中标签修改
+            tb.selectedItem.isSelected = NO;
+            //选中新标签
+            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
+            item.isSelected = YES;
+            //设置为上一个选中
+            tb.selectedItem = item;
+            
+            return;
+        }
+        next = [next nextResponder];
+    }
+
 }
 - (UIViewController *)viewController {
     

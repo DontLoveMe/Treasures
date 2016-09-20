@@ -11,6 +11,7 @@
 #import "SnatchRecordingCell.h"
 #import "RecordModel.h"
 #import "LoveView.h"
+#import "TabbarViewcontroller.h"
 
 @interface SnatchRecordController ()
 
@@ -218,12 +219,36 @@
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitle:@"立即购买" forState:UIControlStateNormal];
     //    [button setBackgroundImage:[UIImage imageNamed:@"normal"] forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(buyAction:) forControlEvents:UIControlEventTouchUpInside];
     [_noView addSubview:button];
     
     
     [self.view addSubview:_noView];
     
+}
+- (void)buyAction:(UIButton *)button{
+    id next = [self nextResponder];
+    while (next != nil) {
+        
+        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+            
+            //获得标签控制器
+            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
+            //修改索引
+            tb.selectedIndex = 0;
+            //原选中标签修改
+            tb.selectedItem.isSelected = NO;
+            //选中新标签
+            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
+            item.isSelected = YES;
+            //设置为上一个选中
+            tb.selectedItem = item;
+            
+            return;
+        }
+        next = [next nextResponder];
+    }
+
 }
 #pragma mark - 按钮的点击
 - (void)buttonAction:(UIButton *)button {
