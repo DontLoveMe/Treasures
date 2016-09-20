@@ -23,7 +23,7 @@
     if (pArr.count>0) {
         Propicturelist *prtLs = pArr[0];
         NSURL *url = [NSURL URLWithString:prtLs.img650];
-        [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+        [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }
     
     

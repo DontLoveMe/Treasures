@@ -302,7 +302,8 @@
     NSArray *picList = [dic objectForKey:@"proPictureList"];
     if (picList.count != 0) {
         
-        [cell.goodsPic setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img650"]]];
+        [cell.goodsPic setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img170"]]
+                      placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     
     }
 

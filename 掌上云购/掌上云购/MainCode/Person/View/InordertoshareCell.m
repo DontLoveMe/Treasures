@@ -101,7 +101,7 @@
         }else {
             imgView.hidden = NO;
             NSURL *url = [NSURL URLWithString:photoUrllist[i]];
-            [imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+            [imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         }
     }
 }

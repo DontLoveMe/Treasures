@@ -24,7 +24,7 @@
         NSString *imgUrl = picDic[@"img650"];
         
         if (imgUrl.length>0) {
-            [_productImg setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"]];
+            [_productImg setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         }
     }
     
