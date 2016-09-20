@@ -183,7 +183,7 @@
     
     _segmentView = [[UIView alloc] initWithFrame:CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f)];
     _segmentView.backgroundColor = [UIColor whiteColor];
-    [_bgScrollView addSubview:_segmentView];
+    [self.view addSubview:_segmentView];
     
     NSArray *segmentArr = @[@"人气",@"最新",@"最新",@"总需人次"];
     float width = KScreenWidth / 4;
@@ -224,13 +224,13 @@
     
     MJRefreshHeader *header = [MJRefreshHeader headerWithRefreshingBlock:^{
         
-        _bgScrollView.contentOffset = CGPointMake(0, _functionView.bottom + 4);
-        _segmentView.frame = CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f);
-        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f);
-        _bgScrollView.scrollEnabled = YES;
-        [_goodsList.mj_header endRefreshing];
-        _goodsList.scrollEnabled = NO;
-        _bgScrollView.delegate = self;
+//        _bgScrollView.contentOffset = CGPointMake(0, _functionView.bottom + 4);
+//        _segmentView.frame = CGRectMake(0, _functionView.bottom + 4.f, KScreenWidth, 40.f);
+//        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f);
+//        _bgScrollView.scrollEnabled = YES;
+//        [_goodsList.mj_header endRefreshing];
+//        _goodsList.scrollEnabled = NO;
+//        _bgScrollView.delegate = self;
         
     }];
     _goodsList.mj_header = header;
@@ -254,7 +254,7 @@
 
     NSInteger selectIndext = button.tag - 100;
     
-    UIImageView *imageView = [_bgScrollView viewWithTag:50];
+    UIImageView *imageView = [self.view viewWithTag:50];
     [UIView animateWithDuration:0.5
                      animations:^{
                         
@@ -480,13 +480,15 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
     CGFloat offset_y = scrollView.contentOffset.y;
-    if (offset_y >= _segmentView.top) {
+    NSLog(@"%f",offset_y);
+    if (_functionView.bottom + 4.f - offset_y < 0) {
+    
+        _segmentView.top = 0;
+    
+    }else{
+    
+        _segmentView.top = _functionView.bottom + 4.f  - offset_y;
         
-        scrollView.delegate = nil;
-        _segmentView.frame = CGRectMake(0, offset_y, KScreenWidth, 40.f);
-        _goodsList.frame = CGRectMake(0, _segmentView.bottom + 1, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 40.f);
-        _bgScrollView.scrollEnabled = NO;
-        _goodsList.scrollEnabled = YES;
     }
     
 }

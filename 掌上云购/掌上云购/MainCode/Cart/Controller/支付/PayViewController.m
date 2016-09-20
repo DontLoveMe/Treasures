@@ -304,7 +304,6 @@
             
         }
         
-        
         return cell;
         
     }else if (indexPath.row==3){
@@ -313,16 +312,13 @@
 #warning 这里得判断余额够不够
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         
-      
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.text = @"其他支付方式";
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
         cell.detailTextLabel.text = @"1云币";
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        
-        
+      
         return cell;
         
     }
