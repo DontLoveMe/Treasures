@@ -136,13 +136,19 @@
     .widthIs(60)
     .heightIs(30);
     
-    
     [self changeBottomView];
 }
 - (void)changeBottomView {
     
-    
-    NSArray *cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    NSMutableArray *cartArr = [NSMutableArray array];
+    if ([_isimidiately isEqualToString:@"1"]) {
+        
+        cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+        
+    }else{
+        
+        cartArr = [_immidiatelyArr mutableCopy];
+    }
     _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)cartArr.count];
     NSInteger totalPrice = 0;
     for (int i = 0; i < cartArr.count; i ++) {
@@ -168,7 +174,15 @@
     [params setObject:@"0" forKey:@"cashConsume"];
     
     //余额支付数量
-    NSMutableArray *cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    NSMutableArray *cartArr = [NSMutableArray array];
+    if ([_isimidiately isEqualToString:@"1"]) {
+        
+        cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+        
+    }else{
+    
+        cartArr = [_immidiatelyArr mutableCopy];
+    }
     NSMutableArray  *BuyArr = [NSMutableArray array];
     NSInteger totalPrice = 0;
     for (int i = 0; i < cartArr.count; i ++) {
@@ -246,7 +260,15 @@
             
             cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             
-            NSArray *carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            NSMutableArray *carArr = [NSMutableArray array];
+            if ([_isimidiately isEqualToString:@"1"]) {
+                
+                carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                
+            }else{
+                
+                carArr = [_immidiatelyArr mutableCopy];
+            }
             cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)carArr.count];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -279,7 +301,15 @@
             
             cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
             
-            NSArray *cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            NSMutableArray *cartArr = [NSMutableArray array];
+            if ([_isimidiately isEqualToString:@"1"]) {
+                
+                cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                
+            }else{
+                
+                cartArr = [_immidiatelyArr mutableCopy];
+            }
             
             NSInteger totalPrice = 0;
             for (int i = 0; i < cartArr.count; i ++) {

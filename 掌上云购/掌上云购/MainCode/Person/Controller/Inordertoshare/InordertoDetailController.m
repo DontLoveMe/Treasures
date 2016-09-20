@@ -241,7 +241,7 @@
     _contentLabel.text = iSModel.content;
     
     CGRect contentRect = [ iSModel.content boundingRectWithSize:CGSizeMake(KScreenWidth-30, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
-    
+    _contentLabel.height = contentRect.size.height;
     NSArray *photoUrllist = iSModel.photoUrllist;
     __block UIImage *img = [UIImage new];
     __block CGFloat imgViewHeight = 0;

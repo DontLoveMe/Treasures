@@ -59,10 +59,10 @@
     
     NSString *urlStr = _iSModel.userPhotoUrl;
     if (urlStr.length == 0) {
-        [_iconButton setBackgroundImage:[UIImage imageNamed:@"我的_头像"] forState:UIControlStateNormal];
+        [_iconButton setBackgroundImage:[UIImage imageNamed:@"我的-头像"] forState:UIControlStateNormal];
     }else {
         NSURL *url = [NSURL URLWithString:urlStr];
-        [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的_头像"]];
+        [_iconButton setBackgroundImageForState:UIControlStateNormal withURL:url placeholderImage:[UIImage imageNamed:@"我的-头像"]];
     }
     
     
@@ -89,7 +89,7 @@
     for (int i = 0; i < _imgViews.count; i ++) {
         UIImageView *imgView = _imgViews[i];
 //        imgView.backgroundColor = [UIColor grayColor];
-        CGFloat w =  (KScreenWidth-48-8)/3;
+        CGFloat w =  (KScreenWidth-65-8)/3;
         CGFloat h = 90;
         CGFloat x = (w+4)*(i%3);
         CGFloat y = CGRectGetMinY(_contentLabel.frame)+contentRect.size.height+3+94*(i/3);

@@ -153,7 +153,7 @@
     [_bgScrollView addSubview:_topGoodImgView];
     
     //获奖公告
-    _jionTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.top+64, KScreenWidth, 20.f)];
+    _jionTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.bottom+64, KScreenWidth, 20.f)];
     _jionTable.backgroundColor = [UIColor clearColor];
     NSArray *wingArr = @[@"4点12分，王力宏购买了1次",@"5点44分，周杰伦购买了20次",@"8点03分，李小龙购买了3次",@"7点24分，王宝强购买了8次",@"9点33分，习近平购买了50次"];
     _jionTable.dataArr = wingArr;
@@ -269,6 +269,36 @@
 #pragma mark - BuyNowControllerDelegate
 - (void)backBuyNumber:(NSInteger)buyNumber {
     NSLog(@"buyNumber%ld",buyNumber);
+    NSMutableArray *picArr = [[_dataDic objectForKey:@"proPictureList"] mutableCopy];
+    for (int i = 0; i < picArr.count; i ++) {
+        
+        NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+        for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+            
+            if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                
+                [dic removeObjectForKey:dic.allKeys[j]];
+                
+            }
+            
+        }
+        [picArr replaceObjectAtIndex:i withObject:dic];
+        
+    }
+    
+    NSDictionary *goods = @{@"id":[_dataDic objectForKey:@"id"],
+                            @"name":[_dataDic objectForKey:@"name"],
+                            @"proPictureList":picArr,
+                            @"totalShare":[_dataDic objectForKey:@"totalShare"],
+                            @"surplusShare":[_dataDic objectForKey:@"surplusShare"],
+                            @"buyTimes":[NSNumber numberWithInteger:buyNumber],
+                            @"singlePrice":[_dataDic objectForKey:@"singlePrice"]};
+    
+    PayViewController *VC = [[PayViewController alloc]init];
+    VC.isimidiately = @"2";
+    VC.hidesBottomBarWhenPushed = YES;
+    VC.immidiatelyArr = @[goods];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 - (void)addToCartAction:(UIButton *)button{
 

@@ -83,6 +83,7 @@
     .widthIs(28);
     //选择量
     _goodsNumLab = [[UITextField alloc]init];
+    _goodsNumLab.userInteractionEnabled = NO;
     _goodsNumLab.textColor = [UIColor blackColor];
     _goodsNumLab.keyboardType = UIKeyboardTypeNumberPad;
     _goodsNumLab.font = [UIFont systemFontOfSize:13];

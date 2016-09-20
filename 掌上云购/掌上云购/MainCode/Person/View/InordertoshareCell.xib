@@ -148,6 +148,6 @@
     </objects>
     <resources>
         <image name="内容背景.png" width="319" height="199"/>
-        <image name="我的-头像.png" width="131" height="131"/>
+        <image name="我的-头像.png" width="70" height="70"/>
     </resources>
 </document>

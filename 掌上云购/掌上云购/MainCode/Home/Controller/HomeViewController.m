@@ -98,8 +98,10 @@
     _bgScrollView.mj_header = header;
     
     MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
-        
-        _page = 2;
+        if (_page == 1) {
+            
+            _page = 2;
+        }
         switch (_selectIndext) {
             case 0:
                 [self requestGoodsList:@"3" withPage:_page];
@@ -475,7 +477,7 @@
            params:params
           success:^(id json) {
               
-              if ([json objectForKey:@"flag"]) {
+              if ([[json objectForKey:@"flag"] boolValue]) {
                   
                   [_bgScrollView.mj_footer endRefreshing];
                   if (page == 1) {
@@ -484,6 +486,7 @@
                       NSArray *dataArr = [json objectForKey:@"data"];
                       for (int i = 0; i < dataArr.count; i ++) {
                           [_goodsArr addObject:dataArr[i]];
+                          _page++;
                       }
                   }
 
