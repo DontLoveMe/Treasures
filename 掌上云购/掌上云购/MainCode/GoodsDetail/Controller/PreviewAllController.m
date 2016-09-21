@@ -45,7 +45,7 @@
     layout.sectionInset = UIEdgeInsetsMake(8, 8, 8, 8);
     
     joinRecordCollectionView.collectionViewLayout = layout;
-    joinRecordCollectionView.backgroundColor = [UIColor colorFromHexRGB:@"F2F2F2"];
+    joinRecordCollectionView.backgroundColor = [UIColor whiteColor];
     joinRecordCollectionView.delegate = self;
     joinRecordCollectionView.dataSource = self;
     
@@ -72,9 +72,15 @@
     }else{
         
         drawTime.text = @"揭晓时间：该商品尚未筹满";
+    }
+    NSDictionary *saleDraw = [_dataDic objectForKey:@"saleDraw"];
+    if (![saleDraw isKindOfClass:[NSNull class]]) {
+        luckyNum.text = [NSString stringWithFormat:@"本期幸运号码：%@",[saleDraw objectForKey:@"drawNumber"]];
+    }else{
+        
         luckyNum.text = @"本期幸运号码:尚未开奖";
     }
-    
+    drawListLabel.text = [NSString stringWithFormat:@"已参与%@人次，以下是所有夺宝记录",[_dataDic objectForKey:@"buyNumberCount"]];
     NSMutableString *joinNumStr = [[_dataDic objectForKey:@"buyNumbers"] mutableCopy];
     
     NSScanner *theScanner;

@@ -46,4 +46,10 @@
 
 @property (nonatomic, copy) NSString *content;
 
+@property (nonatomic, copy) NSString *buyTimes;
+
+@property (nonatomic, copy) NSString *drawDate;
+
+@property (nonatomic, copy) NSString *drawNumber;
+
 @end

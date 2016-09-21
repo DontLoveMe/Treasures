@@ -186,6 +186,12 @@
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
 		D6E54FD51D8013F600FDBC15 /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E54FD41D8013F600FDBC15 /* LoveView.m */; };
 		D6E54FD71D80155400FDBC15 /* RedEnvelopeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */; };
+		D6FB477F1D92815D00C64DC4 /* 背景长黄@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB47791D92815D00C64DC4 /* 背景长黄@2x.png */; };
+		D6FB47801D92815D00C64DC4 /* 背景长黄@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477A1D92815D00C64DC4 /* 背景长黄@3x.png */; };
+		D6FB47811D92815D00C64DC4 /* 幸运号码背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477B1D92815D00C64DC4 /* 幸运号码背景@2x.png */; };
+		D6FB47821D92815D00C64DC4 /* 幸运号码背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */; };
+		D6FB47831D92815D00C64DC4 /* Label背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */; };
+		D6FB47841D92815D00C64DC4 /* Label背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */; };
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
 		DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */; };
 		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
@@ -737,6 +743,12 @@
 		D6E54FD31D8013F600FDBC15 /* LoveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoveView.h; sourceTree = "<group>"; };
 		D6E54FD41D8013F600FDBC15 /* LoveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoveView.m; sourceTree = "<group>"; };
 		D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeController.m; sourceTree = "<group>"; };
+		D6FB47791D92815D00C64DC4 /* 背景长黄@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景长黄@2x.png"; sourceTree = "<group>"; };
+		D6FB477A1D92815D00C64DC4 /* 背景长黄@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景长黄@3x.png"; sourceTree = "<group>"; };
+		D6FB477B1D92815D00C64DC4 /* 幸运号码背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运号码背景@2x.png"; sourceTree = "<group>"; };
+		D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运号码背景@3x.png"; sourceTree = "<group>"; };
+		D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@2x.png"; sourceTree = "<group>"; };
+		D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@3x.png"; sourceTree = "<group>"; };
 		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
 		DD1B9E461D6EF01C002E9CE9 /* CartTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTools.m; sourceTree = "<group>"; };
 		DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGoodsHeadView.h; sourceTree = "<group>"; };
@@ -2384,6 +2396,12 @@
 		DDF92D281D6A9C5B009D5A1E /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				D6FB47791D92815D00C64DC4 /* 背景长黄@2x.png */,
+				D6FB477A1D92815D00C64DC4 /* 背景长黄@3x.png */,
+				D6FB477B1D92815D00C64DC4 /* 幸运号码背景@2x.png */,
+				D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */,
+				D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */,
+				D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */,
 				D6D4BD8B1D9123AA001D9599 /* 关闭@2x.png */,
 				D6D4BD8C1D9123AA001D9599 /* 关闭@3x.png */,
 				D6D4BD8D1D9123AA001D9599 /* 加减框@2x.png */,
@@ -2511,6 +2529,7 @@
 				DD71AC441D92755A005CBFFD /* dropdown_zsyg_091@2x.png in Resources */,
 				DDF92CA11D6A9C3D009D5A1E /* RechargeCell.xib in Resources */,
 				DDF92C7D1D6A9C3D009D5A1E /* ConfirmDataController.xib in Resources */,
+				D6FB477F1D92815D00C64DC4 /* 背景长黄@2x.png in Resources */,
 				D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */,
 				D65B64931D865CDD00D48834 /* 横线_灰@2x.png in Resources */,
 				D6A221731D8816930094C3BC /* 按钮背景-黄@3x.png in Resources */,
@@ -2621,6 +2640,7 @@
 				D65B64D71D86A7D000D48834 /* 热门搜索@2x.png in Resources */,
 				DDF92C651D6A9C3D009D5A1E /* ProductTableCell.xib in Resources */,
 				D6A221761D88209A0094C3BC /* 发现1@2x.png in Resources */,
+				D6FB47831D92815D00C64DC4 /* Label背景@2x.png in Resources */,
 				D6A2216F1D8815A40094C3BC /* 购物车图标@3x.png in Resources */,
 				D65B646B1D865CDD00D48834 /* 云购客服@3x.png in Resources */,
 				DDF92D901D6A9C5B009D5A1E /* sort106_checked.png in Resources */,
@@ -2654,6 +2674,7 @@
 				D6D4BD921D9123AA001D9599 /* 加减框@3x.png in Resources */,
 				DD71AC081D92755A005CBFFD /* dropdown_zsyg_031@2x.png in Resources */,
 				D65B647D1D865CDD00D48834 /* 往期揭晓@3x.png in Resources */,
+				D6FB47841D92815D00C64DC4 /* Label背景@3x.png in Resources */,
 				DD71ABFF1D92755A005CBFFD /* dropdown_zsyg_022@2x.png in Resources */,
 				D6A2216E1D8815A40094C3BC /* 购物车图标@2x.png in Resources */,
 				DD71AC381D92755A005CBFFD /* dropdown_zsyg_079@2x.png in Resources */,
@@ -2661,6 +2682,7 @@
 				DDF92C5A1D6A9C3D009D5A1E /* SegmentController.xib in Resources */,
 				D65B64CA1D86829500D48834 /* 掌上云购@3x.png in Resources */,
 				D65B646F1D865CDD00D48834 /* 充值记录@3x.png in Resources */,
+				D6FB47801D92815D00C64DC4 /* 背景长黄@3x.png in Resources */,
 				D66FF4491D78106B001C4B6E /* AddShareController.xib in Resources */,
 				DDF92C871D6A9C3D009D5A1E /* RechargeRecordController.xib in Resources */,
 				D65B64741D865CDD00D48834 /* 加@3x.png in Resources */,
@@ -2686,6 +2708,7 @@
 				DDF92C6F1D6A9C3D009D5A1E /* AddAddressController.xib in Resources */,
 				DDF92C831D6A9C3D009D5A1E /* PersonViewController.xib in Resources */,
 				D65B64701D865CDD00D48834 /* 内容背景@2x.png in Resources */,
+				D6FB47811D92815D00C64DC4 /* 幸运号码背景@2x.png in Resources */,
 				DD71ABED1D92755A005CBFFD /* dropdown_zsyg_004@2x.png in Resources */,
 				DD71ABEC1D92755A005CBFFD /* dropdown_zsyg_003@2x.png in Resources */,
 				D65B64E81D86CB2200D48834 /* 搜索_删除@3x.png in Resources */,
@@ -2808,6 +2831,7 @@
 				DDF92C751D6A9C3D009D5A1E /* CustomerCareController.xib in Resources */,
 				DD757F3B1D864E6E00A38058 /* 清单-selected@3x.png in Resources */,
 				D6BB149A1D88E8F30045F8EB /* MsgViewController.xib in Resources */,
+				D6FB47821D92815D00C64DC4 /* 幸运号码背景@3x.png in Resources */,
 				DD71AC031D92755A005CBFFD /* dropdown_zsyg_026@2x.png in Resources */,
 				D65B646A1D865CDD00D48834 /* 云购客服@2x.png in Resources */,
 				DD71AC571D92755A005CBFFD /* dropdown_zsyg_110@2x.png in Resources */,

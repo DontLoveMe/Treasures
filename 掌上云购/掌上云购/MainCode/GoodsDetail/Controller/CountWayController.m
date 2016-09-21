@@ -39,7 +39,7 @@
     
     _dataDic = [NSMutableDictionary dictionary];
     _titleArr = @[@"计算公式",@"数值A",@"数值B",@"计算结果"];
-    _valueArr = @[@"[(数值A+数值B)➗商品所需次数]（取余）+10000001",@"=截止开奖时间点前最后50条全站参与记录\n=正在计算",@"=最近一期中国福利彩票“老时时彩”的开奖结果\n=等待开奖",@"幸运号码:请等待开奖结果"];
+    _valueArr = @[@"[(数值A+数值B)÷商品所需次数]取余数+10000001",@"=截止开奖时间点前最后50条全站参与记录\n=正在计算",@"=最近一期中国福利彩票“老时时彩”的开奖结果\n=等待开奖",@"幸运号码:请等待开奖结果"];
     _AvalueArr = [NSMutableArray array];
     
     _isOpen = 0;
@@ -55,7 +55,7 @@
 - (void)initViews{
 
     _descriptionTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight)
-                                                     style:UITableViewStyleGrouped];
+                                                     style:UITableViewStylePlain];
     _descriptionTable.delegate = self;
     _descriptionTable.dataSource = self;
     [self.view addSubview:_descriptionTable];
@@ -138,7 +138,12 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor colorFromHexRGB:@"EFEFEF"];
+    if (section == 0) {
+        
+        view.backgroundColor = [UIColor colorFromHexRGB:@"EFEFEF"];
+    }else{
+        view.backgroundColor = [UIColor whiteColor];
+    }
     
     NSString *titleStr = _titleArr[section];
     CGRect titleRect = [titleStr boundingRectWithSize:CGSizeMake(KScreenWidth - 24.f , 3000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil];
@@ -151,6 +156,7 @@
     CGRect valueRect = [valueStr boundingRectWithSize:CGSizeMake(KScreenWidth - 24.f , 3000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
     UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(12.f, titleLabel.bottom, KScreenWidth - 24.f, valueRect.size.height)];
     valueLabel.text = valueStr;
+    valueLabel.numberOfLines = 0;
     valueLabel.font = [UIFont systemFontOfSize:13];
     [view addSubview:valueLabel];
     
@@ -159,8 +165,8 @@
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, (valueLabel.bottom + 4)/2, 60.f, 24.f)];
         [button setTitleColor:[UIColor colorFromHexRGB:@"0095E5"]
                      forState:UIControlStateNormal];
-        [button setTitle:@"展开🔽" forState:UIControlStateNormal];
-        [button setTitle:@"收起⏫" forState:UIControlStateSelected];
+        [button setTitle:@"展开↓" forState:UIControlStateNormal];
+        [button setTitle:@"收起↑" forState:UIControlStateSelected];
         
         [button addTarget:self
                    action:@selector(isOpenAction:)
@@ -191,7 +197,7 @@
     NSString *valueStr = _valueArr[section];
     CGRect valueRect = [valueStr boundingRectWithSize:CGSizeMake(KScreenWidth - 24.f , 3000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
     
-    return titleRect.size.height + valueRect.size.height + 8.f;
+    return titleRect.size.height + valueRect.size.height + 12.f;
     
 }
 

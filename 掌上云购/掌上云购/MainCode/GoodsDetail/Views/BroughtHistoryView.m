@@ -95,6 +95,12 @@
     BroughtHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BroughtHistory_Cell"
                                                                 forIndexPath:indexPath];
     NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        
+        if (![dic[@"minOrderTime"] isKindOfClass:[NSNull class]]) {
+            _recommandLabel.text = [NSString stringWithFormat:@"所有参赛记录(%@开始)",dic[@"minOrderTime"]];
+        }
+    }
     if (![[dic objectForKey:@"photoUrl"] isKindOfClass:[NSNull class]]) {
         [cell.headPic setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
     }else{
