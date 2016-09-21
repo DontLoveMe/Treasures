@@ -129,6 +129,7 @@
     _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     _bgScrollView.delegate = self;
+    _bgScrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_bgScrollView];
     
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -432,11 +433,11 @@
         
         if (_isJoind == 0) {
             
-            _oherFunctionTableView.height = 275.f;
+            _oherFunctionTableView.height = 275.f+30;
             
         }else if (_isJoind == 1){
             
-            _oherFunctionTableView.height = 300.f;
+            _oherFunctionTableView.height = 300.f+50;
             
         }
         
@@ -456,11 +457,11 @@
     
         if (_isJoind == 0) {
             
-            _oherFunctionTableView.height = 308.f;
+            _oherFunctionTableView.height = 308.f+70;
             
         }else if (_isJoind == 1){
             
-            _oherFunctionTableView.height = 335.f;
+            _oherFunctionTableView.height = 335.f+70;
             
         }
     
@@ -569,7 +570,7 @@
                   //夺宝状态
                   
                   //是否参与
-                  _isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
+                  self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
                   
                   _drawId = [_dataDic objectForKey:@"drawId"];
                   
@@ -651,8 +652,9 @@
         if (_isJoind == 0) {
             return;
         }else{
-            _oherFunctionTableView.height = _oherFunctionTableView.height + 25.f;
+            _oherFunctionTableView.height = _oherFunctionTableView.height +25.f;
         }
+        _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
         
     }
 

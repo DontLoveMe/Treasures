@@ -186,6 +186,12 @@
 		D6E0F3781D6C617A00E962D1 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0F3771D6C617A00E962D1 /* AlertController.m */; };
 		D6E54FD51D8013F600FDBC15 /* LoveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E54FD41D8013F600FDBC15 /* LoveView.m */; };
 		D6E54FD71D80155400FDBC15 /* RedEnvelopeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */; };
+		D6FB476F1D925FB300C64DC4 /* Label背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB476D1D925FB300C64DC4 /* Label背景@2x.png */; };
+		D6FB47701D925FB300C64DC4 /* Label背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB476E1D925FB300C64DC4 /* Label背景@3x.png */; };
+		D6FB47731D92601E00C64DC4 /* 幸运号码背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB47711D92601E00C64DC4 /* 幸运号码背景@2x.png */; };
+		D6FB47741D92601E00C64DC4 /* 幸运号码背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB47721D92601E00C64DC4 /* 幸运号码背景@3x.png */; };
+		D6FB47771D92607C00C64DC4 /* 背景长黄@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB47751D92607C00C64DC4 /* 背景长黄@2x.png */; };
+		D6FB47781D92607C00C64DC4 /* 背景长黄@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB47761D92607C00C64DC4 /* 背景长黄@3x.png */; };
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
 		DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */; };
 		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
@@ -634,6 +640,12 @@
 		D6E54FD31D8013F600FDBC15 /* LoveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoveView.h; sourceTree = "<group>"; };
 		D6E54FD41D8013F600FDBC15 /* LoveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoveView.m; sourceTree = "<group>"; };
 		D6E54FD61D80155400FDBC15 /* RedEnvelopeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeController.m; sourceTree = "<group>"; };
+		D6FB476D1D925FB300C64DC4 /* Label背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@2x.png"; sourceTree = "<group>"; };
+		D6FB476E1D925FB300C64DC4 /* Label背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@3x.png"; sourceTree = "<group>"; };
+		D6FB47711D92601E00C64DC4 /* 幸运号码背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运号码背景@2x.png"; sourceTree = "<group>"; };
+		D6FB47721D92601E00C64DC4 /* 幸运号码背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运号码背景@3x.png"; sourceTree = "<group>"; };
+		D6FB47751D92607C00C64DC4 /* 背景长黄@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景长黄@2x.png"; sourceTree = "<group>"; };
+		D6FB47761D92607C00C64DC4 /* 背景长黄@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景长黄@3x.png"; sourceTree = "<group>"; };
 		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
 		DD1B9E461D6EF01C002E9CE9 /* CartTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTools.m; sourceTree = "<group>"; };
 		DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGoodsHeadView.h; sourceTree = "<group>"; };
@@ -2083,6 +2095,12 @@
 		DDF92D281D6A9C5B009D5A1E /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				D6FB47751D92607C00C64DC4 /* 背景长黄@2x.png */,
+				D6FB47761D92607C00C64DC4 /* 背景长黄@3x.png */,
+				D6FB47711D92601E00C64DC4 /* 幸运号码背景@2x.png */,
+				D6FB47721D92601E00C64DC4 /* 幸运号码背景@3x.png */,
+				D6FB476D1D925FB300C64DC4 /* Label背景@2x.png */,
+				D6FB476E1D925FB300C64DC4 /* Label背景@3x.png */,
 				D6D4BD8B1D9123AA001D9599 /* 关闭@2x.png */,
 				D6D4BD8C1D9123AA001D9599 /* 关闭@3x.png */,
 				D6D4BD8D1D9123AA001D9599 /* 加减框@2x.png */,
@@ -2210,6 +2228,7 @@
 				DDF92CA11D6A9C3D009D5A1E /* RechargeCell.xib in Resources */,
 				DDF92C7D1D6A9C3D009D5A1E /* ConfirmDataController.xib in Resources */,
 				D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */,
+				D6FB476F1D925FB300C64DC4 /* Label背景@2x.png in Resources */,
 				D65B64931D865CDD00D48834 /* 横线_灰@2x.png in Resources */,
 				D6A221731D8816930094C3BC /* 按钮背景-黄@3x.png in Resources */,
 				DDF92C691D6A9C3D009D5A1E /* LoginViewController.xib in Resources */,
@@ -2220,6 +2239,7 @@
 				D65B64D01D8688D900D48834 /* 按钮背景_白.png in Resources */,
 				D6A2215D1D8800FD0094C3BC /* 状态-暗@3x.png in Resources */,
 				DDF92C6B1D6A9C3D009D5A1E /* RegisterViewController.xib in Resources */,
+				D6FB47731D92601E00C64DC4 /* 幸运号码背景@2x.png in Resources */,
 				D65B64DD1D86AA3A00D48834 /* 搜索背景@2x.png in Resources */,
 				D6BB149F1D88F6510045F8EB /* MessageCell.xib in Resources */,
 				D6A221721D8816930094C3BC /* 按钮背景-黄@2x.png in Resources */,
@@ -2250,6 +2270,7 @@
 				D65B647A1D865CDD00D48834 /* 幸运记录@2x.png in Resources */,
 				D6C09BF21D79150F00C092A7 /* TZImagePickerController.bundle in Resources */,
 				DD757F691D86520300A38058 /* 加入清单@3x.png in Resources */,
+				D6FB47771D92607C00C64DC4 /* 背景长黄@2x.png in Resources */,
 				D60216601D87A20200316614 /* 三点@2x.png in Resources */,
 				D65B64D41D86A7AF00D48834 /* 购物车@3x.png in Resources */,
 				D65B64851D865CDD00D48834 /* 我的晒单@2x.png in Resources */,
@@ -2262,6 +2283,7 @@
 				DDF92C771D6A9C3D009D5A1E /* HisCenterController.xib in Resources */,
 				DDF92C431D6A9C3D009D5A1E /* DiscoverViewController.xib in Resources */,
 				DDF92D691D6A9C5B009D5A1E /* 竖线.png in Resources */,
+				D6FB47741D92601E00C64DC4 /* 幸运号码背景@3x.png in Resources */,
 				D6A2215E1D8800FD0094C3BC /* 状态-亮@2x.png in Resources */,
 				DDF92C851D6A9C3D009D5A1E /* RechargeController.xib in Resources */,
 				D65B64771D865CDD00D48834 /* 对勾.png in Resources */,
@@ -2324,6 +2346,7 @@
 				DDF92C871D6A9C3D009D5A1E /* RechargeRecordController.xib in Resources */,
 				D65B64741D865CDD00D48834 /* 加@3x.png in Resources */,
 				D6A2216A1D8812BD0094C3BC /* 无红包@2x.png in Resources */,
+				D6FB47781D92607C00C64DC4 /* 背景长黄@3x.png in Resources */,
 				D65B64731D865CDD00D48834 /* 加@2x.png in Resources */,
 				DDF92D951D6A9C5B009D5A1E /* sort2_normal.png in Resources */,
 				D68F25A11D6AEE970042E0BE /* HotSearchCell.xib in Resources */,
@@ -2352,6 +2375,7 @@
 				D65B64721D865CDD00D48834 /* 删除.png in Resources */,
 				DDF92C581D6A9C3D009D5A1E /* HomeViewController.xib in Resources */,
 				D6A2215C1D8800FD0094C3BC /* 状态-暗@2x.png in Resources */,
+				D6FB47701D925FB300C64DC4 /* Label背景@3x.png in Resources */,
 				DD6B523E1D6DA31B00B6297F /* 4.png in Resources */,
 				D60216611D87A20200316614 /* 三点@3x.png in Resources */,
 				DD757F3C1D864E6E00A38058 /* 清单@2x.png in Resources */,

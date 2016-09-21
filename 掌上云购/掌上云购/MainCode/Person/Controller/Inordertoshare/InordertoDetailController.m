@@ -230,9 +230,9 @@
     
     NSArray *mdArr = @[iSModel.title,[NSString stringWithFormat:@"获得商品：%@",iSModel.productName],
                        [NSString stringWithFormat:@"期号：%@",iSModel.drawTimes],
-                       [NSString stringWithFormat:@"参与人次：%@",@"573"],
-                       [NSString stringWithFormat:@"幸运号码：%@",@"10000086"],
-                       [NSString stringWithFormat:@"揭晓时间：%@",@"2016/10/19 08:10"]];
+                       [NSString stringWithFormat:@"参与人次：%@",iSModel.buyTimes],
+                       [NSString stringWithFormat:@"幸运号码：%@",iSModel.drawNumber],
+                       [NSString stringWithFormat:@"揭晓时间：%@",iSModel.drawDate]];
     for (int i = 0;i < _labels.count; i ++) {
         UILabel *lable = _labels[i];
         lable.text = mdArr[i];

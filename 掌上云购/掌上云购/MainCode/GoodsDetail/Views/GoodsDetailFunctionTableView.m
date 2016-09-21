@@ -46,7 +46,7 @@
     self.dataSource = self;
     
     self.scrollEnabled = NO;
-    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
 }
 
@@ -108,16 +108,42 @@
         [goodsDetailView addSubview:issueLabel];
         
         //进度条
-        ProgressView *progressImg = [[ProgressView alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom + 4, (KScreenWidth - 18.f) / 2, 8.f)];
+        ProgressView *progressImg = [[ProgressView alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom + 4, KScreenWidth - 18.f, 8.f)];
         NSInteger total =  [[_dataDic objectForKey:@"totalShare"] integerValue];
         NSInteger now = [[_dataDic objectForKey:@"sellShare"] integerValue];
         progressImg.progress = now * 100 / total ;
         [goodsDetailView addSubview:progressImg];
         
+        //总需人次
+        UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, progressImg.bottom+8, 150, 13)];
+        totalLabel.text = [NSString stringWithFormat:@"总需人次：%@",_dataDic[@"totalShare"]];
+        totalLabel.textColor = [UIColor darkGrayColor];
+        totalLabel.textAlignment = NSTextAlignmentLeft;
+        totalLabel.font = [UIFont systemFontOfSize:13];
+        [goodsDetailView addSubview:totalLabel];
+        
+        //剩余人次
+        UILabel *surplusLabel = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth-150, progressImg.bottom+8, 142, 13)];
+        surplusLabel.text = [NSString stringWithFormat:@"剩余人次：%@",_dataDic[@"surplusShare"]];
+        surplusLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+        surplusLabel.textAlignment = NSTextAlignmentRight;
+        surplusLabel.font = [UIFont systemFontOfSize:13];
+        [goodsDetailView addSubview:surplusLabel];
+        
+        //横线
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, totalLabel.bottom + 8.f, KScreenWidth, 1)];
+        line.image = [UIImage imageNamed:@"横线"];
+        [goodsDetailView addSubview:line];
+        
+        
         if (_isJoin == 0) {
+            //未参与背景
+            UIImageView *lbBgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, line.bottom + 4.f, KScreenWidth-20, 20.f)];
+            lbBgView.image = [UIImage imageNamed:@"Label背景"];
+             [goodsDetailView addSubview:lbBgView];
             
-            UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, progressImg.bottom + 4.f, KScreenWidth, 20.f)];
-            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+            UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, line.bottom + 4.f, KScreenWidth, 20.f)];
+//            noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             noJoinLabel.textAlignment = NSTextAlignmentCenter;
             noJoinLabel.font = [UIFont systemFontOfSize:13];
             noJoinLabel.text = @"你还未参与本商品夺宝";
@@ -126,23 +152,28 @@
             
         }else if (_isJoin == 1){
             
-            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, progressImg.bottom + 4.f, KScreenWidth, 20.f)];
-            JoinedLabel.backgroundColor = [UIColor orangeColor];
+            //黄色背景
+            UIImageView *lbBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, line.bottom + 7.f, KScreenWidth, 42.f)];
+            lbBgView.image = [UIImage imageNamed:@"背景长黄"];
+            [goodsDetailView addSubview:lbBgView];
+            
+            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, line.bottom + 8.f, KScreenWidth- 72.f, 20.f)];
+            JoinedLabel.backgroundColor = [UIColor clearColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
-            JoinedLabel.text = [NSString stringWithFormat:@"你参与了:%@人次",[_dataDic objectForKey:@"buyNumberCount"]];
+            JoinedLabel.text = [NSString stringWithFormat:@"  你参与了:%@人次",[_dataDic objectForKey:@"buyNumberCount"]];
             JoinedLabel.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:JoinedLabel];
             
-            UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth, 20.f)];
-            treasureNum.backgroundColor = [UIColor orangeColor];
+            UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth- 72.f, 20.f)];
+            treasureNum.backgroundColor = [UIColor clearColor];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
-            treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
+            treasureNum.text = [NSString stringWithFormat:@"  夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
             treasureNum.textColor = [UIColor whiteColor];
             [goodsDetailView addSubview:treasureNum];
             
-            UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, progressImg.bottom + 8.f, 64.f, 32.f)];
+            UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, line.bottom + 14.f, 64.f, 28.f)];
             [previewAllButton setTitle:@"查看全部"
                               forState:UIControlStateNormal];
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -162,6 +193,7 @@
         //开奖相关
         UIView  *goodsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100.f)];
         goodsDetailView.backgroundColor = [UIColor whiteColor];
+        
         
         //期号
         UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
@@ -245,16 +277,41 @@
         UIView  *goodsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100.f)];
         goodsDetailView.backgroundColor = [UIColor whiteColor];
         
+        //s横线
+        UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 1)];
+        line.image = [UIImage imageNamed:@"横线"];
+        [goodsDetailView addSubview:line];
+        
+        //图片
+        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 16, 75, 80)];
+        NSArray *picList = _dataDic[@"proPictureList"];
+        if (picList.count > 0) {
+            NSDictionary *imgDic = [picList firstObject];
+            NSURL *imgUrl = [NSURL URLWithString:imgDic[@"img120"]];
+            [picView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+        }else {
+            
+            picView.image = [UIImage imageNamed:@"未加载图片"];
+        }
+        [goodsDetailView addSubview:picView];
+        
+        //图片
+        UIImageView *luckyView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-88, 8, 70, 70)];
+        luckyView.image = [UIImage imageNamed:@"幸运标识"];
+        luckyView.alpha = 0.5;
+        [goodsDetailView addSubview:luckyView];
+        
+        
         //获奖者name
-        UILabel *prizeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
+        UILabel *prizeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, 8.f, KScreenWidth - 86.f, 20.f)];
         prizeNameLabel.text = [NSString stringWithFormat:@"获奖者:%@",[prizeDic objectForKey:@"nickName"]];
         prizeNameLabel.textAlignment = NSTextAlignmentLeft;
-        prizeNameLabel.font = [UIFont systemFontOfSize:13];
-        prizeNameLabel.textColor = [UIColor redColor];
+        prizeNameLabel.font = [UIFont boldSystemFontOfSize:13];
+        prizeNameLabel.textColor = [UIColor blackColor];
         [goodsDetailView addSubview:prizeNameLabel];
         
         //获奖者id
-        UILabel *prizeIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, prizeNameLabel.bottom, KScreenWidth - 16.f, 20.f)];
+        UILabel *prizeIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeNameLabel.bottom, KScreenWidth - 86.f, 20.f)];
         prizeIdLabel.text = [NSString stringWithFormat:@"获奖者ID:%@",[prizeDic objectForKey:@"drawNumber"]];
         prizeIdLabel.textAlignment = NSTextAlignmentLeft;
         prizeIdLabel.font = [UIFont systemFontOfSize:13];
@@ -262,7 +319,7 @@
         [goodsDetailView addSubview:prizeIdLabel];
         
         //期号
-        UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, prizeIdLabel.bottom, KScreenWidth - 16.f, 20.f)];
+        UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeIdLabel.bottom, KScreenWidth - 86.f, 20.f)];
         issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
@@ -270,36 +327,43 @@
         [goodsDetailView addSubview:issueLabel];
         
         //参与次数
-        UILabel *joinCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 16.f, 20.f)];
+        UILabel *joinCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, issueLabel.bottom, KScreenWidth - 86.f, 20.f)];
         joinCountLabel.text = [NSString stringWithFormat:@"本期参与：%ld",[[prizeDic objectForKey:@"qty"] integerValue]];
         joinCountLabel.textAlignment = NSTextAlignmentLeft;
         joinCountLabel.font = [UIFont systemFontOfSize:13];
         joinCountLabel.textColor = [UIColor darkGrayColor];
         [goodsDetailView addSubview:joinCountLabel];
-        
+
         //揭晓时间
-        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, joinCountLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
+        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, joinCountLabel.bottom, KScreenWidth - 76.f, 20.f)];
         countDownLabel.text = [NSString stringWithFormat:@"揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
-        countDownLabel.textColor = [UIColor redColor];
+        countDownLabel.textColor = [UIColor darkGrayColor];
         [goodsDetailView addSubview:countDownLabel];
         
+        //幸运号码背景
+        UIImageView *lkBgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, countDownLabel.bottom + 8.f, KScreenWidth-20, 50.f)];
+        lkBgView.image = [UIImage imageNamed:@"幸运号码背景"];
+        [goodsDetailView addSubview:lkBgView];
+        
         //幸运号码
-        UILabel *luckyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, countDownLabel.bottom, KScreenWidth - 16.f, 20.f)];
+        UILabel *luckyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(16.f, countDownLabel.bottom+24, KScreenWidth - 16.f, 20.f)];
         luckyNumLabel.text =[NSString stringWithFormat:@"幸运号码：%@",[prizeDic objectForKey:@"drawNumber"]];
         luckyNumLabel.textAlignment = NSTextAlignmentLeft;
         luckyNumLabel.font = [UIFont systemFontOfSize:13];
-        luckyNumLabel.textColor = [UIColor redColor];
+        luckyNumLabel.textColor = [UIColor whiteColor];
         [goodsDetailView addSubview:luckyNumLabel];
         
         //查看计算方式
-        UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f,countDownLabel.bottom - 28.f, 64.f, 20.f)];
+        UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 80.f,countDownLabel.bottom + 20.f, 64.f, 31.f)];
         [previewCountWayButton setTitle:@"计算详情"
                                forState:UIControlStateNormal];
         previewCountWayButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [previewCountWayButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        previewCountWayButton.backgroundColor = [UIColor whiteColor];
+        [previewCountWayButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [previewCountWayButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
+        previewCountWayButton.backgroundColor = [UIColor clearColor];
         [previewCountWayButton addTarget:self
                                   action:@selector(countWayAction:)
                         forControlEvents:UIControlEventTouchUpInside];
@@ -307,7 +371,7 @@
         
         if (_isJoin == 0) {
             
-            UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
+            UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, lkBgView.bottom + 4.f, KScreenWidth, 20.f)];
             noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             noJoinLabel.textAlignment = NSTextAlignmentCenter;
             noJoinLabel.font = [UIFont systemFontOfSize:13];
@@ -316,28 +380,33 @@
             [goodsDetailView addSubview:noJoinLabel];
             
         }else if (_isJoin == 1){
+            //s横线
+            UIImageView *line1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, lkBgView.bottom + 4.f, KScreenWidth, 10.f)];
+//            line.image = [UIImage imageNamed:@"横线"];
+            line1.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+            [goodsDetailView addSubview:line1];
             
-            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
-            JoinedLabel.backgroundColor = [UIColor orangeColor];
+            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, line1.bottom + 4.f, KScreenWidth-80, 20.f)];
+            JoinedLabel.backgroundColor = [UIColor clearColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
             JoinedLabel.text = [NSString stringWithFormat:@"你参与了:%@",[_dataDic objectForKey:@"buyNumberCount"]];
-            JoinedLabel.textColor = [UIColor whiteColor];
+            JoinedLabel.textColor = [UIColor blackColor];
             [goodsDetailView addSubview:JoinedLabel];
             
-            UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth, 20.f)];
-            treasureNum.backgroundColor = [UIColor orangeColor];
+            UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(8, JoinedLabel.bottom, KScreenWidth-80, 20.f)];
+            treasureNum.backgroundColor = [UIColor clearColor];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
             treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
-            treasureNum.textColor = [UIColor whiteColor];
+            treasureNum.textColor = [UIColor blackColor];
             [goodsDetailView addSubview:treasureNum];
             
-            UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, countDownLabel.bottom + 8.f, 64.f, 32.f)];
+            UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, line1.bottom + 8.f, 64.f, 28.f)];
             [previewAllButton setTitle:@"查看全部"
                               forState:UIControlStateNormal];
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
-            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
+            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
             [previewAllButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             previewAllButton.backgroundColor = [UIColor clearColor];
             [previewAllButton addTarget:self
@@ -345,6 +414,11 @@
                        forControlEvents:UIControlEventTouchUpInside];
             [goodsDetailView addSubview:previewAllButton];
             
+            //下方横线
+//            UIImageView *line2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, previewAllButton.bottom + 8.f, KScreenWidth, 1.f)];
+//            line2.image = [UIImage imageNamed:@"横线"];
+////            line1.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+//            [goodsDetailView addSubview:line2];
         }
             
         return  goodsDetailView;
@@ -357,18 +431,32 @@
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return nil;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSArray *titleArr = @[@"图文详情",@"往期揭晓",@"晒单分享",@"参与记录(上滑)"];
+    if (indexPath.row == 0) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.85 alpha:1];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+        cell.detailTextLabel.text = @"建议在WIFI下查看";
+        cell.textLabel.text = titleArr[indexPath.row];
+        return cell;
+    }
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     if (indexPath.row != 3) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else{
-        cell.textLabel.font = [UIFont systemFontOfSize:13];
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
-    NSArray *titleArr = @[@"图文详情",@"往期揭晓",@"晒单分享",@"参与记录(上滑)"];
+    
+    cell.textLabel.font = [UIFont systemFontOfSize:13];
     cell.textLabel.text = titleArr[indexPath.row];
+    
     return cell;
     
 }
@@ -379,11 +467,11 @@
         
         if (_isJoin == 0) {
             
-            return  92.f;
+            return  92.f+30;
             
         }else if (_isJoin == 1){
             
-            return 118.f;
+            return 118.f+30;
             
         }
         
@@ -403,11 +491,11 @@
     
         if (_isJoin == 0) {
             
-            return 132.f;
+            return 132.f+70;
             
         }else if(_isJoin == 1){
         
-            return 152.f;
+            return 152.f+70;
         }
         
     }
