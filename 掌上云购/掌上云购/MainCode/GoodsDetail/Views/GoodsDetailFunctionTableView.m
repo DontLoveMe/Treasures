@@ -448,7 +448,7 @@
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.backgroundColor = [UIColor whiteColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.font = [UIFont systemFontOfSize:13];
         cell.textLabel.text = titleArr[indexPath.row];
         cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.85 alpha:1];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];

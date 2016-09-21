@@ -58,28 +58,60 @@
     [_announcedTableView registerNib:[UINib nibWithNibName:@"AnnounceHistoryCell"
                                                     bundle:[NSBundle mainBundle]]
               forCellReuseIdentifier:@"AnnounceHistory_Cell"];
+    //下拉时动画
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         
-                _pageIndex = 1;
-                _announceHistoryArr = [NSMutableArray array];
-                [self requestData:_pageIndex];
+        _pageIndex = 1;
+        _announceHistoryArr = [NSMutableArray array];
+        [self requestData:_pageIndex];
+        
         
     }];
-    NSArray *gifArr = @[[UIImage imageNamed:@"下拉81"],
-                        [UIImage imageNamed:@"下拉82"],
-                        [UIImage imageNamed:@"下拉83"],
-                        [UIImage imageNamed:@"下拉84"],
-                        [UIImage imageNamed:@"下拉85"],
-                        [UIImage imageNamed:@"下拉86"],
-                        [UIImage imageNamed:@"下拉87"],
-                        [UIImage imageNamed:@"下拉88"]];
-//    NSArray *gifArr = @[[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"]]
-    [header setImages:gifArr
-             duration:1 forState:MJRefreshStateRefreshing];
+    
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
     header.lastUpdatedTimeLabel.hidden = YES;
-    header.stateLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
     _announcedTableView.mj_header = header;
-
+    
+    
+    
     [self.view addSubview:_announcedTableView];
     
 }
@@ -133,7 +165,7 @@
     [params setObject:@{@"productId":_goodsID}
                forKey:@"paramsMap"];
     [params setObject:@"10" forKey:@"rows"];
-    [params setObject:[NSNumber numberWithInteger:indexPath + 1]
+    [params setObject:[NSNumber numberWithInteger:indexPath]
                forKey:@"page"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsHistoryPrize_URL];

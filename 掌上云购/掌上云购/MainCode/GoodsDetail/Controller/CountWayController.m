@@ -39,7 +39,7 @@
     
     _dataDic = [NSMutableDictionary dictionary];
     _titleArr = @[@"计算公式",@"数值A",@"数值B",@"计算结果"];
-    _valueArr = @[@"[(数值A+数值B)÷商品所需次数]取余数+10000001",@"=截止开奖时间点前最后50条全站参与记录\n=正在计算",@"=最近一期中国福利彩票“老时时彩”的开奖结果\n=等待开奖",@"幸运号码:请等待开奖结果"];
+    _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",@"＝截止开奖时间点前最后50条全站参与记录\n＝正在计算",@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待开奖",@"幸运号码:请等待开奖结果"];
     _AvalueArr = [NSMutableArray array];
     
     _isOpen = 0;
@@ -77,26 +77,32 @@
                   
                   _dataDic = [[json objectForKey:@"data"] mutableCopy];
                   
+                  if (![_dataDic[@"bNumValue"] isKindOfClass:[NSNull class]]) {
+                      
+                  
                   NSDictionary *dic = [_dataDic objectForKey:@"bNumValue"];
                   NSString *bValueStr = [dic objectForKey:@"openCode"];
                   NSString *bValueResultStr;
                   if ([bValueStr isEqual:[NSNull null]]) {
-                      bValueResultStr = @"";
+                      bValueResultStr = @"最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待时时彩开奖";
                   }else {
                       bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","withString:@""];
                   }
 
-                  NSMutableString *numStr = [[_dataDic objectForKey:@"msg"] mutableCopy];
-                  NSString *resultStr = [numStr substringWithRange:NSMakeRange(numStr.length - 8, 8)];
                   
                   _valueArr = @[[_dataDic objectForKey:@"msg"],
-                                @"=截止开奖时间点前最后50条全站参与记录",
-                                [NSString stringWithFormat:@"=%@",bValueResultStr],
-                                [NSString stringWithFormat:@"幸运号码:%@",resultStr]];
-                  
+                                [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
+                                [NSString stringWithFormat:@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝%@",bValueResultStr],
+                                [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
+                  }else{
+                      _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待开奖",@"幸运号码:请等待开奖结果"];
+                      [_descriptionTable reloadData];
+
+                  }
                   [_descriptionTable reloadData];
                   
-              }
+              }else {
+                                }
 
               
           } failure:^(NSError *error) {
@@ -154,17 +160,23 @@
     
     NSString *valueStr = _valueArr[section];
     CGRect valueRect = [valueStr boundingRectWithSize:CGSizeMake(KScreenWidth - 24.f , 3000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
-    UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(12.f, titleLabel.bottom, KScreenWidth - 24.f, valueRect.size.height)];
+    UILabel *valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(12.f, titleLabel.bottom+8.f, KScreenWidth - 24.f, valueRect.size.height)];
     valueLabel.text = valueStr;
     valueLabel.numberOfLines = 0;
     valueLabel.font = [UIFont systemFontOfSize:13];
     [view addSubview:valueLabel];
     
+    //横线
+    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, valueLabel.bottom + 8.f, KScreenWidth, 1)];
+    line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+//    line.image = [UIImage imageNamed:@"横线"];
+    [view addSubview:line];
     if (section == 1) {
         
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, (valueLabel.bottom + 4)/2, 60.f, 24.f)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 60.f, (valueLabel.bottom)/2, 60.f, 26.f)];
         [button setTitleColor:[UIColor colorFromHexRGB:@"0095E5"]
                      forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
         [button setTitle:@"展开↓" forState:UIControlStateNormal];
         [button setTitle:@"收起↑" forState:UIControlStateSelected];
         
@@ -197,13 +209,13 @@
     NSString *valueStr = _valueArr[section];
     CGRect valueRect = [valueStr boundingRectWithSize:CGSizeMake(KScreenWidth - 24.f , 3000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
     
-    return titleRect.size.height + valueRect.size.height + 12.f;
+    return titleRect.size.height + valueRect.size.height + 21.f;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
-    return 0;
+    return 0.01;
     
 }
 
@@ -211,7 +223,9 @@
 
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     NSDictionary *dic = _AvalueArr[indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.textLabel.text = [NSString stringWithFormat:@"%@（%@）",[dic objectForKey:@"createDate"],[dic objectForKey:@"createMillisecond"]];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:10];
     cell.detailTextLabel.text = [dic objectForKey:@"nickName"];
     return cell;
     
