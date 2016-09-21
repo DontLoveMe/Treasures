@@ -190,58 +190,20 @@
     }
     if ([textField.text integerValue] == 0 || textField.text.length == 0){
     
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                         message:@"输入不能为0!"
-                                                                  preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 
-                                                                 [alertVC dismissViewControllerAnimated:YES
-                                                                                             completion:^{
-                                                                                                 
-                                                                                             }];
-                                                                 
-                                                             }];
-        [alertVC addAction:cancelAction];
-        [[self viewController] presentViewController:alertVC
-                                            animated:YES
-                                          completion:^{
-                                              
-                                          }];
-        textField.text = _selectNum;
+        textField.text = @"1";
         return;
         
     }else if ([textField.text integerValue] <= _maxSelectableNum) {
         
         [CartTools inputCountWithIndexPath:_indexPath.row withCount:[textField.text integerValue]];
-        
+        [self getRootController].cartNum = [CartTools getCartList].count;
         if ([_functionDelegate respondsToSelector:@selector(inputAtIndexPath:)]) {
             [_functionDelegate inputAtIndexPath:_indexPath];
         }
         
     }else{
-    
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                         message:@"不能大于剩余人数!"
-                                                                  preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 
-                                                                 [alertVC dismissViewControllerAnimated:YES
-                                                                                             completion:^{
-                                                                                                 
-                                                                                             }];
-                                                                 
-                                                             }];
-        [alertVC addAction:cancelAction];
-        [[self viewController] presentViewController:alertVC
-                                            animated:YES
-                                          completion:^{
-                                              
-                                          }];
-        textField.text = _selectNum;
+
+        textField.text = [NSString stringWithFormat:@"%ld",_maxSelectableNum];
         return;
     
     }
@@ -273,6 +235,14 @@
     } while (next != nil);
     
     return nil;
+}
+
+- (TabbarViewcontroller *)getRootController{
+
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
+
 }
 
 

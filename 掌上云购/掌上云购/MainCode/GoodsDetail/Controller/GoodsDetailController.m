@@ -446,9 +446,13 @@
                             @"singlePrice":[_dataDic objectForKey:@"singlePrice"]};
 
     BOOL isSuccess = [CartTools addCartList:@[goods]];
-    [self showHUD:@"正在加入购物车"];
-    [self hideSuccessHUD:@"加入购物车成功"];
-    NSLogZS(@"加入清单，成功了么%d",isSuccess);
+    if (isSuccess) {
+        
+        [self getRootController].cartNum = [CartTools getCartList].count;
+        [self showHUD:@"正在加入购物车"];
+        [self hideSuccessHUD:@"加入购物车成功"];
+   
+    }
     
 }
 
@@ -739,6 +743,14 @@
         _drawId = drawId;
         
     }
+    
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
     
 }
 

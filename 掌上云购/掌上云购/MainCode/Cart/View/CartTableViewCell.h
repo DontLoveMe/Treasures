@@ -78,6 +78,5 @@
 @property (nonatomic ,weak)id <CartFunctionDelegate> functionDelegate;
 
 @property (nonatomic ,assign)NSInteger maxSelectableNum;
-@property (nonatomic ,copy)NSString *selectNum;
 
 @end

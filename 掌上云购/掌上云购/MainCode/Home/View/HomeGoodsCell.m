@@ -45,6 +45,8 @@
     BOOL isSuccess = [CartTools addCartList:@[goods]];
     if (isSuccess) {
         
+        [self getRootController].cartNum = [CartTools getCartList].count;
+        
         if ([_delegate respondsToSelector:@selector(addToCartWithIndexpath:)]) {
             
             [_delegate addToCartWithIndexpath:_nowIndexpath];
@@ -52,6 +54,14 @@
         }
     }
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
+    
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
     
 }
 

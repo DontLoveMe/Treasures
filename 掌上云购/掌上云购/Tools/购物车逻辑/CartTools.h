@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TabbarViewcontroller.h"
+
 /*
  *购物车逻辑：
  *  以本地和服务器定触发机制合并更新的方式更新和保存。

@@ -66,8 +66,10 @@
                             @"singlePrice":@(_gsModel.singlePrice)};
     
     BOOL isSuccess = [CartTools addCartList:@[goods]];
+    
     if (isSuccess) {
         
+         [self getRootController].cartNum = [CartTools getCartList].count;
         [[self viewController] showHUD:@"加入购物车成功"];
         [[self viewController] hideSuccessHUD:@"加入购物车成功"];
     
@@ -90,6 +92,14 @@
     } while (next != nil);
     
     return nil;
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
+    
 }
 
 @end

@@ -203,6 +203,8 @@
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
     [CartTools realaseCartList];
+    NSArray *cartListArr = [CartTools getCartList];
+    [self getRootController].cartNum = cartListArr.count;
     [self showHUD:@"正在支付"];
     [ZSTools post:url
            params:params
@@ -394,5 +396,13 @@
 - (void)selectAtion:(UIButton *)button {
     button.selected = !button.selected;
    
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
+    
 }
 @end

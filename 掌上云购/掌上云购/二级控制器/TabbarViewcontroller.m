@@ -121,4 +121,39 @@
     }
 }
 
+- (void)setCartNum:(NSInteger)cartNum{
+
+    if (cartNum != _cartNum) {
+        
+        _cartNum = cartNum;
+        
+        if (_cartNum != 0) {
+            
+            TabbarItem *item = [self.tabBar viewWithTag:4];
+            if (!_countLabel) {
+                _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(item.width - 25, 0.f, 12, 12)];
+            }
+            _countLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
+            _countLabel.layer.borderWidth = 0.5;
+            _countLabel.layer.cornerRadius = 6.f;
+            _countLabel.layer.masksToBounds = YES;
+            _countLabel.backgroundColor = [UIColor redColor];
+            _countLabel.text = [NSString stringWithFormat:@"%ld",_cartNum];
+            _countLabel.textColor = [UIColor whiteColor];
+            _countLabel.font = [UIFont systemFontOfSize:11];
+            _countLabel.textAlignment = NSTextAlignmentCenter;
+            [item addSubview:_countLabel];
+            
+        }else{
+            
+            if (_countLabel) {
+                [_countLabel removeFromSuperview];
+            }
+            
+        }
+        
+    }
+
+}
+
 @end
