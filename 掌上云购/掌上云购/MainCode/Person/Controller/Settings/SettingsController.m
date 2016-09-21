@@ -268,6 +268,8 @@
             
             [CartTools realaseCartList];
             
+            [self getRootController].cartNum = [CartTools getCartList].count;
+            
             [weakSelf.navigationController popViewControllerAnimated:YES];
 
         }
@@ -276,5 +278,13 @@
     
     [self presentViewController:alert animated:YES completion:nil];
     return;
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
+    
 }
 @end

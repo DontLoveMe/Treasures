@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Cart/Controller/&#x652f;&#x4ed8;/PayViewController.m"
-            timestampString = "496120783.821758"
+            timestampString = "496155046.442957"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-PayClicked:"
             landmarkType = "5">
          </BreakpointContent>

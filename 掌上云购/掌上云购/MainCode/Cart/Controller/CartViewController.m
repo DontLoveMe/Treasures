@@ -259,6 +259,7 @@
     .heightIs(30);
     
     _tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f) style:UITableViewStylePlain];
+    _tabview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tabview.backgroundColor = TableViewBackColor;
     _tabview.dataSource = self;
     _tabview.delegate = self;
@@ -377,8 +378,8 @@
         
         NSIndexPath *indexPath = [selectArr objectAtIndex:i];
         [CartTools removeGoodsWithIndexPath:indexPath.row];
-        
         _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+        [self getRootController].cartNum = _dataArray.count;
         if (_dataArray.count == 0) {
             
             _tabview.hidden = YES;
@@ -453,7 +454,6 @@
 
     
     cell.goodsNumLab.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
-    cell.selectNum = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
     cell.maxSelectableNum = [[dic objectForKey:@"surplusShare"] integerValue];
     
     cell.price.text = [NSString stringWithFormat:@"%@元/次",[dic objectForKey:@"singlePrice"]];
@@ -472,7 +472,7 @@
     
     [CartTools removeGoodsWithIndexPath:indexPath.row];
     _dataArray = [[CartTools getCartList] mutableCopy];
-    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = _dataArray.count;
     if (_dataArray.count == 0) {
         
         _tabview.hidden = YES;
@@ -566,6 +566,7 @@
     NSLogZS(@"增加了");
     [CartTools addCountWithIndexPath:indexPath.row];
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = _dataArray.count;
     if (_dataArray.count == 0) {
         
         _tabview.hidden = YES;
@@ -604,6 +605,7 @@
     NSLogZS(@"减少了");
     [CartTools decreaseCountWithIndexPath:indexPath.row];
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = _dataArray.count;
     if (_dataArray.count == 0) {
         
         _tabview.hidden = YES;
@@ -640,6 +642,7 @@
     
     [CartTools allRestWithIndexPath:indexPath.row];
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = _dataArray.count;
     if (_dataArray.count == 0) {
         
         _tabview.hidden = YES;
@@ -676,6 +679,7 @@
 - (void)inputAtIndexPath:(NSIndexPath *)indexPath{
 
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = _dataArray.count;
     if (_dataArray.count == 0) {
         
         _tabview.hidden = YES;
@@ -718,6 +722,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = _dataArray.count;
     if (_dataArray.count == 0) {
     
         _tabview.hidden = YES;
@@ -791,6 +796,7 @@
 - (void)updateCartList{
 
     NSArray *uploadArr = [NSArray arrayWithArray:[CartTools getCartList]];
+    [self getRootController].cartNum = uploadArr.count;
     NSMutableArray *updateList = [NSMutableArray array];
     
     //取出存储的用户信息
@@ -832,6 +838,7 @@
     
     [super touchesBegan:touches withEvent:event];
     NSArray *cartArr = [CartTools getCartList];
+    [self getRootController].cartNum = cartArr.count;
     for (int i = 0; i < cartArr.count; i++) {
         
         CartTableViewCell *cell = [_tabview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
@@ -840,6 +847,14 @@
         }
         
     }
+    
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
     
 }
 

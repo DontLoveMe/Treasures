@@ -15,9 +15,15 @@
 #import "CartViewController.h"
 #import "TabbarItem.h"
 
-@interface TabbarViewcontroller : UITabBarController
+@interface TabbarViewcontroller : UITabBarController{
+
+    UILabel *_countLabel;
+
+}
 
 @property (nonatomic,strong)TabbarItem *selectedItem;
 @property (nonatomic ,strong)NSMutableArray *controllers;
+
+@property (nonatomic, assign)NSInteger cartNum;
 
 @end

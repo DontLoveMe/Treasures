@@ -320,6 +320,7 @@
               if (cloudArr.count > 0) {
                   
                   [CartTools addCartList:cloudArr];
+                  [self getRootController].cartNum = [CartTools getCartList].count;
                   
               }else{
                   
@@ -387,6 +388,14 @@
         [_passwordTF resignFirstResponder];
         
     }
+    
+}
+
+- (TabbarViewcontroller *)getRootController{
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    UIWindow *windows = app.keyWindow;
+    return (TabbarViewcontroller *)windows.rootViewController;
     
 }
 
