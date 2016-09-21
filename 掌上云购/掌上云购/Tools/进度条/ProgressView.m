@@ -54,11 +54,19 @@
     
     
     _progressImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, self.height)];
-    _progressImgView.backgroundColor = [UIColor colorFromHexRGB:@"FDB730"];
+    _progressImgView.backgroundColor = [UIColor clearColor];
     _progressImgView.layer.cornerRadius = self.height / 2;
     _progressImgView.layer.masksToBounds = YES;
     _progressImgView.layer.borderWidth = 0;
     _progressImgView.layer.borderColor = [[UIColor clearColor] CGColor];
+    _progressImgView.backgroundColor = [UIColor clearColor];
+    CAGradientLayer *layer = [CAGradientLayer new];
+    layer.colors = @[(__bridge id)[[UIColor colorFromHexRGB:@"fccb3e"]CGColor], (__bridge id)[[UIColor colorFromHexRGB:@"ff9800"]CGColor]];
+    layer.startPoint = CGPointMake(0, 1);
+    layer.endPoint = CGPointMake(1, 1);
+    layer.frame = self.bounds;
+    [_progressImgView.layer addSublayer:layer];
+    
     [self addSubview:_progressImgView];
     
 }
