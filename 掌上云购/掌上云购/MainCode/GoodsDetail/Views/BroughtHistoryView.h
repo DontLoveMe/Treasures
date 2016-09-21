@@ -19,12 +19,11 @@
 @end
 
 @interface BroughtHistoryView : UIView<UITableViewDelegate,UITableViewDataSource>{
-
-    UILabel     *_recommandLabel;
     
     UITableView *_recordTable;
     
 }
+@property (nonatomic,strong)UILabel *recommandLabel;
 @property (nonatomic,strong)NSArray *dataArr;
 @property (weak,nonatomic)id<BroughtHistoryDelegate> BHdelegate;
 

@@ -48,10 +48,14 @@
     _recommandLabel.font = [UIFont systemFontOfSize:13];
     _recommandLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_recommandLabel];
+    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 27, KScreenWidth, 1)];
+    line.image = [UIImage imageNamed:@"横线"];
+    [self addSubview:line];
     
     _recordTable = [[UITableView alloc] initWithFrame:CGRectMake(0, _recommandLabel.bottom, self.width, self.height - _recommandLabel.height)];
     _recordTable.delegate = self;
     _recordTable.dataSource = self;
+    _recordTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_recordTable registerNib:[UINib nibWithNibName:@"BroughtHistoryCell"
                                              bundle:[NSBundle mainBundle]]
        forCellReuseIdentifier:@"BroughtHistory_Cell"];
@@ -104,8 +108,9 @@
         cell.userName.text = @"名字消失在了二次元空间";
     }
 
-    cell.joinTimes.text = [NSString stringWithFormat:@"参与了:%@次",[dic objectForKey:@"qty"]];
-    cell.userIP.text = [NSString stringWithFormat:@"ip：%@",[dic objectForKey:@"buyIp"]];
+//    cell.joinTimes.text = [NSString stringWithFormat:@"参与了:%@次",[dic objectForKey:@"qty"]];
+    cell.joinTimes.text = [NSString stringWithFormat:@"%@ IP：%@",[dic objectForKey:@"buyIpAddress"],[dic objectForKey:@"buyIp"]];
+    cell.userIP.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"orderTime"]];
     
     return cell;
     
@@ -119,7 +124,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 88.f;
+    return 80.f;
     
 }
 

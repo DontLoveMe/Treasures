@@ -29,8 +29,12 @@
     
     _buyNumberTF.delegate = self;
     
-    _money = 1;
-//    _maxNumber = 100;
+    [self isOutOfRange:1];
+
+}
+- (void)setSinglePrice:(NSInteger)singlePrice {
+    _singlePrice = singlePrice;
+    [self isOutOfRange:_money];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -88,8 +92,11 @@
     }else {
     
     }
+    if (_singlePrice<= 0) {
+        _singlePrice = 1;
+    }
     _buyNumberTF.text = [NSString stringWithFormat:@"%ld",_money];
-    _moneyLabel.text = [NSString stringWithFormat:@"共%ld夺宝币",_money];
+    _moneyLabel.text = [NSString stringWithFormat:@"共%ld夺宝币",_money*_singlePrice];
 }
 #pragma mark - 按钮的点击事件
 //关闭
@@ -109,8 +116,8 @@
 //确定
 - (IBAction)sureAction:(UIButton *)sender {
     
-    [self.delegate backBuyNumber:_money];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate backBuyNumber:_money];
 }
 
 
