@@ -21,9 +21,12 @@
 //包尾事件
 -(void)allRestAtIndexPath:(NSIndexPath *)indexPath;
 
+//输入事件
+- (void)inputAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
-@interface CartTableViewCell : UITableViewCell
+@interface CartTableViewCell : UITableViewCell<UITextFieldDelegate>
 
 @property(nonatomic,strong)NSIndexPath* indexPath;
 //标记图片
@@ -73,5 +76,8 @@
 @property (nonatomic,strong)UIButton    *allRestButton;
 
 @property (nonatomic ,weak)id <CartFunctionDelegate> functionDelegate;
+
+@property (nonatomic ,assign)NSInteger maxSelectableNum;
+@property (nonatomic ,copy)NSString *selectNum;
 
 @end

@@ -308,4 +308,50 @@
 
 }
 
+//输入购物车数量
++ (BOOL)inputCountWithIndexPath:(NSInteger)indexPath withCount:(NSInteger)count{
+
+    //获取应用程序沙盒的Documents目录
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *plistPath = [paths objectAtIndex:0];
+    //得到完整的文件名
+    NSString *filename=[plistPath stringByAppendingPathComponent:@"cartList.plist"];
+    //判断是否已有此目录文件
+    BOOL isExst = [[NSFileManager defaultManager] fileExistsAtPath:filename];
+    if (isExst) {
+        //已存在
+        NSMutableArray *existArr = [NSMutableArray arrayWithContentsOfFile:filename];
+        if (indexPath >= existArr.count) {
+            
+            NSLogZS(@"越界了");
+            return NO;
+            
+        }else{
+            
+            //输入购买数量：输入多少->小于剩余量
+            NSMutableDictionary *indexPathDic = [existArr objectAtIndex:indexPath];
+            NSInteger times = [[indexPathDic objectForKey:@"buyTimes"] integerValue];
+            NSInteger superShare = [[indexPathDic objectForKey:@"surplusShare"] integerValue];
+            if (superShare >= count) {
+                
+                times = count;
+                
+            }else{
+                
+                return NO;
+            }
+            
+            [indexPathDic setObject:[NSNumber numberWithInteger:times] forKey:@"buyTimes"];
+            [existArr replaceObjectAtIndex:indexPath withObject:indexPathDic];
+            return [existArr writeToFile:filename atomically:YES];
+            
+        }
+    }else{
+        
+        return NO;
+        
+    }
+    
+}
+
 @end

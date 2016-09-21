@@ -453,6 +453,8 @@
 
     
     cell.goodsNumLab.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
+    cell.selectNum = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"buyTimes"] integerValue]];
+    cell.maxSelectableNum = [[dic objectForKey:@"surplusShare"] integerValue];
     
     cell.price.text = [NSString stringWithFormat:@"%@元/次",[dic objectForKey:@"singlePrice"]];
     
@@ -670,11 +672,50 @@
     
 }
 
+//输入事件
+- (void)inputAtIndexPath:(NSIndexPath *)indexPath{
+
+    _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+    if (_dataArray.count == 0) {
+        
+        _tabview.hidden = YES;
+        _bottomView.hidden = YES;
+        _backView.hidden = NO;
+        _rightbtn.hidden = YES;
+        _deleteView.hidden = YES;
+        
+    }else{
+        
+        _tabview.hidden = NO;
+        _bottomView.hidden = NO;
+        _backView.hidden = YES;
+        _rightbtn.hidden = NO;
+        _deleteView.hidden = YES;
+        //计算总价
+        _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < _dataArray.count; i ++) {
+            
+            NSDictionary *dic = [_dataArray objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
+        [_tabview reloadData];
+        
+    }
+
+}
+
 
 #pragma mark - 加载数据
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
     _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
     if (_dataArray.count == 0) {
@@ -713,6 +754,9 @@
 
     [super viewWillDisappear:animated];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if (userDic) {
@@ -720,6 +764,28 @@
     }else{
         return;
     }
+}
+
+- (void)keyboardWasShown:(NSNotification*)aNotification{
+
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    _tabview.height = _tabview.height - kbSize.height;
+    _bottomView.top = _bottomView.top - kbSize.height;
+    _deleteView.top = _deleteView.top - kbSize.height;
+
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification{
+
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    _tabview.height = _tabview.height + kbSize.height;
+    _bottomView.top = _bottomView.top + kbSize.height;
+    _deleteView.top = _deleteView.top + kbSize.height;
+
 }
 
 - (void)updateCartList{
@@ -759,6 +825,21 @@
               NSLogZS(@"%@",error);
               
           }];
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    [super touchesBegan:touches withEvent:event];
+    NSArray *cartArr = [CartTools getCartList];
+    for (int i = 0; i < cartArr.count; i++) {
+        
+        CartTableViewCell *cell = [_tabview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        if ([cell.goodsNumLab isFirstResponder]) {
+            [cell.goodsNumLab resignFirstResponder];
+        }
+        
+    }
     
 }
 

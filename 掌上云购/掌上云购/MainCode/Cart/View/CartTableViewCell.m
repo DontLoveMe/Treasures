@@ -83,9 +83,9 @@
     .widthIs(28);
     //选择量
     _goodsNumLab = [[UITextField alloc]init];
-    _goodsNumLab.userInteractionEnabled = NO;
     _goodsNumLab.textColor = [UIColor blackColor];
     _goodsNumLab.keyboardType = UIKeyboardTypeNumberPad;
+    _goodsNumLab.delegate = self;
     _goodsNumLab.font = [UIFont systemFontOfSize:13];
     _goodsNumLab.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_goodsNumLab];
@@ -172,6 +172,107 @@
         [_functionDelegate allRestAtIndexPath:_indexPath];
     }
     
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+
+    if ([textField isFirstResponder]) {
+        return YES;
+    }else return NO;
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+
+    if ([textField isFirstResponder]) {
+        [textField resignFirstResponder];
+    }
+    if ([textField.text integerValue] == 0 || textField.text.length == 0){
+    
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                         message:@"输入不能为0!"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+                                                                 [alertVC dismissViewControllerAnimated:YES
+                                                                                             completion:^{
+                                                                                                 
+                                                                                             }];
+                                                                 
+                                                             }];
+        [alertVC addAction:cancelAction];
+        [[self viewController] presentViewController:alertVC
+                                            animated:YES
+                                          completion:^{
+                                              
+                                          }];
+        textField.text = _selectNum;
+        return;
+        
+    }else if ([textField.text integerValue] <= _maxSelectableNum) {
+        
+        [CartTools inputCountWithIndexPath:_indexPath.row withCount:[textField.text integerValue]];
+        
+        if ([_functionDelegate respondsToSelector:@selector(inputAtIndexPath:)]) {
+            [_functionDelegate inputAtIndexPath:_indexPath];
+        }
+        
+    }else{
+    
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                         message:@"不能大于剩余人数!"
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 
+                                                                 [alertVC dismissViewControllerAnimated:YES
+                                                                                             completion:^{
+                                                                                                 
+                                                                                             }];
+                                                                 
+                                                             }];
+        [alertVC addAction:cancelAction];
+        [[self viewController] presentViewController:alertVC
+                                            animated:YES
+                                          completion:^{
+                                              
+                                          }];
+        textField.text = _selectNum;
+        return;
+    
+    }
+
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+ 
+    if ([_goodsNumLab isFirstResponder]) {
+            [_goodsNumLab resignFirstResponder];
+    }
+
+}
+
+//取到视图控制器
+- (UIViewController *)viewController {
+    
+    UIResponder *next = self.nextResponder;
+    
+    do {
+        
+        if ([next isKindOfClass:[UIViewController class]]) {
+            
+            return (UIViewController *)next;
+        }
+        
+        next = next.nextResponder;
+        
+    } while (next != nil);
+    
+    return nil;
 }
 
 
