@@ -206,7 +206,13 @@
     GDVC.goodsId = [dic objectForKey:@"productId"];
     
     GDVC.drawId = [dic objectForKey:@"drawId"];
-    GDVC.isAnnounced = 3;
+    if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
+    
+        GDVC.isAnnounced = 2;
+    }else {
+        
+        GDVC.isAnnounced = 3;
+    }
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];

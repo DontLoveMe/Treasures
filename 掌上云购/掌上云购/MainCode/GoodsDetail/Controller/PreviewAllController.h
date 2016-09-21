@@ -21,6 +21,7 @@
     
     __weak IBOutlet UILabel *luckyNum;
     
+    __weak IBOutlet UILabel *drawListLabel;
     __weak IBOutlet UICollectionView *joinRecordCollectionView;
     
     NSMutableArray  *joinRecordList;

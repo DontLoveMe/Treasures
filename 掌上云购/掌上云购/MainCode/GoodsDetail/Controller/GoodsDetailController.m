@@ -15,9 +15,17 @@
 
 @end
 
-@implementation GoodsDetailController
+@implementation GoodsDetailController {
+    //记录导航栏的透明度
+    CGFloat _navBarAalpha;
+}
 
 - (void)initNavBar{
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.navigationController.navigationBar.translucent = YES;
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
     self.navigationItem.backBarButtonItem = nil;
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 28.f, 28.f)];
@@ -59,7 +67,7 @@
             rightButton.size = CGSizeMake(25, 25);
             [rightButton setBackgroundImage:[UIImage imageNamed:@"消息.png"]
                                   forState:UIControlStateNormal];
-
+            _navBarAalpha = alpha;
         }else {
            
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
@@ -71,7 +79,15 @@
             [rightButton setBackgroundImage:[UIImage imageNamed:@"三点.png"]
                                    forState:UIControlStateNormal];
         }
-    } else {
+    } else{
+        UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
+        leftButton.size = CGSizeMake(28, 28);
+        [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
+                              forState:UIControlStateNormal];
+        UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
+        rightButton.size = CGSizeMake(25, 7);
+        [rightButton setBackgroundImage:[UIImage imageNamed:@"三点.png"]
+                               forState:UIControlStateNormal];
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
     }
     
@@ -290,7 +306,7 @@
         [_gotoNewOrderButton setTitle:@"前往购买"
                              forState:UIControlStateNormal];
         [_gotoNewOrderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_cartBottomButton addTarget:self
+        [_gotoNewOrderButton addTarget:self
                               action:@selector(addToNewOrderAction:)
                     forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:_gotoNewOrderButton];
@@ -415,9 +431,10 @@
 - (void)addToNewOrderAction:(UIButton *)button{
 
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-    GDVC.isJoind = 0;
-    GDVC.isAnnounced = 0;
-    GDVC.isPrized = 0;
+//    GDVC.isJoind = 0;
+    GDVC.isAnnounced = 1;
+    GDVC.goodsId = [_dataDic objectForKey:@"id"];
+//    GDVC.isPrized = 0;
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];
@@ -469,10 +486,12 @@
     
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
     //导航栏透明
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.translucent = YES;
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:_navBarAalpha]];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     
 }
 

@@ -194,25 +194,28 @@
         UIView  *goodsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100.f)];
         goodsDetailView.backgroundColor = [UIColor whiteColor];
         
-        
+        //黄色背景
+        UIImageView *lbBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 7.f, KScreenWidth, 42.f)];
+        lbBgView.image = [UIImage imageNamed:@"背景长黄"];
+        [goodsDetailView addSubview:lbBgView];
         //期号
-        UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 16.f, 20.f)];
+        UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, 8.f, KScreenWidth - 80.f, 20.f)];
         issueLabel.text = [NSString stringWithFormat:@"期号：%@",[_dataDic objectForKey:@"drawTimes"]];
         issueLabel.textAlignment = NSTextAlignmentLeft;
         issueLabel.font = [UIFont systemFontOfSize:13];
         issueLabel.textColor = [UIColor whiteColor];
-        issueLabel.backgroundColor = [UIColor orangeColor];
+        issueLabel.backgroundColor = [UIColor clearColor];
         [goodsDetailView addSubview:issueLabel];
         
-        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom + 4.f, KScreenWidth - 16.f, 20.f)];
+        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 80.f, 20.f)];
         countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
         countDownLabel.textColor = [UIColor whiteColor];
-        countDownLabel.backgroundColor = [UIColor orangeColor];
+        countDownLabel.backgroundColor = [UIColor clearColor];
         [goodsDetailView addSubview:countDownLabel];
         
-        UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, 8.f, 64.f, 32.f)];
+        UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, 15.f, 64.f, 28.f)];
         [previewCountWayButton setTitle:@"计算详情"
                           forState:UIControlStateNormal];
         previewCountWayButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -236,20 +239,20 @@
             
         }else if (_isJoin == 1){
             
-            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
-            JoinedLabel.backgroundColor = [UIColor orangeColor];
+            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, countDownLabel.bottom + 4.f, KScreenWidth-80, 20.f)];
+//            JoinedLabel.backgroundColor = [UIColor orangeColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
             JoinedLabel.text = [NSString stringWithFormat:@"你参与了:%@",[_dataDic objectForKey:@"buyNumberCount"]];
-            JoinedLabel.textColor = [UIColor whiteColor];
+            JoinedLabel.textColor = [UIColor darkGrayColor];
             [goodsDetailView addSubview:JoinedLabel];
             
-            UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(0, JoinedLabel.bottom, KScreenWidth, 20.f)];
-            treasureNum.backgroundColor = [UIColor orangeColor];
+            UILabel *treasureNum = [[UILabel alloc] initWithFrame:CGRectMake(8, JoinedLabel.bottom, KScreenWidth-80, 20.f)];
+            treasureNum.backgroundColor = [UIColor clearColor];
             treasureNum.textAlignment = NSTextAlignmentLeft;
             treasureNum.font = [UIFont systemFontOfSize:13];
             treasureNum.text = [NSString stringWithFormat:@"夺宝号码:%@",[_dataDic objectForKey:@"buyNumbers"]];
-            treasureNum.textColor = [UIColor whiteColor];
+            treasureNum.textColor = [UIColor darkGrayColor];
             [goodsDetailView addSubview:treasureNum];
             
             UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, countDownLabel.bottom + 8.f, 64.f, 32.f)];
@@ -258,12 +261,16 @@
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
             [previewAllButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             previewAllButton.backgroundColor = [UIColor clearColor];
-            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮框-白"] forState:UIControlStateNormal];
+            [previewAllButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
             [previewAllButton addTarget:self
                                  action:@selector(previewAll:)
                        forControlEvents:UIControlEventTouchUpInside];
             [goodsDetailView addSubview:previewAllButton];
-            
+            //s横线
+            UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, previewAllButton.bottom + 4.f, KScreenWidth, 10.f)];
+            //            line.image = [UIImage imageNamed:@"横线"];
+            line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+            [goodsDetailView addSubview:line];
         }
         return  goodsDetailView;
         
@@ -439,14 +446,18 @@
     NSArray *titleArr = @[@"图文详情",@"往期揭晓",@"晒单分享",@"参与记录(上滑)"];
     if (indexPath.row == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont systemFontOfSize:12];
+        cell.textLabel.text = titleArr[indexPath.row];
         cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.85 alpha:1];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
         cell.detailTextLabel.text = @"建议在WIFI下查看";
-        cell.textLabel.text = titleArr[indexPath.row];
+        
         return cell;
     }
     UITableViewCell *cell = [[UITableViewCell alloc] init];
+    cell.backgroundColor = [UIColor whiteColor];
     if (indexPath.row != 3) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else{
