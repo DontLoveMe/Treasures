@@ -68,12 +68,28 @@
     BOOL isSuccess = [CartTools addCartList:@[goods]];
     if (isSuccess) {
         
-        //        if ([_delegate respondsToSelector:@selector(addToCartWithIndexpath:)]) {
-        //            [_delegate addToCartWithIndexpath:_nowIndexpath];
-        //
-        //        }
+        [[self viewController] showHUD:@"加入购物车成功"];
+        [[self viewController] hideSuccessHUD:@"加入购物车成功"];
+    
     }
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
+}
+
+- (BaseViewController *)viewController {
+    UIResponder *next = self.nextResponder;
+    
+    do {
+        
+        if ([next isKindOfClass:[BaseViewController class]]) {
+            
+            return (BaseViewController *)next;
+        }
+        
+        next = next.nextResponder;
+        
+    } while (next != nil);
+    
+    return nil;
 }
 
 @end

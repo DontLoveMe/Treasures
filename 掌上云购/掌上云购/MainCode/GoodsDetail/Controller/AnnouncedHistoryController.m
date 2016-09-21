@@ -65,14 +65,15 @@
                 [self requestData:_pageIndex];
         
     }];
-    NSArray *gifArr = @[[UIImage imageNamed:@"1"],
-                        [UIImage imageNamed:@"2"],
-                        [UIImage imageNamed:@"3"],
-                        [UIImage imageNamed:@"4"],
-                        [UIImage imageNamed:@"5"],
-                        [UIImage imageNamed:@"6"],
-                        [UIImage imageNamed:@"7"],
-                        [UIImage imageNamed:@"8"]];
+    NSArray *gifArr = @[[UIImage imageNamed:@"下拉81"],
+                        [UIImage imageNamed:@"下拉82"],
+                        [UIImage imageNamed:@"下拉83"],
+                        [UIImage imageNamed:@"下拉84"],
+                        [UIImage imageNamed:@"下拉85"],
+                        [UIImage imageNamed:@"下拉86"],
+                        [UIImage imageNamed:@"下拉87"],
+                        [UIImage imageNamed:@"下拉88"]];
+//    NSArray *gifArr = @[[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"],[UIImage imageNamed:@"发现1"],[UIImage imageNamed:@"发现2"]]
     [header setImages:gifArr
              duration:1 forState:MJRefreshStateRefreshing];
     header.lastUpdatedTimeLabel.hidden = YES;

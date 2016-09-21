@@ -65,6 +65,7 @@
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     _bgScrollView.delegate = self;
     
+    //下拉时动画
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
        
         _selectIndext = 0;
@@ -81,22 +82,49 @@
         
     }];
     
-//    NSArray *gifArr = @[[UIImage imageNamed:@"1"],
-//                        [UIImage imageNamed:@"2"],
-//                        [UIImage imageNamed:@"3"],
-//                        [UIImage imageNamed:@"4"],
-//                        [UIImage imageNamed:@"5"],
-//                        [UIImage imageNamed:@"6"],
-//                        [UIImage imageNamed:@"7"],
-//                        [UIImage imageNamed:@"8"]];
-    NSArray *gifArr = @[[UIImage imageNamed:@"下拉刷新"]];
-    [header setImages:gifArr
-             duration:1 forState:MJRefreshStateRefreshing];
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
     
     header.lastUpdatedTimeLabel.hidden = YES;
-    header.stateLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
     _bgScrollView.mj_header = header;
     
+    //加footer及方法
     MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         if (_page == 1) {
             
@@ -132,7 +160,11 @@
 
 - (void)endRefreshAction{
 
-    [_bgScrollView.mj_header endRefreshing];
+    MJRefreshGifHeader *header = (MJRefreshGifHeader *)_bgScrollView.mj_header;
+    [header setTitle:@"刷新成功!" forState:MJRefreshStateIdle];
+    [_bgScrollView.mj_header endRefreshingWithCompletionBlock:^{
+        [header setTitle:@"下拉刷新数据" forState:MJRefreshStateIdle];
+    }];
     
 }
 
@@ -152,9 +184,6 @@
     //获奖公告
     _wingTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topBannerView.bottom - 20.f, KScreenWidth, 20.f)];
     _wingTable.backgroundColor = [UIColor clearColor];
-    NSArray *wingArr = @[@"张三没中奖",@"李四没中奖",@"王五没中奖",@"刘六没中奖",@"杨七没中奖"];
-    _wingTable.dataArr = wingArr;
-    _wingTable.timerDelegate = self;
     [_bgScrollView addSubview:_wingTable];
 
 }
@@ -554,6 +583,7 @@
                       
                   }
                   _wingTable.dataArr = msgArr;
+                  _wingTable.timerDelegate = self;
               }
               
           } failure:^(NSError *error) {

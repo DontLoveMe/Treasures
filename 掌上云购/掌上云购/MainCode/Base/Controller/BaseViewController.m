@@ -86,6 +86,7 @@
 - (void)changgeModel{
     
     _hud.mode = MBProgressHUDModeIndeterminate;
+    _hud = nil;
     
 }
 

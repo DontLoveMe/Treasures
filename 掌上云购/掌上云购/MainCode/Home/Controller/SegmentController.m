@@ -184,15 +184,13 @@
     }];
     _collectionView.mj_footer = footer;
     
-    
-//    _collectionView.data = @[@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品",@"全部商品"];
-    
     _collectionView.delegate = self;
     
   
 }
 
 - (void)createSegmentView {
+    
     SegmentView *segView = [[SegmentView alloc] initWithFrame:CGRectMake(0, 36, segmentViewWidth, [UIScreen mainScreen].bounds.size.height-36-49-64) segmentTitles:self.segmentTitles imageNames:nil selectImgNames:nil];
     segView.backgroundColor = [UIColor whiteColor];
     
@@ -309,9 +307,6 @@
 }
 
 - (void)ButtonAction:(UIButton *)button{
-    
-    
-    
     
 //    NSArray *titleArr = @[@"类别",@"人气",@"最新",@"最热",@"总需人次⇅"];
 //    NSString *titleStr = [titleArr objectAtIndex:button.tag - 100];
