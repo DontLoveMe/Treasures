@@ -9,6 +9,7 @@
 #import "GoodsDetailController.h"
 #import "UINavigationBar+Awesome.h"
 #import "BuyNowController.h"
+#import "MessageController.h"
 
 @interface GoodsDetailController ()
 
@@ -29,6 +30,16 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25.f, 7.f)];
+    rightButton.tag = 102;
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"三点"]
+                           forState:UIControlStateNormal];
+    [rightButton addTarget:self
+                    action:@selector(NavAction:)
+          forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
 }
 #pragma mark - 根据偏移量导航栏渐变
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -36,9 +47,30 @@
 {
     UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY > 150) {
-        CGFloat alpha = MIN(1, 1 - ((150 + 64 - offsetY) / 64));
+    if (offsetY > 60) {
+        CGFloat alpha = MIN(1, 1 - ((60 + 64 - offsetY) / 64));
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+        if(alpha > 0.5) {
+            UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
+            leftButton.size = CGSizeMake(20, 25);
+            [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
+                                  forState:UIControlStateNormal];
+            UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
+            rightButton.size = CGSizeMake(25, 25);
+            [rightButton setBackgroundImage:[UIImage imageNamed:@"消息.png"]
+                                  forState:UIControlStateNormal];
+
+        }else {
+           
+            UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
+            leftButton.size = CGSizeMake(28, 28);
+            [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
+                                  forState:UIControlStateNormal];
+            UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
+            rightButton.size = CGSizeMake(25, 7);
+            [rightButton setBackgroundImage:[UIImage imageNamed:@"三点.png"]
+                                   forState:UIControlStateNormal];
+        }
     } else {
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
     }
@@ -53,8 +85,23 @@
     self.navigationController.navigationBar.translucent = NO;
 }
 - (void)NavAction:(UIButton *)button{
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    if (button.tag == 101) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else {
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        if (userDic == nil) {
+            LoginViewController *lVC = [[LoginViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+            [self presentViewController:nav animated:YES completion:nil];
+            return;
+        }
+        MessageController *msgVC = [[MessageController alloc] init];
+        self.navigationController.navigationBar.hidden = NO;
+        msgVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:msgVC animated:YES];
+
+    }
 }
 
 - (void)viewDidLoad {
@@ -92,7 +139,7 @@
         self.navigationController.navigationBar.translucent = NO;
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:1]];
         if (!_broughtHistoryView) {
-            _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth , KScreenHeight)];
+            _broughtHistoryView = [[BroughtHistoryView alloc] initWithFrame:CGRectMake(0, KScreenHeight, KScreenWidth , KScreenHeight-64)];
             _broughtHistoryView.backgroundColor = [UIColor whiteColor];
             _broughtHistoryView.BHdelegate = self;
             [self.view insertSubview:_broughtHistoryView belowSubview:_bottomView];
@@ -264,6 +311,7 @@
     BuyNowController *bnVC = [[BuyNowController alloc] init];
     bnVC.delegate = self;
     bnVC.maxNumber = [_dataDic[@"surplusShare"] integerValue];
+    bnVC.singlePrice = [[_dataDic objectForKey:@"singlePrice"] integerValue];
     [self presentViewController:bnVC animated:YES completion:nil];
 }
 #pragma mark - BuyNowControllerDelegate
@@ -502,9 +550,9 @@
                           [picArr addObject:[dic objectForKey:@"img650"]];
                           
                       }
-                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                           _topGoodImgView.imageURLStringsGroup = picArr;
-                      });
+//                      });
                   }
                   
                   //商品名
@@ -528,6 +576,8 @@
                   _oherFunctionTableView.isJoin = _isJoind;
                   _oherFunctionTableView.isPrized = _isPrized;
                   [_oherFunctionTableView reloadData];
+                  
+
                   
               }else{
               

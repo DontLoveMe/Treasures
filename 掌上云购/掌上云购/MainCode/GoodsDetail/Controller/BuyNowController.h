@@ -21,7 +21,7 @@
 @property (nonatomic,assign)NSInteger money;
 
 @property (nonatomic,assign)NSInteger maxNumber;
-
+@property (nonatomic,assign)NSInteger singlePrice;
 @property (nonatomic,weak)id<BuyNowControllerDelegate> delegate;
 
 @end
