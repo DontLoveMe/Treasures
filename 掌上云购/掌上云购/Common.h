@@ -13,8 +13,11 @@
 //#define BASE_URL @"http://192.168.0.252:8889"
 //测试服务器1
 //#define BASE_URL @"http://192.168.0.117:8080"
+
 //外网服务器
 #define BASE_URL    @"http://121.43.164.18:8080"
+//阿里云图片
+#define AliyunPIC_URL     @"http://zsys.oss-cn-hangzhou.aliyuncs.com/"
 #define PIC_URL     @"http://121.196.197.222:8080"
 //玲姐服务器
 //#define BASE_URL @"http://192.168.0.205:8080"
@@ -98,6 +101,8 @@
 
 //可用红包列表接口
 #define RedPacketList_URL @"/pcpServer-inf/red/packet/list"
+//已使用红包个数
+#define UsableListCount_URL @"/pcpServer-inf/red/packet/usableListCount"
 //已使用/失效红包列表接口
 #define RedPacketDisabledList_URL @"/pcpServer-inf/red/packet/disabledList"
 //消息列表接口

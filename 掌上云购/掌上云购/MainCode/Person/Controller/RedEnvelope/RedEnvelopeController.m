@@ -60,6 +60,8 @@
     [self createSubviews];
     
     [self createBottomView];
+    
+    [self usableListCount ];
     [self requestUserRedEnvelope];
     [self requestNoUserRedEnvelope];
 }
@@ -103,18 +105,105 @@
     
     _noUseTableView = [[UseRedElpTableView alloc] initWithFrame:CGRectMake(KScreenWidth, 0, KScreenWidth, _scrollView.height)];
     [_scrollView addSubview:_noUseTableView];
-
-    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self requestUserRedEnvelope];
-    }];
-    _useTableView.mj_header = useHeader;
     
-    MJRefreshNormalHeader *noUseHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self requestNoUserRedEnvelope];
-    }];
-    _noUseTableView.mj_header = noUseHeader;
+    [self setRefreshHeader:_useTableView];
+    [self setRefreshHeader:_noUseTableView];
+//    _useTableView.mj_header = header;
+//    _noUseTableView.mj_header = header;
 }
-
+- (void)setRefreshHeader:(UITableView *)tableView {
+    //下拉时动画
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        
+        switch (_selectBtnTag) {
+            case 200:
+                
+                [self requestUserRedEnvelope];
+                break;
+            case 201:
+                
+                [self requestNoUserRedEnvelope];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    tableView.mj_header = header;
+}
+#pragma mark - 数据请求
+//获取红包个数
+- (void)usableListCount{
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        return;
+    }
+    NSNumber *userId = userDic[@"id"];
+    //    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"userId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UsableListCount_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              //              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  
+                  UIButton *button = [self.view viewWithTag:200];
+                  [button setTitle:[NSString stringWithFormat:@"可使用(%@)",json[@"data"]] forState:UIControlStateNormal];
+              }
+              //              [_collectionView reloadData];
+              
+          } failure:^(NSError *error) {
+              
+              //              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
 - (void)requestUserRedEnvelope {
     //取出存储的用户信息
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];

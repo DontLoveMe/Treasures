@@ -102,11 +102,21 @@
         }
     }
     if (![[dic objectForKey:@"photoUrl"] isKindOfClass:[NSNull class]]) {
-        [cell.headPic setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+        
+        NSString *photoUrl = dic[@"photoUrl"];
+        NSURL *imgUrl;
+        if ([photoUrl hasPrefix:@"http"]) {
+            imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",photoUrl]];
+        }else{
+            imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",AliyunPIC_URL,photoUrl]];
+        }
+        [cell.headPic setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+     
     }else{
         [cell.headPic setImage:[UIImage imageNamed:@"我的-头像"]];
     }
     
+    cell.headPic.buyUserId = [dic[@"buyUserId"] integerValue];
     if (![[dic objectForKey:@"nickName"] isKindOfClass:[NSNull class]]) {
         
         cell.userName.text = [dic objectForKey:@"nickName"];

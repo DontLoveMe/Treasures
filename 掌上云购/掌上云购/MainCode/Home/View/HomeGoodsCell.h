@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 
 @property (weak, nonatomic) IBOutlet ProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIImageView *typeMarkImgView;
 
 - (IBAction)addToCart:(id)sender;
 

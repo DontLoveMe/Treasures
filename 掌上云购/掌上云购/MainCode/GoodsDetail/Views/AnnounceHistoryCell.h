@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HisIconImageView.h"
 
 @interface AnnounceHistoryCell : UITableViewCell
 
 
 @property (weak, nonatomic) IBOutlet UILabel *goodsMsgLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *picImgView;
+@property (weak, nonatomic) IBOutlet HisIconImageView *picImgView;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *userId;
 @property (weak, nonatomic) IBOutlet UILabel *luckyNum;

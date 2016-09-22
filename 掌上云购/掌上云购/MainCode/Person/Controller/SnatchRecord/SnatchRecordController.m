@@ -157,6 +157,10 @@
             _selectButtonTag = 200;
         }
     }
+    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 29, KScreenWidth, 1)];
+    lineView.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
+    [self.view addSubview:lineView];
+
     //按钮下方的横线
     _lineView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth/3-40)/2, 29, 40, 1)];
     _lineView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
@@ -183,18 +187,76 @@
     UINib *nib2 = [UINib nibWithNibName:@"SnatchRecordingCell" bundle:nil];
     [_tableView registerNib:nib2 forCellReuseIdentifier:_identify2];
     
-    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+  
+    //下拉时动画
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        
         _page = 1;
         [self changeStateData:_selectButtonTag];
         
     }];
-    _tableView.mj_header = useHeader;
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    _tableView.mj_header = header;
+    
     
     MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         if (_page == 1) {
             _page = 2;
         }
-        [self changeStateData:_selectButtonTag];;
+
+        switch (_selectButtonTag) {
+            case 200:
+                [self requestData:nil];
+                break;
+            case 201:
+                [self requestData:@1];
+                break;
+            case 202:
+                [self requestData:@3];
+                break;
+                
+            default:
+                break;
+        }
     }];
     _tableView.mj_footer = footer;
     
@@ -208,17 +270,24 @@
     [self.view addSubview:_loveView];
     
     
-    _noView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth-220)/2, (KScreenHeight-240)/2-50, 220, 240)];
+    _noView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth-220)/2, (KScreenHeight-240)/2-100, 220, 240)];
     //    _noView.backgroundColor = [UIColor grayColor];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((_noView.width-150)/2, 15, 150, 150)];
     imgView.image = [UIImage imageNamed:@"无记录"];
     [_noView addSubview:imgView];
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imgView.bottom +5, _noView.width, 16)];
+    label.text = @"你还没有记录哦";
+    label.textColor = [UIColor darkGrayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13];
+    [_noView addSubview:label];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((_noView.width-100)/2, CGRectGetMaxY(imgView.frame)+10, 100, 40);
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.frame = CGRectMake((_noView.width-100)/2, label.bottom+5, 100, 40);
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button setTitle:@"立即购买" forState:UIControlStateNormal];
-    //    [button setBackgroundImage:[UIImage imageNamed:@"normal"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buyAction:) forControlEvents:UIControlEventTouchUpInside];
     [_noView addSubview:button];
     
@@ -302,7 +371,6 @@
         SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
-        cell.luckyView.hidden = YES;
         cell.rcModel = rcModel;
         return cell;
     }

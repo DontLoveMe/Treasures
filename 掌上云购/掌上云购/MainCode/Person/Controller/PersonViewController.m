@@ -33,6 +33,8 @@
 @property (nonatomic,strong)UIButton *setBtn;
 
 
+@property (nonatomic,strong)UIButton *redBtn;
+
 @end
 
 @implementation PersonViewController
@@ -122,6 +124,7 @@
     }else {
         
         [self getUserInfo];
+        [self usableListCount];
     }
 
 }
@@ -274,10 +277,10 @@
             headerView.nameLabel.text = @"未登录";
         }
         if (userDic[@"money"]!=nil&&![userDic[@"money"] isEqual:[NSNull null]]) {
-            NSString *money = [NSString stringWithFormat:@"余额：%@",userDic[@"money"]];
+            NSString *money = [NSString stringWithFormat:@"余额:%@",userDic[@"money"]];
             [headerView.balanceButton setTitle:money forState:UIControlStateNormal];
         }else{
-            NSString *money = [NSString stringWithFormat:@"余额：0"];
+            NSString *money = [NSString stringWithFormat:@"余额:0"];
             [headerView.balanceButton setTitle:money forState:UIControlStateNormal];
         }
         if (userDic[@"photoUrl"]!=nil&&![userDic[@"photoUrl"] isEqual:[NSNull null]]) {
@@ -286,6 +289,7 @@
             _bgIconView.image = [UIImage imageNamed:@"我的-头像"];
         }
         
+        _redBtn = headerView.integralButton;
         return headerView;
     }
     return nil;
@@ -460,5 +464,34 @@
               NSLogZS(@"%@",error);
           }];
 }
-
+//获取红包个数
+- (void)usableListCount{
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        return;
+    }
+    NSNumber *userId = userDic[@"id"];
+    //    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"userId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UsableListCount_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              //              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              if (isSuccess) {
+                  [_redBtn setTitle:[NSString stringWithFormat:@"红包:%@",json[@"data"]] forState:UIControlStateNormal];
+              }
+//              [_collectionView reloadData];
+              
+          } failure:^(NSError *error) {
+              
+              //              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
 @end

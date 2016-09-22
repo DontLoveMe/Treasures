@@ -7,6 +7,7 @@
 //
 
 #import "HisCenterController.h"
+#import "HisSnatchRecordCell.h"
 #import "SnatchRecordCell.h"
 #import "SnatchRecordingCell.h"
 #import "RecordModel.h"
@@ -75,14 +76,16 @@
     _tableView.dataSource = self;
     
 
-    UINib *nib = [UINib nibWithNibName:@"SnatchRecordCell" bundle:nil];
-    [_tableView registerNib:nib forCellReuseIdentifier:@"SnatchRecordCell"];
+    UINib *nib = [UINib nibWithNibName:@"HisSnatchRecordCell" bundle:nil];
+    [_tableView registerNib:nib forCellReuseIdentifier:@"HisSnatchRecordCell"];
     
     UINib *nib2 = [UINib nibWithNibName:@"SnatchRecordingCell" bundle:nil];
     [_tableView registerNib:nib2 forCellReuseIdentifier:@"SnatchRecordingCell"];
+    UINib *nib3 = [UINib nibWithNibName:@"SnatchRecordCell" bundle:nil];
+    [_tableView registerNib:nib3 forCellReuseIdentifier:@"SnatchRecordCell"];
     
-    UINib *nib3 = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];
-    [_tableView registerNib:nib3 forCellReuseIdentifier:@"InordertoshareCell"];
+    UINib *nib4 = [UINib nibWithNibName:@"InordertoshareCell" bundle:nil];
+    [_tableView registerNib:nib4 forCellReuseIdentifier:@"InordertoshareCell"];
     
     
 //    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -139,10 +142,15 @@
                       [_bgIconView setImageWithURL:[NSURL URLWithString:userInfo[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"我的-头像"]];
                       
                       
+                  }else {
+                      _iconView.image = [UIImage imageNamed:@"我的-头像"];
+                      _bgIconView.image = [UIImage imageNamed:@"我的-头像"];
                   }
                   if (![userInfo[@"nickName"] isEqual:[NSNull null]]) {
                       _nikeNLabel.text = userInfo[@"nickName"];
                   }
+                  
+                  
               }
               
               
@@ -333,7 +341,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_type == 0){
         RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
-        if (rcModel.status == 3) {
+        if (rcModel.saleDraw.status == 3) {
             SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor clearColor];
@@ -347,7 +355,9 @@
         return cell;
     }else if (_type == 1) {
         RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
-        SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordCell" forIndexPath:indexPath];
+        HisSnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HisSnatchRecordCell" forIndexPath:indexPath];
+        cell.userIDLb.text = [NSString stringWithFormat:@"用户ID：%ld",_buyUserId];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
 //        cell.luckyView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.7];
@@ -409,10 +419,15 @@
 //            _selectButtonTag = 200;
         }
     }
+    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 29, KScreenWidth, 1)];
+    line.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    [headerView addSubview:line];
     //按钮下方的横线
     _lineView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth/3*(_selectButtonTag-200), 29, KScreenWidth/3, 1)];
     _lineView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     [headerView addSubview:_lineView];
+    
+   
     return headerView;
 }
 #pragma mark - 按钮的点击

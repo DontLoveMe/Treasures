@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -76,6 +76,13 @@
                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M3P-HP-bWF">
+                        <rect key="frame" x="135" y="5" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="EmH-DF-nob"/>
+                            <constraint firstAttribute="width" constant="25" id="RfQ-kh-4cl"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -86,8 +93,10 @@
                 <constraint firstAttribute="bottom" secondItem="AU8-tT-Wvl" secondAttribute="bottom" constant="5" id="G8Z-Gr-WF4"/>
                 <constraint firstItem="AU8-tT-Wvl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Ite-mT-LOI"/>
                 <constraint firstItem="AU8-tT-Wvl" firstAttribute="top" secondItem="CjR-3X-5Ju" secondAttribute="bottom" constant="2" id="K04-OP-W7q"/>
+                <constraint firstAttribute="trailing" secondItem="M3P-HP-bWF" secondAttribute="trailing" constant="5" id="Lfp-ro-Wn3"/>
                 <constraint firstAttribute="bottom" secondItem="fNd-uo-MmN" secondAttribute="bottom" constant="5" id="MPb-Ly-faw"/>
                 <constraint firstItem="Rqs-Ke-tgH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VU2-NQ-sVR"/>
+                <constraint firstItem="M3P-HP-bWF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="VjW-JB-ZFv"/>
                 <constraint firstItem="EsX-iY-g5r" firstAttribute="top" secondItem="Rqs-Ke-tgH" secondAttribute="bottom" constant="1" id="a89-re-BaQ"/>
                 <constraint firstItem="CjR-3X-5Ju" firstAttribute="leading" secondItem="Fm3-EJ-AIw" secondAttribute="trailing" id="bhH-3v-cse"/>
                 <constraint firstItem="Fm3-EJ-AIw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dr5-BB-Frh"/>
@@ -108,6 +117,7 @@
                 <outlet property="progressView" destination="AU8-tT-Wvl" id="d0s-71-mzj"/>
                 <outlet property="titleLabel" destination="EsX-iY-g5r" id="uJn-Ob-dIV"/>
                 <outlet property="totalLabel" destination="ldj-kw-UFB" id="2iO-eD-zJn"/>
+                <outlet property="typeMarkImgView" destination="M3P-HP-bWF" id="Q5M-c6-R3Z"/>
             </connections>
             <point key="canvasLocation" x="274.5" y="285"/>
         </collectionViewCell>

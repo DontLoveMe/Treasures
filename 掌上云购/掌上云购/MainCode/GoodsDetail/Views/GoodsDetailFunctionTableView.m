@@ -7,6 +7,7 @@
 //
 
 #import "GoodsDetailFunctionTableView.h"
+#import "HisIconImageView.h"
 
 @implementation GoodsDetailFunctionTableView
 
@@ -290,11 +291,20 @@
         [goodsDetailView addSubview:line];
         
         //图片
-        UIImageView *picView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 16, 75, 80)];
-        NSArray *picList = _dataDic[@"proPictureList"];
-        if (picList.count > 0) {
-            NSDictionary *imgDic = [picList firstObject];
-            NSURL *imgUrl = [NSURL URLWithString:imgDic[@"img120"]];
+        HisIconImageView *picView = [[HisIconImageView alloc] initWithFrame:CGRectMake(8, 16, 75, 75)];
+        picView.layer.cornerRadius = 75/2;
+        picView.layer.masksToBounds = YES;
+        NSDictionary *saleDraw = _dataDic[@"saleDraw"];
+        picView.buyUserId = [saleDraw[@"drawUserId"] integerValue];
+        if (![saleDraw[@"photoUrl"] isKindOfClass:[NSNull class]]) {
+            NSString *photoUrl = saleDraw[@"photoUrl"];
+            NSURL *imgUrl;
+            if ([photoUrl hasPrefix:@"http"]) {
+                imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",saleDraw[@"photoUrl"]]];
+            }else{
+               imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",AliyunPIC_URL,saleDraw[@"photoUrl"]]];
+            }
+
             [picView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         }else {
             
@@ -567,6 +577,10 @@
     CountWayController *CWVC = [[CountWayController alloc] init];
     CWVC.isAnnounced = _isAnnounced;
     CWVC.drawID = [_dataDic objectForKey:@"drawId"];
+    if (![_dataDic[@"isSpeed"] isKindOfClass:[NSNull class]]) {
+        
+        CWVC.isSpeed = [[_dataDic objectForKey:@"isSpeed"] boolValue];
+    }
     [[self viewController].navigationController pushViewController:CWVC
                                                           animated:YES];
 

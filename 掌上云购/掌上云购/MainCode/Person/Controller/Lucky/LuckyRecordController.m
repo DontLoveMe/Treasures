@@ -11,6 +11,7 @@
 #import "RecordModel.h"
 #import "ConfirmDataController.h"
 #import "ConfirmGoodsController.h"
+#import "GoodsDetailController.h"
 
 @interface LuckyRecordController ()
 
@@ -116,14 +117,55 @@
     _identify = @"LuckyRecordCell";
     UINib *nib = [UINib nibWithNibName:@"LuckyRecordCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
-    
-    
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
+    //下拉时动画
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        
         _page = 1;
         [self requestData];
+        
     }];
-    _tableView.mj_header = header;
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
     
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    _tableView.mj_header = header;
     MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         if (_page == 1) {
             _page = 2;
@@ -148,6 +190,14 @@
     [cell setSuerBlock:^{
         [weakSelf confirmAddress:rModel];
     }];
+    NSInteger orderStatus = [rModel.orderStatus integerValue];
+    if (orderStatus == 4) {
+        [cell.isSunBtn setTitle:@"已晒单" forState:UIControlStateNormal];
+        cell.isSunBtn.userInteractionEnabled = NO;
+    }else {
+        [cell.isSunBtn setTitle:@"未晒单" forState:UIControlStateNormal];
+    }
+    
     if ([rModel.isVirtualgoods boolValue]) {
         //"orderStatus": "0",//订单状态，0：已支付1：已确认收货地址2：已发货3：已签收4：已晒单5：已确认物品6：已选择方式7：已发卡密或充值到余额（虚拟商品）8：未确认地址取消订单',
         NSInteger orderStatus = [rModel.orderStatus integerValue];
@@ -194,7 +244,15 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 155;
+    return 158;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RecordModel *rModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
+    GoodsDetailController *gsDVC = [[GoodsDetailController alloc] init];
+    gsDVC.goodsId = rModel.ID;
+    gsDVC.drawId = [NSString stringWithFormat:@"%ld",(long)rModel.saleDraw.drawId];
+    gsDVC.isAnnounced = 3;
+    [self.navigationController pushViewController:gsDVC animated:YES];
 }
 - (void)confirmAddress:(RecordModel *)rmodel {
     
@@ -213,4 +271,6 @@
 
     
 }
+
+
 @end

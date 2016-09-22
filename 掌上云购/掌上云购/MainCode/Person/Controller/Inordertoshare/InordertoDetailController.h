@@ -12,5 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, assign)NSInteger shareID;
-
+@property (nonatomic,assign)NSInteger buyUserId;
 @end

@@ -128,8 +128,10 @@
     _collectionView = [[ProductCollectionView alloc] initWithFrame:CGRectMake(segmentViewWidth, 36, [UIScreen mainScreen].bounds.size.width-segmentViewWidth,[UIScreen mainScreen].bounds.size.height-64-36-49)];
     _collectionView.hidden = NO;
     [self.view addSubview:_collectionView];
-    
-    MJRefreshNormalHeader *useHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+  
+    //下拉时动画
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        
         _page = 1;
         switch (_selectBtn.tag - 100) {
             case 1:
@@ -154,7 +156,47 @@
         }
         
     }];
-    _collectionView.mj_header = useHeader;
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    _collectionView.mj_header = header;
     
     MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         if (_page == 1) {
@@ -257,6 +299,9 @@
     }else {
         if ([_segmentDic[@"id"] isKindOfClass:[NSNull class]]) {
             return;
+        }
+        if (_orderType == nil) {
+            _orderType = @"3";
         }
         NSString *categoryId = _segmentDic[@"id"];
         [params setObject:@{@"orderType":_orderType,

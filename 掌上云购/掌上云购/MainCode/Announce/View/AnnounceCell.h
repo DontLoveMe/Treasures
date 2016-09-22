@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *peopleNumLb;
 @property (weak, nonatomic) IBOutlet UILabel *luckyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *announceTimeLb;
+@property (weak, nonatomic) IBOutlet UIImageView *typeMarkImgView;
 
 @property (strong, nonatomic)  CountDown *countDown;
 

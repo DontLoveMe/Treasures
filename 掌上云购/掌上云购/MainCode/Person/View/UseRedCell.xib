@@ -100,6 +100,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="红包.png" width="128" height="128"/>
+        <image name="红包.png" width="31" height="46"/>
     </resources>
 </document>
