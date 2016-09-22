@@ -226,48 +226,91 @@
 }
 //确认支付
 - (void)confirmAction:(UIButton *)button {
-    RechargeResultController *rrVC = [[RechargeResultController alloc] init];
-    [self.navigationController pushViewController:rrVC animated:YES];
-    if (_moneyStr.length == 0) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                                 message:@"请选择充值金额" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 [alertController dismissViewControllerAnimated:YES
-                                                                                                     completion:nil];
-                                                             }];
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController
-                           animated:YES
-                         completion:nil];
-        return;
-    }
-    NSLogZS(@"%@--%@",_moneyStr,_mannerStr);
-//    [self rechargeRequest];
+//    
+//    RechargeResultController *rrVC = [[RechargeResultController alloc] init];
+//    [self.navigationController pushViewController:rrVC animated:YES];
+//    if (_moneyStr.length == 0) {
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+//                                                                                 message:@"请选择充值金额" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+//                                                               style:UIAlertActionStyleCancel
+//                                                             handler:^(UIAlertAction * _Nonnull action) {
+//                                                                 [alertController dismissViewControllerAnimated:YES
+//                                                                                                     completion:nil];
+//                                                             }];
+//        [alertController addAction:cancelAction];
+//        [self presentViewController:alertController
+//                           animated:YES
+//                         completion:nil];
+//        return;
+//    }
+//    NSLogZS(@"%@--%@",_moneyStr,_mannerStr);
+    [self rechargeRequest];
 }
 
 - (void)rechargeRequest {
     //取出存储的用户信息
-        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         NSNumber *userId = userDic[@"id"];
     [self showHUD:@"正在充值"];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:userId forKey:@"userId"];
-    [params setObject:_moneyStr forKey:@"virtualMoney"];
-    [params setObject:_moneyStr forKey:@"fee"];
-    [params setObject:@1 forKey:@"rechargeType"];
-    [params setObject:@20150806125346 forKey:@"serialNo"];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    [params setObject:userId forKey:@"userId"];
+//    [params setObject:_moneyStr forKey:@"virtualMoney"];
+//    [params setObject:_moneyStr forKey:@"fee"];
+//    [params setObject:@1 forKey:@"rechargeType"];
+//    [params setObject:@20150806125346 forKey:@"serialNo"];
+//
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,WeixinRecharge_URL];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"2" forKey:@"userId"];
+    [params setObject:@"0.01" forKey:@"virtualMoney"];
+    [params setObject:@"0.01" forKey:@"fee"];
+    [params setObject:@"2" forKey:@"rechargeType"];
+    
+    NSDate  *nowDate = [NSDate date];
+    NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
+    
+    [params setObject:[NSNumber numberWithDouble:timeInterval * 1000000] forKey:@"serialNo"];
+    
+    
+//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,WeixinRecharge_URL];
+    NSString *url = @"http://192.168.0.191:8080/pcpi/saleMoneyRecharge/recharge";
     [ZSTools post:url
            params:params
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:@"充值成功"];
+//              [self hideSuccessHUD:@"充值成功"];
+              NSDictionary *dataDic = [json objectForKey:@"data"];
               if (isSuccess) {
+                  
+                  JHFOrder *order = [[JHFOrder alloc] init];
+                
+                  order.version = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"version"]];
+                  order.extra = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"extra"]];
+                  order.merid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merid"]];
+                  NSString *mernameStr = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"mername"]];
+                  order.mername =  [NSString stringWithString:[mernameStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+
+                  order.policyid = @"000001";
+                  order.merorderid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merorderid"]];
+                  order.paymoney = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"paymoney"]];
+                  NSString *productnameStr = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"productname"]];
+                  order.productname = [NSString stringWithString:[productnameStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                  order.userid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"userid"]];
+                  order.md5 = [self MD5:order withKey:[dataDic objectForKey:@"md5"]];
+                  order.cardtype = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"cardtype"]];
                
+                  UINavigationController *navigationController = [[JHFSDK sharedInstance] payOrder:order fromScheme:@"juhefu" viewController:self callback:^(NSDictionary *resultDict) {
+                      NSLog(@"resultDict = %@", resultDict);
+                      [self dismissViewControllerAnimated:YES completion:nil];
+                  }];
+                  
+                  if(navigationController!=nil) {
+                      [self presentViewController:navigationController animated:YES completion:nil];
+                  }
+                  
               }
           } failure:^(NSError *error) {
               
@@ -277,5 +320,40 @@
               
 
 }
+
+// MD5, 因为涉及到商户私钥，建议放在商户服务端进行
+- (NSString*)MD5:(JHFOrder *)order withKey:(NSString *)md5Key{
+    
+    NSArray *array = @[[NSString stringWithFormat:@"version=%@", order.version?:@""],
+                       [NSString stringWithFormat:@"merid=%@", order.merid?:@""],
+                       [NSString stringWithFormat:@"mername=%@", order.mername?:@""],
+                       [NSString stringWithFormat:@"policyid=%@", order.policyid?:@""],
+                       [NSString stringWithFormat:@"merorderid=%@", order.merorderid?:@""],
+                       [NSString stringWithFormat:@"paymoney=%@", order.paymoney?:@""],
+                       [NSString stringWithFormat:@"productname=%@", order.productname?:@""],
+                       [NSString stringWithFormat:@"productdesc=%@", order.productdesc?:@""],
+                       [NSString stringWithFormat:@"userid=%@", order.userid?:@""],
+                       [NSString stringWithFormat:@"username=%@", order.username?:@""],
+                       [NSString stringWithFormat:@"email=%@", order.email?:@""],
+                       [NSString stringWithFormat:@"phone=%@", order.phone?:@""],
+                       [NSString stringWithFormat:@"extra=%@", order.extra?:@""],
+                       [NSString stringWithFormat:@"custom=%@", order.custom?:@""]];
+    
+    NSString *string =  [array componentsJoinedByString:@"&"];
+    string = [NSString stringWithFormat:@"%@%@", string, md5Key];
+    
+    const char *pointer = [string UTF8String];
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    
+    CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
+    
+    NSMutableString *md5String = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [md5String appendFormat:@"%02x",md5Buffer[i]];
+    
+    return md5String;
+    
+}
+
 
 @end

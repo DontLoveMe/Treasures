@@ -192,6 +192,14 @@
 		D6FB47821D92815D00C64DC4 /* 幸运号码背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */; };
 		D6FB47831D92815D00C64DC4 /* Label背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */; };
 		D6FB47841D92815D00C64DC4 /* Label背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */; };
+		DD06FAE31D93ACBB00C850B1 /* wx_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD06FABD1D93ACBB00C850B1 /* wx_logo@2x.png */; };
+		DD06FAE41D93ACBB00C850B1 /* zfb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD06FABE1D93ACBB00C850B1 /* zfb@2x.png */; };
+		DD06FAE51D93ACBB00C850B1 /* libJHFSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06FAC11D93ACBB00C850B1 /* libJHFSDK.a */; };
+		DD06FAE61D93ACBB00C850B1 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DD06FAC41D93ACBB00C850B1 /* AlipaySDK.bundle */; };
+		DD06FAE71D93ACBB00C850B1 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06FAC51D93ACBB00C850B1 /* AlipaySDK.framework */; };
+		DD06FAE91D93ACBB00C850B1 /* libSPaySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06FADD1D93ACBB00C850B1 /* libSPaySDK.a */; };
+		DD06FAEA1D93ACBB00C850B1 /* SPaySDKResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DD06FADE1D93ACBB00C850B1 /* SPaySDKResource.bundle */; };
+		DD06FAEB1D93ACBB00C850B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06FAE01D93ACBB00C850B1 /* libWeChatSDK.a */; };
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
 		DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */; };
 		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
@@ -749,6 +757,36 @@
 		D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运号码背景@3x.png"; sourceTree = "<group>"; };
 		D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@2x.png"; sourceTree = "<group>"; };
 		D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@3x.png"; sourceTree = "<group>"; };
+		DD06FABD1D93ACBB00C850B1 /* wx_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wx_logo@2x.png"; sourceTree = "<group>"; };
+		DD06FABE1D93ACBB00C850B1 /* zfb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zfb@2x.png"; sourceTree = "<group>"; };
+		DD06FABF1D93ACBB00C850B1 /* JHFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHFOrder.h; sourceTree = "<group>"; };
+		DD06FAC01D93ACBB00C850B1 /* JHFSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHFSDK.h; sourceTree = "<group>"; };
+		DD06FAC11D93ACBB00C850B1 /* libJHFSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJHFSDK.a; sourceTree = "<group>"; };
+		DD06FAC41D93ACBB00C850B1 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		DD06FAC51D93ACBB00C850B1 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		DD06FACB1D93ACBB00C850B1 /* NSDictionary+SPayUtilsExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SPayUtilsExtras.h"; sourceTree = "<group>"; };
+		DD06FACC1D93ACBB00C850B1 /* NSString+SPayUtilsExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SPayUtilsExtras.h"; sourceTree = "<group>"; };
+		DD06FACD1D93ACBB00C850B1 /* SPayClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClient.h; sourceTree = "<group>"; };
+		DD06FACE1D93ACBB00C850B1 /* SPayClientAlipayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientAlipayConfigModel.h; sourceTree = "<group>"; };
+		DD06FACF1D93ACBB00C850B1 /* SPayClientConstEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientConstEnum.h; sourceTree = "<group>"; };
+		DD06FAD01D93ACBB00C850B1 /* SPayClientHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientHeaders.h; sourceTree = "<group>"; };
+		DD06FAD11D93ACBB00C850B1 /* SPayClientPayAppPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayAppPayManager.h; sourceTree = "<group>"; };
+		DD06FAD21D93ACBB00C850B1 /* SPayClientPayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayDetailModel.h; sourceTree = "<group>"; };
+		DD06FAD31D93ACBB00C850B1 /* SPayClientPayHelpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayHelpModel.h; sourceTree = "<group>"; };
+		DD06FAD41D93ACBB00C850B1 /* SPayClientPayStateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayStateModel.h; sourceTree = "<group>"; };
+		DD06FAD51D93ACBB00C850B1 /* SPayClientPaySuccessDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPaySuccessDetailModel.h; sourceTree = "<group>"; };
+		DD06FAD61D93ACBB00C850B1 /* SPayClientPaySuccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPaySuccessModel.h; sourceTree = "<group>"; };
+		DD06FAD71D93ACBB00C850B1 /* SPayClientQQConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientQQConfigModel.h; sourceTree = "<group>"; };
+		DD06FAD81D93ACBB00C850B1 /* SPayClientReverseScanPayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientReverseScanPayDetailModel.h; sourceTree = "<group>"; };
+		DD06FAD91D93ACBB00C850B1 /* SPayClientWapPayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientWapPayDetailModel.h; sourceTree = "<group>"; };
+		DD06FADA1D93ACBB00C850B1 /* SPayClientWechatConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientWechatConfigModel.h; sourceTree = "<group>"; };
+		DD06FADB1D93ACBB00C850B1 /* SPayClientXMLWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientXMLWriter.h; sourceTree = "<group>"; };
+		DD06FADC1D93ACBB00C850B1 /* SPBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseModel.h; sourceTree = "<group>"; };
+		DD06FADD1D93ACBB00C850B1 /* libSPaySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSPaySDK.a; sourceTree = "<group>"; };
+		DD06FADE1D93ACBB00C850B1 /* SPaySDKResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SPaySDKResource.bundle; sourceTree = "<group>"; };
+		DD06FAE01D93ACBB00C850B1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		DD06FAE11D93ACBB00C850B1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		DD06FAE21D93ACBB00C850B1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
 		DD1B9E461D6EF01C002E9CE9 /* CartTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTools.m; sourceTree = "<group>"; };
 		DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGoodsHeadView.h; sourceTree = "<group>"; };
@@ -1189,6 +1227,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6D828575B1F69522EEF55A2 /* libPods-掌上云购.a in Frameworks */,
+				DD06FAE91D93ACBB00C850B1 /* libSPaySDK.a in Frameworks */,
+				DD06FAE51D93ACBB00C850B1 /* libJHFSDK.a in Frameworks */,
+				DD06FAE71D93ACBB00C850B1 /* AlipaySDK.framework in Frameworks */,
+				DD06FAEB1D93ACBB00C850B1 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1411,6 +1453,99 @@
 				D6E0F3771D6C617A00E962D1 /* AlertController.m */,
 			);
 			path = "提示框";
+			sourceTree = "<group>";
+		};
+		DD06FABA1D93ACBB00C850B1 /* 聚合富 */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FABB1D93ACBB00C850B1 /* JHFSDK */,
+			);
+			path = "聚合富";
+			sourceTree = "<group>";
+		};
+		DD06FABB1D93ACBB00C850B1 /* JHFSDK */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FABC1D93ACBB00C850B1 /* Images */,
+				DD06FABF1D93ACBB00C850B1 /* JHFOrder.h */,
+				DD06FAC01D93ACBB00C850B1 /* JHFSDK.h */,
+				DD06FAC11D93ACBB00C850B1 /* libJHFSDK.a */,
+				DD06FAC21D93ACBB00C850B1 /* ThirdParty */,
+			);
+			path = JHFSDK;
+			sourceTree = "<group>";
+		};
+		DD06FABC1D93ACBB00C850B1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FABD1D93ACBB00C850B1 /* wx_logo@2x.png */,
+				DD06FABE1D93ACBB00C850B1 /* zfb@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		DD06FAC21D93ACBB00C850B1 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FAC31D93ACBB00C850B1 /* AliPay */,
+				DD06FAC91D93ACBB00C850B1 /* SPaySDK */,
+				DD06FADF1D93ACBB00C850B1 /* WXPay */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		DD06FAC31D93ACBB00C850B1 /* AliPay */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FAC41D93ACBB00C850B1 /* AlipaySDK.bundle */,
+				DD06FAC51D93ACBB00C850B1 /* AlipaySDK.framework */,
+			);
+			path = AliPay;
+			sourceTree = "<group>";
+		};
+		DD06FAC91D93ACBB00C850B1 /* SPaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FACA1D93ACBB00C850B1 /* include */,
+				DD06FADD1D93ACBB00C850B1 /* libSPaySDK.a */,
+				DD06FADE1D93ACBB00C850B1 /* SPaySDKResource.bundle */,
+			);
+			path = SPaySDK;
+			sourceTree = "<group>";
+		};
+		DD06FACA1D93ACBB00C850B1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FACB1D93ACBB00C850B1 /* NSDictionary+SPayUtilsExtras.h */,
+				DD06FACC1D93ACBB00C850B1 /* NSString+SPayUtilsExtras.h */,
+				DD06FACD1D93ACBB00C850B1 /* SPayClient.h */,
+				DD06FACE1D93ACBB00C850B1 /* SPayClientAlipayConfigModel.h */,
+				DD06FACF1D93ACBB00C850B1 /* SPayClientConstEnum.h */,
+				DD06FAD01D93ACBB00C850B1 /* SPayClientHeaders.h */,
+				DD06FAD11D93ACBB00C850B1 /* SPayClientPayAppPayManager.h */,
+				DD06FAD21D93ACBB00C850B1 /* SPayClientPayDetailModel.h */,
+				DD06FAD31D93ACBB00C850B1 /* SPayClientPayHelpModel.h */,
+				DD06FAD41D93ACBB00C850B1 /* SPayClientPayStateModel.h */,
+				DD06FAD51D93ACBB00C850B1 /* SPayClientPaySuccessDetailModel.h */,
+				DD06FAD61D93ACBB00C850B1 /* SPayClientPaySuccessModel.h */,
+				DD06FAD71D93ACBB00C850B1 /* SPayClientQQConfigModel.h */,
+				DD06FAD81D93ACBB00C850B1 /* SPayClientReverseScanPayDetailModel.h */,
+				DD06FAD91D93ACBB00C850B1 /* SPayClientWapPayDetailModel.h */,
+				DD06FADA1D93ACBB00C850B1 /* SPayClientWechatConfigModel.h */,
+				DD06FADB1D93ACBB00C850B1 /* SPayClientXMLWriter.h */,
+				DD06FADC1D93ACBB00C850B1 /* SPBaseModel.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		DD06FADF1D93ACBB00C850B1 /* WXPay */ = {
+			isa = PBXGroup;
+			children = (
+				DD06FAE01D93ACBB00C850B1 /* libWeChatSDK.a */,
+				DD06FAE11D93ACBB00C850B1 /* WXApi.h */,
+				DD06FAE21D93ACBB00C850B1 /* WXApiObject.h */,
+			);
+			path = WXPay;
 			sourceTree = "<group>";
 		};
 		DD1B9E441D6EF004002E9CE9 /* 购物车逻辑 */ = {
@@ -2138,6 +2273,7 @@
 		DDF92CAA1D6A9C4F009D5A1E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				DD06FABA1D93ACBB00C850B1 /* 聚合富 */,
 				D69BBF201D8FBBCC005F360C /* 导航栏渐变 */,
 				D6C09BD81D79150F00C092A7 /* TZImagePickerController */,
 				DD1B9E441D6EF004002E9CE9 /* 购物车逻辑 */,
@@ -2528,6 +2664,7 @@
 				D60216691D87AA3600316614 /* 按钮框-白@3x.png in Resources */,
 				DD71AC441D92755A005CBFFD /* dropdown_zsyg_091@2x.png in Resources */,
 				DDF92CA11D6A9C3D009D5A1E /* RechargeCell.xib in Resources */,
+				DD06FAE31D93ACBB00C850B1 /* wx_logo@2x.png in Resources */,
 				DDF92C7D1D6A9C3D009D5A1E /* ConfirmDataController.xib in Resources */,
 				D6FB477F1D92815D00C64DC4 /* 背景长黄@2x.png in Resources */,
 				D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */,
@@ -2659,6 +2796,7 @@
 				DD71AC061D92755A005CBFFD /* dropdown_zsyg_029@2x.png in Resources */,
 				D602165E1D87A20200316614 /* 返回-黑@2x.png in Resources */,
 				DD757F331D864E6E00A38058 /* 夺宝-selected@3x.png in Resources */,
+				DD06FAEA1D93ACBB00C850B1 /* SPaySDKResource.bundle in Resources */,
 				DD71AC521D92755A005CBFFD /* dropdown_zsyg_105@2x.png in Resources */,
 				DD71AC531D92755A005CBFFD /* dropdown_zsyg_106@2x.png in Resources */,
 				DD757F3D1D864E6E00A38058 /* 清单@3x.png in Resources */,
@@ -2679,6 +2817,7 @@
 				D6A2216E1D8815A40094C3BC /* 购物车图标@2x.png in Resources */,
 				DD71AC381D92755A005CBFFD /* dropdown_zsyg_079@2x.png in Resources */,
 				D65B64C31D86808400D48834 /* 用户@2x.png in Resources */,
+				DD06FAE41D93ACBB00C850B1 /* zfb@2x.png in Resources */,
 				DDF92C5A1D6A9C3D009D5A1E /* SegmentController.xib in Resources */,
 				D65B64CA1D86829500D48834 /* 掌上云购@3x.png in Resources */,
 				D65B646F1D865CDD00D48834 /* 充值记录@3x.png in Resources */,
@@ -2739,6 +2878,7 @@
 				DDF92C901D6A9C3D009D5A1E /* AddressCell.xib in Resources */,
 				D6BB14B31D894C130045F8EB /* 箭头-右@3x.png in Resources */,
 				DDF92C8D1D6A9C3D009D5A1E /* SnatchRecordController.xib in Resources */,
+				DD06FAE61D93ACBB00C850B1 /* AlipaySDK.bundle in Resources */,
 				D65B64BF1D86808400D48834 /* 微博@3x.png in Resources */,
 				DDF92D911D6A9C5B009D5A1E /* sort106_normal.png in Resources */,
 				DD71AC2C1D92755A005CBFFD /* dropdown_zsyg_067@2x.png in Resources */,
@@ -3199,10 +3339,20 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK/ThirdParty/AliPay",
+				);
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK/ThirdParty/SPaySDK",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK/ThirdParty/WXPay",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg.raise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3218,10 +3368,20 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK/ThirdParty/AliPay",
+				);
 				GCC_PREFIX_HEADER = "掌上云购/PrefixHeader.pch";
 				INFOPLIST_FILE = "掌上云购/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK/ThirdParty/SPaySDK",
+					"$(PROJECT_DIR)/掌上云购/Tools/聚合富/JHFSDK/ThirdParty/WXPay",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsyg.raise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

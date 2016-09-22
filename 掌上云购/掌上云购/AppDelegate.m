@@ -253,8 +253,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo{
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
+
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[JHFSDK sharedInstance] applicationWillEnterForeground:application];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -263,6 +264,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo{
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    // 支付结果处理
+    [[JHFSDK sharedInstance] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDict) {
+        // standbyCallback为备用回调，当调起第三方支付客户端(比如：支付宝，微信支付)在操作时，商户app进程在后台被结束，只能通过这个block输出支付结果。
+    }];
+    
+    return YES;
 }
 
 @end

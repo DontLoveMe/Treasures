@@ -26,6 +26,8 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <SS-BaiduPushSDK/BPush.h>
+#import "JHFSDK.h"
+#import "JHFOrder.h"
 #endif
 
 //主色调
