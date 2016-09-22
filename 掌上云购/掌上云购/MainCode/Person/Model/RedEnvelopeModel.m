@@ -9,5 +9,9 @@
 #import "RedEnvelopeModel.h"
 
 @implementation RedEnvelopeModel
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{
+             @"ID" : @"id",
+             };
+}
 @end

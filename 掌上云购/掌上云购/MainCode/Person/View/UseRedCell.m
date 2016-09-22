@@ -18,6 +18,29 @@
 - (void)setReModel:(RedEnvelopeModel *)reModel {
     _reModel = reModel;
     
+    NSInteger money = _reModel.amount;
+    switch (money) {
+        case 1:
+            _redImgView.image = [UIImage imageNamed:@"1元"];
+            break;
+        case 2:
+            _redImgView.image = [UIImage imageNamed:@"2元"];
+            break;
+        case 5:
+            _redImgView.image = [UIImage imageNamed:@"5元"];
+            break;
+        case 10:
+            _redImgView.image = [UIImage imageNamed:@"10元"];
+            break;
+        case 50:
+            _redImgView.image = [UIImage imageNamed:@"50元"];
+            break;
+            
+        default:
+            _redImgView.image = [UIImage imageNamed:@"红包"];
+            break;
+    }
+    
     switch ([_reModel.status integerValue]) {
             //1：未使用，2：已使用 ，3：失效
         case 1:
@@ -44,9 +67,16 @@
     
 //    _beginTimeLb.text = [NSString stringWithFormat:@"生效日期：%@",_reModel.effectiveStartDate];
     
-    _endLabel.text = [NSString stringWithFormat:@"有效期至：%@",_reModel.effectiveEndDate];
     
-    _conditionLabel.text = [NSString stringWithFormat:@"使用条件：%@",_reModel.remarks];
+    if (_reModel.effectiveEndDate) {
+        _endLabel.text = [NSString stringWithFormat:@"有效期：%@",_reModel.effectiveEndDate];
+    }else if([_reModel.isPermanentEffective boolValue]){
+        _endLabel.text = [NSString stringWithFormat:@"有效期：永久有效"];
+    }else {
+        _endLabel.text = @"";
+    }
+    
+    _conditionLabel.text = [NSString stringWithFormat:@"%@",_reModel.remarks];
     
     
 }

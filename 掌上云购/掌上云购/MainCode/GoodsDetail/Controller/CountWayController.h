@@ -26,5 +26,7 @@
 
 @property (nonatomic,assign)NSInteger isAnnounced;
 @property (nonatomic,copy)NSString *drawID;
+@property (nonatomic,assign)BOOL isSpeed;
+
 
 @end

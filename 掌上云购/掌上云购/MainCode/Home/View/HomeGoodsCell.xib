@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -58,6 +58,13 @@
                             <action selector="addToCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ux2-13-5kg"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q2W-GW-oV4">
+                        <rect key="frame" x="162" y="8" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="BzA-YO-h8t"/>
+                            <constraint firstAttribute="height" constant="25" id="zQy-QF-kbk"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -66,8 +73,10 @@
                 <constraint firstAttribute="trailing" secondItem="w9l-2s-ifk" secondAttribute="trailing" constant="16" id="48o-ON-Vge"/>
                 <constraint firstItem="w9l-2s-ifk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="76r-p1-iX7"/>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="36" id="BRN-Ix-dRN"/>
+                <constraint firstAttribute="trailing" secondItem="q2W-GW-oV4" secondAttribute="trailing" constant="10" id="BnV-2W-9PY"/>
                 <constraint firstItem="1ut-Ew-BjT" firstAttribute="top" secondItem="b4V-UQ-fgd" secondAttribute="bottom" constant="4" id="ETU-4K-5x8"/>
                 <constraint firstItem="PPW-WN-FjM" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="12" id="IJQ-gb-WLP"/>
+                <constraint firstItem="q2W-GW-oV4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="J6m-Ft-GcA"/>
                 <constraint firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="16" id="XGG-Ja-AY2"/>
                 <constraint firstItem="b4V-UQ-fgd" firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="-56" id="btz-qe-N1o"/>
                 <constraint firstItem="b4V-UQ-fgd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="gUG-QJ-sEJ"/>
@@ -84,6 +93,7 @@
                 <outlet property="goodsPic" destination="Lqv-gY-nRW" id="gyd-D9-smO"/>
                 <outlet property="progressLabel" destination="b4V-UQ-fgd" id="6Nx-N0-FTh"/>
                 <outlet property="progressView" destination="1ut-Ew-BjT" id="p0l-eU-IO9"/>
+                <outlet property="typeMarkImgView" destination="q2W-GW-oV4" id="5kO-KF-bGz"/>
             </connections>
             <point key="canvasLocation" x="439.5" y="412"/>
         </collectionViewCell>

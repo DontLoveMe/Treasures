@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet ProgressView *progressView;
 
 @property (weak, nonatomic) IBOutlet UIButton *participateButton;
+@property (weak, nonatomic) IBOutlet UIImageView *typeMarkImgView;
 
 @property (nonatomic,strong)GoodsModel *gsModel;
 

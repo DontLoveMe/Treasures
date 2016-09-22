@@ -8,7 +8,7 @@
 
 #import "InordertoDetailController.h"
 #import "InordertoshareModel.h"
-
+#import "HisIconImageView.h"
 
 // 弹出分享菜单需要导入的头文件
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -19,7 +19,7 @@
 
 @interface InordertoDetailController ()
 
-@property (nonatomic,strong)UIImageView *iconView;
+@property (nonatomic,strong)HisIconImageView *iconView;
 @property (nonatomic,strong)UILabel *nikeName;
 @property (nonatomic,strong)UILabel *timeLabel;
 @property (nonatomic,strong)UIView *bgView;
@@ -128,7 +128,8 @@
 }
 
 - (void)createSubviews {
-    _iconView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    _iconView = [[HisIconImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    _iconView.buyUserId = _buyUserId;
     _iconView.image = [UIImage imageNamed:@"我的-头像"];
     [_scrollView addSubview:_iconView];
     
@@ -180,7 +181,7 @@
 //        UIImage *img = [UIImage imageNamed:@"揭晓-图片.jpg"];
         
         UIImageView *imgView = [[UIImageView alloc]init];
-        imgView.contentMode = UIViewContentModeScaleAspectFit;
+//        imgView.contentMode = UIViewContentModeScaleAspectFit;
         imgView.hidden = YES;
         
         [imgViewArr addObject:imgView];
@@ -243,8 +244,9 @@
     CGRect contentRect = [ iSModel.content boundingRectWithSize:CGSizeMake(KScreenWidth-30, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil];
     _contentLabel.height = contentRect.size.height;
     NSArray *photoUrllist = iSModel.photoUrllist;
-    __block UIImage *img = [UIImage new];
+    
     __block CGFloat imgViewHeight = 0;
+    __block CGFloat imgHeight = 0;
     for (int i = 0; i < _imgViews.count; i ++) {
         UIImageView *imgView = _imgViews[i];
 //        imgView.backgroundColor = [UIColor grayColor];
@@ -255,17 +257,19 @@
         }else {
             imgView.hidden = NO;
             NSURL *url = [NSURL URLWithString:photoUrllist[i]];
-//            NSURL *url = [NSURL URLWithString:@"http://192.168.0.252:8000/pcpfiles/jpg/2016/08/31/3ff88c12626c4906afc5b8ba3a337c97.jpg"];
+
             __weak typeof(UIImageView *) weakImg = imgView;
 
-            [imgView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:[UIImage imageNamed:@"揭晓-图片.jpg"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            [imgView setImageWithURLRequest:[NSURLRequest requestWithURL:url] placeholderImage:[UIImage imageNamed:@"未加载图片"] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
                 
                 weakImg.image = image;
                 
-                weakImg.frame = CGRectMake(15, CGRectGetMaxY(_bgView.frame)+contentRect.size.height+10+img.size.height*i, KScreenWidth-30, image.size.height);
-                imgViewHeight += image.size.height;
+                weakImg.frame = CGRectMake(15, CGRectGetMaxY(_bgView.frame)+contentRect.size.height+10+imgViewHeight, KScreenWidth-30, image.size.height/image.size.width*(KScreenWidth-30));
                 
-                img = image;
+                imgHeight = image.size.height/image.size.width*(KScreenWidth-30);
+                imgViewHeight += imgHeight+10;
+                
+                
             } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
                 
             }];

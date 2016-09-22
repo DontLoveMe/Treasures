@@ -9,6 +9,7 @@
 #import "LuckyRecordCell.h"
 #import "ConfirmDataController.h"
 #import "ConfirmGoodsController.h"
+#import "AddShareController.h"
 
 @implementation LuckyRecordCell
 
@@ -58,6 +59,30 @@
 //
 //    }
     self.suerBlock();
+    
+}
+- (IBAction)isSunAction:(UIButton *)sender {
+    
+    NSInteger orderStatus = [_lkModel.orderStatus integerValue];
+    if (orderStatus == 3) {
+        
+        AddShareController *asVC = [[AddShareController alloc] init];
+        asVC.lkModel = _lkModel;
+        [[self viewController].navigationController pushViewController:asVC animated:YES];
+    }else {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                 message:@"请确认收货！" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 [alertController dismissViewControllerAnimated:YES
+                                                                                                     completion:nil];
+                                                             }];
+        [alertController addAction:cancelAction];
+        [[self viewController] presentViewController:alertController
+                           animated:YES
+                         completion:nil];
+    }
     
 }
 

@@ -10,19 +10,16 @@
 
 @interface RedEnvelopeModel : NSObject
 
+
 @property (nonatomic, copy) NSString *effectiveStartDate;
 
 @property (nonatomic, copy) NSString *effectiveEndDate;
-
-@property (nonatomic, assign) NSInteger redNumber;
 
 @property (nonatomic, copy) NSString *status;
 
 @property (nonatomic, assign) NSInteger amount;
 
 @property (nonatomic, copy) NSString *releaseDate;
-
-@property (nonatomic, assign) NSInteger redResidualNumber;
 
 @property (nonatomic, copy) NSString *updateDate;
 
@@ -37,6 +34,8 @@
 @property (nonatomic, copy) NSString *useDate;
 
 @property (nonatomic, assign) NSInteger ID;
+
+@property (nonatomic, copy) NSString *isPermanentEffective;
 
 @property (nonatomic, copy) NSString *orderNo;
 
@@ -55,5 +54,6 @@
 @property (nonatomic, copy) NSString *createDate;
 
 @property (nonatomic, assign) NSInteger userId;
+
 
 @end

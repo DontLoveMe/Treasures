@@ -17,7 +17,13 @@
 
 - (void)setGsModel:(GoodsModel *)gsModel {
     _gsModel = gsModel;
-    
+    NSArray *proAttrList = _gsModel.proAttrList;
+    if (proAttrList != 0) {
+        [_typeMarkImgView setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
+                             placeholderImage:[UIImage new]];
+    }else {
+        _typeMarkImgView.image = [UIImage new];
+    }
     if (_gsModel.pictureList.count != 0) {
         
         NSDictionary *picDic = _gsModel.pictureList[0];
@@ -26,6 +32,8 @@
         if (imgUrl.length>0) {
             [_productImg setImageWithURL:[NSURL URLWithString:imgUrl] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         }
+    }else {
+        _productImg.image = [UIImage imageNamed:@"未加载图片"];
     }
     
     

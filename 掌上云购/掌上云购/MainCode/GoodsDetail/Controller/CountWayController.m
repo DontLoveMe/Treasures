@@ -77,29 +77,50 @@
                   
                   _dataDic = [[json objectForKey:@"data"] mutableCopy];
                   
+                  NSArray *aNumValueList = _dataDic[@"aNumValueList"];
+                  if (aNumValueList.count == 0) {
+                      _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",@"正在计算"],@"幸运号码:请等待开奖结果"];
+                      [_descriptionTable reloadData];
+                      return ;
+                  }
+                  
                   if (![_dataDic[@"bNumValue"] isKindOfClass:[NSNull class]]) {
                       
-                  
-                  NSDictionary *dic = [_dataDic objectForKey:@"bNumValue"];
-                  NSString *bValueStr = [dic objectForKey:@"openCode"];
-                  NSString *bValueResultStr;
-                  if ([bValueStr isEqual:[NSNull null]]) {
-                      bValueResultStr = @"最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待时时彩开奖";
-                  }else {
-                      bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","withString:@""];
-                  }
+                      NSDictionary *dic = [_dataDic objectForKey:@"bNumValue"];
+                      NSString *bValueStr = [dic objectForKey:@"openCode"];
+                      NSString *bValueResultStr;
+                      if ([bValueStr isEqual:[NSNull null]]) {
+                          bValueResultStr = @"最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待时时彩开奖";
+                          
+                      }else {
+                          bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","withString:@""];
+                      }
+                     
+                      if (_isSpeed) {
+                          _valueArr = @[[_dataDic objectForKey:@"msg"],
+                                        [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
+                                        [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
 
-                  
-                  _valueArr = @[[_dataDic objectForKey:@"msg"],
-                                [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
-                                [NSString stringWithFormat:@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝%@",bValueResultStr],
-                                [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
+                      }else {
+                          
+                          _valueArr = @[[_dataDic objectForKey:@"msg"],
+                                        [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
+                                        [NSString stringWithFormat:@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝%@",bValueResultStr],
+                                        [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
+                      }
                   }else{
-                      _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待开奖",@"幸运号码:请等待开奖结果"];
-                      [_descriptionTable reloadData];
-
+                      if (_isSpeed) {
+                          
+                          _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"幸运号码:请等待开奖结果"];
+                      }else {
+                          _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待开奖",@"幸运号码:请等待开奖结果"];
+                      }
+                      
+                      
+                      
                   }
                   [_descriptionTable reloadData];
+                  
                   
               }else {
                                 }
@@ -115,7 +136,7 @@
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 
-    return 4;
+    return _valueArr.count;
     
 }
 

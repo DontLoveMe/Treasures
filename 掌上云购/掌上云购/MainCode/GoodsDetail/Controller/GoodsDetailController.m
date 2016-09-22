@@ -26,7 +26,7 @@
 //    self.navigationController.navigationBar.translucent = YES;
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
-    
+//    self.preferredStatusBarStyle = UIStatusBarStyleDefault;
     self.navigationItem.backBarButtonItem = nil;
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 28.f, 28.f)];
     leftButton.tag = 101;
@@ -630,7 +630,13 @@
                           _topGoodImgView.imageURLStringsGroup = picArr;
 //                      });
                   }
-                  
+                  NSArray *proAttrList = [_dataDic objectForKey:@"proAttrList"];
+                  if (proAttrList != 0) {
+                      [_markImg setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
+                                           placeholderImage:[UIImage new]];
+                  }else {
+                      _markImg.image = [UIImage new];
+                  }
                   //商品名
                   _goodsName.text = [_dataDic objectForKey:@"name"];
                   

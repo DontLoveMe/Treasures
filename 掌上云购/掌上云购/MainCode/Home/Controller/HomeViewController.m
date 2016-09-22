@@ -251,7 +251,7 @@
             case 302:
             {
                 SegmentController *SVC = [[SegmentController alloc] init];
-                SVC.index = 3;
+                SVC.index = 2;
                  SVC.title = control.controlFlag;
                 [self.navigationController pushViewController:SVC
                                                      animated:YES];
@@ -388,6 +388,15 @@
         [cell.goodsPic setImageWithURL:[NSURL URLWithString:[picList[0] objectForKey:@"img170"]]
                       placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     
+    }else {
+        cell.goodsPic.image = [UIImage imageNamed:@"未加载图片"];
+    }
+    NSArray *proAttrList = [dic objectForKey:@"proAttrList"];
+    if (proAttrList != 0) {
+        [cell.typeMarkImgView setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
+                             placeholderImage:[UIImage new]];
+    }else {
+        cell.typeMarkImgView.image = [UIImage new];
     }
 
     cell.nowIndexpath = indexPath;
@@ -513,13 +522,12 @@
                       _goodsArr = [[json objectForKey:@"data"] mutableCopy];
                   }else{
                       NSArray *dataArr = [json objectForKey:@"data"];
-                      for (int i = 0; i < dataArr.count; i ++) {
-                          [_goodsArr addObject:dataArr[i]];
-                          _page++;
-                      }
+
+                      [_goodsArr addObjectsFromArray:dataArr];
+                      _page++;
                   }
 
-                  _goodsList.height = ((KScreenWidth - 1) * 11 / 20) * _goodsArr.count / 2 + _goodsArr.count - 1;
+                  _goodsList.height = ((KScreenWidth - 1) * 11 / 20) * (_goodsArr.count / 2 + _goodsArr.count % 2) + _goodsArr.count - 1;
                   _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _goodsList.bottom);
                   [_goodsList reloadData];
               }

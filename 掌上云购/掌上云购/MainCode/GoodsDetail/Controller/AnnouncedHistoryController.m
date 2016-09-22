@@ -130,11 +130,20 @@
     NSDictionary *dic = [_announceHistoryArr objectAtIndex:indexPath.row];
 
     cell.goodsMsgLabel.text = [NSString stringWithFormat:@"期号：%@(揭晓时间：%@)",[dic objectForKey:@"drawTimes"],[dic objectForKey:@"drawDate"]];
+    
     if (![dic[@"photoUrl"] isKindOfClass:[NSNull class]]){
-        [cell.picImgView setImageWithURL:[NSURL URLWithString:dic[@"photoUrl"]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+        NSString *photoUrl = dic[@"photoUrl"];
+        NSURL *imgUrl;
+        if ([photoUrl hasPrefix:@"http"]) {
+            imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",photoUrl]];
+        }else{
+            imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",AliyunPIC_URL,photoUrl]];
+        }
+        [cell.picImgView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"我的-头像"]];
     }else {
         [cell.picImgView setImage:[UIImage imageNamed:@"未加载图片"]];
     }
+    cell.picImgView.buyUserId = [dic[@"drawUserId"] integerValue];
     
     cell.userName.text = [NSString stringWithFormat:@"获奖者：%@",[dic objectForKey:@"nickName"]];
     cell.userId.text = [NSString stringWithFormat:@"用户ID:%@",[dic objectForKey:@"drawUserId"]];
