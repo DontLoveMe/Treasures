@@ -147,33 +147,27 @@
         NSLog(@"%@",userInfo[@"aps"][@"alert"]);
         NSLog(@"%@",userInfo[@"aps"][@"description"]);
         NSLog(@"%@",userInfo[@"aps"][@"title"]);
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
-        
-        [alertController addAction:okAction];
-        
-        [alertController addAction:cancelAction];
-        
-        
-        [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+
+        if ([userInfo[@"msg_type"] integerValue] == 4) {
+            PromptController *pVC = [[PromptController alloc] init];
+            pVC.type = 0;
+            [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
+        }else {
+            PromptController *pVC = [[PromptController alloc] init];
+            pVC.type = 1;
+            [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
+        }
     }
-    //    else//杀死状态下，直接跳转到跳转页面。
-    //    {
-    //        SkipViewController *skipCtr = [[SkipViewController alloc]init];
-    //        // 根视图是nav 用push 方式跳转
-    //        [_tabBarCtr.selectedViewController pushViewController:skipCtr animated:YES];
-    //        /*
-    //         // 根视图是普通的viewctr 用present跳转
-    //         [_tabBarCtr.selectedViewController presentViewController:skipCtr animated:YES completion:nil]; */
-    //    }
-    //    [self.viewController addLogString:[NSString stringWithFormat:@"backgroud : %@",userInfo]];
+//        else//杀死状态下，直接跳转到跳转页面。
+//        {
+//            SkipViewController *skipCtr = [[SkipViewController alloc]init];
+//            // 根视图是nav 用push 方式跳转
+//            [_tabBarCtr.selectedViewController pushViewController:skipCtr animated:YES];
+//            /*
+//             // 根视图是普通的viewctr 用present跳转
+//             [_tabBarCtr.selectedViewController presentViewController:skipCtr animated:YES completion:nil]; */
+//        }
+//        [self.viewController addLogString:[NSString stringWithFormat:@"backgroud : %@",userInfo]];
     
 }
 

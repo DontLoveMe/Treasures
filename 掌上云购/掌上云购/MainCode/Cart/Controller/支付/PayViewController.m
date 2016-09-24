@@ -217,6 +217,7 @@
         
         [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
         [params setObject:@"0" forKey:@"payType"];
+        [params setObject:@"0"forKey:@"cashConsume"];
         
     }else{
         
@@ -284,7 +285,8 @@
               NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
-                  if ([dataDic allKeys].count != 0) {
+                  [self hideSuccessHUD:@"预支付成功"];
+                  if (![dataDic isKindOfClass:[NSNull class]]) {
                       JHFOrder *order = [[JHFOrder alloc] init];
                       
                       order.version = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"version"]];
@@ -309,10 +311,12 @@
                       if(navigationController!=nil) {
                           [self presentViewController:navigationController animated:YES completion:nil];
                       }
-                  }
+                  }else{
                   
-//                  [self hideSuccessHUD:@"支付成功"];
-//                  [self.navigationController popViewControllerAnimated:YES];
+                      [self hideSuccessHUD:@"支付成功"];
+                      [self.navigationController popViewControllerAnimated:YES];
+                      
+                  }
                   
               }else{
                   

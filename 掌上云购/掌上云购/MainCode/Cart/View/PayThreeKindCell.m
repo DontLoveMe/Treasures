@@ -47,7 +47,7 @@
     .heightIs(20);
     
     _radio = [UIButton buttonWithType:UIButtonTypeCustom];
-    
+    _radio.userInteractionEnabled = NO;
     [self.contentView addSubview:_radio]
     ;
     
