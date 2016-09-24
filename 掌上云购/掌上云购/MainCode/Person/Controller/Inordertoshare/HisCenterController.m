@@ -380,7 +380,7 @@
     NSString *content = iSModel.content;
     CGRect contentRect = [content boundingRectWithSize:CGSizeMake(KScreenWidth-57, 35) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
     NSArray *photoUrllist = iSModel.photoUrllist;
-    CGFloat height;
+    CGFloat height = 0;
     if (photoUrllist.count == 0) {
         height = 0;
     }else if (photoUrllist.count <4){
@@ -388,8 +388,9 @@
     }else if (photoUrllist.count < 7){
         height = 90*2;
     }
+    float returnHeight = height + contentRect.size.height + 120;
     
-    return height + contentRect.size.height + 120;
+    return returnHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30;

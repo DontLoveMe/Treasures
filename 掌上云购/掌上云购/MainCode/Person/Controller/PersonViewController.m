@@ -104,17 +104,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    //设置导航栏透明
-//    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init]
-//                       forBarMetrics:UIBarMetricsDefault];
-//    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-//    self.navigationController.navigationBar.translucent = YES;
-    //去掉导航下面的一条白线
-//    self.navigationController.navigationBar.clipsToBounds = YES;
- 
-//    self.view.backgroundColor= [UIColor colorWithWhite:0.9 alpha:1];
-#warning 返回动画导航栏下面视图慢些
     self.navigationController.navigationBar.hidden = YES;
 
     
