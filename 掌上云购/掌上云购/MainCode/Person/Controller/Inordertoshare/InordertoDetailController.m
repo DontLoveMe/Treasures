@@ -229,11 +229,12 @@
     NSString *currentDateStr = [dateFormatter stringFromDate:date];
     _timeLabel.text = currentDateStr;
     
-    NSArray *mdArr = @[iSModel.title,[NSString stringWithFormat:@"获得商品：%@",iSModel.productName],
-                       [NSString stringWithFormat:@"期号：%@",iSModel.drawTimes],
-                       [NSString stringWithFormat:@"参与人次：%@",iSModel.buyTimes],
-                       [NSString stringWithFormat:@"幸运号码：%@",iSModel.drawNumber],
-                       [NSString stringWithFormat:@"揭晓时间：%@",iSModel.drawDate]];
+    NSArray *mdArr = @[iSModel.title?iSModel.title:@"",
+                       [NSString stringWithFormat:@"获得商品：%@",iSModel.productName?iSModel.productName:@""],
+                       [NSString stringWithFormat:@"期号：%@",iSModel.drawTimes?iSModel.drawTimes:@""],
+                       [NSString stringWithFormat:@"参与人次：%@",iSModel.buyTimes?iSModel.buyTimes:@""],
+                       [NSString stringWithFormat:@"幸运号码：%@",iSModel.drawNumber?iSModel.drawNumber:@""],
+                       [NSString stringWithFormat:@"揭晓时间：%@",iSModel.drawDate?iSModel.drawDate:@""]];
     for (int i = 0;i < _labels.count; i ++) {
         UILabel *lable = _labels[i];
         lable.text = mdArr[i];

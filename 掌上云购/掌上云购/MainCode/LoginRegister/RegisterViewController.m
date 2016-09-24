@@ -469,7 +469,8 @@
                   //把信息存到NSUserDefaults
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
-                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                  [self dismissViewControllerAnimated:YES completion:nil];
                   
               }
               
