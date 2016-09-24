@@ -186,6 +186,10 @@
               if ([json objectForKey:@"flag"]) {
               
                   _announceHistoryArr = [json objectForKey:@"data"];
+                  if ([_announceHistoryArr isKindOfClass:[NSNull class]]) {
+                      
+                      return ;
+                  }
                   [_announcedTableView reloadData];
                   [_announcedTableView.mj_header endRefreshing];
               }

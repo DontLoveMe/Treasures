@@ -7,6 +7,7 @@
 //
 
 #import "ConfirmGoodsCell_2.h"
+#import "HtmlTypeController.h"
 
 @implementation ConfirmGoodsCell_2
 
@@ -49,10 +50,33 @@
 }
 
 - (IBAction)agreeAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
+//    sender.selected = !sender.selected;
     [self.delegate clickButtonBackTag:sender.tag];
 }
-
+- (IBAction)zsygDelegate:(UIButton *)sender {
+    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
+    htmlType.htmlUrl = @"/pcpServer-inf/html/agreement.html";
+    htmlType.title = @"隐私协议";
+    UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
+    [[self viewController]presentViewController:htVC animated:YES completion:nil];
+}
+- (UIViewController *)viewController {
+    
+    UIResponder *next = self.nextResponder;
+    
+    do {
+        
+        if ([next isKindOfClass:[UIViewController class]]) {
+            
+            return (UIViewController *)next;
+        }
+        
+        next = next.nextResponder;
+        
+    } while (next != nil);
+    
+    return nil;
+}
 - (IBAction)sureAction:(UIButton *)sender {
     [self.delegate getUserName:_userNameTF.text];
     [_userNameTF resignFirstResponder];

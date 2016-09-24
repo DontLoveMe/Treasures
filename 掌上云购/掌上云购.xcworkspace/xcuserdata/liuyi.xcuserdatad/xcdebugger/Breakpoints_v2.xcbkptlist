@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/AboutMe/ChangeDataController.m"
-            timestampString = "496033528.342125"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Lucky/ConfirmGoodsController.m"
+            timestampString = "496313960.995745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-changeName"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "-clickButtonBackTag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

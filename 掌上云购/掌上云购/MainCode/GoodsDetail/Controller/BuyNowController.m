@@ -46,6 +46,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 #pragma mark - 监听键盘事件
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -69,7 +70,7 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
     CGRect rect1 = self.view.frame;
-    rect1.origin.y = -kbSize.height;
+    rect1.origin.y = -kbSize.height+30;
     self.view.frame = rect1;
    
 }
@@ -116,7 +117,10 @@
 }
 //确定
 - (IBAction)sureAction:(UIButton *)sender {
-    
+    if ([_buyNumberTF isFirstResponder]) {
+        [_buyNumberTF resignFirstResponder];
+        return;
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.delegate backBuyNumber:_money];
 }

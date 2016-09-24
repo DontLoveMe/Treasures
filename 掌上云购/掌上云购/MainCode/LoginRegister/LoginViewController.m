@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "TabbarViewcontroller.h"
+#import "HtmlTypeController.h"
 
 @interface LoginViewController ()
 
@@ -138,12 +139,27 @@
 }
 //关于
 - (IBAction)aboutUsAction:(UIButton *)sender {
+    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
+    htmlType.htmlUrl = @"/pcpServer-inf/html/about.html";
+    htmlType.title = @"关于";
+    UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
+    [self presentViewController:htVC animated:YES completion:nil];
 }
 //保障说明
 - (IBAction)explainAction:(UIButton *)sender {
+    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
+    htmlType.htmlUrl = @"/pcpServer-inf/html/consumer_protection.html";
+    htmlType.title = @"保障说明";
+    UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
+    [self presentViewController:htVC animated:YES completion:nil];
 }
 //隐私协议
 - (IBAction)privacyPolicAction:(UIButton *)sender {
+    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
+    htmlType.htmlUrl = @"/pcpServer-inf/html/agreement.html";
+    htmlType.title = @"隐私协议";
+    UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
+    [self presentViewController:htVC animated:YES completion:nil];
 }
 //微信登录
 - (IBAction)wechatLogin:(UIButton *)sender {
