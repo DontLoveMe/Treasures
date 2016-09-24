@@ -25,6 +25,7 @@
 		D625D9FD1D7E8EDD00316A49 /* SearchGoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D625D9FB1D7E8EDD00316A49 /* SearchGoodsCell.xib */; };
 		D625DA071D7EA96100316A49 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D625DA061D7EA96100316A49 /* GoodsModel.m */; };
 		D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */; };
+		D63A46211D951FF200172D78 /* HtmlTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D63A46201D951FF200172D78 /* HtmlTypeController.m */; };
 		D63CD6FF1D713B3500658365 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D63CD6FE1D713B3500658365 /* RecordModel.m */; };
 		D648916E1D825113003889B0 /* LoveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D648916C1D825113003889B0 /* LoveCell.m */; };
 		D648916F1D825113003889B0 /* LoveCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D648916D1D825113003889B0 /* LoveCell.xib */; };
@@ -563,6 +564,8 @@
 		D625DA061D7EA96100316A49 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
 		D63721FB1D76757400FEE6C8 /* RedEnvelopeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeModel.h; sourceTree = "<group>"; };
 		D63721FC1D76757400FEE6C8 /* RedEnvelopeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeModel.m; sourceTree = "<group>"; };
+		D63A461F1D951FF200172D78 /* HtmlTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlTypeController.h; sourceTree = "<group>"; };
+		D63A46201D951FF200172D78 /* HtmlTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlTypeController.m; sourceTree = "<group>"; };
 		D63CD6FD1D713B3500658365 /* RecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
 		D63CD6FE1D713B3500658365 /* RecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
 		D648916B1D825113003889B0 /* LoveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoveCell.h; sourceTree = "<group>"; };
@@ -2045,6 +2048,8 @@
 				DDF92BC91D6A9C3D009D5A1E /* RegisterViewController.h */,
 				DDF92BCA1D6A9C3D009D5A1E /* RegisterViewController.m */,
 				DDF92BCB1D6A9C3D009D5A1E /* RegisterViewController.xib */,
+				D63A461F1D951FF200172D78 /* HtmlTypeController.h */,
+				D63A46201D951FF200172D78 /* HtmlTypeController.m */,
 			);
 			path = LoginRegister;
 			sourceTree = "<group>";
@@ -3138,6 +3143,7 @@
 				D68F25AA1D6B05820042E0BE /* HistoryData.m in Sources */,
 				DDF92C4F1D6A9C3D009D5A1E /* AnnounceHistoryCell.m in Sources */,
 				D68F25A01D6AEE970042E0BE /* HotSearchCell.m in Sources */,
+				D63A46211D951FF200172D78 /* HtmlTypeController.m in Sources */,
 				DDF92CD51D6A9C4F009D5A1E /* CountDown.m in Sources */,
 				D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */,
 				DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */,
