@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.view.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
         
     }
@@ -28,12 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if (_type == 0) {
-        _imgView.image = [UIImage imageNamed:@"红包提示"];
-    }else {
-        _imgView.image = [UIImage imageNamed:@"中奖提示"];
-    }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     _imgView.userInteractionEnabled = YES;
@@ -58,5 +52,19 @@
     
 }
 
+- (void)setType:(NSInteger)type{
+
+    if (_type != type) {
+        
+        _type = type;
+        if (_type == 0) {
+            _imgView.image = [UIImage imageNamed:@"红包提示"];
+        }else {
+            _imgView.image = [UIImage imageNamed:@"中奖提示"];
+        }
+        
+    }
+    
+}
 
 @end

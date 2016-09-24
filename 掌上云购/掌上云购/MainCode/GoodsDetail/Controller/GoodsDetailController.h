@@ -12,14 +12,14 @@
 #import "TabbarItem.h"
 
 #import "SDCycleScrollView.h"
-#import "WingNotificationTableView.h"
+//#import "WingNotificationTableView.h"
 #import "GoodsDetailFunctionTableView.h"
 #import "BroughtHistoryView.h"
 
 #import "UIScrollView+MJRefresh.h"
 #import "BuyNowController.h"
 
-@interface GoodsDetailController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,BroughtHistoryDelegate,UIScrollViewDelegate,BuyNowControllerDelegate>{
+@interface GoodsDetailController : BaseViewController<SDCycleScrollViewDelegate,/*WingTableDelegate,*/BroughtHistoryDelegate,UIScrollViewDelegate,BuyNowControllerDelegate>{
 
     //背景
     UIScrollView        *_bgScrollView;
@@ -27,7 +27,10 @@
     //顶部banner
     SDCycleScrollView   *_topGoodImgView;
     //中奖提示
-    WingNotificationTableView *_jionTable;
+    UIView              *_joinView;
+    UIImageView         *_joinImageView;
+    UILabel             *_joinLabel;
+//    WingNotificationTableView *_jionTable;
     //购物车按钮
     UIButton            *_cartButton;
     //消息中心按钮
@@ -37,7 +40,7 @@
     
     //商品名
     UILabel             *_goodsName;
-
+    
     //其他功能
     GoodsDetailFunctionTableView *_oherFunctionTableView;
     
@@ -63,6 +66,11 @@
     //商品参与记录数组
     NSMutableArray      *_joinRecordArr;
     NSInteger           _pageIndex;
+    
+    NSTimer             *_joinListTimer;
+    NSInteger           _timerProcess;
+    //商品参与公告
+    NSMutableArray      *_joinListArr;
     
 }
 

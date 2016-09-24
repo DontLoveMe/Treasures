@@ -50,9 +50,8 @@
     
 }
 #pragma mark - 根据偏移量导航栏渐变
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-
-{
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
     UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > 60) {
@@ -80,6 +79,7 @@
                                    forState:UIControlStateNormal];
         }
     } else{
+        
         UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
         leftButton.size = CGSizeMake(28, 28);
         [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
@@ -94,13 +94,19 @@
 }
 
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
+    
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar lt_reset];
     self.navigationController.navigationBar.translucent = NO;
+    if (_joinListTimer) {
+        [_joinListTimer invalidate];
+        _joinListTimer = nil;
+    }
 }
+
 - (void)NavAction:(UIButton *)button{
+    
     if (button.tag == 101) {
         
         [self.navigationController popViewControllerAnimated:YES];
@@ -122,9 +128,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-#warning 商品详情可以从父控制器传过来
-//    self.title = @"商品详情";
     
     _isJoind = 0;
     _isPrized = 1;
@@ -227,6 +230,7 @@
     [self initTopView];
     [self initCenterView];
     [self initBottonView];
+    [self requestData];
     
 }
 
@@ -267,14 +271,6 @@
     _topGoodImgView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     [_bgScrollView addSubview:_topGoodImgView];
     
-    //获奖公告
-    _jionTable = [[WingNotificationTableView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.bottom+64, KScreenWidth, 20.f)];
-    _jionTable.backgroundColor = [UIColor clearColor];
-    NSArray *wingArr = @[@"4点12分，王力宏购买了1次",@"5点44分，周杰伦购买了20次",@"8点03分，李小龙购买了3次",@"7点24分，王宝强购买了8次",@"9点33分，习近平购买了50次"];
-    _jionTable.dataArr = wingArr;
-    _jionTable.timerDelegate = self;
-    [_bgScrollView addSubview:_jionTable];
-    
     _markImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.bottom - 56.f, 32.f, 32.f)];
     _markImg.image = [UIImage imageNamed:@"10元标记"];
     [_topGoodImgView addSubview:_markImg];
@@ -289,11 +285,6 @@
     
 }
 
-- (void)WingNotificationTableViewTimerInvalidate{
-    
-    NSLogZS(@"在这里重新加载网络数据");
-    
-}
 
 - (void)initCenterView{
     
@@ -304,7 +295,7 @@
     _goodsName.textAlignment = NSTextAlignmentLeft;
     [_bgScrollView addSubview:_goodsName];
     
-#warning 这里需要根据是否参与，是否结束等状态，改变视图内容和高度
+    //其他功能列表
     _oherFunctionTableView = [[GoodsDetailFunctionTableView alloc] initWithFrame:CGRectMake(0, _goodsName.bottom + 4.f, KScreenWidth, 275.f)];
     _oherFunctionTableView.isJoin = _isJoind;
     _oherFunctionTableView.isAnnounced = _isAnnounced;
@@ -370,7 +361,7 @@
         [_bottomView addSubview:_newOrderNumLabel];
     
     }
-    [self requestData];
+
 }
 #pragma mark - 立即购买
 - (void)buyNowAction:(UIButton *)button{
@@ -381,9 +372,12 @@
     bnVC.maxNumber = [_dataDic[@"surplusShare"] integerValue];
     bnVC.singlePrice = [[_dataDic objectForKey:@"singlePrice"] integerValue];
     [self presentViewController:bnVC animated:YES completion:nil];
+
 }
+
 #pragma mark - BuyNowControllerDelegate
 - (void)backBuyNumber:(NSInteger)buyNumber {
+
     NSLog(@"buyNumber%ld",buyNumber);
     NSMutableArray *picArr = [[_dataDic objectForKey:@"proPictureList"] mutableCopy];
     for (int i = 0; i < picArr.count; i ++) {
@@ -415,7 +409,9 @@
     VC.hidesBottomBarWhenPushed = YES;
     VC.immidiatelyArr = @[goods];
     [self.navigationController pushViewController:VC animated:YES];
+    
 }
+
 - (void)addToCartAction:(UIButton *)button{
 
     //构建购物车数据模型
@@ -512,6 +508,7 @@
             _oherFunctionTableView.height = 300.f+50;
             
         }
+        [self requestJoinList];
         
     }else if (_isAnnounced == 2){
         
@@ -541,20 +538,114 @@
     
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
     //导航栏透明
-//    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.translucent = YES;
     UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:_navBarAalpha]];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-//    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
-    
+
 }
+
 
 
 #pragma mark 请求网络数据
 - (void)requestData{
     
     [self requestDetail];
+    
+}
+
+- (void)requestJoinList{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:_drawId forKey:@"drawId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsJoinNotificate_URL];
+    
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if ([[json objectForKey:@"flag"] boolValue]) {
+                  
+                  _joinListArr = [NSMutableArray array];
+                  _joinListArr = [json objectForKey:@"data"];
+                  if (_joinListArr.count > 0) {
+                      
+                      if (_joinListTimer) {
+                          [_joinListTimer invalidate];
+                          
+                      }
+                      _timerProcess = 0;
+                      _joinListTimer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                                        target:self
+                                                                      selector:@selector(notificationAnimation)
+                                                                      userInfo:nil
+                                                                       repeats:YES];
+                      
+                  }
+                  
+              }
+              
+          } failure:^(NSError *error) {
+              
+          }];
+
+}
+
+- (void)notificationAnimation{
+    
+    if (_timerProcess == _joinListArr.count) {
+        [_joinListTimer invalidate];
+    }
+    //参与公告
+    NSDictionary *dataDic = [_joinListArr objectAtIndex:_timerProcess];
+    _timerProcess ++;
+    _joinView = [[UIView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.top + 64.f, KScreenWidth, 0)];
+    _joinView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
+    [self.view addSubview:_joinView];
+    
+    _joinImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12.f, 0.f, 24.f, 0)];
+    [_joinImageView setImageWithURL:[NSURL URLWithString:@""]
+                   placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+    _joinImageView.layer.cornerRadius = 12;
+    _joinImageView.layer.masksToBounds = YES;
+    _joinImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    _joinImageView.layer.borderWidth = 0.5;
+    [_joinView addSubview:_joinImageView];
+    
+    _joinLabel  = [[UILabel alloc] initWithFrame:CGRectMake(40.f, 4, KScreenWidth - 54.f, 0)];
+    _joinLabel.text = [NSString stringWithFormat:@"%@参与夺宝",[dataDic objectForKey:@"nickName"]];
+    _joinLabel.textColor = [UIColor whiteColor];
+    _joinLabel.font = [UIFont systemFontOfSize:12];
+    _joinLabel.textAlignment = NSTextAlignmentLeft;
+    [_joinView addSubview:_joinLabel];
+
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         
+                         _joinView.height = 24.f;
+                         _joinImageView.height = 24.f;
+                         _joinLabel.height = 16.f;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         [self performSelector:@selector(cameBackAction)
+                                    withObject:nil
+                                    afterDelay:2];
+                         
+                     }];
+
+}
+
+- (void)cameBackAction{
+
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         
+                         _joinView.height = 0;
+                         _joinImageView.height = 0;
+                         _joinLabel.height = 0;
+                         
+                     } completion:nil];
     
 }
 

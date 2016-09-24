@@ -784,12 +784,9 @@
 
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification{
 
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    _tabview.height = _tabview.height + kbSize.height;
-    _bottomView.top = _bottomView.top + kbSize.height;
-    _deleteView.top = _deleteView.top + kbSize.height;
+    _tabview.height = KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f;
+    _bottomView.top = KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64;
+    _deleteView.top = KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64;
 
 }
 
