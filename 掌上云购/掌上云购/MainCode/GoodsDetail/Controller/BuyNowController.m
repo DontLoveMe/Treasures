@@ -70,7 +70,7 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
     CGRect rect1 = self.view.frame;
-    rect1.origin.y = -kbSize.height+30;
+    rect1.origin.y = -kbSize.height;
     self.view.frame = rect1;
    
 }

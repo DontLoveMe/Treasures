@@ -59,6 +59,57 @@
     _descriptionTable.delegate = self;
     _descriptionTable.dataSource = self;
     [self.view addSubview:_descriptionTable];
+    
+    //下拉时动画
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        
+        
+        [self requsetData];
+        
+        
+    }];
+    
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    _descriptionTable.mj_header = header;
 
 }
 
@@ -73,8 +124,10 @@
            params:params
           success:^(id json) {
               
+              
               if ([[json objectForKey:@"flag"] boolValue]) {
-                  
+                
+                  [_descriptionTable.mj_header endRefreshing];
                   _dataDic = [[json objectForKey:@"data"] mutableCopy];
                   
                   NSArray *aNumValueList = _dataDic[@"aNumValueList"];
@@ -90,22 +143,27 @@
                       NSString *bValueStr = [dic objectForKey:@"openCode"];
                       NSString *bValueResultStr;
                       if ([bValueStr isEqual:[NSNull null]]) {
-                          bValueResultStr = @"最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待时时彩开奖";
+                          bValueResultStr = [NSString stringWithFormat:@"=中国福利彩票“老时时彩”第%@期的开奖结果\n＝等待时时彩开奖",dic[@"expect"]];
                           
                       }else {
                           bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","withString:@""];
+                          bValueResultStr = [NSString stringWithFormat:@"=中国福利彩票“老时时彩”第%@期的开奖结果\n＝%@",dic[@"expect"],bValueResultStr];
+                      }
+                      NSString *msgStr = [_dataDic objectForKey:@"msg"];
+                      if (msgStr.length == 0) {
+                          msgStr = @"＝[(数值A+数值B)÷商品所需次数]取余数+10000001";
                       }
                      
                       if (_isSpeed) {
-                          _valueArr = @[[_dataDic objectForKey:@"msg"],
+                          _valueArr = @[msgStr,
                                         [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
                                         [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
 
                       }else {
                           
-                          _valueArr = @[[_dataDic objectForKey:@"msg"],
+                          _valueArr = @[msgStr,
                                         [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
-                                        [NSString stringWithFormat:@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝%@",bValueResultStr],
+                                        bValueResultStr,
                                         [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
                       }
                   }else{
@@ -247,6 +305,7 @@
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.textLabel.text = [NSString stringWithFormat:@"%@（%@）",[dic objectForKey:@"createDate"],[dic objectForKey:@"createMillisecond"]];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:10];
+    cell.detailTextLabel.numberOfLines = 2;
     cell.detailTextLabel.text = [dic objectForKey:@"nickName"];
     return cell;
     

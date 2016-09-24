@@ -21,6 +21,7 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
+#import "PromptController.h"
 
 @interface AppDelegate ()
 
@@ -143,7 +144,9 @@
     // 应用在前台 或者后台开启状态下，不跳转页面，让用户选择。
     if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
         NSLogZS(@"acitve or background");
-        
+        NSLog(@"%@",userInfo[@"aps"][@"alert"]);
+        NSLog(@"%@",userInfo[@"aps"][@"description"]);
+        NSLog(@"%@",userInfo[@"aps"][@"title"]);
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

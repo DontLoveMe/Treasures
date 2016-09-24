@@ -7,6 +7,7 @@
 //
 
 #import "ConfirmGoodsController.h"
+#import "GoodsDetailController.h"
 
 @interface ConfirmGoodsController ()
 
@@ -391,6 +392,17 @@
     rect1.origin.y = 64;
     self.view.frame = rect1;
 
+}
+- (IBAction)againAction:(UIButton *)sender {
+    
+    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+    //    GDVC.isJoind = 0;
+    GDVC.isAnnounced = 1;
+    GDVC.goodsId = _rcModel.ID;
+    //    GDVC.isPrized = 0;
+    GDVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:GDVC
+                                         animated:YES];
 }
 
 
