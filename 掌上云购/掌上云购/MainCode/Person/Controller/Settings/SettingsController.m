@@ -90,7 +90,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 2:
-            cell.detailTextLabel.text = @"推送未授权";
+//            cell.detailTextLabel.text = @"推送未授权";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 3:
@@ -139,7 +139,7 @@
             break;
         case 2://通知设置
         {
-        
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.zsyg.raise"]];
         }
             break;
         case 3://常见问题

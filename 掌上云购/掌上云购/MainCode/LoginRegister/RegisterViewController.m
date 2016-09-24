@@ -84,6 +84,7 @@
     }else if(_isRegistOrmodify == 2){
         
         _usernameTF.placeholder = @"请输入旧密码";
+        _usernameTF.secureTextEntry = YES;
         _validateTF.hidden = YES;
         _validataButton.hidden = YES;
         
@@ -93,7 +94,8 @@
     
         _vdTFHeight.constant = 0;
         _vdBtnHeight.constant = 0;
-        [_actionButton setTitle:@"密码修改"
+        
+        [_actionButton setTitle:@"确认修改"
                        forState:UIControlStateNormal];
     }else if (_isRegistOrmodify == 3) {
         self.title = @"绑定手机";
@@ -396,10 +398,10 @@
     }
    
     
-    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    [params setObject:dic[@"id"] forKey:@"id"];
+    NSDictionary *userLoginDic =userDic[@"userLoginDto"];
+    [params setObject:userLoginDic[@"userAccount"] forKey:@"userAccount"];
     [params setObject:[MD5Security MD5String:_usernameTF.text] forKey:@"userPwd"];
     [params setObject:[MD5Security MD5String:_rePasswordTF.text] forKey:@"newUserPwd"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,UpdatePWD_URL];
