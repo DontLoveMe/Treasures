@@ -135,12 +135,12 @@
     mannerLabel.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:mannerLabel];
     
-    _manners = @[@"微信支付",@"支付宝支付",@"银联支付"];
-    _mannerStr = @"微信支付";
+    _manners = @[@"微信支付",@"支付宝支付"];
+    _mannerStr = @"2";
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(mannerLabel.frame)+5, KScreenWidth, 44*_manners.count) style:UITableViewStylePlain];
     _tableView.contentSize = CGSizeMake(KScreenWidth, 44*_manners.count);
     [self.view addSubview:_tableView];
-    
+    _tableView.scrollEnabled = NO;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
@@ -186,7 +186,12 @@
     }
     RechargeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.drawButton.selected = YES;
-    _mannerStr = _manners[indexPath.row];
+    if (indexPath.row == 0) {
+            _mannerStr = @"2";
+    }else if(indexPath.row == 1){
+            _mannerStr = @"1";
+    }
+
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -226,25 +231,22 @@
 }
 //确认支付
 - (void)confirmAction:(UIButton *)button {
-//    
-//    RechargeResultController *rrVC = [[RechargeResultController alloc] init];
-//    [self.navigationController pushViewController:rrVC animated:YES];
-//    if (_moneyStr.length == 0) {
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-//                                                                                 message:@"请选择充值金额" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-//                                                               style:UIAlertActionStyleCancel
-//                                                             handler:^(UIAlertAction * _Nonnull action) {
-//                                                                 [alertController dismissViewControllerAnimated:YES
-//                                                                                                     completion:nil];
-//                                                             }];
-//        [alertController addAction:cancelAction];
-//        [self presentViewController:alertController
-//                           animated:YES
-//                         completion:nil];
-//        return;
-//    }
-//    NSLogZS(@"%@--%@",_moneyStr,_mannerStr);
+
+    if (_moneyStr.length == 0) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                 message:@"请选择充值金额" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 [alertController dismissViewControllerAnimated:YES
+                                                                                                     completion:nil];
+                                                             }];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
+        return;
+    }
     [self rechargeRequest];
 }
 
@@ -253,28 +255,20 @@
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         NSNumber *userId = userDic[@"id"];
     [self showHUD:@"正在充值"];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    [params setObject:userId forKey:@"userId"];
-//    [params setObject:_moneyStr forKey:@"virtualMoney"];
-//    [params setObject:_moneyStr forKey:@"fee"];
-//    [params setObject:@1 forKey:@"rechargeType"];
-//    [params setObject:@20150806125346 forKey:@"serialNo"];
-//
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@"2" forKey:@"userId"];
-    [params setObject:@"0.01" forKey:@"virtualMoney"];
-    [params setObject:@"0.01" forKey:@"fee"];
-    [params setObject:@"2" forKey:@"rechargeType"];
-    
+    [params setObject:userId forKey:@"userId"];
+    [params setObject:_moneyStr forKey:@"virtualMoney"];
+    [params setObject:_moneyStr forKey:@"fee"];
+    [params setObject:_mannerStr forKey:@"rechargeType"];
     NSDate  *nowDate = [NSDate date];
     NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
-    
     [params setObject:[NSNumber numberWithDouble:timeInterval * 1000000] forKey:@"serialNo"];
     
     
-//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,WeixinRecharge_URL];
-    NSString *url = @"http://192.168.0.191:8080/pcpi/saleMoneyRecharge/recharge";
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitRecharge_URL];
+//    192.168.0.111:8080/pcpi
+//    NSString *url = @"http://192.168.0.111:8080/pcpi/saleMoneyRecharge/recharge";
     [ZSTools post:url
            params:params
           success:^(id json) {
@@ -291,8 +285,6 @@
                   order.merid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merid"]];
                   NSString *mernameStr = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"mername"]];
                   order.mername =  [NSString stringWithString:[mernameStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
-
                   order.policyid = @"000001";
                   order.merorderid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merorderid"]];
                   order.paymoney = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"paymoney"]];
@@ -302,7 +294,7 @@
                   order.md5 = [self MD5:order withKey:[dataDic objectForKey:@"md5"]];
                   order.cardtype = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"cardtype"]];
                
-                  UINavigationController *navigationController = [[JHFSDK sharedInstance] payOrder:order fromScheme:@"juhefu" viewController:self callback:^(NSDictionary *resultDict) {
+                  UINavigationController *navigationController = [[JHFSDK sharedInstance] payOrder:order fromScheme:@"allpayzsyg2016" viewController:self callback:^(NSDictionary *resultDict) {
                       NSLog(@"resultDict = %@", resultDict);
                       [self dismissViewControllerAnimated:YES completion:nil];
                   }];

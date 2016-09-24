@@ -144,8 +144,8 @@
 /*---------------充值模块---------------------*/
 //充值记录列表
 #define RechargeList_URL @"/pcpServer-inf/saleMoneyRecharge/list"
-//微信充值
-#define WeixinRecharge_URL @"/pcpServer-inf/saleMoneyRecharge/weixinRecharge"
+//充值
+#define SubmitRecharge_URL @"/pcpServer-inf/saleMoneyRecharge/recharge"
 
 /*---------------文件上传---------------------*/
 //文件上传

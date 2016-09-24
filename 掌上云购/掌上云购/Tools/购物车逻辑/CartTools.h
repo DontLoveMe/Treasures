@@ -39,7 +39,5 @@
 + (BOOL)allRestWithIndexPath:(NSInteger)indexPath;
 //输入某一栏数量
 + (BOOL)inputCountWithIndexPath:(NSInteger)indexPath withCount:(NSInteger)count;
-//计算购物车总价
-+ (CGFloat)cartTotalCost;
 
 @end

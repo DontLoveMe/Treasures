@@ -19,77 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/AppDelegate.m"
-            timestampString = "496229965.878874"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Discover/Controller/&#x6652;&#x5355;&#x5206;&#x4eab;/SunSharingViewController.m"
+            timestampString = "496286651.341045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "-application:openURL:sourceApplication:annotation:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[AppDelegate application:openURL:sourceApplication:annotation:]"
-                  moduleName = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seven/Desktop/%E5%A4%96%E5%8C%85%E9%A1%B9%E7%9B%AE/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E4%BA%91%E8%B4%AD%E4%BB%A3%E7%A0%81/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/AppDelegate.m"
-                  timestampString = "496236027.457644"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
-                  offsetFromSymbolStart = "148">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__64-[AppDelegate application:openURL:sourceApplication:annotation:]_block_invoke"
-                  moduleName = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seven/Desktop/%E5%A4%96%E5%8C%85%E9%A1%B9%E7%9B%AE/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E4%BA%91%E8%B4%AD%E4%BB%A3%E7%A0%81/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/AppDelegate.m"
-                  timestampString = "496236027.457976"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "277"
-                  endingLineNumber = "277"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Recharge/RechargeController.m"
-            timestampString = "496236027.234851"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
-            landmarkName = "-rechargeRequest"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Recharge/RechargeController.m"
-            timestampString = "496236013.606037"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
-            landmarkName = "-MD5:withKey:"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-requestData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

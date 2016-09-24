@@ -119,5 +119,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if ([_isPay isEqualToString:@"2"]) {
+        
+        if ([_redTableDelegate respondsToSelector:@selector(paySelectCellDic:)]) {
+            [_redTableDelegate paySelectCellDic:self.data[indexPath.row]];
+        }
+        
+    }else{
+    
+        
+    }
+    
+}
+
+- (void)setIsPay:(NSString *)isPay{
+
+    if (_isPay != isPay) {
+        
+        _isPay = isPay;
+        
+    }
+
 }
 @end

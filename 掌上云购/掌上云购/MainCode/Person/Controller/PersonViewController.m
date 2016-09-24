@@ -330,6 +330,7 @@
         case 2://我的红包
         {
             RedEnvelopeController *reVC = [[RedEnvelopeController alloc] init];
+            reVC.isPay = @"1";
             self.navigationController.navigationBar.hidden = NO;
             reVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:reVC animated:YES];

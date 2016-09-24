@@ -7,7 +7,6 @@
 //
 
 #import "RedEnvelopeController.h"
-#import "UseRedElpTableView.h"
 #import "LoveView.h"
 
 @interface RedEnvelopeController ()
@@ -101,11 +100,12 @@
     
     //滑动视图每页的视图
     _useTableView = [[UseRedElpTableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, _scrollView.height)];
+    _useTableView.isPay = _isPay;
+    _useTableView.redTableDelegate = self;
     [_scrollView addSubview:_useTableView];
     
     _noUseTableView = [[UseRedElpTableView alloc] initWithFrame:CGRectMake(KScreenWidth, 0, KScreenWidth, _scrollView.height)];
     [_scrollView addSubview:_noUseTableView];
-    
     [self setRefreshHeader:_useTableView];
     [self setRefreshHeader:_noUseTableView];
 //    _useTableView.mj_header = header;
@@ -340,6 +340,47 @@
     _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-35-64, KScreenWidth, w*1.4+35)];
     [self.view addSubview:_loveView];
     
+
+}
+
+#pragma mark - 红包列表选中回调
+- (void)paySelectCellDic:(NSDictionary *)redEnveloperDic{
+
+    if ([_isPay isEqualToString:@"2"]) {
+        
+        NSInteger limitNum = [[redEnveloperDic objectForKey:@"consumeAmount"] integerValue];
+        if (_constNum < limitNum) {
+            
+            UIAlertController *alerVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                            message:@"未达到红包使用条件，再去选两件上品就可以使用了哦！"
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction * _Nonnull action) {
+                                                                     
+                                                                     [alerVC dismissViewControllerAnimated:YES
+                                                                                                completion:nil];
+                                                                     
+                                                                 }];
+            [alerVC addAction:cancelAction];
+            [self presentViewController:alerVC
+                               animated:YES
+                             completion:^{
+                                 
+                             }];
+            return;
+            
+        }
+        
+        if ([_redDellegate respondsToSelector:@selector(paySelectDic:)]) {
+            [_redDellegate paySelectDic:redEnveloperDic];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else{
+        
+        
+    }
 
 }
 

@@ -11,7 +11,6 @@
 #import "PayTwoKindCell.h"
 #import "PayThreeKindCell.h"
 #import "UIView+SDAutoLayout.h"
-#import "RedEnvelopeController.h"
 
 
 @interface PayViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -65,6 +64,10 @@
     [super viewDidLoad];
 //    
 //    _dataArray = [NSMutableArray array];
+    
+    _redEnveloperReduceCount = 0;
+    _redEnveloperID = @"";
+    _thirdPayState = @[@"0",@"0"];
     
     self.title = @"支付";
     [self initNavBar];
@@ -166,10 +169,19 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
+    
+    //用户id
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
-    
     [params setObject:userId forKey:@"buyUserId"];
+    
+    //红包id
+    if (_redEnveloperID.length != 0) {
+        [params setObject:_redEnveloperID forKey:@"redPacketId"];
+    }
+    
+#warning 这里根据_thirdPayState，填写第三方信息
+    
     [params setObject:@"0" forKey:@"payType"];
     [params setObject:@"0" forKey:@"cashConsume"];
     
@@ -197,10 +209,10 @@
                                 @"buyNum":@"1"};
         [BuyArr addObject:buyDic];
     }
-    
     [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
     [params setObject:BuyArr forKey:@"orderDetailList"];
     
+    //支付url
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
     [CartTools realaseCartList];
     NSArray *cartListArr = [CartTools getCartList];
@@ -249,7 +261,7 @@
 #pragma mark-----UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 7;
+    return 6;
 
 }
 
@@ -284,69 +296,99 @@
     }else if (indexPath.row==1){
   
         UITableViewCell *cell = [[UITableViewCell alloc] init];
-      
-#warning 这里得判断有没有红包
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.text = @"红包抵扣";
-         
+        if (_redEnveloperReduceCount > 0) {
+            cell.textLabel.text = [NSString stringWithFormat:@"红包抵扣:%ld元",_redEnveloperReduceCount];
+        }else{
+            cell.textLabel.text = @"红包抵扣";
+        }
+
         return cell;
 
     }else if (indexPath.row==2){
-    
         
-#warning 这里得判断余额够不够
-        PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        UITableViewCell *cell = [[UITableViewCell alloc]init];
+   
+        NSMutableArray *cartArr = [NSMutableArray array];
+        if ([_isimidiately isEqualToString:@"1"]) {
+            
+            cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            
+        }else{
+            
+            cartArr = [_immidiatelyArr mutableCopy];
+        }
         
-        if (!cell) {
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < cartArr.count; i ++) {
             
-            cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            
-            NSMutableArray *cartArr = [NSMutableArray array];
-            if ([_isimidiately isEqualToString:@"1"]) {
-                
-                cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-                
-            }else{
-                
-                cartArr = [_immidiatelyArr mutableCopy];
-            }
-            
-            NSInteger totalPrice = 0;
-            for (int i = 0; i < cartArr.count; i ++) {
-                
-                NSDictionary *dic = [cartArr objectAtIndex:i];
-                NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
-                NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
-                totalPrice = totalPrice + singlePrice * num;
-            }
-
-            cell.goodsTotal.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            cell.iconView.hidden = YES;
-            cell.radio.hidden = NO;
-            cell.radio.selected = YES;
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateSelected];
-            cell.radio.tag = 200;
-            [cell.radio addTarget:self action:@selector(selectAtion:) forControlEvents:UIControlEventTouchUpInside];
+            NSDictionary *dic = [cartArr objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
             
         }
         
+        totalPrice = totalPrice - _redEnveloperReduceCount;
+        
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        CGFloat restMoney = [userDic[@"money"] floatValue];
+        if (restMoney > totalPrice) {
+            
+            cell.textLabel.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
+            
+        }else{
+        
+            cell.textLabel.text = [NSString stringWithFormat:@"总计:%.1f元",restMoney];
+        
+        }
+
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
     }else if (indexPath.row==3){
         
-#warning 这里得判断余额够不够
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.text = @"其他支付方式";
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-        cell.detailTextLabel.text = @"1云币";
+        
+        NSMutableArray *cartArr = [NSMutableArray array];
+        if ([_isimidiately isEqualToString:@"1"]) {
+            
+            cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            
+        }else{
+            
+            cartArr = [_immidiatelyArr mutableCopy];
+        }
+        
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < cartArr.count; i ++) {
+            
+            NSDictionary *dic = [cartArr objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+            
+        }
+        
+        totalPrice = totalPrice - _redEnveloperReduceCount;
+        
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        CGFloat restMoney = [userDic[@"money"] floatValue];
+        if (restMoney > totalPrice) {
+            
+            cell.detailTextLabel.text = @"0元";
+            
+        }else{
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f元",totalPrice - restMoney];
+            
+        }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
       
@@ -354,25 +396,27 @@
         
     }
 
-        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-        NSArray *titles = @[@"微信支付",@"支付宝支付",@"银联支付"];
-        if (!cell) {
-            
-            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-4]];
-            
-            cell.wechat.text = titles[indexPath.row-4];
-            
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateSelected];
-            cell.radio.tag = 300 + indexPath.row-4;
-            [cell.radio addTarget:self action:@selector(selectAtion:) forControlEvents:UIControlEventTouchUpInside];
-            
-        }
+    PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+
+    NSArray *titles = @[@"微信支付",@"支付宝支付"];
+    if (!cell) {
         
-        return cell;
+        cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        
+    }
+
+    NSInteger cellStatu = [_thirdPayState[indexPath.row - 4] integerValue];
+    if (cellStatu == 0) {
+        [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
+    }else{
+        [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
+    }
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-4]];
+    cell.wechat.text = titles[indexPath.row-4];
+
+    return cell;
     
 }
 
@@ -387,15 +431,55 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row == 1) {
         RedEnvelopeController *redEVC = [[RedEnvelopeController alloc] init];
+        NSMutableArray *cartArr = [NSMutableArray array];
+        if ([_isimidiately isEqualToString:@"1"]) {
+            
+            cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+            
+        }else{
+            
+            cartArr = [_immidiatelyArr mutableCopy];
+        }
+        NSInteger totalPrice = 0;
+        for (int i = 0; i < cartArr.count; i ++) {
+            
+            NSDictionary *dic = [cartArr objectAtIndex:i];
+            NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+            NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+            totalPrice = totalPrice + singlePrice * num;
+        }
+        redEVC.constNum = totalPrice;
+        redEVC.redDellegate = self;
+        redEVC.isPay = @"2";
         [self.navigationController pushViewController:redEVC animated:YES];
+        
+    }else if (indexPath.row == 4){
+    
+        NSInteger cellState = [_thirdPayState[0] integerValue];
+        if (cellState == 0) {
+            _thirdPayState = @[@"1",@"0"];
+        }else{
+            _thirdPayState = @[@"0",@"0"];
+        }
+        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0],[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        
+    }else if (indexPath.row ==5){
+        
+        NSInteger cellState = [_thirdPayState[1] integerValue];
+        if (cellState == 0) {
+            _thirdPayState = @[@"0",@"1"];
+        }else{
+            _thirdPayState = @[@"0",@"0"];
+        }
+        
+        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0],[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        
     }
-}
 
-- (void)selectAtion:(UIButton *)button {
-    button.selected = !button.selected;
-   
+    
 }
 
 - (TabbarViewcontroller *)getRootController{
@@ -405,4 +489,13 @@
     return (TabbarViewcontroller *)windows.rootViewController;
     
 }
+
+- (void)paySelectDic:(NSDictionary *)redEnveloperDic{
+
+    _redEnveloperReduceCount = [[redEnveloperDic objectForKey:@"amount"] integerValue];
+    _redEnveloperID = [NSString stringWithFormat:@"%ld",[[redEnveloperDic objectForKey:@"amount"] integerValue]];
+    [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0],[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    
+}
+
 @end

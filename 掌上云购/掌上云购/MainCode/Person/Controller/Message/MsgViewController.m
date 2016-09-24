@@ -131,6 +131,7 @@
     //类型（4：红包消息，2：揭晓消息，3：其他消息）
     if (msgType == 4) {
         RedEnvelopeController *rdVc = [[RedEnvelopeController alloc] init];
+        rdVc.isPay = @"1";
         if (![msgDic[@"businessId"] isEqual:[NSNull null]]) {
             rdVc.businessId = msgDic[@"businessId"];
             [self.navigationController pushViewController:rdVc animated:YES];
