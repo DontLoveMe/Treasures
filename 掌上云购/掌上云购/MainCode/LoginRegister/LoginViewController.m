@@ -249,13 +249,36 @@
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
                   
+                  
+//                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+//                                                                                           message:@"是否绑定手机！" preferredStyle:UIAlertControllerStyleAlert];
+//                  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"否"
+//                                                                         style:UIAlertActionStyleDefault
+//                                                                       handler:^(UIAlertAction * _Nonnull action)
+//                  {
+//                      [alertController dismissViewControllerAnimated:YES
+//                                                          completion:nil];
+//                                                                       }];
+//                  [alertController addAction:cancelAction];
+//                  UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是"
+//                                                                         style:UIAlertActionStyleDefault
+//                                                                       handler:^(UIAlertAction * _Nonnull action)
+//                  {
+//                      [alertController dismissViewControllerAnimated:YES
+//                                                          completion:nil];
+//                      RegisterViewController *rVC = [[RegisterViewController alloc] init];
+//                      rVC.isRegistOrmodify = 3;
+//                      rVC.title = @"绑定手机";
+//                      //                  rVC.userParams = params.copy;
+//                      UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
+//                      [self presentViewController:rnVC animated:YES completion:nil];                   }];
+//                  [alertController addAction:sureAction];
+//                  [self presentViewController:alertController
+//                                     animated:YES
+//                                   completion:nil];
+                  
               }else {
-//                  RegisterViewController *rVC = [[RegisterViewController alloc] init];
-//                  rVC.isRegistOrmodify = 3;
-//                  rVC.title = @"绑定手机";
-////                  rVC.userParams = params.copy;
-//                  UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
-//                  [self presentViewController:rnVC animated:YES completion:nil];
+                  
               }
               
           } failure:^(NSError *error) {

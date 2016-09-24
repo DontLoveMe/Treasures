@@ -51,8 +51,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_identify forIndexPath:indexPath];
-    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"collectionCell背景"]];
-//    cell.backgroundColor = [UIColor whiteColor];
+//    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"collectionCell背景"]];
+    cell.backgroundColor = [UIColor whiteColor];
     cell.gsModel = [GoodsModel mj_objectWithKeyValues:self.data[indexPath.row]];
 //    cell.titleLabel.text = self.data[indexPath.row];
     return cell;

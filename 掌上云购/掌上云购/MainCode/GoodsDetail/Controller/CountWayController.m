@@ -153,18 +153,21 @@
                       if (msgStr.length == 0) {
                           msgStr = @"＝[(数值A+数值B)÷商品所需次数]取余数+10000001";
                       }
-                     
+                      NSString *luckyValue = _dataDic[@"luckyValue"];
+                      if ([luckyValue integerValue] == 0) {
+                          luckyValue = @"请等待开奖结果";
+                      }
                       if (_isSpeed) {
                           _valueArr = @[msgStr,
                                         [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
-                                        [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
+                                        [NSString stringWithFormat:@"幸运号码:%@",luckyValue]];
 
                       }else {
                           
                           _valueArr = @[msgStr,
                                         [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
                                         bValueResultStr,
-                                        [NSString stringWithFormat:@"幸运号码:%@",_dataDic[@"luckyValue"]]];
+                                        [NSString stringWithFormat:@"幸运号码:%@",luckyValue]];
                       }
                   }else{
                       if (_isSpeed) {

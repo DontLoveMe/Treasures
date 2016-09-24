@@ -348,7 +348,12 @@
 
     if ([_isPay isEqualToString:@"2"]) {
         
-        NSInteger limitNum = [[redEnveloperDic objectForKey:@"consumeAmount"] integerValue];
+        NSInteger limitNum;
+        if ([[redEnveloperDic objectForKey:@"consumeAmount"] isEqual:[NSNull null]]) {
+            limitNum = 0;
+        }else {
+            limitNum = [[redEnveloperDic objectForKey:@"consumeAmount"] integerValue];
+        }
         if (_constNum < limitNum) {
             
             UIAlertController *alerVC = [UIAlertController alertControllerWithTitle:@"温馨提示"

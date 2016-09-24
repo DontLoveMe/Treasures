@@ -9,6 +9,7 @@
 #import "AboutMeController.h"
 #import "ChangeDataController.h"
 #import "AddressViewController.h"
+#import "RegisterViewController.h"
 
 @interface AboutMeController ()
 
@@ -295,8 +296,14 @@
             break;
         case 3:
         {
-            NSString *telepHone =[NSString stringWithFormat:@"%@",_userInfo[@"mobile"]];
-            cell.detailTextLabel.text = telepHone;
+            NSString *mobile = _userInfo[@"mobile"];
+            if ([mobile isKindOfClass:[NSNull class]]) {
+                cell.detailTextLabel.text = @"";
+            }else {
+                NSString *telepHone =[NSString stringWithFormat:@"%@",_userInfo[@"mobile"]];
+                cell.detailTextLabel.text = telepHone;
+            }
+            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
             break;
@@ -363,9 +370,15 @@
             break;
         case 3://修改手机号码
         {
-            ChangeDataController *cdVC = [[ChangeDataController alloc] init];
-            cdVC.type = 2;
-            [self.navigationController pushViewController:cdVC animated:YES];
+            NSString *mobile = _userInfo[@"mobile"];
+            if ([mobile isKindOfClass:[NSNull class]]) {
+                [self isBandPhone];
+            }else {
+                ChangeDataController *cdVC = [[ChangeDataController alloc] init];
+                cdVC.type = 2;
+                [self.navigationController pushViewController:cdVC animated:YES];
+            }
+            
         }
             break;
         case 4://绑定邮箱
@@ -388,6 +401,42 @@
 
     
     
+}
+
+- (void)isBandPhone {
+    
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                     
+                                                                             message:@"请绑定手机！" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"否"
+                                                           style:UIAlertActionStyleDefault
+                                                                                                                 handler:^(UIAlertAction * _Nonnull action)
+                                   
+    {
+            [alertController dismissViewControllerAnimated:YES
+                                                completion:nil];
+                                                         }];
+    
+    [alertController addAction:cancelAction];
+     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是"
+                                                          style:UIAlertActionStyleDefault
+                                                                                                                 handler:^(UIAlertAction * _Nonnull action)
+          {
+              [alertController dismissViewControllerAnimated:YES
+                                                  completion:nil];
+              
+              RegisterViewController *rVC = [[RegisterViewController alloc] init];
+              rVC.isRegistOrmodify = 3;
+              rVC.title = @"绑定手机";
+                                                                //                  rVC.userParams = params.copy;
+            UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
+            [self presentViewController:rnVC animated:YES completion:nil];                   }];
+            [alertController addAction:sureAction];
+            [self presentViewController:alertController
+                               animated:YES
+                             completion:nil];
 }
 
 //提示选择拍照还是选择照片
