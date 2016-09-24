@@ -168,35 +168,24 @@
 -(void)PayClicked:(UIButton *)btn{
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    
     //用户id
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     [params setObject:userId forKey:@"buyUserId"];
-    
-    //红包id
-    if (_redEnveloperID.length != 0) {
-        [params setObject:_redEnveloperID forKey:@"redPacketId"];
-    }
-    
-#warning 这里根据_thirdPayState，填写第三方信息
-    
-    [params setObject:@"0" forKey:@"payType"];
-    [params setObject:@"0" forKey:@"cashConsume"];
-    
-    //余额支付数量
+
+#warning 这里根据是否选择，余额数量是否够用,是否选择第三方支付，拼写请求参数
     NSMutableArray *cartArr = [NSMutableArray array];
     if ([_isimidiately isEqualToString:@"1"]) {
         
         cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
         
     }else{
-    
+        
         cartArr = [_immidiatelyArr mutableCopy];
     }
+    
     NSMutableArray  *BuyArr = [NSMutableArray array];
-    NSInteger totalPrice = 0;
+    float totalPrice = 0;
     for (int i = 0; i < cartArr.count; i ++) {
         
         NSDictionary *dic = [cartArr objectAtIndex:i];
@@ -205,15 +194,83 @@
         totalPrice = totalPrice + singlePrice * num;
         
         NSDictionary *buyDic = @{@"productId":[dic objectForKey:@"id"],
-                                @"Qty":[dic objectForKey:@"buyTimes"],
-                                @"buyNum":@"1"};
+                                 @"Qty":[dic objectForKey:@"buyTimes"],
+                                 @"buyNum":@"1"};
         [BuyArr addObject:buyDic];
+        
     }
-    [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
+    
+    //红包id
+    if (_redEnveloperID.length != 0) {
+        [params setObject:_redEnveloperID forKey:@"redPacketId"];
+    }
+    //余额支付数量
+    totalPrice = totalPrice - _redEnveloperReduceCount;
+   
+    //购买数量
     [params setObject:BuyArr forKey:@"orderDetailList"];
     
-    //支付url
+    CGFloat restMoney = [userDic[@"money"] floatValue];
+
+   //余额支付数量
+    if (restMoney > totalPrice) {
+        
+        [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
+        [params setObject:@"0" forKey:@"payType"];
+        
+    }else{
+        
+        [params setObject:[NSNumber numberWithInteger:restMoney]
+                   forKey:@"balanceConsume"];
+        
+        [params setObject:[NSString stringWithFormat:@"%.0f",totalPrice - restMoney] forKey:@"cashConsume"];
+        NSInteger isWX = [_thirdPayState[0] integerValue];
+        NSInteger isAP = [_thirdPayState[1] integerValue];
+        if (isWX == 1 && isAP == 0) {
+            [params setObject:@"2" forKey:@"payType"];
+        }else if (isWX == 0 && isAP == 1){
+            [params setObject:@"1" forKey:@"payType"];
+        }else if (isWX == 1 && isAP == 1){
+            
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"只能选择一个支付方式"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                   style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                  
+                                                                       [alertVC dismissViewControllerAnimated:YES
+                                                                                                   completion:nil];
+                                                                       
+                                                                   }];
+            [alertVC addAction:cancelAction];
+            [self presentViewController:alertVC
+                                                    animated:YES
+                                                  completion:nil];
+            return;
+            
+        }else if (isWX == 0 && isAP == 0){
+        
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择一个支付方式"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                   style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                       
+                                                                       [alertVC dismissViewControllerAnimated:YES
+                                                                                                   completion:nil];
+                                                                       
+                                                                   }];
+            [alertVC addAction:cancelAction];
+            [self presentViewController:alertVC
+                                                    animated:YES
+                                                  completion:nil];
+            return;
+            
+        }
+        
+    }
+    
+//    支付url
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
+//    NSString *url = @"http://192.168.0.123:8080/pcpi/saleCart/submitPayment";
     [CartTools realaseCartList];
     NSArray *cartListArr = [CartTools getCartList];
     [self getRootController].cartNum = cartListArr.count;
@@ -223,11 +280,39 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              NSDictionary *dataDic = [json objectForKey:@"data"];
               NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
-                  [self hideSuccessHUD:@"支付成功"];
-                  [self.navigationController popViewControllerAnimated:YES];
+                  if ([dataDic allKeys].count != 0) {
+                      JHFOrder *order = [[JHFOrder alloc] init];
+                      
+                      order.version = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"version"]];
+                      order.extra = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"extra"]];
+                      order.merid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merid"]];
+                      NSString *mernameStr = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"mername"]];
+                      order.mername =  [NSString stringWithString:[mernameStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                      order.policyid = @"000001";
+                      order.merorderid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merorderid"]];
+                      order.paymoney = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"paymoney"]];
+                      NSString *productnameStr = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"productname"]];
+                      order.productname = [NSString stringWithString:[productnameStr stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                      order.userid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"userid"]];
+                      order.md5 = [self MD5:order withKey:[dataDic objectForKey:@"md5"]];
+                      order.cardtype = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"cardtype"]];
+                      
+                      UINavigationController *navigationController = [[JHFSDK sharedInstance] payOrder:order fromScheme:@"allpayzsyg2016" viewController:self callback:^(NSDictionary *resultDict) {
+                          NSLog(@"resultDict = %@", resultDict);
+                          [self dismissViewControllerAnimated:YES completion:nil];
+                      }];
+                      
+                      if(navigationController!=nil) {
+                          [self presentViewController:navigationController animated:YES completion:nil];
+                      }
+                  }
+                  
+//                  [self hideSuccessHUD:@"支付成功"];
+//                  [self.navigationController popViewControllerAnimated:YES];
                   
               }else{
                   
@@ -241,6 +326,40 @@
               
           }];
  
+}
+
+// MD5, 因为涉及到商户私钥，建议放在商户服务端进行
+- (NSString*)MD5:(JHFOrder *)order withKey:(NSString *)md5Key{
+    
+    NSArray *array = @[[NSString stringWithFormat:@"version=%@", order.version?:@""],
+                       [NSString stringWithFormat:@"merid=%@", order.merid?:@""],
+                       [NSString stringWithFormat:@"mername=%@", order.mername?:@""],
+                       [NSString stringWithFormat:@"policyid=%@", order.policyid?:@""],
+                       [NSString stringWithFormat:@"merorderid=%@", order.merorderid?:@""],
+                       [NSString stringWithFormat:@"paymoney=%@", order.paymoney?:@""],
+                       [NSString stringWithFormat:@"productname=%@", order.productname?:@""],
+                       [NSString stringWithFormat:@"productdesc=%@", order.productdesc?:@""],
+                       [NSString stringWithFormat:@"userid=%@", order.userid?:@""],
+                       [NSString stringWithFormat:@"username=%@", order.username?:@""],
+                       [NSString stringWithFormat:@"email=%@", order.email?:@""],
+                       [NSString stringWithFormat:@"phone=%@", order.phone?:@""],
+                       [NSString stringWithFormat:@"extra=%@", order.extra?:@""],
+                       [NSString stringWithFormat:@"custom=%@", order.custom?:@""]];
+    
+    NSString *string =  [array componentsJoinedByString:@"&"];
+    string = [NSString stringWithFormat:@"%@%@", string, md5Key];
+    
+    const char *pointer = [string UTF8String];
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    
+    CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
+    
+    NSMutableString *md5String = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [md5String appendFormat:@"%02x",md5Buffer[i]];
+    
+    return md5String;
+    
 }
 
 -(void)creatTableView{
@@ -341,7 +460,7 @@
             
         }else{
         
-            cell.textLabel.text = [NSString stringWithFormat:@"总计:%.1f元",restMoney];
+            cell.textLabel.text = [NSString stringWithFormat:@"总计:%.0f元",restMoney];
         
         }
 
@@ -386,7 +505,7 @@
             
         }else{
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f元",totalPrice - restMoney];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f元",totalPrice - restMoney];
             
         }
         
@@ -493,7 +612,7 @@
 - (void)paySelectDic:(NSDictionary *)redEnveloperDic{
 
     _redEnveloperReduceCount = [[redEnveloperDic objectForKey:@"amount"] integerValue];
-    _redEnveloperID = [NSString stringWithFormat:@"%ld",[[redEnveloperDic objectForKey:@"amount"] integerValue]];
+    _redEnveloperID = [NSString stringWithFormat:@"%ld",[[redEnveloperDic objectForKey:@"id"] integerValue]];
     [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0],[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     
 }
