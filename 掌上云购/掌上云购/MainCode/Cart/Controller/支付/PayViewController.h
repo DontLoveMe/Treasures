@@ -8,7 +8,15 @@
 
 #import "BaseViewController.h"
 
-@interface PayViewController : BaseViewController
+#import "RedEnvelopeController.h"
+
+@interface PayViewController : BaseViewController<RedEnveloperDelegate>{
+
+    NSInteger _redEnveloperReduceCount;
+    NSString  *_redEnveloperID;
+    NSArray     *_thirdPayState;
+
+}
 
 //是否直接购买(1-购物车，2直接购买)
 @property (nonatomic,copy)NSString *isimidiately;

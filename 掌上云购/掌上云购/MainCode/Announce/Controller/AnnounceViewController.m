@@ -194,6 +194,7 @@
         [cell.imgView setImage:[UIImage imageNamed:@"未加载图片"]];
         
     }
+    
     NSArray *proAttrList = [dic objectForKey:@"proAttrList"];
     if (proAttrList != 0) {
         [cell.typeMarkImgView setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
