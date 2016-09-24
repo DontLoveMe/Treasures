@@ -10,6 +10,8 @@
 #import "AlertController.h"
 #import "RegisterViewController.h"
 #import "AboutMeController.h"
+#import "CustomerCareController.h"
+#import "HtmlTypeController.h"
 
 @interface SettingsController ()
 
@@ -94,7 +96,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 3:
-            cell.detailTextLabel.text = @"标识";
+//            cell.detailTextLabel.text = @"标识";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 4:
@@ -144,12 +146,19 @@
             break;
         case 3://常见问题
         {
-            
+            CustomerCareController *ccVC = [[CustomerCareController alloc] init];
+            self.navigationController.navigationBar.hidden = NO;
+            ccVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:ccVC animated:YES];
         }
             break;
         case 4://版本信息
         {
-            
+            HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
+            htmlType.htmlUrl = @"/pcpServer-inf/html/about.html";
+            htmlType.title = @"关于";
+            UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
+            [self presentViewController:htVC animated:YES completion:nil];
             
         }
             break;

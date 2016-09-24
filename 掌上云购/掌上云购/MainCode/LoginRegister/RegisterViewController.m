@@ -405,11 +405,13 @@
     [params setObject:[MD5Security MD5String:_usernameTF.text] forKey:@"userPwd"];
     [params setObject:[MD5Security MD5String:_rePasswordTF.text] forKey:@"newUserPwd"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,UpdatePWD_URL];
+    [self showHUD:@"修改中"];
     [ZSTools post:url
            params:params
           success:^(id json) {
               
-              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
+//              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
+              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
                   
