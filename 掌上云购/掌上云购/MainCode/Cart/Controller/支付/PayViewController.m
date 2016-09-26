@@ -314,9 +314,9 @@
                   }else{
                   
                       [self hideSuccessHUD:@"支付成功"];
-                      [self.navigationController popViewControllerAnimated:YES];
                       
                   }
+                  [self.navigationController popViewControllerAnimated:YES];
                   
               }else{
                   

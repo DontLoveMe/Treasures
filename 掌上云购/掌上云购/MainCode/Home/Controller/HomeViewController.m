@@ -551,7 +551,7 @@
           success:^(id json) {
               
               if ([json objectForKey:@"flag"]) {
-                  _bannerArr = [json objectForKey:@"data"];
+                  _bannerArr = [[json objectForKey:@"data"] mutableCopy];
                   NSMutableArray *picArr = [NSMutableArray array];
                   for (int i = 0; i < _bannerArr.count; i ++) {
                       

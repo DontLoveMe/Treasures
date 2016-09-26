@@ -230,7 +230,6 @@
     [self initTopView];
     [self initCenterView];
     [self initBottonView];
-    [self requestData];
     
 }
 
@@ -262,6 +261,7 @@
 
     //轮播图
     _topGoodImgView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth *375 / 375) imagesGroup:nil];
+    _topGoodImgView.backgroundColor = [UIColor whiteColor];
     _topGoodImgView.placeholderImage = [UIImage imageNamed:@"placeholder"];
     _topGoodImgView.infiniteLoop = YES;
     _topGoodImgView.autoScroll = NO;
@@ -496,6 +496,7 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    [self requestData];
     
     if (_isAnnounced == 1) {
         
@@ -595,6 +596,7 @@
     
     if (_timerProcess == _joinListArr.count) {
         [_joinListTimer invalidate];
+        return;
     }
     //参与公告
     NSDictionary *dataDic = [_joinListArr objectAtIndex:_timerProcess];
