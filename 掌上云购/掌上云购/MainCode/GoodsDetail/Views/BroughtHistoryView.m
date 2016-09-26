@@ -44,7 +44,7 @@
 
     _recommandLabel = [[UILabel  alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 28)];
     _recommandLabel.backgroundColor = [UIColor whiteColor];
-    _recommandLabel.text = @"所有参赛记录(2016-08-10 10-34-24开始)";
+    _recommandLabel.text = @"所有参与记录(2016-08-10 10-34-24开始)";
     _recommandLabel.font = [UIFont systemFontOfSize:13];
     _recommandLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_recommandLabel];
@@ -126,7 +126,7 @@
 
 //    cell.joinTimes.text = [NSString stringWithFormat:@"参与了:%@次",[dic objectForKey:@"qty"]];
     cell.joinTimes.text = [NSString stringWithFormat:@"%@ IP：%@",[dic objectForKey:@"buyIpAddress"],[dic objectForKey:@"buyIp"]];
-    cell.userIP.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"orderTime"]];
+    cell.userIP.text = [NSString stringWithFormat:@"参与了:%@次 %@",[dic objectForKey:@"qty"],[dic objectForKey:@"orderTime"]];
     
     return cell;
     

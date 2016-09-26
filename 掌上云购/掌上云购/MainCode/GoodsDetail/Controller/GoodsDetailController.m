@@ -153,6 +153,12 @@
     
     _bgScrollView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
+        if (_joinListTimer) {
+            
+            [_joinListTimer invalidate];
+            _joinListTimer = nil;
+            
+        }
         [self requestJoinList:_pageIndex];
         UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
         _bgScrollView.delegate = nil;
@@ -236,6 +242,7 @@
 #pragma mark - broughtHistoryDelegate
 - (void)pullBack{
     
+    [self requestJoinList];
     _pageIndex = 1;
     _joinRecordArr = [NSMutableArray array];
     [UIView animateWithDuration:0.5

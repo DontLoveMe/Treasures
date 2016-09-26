@@ -190,13 +190,14 @@
     [cell setSuerBlock:^{
         [weakSelf confirmAddress:rModel];
     }];
-    NSInteger orderStatus = [rModel.orderStatus integerValue];
-    if (orderStatus == 4) {
-        [cell.isSunBtn setTitle:@"已晒单" forState:UIControlStateNormal];
-        cell.isSunBtn.userInteractionEnabled = NO;
-    }else {
-        [cell.isSunBtn setTitle:@"未晒单" forState:UIControlStateNormal];
-    }
+    cell.isSunBtn.hidden = YES;
+//    NSInteger orderStatus = [rModel.orderStatus integerValue];
+//    if (orderStatus == 4) {
+//    [cell.isSunBtn setTitle:@"分享" forState:UIControlStateNormal];
+//    cell.isSunBtn.userInteractionEnabled = NO;
+//    }else {
+//        [cell.isSunBtn setTitle:@"未晒单" forState:UIControlStateNormal];
+//    }
     
     if ([rModel.isVirtualgoods boolValue]) {
         //"orderStatus": "0",//订单状态，0：已支付1：已确认收货地址2：已发货3：已签收4：已晒单5：已确认物品6：已选择方式7：已发卡密或充值到余额（虚拟商品）8：未确认地址取消订单',
