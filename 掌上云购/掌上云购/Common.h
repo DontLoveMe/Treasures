@@ -15,12 +15,12 @@
 //#define BASE_URL @"http://192.168.0.117:8080"
 
 //外网服务器
-#define BASE_URL    @"http://121.43.164.18:8080"
+#define BASE_URL            @"http://121.43.164.18:8080"
 //阿里云图片
-#define AliyunPIC_URL     @"http://zsys.oss-cn-hangzhou.aliyuncs.com/"
-#define PIC_URL     @"http://121.196.197.222:8080"
+#define AliyunPIC_URL       @"http://zsys.oss-cn-hangzhou.aliyuncs.com/"
+#define PIC_URL             @"http://121.196.197.222:8080"
 //玲姐服务器
-//#define BASE_URL @"http://192.168.0.205:8080"
+//#define BASE_URL            @"http://192.168.0.205:8080"
 
 /*---------------登陆注册模块----------------------*/
 //会员登陆
