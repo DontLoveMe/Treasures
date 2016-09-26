@@ -206,6 +206,7 @@
             <connections>
                 <outlet property="goodsButton" destination="c9z-C1-AX9" id="66l-vk-q7g"/>
                 <outlet property="imgView" destination="7XU-6j-FMd" id="Lyu-mD-eCg"/>
+                <outlet property="imgWidth" destination="qDY-W7-Bw3" id="aez-br-XaB"/>
                 <outlet property="isSunBtn" destination="mgv-kY-rPU" id="rko-6I-H7G"/>
                 <outlet property="issueLabel" destination="47c-Oi-zWV" id="agg-kc-Voc"/>
                 <outlet property="luckyNumLabel" destination="s7m-T6-vM9" id="2Qy-sh-dGs"/>

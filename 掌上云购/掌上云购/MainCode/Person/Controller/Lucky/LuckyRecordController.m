@@ -202,14 +202,14 @@
         //"orderStatus": "0",//订单状态，0：已支付1：已确认收货地址2：已发货3：已签收4：已晒单5：已确认物品6：已选择方式7：已发卡密或充值到余额（虚拟商品）8：未确认地址取消订单',
         NSInteger orderStatus = [rModel.orderStatus integerValue];
         switch (orderStatus) {
-            case 0:
-                [cell.goodsButton setTitle:@"确认商品" forState:UIControlStateNormal];
+            case 5:
+                [cell.goodsButton setTitle:@"选择使用方式" forState:UIControlStateNormal];
                 break;
             case 6:
-                [cell.goodsButton setTitle:@"已选择方式" forState:UIControlStateNormal];
+                [cell.goodsButton setTitle:@"等待充值" forState:UIControlStateNormal];
                 break;
             case 7:
-                [cell.goodsButton setTitle:@"已选择方式" forState:UIControlStateNormal];
+                [cell.goodsButton setTitle:@"晒单奖红包" forState:UIControlStateNormal];
                 break;
                 
             default:
@@ -224,13 +224,13 @@
                 [cell.goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
                 break;
             case 1:
-                [cell.goodsButton setTitle:@"已确认地址" forState:UIControlStateNormal];
+                [cell.goodsButton setTitle:@"等待发货" forState:UIControlStateNormal];
                 break;
             case 2:
-                [cell.goodsButton setTitle:@"已发货" forState:UIControlStateNormal];
+                [cell.goodsButton setTitle:@"待签收" forState:UIControlStateNormal];
                 break;
             case 3:
-                [cell.goodsButton setTitle:@"已签收" forState:UIControlStateNormal];
+                [cell.goodsButton setTitle:@"晒单奖红包" forState:UIControlStateNormal];
                 break;
             case 4:
                 [cell.goodsButton setTitle:@"已晒单" forState:UIControlStateNormal];

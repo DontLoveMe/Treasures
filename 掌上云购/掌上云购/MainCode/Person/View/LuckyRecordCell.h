@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *goodsButton;//按钮
 @property (weak, nonatomic) IBOutlet UIButton *isSunBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgWidth;
 
 @property (nonatomic ,strong)RecordModel *lkModel;
 

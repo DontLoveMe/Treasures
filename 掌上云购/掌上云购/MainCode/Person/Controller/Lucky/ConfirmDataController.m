@@ -148,6 +148,8 @@
         cell.selectAddress.hidden = YES;
         cell.delayReceipt.hidden = YES;
         cell.sureReceipt.hidden = YES;
+        //"0",//订单状态，0：已支付1：已确认收货地址2：已发货3：已签收4：已晒单5：已确认物品6：已选择方式7：已发卡密或充值到余额（虚拟商品）8：未确认地址取消订单',
+
         if (_state == 0) {
             
             cell.stateView1.highlighted = YES;
@@ -209,7 +211,7 @@
             cell.delayReceipt.hidden = YES;
             cell.sureReceipt.hidden = YES;
            
-        }else {
+        }else if (_state == 2){
             
             cell.stateView1.highlighted = YES;
             cell.stateView2.highlighted = YES;
@@ -247,27 +249,87 @@
             cell.delayReceipt.hidden = NO;
             cell.sureReceipt.hidden = NO;
             
-            if (_state == 3) {
-                cell.shareBtn.hidden = NO;
-                cell.delayReceipt.hidden = YES;
-                cell.sureReceipt.hidden = YES;
-                cell.stateView5.highlighted = YES;
-                cell.stateLabel5.highlighted = YES;
-                if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
-                    cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
-                }
-            }else {
-                cell.shareBtn.hidden = YES;
-                cell.delayReceipt.hidden = YES;
-                cell.sureReceipt.hidden = YES;
-                cell.stateView5.highlighted = YES;
-                cell.stateLabel5.highlighted = YES;
-                if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
-                    cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
-                }
                 
             }
+        else if (_state == 3) {
+            
+            cell.stateView1.highlighted = YES;
+            cell.stateView2.highlighted = YES;
+            cell.stateView3.highlighted = YES;
+            cell.stateView4.highlighted = YES;
+            cell.stateView5.highlighted = YES;
+            
+            cell.stateLabel1.highlighted = YES;
+            cell.stateLabel2.highlighted = YES;
+            cell.stateLabel3.highlighted = YES;
+            cell.stateLabel4.highlighted = YES;
+            cell.stateLabel5.highlighted = YES;
+            
+            cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
+            
+            cell.timeLabel1.highlighted = YES;
+            cell.timeLabel2.highlighted = YES;
+            cell.timeLabel3.highlighted = YES;
+            cell.timeLabel4.highlighted = YES;
+            
+            
+            cell.shareBtn.hidden = NO;
+            cell.delayReceipt.hidden = YES;
+            cell.sureReceipt.hidden = YES;
+            cell.stateView5.highlighted = YES;
+            cell.stateLabel5.highlighted = YES;
+            if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel1.text = _orderDic[@"drawDate"];
+            }
+            if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+            }
+            if (![_orderDic[@"deliverDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel3.text = _orderDic[@"deliverDate"];
+            }
+            if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
+            }
+        }else {
+            
+            cell.stateView1.highlighted = YES;
+            cell.stateView2.highlighted = YES;
+            cell.stateView3.highlighted = YES;
+            cell.stateView4.highlighted = YES;
+            cell.stateView5.highlighted = YES;
+            
+            cell.stateLabel1.highlighted = YES;
+            cell.stateLabel2.highlighted = YES;
+            cell.stateLabel3.highlighted = YES;
+            cell.stateLabel4.highlighted = YES;
+            cell.stateLabel5.highlighted = YES;
+            
+            cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
+            
+            cell.timeLabel1.highlighted = YES;
+            cell.timeLabel2.highlighted = YES;
+            cell.timeLabel3.highlighted = YES;
+            cell.timeLabel4.highlighted = YES;
+            
+            cell.shareBtn.hidden = YES;
+            cell.delayReceipt.hidden = YES;
+            cell.sureReceipt.hidden = YES;
+            cell.stateView5.highlighted = YES;
+            cell.stateLabel5.highlighted = YES;
+            if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel1.text = _orderDic[@"drawDate"];
+            }
+            if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+            }
+            if (![_orderDic[@"deliverDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel3.text = _orderDic[@"deliverDate"];
+            }
+            if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
+                cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
+            }
         }
+    
         return cell;
 
     }

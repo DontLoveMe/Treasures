@@ -110,7 +110,7 @@
         [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateSelected];
         [button setTitle:_moneys[i] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"按钮框_暗"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"按钮框_亮"] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:@"按钮框"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
         
@@ -202,7 +202,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     UIButton *selectButton = [self.view viewWithTag:_selectBtnTag];
     selectButton.selected = NO;
-    textField.background = [UIImage imageNamed:@"按钮框_亮"];
+    textField.background = [UIImage imageNamed:@"按钮框"];
     _textField.textColor = [UIColor colorFromHexRGB:ThemeColor];
 //    [textField addSubview:_selectMoneyView];
 }

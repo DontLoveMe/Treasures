@@ -72,8 +72,8 @@
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"buyUserId":userId} forKey:@"paramsMap"];
-    [params setObject:@(_page) forKey:@"page"];
-    [params setObject:@10 forKey:@"rows"];
+    [params setObject:@1 forKey:@"page"];
+    [params setObject:@200 forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,LuckyNumberList_URL];
     [ZSTools post:url
@@ -84,12 +84,23 @@
               [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
                   NSArray *dataArr = json[@"data"];
-                  NSMutableArray *arr = dataArr.mutableCopy;
-                  for (NSInteger i = arr.count-1; i>=0;i--) {
-                      NSDictionary *dic = arr[i];
+                  NSMutableArray *arr = [NSMutableArray array];
+                  for (NSInteger i = 0; i< dataArr.count;i++) {
+                      NSDictionary *dic = dataArr[i];
+                      //"orderStatus": "0",//订单状态，0：已支付1：已确认收货地址2：已发货3：已签收4：已晒单5：已确认物品6：已选择方式7：已发卡密或充值到余额（虚拟商品）8：未确认地址取消订单',
+
                       NSInteger orderStatus = [dic[@"orderStatus"] integerValue];
-                      if ([dic[@"sunOrder"] boolValue]||orderStatus!=3) {
-                          [arr removeObjectAtIndex:i];
+
+                      if (orderStatus==3) {
+                          if (![dic[@"sunOrder"] boolValue]) {
+                                [arr addObject:dic];
+                          }
+                          
+                      }
+                      if (orderStatus==7) {
+                          if (![dic[@"sunOrder"] boolValue]) {
+                              [arr addObject:dic];
+                          }
                       }
                   }
                   _luckyData = arr;
@@ -241,6 +252,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.goodsButton setTitle:@"晒单奖红包" forState:UIControlStateNormal];
         RecordModel *rModel = [RecordModel mj_objectWithKeyValues:self.luckyData[indexPath.row]];
+        
+        cell.imgWidth.constant = 0;
         cell.lkModel = rModel;
         cell.isSunBtn.hidden = YES;
         __weak typeof(self) weakSelf = self;

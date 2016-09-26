@@ -32,6 +32,8 @@
 @property (nonatomic,strong)UIButton *msgBtn;
 @property (nonatomic,strong)UIButton *setBtn;
 
+@property (nonatomic,strong)UIView *bgCollectionView;
+
 
 @property (nonatomic,strong)UIButton *redBtn;
 
@@ -135,7 +137,7 @@
 #pragma mark - 视图初始化
 - (void)initBgHeaderView {
     
-    _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 228)];
+    _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth*0.75)];
     [self.view insertSubview:_bgIconView belowSubview:_collectionView];
     
 //    _bgIconView.image = [UIImage imageNamed:@"发现5"];
@@ -146,16 +148,20 @@
     effectView.alpha = 0.8;
     effectView.frame = _bgIconView.bounds;
     [_bgIconView addSubview:effectView];
+    
+    _bgCollectionView = [[UIView alloc] initWithFrame:CGRectMake(0,  _bgIconView.bottom, KScreenWidth, KScreenHeight)];
+    _bgCollectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    [self.view insertSubview:_bgCollectionView aboveSubview:_bgIconView];
 }
 
 - (void)initCollectionView {
     self.data = @[@"云购记录",@"幸运记录",@"我的红包",@"我的晒单",@"充值记录",@"云购客服"];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((KScreenWidth-2)/3, (KScreenWidth-2)/3);
-    layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 268);
+    layout.headerReferenceSize = CGSizeMake(KScreenWidth, KScreenWidth*0.75+40);
     layout.minimumLineSpacing = 1;
     layout.minimumInteritemSpacing = 1;
     layout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
@@ -168,7 +174,6 @@
 //    _collectionView.scrollEnabled = NO;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    
     
     
     _identify = @"PersonCell";
@@ -360,6 +365,7 @@
     
     //取得表视图的偏移量
     CGFloat offsetY = scrollView.contentOffset.y;
+    _bgCollectionView.top = -offsetY+KScreenWidth*0.75;
     if (offsetY <= 0) {
         //计算放大倍数
         CGFloat scale = (225+ABS(offsetY))/225;
