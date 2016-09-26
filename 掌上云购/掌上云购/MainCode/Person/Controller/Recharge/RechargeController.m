@@ -254,7 +254,6 @@
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"正在充值"];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"userId"];
@@ -265,16 +264,13 @@
     NSTimeInterval timeInterval = [nowDate timeIntervalSince1970];
     [params setObject:[NSNumber numberWithDouble:timeInterval * 1000000] forKey:@"serialNo"];
     
-    
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitRecharge_URL];
-//    192.168.0.111:8080/pcpi
 //    NSString *url = @"http://192.168.0.111:8080/pcpi/saleMoneyRecharge/recharge";
     [ZSTools post:url
            params:params
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-//              [self hideSuccessHUD:@"充值成功"];
               NSDictionary *dataDic = [json objectForKey:@"data"];
               if (isSuccess) {
                   
@@ -304,6 +300,7 @@
                   }
                   
               }
+              
           } failure:^(NSError *error) {
               
               [self hideFailHUD:@"加载失败"];

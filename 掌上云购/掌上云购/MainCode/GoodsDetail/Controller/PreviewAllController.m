@@ -55,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:animated];
     goodName.text = [NSString stringWithFormat:@"商品名:%@",[_dataDic objectForKey:@"name"]];
     
     drawNum.text = [NSString stringWithFormat:@"期号:%@",[_dataDic objectForKey:@"drawTimes"]];

@@ -203,7 +203,7 @@
     NSString *content = iSModel.content;
     CGRect contentRect = [content boundingRectWithSize:CGSizeMake(KScreenWidth-57, 35) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
     NSArray *photoUrllist = iSModel.photoUrllist;
-    CGFloat height;
+    CGFloat height = 0;
     if (photoUrllist.count == 0) {
         height = 0;
     }else if (photoUrllist.count <4){
