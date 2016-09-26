@@ -98,7 +98,7 @@
     if (indexPath.row == 0) {
         
         if (![dic[@"minOrderTime"] isKindOfClass:[NSNull class]]) {
-            _recommandLabel.text = [NSString stringWithFormat:@"所有参赛记录(%@开始)",dic[@"minOrderTime"]];
+            _recommandLabel.text = [NSString stringWithFormat:@"所有参与记录(%@开始)",dic[@"minOrderTime"]];
         }
     }
     if (![[dic objectForKey:@"photoUrl"] isKindOfClass:[NSNull class]]) {

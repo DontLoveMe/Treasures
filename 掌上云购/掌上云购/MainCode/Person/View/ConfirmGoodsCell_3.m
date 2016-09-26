@@ -22,7 +22,7 @@
 - (IBAction)sunShareAction:(UIButton *)sender {
     
     AddShareController *addSVC = [[AddShareController alloc] init];
-    
+    addSVC.lkModel = _rcModel;
     [[self viewController].navigationController pushViewController:addSVC animated:YES];
 }
 

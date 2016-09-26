@@ -168,6 +168,7 @@
     }
 
     ConfirmGoodsCell_3 *cell = [tableView dequeueReusableCellWithIdentifier:@"ConfirmGoodsCell_3" forIndexPath:indexPath];
+    cell.rcModel = self.rcModel;
     if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
         
         cell.timeLabel1.text = _orderDic[@"drawDate"];
@@ -337,7 +338,7 @@
     [params setObject:userId forKey:@"buyUserId"];
     [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
     [params setObject:@(_mannerType) forKey:@"receivingType"];
-    [params setObject:_userName forKey:@"buyUserId"];
+    [params setObject:_userName forKey:@"receiptAccount"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RechargeBalance_URL];
     [ZSTools post:url

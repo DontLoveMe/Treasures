@@ -137,7 +137,7 @@
 #pragma mark - 视图初始化
 - (void)initBgHeaderView {
     
-    _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth*0.75)];
+    _bgIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenWidth*0.618)];
     [self.view insertSubview:_bgIconView belowSubview:_collectionView];
     
 //    _bgIconView.image = [UIImage imageNamed:@"发现5"];
@@ -161,7 +161,7 @@
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((KScreenWidth-2)/3, (KScreenWidth-2)/3);
-    layout.headerReferenceSize = CGSizeMake(KScreenWidth, KScreenWidth*0.75+40);
+    layout.headerReferenceSize = CGSizeMake(KScreenWidth, KScreenWidth*0.618+40);
     layout.minimumLineSpacing = 1;
     layout.minimumInteritemSpacing = 1;
     layout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
@@ -365,10 +365,10 @@
     
     //取得表视图的偏移量
     CGFloat offsetY = scrollView.contentOffset.y;
-    _bgCollectionView.top = -offsetY+KScreenWidth*0.75;
+    _bgCollectionView.top = -offsetY+KScreenWidth*0.618;
     if (offsetY <= 0) {
         //计算放大倍数
-        CGFloat scale = (225+ABS(offsetY))/225;
+        CGFloat scale = (KScreenWidth*0.618+ABS(offsetY))/(KScreenWidth*0.618);
         
         _bgIconView.transform = CGAffineTransformMakeScale(scale, scale);
         _bgIconView.top = 0;

@@ -193,7 +193,7 @@
     _tableView.dataSource = self;
     
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    _tableView.scrollEnabled = NO;
     _identify = @"LuckyRecordCell";
     UINib *nib = [UINib nibWithNibName:@"LuckyRecordCell" bundle:nil];
     [_tableView registerNib:nib forCellReuseIdentifier:_identify];
@@ -213,6 +213,7 @@
     
     cell.lkModel = _lkModel;
     cell.goodsButton.hidden = YES;
+    cell.isSunBtn.hidden = YES;
     
     return cell;
 }

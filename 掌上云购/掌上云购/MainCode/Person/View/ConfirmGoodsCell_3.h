@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecordModel.h"
 
 @interface ConfirmGoodsCell_3 : UITableViewCell
 
@@ -32,5 +33,6 @@
 //@property (weak, nonatomic) IBOutlet UIButton *copYBtn2;
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 
+@property (nonatomic,strong)RecordModel *rcModel;
 
 @end

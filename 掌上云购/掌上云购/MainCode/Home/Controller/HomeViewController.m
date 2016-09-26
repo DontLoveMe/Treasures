@@ -121,7 +121,7 @@
     header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
     [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
     [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
-    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    [header setTitle:@" 正在刷新... " forState:MJRefreshStateRefreshing];
     _bgScrollView.mj_header = header;
     
     //加footer及方法
