@@ -143,12 +143,30 @@
     }else {
         [cell.picImgView setImage:[UIImage imageNamed:@"未加载图片"]];
     }
-    cell.picImgView.buyUserId = [dic[@"drawUserId"] integerValue];
+    if (![dic[@"drawUserId"] isKindOfClass:[NSNull class]]) {
+        cell.picImgView.buyUserId = [dic[@"drawUserId"] integerValue];
+        cell.userId.text = [NSString stringWithFormat:@"用户ID:%@",[dic objectForKey:@"drawUserId"]];
+    }else {
+        cell.picImgView.buyUserId = 0;
+        cell.userId.text = @"";
+    }
     
-    cell.userName.text = [NSString stringWithFormat:@"获奖者：%@",[dic objectForKey:@"nickName"]];
-    cell.userId.text = [NSString stringWithFormat:@"用户ID:%@",[dic objectForKey:@"drawUserId"]];
-    cell.luckyNum.text = [NSString stringWithFormat:@"幸运号码：%@次",[dic objectForKey:@"drawNumber"]];
-    cell.joinTimes.text = [NSString stringWithFormat:@"本期参与：%@次",[dic objectForKey:@"qty"]];
+    if (![dic[@"nickName"] isKindOfClass:[NSNull class]]) {
+        cell.userName.text = [NSString stringWithFormat:@"获奖者：%@",[dic objectForKey:@"nickName"]];
+    }else {
+        cell.userName.text = @"";
+    }
+    if (![dic[@"drawNumber"] isKindOfClass:[NSNull class]]) {
+        cell.luckyNum.text = [NSString stringWithFormat:@"幸运号码：%@",[dic objectForKey:@"drawNumber"]];
+    }else {
+        cell.luckyNum.text = @"";
+    }
+    if (![dic[@"qty"] isKindOfClass:[NSNull class]]) {
+        cell.joinTimes.text = [NSString stringWithFormat:@"本期参与：%@次",[dic objectForKey:@"qty"]];
+    }else {
+        cell.joinTimes.text = @"";
+    }
+    
     
     return cell;
     

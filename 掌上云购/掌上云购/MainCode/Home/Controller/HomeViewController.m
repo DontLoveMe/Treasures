@@ -392,7 +392,7 @@
         cell.goodsPic.image = [UIImage imageNamed:@"未加载图片"];
     }
     NSArray *proAttrList = [dic objectForKey:@"proAttrList"];
-    if (proAttrList != 0) {
+    if (proAttrList.count != 0) {
         [cell.typeMarkImgView setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
                              placeholderImage:[UIImage new]];
     }else {

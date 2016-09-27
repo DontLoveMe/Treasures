@@ -41,6 +41,9 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (_buyUserId == 0) {
+        return;
+    }
     HisCenterController *hcVC = [[HisCenterController alloc] init];
     hcVC.buyUserId = _buyUserId;
     [[self viewController].navigationController pushViewController:hcVC animated:YES];
