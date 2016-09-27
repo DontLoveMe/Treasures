@@ -73,6 +73,7 @@
         //跳转至对应的控制器
         self.selectedIndex = item.tag - 1;
     }
+    
 }
 
 //创建子控制器
@@ -137,7 +138,7 @@
             _countLabel.layer.borderWidth = 0.5;
             _countLabel.layer.cornerRadius = 6.f;
             _countLabel.layer.masksToBounds = YES;
-            _countLabel.backgroundColor = [UIColor redColor];
+            _countLabel.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
             _countLabel.text = [NSString stringWithFormat:@"%ld",_cartNum];
             _countLabel.textColor = [UIColor whiteColor];
             _countLabel.font = [UIFont systemFontOfSize:11];

@@ -117,7 +117,7 @@
         
         if (i != titleArr.count - 1) {
             UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(button.frame)-1, 8.f, 1, 22.f)];
-            line.backgroundColor = [UIColor darkGrayColor];
+            line.backgroundColor = [UIColor lightGrayColor];
             [_topKindView addSubview:line];
         }
     }

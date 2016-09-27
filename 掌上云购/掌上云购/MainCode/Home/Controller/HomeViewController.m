@@ -27,15 +27,38 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 24, 24)];
+    rightButton.tag = 102;
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"消息.png"]
+                           forState:UIControlStateNormal];;
+    [rightButton addTarget:self
+                    action:@selector(NavAction:)
+          forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
 }
 
 - (void)NavAction:(UIButton *)button{
     
-    NSLogZS(@"要搜索了");
-    HomeSearchController *HSVC = [[HomeSearchController alloc] init];
-    HSVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:HSVC
-                                         animated:YES];
+    if (button.tag == 101) {
+        HomeSearchController *HSVC = [[HomeSearchController alloc] init];
+        HSVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:HSVC
+                                             animated:YES];
+    }else {
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        if (userDic == nil) {
+            LoginViewController *lVC = [[LoginViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+            [self presentViewController:nav animated:YES completion:nil];
+            return;
+        }
+        MessageController *msgVC = [[MessageController alloc] init];
+        self.navigationController.navigationBar.hidden = NO;
+        msgVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:msgVC animated:YES];
+    }
 
 }
 
