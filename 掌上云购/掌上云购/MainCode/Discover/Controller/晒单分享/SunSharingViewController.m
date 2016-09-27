@@ -72,7 +72,7 @@
                    forKey:@"paramsMap"];
     }
     [params setObject:@(_page) forKey:@"page"];
-    [params setObject:@10 forKey:@"rows"];
+    [params setObject:@20 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
     [ZSTools post:url
            params:params
@@ -83,18 +83,26 @@
               if (isSuccess) {
                   
                   NSArray *dataArr = json[@"data"];
+                  NSMutableArray *sunData = [NSMutableArray array];
+                  for (int i = 0; i < dataArr.count; i ++) {
+                      NSDictionary *sunDic = dataArr[i];
+                      NSInteger status = [sunDic[@"status"] integerValue];
+                      if (status == 3) {
+                          [sunData addObject:sunDic];
+                      }
+                  }
                   if (_page == 1) {
                       [_data removeAllObjects];
-                      _data = dataArr.mutableCopy;
+                      _data = sunData;
                       
                       [_tableView.mj_footer resetNoMoreData];
                       [_tableView.mj_header endRefreshing];
                   }
                   
                   if (_page != 1 && _page != 0) {
-                      if (dataArr.count > 0) {
+                      if (sunData.count > 0) {
                           _page ++;
-                          [_data addObjectsFromArray:dataArr];
+                          [_data addObjectsFromArray:sunData];
                           [_tableView.mj_footer endRefreshing];
                       }else {
                           [_tableView.mj_footer endRefreshingWithNoMoreData];
