@@ -448,7 +448,7 @@
     
     [_bgScrollView addSubview:activityImgview];
     
-    [UIView animateWithDuration:1.5
+    [UIView animateWithDuration:0.75
                      animations:^{
                          
                          CGAffineTransform transform = CGAffineTransformMakeTranslation(KScreenWidth * 7 / 10 - activityImgview.centerX, KScreenHeight - kNavigationBarHeight - kTabBarHeight - activityImgview.centerY + _bgScrollView.contentOffset.y);
