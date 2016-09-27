@@ -153,7 +153,7 @@
                         <action selector="registerAction:" destination="-1" eventType="touchUpInside" id="Wej-G0-ZIW"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="掌上云购.png" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZs-IG-ZJo">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="掌上云购.png" translatesAutoresizingMaskIntoConstraints="NO" id="TZs-IG-ZJo">
                     <rect key="frame" x="215" y="286" width="170" height="135"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="170" id="Ag1-D3-rDc"/>
