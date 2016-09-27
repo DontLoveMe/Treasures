@@ -292,7 +292,8 @@
                         @"userPwd":[MD5Security MD5String:_passwrodTF.text],
                         @"captcha":_validateTF.text}
                forKey:@"userLoginDto"];
-    NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
+//    NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
+    NSString *url  = @"http://192.168.0.92:8080/pcpi/user/register";
     [ZSTools post:url
            params:params
           success:^(id json) {
@@ -505,34 +506,43 @@
 }
 #pragma mark - 保存信息
 - (void)saveDataForUserUserDefaults:(NSMutableDictionary *)userDic {
-    for (int i = 0; i < userDic.allKeys.count; i ++) {
-        
-        if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]]) {
+    
+        for (int i = 0; i < userDic.allKeys.count; i ++) {
             
-            [userDic removeObjectForKey:userDic.allKeys[i]];
-            i = 0;
-        }
-        if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
-            NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
-            for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
-                if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]) {
-                    [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
-                    j = 0;
-                }
-                userDic[@"userLoginDto"] = userLoginDic;
+            id ss=userDic[userDic.allKeys[i]];
+            if ([ss isEqual:[NSNull null]]) {
+                [userDic removeObjectForKey:userDic.allKeys[i]];
+                i = 0;
             }
             
+            if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]] || [userDic objectForKey:userDic.allKeys[i]] == nil) {
+                
+                [userDic removeObjectForKey:userDic.allKeys[i]];
+                i = 0;
+            }
+            if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+                NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+                for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                    if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]||[[userLoginDic objectForKey:userLoginDic.allKeys[j]] isKindOfClass:[NSNull class]]) {
+                        [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                        j = 0;
+                    }
+                    userDic[@"userLoginDto"] = userLoginDic;
+                }
+                
+            }
         }
-    }
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setObject:userDic forKey:@"userDic"];
-    
-    [defaults synchronize];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setObject:userDic forKey:@"userDic"];
+        
+        [defaults synchronize];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
 }
+
 -(void)dealloc{
     
     [_countDown destoryTimer];
@@ -542,8 +552,6 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    
-    
 
 }
 

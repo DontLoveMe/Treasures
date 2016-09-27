@@ -428,12 +428,19 @@
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   for (int i = 0; i < userDic.allKeys.count; i ++) {
                       
+                      id ss=userDic[userDic.allKeys[i]];
+                      if ([ss isEqual:[NSNull null]]) {
+                          [userDic removeObjectForKey:userDic.allKeys[i]];
+                          i = 0;
+                      }
+                      
                       if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]]) {
                           
                           [userDic removeObjectForKey:userDic.allKeys[i]];
                           i = 0;
                       }
                       if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+                          
                           NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
                           for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
                               if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]||[[userLoginDic objectForKey:userLoginDic.allKeys[j]] isKindOfClass:[NSNull class]]) {

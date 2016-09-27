@@ -242,7 +242,7 @@
 #pragma mark - broughtHistoryDelegate
 - (void)pullBack{
     
-    [self requestJoinList];
+    [self requestData];
     _pageIndex = 1;
     _joinRecordArr = [NSMutableArray array];
     [UIView animateWithDuration:0.5
@@ -516,7 +516,6 @@
             _oherFunctionTableView.height = 300.f+50;
             
         }
-        [self requestJoinList];
         
     }else if (_isAnnounced == 2){
         
@@ -551,8 +550,6 @@
     [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:_navBarAalpha]];
 
 }
-
-
 
 #pragma mark 请求网络数据
 - (void)requestData{
@@ -759,7 +756,7 @@
                   _oherFunctionTableView.isPrized = _isPrized;
                   [_oherFunctionTableView reloadData];
                   
-
+                  [self requestJoinList];
                   
               }else{
               

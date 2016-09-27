@@ -148,6 +148,11 @@
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   for (int i = 0; i < userDic.allKeys.count; i ++) {
                       
+                      id ss=userDic[userDic.allKeys[i]];
+                      if ([ss isEqual:[NSNull null]]) {
+                          [userDic removeObjectForKey:userDic.allKeys[i]];
+                          i = 0;
+                      }
                       if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]]) {
                           
                           [userDic removeObjectForKey:userDic.allKeys[i]];
