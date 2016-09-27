@@ -179,14 +179,17 @@
             <connections>
                 <outlet property="againButton" destination="Mq0-Eb-pZf" id="gU8-NG-JTt"/>
                 <outlet property="detailButton" destination="4UF-9u-OHJ" id="zxU-vW-1DB"/>
+                <outlet property="getLabel" destination="KZo-XN-c1Y" id="3qc-60-GNy"/>
+                <outlet property="getLabelWidth" destination="g5L-42-TZd" id="np1-lA-r21"/>
                 <outlet property="getName" destination="8tq-0F-Lv4" id="udm-Wv-2Ch"/>
                 <outlet property="getPeopleN" destination="Tqa-Hz-hEn" id="Prd-LA-OUg"/>
                 <outlet property="imgView" destination="gVY-Px-9bo" id="w2T-iq-4rd"/>
                 <outlet property="issueLabel" destination="Ebk-rs-Dn8" id="6PR-Qb-oWb"/>
                 <outlet property="peopleNum" destination="ZSb-Zd-elb" id="4HO-76-iRo"/>
+                <outlet property="peopleNumber" destination="tSH-bU-eKi" id="QBG-X4-Xei"/>
                 <outlet property="titleLabel" destination="CSC-pk-p3y" id="qGB-xh-Vfi"/>
             </connections>
-            <point key="canvasLocation" x="152" y="321"/>
+            <point key="canvasLocation" x="373" y="351"/>
         </tableViewCell>
     </objects>
     <resources>

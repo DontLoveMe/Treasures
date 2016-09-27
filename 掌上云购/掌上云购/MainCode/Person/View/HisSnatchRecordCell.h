@@ -19,7 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *peopleNum;//参与
 
 @property (weak, nonatomic) IBOutlet UIButton *detailButton;//查看详情
+@property (weak, nonatomic) IBOutlet UILabel *getLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *getLabelWidth;
 
+@property (weak, nonatomic) IBOutlet UILabel *peopleNumber;
 @property (weak, nonatomic) IBOutlet UILabel *getName;//获得者
 @property (weak, nonatomic) IBOutlet UILabel *getPeopleN;//获得者参与人次
 @property (weak, nonatomic) IBOutlet UILabel *drowTImeLb;

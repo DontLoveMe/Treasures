@@ -258,7 +258,7 @@
     //取出存储的用户信息
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"userId":@(_buyUserId)} forKey:@"paramsMap"];
+    [params setObject:@{@"buyUserId":@(_buyUserId)} forKey:@"paramsMap"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@10 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];
@@ -350,7 +350,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_type == 0){
         RecordModel *rcModel = [RecordModel mj_objectWithKeyValues:_dataListArr[indexPath.row]];
-        if (rcModel.saleDraw.status == 3) {
+        if (rcModel.saleDraw.status == 3||rcModel.saleDraw.status == 2) {
             SnatchRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SnatchRecordCell" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = [UIColor clearColor];
