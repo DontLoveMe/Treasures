@@ -53,7 +53,7 @@
         //遍历新加入的数组
         for (int i = 0 ; i < cartArr.count; i ++) {
             
-            NSString *newGoodsID = [[cartArr objectAtIndex:i] objectForKey:@"id"];
+            NSInteger newGoodsID = [[[cartArr objectAtIndex:i] objectForKey:@"id"] integerValue];
             NSInteger existCount = existArr.count;
             NSInteger   haveSame = 0;
             
@@ -67,7 +67,7 @@
             //遍历已存在的数组
             for (NSInteger j = existCount - 1; j >= 0; j --) {
                 
-                NSString *oldGoodsID = [[existArr objectAtIndex:j] objectForKey:@"id"];
+                NSInteger oldGoodsID = [[[existArr objectAtIndex:j] objectForKey:@"id"] integerValue];
                 //根据id标识，矢量增加还是数量增加
                 if (oldGoodsID == newGoodsID) {
                     

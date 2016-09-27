@@ -237,7 +237,6 @@
     [params setObject:updateBy forKey:@"updateBy"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLogin_URL];
-//    NSString *url = @"http://192.168.0.164:8080/pcpi/userThirdLogin/thirdLogin";
     [ZSTools post:url
            params:params
           success:^(id json) {
@@ -366,10 +365,11 @@
                   }
                   
                   NSInteger numbers = 1;
-                  if (![[dic objectForKey:@"buyNumbers"] isEqual:[NSNull null]]) {
+                  if (![[[dic objectForKey:@"saleCart"] objectForKey:@"qty"] isEqual:[NSNull null]]) {
                       numbers = [[[dic objectForKey:@"saleCart"] objectForKey:@"qty"] integerValue];
                   }
-                  NSDictionary *goods = @{@"id":[[dic objectForKey:@"saleCart"] objectForKey:@"productId"],
+                  NSInteger productId = [[[dic objectForKey:@"saleCart"] objectForKey:@"productId"] integerValue];
+                  NSDictionary *goods = @{@"id":[NSNumber numberWithInteger:productId],
                                           @"name":[dic objectForKey:@"name"],
                                           @"proPictureList":picArr,
                                           @"totalShare":[dic objectForKey:@"totalShare"],

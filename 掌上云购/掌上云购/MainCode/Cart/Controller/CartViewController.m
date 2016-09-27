@@ -761,6 +761,13 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+
+    [super viewDidDisappear:animated];
+
     
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
@@ -769,6 +776,7 @@
     }else{
         return;
     }
+    
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification{
@@ -799,6 +807,9 @@
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
+    if (!userId) {
+        return;
+    }
     
     for (int i = 0; i < uploadArr.count; i ++) {
         
@@ -806,7 +817,7 @@
         NSDictionary *updateDic = @{@"productId":[dic objectForKey:@"id"],
                                     @"qty":[dic objectForKey:@"buyTimes"],
                                     @"buyUserId":userId,
-                                    @"buyNum":@"10"};
+                                    @"buyNum":@"1"};
         [updateList addObject:updateDic];
     
     }
