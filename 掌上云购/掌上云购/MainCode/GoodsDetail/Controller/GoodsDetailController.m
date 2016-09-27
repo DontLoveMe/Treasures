@@ -372,7 +372,13 @@
 }
 #pragma mark - 立即购买
 - (void)buyNowAction:(UIButton *)button{
-
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if (userDic == nil) {
+        LoginViewController *lVC = [[LoginViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        return;
+    }
     NSLogZS(@"现在购买");
     BuyNowController *bnVC = [[BuyNowController alloc] init];
     bnVC.delegate = self;

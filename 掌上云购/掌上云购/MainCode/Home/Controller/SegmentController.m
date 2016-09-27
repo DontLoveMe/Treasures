@@ -259,7 +259,7 @@
 - (void)requestSegmentData {
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CategorysList_URL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"showClient":@1} forKey:@"paramsMap"];
+    [params setObject:@{@"showClient":@0} forKey:@"paramsMap"];
     
     [ZSTools post:url
            params:params
