@@ -348,18 +348,36 @@
               for (int i = 0 ; i < dataArr.count; i ++) {
                   
                   NSDictionary *dic = [dataArr objectAtIndex:i];
-                  NSInteger numbers = 1;
-                  if (![[dic objectForKey:@"buyNumbers"] isEqual:[NSNull null]]) {
-                      numbers = [[dic objectForKey:@"buyNumbers"] integerValue];
+                  NSMutableArray *picArr = [[dic objectForKey:@"proPictureList"] mutableCopy];
+                  for (int i = 0; i < picArr.count; i ++) {
+                      
+                      NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+                      for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+                          
+                          if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                              
+                              [dic removeObjectForKey:dic.allKeys[j]];
+                              
+                          }
+                          
+                      }
+                      [picArr replaceObjectAtIndex:i withObject:dic];
+                      
                   }
                   
-                  NSDictionary *goods = @{@"id":[dic objectForKey:@"id"],
+                  NSInteger numbers = 1;
+                  if (![[dic objectForKey:@"buyNumbers"] isEqual:[NSNull null]]) {
+                      numbers = [[[dic objectForKey:@"saleCart"] objectForKey:@"qty"] integerValue];
+                  }
+                  NSDictionary *goods = @{@"id":[[dic objectForKey:@"saleCart"] objectForKey:@"productId"],
                                           @"name":[dic objectForKey:@"name"],
-                                          //                              @"proPictureList":[dic objectForKey:@"proPictureList"],
+                                          @"proPictureList":picArr,
                                           @"totalShare":[dic objectForKey:@"totalShare"],
                                           @"surplusShare":[dic objectForKey:@"surplusShare"],
-                                          @"buyTimes":[NSNumber numberWithInteger:numbers]};
+                                          @"buyTimes":[NSNumber numberWithInteger:numbers],
+                                          @"singlePrice":[dic objectForKey:@"singlePrice"]};
                   [cloudArr addObject:goods];
+
                   
               }
               if (cloudArr.count > 0) {

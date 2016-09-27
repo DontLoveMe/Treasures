@@ -85,12 +85,12 @@
                                             authType:SSDKAuthTypeBoth];
                  break;
              case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:@"wx4868b35061f87885"
-                                       appSecret:@"64020361b8ec4c99936c0e3999a9f249"];
+                 [appInfo SSDKSetupWeChatByAppId:@"wx771de2a13cbf2c72"
+                                       appSecret:@"0a3cf0c70c919167198c570a148d986c"];
                  break;
              case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"100371282"
-                                      appKey:@"aed9b0303e3ed1e27bae87c33761161d"
+                 [appInfo SSDKSetupQQByAppId:@"1105626495"
+                                      appKey:@"D3F2YgTXEoauHWSz"
                                     authType:SSDKAuthTypeBoth];
                  break;
                  
