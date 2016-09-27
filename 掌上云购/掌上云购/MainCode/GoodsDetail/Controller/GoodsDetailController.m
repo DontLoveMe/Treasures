@@ -280,7 +280,7 @@
     [_bgScrollView addSubview:_topGoodImgView];
     
     _markImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, _topGoodImgView.bottom - 56.f, 32.f, 32.f)];
-    _markImg.image = [UIImage imageNamed:@"10元标记"];
+//    _markImg.image = [UIImage imageNamed:@"10元标记"];
     [_topGoodImgView addSubview:_markImg];
 
     
