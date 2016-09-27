@@ -30,7 +30,6 @@
     
     __weak __typeof(self) weakSelf= self;
     
-    weakSelf.timeLabel.text = _str;
     [self.countDown countDownWithPER_SECBlock:^{
         //        NSLog(@"倒计时");
         weakSelf.timeLabel.text = [self getNowTimeWithString:_str];
@@ -115,8 +114,6 @@
         return [NSString stringWithFormat:@"%@ : %@ : %@", minutesStr,secondsStr,millisecondStr];
     }
     
-
 }
-
 
 @end

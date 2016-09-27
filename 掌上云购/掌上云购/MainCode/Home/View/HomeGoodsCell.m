@@ -52,7 +52,9 @@
             [_delegate addToCartWithIndexpath:_nowIndexpath];
             
         }
+        
     }
+    
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
     
 }

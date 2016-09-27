@@ -59,14 +59,15 @@
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
         if(alpha > 0.5) {
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
-            leftButton.size = CGSizeMake(20, 25);
+            leftButton.size = CGSizeMake(16, 20);
             [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                                   forState:UIControlStateNormal];
             UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
-            rightButton.size = CGSizeMake(25, 25);
+            rightButton.size = CGSizeMake(24, 24);
             [rightButton setBackgroundImage:[UIImage imageNamed:@"消息.png"]
                                   forState:UIControlStateNormal];
             _navBarAalpha = alpha;
+            
         }else {
            
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
@@ -103,12 +104,12 @@
         [_joinListTimer invalidate];
         _joinListTimer = nil;
     }
+    
 }
 
 - (void)NavAction:(UIButton *)button{
     
     if (button.tag == 101) {
-        
         [self.navigationController popViewControllerAnimated:YES];
     }else {
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
@@ -122,8 +123,8 @@
         self.navigationController.navigationBar.hidden = NO;
         msgVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:msgVC animated:YES];
-
     }
+    
 }
 
 - (void)viewDidLoad {
