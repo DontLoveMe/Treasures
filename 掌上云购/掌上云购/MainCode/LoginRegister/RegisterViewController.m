@@ -292,8 +292,7 @@
                         @"userPwd":[MD5Security MD5String:_passwrodTF.text],
                         @"captcha":_validateTF.text}
                forKey:@"userLoginDto"];
-//    NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
-    NSString *url  = @"http://192.168.0.92:8080/pcpi/user/register";
+    NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
     [ZSTools post:url
            params:params
           success:^(id json) {
