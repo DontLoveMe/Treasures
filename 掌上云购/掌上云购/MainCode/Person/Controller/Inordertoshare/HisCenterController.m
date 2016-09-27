@@ -271,18 +271,27 @@
               if (isSuccess) {
                   
                   NSArray *dataArr = json[@"data"];
+                  NSMutableArray *sunData = [NSMutableArray array];
+                  for (int i = 0; i < dataArr.count; i ++) {
+                      NSDictionary *sunDic = dataArr[i];
+                      NSInteger status = [sunDic[@"status"] integerValue];
+                      if (status == 3) {
+                          [sunData addObject:sunDic];
+                      }
+                  }
+
                   if (_page == 1) {
                       [_dataListArr removeAllObjects];
-                      _dataListArr = dataArr.mutableCopy;
+                      _dataListArr = sunData;
                       
 //                      [_tableView.mj_footer resetNoMoreData];
 //                      [_tableView.mj_header endRefreshing];
                   }
                   
                   if (_page != 1 && _page != 0) {
-                      if (dataArr.count > 0) {
+                      if (sunData.count > 0) {
                           _page ++;
-                          [_dataListArr addObjectsFromArray:dataArr];
+                          [_dataListArr addObjectsFromArray:sunData];
                           [_tableView.mj_footer endRefreshing];
                       }else {
                           [_tableView.mj_footer endRefreshingWithNoMoreData];

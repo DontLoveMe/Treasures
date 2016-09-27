@@ -72,6 +72,7 @@
 }
 #pragma mark - 数据请求
 - (void)insertShareRequest {
+    
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     [self showHUD:@""];
@@ -134,11 +135,13 @@
 
 - (void)uploadPic{
     
-    if (_selectedPhotos.count == 0) {
+    if (_selectedPhotos.count < 3) {
         
+      
     }else{
         
-        [self showHUD:@"正在上传"];
+        
+        [self showHUD:@"正在上传照片"];
         [self uploadPicwithFile:_selectedPhotos withIndex:0];
         
     }
@@ -168,15 +171,15 @@
                       [self uploadPicwithFile:_selectedPhotos withIndex:index + 1];
                   }else{
                       
-                      [self hideSuccessHUD:@"上传成功"];
+                      [self hideSuccessHUD:@"上传照片成功"];
                   }
                   
               }else{
-                  [self hideFailHUD:@"上传失败"];
+                  [self hideFailHUD:@"上传照片失败"];
               }
           } failure:^(NSError *error) {
               
-              [self hideFailHUD:@"上传失败"];
+              [self hideFailHUD:@"上传照片失败"];
               
           }];
     
@@ -286,6 +289,21 @@
 }
 #pragma mark - 提交
 - (void)submitAction:(UIButton *)button{
+    if (_selectedPhotos.count < 3) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                 message:@"请选择3到6张图片！" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 [alertController dismissViewControllerAnimated:YES
+                                                                                                     completion:nil];
+                                                             }];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
+        return;
+    }
     if (_titleTF.text.length == 0||_contentTF.text.length == 0) {
         AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请填写完整！"];
         [alert addButtonTitleArray:@[@"好"]];

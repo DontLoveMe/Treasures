@@ -728,7 +728,7 @@
 //                      });
                   }
                   NSArray *proAttrList = [_dataDic objectForKey:@"proAttrList"];
-                  if (proAttrList != 0) {
+                  if (proAttrList.count != 0) {
                       [_markImg setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
                                            placeholderImage:[UIImage new]];
                   }else {

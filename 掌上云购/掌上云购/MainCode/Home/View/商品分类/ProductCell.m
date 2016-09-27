@@ -18,7 +18,7 @@
 - (void)setGsModel:(GoodsModel *)gsModel {
     _gsModel = gsModel;
     NSArray *proAttrList = _gsModel.proAttrList;
-    if (proAttrList != 0) {
+    if (proAttrList.count != 0) {
         [_typeMarkImgView setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
                              placeholderImage:[UIImage new]];
     }else {
