@@ -59,8 +59,10 @@
         _type = type;
         if (_type == 0) {
             _imgView.image = [UIImage imageNamed:@"红包提示"];
+            _titleLabel.hidden = YES;
         }else {
             _imgView.image = [UIImage imageNamed:@"中奖提示"];
+            _titleLabel.hidden = NO;
         }
         
     }

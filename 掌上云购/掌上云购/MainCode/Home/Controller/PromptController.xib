@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromptController">
             <connections>
                 <outlet property="imgView" destination="rLp-jj-aZk" id="KNn-AP-JuB"/>
+                <outlet property="titleLabel" destination="P5n-2F-jj0" id="jtP-r1-ha6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n58-bw-G9s">
-                    <rect key="frame" x="277" y="144" width="66" height="54"/>
+                    <rect key="frame" x="277" y="137" width="66" height="54"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="Ggt-ja-wmd"/>
                         <constraint firstAttribute="width" constant="66" id="iJz-JB-UZy"/>
@@ -27,14 +28,22 @@
                         <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="PWR-1N-WpY"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="红包提示.png" translatesAutoresizingMaskIntoConstraints="NO" id="rLp-jj-aZk">
-                    <rect key="frame" x="72" y="206" width="231" height="255"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="中奖提示.png" translatesAutoresizingMaskIntoConstraints="NO" id="rLp-jj-aZk">
+                    <rect key="frame" x="45" y="199" width="284" height="269"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜你成为幸运用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-2F-jj0">
+                    <rect key="frame" x="97" y="321.5" width="180" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.94910615682601929" green="1" blue="0.0056595024652779102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="P5n-2F-jj0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="FTI-gB-cFF"/>
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="top" secondItem="n58-bw-G9s" secondAttribute="bottom" constant="8" id="L2a-1p-ob7"/>
                 <constraint firstAttribute="trailing" secondItem="n58-bw-G9s" secondAttribute="trailing" constant="32" id="PAa-E0-PZM"/>
+                <constraint firstItem="P5n-2F-jj0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RJH-sw-PTv"/>
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Z5E-aJ-6BU"/>
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lJ5-sg-0sD"/>
             </constraints>
@@ -43,7 +52,7 @@
         </view>
     </objects>
     <resources>
+        <image name="中奖提示.png" width="284" height="269"/>
         <image name="关闭-白.png" width="26" height="26"/>
-        <image name="红包提示.png" width="231" height="255"/>
     </resources>
 </document>
