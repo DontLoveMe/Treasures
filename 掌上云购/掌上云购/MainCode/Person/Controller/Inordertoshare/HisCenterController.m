@@ -122,7 +122,7 @@
 #pragma mark - 数据请求
 - (void)getUserInfo {
     //取出存储的用户信息
-    [self showHUD:@"加载中"];
+//    [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@(_buyUserId) forKey:@"id"];
     
@@ -132,7 +132,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+//              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               if (isSuccess) {
                   NSDictionary *userInfo = json[@"data"];
                   if (![userInfo[@"photoUrl"] isEqual:[NSNull null]]) {

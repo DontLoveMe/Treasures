@@ -14,8 +14,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-
- [self.countDown destoryTimer];
+    [self.countDown destoryTimer];
 }
 
 

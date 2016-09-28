@@ -66,7 +66,7 @@
 
 - (void)NavAction:(UIButton *)button{
     if (button.tag == 101) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     }else {
         NSLogZS(@"进入购物车");
         id next = [self nextResponder];

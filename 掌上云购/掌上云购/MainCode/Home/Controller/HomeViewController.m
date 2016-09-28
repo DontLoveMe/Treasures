@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+//#import "HtmlTypeController.h"
 
 
 @interface HomeViewController ()
@@ -86,6 +87,7 @@
 
     _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
+    _bgScrollView.showsVerticalScrollIndicator = NO;
     _bgScrollView.delegate = self;
     
     //下拉时动画
@@ -215,6 +217,17 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
     NSLogZS(@"点击了第几个:%ld",index);
+//    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
+//    NSDictionary *dic = _bannerArr[index];
+//    if (![dic[@"linkUrl"] isKindOfClass:[NSNull class]]) {
+//        htmlType.htmlUrl = @"www.baidu.com";//dic[@"linkUrl"];
+//        htmlType.title = @"";
+//        UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
+//        [self presentViewController:htVC animated:YES completion:nil];
+//    }
+    
+    
+    
     
 }
 
@@ -303,7 +316,7 @@
     _segmentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_segmentView];
     
-    NSArray *segmentArr = @[@"人气",@"最新",@"最新",@"总需人次"];
+    NSArray *segmentArr = @[@"人气",@"最新",@"最热",@"总需人次"];
     float width = KScreenWidth / 4;
     _selectIndext = 0;
     for (int i = 0 ; i < segmentArr.count; i ++) {
@@ -379,7 +392,7 @@
             [self requestGoodsList:@"1" withPage:_page];
             break;
         case 3:
-            [self requestGoodsList:@"4" withPage:_page];
+            [self requestGoodsList:@"7" withPage:_page];
             break;
         default:
             break;
