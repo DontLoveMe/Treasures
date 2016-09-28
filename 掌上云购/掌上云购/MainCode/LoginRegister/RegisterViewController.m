@@ -396,7 +396,6 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-   
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
