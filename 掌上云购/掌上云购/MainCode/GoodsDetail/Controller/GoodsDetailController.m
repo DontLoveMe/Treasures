@@ -496,10 +496,8 @@
 - (void)addToNewOrderAction:(UIButton *)button{
 
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
-//    GDVC.isJoind = 0;
     GDVC.isAnnounced = 1;
-    GDVC.goodsId = [_dataDic objectForKey:@"id"];
-//    GDVC.isPrized = 0;
+    GDVC.goodsId = _goodsId;
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
                                          animated:YES];
@@ -706,7 +704,7 @@
     }
 
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsDetail_URL];
-    
+    [self showHUD:@"正在加载数据"];
     [ZSTools post:url
            params:params
           success:^(id json) {
@@ -715,6 +713,7 @@
                [_bgScrollView.mj_header endRefreshing];
               if (isSuccess) {
                  
+                  [self hideSuccessHUD:@"加载成功"];
                   //商品图片
                   _dataDic = [json objectForKey:@"data"];
                   if ([_dataDic isEqual:[NSNull null]]) {
@@ -768,10 +767,14 @@
               }else{
               
                   NSLog(@"后台报错了");
+                  [self hideFailHUD:@"加载失败"];
+                  [self.navigationController popViewControllerAnimated:YES];
                   
               }
               
           } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
               
           }];
 
