@@ -26,6 +26,8 @@
 
 @property (nonatomic,strong)NSArray *dataArr;
 
+@property (nonatomic,strong)NSArray *wingrArr;
+
 @property (weak,nonatomic)id<WingTableDelegate> timerDelegate;
 
 @end

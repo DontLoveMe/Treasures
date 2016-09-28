@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-//#import "HtmlTypeController.h"
+#import "BannerDetailController.h"
 
 
 @interface HomeViewController ()
@@ -217,16 +217,17 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
     NSLogZS(@"点击了第几个:%ld",index);
-//    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
-//    NSDictionary *dic = _bannerArr[index];
-//    if (![dic[@"linkUrl"] isKindOfClass:[NSNull class]]) {
-//        htmlType.htmlUrl = @"www.baidu.com";//dic[@"linkUrl"];
-//        htmlType.title = @"";
-//        UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
-//        [self presentViewController:htVC animated:YES completion:nil];
-//    }
-    
-    
+    BannerDetailController *banner = [[BannerDetailController alloc] init];
+    NSDictionary *dic = _bannerArr[index];
+    if (![dic[@"linkUrl"] isKindOfClass:[NSNull class]]) {
+        banner.htmlUrl = dic[@"linkUrl"];
+    }
+    if (![dic[@"remarks"] isKindOfClass:[NSNull class]]) {
+        
+        banner.title = dic[@"remarks"];
+    }
+    banner.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:banner animated:YES];
     
     
 }
@@ -627,6 +628,7 @@
                       
                   }
                   _wingTable.dataArr = msgArr;
+                  _wingTable.wingrArr = dataArr;
                   _wingTable.timerDelegate = self;
               }
               

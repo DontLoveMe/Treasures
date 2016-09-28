@@ -49,7 +49,7 @@
 
 - (void)initView{
 
-    self.userInteractionEnabled = NO;
+    self.userInteractionEnabled = YES;
     
     self.delegate = self;
     self.dataSource = self;
@@ -143,7 +143,34 @@ forCellReuseIdentifier:@"WingNotification_Cell"];
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSDictionary *dic = [_wingrArr objectAtIndex:indexPath.row];
+    GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
+    GDVC.goodsId = [dic objectForKey:@"productId"];
+    
+    GDVC.drawId = [dic objectForKey:@"id"];
+    
+    GDVC.isAnnounced = 3;
+    
+    GDVC.hidesBottomBarWhenPushed = YES;
+    [[self viewController].navigationController pushViewController:GDVC
+                                         animated:YES];
     
 }
-
+- (UIViewController *)viewController {
+    
+    UIResponder *next = self.nextResponder;
+    
+    do {
+        
+        if ([next isKindOfClass:[UIViewController class]]) {
+            
+            return (UIViewController *)next;
+        }
+        
+        next = next.nextResponder;
+        
+    } while (next != nil);
+    
+    return nil;
+}
 @end

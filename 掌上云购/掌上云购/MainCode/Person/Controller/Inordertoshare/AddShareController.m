@@ -402,6 +402,7 @@
             imagePickerVc.allowPickingOriginalPhoto = YES;
             imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
             [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                
                 _selectedPhotos = [NSMutableArray arrayWithArray:photos];
                 _selectedAssets = [NSMutableArray arrayWithArray:assets];
                 _isSelectOriginalPhoto = isSelectOriginalPhoto;
@@ -500,14 +501,21 @@
     }
 }
 
+//选择拍照回调
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:nil];
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    
     if ([type isEqualToString:@"public.image"]) {
         TZImagePickerController *tzImagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:6 delegate:self];
         tzImagePickerVc.sortAscendingByModificationDate = YES;
         [tzImagePickerVc showProgressHUD];
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+//        [_selectedAssets addObject:assetModel.asset];
+        [_selectedPhotos addObject:image];
+        [_collectionView reloadData];
+
         // save photo and get asset / 保存图片，获取到asset
         [[TZImageManager manager] savePhotoWithImage:image completion:^(NSError *error){
             if (error) { // 如果保存失败，基本是没有相册权限导致的...
@@ -591,6 +599,7 @@
     // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
     [self uploadPic];
 }
+
 // 如果用户选择了一个视频，下面的handle会被执行
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset {
