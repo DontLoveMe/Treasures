@@ -31,6 +31,7 @@
     _issueLabel.text = [NSString stringWithFormat:@"期号：%@",rcModel.saleDraw.drawTimes
                         ];
     _peopleNum.text = [NSString stringWithFormat:@"本期参与：%ld人次",rcModel.partakeCount];
+    _drowTImeLb.text = [NSString stringWithFormat:@"揭晓时间：%@",_rcModel.saleDraw.drawDate];
 //    rcModel.d
     if ([rcModel.saleDraw.nickName isKindOfClass:[NSNull class]]||rcModel.saleDraw.nickName.length == 0) {
         _getName.text = @"正在开奖中...";

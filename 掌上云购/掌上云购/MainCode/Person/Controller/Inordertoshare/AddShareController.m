@@ -267,6 +267,7 @@
     layout.minimumLineSpacing = _margin;
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentTF.frame)+3, KScreenWidth, _itemWH*2+8) collectionViewLayout:layout];
     CGFloat rgb = 244 / 255.0;
+    _collectionView.scrollEnabled = NO;
     _collectionView.alwaysBounceVertical = YES;
     _collectionView.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1.0];
     _collectionView.contentInset = UIEdgeInsetsMake(4, 4, 4, 4);
@@ -348,6 +349,9 @@
 #pragma mark UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (_selectedPhotos.count == 6) {
+        return _selectedPhotos.count;
+    }
     return _selectedPhotos.count + 1;
 }
 
@@ -364,6 +368,7 @@
     }
     cell.deleteBtn.tag = indexPath.row;
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -513,8 +518,8 @@
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
         
 //        [_selectedAssets addObject:assetModel.asset];
-        [_selectedPhotos addObject:image];
-        [_collectionView reloadData];
+//        [_selectedPhotos addObject:image];
+//        [_collectionView reloadData];
 
         // save photo and get asset / 保存图片，获取到asset
         [[TZImageManager manager] savePhotoWithImage:image completion:^(NSError *error){
@@ -535,6 +540,9 @@
                         [_selectedAssets addObject:assetModel.asset];
                         [_selectedPhotos addObject:image];
                         [_collectionView reloadData];
+                        
+                        [self uploadPic];
+                        
                     }];
                 }];
             }
@@ -602,12 +610,12 @@
 
 // 如果用户选择了一个视频，下面的handle会被执行
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset {
-    _selectedPhotos = [NSMutableArray arrayWithArray:@[coverImage]];
-    _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
-        [_collectionView reloadData];
-    // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
-}
+//- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset {
+//    _selectedPhotos = [NSMutableArray arrayWithArray:@[coverImage]];
+//    _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
+//        [_collectionView reloadData];
+//    // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
+//}
 
 #pragma mark Click Event
 

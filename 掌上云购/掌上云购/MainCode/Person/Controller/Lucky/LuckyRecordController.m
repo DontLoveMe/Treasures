@@ -44,14 +44,17 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"幸运记录";
     _page = 1;
     [self initNavBar];
 
-    [self requestData];
+    
     [self initTableView];
 }
 

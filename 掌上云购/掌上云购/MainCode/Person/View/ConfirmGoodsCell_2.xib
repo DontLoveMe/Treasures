@@ -55,9 +55,10 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-8-17 16:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uK-0Y-HJj">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uK-0Y-HJj">
                         <rect key="frame" x="176" y="43.5" width="130" height="14.5"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="14.5" id="x6P-Vw-1bc"/>
                             <constraint firstAttribute="width" constant="130" id="zps-dw-pD9"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>

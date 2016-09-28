@@ -8,7 +8,7 @@
 
 #import "InordertoDetailController.h"
 #import "InordertoshareModel.h"
-#import "HisIconImageView.h"
+//#import "HisIconImageView.h"
 
 // 弹出分享菜单需要导入的头文件
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -19,7 +19,7 @@
 
 @interface InordertoDetailController ()
 
-@property (nonatomic,strong)HisIconImageView *iconView;
+@property (nonatomic,strong)UIImageView *iconView;
 @property (nonatomic,strong)UILabel *nikeName;
 @property (nonatomic,strong)UILabel *timeLabel;
 @property (nonatomic,strong)UIView *bgView;
@@ -129,7 +129,9 @@
 
 - (void)createSubviews {
     _iconView = [[HisIconImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
-    _iconView.buyUserId = _buyUserId;
+    _iconView.layer.cornerRadius = _iconView.width/2;
+    _iconView.layer.masksToBounds = YES;
+//    _iconView.buyUserId = _buyUserId;
     _iconView.image = [UIImage imageNamed:@"我的-头像"];
     [_scrollView addSubview:_iconView];
     
@@ -219,6 +221,15 @@
     
     _nikeName.text = iSModel.nickName;
     
+    
+    NSString *urlStr = iSModel.userPhotoUrl;
+    if (urlStr.length == 0) {
+        [_iconView setImage:[UIImage imageNamed:@"我的-头像"]];
+    }else {
+        NSURL *url = [NSURL URLWithString:urlStr];
+        [_iconView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+    }
+
     //转时间格式
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

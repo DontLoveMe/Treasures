@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="321" height="66.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-01-01 10:55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byA-j4-GHI">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byA-j4-GHI">
                         <rect key="frame" x="8" y="23" width="112" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="112" id="k1v-DC-iHG"/>
@@ -25,17 +25,21 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itI-GE-c1R">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itI-GE-c1R">
                         <rect key="frame" x="243" y="24" width="70" height="18"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="18" id="GBC-iP-lSu"/>
                             <constraint firstAttribute="width" constant="70" id="R72-aP-Jih"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信支付已支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46B-Db-eNy">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46B-Db-eNy">
                         <rect key="frame" x="120" y="25" width="122" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="kNv-a3-3ms"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -43,6 +47,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="byA-j4-GHI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="64g-Q9-NQ3"/>
+                    <constraint firstItem="itI-GE-c1R" firstAttribute="leading" secondItem="46B-Db-eNy" secondAttribute="trailing" constant="1" id="9CL-CQ-T5d"/>
                     <constraint firstItem="itI-GE-c1R" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="IKD-LK-gCL"/>
                     <constraint firstItem="46B-Db-eNy" firstAttribute="leading" secondItem="byA-j4-GHI" secondAttribute="trailing" id="If5-4E-xIL"/>
                     <constraint firstItem="46B-Db-eNy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LsK-qN-tMO"/>

@@ -216,7 +216,7 @@
         height = 0;
     }else if (photoUrllist.count <4){
         height = 90;
-    }else if (photoUrllist.count < 7){
+    }else {
         height = 90*2;
     }
     
