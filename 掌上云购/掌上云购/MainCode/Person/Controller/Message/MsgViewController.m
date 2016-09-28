@@ -140,6 +140,7 @@
         GoodsDetailController *gsVC = [[GoodsDetailController alloc] init];
         if (![msgDic[@"businessId"] isEqual:[NSNull null]]) {
             gsVC.drawId = msgDic[@"businessId"];
+            gsVC.isAnnounced = 3;
             [self.navigationController pushViewController:gsVC animated:YES];
         }
     }else if (msgType == 3) {

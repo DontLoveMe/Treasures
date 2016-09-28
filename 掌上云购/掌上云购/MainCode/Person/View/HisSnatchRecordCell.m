@@ -41,12 +41,12 @@
         _getName.text = rcModel.saleDraw.nickName;
         _getLabelWidth.constant = 48;
     }
-    if (rcModel.winnersPartakeCount == 0) {
+    if (rcModel.partakeCount == 0) {
         _peopleNumber.hidden = YES;
         _getPeopleN.text = @"";
     }else {
         _peopleNumber.hidden = NO;
-        _getPeopleN.text = [NSString stringWithFormat:@"%ld",rcModel.winnersPartakeCount];
+        _getPeopleN.text = [NSString stringWithFormat:@"%ld",rcModel.partakeCount];
     }
     
 }
@@ -56,13 +56,13 @@
     if (_rcModel.saleDraw.status == 2) {
         GoodsDetailController *gsDTVC = [[GoodsDetailController alloc] init];
         gsDTVC.goodsId = _rcModel.ID ;
-        gsDTVC.drawId = _rcModel.drawId;
+        gsDTVC.drawId = [NSString stringWithFormat:@"%ld",(long)_rcModel.saleDraw.drawId];
         gsDTVC.isAnnounced = 2;
         [[self viewController].navigationController pushViewController:gsDTVC animated:YES];
     }else if (_rcModel.saleDraw.status == 3){
         GoodsDetailController *gsDTVC = [[GoodsDetailController alloc] init];
         gsDTVC.goodsId = _rcModel.ID ;
-        gsDTVC.drawId = _rcModel.drawId;
+        gsDTVC.drawId = [NSString stringWithFormat:@"%ld",(long)_rcModel.saleDraw.drawId];
         gsDTVC.isAnnounced = 3;
         [[self viewController].navigationController pushViewController:gsDTVC animated:YES];
         

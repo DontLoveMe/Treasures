@@ -101,6 +101,9 @@
 #pragma mark - 搜索
 - (void)searchRequestData:(NSString *)searchStr {
     NSLogZS(@"%@",searchStr);
+    [HistoryData addHistoryData:searchStr];
+    _historyData = [HistoryData getHistoryData];
+    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
     SearchGoodsController *searchVC = [[SearchGoodsController alloc] init];
     searchVC.searchStr = searchStr;
     [self.navigationController pushViewController:searchVC animated:YES];
@@ -207,9 +210,6 @@
     
     [self searchRequestData:searchBar.text];
     
-    [HistoryData addHistoryData:searchBar.text];
-    _historyData = [HistoryData getHistoryData];
-    [_searchHistoryTable reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
 }
 - (void)allDeleteAction:(UIButton *)button{
     

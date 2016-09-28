@@ -13,8 +13,8 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="165" height="206"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rqs-Ke-tgH">
-                        <rect key="frame" x="0.0" y="0.0" width="165" height="131"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rqs-Ke-tgH">
+                        <rect key="frame" x="0.0" y="3" width="165" height="128"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone 6s plus " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsX-iY-g5r">
                         <rect key="frame" x="8" y="132" width="151" height="29"/>
@@ -105,7 +105,7 @@
                 <constraint firstItem="fNd-uo-MmN" firstAttribute="leading" secondItem="AU8-tT-Wvl" secondAttribute="trailing" constant="5" id="l7p-vy-WJ5"/>
                 <constraint firstItem="CjR-3X-5Ju" firstAttribute="top" secondItem="ldj-kw-UFB" secondAttribute="bottom" constant="4" id="mdA-1z-cFb"/>
                 <constraint firstAttribute="trailing" secondItem="Rqs-Ke-tgH" secondAttribute="trailing" id="pfx-tO-gIR"/>
-                <constraint firstItem="Rqs-Ke-tgH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="q5P-gk-hbn"/>
+                <constraint firstItem="Rqs-Ke-tgH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="q5P-gk-hbn"/>
                 <constraint firstItem="EsX-iY-g5r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="sAM-Z5-K9a"/>
                 <constraint firstItem="ldj-kw-UFB" firstAttribute="top" secondItem="EsX-iY-g5r" secondAttribute="bottom" constant="2" id="tK6-XA-LlL"/>
             </constraints>

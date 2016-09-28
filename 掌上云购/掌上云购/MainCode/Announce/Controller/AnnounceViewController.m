@@ -196,7 +196,7 @@
     }
     
     NSArray *proAttrList = [dic objectForKey:@"proAttrList"];
-    if (proAttrList != 0) {
+    if (proAttrList.count != 0) {
         [cell.typeMarkImgView setImageWithURL:[NSURL URLWithString:[proAttrList[0] objectForKey:@"photoUrl"]]
                              placeholderImage:[UIImage new]];
     }else {

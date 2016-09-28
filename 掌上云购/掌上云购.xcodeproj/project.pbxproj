@@ -176,6 +176,8 @@
 		D6C09BFB1D7916CD00C092A7 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFA1D7916CD00C092A7 /* TZTestCell.m */; };
 		D6C09BFE1D7916DA00C092A7 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */; };
 		D6C09C011D791A1900C092A7 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09C001D791A1900C092A7 /* TZImagePickerController.m */; };
+		D6CC64C91D9B9F1A004AF871 /* BannerDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CC64C71D9B9F1A004AF871 /* BannerDetailController.m */; };
+		D6CC64CA1D9B9F1A004AF871 /* BannerDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CC64C81D9B9F1A004AF871 /* BannerDetailController.xib */; };
 		D6D4BD891D911FFD001D9599 /* BuyNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D4BD871D911FFD001D9599 /* BuyNowController.m */; };
 		D6D4BD8A1D911FFD001D9599 /* BuyNowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D4BD881D911FFD001D9599 /* BuyNowController.xib */; };
 		D6D4BD8F1D9123AA001D9599 /* 关闭@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6D4BD8B1D9123AA001D9599 /* 关闭@2x.png */; };
@@ -752,6 +754,9 @@
 		D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
 		D6C09BFF1D791A1900C092A7 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
 		D6C09C001D791A1900C092A7 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		D6CC64C61D9B9F1A004AF871 /* BannerDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerDetailController.h; sourceTree = "<group>"; };
+		D6CC64C71D9B9F1A004AF871 /* BannerDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerDetailController.m; sourceTree = "<group>"; };
+		D6CC64C81D9B9F1A004AF871 /* BannerDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerDetailController.xib; sourceTree = "<group>"; };
 		D6D4BD861D911FFD001D9599 /* BuyNowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyNowController.h; sourceTree = "<group>"; };
 		D6D4BD871D911FFD001D9599 /* BuyNowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyNowController.m; sourceTree = "<group>"; };
 		D6D4BD881D911FFD001D9599 /* BuyNowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuyNowController.xib; sourceTree = "<group>"; };
@@ -2011,6 +2016,9 @@
 				D6F3E5E01D962F3C005455A8 /* PromptController.h */,
 				D6F3E5E11D962F3C005455A8 /* PromptController.m */,
 				D6F3E5E21D962F3C005455A8 /* PromptController.xib */,
+				D6CC64C61D9B9F1A004AF871 /* BannerDetailController.h */,
+				D6CC64C71D9B9F1A004AF871 /* BannerDetailController.m */,
+				D6CC64C81D9B9F1A004AF871 /* BannerDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3088,6 +3096,7 @@
 				D65B64C61D86808400D48834 /* 返回@3x.png in Resources */,
 				DD71AC3C1D92755A005CBFFD /* dropdown_zsyg_083@2x.png in Resources */,
 				D65B64781D865CDD00D48834 /* 幸运标识@2x.png in Resources */,
+				D6CC64CA1D9B9F1A004AF871 /* BannerDetailController.xib in Resources */,
 				DDF92D771D6A9C5B009D5A1E /* 品牌图片.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3269,6 +3278,7 @@
 				DDF92B3D1D6A9B15009D5A1E /* main.m in Sources */,
 				DDF92C671D6A9C3D009D5A1E /* SegmentView.m in Sources */,
 				DD89FC331D6C7A6300DBAB16 /* ProgressView.m in Sources */,
+				D6CC64C91D9B9F1A004AF871 /* BannerDetailController.m in Sources */,
 				DDF92C661D6A9C3D009D5A1E /* ProductTableView.m in Sources */,
 				DDF92CE41D6A9C4F009D5A1E /* UIView+SDExtension.m in Sources */,
 				DDF92CE11D6A9C4F009D5A1E /* TAPageControl.m in Sources */,

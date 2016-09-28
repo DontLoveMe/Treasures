@@ -49,6 +49,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self requestLuckyData];
+    
+    [self requestData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -58,10 +65,6 @@
     _data = [NSMutableArray array];
     
     [self initNavBar];
-    
-    [self requestLuckyData];
-    
-    [self requestData];
     
     [self createTabelView];
 }

@@ -147,7 +147,7 @@
                 [self requestGoodsList];
                 break;
             case 4:
-                _orderType = @"4";
+                _orderType = @"7";
                 [self requestGoodsList];
                 
                 break;
@@ -216,7 +216,7 @@
                 [self requestGoodsList];
                 break;
             case 4:
-                _orderType = @"4";
+                _orderType = @"7";
                 [self requestGoodsList];
                 
                 break;
@@ -376,14 +376,14 @@
                 static BOOL isAscendingOrder;
                 isAscendingOrder = !isAscendingOrder;
                 if (!isAscendingOrder) {
-                    _orderType =@"4";
+                    _orderType =@"7";
                     [self requestGoodsList];
                 }else {
-                    _orderType =@"5";
+                    _orderType =@"8";
                     [self requestGoodsList];
                 }
             }else {
-                _orderType = @"4";
+                _orderType = @"7";
                 [self requestGoodsList];
 
             }
