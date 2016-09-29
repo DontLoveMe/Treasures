@@ -18,11 +18,8 @@
 
 @end
 
-@interface BroughtHistoryView : UIView<UITableViewDelegate,UITableViewDataSource>{
-    
-    UITableView *_recordTable;
-    
-}
+@interface BroughtHistoryView : UIView<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong)UITableView *recordTable;
 @property (nonatomic,strong)UILabel *recommandLabel;
 @property (nonatomic,strong)NSArray *dataArr;
 @property (weak,nonatomic)id<BroughtHistoryDelegate> BHdelegate;

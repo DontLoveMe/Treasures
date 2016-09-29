@@ -198,7 +198,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"productId":_goodsID}
                forKey:@"paramsMap"];
-    [params setObject:@"15" forKey:@"rows"];
+    [params setObject:@"10" forKey:@"rows"];
     [params setObject:[NSNumber numberWithInteger:indexPath]
                forKey:@"page"];
     
@@ -209,17 +209,9 @@
           success:^(id json) {
               
               if ([json objectForKey:@"flag"]) {
-              
-//                  _announceHistoryArr = [json objectForKey:@"data"];
-//                  if ([_announceHistoryArr isKindOfClass:[NSNull class]]) {
-//                      
-//                      return ;
-//                  }
-//                  [_announcedTableView reloadData];
-//                  [_announcedTableView.mj_header endRefreshing];
-//
+
               NSArray *dataArr = json[@"data"];
-              if (indexPath == 1) {
+              if (_pageIndex == 1) {
                   [_announceHistoryArr removeAllObjects];
                   _announceHistoryArr = dataArr.mutableCopy;
                   
@@ -227,7 +219,7 @@
                   [_announcedTableView.mj_header endRefreshing];
               }
               
-              if (indexPath != 1 && indexPath != 0) {
+              if (_pageIndex != 1 && _pageIndex != 0) {
                   if (dataArr.count > 0) {
                       _pageIndex ++;
                       [_announceHistoryArr addObjectsFromArray:dataArr];
