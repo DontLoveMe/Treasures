@@ -77,7 +77,8 @@
     [ZSTools post:url
            params:params
           success:^(id json) {
-              
+
+//              NSString *urlString = [NSString stringWithFormat:@"<div>p>img style='width:100%;'>%@</div>",[json objectForKey:@"data"]];
               [_webView loadHTMLString:[json objectForKey:@"data"]
                                baseURL:nil];
               

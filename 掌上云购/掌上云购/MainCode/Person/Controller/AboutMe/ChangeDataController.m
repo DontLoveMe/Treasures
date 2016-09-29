@@ -277,7 +277,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              [self hideSuccessHUD:@"绑定成功"];
               if (isSuccess) {
                   
                   [self.navigationController popViewControllerAnimated:YES];
@@ -290,6 +290,8 @@
               NSLogZS(@"%@",error);
           }];
 }
+
+
 - (void)getChangePhone {
 //    NSLogZS(@"手机%@验证码%@",_phoneTF.text,_verifyTF.text);
     
@@ -326,19 +328,19 @@
         return;
     }
 
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserMobile_URL];
+//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserMobile_URL];
+    NSString *url = @"http://192.168.0.92:8080/pcpi/user/editUserMobile";
     [ZSTools post:url
            params:params
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:[json objectForKey:@"msg"]];
-              NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
                   [self.navigationController popViewControllerAnimated:YES];
+                  
               }
-              
               
           } failure:^(NSError *error) {
               
@@ -347,6 +349,7 @@
           }];
 }
 - (void)getBindEmail {
+    
      NSLogZS(@"邮箱%@确认邮箱%@",_emailTF.text,_reEmailTF.text);
     
     if (![_emailTF.text isEqualToString:_reEmailTF.text]) {
@@ -394,7 +397,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+              [self hideSuccessHUD:@"绑定成功"];
               if (isSuccess) {
                   
                   [self.navigationController popViewControllerAnimated:YES];
