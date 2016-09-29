@@ -145,16 +145,18 @@
     if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
         NSLogZS(@"acitve or background");
         NSLog(@"%@",userInfo[@"aps"][@"alert"]);
-        NSLog(@"%@",userInfo[@"aps"][@"description"]);
-        NSLog(@"%@",userInfo[@"aps"][@"title"]);
+        NSLog(@"%@",userInfo[@"description"]);
+        NSLog(@"%@",userInfo[@"title"]);
 
         if ([userInfo[@"msg_type"] integerValue] == 4) {
             PromptController *pVC = [[PromptController alloc] init];
             pVC.type = 0;
+            pVC.titleLabel.text = userInfo[@"aps"][@"alert"];
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
         }else {
             PromptController *pVC = [[PromptController alloc] init];
             pVC.type = 1;
+            pVC.titleLabel.text = userInfo[@"aps"][@"alert"];
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
         }
     }

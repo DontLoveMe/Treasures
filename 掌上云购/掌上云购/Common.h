@@ -51,6 +51,8 @@
 #define GoodsList_URL @"/pcpServer-inf/product/list"
 //商品详情
 #define GoodsDetail_URL @"/pcpServer-inf/product/detail"
+//购买云码列表
+#define BuyuserList_URL @"/pcpServer-inf/saleDrawBuyuser/list"
 //参与记录
 #define GoodsJoinRecords_URL @"/pcpServer-inf/sale/partiList"
 //图文详情
@@ -142,6 +144,8 @@
 #define SunshareDetail_URL @"/pcpServer-inf/user/userComment/detail"
 //新增晒单
 #define InsertSunshare_URL @"/pcpServer-inf/user/userComment/insert"
+//分享晒单记录
+#define ShareSunshare_URL @"/pcpServer-inf/user/userCommentShare/share"
 
 /*---------------充值模块---------------------*/
 //充值记录列表

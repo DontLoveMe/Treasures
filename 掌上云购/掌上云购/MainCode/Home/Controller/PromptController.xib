@@ -31,8 +31,11 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="中奖提示.png" translatesAutoresizingMaskIntoConstraints="NO" id="rLp-jj-aZk">
                     <rect key="frame" x="45" y="199" width="284" height="269"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜你成为幸运用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-2F-jj0">
-                    <rect key="frame" x="97" y="321.5" width="180" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜你成为幸运用户" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-2F-jj0">
+                    <rect key="frame" x="122" y="321" width="130" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="hms-el-dGU"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="0.94910615682601929" green="1" blue="0.0056595024652779102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -40,7 +43,7 @@
             </subviews>
             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="P5n-2F-jj0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="FTI-gB-cFF"/>
+                <constraint firstItem="P5n-2F-jj0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="11.5" id="FTI-gB-cFF"/>
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="top" secondItem="n58-bw-G9s" secondAttribute="bottom" constant="8" id="L2a-1p-ob7"/>
                 <constraint firstAttribute="trailing" secondItem="n58-bw-G9s" secondAttribute="trailing" constant="32" id="PAa-E0-PZM"/>
                 <constraint firstItem="P5n-2F-jj0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RJH-sw-PTv"/>

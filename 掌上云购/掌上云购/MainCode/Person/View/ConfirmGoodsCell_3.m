@@ -8,19 +8,22 @@
 
 #import "ConfirmGoodsCell_3.h"
 #import "AddShareController.h"
+#import "InordertoshareController.h"
 
 @implementation ConfirmGoodsCell_3
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _stateView1.highlighted = YES;
-    _stateView2.highlighted = YES;
-    _stateView3.highlighted = YES;
-    _stateView4.highlighted = YES;
+    
 }
 
 - (IBAction)sunShareAction:(UIButton *)sender {
     
+    if ([_rcModel.orderStatus integerValue]==4) {
+        InordertoshareController *isVC = [[InordertoshareController alloc] init];
+        [[self viewController].navigationController pushViewController:isVC animated:YES];
+        return;
+    }
     AddShareController *addSVC = [[AddShareController alloc] init];
     addSVC.lkModel = _rcModel;
     [[self viewController].navigationController pushViewController:addSVC animated:YES];

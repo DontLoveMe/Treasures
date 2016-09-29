@@ -95,8 +95,9 @@
                            shareParams:shareParams
                    onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
                    
-                       if (error) {
+                       if (!error) {
                            NSLogZS(@"分享成功");
+                           [self requestShara];
                        }else {
                            NSLogZS(@"%@",error);
                        }
@@ -104,11 +105,39 @@
     }
     
 }
+- (void)requestShara {
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
+    if (userId == nil || [userId isKindOfClass:[NSNull class]]) {
+        return;
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(_shareID) forKey:@"commentId"];
+    [params setObject:userId forKey:@"buyUserId"];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ShareSunshare_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+//              [self hideSuccessHUD:@"数据加载成功"];
+              if (isSuccess) {
+                 
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
 // 从view上截图
 - (UIImage *)getImage {
     
     UIGraphicsBeginImageContextWithOptions(_scrollView.contentSize, NO, 1.0);  //NO，YES 控制是否透明
-    [_scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     // 生成后的image
@@ -128,6 +157,7 @@
 }
 
 - (void)createSubviews {
+    
     _iconView = [[HisIconImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     _iconView.layer.cornerRadius = _iconView.width/2;
     _iconView.layer.masksToBounds = YES;

@@ -94,7 +94,7 @@
             {
                 button.frame = CGRectMake(0, h-50, w, 50);
                 UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(button.frame), w, 1)];
-                line.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
+                line.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
                 [_bgView addSubview:line];
                 
             }
@@ -104,10 +104,10 @@
                 button.frame = CGRectMake(w/2*i, h-50, w/2, 50);
                 if (i == 0) {
                     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(button.frame), w, 1)];
-                    line1.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
+                    line1.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
                     [_bgView addSubview:line1];
                     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(w/2, h-50, 1, 50)];
-                    line2.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
+                    line2.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
                     [_bgView addSubview:line2];
                 }
             }
@@ -117,14 +117,14 @@
                 button.frame = CGRectMake(0, 100+50*i, w, 50);
                 if (i == 0) {
                     UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(button.frame), w, 1)];
-                    line1.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
+                    line1.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
                     [_bgView addSubview:line1];
                     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame), w, 1)];
-                    line2.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
+                    line2.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
                     [_bgView addSubview:line2];
                 }else {
                     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame), w, 1)];
-                    line.backgroundColor = [UIColor colorWithWhite:.8 alpha:1];
+                    line.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
                     [_bgView addSubview:line];
                 }
             }

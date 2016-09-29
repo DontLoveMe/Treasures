@@ -206,6 +206,10 @@
         //"orderStatus": "0",//订单状态，0：已支付1：已确认收货地址2：已发货3：已签收4：已晒单5：已确认物品6：已选择方式7：已发卡密或充值到余额（虚拟商品）8：未确认地址取消订单',
         NSInteger orderStatus = [rModel.orderStatus integerValue];
         switch (orderStatus) {
+            case 4:
+                [cell.goodsButton setTitle:@"已晒单" forState:UIControlStateNormal];
+                break;
+
             case 5:
                 [cell.goodsButton setTitle:@"选择使用方式" forState:UIControlStateNormal];
                 break;
@@ -214,6 +218,9 @@
                 break;
             case 7:
                 [cell.goodsButton setTitle:@"晒单奖红包" forState:UIControlStateNormal];
+                break;
+            case 8:
+                [cell.goodsButton setTitle:@"未确认订单已失效" forState:UIControlStateNormal];
                 break;
                 
             default:
@@ -239,7 +246,9 @@
             case 4:
                 [cell.goodsButton setTitle:@"已晒单" forState:UIControlStateNormal];
                 break;
-                
+            case 8:
+                [cell.goodsButton setTitle:@"未确认地址订单已失效" forState:UIControlStateNormal];
+                break;
             default:
                 [cell.goodsButton setTitle:@"确认地址" forState:UIControlStateNormal];
                 break;

@@ -132,14 +132,20 @@
         cell.participateLabel.text = [NSString stringWithFormat:@"参与人次：%ld",_rcModel.saleDraw.sellShare];
          NSInteger status = [_orderDic[@"status"] integerValue];
         switch (status) {
+            case 4:
+                cell.stateLabel.text = @"已晒单";
+                break;
             case 5:
-                cell.stateLabel.text = @"请选择方式";
+                cell.stateLabel.text = @"请选择使用方式";
                 break;
             case 6:
-                cell.stateLabel.text = @"已发卡密或充值到余额";
+                cell.stateLabel.text = @"等待充值";
                 break;
             case 7:
-                cell.stateLabel.text = @"已发卡密或充值到余额";
+                cell.stateLabel.text = @"晒单奖红包";
+                break;
+            case 8:
+                cell.stateLabel.text = @"未确认订单已失效";
                 break;
                 
             default:
@@ -168,6 +174,10 @@
     }
 
     ConfirmGoodsCell_3 *cell = [tableView dequeueReusableCellWithIdentifier:@"ConfirmGoodsCell_3" forIndexPath:indexPath];
+    cell.stateView1.highlighted = YES;
+    cell.stateView2.highlighted = YES;
+    cell.stateView3.highlighted = YES;
+    cell.stateView4.highlighted = YES;
     cell.rcModel = self.rcModel;
     if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
         
@@ -189,21 +199,29 @@
     }
     if (![_orderDic[@"receiptAccount"] isKindOfClass:[NSNull class]]) {
         
-        cell.cardNoLabel.text = _orderDic[@"receiptAccount"];
+        cell.cardNoLabel.text = [NSString stringWithFormat:@"账户：%@",_orderDic[@"receiptAccount"]];
     }else {
-        cell.cardNoLabel.text = @"";
+        cell.cardNoLabel.text = @"正在充值中";
     }
     NSInteger type = [_orderDic[@"receivingType"] integerValue];
     if (type == 2) {
         cell.mannerLabel.text = @"已选择：充值到话费";
-        cell.stateLabel3.text = @"已充值到话费";
+        cell.stateLabel3.text = @"充值到话费";
         
     }else if (type == 3) {
         cell.mannerLabel.text = @"已选择：充值到余额";
-        cell.stateLabel3.text = @"已充值到余额";
+        cell.stateLabel3.text = @"充值到余额";
     }else if (type == 4){
         cell.mannerLabel.text = @"已选择：充值到支付宝";
-        cell.stateLabel3.text = @"已充值到支付宝";
+        cell.stateLabel3.text = @"充值到支付宝";
+    }
+    NSInteger statu = [_orderDic[@"status"] integerValue];
+    if (statu == 4){
+//        cell.shareBtn.userInteractionEnabled = NO;
+        [cell.shareBtn setTitle:@"已晒单" forState:UIControlStateNormal];
+    }else {
+//        cell.shareBtn.userInteractionEnabled = YES;
+        [cell.shareBtn setTitle:@"去晒单" forState:UIControlStateNormal];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
