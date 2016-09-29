@@ -30,8 +30,17 @@
     _buyNumberTF.delegate = self;
     
     [self isOutOfRange:1];
-
+    
+    [_buyNumberTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
 }
+- (void) textFieldDidChange:(UITextField *) TextField{
+
+    _money = [TextField.text integerValue];
+    [self isOutOfRange:_money];
+    NSLog(@"%@",TextField.text);
+}
+
 - (void)setSinglePrice:(NSInteger)singlePrice {
     _singlePrice = singlePrice;
     [self isOutOfRange:_money];
