@@ -170,7 +170,14 @@
             _broughtHistoryView.backgroundColor = [UIColor whiteColor];
             _broughtHistoryView.BHdelegate = self;
             [self.view insertSubview:_broughtHistoryView belowSubview:_bottomView];
+            _broughtHistoryView.recordTable.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+                if (_pageIndex == 1) {
+                    _pageIndex = 2;
+                }
+                [self requestJoinList:_pageIndex];
+            }];
 //            [self.view addSubview:_broughtHistoryView];
+            
         }
         
         [UIView animateWithDuration:0.5
@@ -794,11 +801,29 @@
           success:^(id json) {
               
               if ([json objectForKey:@"flag"]) {
-              
-                  _joinRecordArr = [json objectForKey:@"data"];
+                  
+                  NSArray *dataArr = json[@"data"];
+                  if (_pageIndex == 1) {
+                      [_joinRecordArr removeAllObjects];
+                      _joinRecordArr = dataArr.mutableCopy;
+                      
+                      [_broughtHistoryView.recordTable.mj_footer resetNoMoreData];
+                      
+                  }
+                  
+                  if (_pageIndex != 1 && _pageIndex != 0) {
+                      if (dataArr.count > 0) {
+                          _pageIndex ++;
+                          [_joinRecordArr addObjectsFromArray:dataArr];
+                          [_broughtHistoryView.recordTable.mj_footer endRefreshing];
+                      }else {
+                          [_broughtHistoryView.recordTable.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
                   _broughtHistoryView.dataArr = _joinRecordArr;
-              
+                  [_broughtHistoryView.recordTable reloadData];
               }
+           
               
           } failure:^(NSError *error) {
               

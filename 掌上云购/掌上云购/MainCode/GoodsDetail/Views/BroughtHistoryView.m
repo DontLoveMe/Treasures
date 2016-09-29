@@ -65,6 +65,8 @@
             [_recordTable.mj_header endRefreshing];
         }
     }];
+    
+   
     [self addSubview:_recordTable];
     
     _dataArr = [NSArray array];
@@ -94,6 +96,7 @@
     
     BroughtHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BroughtHistory_Cell"
                                                                 forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *dic = [_dataArr objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
         
