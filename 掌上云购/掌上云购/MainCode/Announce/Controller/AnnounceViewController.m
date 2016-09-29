@@ -206,7 +206,7 @@
     cell.titleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"productName"]];
     //期号
     cell.numberLabel.text = [NSString stringWithFormat:@"期号：%@",[dic objectForKey:@"drawTimes"]];
-    
+#warning 是否进入倒计时，这个判断条件需要更改
     if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
         
         //倒计时时间
@@ -246,8 +246,8 @@
         cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dic objectForKey:@"drawDate"]];
         
     }
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
+//    [cell setNeedsLayout];
+//    [cell layoutIfNeeded];
     return cell;
     
 }

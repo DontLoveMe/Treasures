@@ -20,21 +20,24 @@
 
 - (void)setStr:(NSString *)str  {
     
-    _str = str;
-    if (self.countDown) {
-        [self.countDown destoryTimer];
-    }else {
-        self.countDown = [[CountDown alloc] init];
+    if (_str != str) {
+        
+        _str = str;
+        if (self.countDown) {
+            [self.countDown destoryTimer];
+        }else {
+            self.countDown = [[CountDown alloc] init];
+        }
+        
+        __weak __typeof(self) weakSelf= self;
+        
+        [self.countDown countDownWithPER_SECBlock:^{
+            //倒计时方法，每毫秒调用一次
+            weakSelf.timeLabel.text = [self getNowTimeWithString:_str];
+            
+        }];
     }
-    
-    __weak __typeof(self) weakSelf= self;
-    
-    [self.countDown countDownWithPER_SECBlock:^{
-        //        NSLog(@"倒计时");
-        weakSelf.timeLabel.text = [self getNowTimeWithString:_str];
-   
-    }];
-    
+
 }
 
 //得到时间间隔
@@ -90,7 +93,7 @@
             [_announceDelegate countEnd:_indexpath];
         
         }
-        
+        NSLogZS(@"%ld",_indexpath.row);
         return @"正在计算开奖结果";
         
     }else {
@@ -106,7 +109,7 @@
         
         if (hours>0) {
             
-            return [NSString stringWithFormat:@"%@:%@:%@:%@",hoursStr , minutesStr,secondsStr,millisecondStr];
+            return [NSString stringWithFormat:@"%@ : %@ : %@ ",hoursStr , minutesStr,secondsStr];
             
         }
         
