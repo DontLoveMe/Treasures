@@ -414,7 +414,7 @@
     [params setObject:userId forKey:@"id"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserInfo_URL];
-    [ZSTools post:url
+    [ZSTools specialPost:url
            params:params
           success:^(id json) {
               
