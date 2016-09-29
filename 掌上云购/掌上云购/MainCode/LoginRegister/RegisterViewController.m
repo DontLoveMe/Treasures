@@ -50,6 +50,14 @@
     
     _countDown = [[CountDown alloc] init];
    
+    [_validataButton setTitle:@"" forState:UIControlStateNormal];
+    _validataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _validataButton.width, _validataButton.height)];
+    [_validataButton addSubview:_validataLabel];
+    _validataLabel.font = [UIFont systemFontOfSize:14];
+    _validataLabel.textAlignment = NSTextAlignmentCenter;
+    _validataLabel.text = @"获取验证码";
+    _validataLabel.textColor = [UIColor whiteColor];
+    
     [self initNavBar];
     //判断注册、找回密码、密码修改界面
     [self registOrmodify];
@@ -141,6 +149,9 @@
     [rePlaintextBtn addTarget:self action:@selector(plaintextAction:) forControlEvents:UIControlEventTouchUpInside];
     _rePasswordTF.rightView = rePlaintextBtn;
     _rePasswordTF.rightViewMode = UITextFieldViewModeAlways;
+    
+    
+    
 }
 //明暗文切换
 - (void)plaintextAction:(UIButton *)button{
@@ -155,7 +166,17 @@
 #pragma mark - 按钮的点击
 //获得验证码
 - (IBAction)getCaptchaAction:(UIButton *)sender {
-    
+    if (_usernameTF.text.length == 0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入手机号码！"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     //    60s的倒计时
     NSTimeInterval aMinutes = 60;
     [self startWithStartDate:[NSDate date] finishDate:[NSDate dateWithTimeIntervalSinceNow:aMinutes]];
@@ -199,10 +220,12 @@
         
         if (totoalSecond==0) {
             _validataButton.enabled = YES;
-            [_validataButton setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+//            [_validataButton setTitle:@"重新获取验证码" forState:UIControlStateNormal];
+            _validataLabel.text = @"重新获取验证码";
         }else{
             _validataButton.enabled = NO;
-            [_validataButton setTitle:[NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond] forState:UIControlStateNormal];
+//            [_validataButton setTitle:[NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond] forState:UIControlStateNormal];
+            _validataLabel.text = [NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond];
         }
         
     }];
