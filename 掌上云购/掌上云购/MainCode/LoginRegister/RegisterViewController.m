@@ -316,7 +316,7 @@
                         @"captcha":_validateTF.text}
                forKey:@"userLoginDto"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
-    [ZSTools post:url
+    [ZSTools specialPost:url
            params:params
           success:^(id json) {
               
@@ -437,12 +437,45 @@
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
                   
-                  [self dismissViewControllerAnimated:YES completion:nil];
+                  AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"修改密码成功！"];
+                  [alert addButtonTitleArray:@[@"知道了！"]];
+                  __weak typeof(AlertController *) weakAlert = alert;
+                  [alert setClickButtonBlock:^(NSInteger tag) {
+                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                      
+                      [self dismissViewControllerAnimated:YES completion:nil];
+                  }];
                   
+                  [self presentViewController:alert animated:YES completion:nil];
+                  return;
+                  
+              }else{
+              
+                  AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"修改密码失败！"];
+                  [alert addButtonTitleArray:@[@"知道了！"]];
+                  __weak typeof(AlertController *) weakAlert = alert;
+                  [alert setClickButtonBlock:^(NSInteger tag) {
+                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
+
+                  }];
+                  
+                  [self presentViewController:alert animated:YES completion:nil];
+                  return;
                   
               }
               
           } failure:^(NSError *error) {
+              
+              AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"修改密码失败！"];
+              [alert addButtonTitleArray:@[@"知道了！"]];
+              __weak typeof(AlertController *) weakAlert = alert;
+              [alert setClickButtonBlock:^(NSInteger tag) {
+                  [weakAlert dismissViewControllerAnimated:YES completion:nil];
+                  
+              }];
+              
+              [self presentViewController:alert animated:YES completion:nil];
+              return;
               
           }];
 }
@@ -481,7 +514,7 @@
 
     
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLoginPhone_URL];
-    [ZSTools post:url
+    [ZSTools specialPost:url
            params:params
           success:^(id json) {
               
