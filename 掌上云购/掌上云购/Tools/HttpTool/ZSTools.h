@@ -32,4 +32,10 @@
      success:(void (^)(id))success
      failure:(void (^)(NSError *))failure;
 
+//特殊请求
++ (void)specialPost:(NSString *)url
+             params:(NSDictionary *)params
+            success:(void (^)(id json))success
+            failure:(void (^)(NSError *error))failure;
+
 @end

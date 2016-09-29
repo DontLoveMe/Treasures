@@ -128,7 +128,6 @@ constructingBodyWithBlock:nil
      failure:(void (^)(NSError *))failure{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
     NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
     if (params) {
         NSString *obj = [params JSONString];
@@ -182,6 +181,42 @@ constructingBodyWithBlock:nil
            }
            
        }];
+    
+}
+
+//特殊的地方
++ (void)specialPost:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
+    
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    AFJSONResponseSerializer *response = [AFJSONResponseSerializer serializer];
+    response.removesKeysWithNullValues = YES;
+    mgr.responseSerializer = response;
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
+    if (params) {
+        NSString *obj = [params JSONString];
+        paramsObj[@"param"] = obj;
+    } else {
+        paramsObj = nil;
+    }
+    [mgr POST:url parameters:paramsObj
+constructingBodyWithBlock:nil
+     
+     progress:^(NSProgress * _Nonnull uploadProgress) {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         
+         if (success) {
+             success(responseObject);
+         }
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         
+         if (failure) {
+             failure(error);
+         }
+         
+     }];
     
 }
 
