@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwrodTF;
 @property (weak, nonatomic) IBOutlet UITextField *rePasswordTF;
 @property (weak, nonatomic) IBOutlet UIButton *validataButton;
+@property (strong,nonatomic) UILabel *validataLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vdTFHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *vdBtnHeight;
 @property (weak, nonatomic) IBOutlet UIButton *userDgtBtn;
