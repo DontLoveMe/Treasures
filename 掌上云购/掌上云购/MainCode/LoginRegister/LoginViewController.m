@@ -119,9 +119,9 @@
     }
     [self showHUD:@"正在登录"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Login_URL];
-    [ZSTools post:url
-           params:params
-          success:^(id json) {
+    [ZSTools specialPost:url
+                  params:params
+                 success:^(id json) {
               
 //              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
               [self hideSuccessHUD:[json objectForKey:@"msg"]];
@@ -237,7 +237,7 @@
     [params setObject:updateBy forKey:@"updateBy"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLogin_URL];
-    [ZSTools post:url
+    [ZSTools specialPost:url
            params:params
           success:^(id json) {
               

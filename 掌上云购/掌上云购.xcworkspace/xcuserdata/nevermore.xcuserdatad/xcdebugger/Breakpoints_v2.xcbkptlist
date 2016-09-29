@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Discover/Controller/&#x6652;&#x5355;&#x5206;&#x4eab;/SunSharingViewController.m"
-            timestampString = "496286651.341045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-requestData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/AppDelegate.m"
             timestampString = "496394179.364207"
             startingColumnNumber = "9223372036854775807"
@@ -51,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/LoginRegister/RegisterViewController.m"
-            timestampString = "496651367.237997"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/LoginRegister/LoginViewController.m"
+            timestampString = "496661344.28693"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "-regist"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
+            landmarkName = "-requestCartList"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/LoginRegister/LoginViewController.m"
-            timestampString = "496661344.28693"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/AboutMe/AboutMeController.m"
+            timestampString = "496810663.842692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "-requestCartList"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-getUserInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

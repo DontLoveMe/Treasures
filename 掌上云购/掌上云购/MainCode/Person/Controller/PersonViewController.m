@@ -452,7 +452,7 @@
                           
                       }
                   }
-                  
+//                  [userDic removeObjectForKey:@"address"];
                   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                   
                   [defaults setObject:userDic forKey:@"userDic"];
