@@ -8,6 +8,8 @@
 
 #import "PromptController.h"
 #import "RedEnvelopeController.h"
+#import "LuckyRecordController.h"
+#import "TabbarViewcontroller.h"
 
 @interface PromptController ()
 
@@ -45,9 +47,18 @@
         reVC.isPay = @"1";
         self.navigationController.navigationBar.hidden = NO;
         reVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:reVC animated:YES];
+        TabbarViewcontroller *view = (TabbarViewcontroller *)self.presentingViewController;
+        UINavigationController *nav = view.viewControllers[_tabbarIndex];
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [nav pushViewController:reVC animated:YES];
     }else {
-        
+        LuckyRecordController *lucky = [[LuckyRecordController alloc] init];
+        self.navigationController.navigationBar.hidden = NO;
+        lucky.hidesBottomBarWhenPushed = YES;
+        TabbarViewcontroller *view = (TabbarViewcontroller *)self.presentingViewController;
+        UINavigationController *nav = view.viewControllers[_tabbarIndex];
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [nav pushViewController:lucky animated:YES];
     }
     
 }
@@ -55,13 +66,14 @@
 - (void)setType:(NSInteger)type{
 
     
-        
         _type = type;
         if (_type == 0) {
             _imgView.image = [UIImage imageNamed:@"红包提示"];
 //            _titleLabel.hidden = YES;
+            _titleWidth.constant = 130;
         }else {
             _imgView.image = [UIImage imageNamed:@"中奖提示"];
+            _titleWidth.constant = 200;
 //            _titleLabel.hidden = NO;
         }
         

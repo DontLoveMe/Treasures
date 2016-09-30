@@ -41,6 +41,20 @@
     _window.rootViewController = TVC;
     
     
+  //推送测试
+//    double delayInSeconds = 15.0;
+//    
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        PromptController *pVC = [[PromptController alloc] init];
+//        TabbarViewcontroller *tabbar = (TabbarViewcontroller *)self.window.rootViewController;
+//        pVC.type = 1;
+//        pVC.tabbarIndex = tabbar.selectedIndex;
+//        pVC.titleLabel.text = @"恭喜Liuyi获得幸运，你的幸运号码为10000052";
+//        [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
+//        NSLog(@"=====================================%ld",TVC.selectedIndex) ; });
+   
+    
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
      *  在将生成的AppKey传入到此方法中。

@@ -47,7 +47,7 @@
     
     _mannerType = 2;
 //    [self confirmGoods];
-    [self requestSaleOrderStatus];
+//    [self requestSaleOrderStatus];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -149,6 +149,7 @@
                 break;
                 
             default:
+                cell.stateLabel.text = @"请选择使用方式";
                 break;
         }
         
@@ -385,6 +386,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 
+    [self requestSaleOrderStatus];
 }
 - (void)viewDidDisappear:(BOOL)animated{
 

@@ -7,6 +7,7 @@
 //
 
 #import "CountWayController.h"
+#import "CountWayCell.h"
 
 @interface CountWayController ()
 
@@ -59,6 +60,8 @@
     _descriptionTable.delegate = self;
     _descriptionTable.dataSource = self;
     [self.view addSubview:_descriptionTable];
+    
+    [_descriptionTable registerNib:[UINib nibWithNibName:@"CountWayCell" bundle:nil] forCellReuseIdentifier:@"CountWayCell"];
     
     //下拉时动画
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
@@ -158,9 +161,10 @@
                           luckyValue = @"请等待开奖结果";
                       }
                       if (_isSpeed) {
+                          _titleArr = @[@"计算公式",@"数值A",@"计算结果"];
                           _valueArr = @[msgStr,
                                         [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
-                                        [NSString stringWithFormat:@"幸运号码:%@",luckyValue]];
+                                        [NSString stringWithFormat:@"幸运号码：%@",luckyValue]];
 
                       }else {
                           
@@ -171,7 +175,7 @@
                       }
                   }else{
                       if (_isSpeed) {
-                          
+                          _titleArr = @[@"计算公式",@"数值A",@"计算结果"];
                           _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"幸运号码:请等待开奖结果"];
                       }else {
                           _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待开奖",@"幸运号码:请等待开奖结果"];
@@ -211,7 +215,7 @@
         
         }else{
         
-            return _AvalueArr.count;
+            return _AvalueArr.count+1;
             
         }
         
@@ -303,13 +307,36 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    NSDictionary *dic = _AvalueArr[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@（%@）",[dic objectForKey:@"createDate"],[dic objectForKey:@"createMillisecond"]];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:10];
-    cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [dic objectForKey:@"nickName"];
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+//    NSDictionary *dic = _AvalueArr[indexPath.row];
+//    cell.textLabel.font = [UIFont systemFontOfSize:12];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@（%@）",[dic objectForKey:@"createDate"],[dic objectForKey:@"createMillisecond"]];
+//    cell.detailTextLabel.font = [UIFont systemFontOfSize:10];
+//    cell.detailTextLabel.numberOfLines = 2;
+//    cell.detailTextLabel.text = [dic objectForKey:@"nickName"];
+    CountWayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CountWayCell" forIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        cell.timeLabel.text = @"    夺宝时间";
+        cell.timeFactorLb.text = @"时间因子";
+        cell.userNameLb.text = @"用户帐号";
+    }else{
+        NSDictionary *dic = _AvalueArr[indexPath.row-1];
+        NSString *dateStr = [dic objectForKey:@"createDate"];
+        NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
+        NSDate *date = [formater dateFromString:dateStr];
+        //
+        [formater setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr1 = [formater stringFromDate:date];
+        
+        [formater setDateFormat:@"HH:mm:ss:SSS"];
+        NSString *dateStr2 = [formater stringFromDate:date];
+        
+        
+        cell.timeLabel.text = [NSString stringWithFormat:@"%@\n%@",dateStr1,dateStr2];
+        cell.timeFactorLb.text = [dic objectForKey:@"createMillisecond"];
+        cell.userNameLb.text = [dic objectForKey:@"nickName"];
+    }
     return cell;
     
 }
@@ -317,6 +344,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    if (indexPath.section ==1) {
+        if (indexPath.row == 0) {
+            return 23.f;
+        }
+        return 44.f;
+    }
     return 44.f;
     
 }

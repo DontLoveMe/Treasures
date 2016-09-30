@@ -259,13 +259,13 @@
 - (void)requestSegmentData {
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,CategorysList_URL];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"showClient":@0} forKey:@"paramsMap"];
+//    [params setObject:@{@"showClient":@1} forKey:@"paramsMap"];
     
     [ZSTools post:url
            params:params
           success:^(id json) {
               
-              self.segmentData = json[@"rows"];
+              self.segmentData = json[@"data"];
               NSMutableArray *titles = [NSMutableArray array];
 //              NSMutableArray *imgUrls = [NSMutableArray array];
               for (NSDictionary *dic in self.segmentData) {

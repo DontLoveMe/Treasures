@@ -49,7 +49,7 @@
     
     
     
-    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?"];
+    AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"确认延期收货么?(提供48小时延期，如有疑问请联系客服)"];
     [alert addButtonTitleArray:@[@"取消",@"确认"]];
     __weak typeof(AlertController*) weakAlert = alert;
     __weak typeof(self) weakSelf = self;
