@@ -378,7 +378,6 @@
                                           @"singlePrice":[dic objectForKey:@"singlePrice"]};
                   [cloudArr addObject:goods];
 
-                  
               }
               if (cloudArr.count > 0) {
                   

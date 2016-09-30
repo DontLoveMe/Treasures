@@ -189,6 +189,12 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSLogZS(@"点击了第%ld个单元格",indexPath.row);
+    HisCenterController *hcVC = [[HisCenterController alloc] init];
+    NSDictionary *dic = [_announceHistoryArr objectAtIndex:indexPath.row];
+    if (![dic[@"drawUserId"] isKindOfClass:[NSNull class]]) {
+            hcVC.buyUserId = [dic[@"drawUserId"] integerValue];
+    }
+    [self.navigationController pushViewController:hcVC animated:YES];
     
 }
 

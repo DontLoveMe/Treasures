@@ -55,6 +55,8 @@
     UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY > 60) {
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         CGFloat alpha = MIN(1, 1 - ((60 + 64 - offsetY) / 64));
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
         if(alpha > 0.5) {
@@ -70,6 +72,7 @@
             
         }else {
            
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
             leftButton.size = CGSizeMake(28, 28);
             [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
@@ -98,6 +101,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController.navigationBar lt_reset];
     self.navigationController.navigationBar.translucent = NO;
     if (_joinListTimer) {
@@ -454,6 +458,23 @@
         
     }
     
+    //强行去掉为空字段
+    for (int i = 0; i < picArr.count; i ++) {
+        
+        NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+        for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+            
+            if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                
+                [dic removeObjectForKey:dic.allKeys[j]];
+                
+            }
+            
+        }
+        [picArr replaceObjectAtIndex:i withObject:dic];
+        
+    }
+    
     NSDictionary *goods = @{@"id":[_dataDic objectForKey:@"id"],
                             @"name":[_dataDic objectForKey:@"name"],
                             @"proPictureList":picArr,
@@ -515,6 +536,7 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self requestData];
     
     if (_isAnnounced == 1) {

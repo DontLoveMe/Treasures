@@ -114,7 +114,7 @@
     .heightIs(20);
     
     _warntext = [[UILabel alloc]init];
-    _warntext.text = @"夺宝有危险,参与需谨慎";
+    _warntext.text = @"夺宝有风险,参与需谨慎";
     _warntext.textColor = [UIColor grayColor];
     _warntext.font = [UIFont systemFontOfSize:15];
     [view addSubview:_warntext];

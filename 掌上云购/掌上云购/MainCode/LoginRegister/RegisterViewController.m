@@ -316,6 +316,7 @@
                         @"captcha":_validateTF.text}
                forKey:@"userLoginDto"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
+    [self showHUD:@"正在注册"];
     [ZSTools specialPost:url
            params:params
           success:^(id json) {
@@ -324,14 +325,21 @@
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
                   //把信息存到NSUserDefaults
+                  [self hideSuccessHUD:@"注册成功"];
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
                   [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                   
                   
+              }else{
+              
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
+                  
               }
               
           } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"请求失败"];
               
           }];
 }

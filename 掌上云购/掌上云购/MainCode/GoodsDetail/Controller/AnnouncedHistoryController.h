@@ -10,6 +10,8 @@
 
 #import "AnnounceHistoryCell.h"
 
+#import "HisCenterController.h"
+
 @interface AnnouncedHistoryController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
 
     UITableView *_announcedTableView;
