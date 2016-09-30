@@ -12,7 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleWidth;
 
+@property (nonatomic,assign)NSInteger tabbarIndex;
 //0 ：红包 1 ：中奖
 @property (nonatomic,assign)NSInteger type;
 @end

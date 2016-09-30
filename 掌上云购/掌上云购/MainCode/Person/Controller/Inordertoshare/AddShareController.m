@@ -305,8 +305,9 @@
                          completion:nil];
         return;
     }
-    if (_titleTF.text.length == 0||_contentTF.text.length == 0) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请填写完整！"];
+  
+    if (_titleTF.text.length < 3||_contentTF.text.length < 20) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"标题要大与三个字，内容不少与20个字！"];
         [alert addButtonTitleArray:@[@"好"]];
         __weak typeof(AlertController*) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {

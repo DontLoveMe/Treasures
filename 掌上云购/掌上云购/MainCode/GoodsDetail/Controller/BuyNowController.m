@@ -35,10 +35,13 @@
     
 }
 - (void) textFieldDidChange:(UITextField *) TextField{
-
+    if (TextField.text.length == 0) {
+        _moneyLabel.text = @"共0夺宝币";
+        return;
+    }
     _money = [TextField.text integerValue];
     [self isOutOfRange:_money];
-    NSLog(@"%@",TextField.text);
+    
 }
 
 - (void)setSinglePrice:(NSInteger)singlePrice {

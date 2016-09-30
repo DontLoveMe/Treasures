@@ -50,6 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self requestAreaData];
+    [self requestSaleOrderStatus];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,7 +67,7 @@
     
 //    [self requestAreaData];
     
-    [self requestSaleOrderStatus];
+//    [self requestSaleOrderStatus];
     
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStyleGrouped];
@@ -226,6 +227,8 @@
             cell.stateLabel5.highlighted = NO;
             
             cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
+            cell.stateLabel4.text = [NSString stringWithFormat:@"未确认收货"];
+            cell.stateLabel5.text = [NSString stringWithFormat:@"未签收"];
             
             cell.timeLabel1.highlighted = YES;
             cell.timeLabel2.highlighted = YES;
@@ -244,10 +247,22 @@
             }
             cell.timeLabel4.text = @"";
             
+            cell.shareBtn.hidden = YES;
             cell.sureAddress.hidden = YES;
             cell.selectAddress.hidden = YES;
-            cell.delayReceipt.hidden = NO;
+//            cell.delayReceipt.hidden = NO;
             cell.sureReceipt.hidden = NO;
+            
+            if (![_orderDic[@"isDelayReceive"] isKindOfClass:[NSNull class]]) {
+                if ([_orderDic[@"isDelayReceive"] integerValue]==0) {
+                    cell.delayReceipt.hidden = NO;
+                }else {
+                    cell.delayReceipt.hidden = YES;
+                }
+            }else {
+                cell.delayReceipt.hidden = NO;
+            }
+            
             
                 
             }
@@ -266,6 +281,9 @@
             cell.stateLabel5.highlighted = YES;
             
             cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
+            
+            cell.stateLabel4.text = [NSString stringWithFormat:@"已签收"];
+            cell.stateLabel5.text = [NSString stringWithFormat:@"未晒单"];
             
             cell.timeLabel1.highlighted = YES;
             cell.timeLabel2.highlighted = YES;
@@ -305,6 +323,9 @@
             cell.stateLabel5.highlighted = YES;
             
             cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
+            
+            cell.stateLabel4.text = [NSString stringWithFormat:@"已签收"];
+            cell.stateLabel5.text = [NSString stringWithFormat:@"已晒单"];
             
             cell.timeLabel1.highlighted = YES;
             cell.timeLabel2.highlighted = YES;
@@ -365,6 +386,7 @@
     LuckyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
     cell.goodsButton.hidden = YES;
     cell.lkModel = _rcModel;
+    cell.isSunBtn.hidden = YES;
     cell.contentView.backgroundColor = [UIColor colorFromHexRGB:@"EBEBF1"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -469,7 +491,7 @@
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载中"];
+//    [self showHUD:@"加载中"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"userId"];
     
@@ -480,7 +502,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
+//              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               if (isSuccess) {
                   NSArray *area = json[@"data"];
                   if (area.count == 0) {
@@ -606,7 +628,7 @@
     //    [params setObject:userId forKey:@"buyUserId"];
     [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ConfirmReceipt_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,DeferredReceipt_URL];
     [ZSTools post:url
            params:params
           success:^(id json) {

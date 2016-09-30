@@ -176,6 +176,8 @@
 		D6C09BFB1D7916CD00C092A7 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFA1D7916CD00C092A7 /* TZTestCell.m */; };
 		D6C09BFE1D7916DA00C092A7 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */; };
 		D6C09C011D791A1900C092A7 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C09C001D791A1900C092A7 /* TZImagePickerController.m */; };
+		D6CAA33D1D9E4E15003930AF /* CountWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CAA33B1D9E4E15003930AF /* CountWayCell.m */; };
+		D6CAA33E1D9E4E15003930AF /* CountWayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CAA33C1D9E4E15003930AF /* CountWayCell.xib */; };
 		D6CC64C91D9B9F1A004AF871 /* BannerDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CC64C71D9B9F1A004AF871 /* BannerDetailController.m */; };
 		D6CC64CA1D9B9F1A004AF871 /* BannerDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CC64C81D9B9F1A004AF871 /* BannerDetailController.xib */; };
 		D6D4BD891D911FFD001D9599 /* BuyNowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D4BD871D911FFD001D9599 /* BuyNowController.m */; };
@@ -754,6 +756,9 @@
 		D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
 		D6C09BFF1D791A1900C092A7 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
 		D6C09C001D791A1900C092A7 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		D6CAA33A1D9E4E15003930AF /* CountWayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountWayCell.h; sourceTree = "<group>"; };
+		D6CAA33B1D9E4E15003930AF /* CountWayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountWayCell.m; sourceTree = "<group>"; };
+		D6CAA33C1D9E4E15003930AF /* CountWayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountWayCell.xib; sourceTree = "<group>"; };
 		D6CC64C61D9B9F1A004AF871 /* BannerDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerDetailController.h; sourceTree = "<group>"; };
 		D6CC64C71D9B9F1A004AF871 /* BannerDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerDetailController.m; sourceTree = "<group>"; };
 		D6CC64C81D9B9F1A004AF871 /* BannerDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerDetailController.xib; sourceTree = "<group>"; };
@@ -1984,6 +1989,9 @@
 				DDF92B9F1D6A9C3D009D5A1E /* BroughtHistoryView.m */,
 				DDF92BA01D6A9C3D009D5A1E /* GoodsDetailFunctionTableView.h */,
 				DDF92BA11D6A9C3D009D5A1E /* GoodsDetailFunctionTableView.m */,
+				D6CAA33A1D9E4E15003930AF /* CountWayCell.h */,
+				D6CAA33B1D9E4E15003930AF /* CountWayCell.m */,
+				D6CAA33C1D9E4E15003930AF /* CountWayCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2986,6 +2994,7 @@
 				DD71AC001D92755A005CBFFD /* dropdown_zsyg_023@2x.png in Resources */,
 				DD71ABF81D92755A005CBFFD /* dropdown_zsyg_015@2x.png in Resources */,
 				DD71AC311D92755A005CBFFD /* dropdown_zsyg_072@2x.png in Resources */,
+				D6CAA33E1D9E4E15003930AF /* CountWayCell.xib in Resources */,
 				DDF92D7D1D6A9C5B009D5A1E /* 按钮-.png in Resources */,
 				D625D9F81D7E6D5600316A49 /* SearchGoodsController.xib in Resources */,
 				DDF92CDC1D6A9C4F009D5A1E /* areaData.plist in Resources */,
@@ -3171,6 +3180,7 @@
 				D6C09BF51D79150F00C092A7 /* TZPhotoPreviewCell.m in Sources */,
 				DDF92C9C1D6A9C3D009D5A1E /* LuckyRecordCell.m in Sources */,
 				DDF92C3F1D6A9C3D009D5A1E /* PayFirstKindCell.m in Sources */,
+				D6CAA33D1D9E4E15003930AF /* CountWayCell.m in Sources */,
 				DDF92CDD1D6A9C4F009D5A1E /* NSData+SDDataCache.m in Sources */,
 				DDF92C591D6A9C3D009D5A1E /* SegmentController.m in Sources */,
 				DDF92C621D6A9C3D009D5A1E /* ProductCell.m in Sources */,

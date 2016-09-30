@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m9J-c7-h7D">
-                    <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                    <rect key="frame" x="0.0" y="457" width="375" height="210"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VK9-xw-n6s">
                             <rect key="frame" x="337" y="5" width="30" height="30"/>
@@ -87,9 +87,9 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vj-5M-eIa">
-                            <rect key="frame" x="10" y="159" width="355" height="30"/>
+                            <rect key="frame" x="10" y="159" width="355" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="0oB-co-alB"/>
+                                <constraint firstAttribute="height" constant="40" id="0oB-co-alB"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="确定" backgroundImage="按钮背景_长.png"/>
@@ -161,7 +161,7 @@
                         <constraint firstAttribute="bottom" secondItem="7vj-5M-eIa" secondAttribute="bottom" constant="11" id="iIm-CC-Lp2"/>
                         <constraint firstItem="FMH-Xj-TEF" firstAttribute="top" secondItem="HQB-mb-QDe" secondAttribute="bottom" constant="9" id="nCI-M5-Ghq"/>
                         <constraint firstAttribute="trailing" secondItem="FMH-Xj-TEF" secondAttribute="trailing" id="nbZ-hr-crK"/>
-                        <constraint firstAttribute="height" constant="200" id="plG-sj-H45"/>
+                        <constraint firstAttribute="height" constant="210" id="plG-sj-H45"/>
                         <constraint firstItem="NKa-Xq-IqL" firstAttribute="top" secondItem="BeY-xe-hhS" secondAttribute="bottom" constant="6" id="qNd-31-YhI"/>
                         <constraint firstItem="BeY-xe-hhS" firstAttribute="top" secondItem="jU5-5o-EbP" secondAttribute="bottom" constant="7" id="r0Q-YW-Imw"/>
                         <constraint firstItem="jU5-5o-EbP" firstAttribute="top" secondItem="VK9-xw-n6s" secondAttribute="bottom" constant="7" id="rqv-EE-0Sa"/>
