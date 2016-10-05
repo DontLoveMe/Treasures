@@ -72,6 +72,18 @@
         _selectedItem = item;
         //跳转至对应的控制器
         self.selectedIndex = item.tag - 1;
+        
+    }else{
+    
+        if (self.selectedIndex == 0) {
+            
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            NSNotification *popToRoot = [NSNotification notificationWithName:@"popToRoot"
+                                                                      object:nil];
+            [notificationCenter postNotification:popToRoot];
+            
+        }
+        
     }
     
 }
@@ -83,22 +95,27 @@
     
     HomeViewController *HVC = [[HomeViewController alloc] init];
     UINavigationController *HNVC = [[UINavigationController alloc] initWithRootViewController:HVC];
+    HVC.title = @"夺宝首页";
     [_controllers addObject:HNVC];
     
     AnnounceViewController *AVC = [[AnnounceViewController alloc] init];
     UINavigationController  *ANVC = [[UINavigationController alloc] initWithRootViewController:AVC];
+    AVC.title = @"正在揭晓";
     [_controllers addObject:ANVC];
     
     DiscoverViewController *DVC = [[DiscoverViewController alloc] init];
     UINavigationController  *DNVC = [[UINavigationController alloc] initWithRootViewController:DVC];
+    DVC.title = @"发现";
     [_controllers addObject:DNVC];
     
     CartViewController *CVC = [[CartViewController alloc] init];
     UINavigationController *CNVC = [[UINavigationController alloc] initWithRootViewController:CVC];
+    CVC.title = @"购物车";
     [_controllers addObject:CNVC];
     
     PersonViewController *PVC = [[PersonViewController alloc] init];
     UINavigationController *PNVC = [[UINavigationController alloc] initWithRootViewController:PVC];
+    PVC.title = @"个人中心";
     [_controllers addObject:PNVC];
     
     self.viewControllers = _controllers;

@@ -61,7 +61,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.title = @"购物车";
     
     //购物车视图
     _dataArray = [NSMutableArray array];
@@ -376,54 +375,81 @@
 
     NSArray *selectArr = _tabview.indexPathsForSelectedRows;
     
-    for (NSInteger i = selectArr.count - 1 ; i >= 0; i --) {
-        
-        NSIndexPath *indexPath = [selectArr objectAtIndex:i];
-        [CartTools removeGoodsWithIndexPath:indexPath.row];
-        _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
-        [self getRootController].cartNum = _dataArray.count;
-        //如果购物车为空
-        if (_dataArray.count == 0) {
-            
-            _tabview.hidden = YES;
-            _bottomView.hidden = YES;
-            _backView.hidden = NO;
-            _rightbtn.hidden = YES;
-            _deleteView.hidden = YES;
-            
-        }else{
-        //如果购物车不为空
-            //_allSelectLabel
-//            _selectedNumLabel
-            //列表不隐藏
-            _tabview.hidden = NO;
-            //结算视图不隐藏
-            _bottomView.hidden = NO;
-            //无列表视图隐藏
-            _backView.hidden = YES;
-            //编辑按钮回复
-            _rightbtn.hidden = NO;
-            _rightbtn.selected = NO;
-            _deleteView.hidden = YES;
-            [_tabview setEditing:NO animated:YES];
-            _bottomView.hidden = NO;
-            specialTag = 0;
-            //计算总价
-            _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
-            NSInteger totalPrice = 0;
-            for (int i = 0; i < _dataArray.count; i ++) {
-                
-                NSDictionary *dic = [_dataArray objectAtIndex:i];
-                NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
-                NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
-                totalPrice = totalPrice + singlePrice * num;
-            }
-            _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
-            
-        }
-
-    }
-    [_tabview reloadData];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                     message:@"确定删除？"
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction   *cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                             style:UIAlertActionStyleCancel
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                               
+                                                               [alertVC dismissViewControllerAnimated:YES
+                                                                                           completion:nil];
+                                                               return;
+                                                               
+                                                           }];
+    UIAlertAction   *ensureAction = [UIAlertAction actionWithTitle:@"删除"
+                                                             style:UIAlertActionStyleDestructive
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                               
+                                                               for (NSInteger i = selectArr.count - 1 ; i >= 0; i --) {
+                                                                   
+                                                                   NSIndexPath *indexPath = [selectArr objectAtIndex:i];
+                                                                   [CartTools removeGoodsWithIndexPath:indexPath.row];
+                                                                   _dataArray = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                                                                   [self getRootController].cartNum = _dataArray.count;
+                                                                   //如果购物车为空
+                                                                   if (_dataArray.count == 0) {
+                                                                       
+                                                                       _tabview.hidden = YES;
+                                                                       _bottomView.hidden = YES;
+                                                                       _backView.hidden = NO;
+                                                                       _rightbtn.hidden = YES;
+                                                                       _deleteView.hidden = YES;
+                                                                       
+                                                                   }else{
+                                                                       //如果购物车不为空
+                                                                       //_allSelectLabel
+                                                                       //            _selectedNumLabel
+                                                                       //列表不隐藏
+                                                                       _tabview.hidden = NO;
+                                                                       //结算视图不隐藏
+                                                                       _bottomView.hidden = NO;
+                                                                       //无列表视图隐藏
+                                                                       _backView.hidden = YES;
+                                                                       //编辑按钮回复
+                                                                       _rightbtn.hidden = NO;
+                                                                       _rightbtn.selected = NO;
+                                                                       _deleteView.hidden = YES;
+                                                                       [_tabview setEditing:NO animated:YES];
+                                                                       _bottomView.hidden = NO;
+                                                                       specialTag = 0;
+                                                                       //计算总价
+                                                                       _goodstotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)_dataArray.count];
+                                                                       NSInteger totalPrice = 0;
+                                                                       for (int i = 0; i < _dataArray.count; i ++) {
+                                                                           
+                                                                           NSDictionary *dic = [_dataArray objectAtIndex:i];
+                                                                           NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+                                                                           NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+                                                                           totalPrice = totalPrice + singlePrice * num;
+                                                                       }
+                                                                       _pricesum.text = [NSString stringWithFormat:@"%ld 元",(long)totalPrice];
+                                                                       
+                                                                   }
+                                                                   
+                                                               }
+                                                               [_tabview reloadData];
+                                                               [alertVC dismissViewControllerAnimated:YES
+                                                                                           completion:nil];
+                                                               return ;
+                                                           }];
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:ensureAction];
+    [self presentViewController:alertVC
+                       animated:YES
+                     completion:^{
+                         
+                     }];
     
 }
 

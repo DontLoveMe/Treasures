@@ -414,4 +414,34 @@
 
 }
 
+//接收通知
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    //通知中心
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    //判断是否开启声音
+    [notificationCenter addObserver:self
+                           selector:@selector(popToRoot)
+                               name:@"popToRoot"
+                             object:nil];
+    
+}
+
+- (void)popToRoot{
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"popToRoot"
+                                                  object:self];
+    
+}
+
 @end

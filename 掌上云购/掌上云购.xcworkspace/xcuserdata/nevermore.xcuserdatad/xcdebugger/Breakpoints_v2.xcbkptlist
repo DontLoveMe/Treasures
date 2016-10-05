@@ -32,17 +32,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Cart/Controller/&#x652f;&#x4ed8;/PayViewController.m"
+            timestampString = "497349134.66779"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "-PayClicked:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Home/Controller/HomeViewController.m"
-            timestampString = "496912584.454954"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Cart/Controller/&#x652f;&#x4ed8;/PayViewController.m"
+            timestampString = "497349152.915293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
-            landmarkName = "-addToCartWithIndexpath:"
-            landmarkType = "5">
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "-PayClicked:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -124,7 +124,6 @@
 		D68F25A61D6AF3470042E0BE /* HotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F25A41D6AF3470042E0BE /* HotCollectionCell.xib */; };
 		D68F25AA1D6B05820042E0BE /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25A91D6B05820042E0BE /* HistoryData.m */; };
 		D69BBF231D8FBBCC005F360C /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = D69BBF221D8FBBCC005F360C /* UINavigationBar+Awesome.m */; };
-		D69BBF2D1D8FE749005F360C /* 云购-引导页.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D69BBF2C1D8FE749005F360C /* 云购-引导页.jpg */; };
 		D69BBF301D900103005F360C /* 10元标记@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D69BBF2E1D900103005F360C /* 10元标记@2x.png */; };
 		D69BBF311D900103005F360C /* 10元标记@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D69BBF2F1D900103005F360C /* 10元标记@3x.png */; };
 		D6A221521D87D2C20094C3BC /* 单元格背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A221501D87D2C20094C3BC /* 单元格背景@2x.png */; };
@@ -227,6 +226,7 @@
 		DD06FAEA1D93ACBB00C850B1 /* SPaySDKResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DD06FADE1D93ACBB00C850B1 /* SPaySDKResource.bundle */; };
 		DD06FAEB1D93ACBB00C850B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06FAE01D93ACBB00C850B1 /* libWeChatSDK.a */; };
 		DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1B9E461D6EF01C002E9CE9 /* CartTools.m */; };
+		DD31CDA71DA4F49A00C0FF04 /* 余额支付.png in Resources */ = {isa = PBXBuildFile; fileRef = DD31CDA61DA4F49A00C0FF04 /* 余额支付.png */; };
 		DD5607621D80FE720054B1A8 /* HomeGoodsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */; };
 		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
 		DD5607671D8147D60054B1A8 /* PreviewAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607651D8147D60054B1A8 /* PreviewAllController.m */; };
@@ -690,7 +690,6 @@
 		D68F25A91D6B05820042E0BE /* HistoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryData.m; sourceTree = "<group>"; };
 		D69BBF211D8FBBCC005F360C /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
 		D69BBF221D8FBBCC005F360C /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
-		D69BBF2C1D8FE749005F360C /* 云购-引导页.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "云购-引导页.jpg"; sourceTree = "<group>"; };
 		D69BBF2E1D900103005F360C /* 10元标记@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10元标记@2x.png"; sourceTree = "<group>"; };
 		D69BBF2F1D900103005F360C /* 10元标记@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10元标记@3x.png"; sourceTree = "<group>"; };
 		D6A221501D87D2C20094C3BC /* 单元格背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "单元格背景@2x.png"; sourceTree = "<group>"; };
@@ -839,6 +838,8 @@
 		DD06FAE21D93ACBB00C850B1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		DD1B9E451D6EF01C002E9CE9 /* CartTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartTools.h; sourceTree = "<group>"; };
 		DD1B9E461D6EF01C002E9CE9 /* CartTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTools.m; sourceTree = "<group>"; };
+		DD31CDA61DA4F49A00C0FF04 /* 余额支付.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "余额支付.png"; sourceTree = "<group>"; };
+		DD31CDA81DA4F96400C0FF04 /* 掌上云购.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "掌上云购.entitlements"; sourceTree = "<group>"; };
 		DD56075F1D80FE720054B1A8 /* HomeGoodsHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGoodsHeadView.h; sourceTree = "<group>"; };
 		DD5607601D80FE720054B1A8 /* HomeGoodsHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGoodsHeadView.m; sourceTree = "<group>"; };
 		DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeGoodsHeadView.xib; sourceTree = "<group>"; };
@@ -1300,6 +1301,7 @@
 		D65B64331D865CDD00D48834 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				DD31CDA61DA4F49A00C0FF04 /* 余额支付.png */,
 				D6EDC2541D93B95000EEADC7 /* 1元@2x.png */,
 				D6EDC2551D93B95000EEADC7 /* 1元@3x.png */,
 				D6EDC2561D93B95000EEADC7 /* 2元@2x.png */,
@@ -1457,7 +1459,6 @@
 		D69BBF2B1D8FE749005F360C /* 引导页 */ = {
 			isa = PBXGroup;
 			children = (
-				D69BBF2C1D8FE749005F360C /* 云购-引导页.jpg */,
 			);
 			path = "引导页";
 			sourceTree = "<group>";
@@ -1751,6 +1752,7 @@
 		DDF92B3A1D6A9B15009D5A1E /* 掌上云购 */ = {
 			isa = PBXGroup;
 			children = (
+				DD31CDA81DA4F96400C0FF04 /* 掌上云购.entitlements */,
 				DDF92B3E1D6A9B15009D5A1E /* AppDelegate.h */,
 				DDF92B3F1D6A9B15009D5A1E /* AppDelegate.m */,
 				DDF92B521D6A9C13009D5A1E /* Common.h */,
@@ -2679,6 +2681,14 @@
 					DDF92B371D6A9B15009D5A1E = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = T6WLX84T96;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2813,6 +2823,7 @@
 				DD757F611D86503500A38058 /* 喇叭图标@3x.png in Resources */,
 				D6BB14AB1D8934300045F8EB /* 支付宝支付@3x.png in Resources */,
 				DD71ABEB1D92755A005CBFFD /* dropdown_zsyg_002@2x.png in Resources */,
+				DD31CDA71DA4F49A00C0FF04 /* 余额支付.png in Resources */,
 				DD757F441D864E6E00A38058 /* 我的云购@2x.png in Resources */,
 				D65B64DF1D86AA3A00D48834 /* 搜索标签背景@2x.png in Resources */,
 				DDF92C971D6A9C3D009D5A1E /* ConfirmGoodsCell_3.xib in Resources */,
@@ -3096,7 +3107,6 @@
 				D6BB14AA1D8934300045F8EB /* 支付宝支付@2x.png in Resources */,
 				DD71AC491D92755A005CBFFD /* dropdown_zsyg_096@2x.png in Resources */,
 				DD71AC361D92755A005CBFFD /* dropdown_zsyg_077@2x.png in Resources */,
-				D69BBF2D1D8FE749005F360C /* 云购-引导页.jpg in Resources */,
 				D65B64B61D86808400D48834 /* 密码@2x.png in Resources */,
 				D65B64CD1D86844300D48834 /* 选中@2x.png in Resources */,
 				D65B646D1D865CDD00D48834 /* 云购记录@3x.png in Resources */,
@@ -3405,6 +3415,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = "掌上云购/掌上云购.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -3435,6 +3446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = "掌上云购/掌上云购.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;

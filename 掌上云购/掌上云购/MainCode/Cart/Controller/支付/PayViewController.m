@@ -140,7 +140,9 @@
     .heightIs(30);
     
     [self changeBottomView];
+
 }
+
 - (void)changeBottomView {
     
     NSMutableArray *cartArr = [NSMutableArray array];
@@ -391,6 +393,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (indexPath.row==0) {
+        
+        //商品总计
         PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         
         if (!cell) {
@@ -418,6 +422,7 @@
         
     }else if (indexPath.row==1){
   
+        //红包抵扣
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -432,7 +437,16 @@
 
     }else if (indexPath.row==2){
         
-        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        //余额应当支付多少元
+        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (!cell) {
+            
+            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+            
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.iconView.image = [UIImage imageNamed:@"余额支付"];
+        [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
    
         NSMutableArray *cartArr = [NSMutableArray array];
         if ([_isimidiately isEqualToString:@"1"]) {
@@ -458,13 +472,17 @@
         
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         CGFloat restMoney = [userDic[@"money"] floatValue];
-        if (restMoney > totalPrice) {
+        if (totalPrice < 0){
             
-            cell.textLabel.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
+            cell.wechat.text  = [NSString stringWithFormat:@"余额支付:0元"];
+            
+        }else if (restMoney > totalPrice) {
+            
+            cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%ld元",(long)totalPrice];
             
         }else{
         
-            cell.textLabel.text = [NSString stringWithFormat:@"总计:%.0f元",restMoney];
+            cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%.0f元",restMoney];
         
         }
 

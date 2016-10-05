@@ -65,7 +65,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"夺宝首页";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     //初始化数据

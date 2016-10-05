@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"正在揭晓";
     
     _dataArr = [NSMutableArray array];
     _page = 1;

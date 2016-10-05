@@ -30,9 +30,6 @@
     
     _dataArray = [NSMutableArray array];
     
-    self.title = @"发现";
-    
-    
     //创建列表
     [self creatTableView];
     
