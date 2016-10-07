@@ -57,8 +57,10 @@
 
 - (void)NavAction:(UIButton *)button{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -318,7 +320,7 @@
                       [self hideSuccessHUD:@"支付成功"];
                       
                   }
-                  [self.navigationController popViewControllerAnimated:YES];
+                  [self.navigationController popToRootViewControllerAnimated:YES];
                   
               }else{
                   

@@ -17,6 +17,15 @@
 
 @implementation PromptController
 
+static id instance = nil;
++ (id) instance
+{
+    static dispatch_once_t predicate; dispatch_once(&predicate, ^{
+        instance = [[super alloc] init];
+    });
+    return instance;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
