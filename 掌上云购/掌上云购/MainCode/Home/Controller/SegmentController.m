@@ -23,6 +23,8 @@
 @property (nonatomic,strong)NSMutableArray *data;
 @property (nonatomic,assign)NSInteger page;
 @property (nonatomic,strong)NSDictionary *segmentDic;
+@property (nonatomic,assign)BOOL isAscendingOrder;
+
 
 @end
 
@@ -31,7 +33,7 @@
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
@@ -85,7 +87,7 @@
     
     _topKindView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 36.f)];
     _topKindView.backgroundColor = [UIColor whiteColor];
-    NSArray *titleArr = @[@"类别",@"人气",@"最新",@"最热",@"总需人次⇅"];
+    NSArray *titleArr = @[@"类别",@"人气",@"最新",@"进度",@"总需人次⇅"];
     float width = (KScreenWidth - 4) / 5;
 //    UIImageView *firstLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 8.f, 0.5, 28.f)];
 //    firstLine.backgroundColor = [UIColor darkGrayColor];
@@ -135,7 +137,7 @@
         _page = 1;
         switch (_selectBtn.tag - 100) {
             case 1:
-                _orderType = @"3";
+                _orderType = @"1";
                 [self requestGoodsList];
                 break;
             case 2:
@@ -143,12 +145,17 @@
                 [self requestGoodsList];
                 break;
             case 3:
-                _orderType = @"1";
+                _orderType = @"6";
                 [self requestGoodsList];
                 break;
             case 4:
-                _orderType = @"7";
-                [self requestGoodsList];
+                if (!_isAscendingOrder) {
+                    _orderType =@"7";
+                    [self requestGoodsList];
+                }else {
+                    _orderType =@"8";
+                    [self requestGoodsList];
+                }
                 
                 break;
             default:
@@ -204,7 +211,7 @@
         }
         switch (_selectBtn.tag - 100) {
             case 1:
-                _orderType = @"3";
+                _orderType = @"1";
                 [self requestGoodsList];
                 break;
             case 2:
@@ -212,12 +219,18 @@
                 [self requestGoodsList];
                 break;
             case 3:
-                _orderType = @"1";
+                _orderType = @"6";
                 [self requestGoodsList];
                 break;
             case 4:
-                _orderType = @"7";
-                [self requestGoodsList];
+                
+                if (!_isAscendingOrder) {
+                    _orderType =@"7";
+                    [self requestGoodsList];
+                }else {
+                    _orderType =@"8";
+                    [self requestGoodsList];
+                }
                 
                 break;
             default:
@@ -289,7 +302,7 @@
     if ([_segmentDic[@"isFixe"] boolValue]) {
         NSString *fixeType = _segmentDic[@"fixeType"];
         if (_orderType == nil) {
-            _orderType = @"3";
+            _orderType = @"1";
         }
         [params setObject:@{@"orderType":_orderType,
                             @"fixeType":fixeType
@@ -301,7 +314,7 @@
             return;
         }
         if (_orderType == nil) {
-            _orderType = @"3";
+            _orderType = @"1";
         }
         NSString *categoryId = _segmentDic[@"id"];
         [params setObject:@{@"orderType":_orderType,
@@ -312,12 +325,13 @@
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@20 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
-    
+    [self showHUD:@"数据加载中"];
     [ZSTools post:url
            params:params
           success:^(id json) {
               
-              if ([json objectForKey:@"flag"]) {
+              if ([[json objectForKey:@"flag"] boolValue]) {
+                  [self hideSuccessHUD:@"加载成功"];
                   NSArray *dataArr = json[@"data"];
                   [_collectionView reloadData];
                   if (_page == 1) {
@@ -343,10 +357,12 @@
                   
                   [_collectionView reloadData];
 
+              }else {
+                  [self hideSuccessHUD:@"加载失败"];
               }
               
           } failure:^(NSError *error) {
-              
+              [self hideSuccessHUD:@"加载失败"];
           }];
     
 }
@@ -359,7 +375,7 @@
     _page = 1;
     switch (button.tag - 100) {
         case 1:
-            _orderType = @"3";
+            _orderType = @"1";
             [self requestGoodsList];
             break;
         case 2:
@@ -367,15 +383,14 @@
             [self requestGoodsList];
             break;
         case 3:
-            _orderType =@"1";
+            _orderType =@"6";
             [self requestGoodsList];
             break;
         case 4:
             if (_selectBtn.tag == button.tag) {
 //                button.selected = !button.selected;
-                static BOOL isAscendingOrder;
-                isAscendingOrder = !isAscendingOrder;
-                if (!isAscendingOrder) {
+                _isAscendingOrder = !_isAscendingOrder;
+                if (!_isAscendingOrder) {
                     _orderType =@"7";
                     [self requestGoodsList];
                 }else {
@@ -384,6 +399,7 @@
                 }
             }else {
                 _orderType = @"7";
+                _isAscendingOrder = NO;
                 [self requestGoodsList];
 
             }

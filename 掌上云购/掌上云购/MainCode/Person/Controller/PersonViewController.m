@@ -52,7 +52,7 @@
     [self.view insertSubview:label aboveSubview:_collectionView];
     _titleLabel = label;
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-40, 30, 25.f, 25.f)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-40, 30, 22.f, 22.f)];
     rightButton.tag = 101;
 //    [rightButton setTitle:@"信息" forState:UIControlStateNormal];
     [rightButton setBackgroundImage:[UIImage imageNamed:@"消息"]
@@ -63,7 +63,7 @@
     [self.view insertSubview:rightButton aboveSubview:_collectionView];
     _msgBtn = rightButton;
     
-    UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-75, 30, 25.f, 25.f)];
+    UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-75, 30, 22.f, 22.f)];
     rightButton1.tag = 102;
 //    [rightButton1 setTitle:@"设置" forState:UIControlStateNormal];
     [rightButton1 setBackgroundImage:[UIImage imageNamed:@"我的_设置"]

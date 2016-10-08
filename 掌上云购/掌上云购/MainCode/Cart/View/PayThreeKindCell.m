@@ -43,19 +43,18 @@
     _wechat.sd_layout
     .leftSpaceToView(_iconView,10)
     .centerYEqualToView(_iconView)
-    .widthIs(100)
+    .rightSpaceToView(self.contentView,30)
     .heightIs(20);
     
     _radio = [UIButton buttonWithType:UIButtonTypeCustom];
     _radio.userInteractionEnabled = NO;
-    [self.contentView addSubview:_radio]
-    ;
+    [self.contentView addSubview:_radio];
     
     _radio.sd_layout
     .rightSpaceToView(self.contentView,11)
     .centerYEqualToView(_iconView)
-    .widthIs(20)
-    .heightIs(20);
+    .widthIs(13)
+    .heightIs(13);
     
 }
 

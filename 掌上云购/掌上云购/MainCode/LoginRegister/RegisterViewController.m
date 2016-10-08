@@ -23,7 +23,7 @@
 - (void)initNavBar{
    
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
@@ -224,7 +224,6 @@
             _validataLabel.text = @"重新获取验证码";
         }else{
             _validataButton.enabled = NO;
-//            [_validataButton setTitle:[NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond] forState:UIControlStateNormal];
             _validataLabel.text = [NSString stringWithFormat:@"已发送（%lds）",(long)totoalSecond];
         }
         

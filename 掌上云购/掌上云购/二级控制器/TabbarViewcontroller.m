@@ -100,7 +100,7 @@
     
     AnnounceViewController *AVC = [[AnnounceViewController alloc] init];
     UINavigationController  *ANVC = [[UINavigationController alloc] initWithRootViewController:AVC];
-    AVC.title = @"正在揭晓";
+    AVC.title = @"最新揭晓";
     [_controllers addObject:ANVC];
     
     DiscoverViewController *DVC = [[DiscoverViewController alloc] init];
@@ -110,7 +110,7 @@
     
     CartViewController *CVC = [[CartViewController alloc] init];
     UINavigationController *CNVC = [[UINavigationController alloc] initWithRootViewController:CVC];
-    CVC.title = @"购物车";
+    CVC.title = @"清单";
     [_controllers addObject:CNVC];
     
     PersonViewController *PVC = [[PersonViewController alloc] init];

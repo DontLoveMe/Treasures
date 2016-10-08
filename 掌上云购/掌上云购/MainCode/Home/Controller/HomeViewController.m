@@ -11,14 +11,14 @@
 
 
 @interface HomeViewController ()
-
+@property (nonatomic,assign)BOOL isAscendingOrder;
 @end
 
 @implementation HomeViewController
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 22.f, 22.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"首页_搜索.png"]
                           forState:UIControlStateNormal];
@@ -28,7 +28,7 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 24, 24)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
     rightButton.tag = 102;
     [rightButton setBackgroundImage:[UIImage imageNamed:@"消息.png"]
                            forState:UIControlStateNormal];;
@@ -92,7 +92,7 @@
     //下拉时动画
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
        
-        _selectIndext = 0;
+//        _selectIndext = 0;
         _page = 1;
         [self requestData];
         
@@ -156,16 +156,21 @@
         }
         switch (_selectIndext) {
             case 0:
-                [self requestGoodsList:@"3" withPage:_page];
+                [self requestGoodsList:@"1" withPage:_page];
                 break;
             case 1:
                 [self requestGoodsList:@"2" withPage:_page];
                 break;
             case 2:
-                [self requestGoodsList:@"1" withPage:_page];
+                [self requestGoodsList:@"6" withPage:_page];
                 break;
             case 3:
-                [self requestGoodsList:@"4" withPage:_page];
+                if (!_isAscendingOrder) {
+                    [self requestGoodsList:@"7" withPage:_page];
+                }else {
+                    [self requestGoodsList:@"8" withPage:_page];
+                }
+                
                 break;
             default:
                 break;
@@ -316,7 +321,7 @@
     _segmentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_segmentView];
     
-    NSArray *segmentArr = @[@"人气",@"最新",@"最热",@"总需人次"];
+    NSArray *segmentArr = @[@"人气",@"最新",@"进度",@"总需人次⇅"];
     float width = KScreenWidth / 4;
     _selectIndext = 0;
     for (int i = 0 ; i < segmentArr.count; i ++) {
@@ -327,13 +332,17 @@
         [button setTitle:segmentArr[i]
                 forState:UIControlStateSelected];
         [button setTitleColor:[UIColor colorFromHexRGB:@"6F6F6F"] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorFromHexRGB:@"6F6F6F"] forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateSelected];
         button.titleLabel.font = [UIFont systemFontOfSize:13];
         button.tag = 100 + i;
         [button addTarget:self
                    action:@selector(selectAction:)
          forControlEvents:UIControlEventTouchUpInside];
         [_segmentView addSubview:button];
+        
+        if (i == 0) {
+            button.selected = YES;
+        }
         
     }
     
@@ -370,8 +379,6 @@
 }
 
 - (void)selectAction:(UIButton *)button{
-
-    _selectIndext= button.tag - 100;
     
     UIImageView *imageView = [self.view viewWithTag:50];
     [UIView animateWithDuration:0.5
@@ -381,23 +388,43 @@
                          
                      }];
     _page = 1;
-    switch (_selectIndext) {
+    switch (button.tag - 100) {
         case 0:
-            [self requestGoodsList:@"3" withPage:_page];
+            [self requestGoodsList:@"1" withPage:_page];
             break;
         case 1:
             [self requestGoodsList:@"2" withPage:_page];
             break;
         case 2:
-            [self requestGoodsList:@"1" withPage:_page];
+            [self requestGoodsList:@"6" withPage:_page];
             break;
         case 3:
-            [self requestGoodsList:@"7" withPage:_page];
+            if(_selectIndext == button.tag-100) {
+                _isAscendingOrder = !_isAscendingOrder;
+                if (!_isAscendingOrder) {
+                    [self requestGoodsList:@"7" withPage:_page];
+                }else {
+                    [self requestGoodsList:@"8" withPage:_page];
+                }
+            }else {
+                
+                _isAscendingOrder = NO;
+                [self requestGoodsList:@"7" withPage:_page];
+            }
             break;
         default:
             break;
     }
     
+    
+    if (_selectIndext != button.tag - 100) {
+        UIButton *selectBtn =[_segmentView viewWithTag:_selectIndext+100];
+        
+        selectBtn.selected = NO;
+        _selectIndext= button.tag - 100;
+        button.selected = YES;
+        
+    }
 }
 
 #pragma mark -- 集合视图的数据源方法
@@ -418,6 +445,7 @@
     NSInteger progressCount = [[dic objectForKey:@"sellShare"] floatValue] * 100 / [[dic objectForKey:@"totalShare"] floatValue];
     cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%ld%%",progressCount];
     cell.progressView.progress = progressCount;
+    
     NSArray *picList = [dic objectForKey:@"proPictureList"];
     if (picList.count != 0) {
         
@@ -519,16 +547,20 @@
 
     switch (_selectIndext) {
         case 0:
-            [self requestGoodsList:@"3" withPage:_page];
+            [self requestGoodsList:@"1" withPage:_page];
             break;
         case 1:
             [self requestGoodsList:@"2" withPage:_page];
             break;
         case 2:
-            [self requestGoodsList:@"1" withPage:_page];
+            [self requestGoodsList:@"6" withPage:_page];
             break;
         case 3:
-            [self requestGoodsList:@"4" withPage:_page];
+            if (!_isAscendingOrder) {
+                [self requestGoodsList:@"7" withPage:_page];
+            }else {
+                [self requestGoodsList:@"8" withPage:_page];
+            }
             break;
         default:
             break;
@@ -543,7 +575,7 @@
     [params setObject:@{@"orderType":kindStr}
                forKey:@"paramsMap"];
     [params setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [params setObject:@"4" forKey:@"rows"];
+    [params setObject:@"10" forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsList_URL];
     

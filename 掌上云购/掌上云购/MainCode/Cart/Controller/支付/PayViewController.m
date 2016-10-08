@@ -43,7 +43,7 @@
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
@@ -448,7 +448,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:@"余额支付"];
-        [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
+        [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
    
         NSMutableArray *cartArr = [NSMutableArray array];
         if ([_isimidiately isEqualToString:@"1"]) {

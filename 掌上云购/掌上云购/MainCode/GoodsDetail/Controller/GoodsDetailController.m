@@ -28,7 +28,7 @@
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
 //    self.preferredStatusBarStyle = UIStatusBarStyleDefault;
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 28.f, 28.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 22.f, 22.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
                           forState:UIControlStateNormal];
@@ -61,7 +61,7 @@
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
         if(alpha > 0.5) {
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
-            leftButton.size = CGSizeMake(16, 20);
+            leftButton.size = CGSizeMake(12, 18);
             [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                                   forState:UIControlStateNormal];
             UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
@@ -74,7 +74,7 @@
            
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
-            leftButton.size = CGSizeMake(28, 28);
+            leftButton.size = CGSizeMake(22, 22);
             [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
                                   forState:UIControlStateNormal];
             UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
@@ -85,7 +85,7 @@
     } else{
         
         UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
-        leftButton.size = CGSizeMake(28, 28);
+        leftButton.size = CGSizeMake(22, 22);
         [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
                               forState:UIControlStateNormal];
         UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];

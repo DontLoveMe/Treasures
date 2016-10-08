@@ -20,7 +20,7 @@
     
     [_rightbtn setTitle:@"编辑" forState:UIControlStateNormal];
     
-    [_rightbtn setTitle:@"完成" forState:UIControlStateSelected];
+    [_rightbtn setTitle:@"取消" forState:UIControlStateSelected];
     
     [_rightbtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     

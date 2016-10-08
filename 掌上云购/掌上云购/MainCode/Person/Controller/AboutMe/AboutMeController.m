@@ -32,7 +32,7 @@
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
@@ -302,7 +302,7 @@
         case 3:
         {
             NSString *mobile = _userInfo[@"mobile"];
-            if ([mobile isKindOfClass:[NSNull class]]) {
+            if ([mobile isKindOfClass:[NSNull class]]||mobile == nil) {
                 cell.detailTextLabel.text = @"";
             }else {
                 NSString *telepHone =[NSString stringWithFormat:@"%@",_userInfo[@"mobile"]];
@@ -314,9 +314,12 @@
             break;
         case 4:
         {
-            if (![_userInfo[@"email"] isEqual:[NSNull null]]) {
-                NSString *email =[NSString stringWithFormat:@"%@",_userInfo[@"email"]];
-                cell.detailTextLabel.text = email;
+            NSString *email = _userInfo[@"email"];
+            if ([email isEqual:[NSNull null]]||email ==nil) {
+                
+                 cell.detailTextLabel.text = @"";
+            }else {
+                 cell.detailTextLabel.text = email;
             }
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -376,7 +379,7 @@
         case 3://修改手机号码
         {
             NSString *mobile = _userInfo[@"mobile"];
-            if ([mobile isKindOfClass:[NSNull class]]) {
+            if ([mobile isKindOfClass:[NSNull class]]||mobile == nil) {
                 [self isBandPhone];
             }else {
                 ChangeDataController *cdVC = [[ChangeDataController alloc] init];

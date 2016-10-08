@@ -44,8 +44,8 @@
     
     _radio = [UIButton buttonWithType:UIButtonTypeCustom];
     _radio.hidden = YES;
-    [self.contentView addSubview:_radio]
-    ;
+    [self.contentView addSubview:_radio];
+    
     
     _radio.sd_layout
     .rightSpaceToView(self.contentView,11)

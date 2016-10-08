@@ -100,6 +100,9 @@
 #define ConfirmGoods_URL @"/pcpServer-inf/sale/confirmGoods"
 //延期收货
 #define DeferredReceipt_URL @"/pcpServer-inf/sale/deferredReceipt"
+//数据字典列表接口
+#define Dict_URL @"/pcpServer-inf/dict/findAll"
+
 //已发卡密或充值到余额
 #define RechargeBalance_URL @"/pcpServer-inf/sale/rechargeBalance"
 

@@ -12,6 +12,7 @@
 #import "AboutMeController.h"
 #import "CustomerCareController.h"
 #import "HtmlTypeController.h"
+#import "ProblemController.h"
 
 @interface SettingsController ()
 
@@ -29,7 +30,7 @@
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20.f, 25.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
@@ -54,7 +55,7 @@
     [self initNavBar];
     
     
-    _data = @[@"个人资料",@"密码修改",@"通知设置",@"常见问题",@"版本信息",@"清除缓存"];
+    _data = @[@"重置密码",@"通知设置",@"常见问题",@"版本信息",@"清除缓存"];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 40*_data.count) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
@@ -89,20 +90,17 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 1:
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            break;
-        case 2:
 //            cell.detailTextLabel.text = @"推送未授权";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
-        case 3:
+        case 2:
 //            cell.detailTextLabel.text = @"标识";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
-        case 4:
+        case 3:
             cell.detailTextLabel.text = @"V1.1";
             break;
-        case 5:
+        case 4:
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",[self folderSizeWithPath:[self getPath]]];
             break;
             
@@ -122,15 +120,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.row) {
+//        case 0://个人资料
+//        {
+//            AboutMeController *amVC = [[AboutMeController alloc] init];
+//            self.navigationController.navigationBar.hidden = NO;
+//            amVC.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:amVC animated:YES];
+//        }
+//            break;
         case 0://密码修改
-        {
-            AboutMeController *amVC = [[AboutMeController alloc] init];
-            self.navigationController.navigationBar.hidden = NO;
-            amVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:amVC animated:YES];
-        }
-            break;
-        case 1://密码修改
         {
             RegisterViewController *rVC = [[RegisterViewController alloc] init];
             rVC.isRegistOrmodify = 2;
@@ -139,20 +137,21 @@
             [self presentViewController:rnVC animated:YES completion:nil];
         }
             break;
-        case 2://通知设置
+        case 1://通知设置
         {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.zsyg.raise"]];
         }
             break;
-        case 3://常见问题
+        case 2://常见问题
         {
-            CustomerCareController *ccVC = [[CustomerCareController alloc] init];
+//            CustomerCareController *ccVC = [[CustomerCareController alloc] init];
+            ProblemController *pVC = [[ProblemController alloc] init];
             self.navigationController.navigationBar.hidden = NO;
-            ccVC.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:ccVC animated:YES];
+//            ccVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:pVC animated:YES];
         }
             break;
-        case 4://版本信息
+        case 3://版本信息
         {
             HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
             htmlType.htmlUrl = @"/pcpServer-inf/html/about.html";
@@ -162,7 +161,7 @@
             
         }
             break;
-        case 5://清楚缓存
+        case 4://清楚缓存
         {
             [self clearCacheAlertView];
            
@@ -176,12 +175,7 @@
     
     
 }
-- (void)a {
-    [self hideSuccessHUD:@"上传数据成功"];
-}
-- (void)b {
-    [self hideSuccessHUD:@"修改"];
-}
+
 #pragma mark - 缓存
 - (void)clearCacheAlertView {
     

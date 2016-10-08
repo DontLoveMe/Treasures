@@ -32,6 +32,8 @@
 		D64BEE9A1D74183900A6158B /* PersonHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D64BEE981D74183900A6158B /* PersonHeaderView.m */; };
 		D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D64BEE991D74183900A6158B /* PersonHeaderView.xib */; };
 		D64BEE9E1D743A4200A6158B /* RechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D64BEE9D1D743A4200A6158B /* RechargeModel.m */; };
+		D64C99ED1DA89F3800B93197 /* ProblemController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64C99EC1DA89F3800B93197 /* ProblemController.m */; };
+		D64C99EF1DA8A08500B93197 /* commonissue.txt in Resources */ = {isa = PBXBuildFile; fileRef = D64C99EE1DA8A08500B93197 /* commonissue.txt */; };
 		D65B646A1D865CDD00D48834 /* 云购客服@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B64341D865CDD00D48834 /* 云购客服@2x.png */; };
 		D65B646B1D865CDD00D48834 /* 云购客服@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B64351D865CDD00D48834 /* 云购客服@3x.png */; };
 		D65B646C1D865CDD00D48834 /* 云购记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B64361D865CDD00D48834 /* 云购记录@2x.png */; };
@@ -588,6 +590,9 @@
 		D64BEE991D74183900A6158B /* PersonHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonHeaderView.xib; sourceTree = "<group>"; };
 		D64BEE9C1D743A4200A6158B /* RechargeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RechargeModel.h; sourceTree = "<group>"; };
 		D64BEE9D1D743A4200A6158B /* RechargeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RechargeModel.m; sourceTree = "<group>"; };
+		D64C99EB1DA89F3800B93197 /* ProblemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProblemController.h; sourceTree = "<group>"; };
+		D64C99EC1DA89F3800B93197 /* ProblemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProblemController.m; sourceTree = "<group>"; };
+		D64C99EE1DA8A08500B93197 /* commonissue.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = commonissue.txt; sourceTree = "<group>"; };
 		D65B64341D865CDD00D48834 /* 云购客服@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "云购客服@2x.png"; sourceTree = "<group>"; };
 		D65B64351D865CDD00D48834 /* 云购客服@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "云购客服@3x.png"; sourceTree = "<group>"; };
 		D65B64361D865CDD00D48834 /* 云购记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "云购记录@2x.png"; sourceTree = "<group>"; };
@@ -2219,6 +2224,9 @@
 				DDF92C021D6A9C3D009D5A1E /* SettingsController.h */,
 				DDF92C031D6A9C3D009D5A1E /* SettingsController.m */,
 				DDF92C041D6A9C3D009D5A1E /* SettingsController.xib */,
+				D64C99EB1DA89F3800B93197 /* ProblemController.h */,
+				D64C99EC1DA89F3800B93197 /* ProblemController.m */,
+				D64C99EE1DA8A08500B93197 /* commonissue.txt */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -3088,6 +3096,7 @@
 				DDF92C3B1D6A9C3D009D5A1E /* CartViewController.xib in Resources */,
 				DDF92C951D6A9C3D009D5A1E /* ConfirmGoodsCell_2.xib in Resources */,
 				DD71AC471D92755A005CBFFD /* dropdown_zsyg_094@2x.png in Resources */,
+				D64C99EF1DA8A08500B93197 /* commonissue.txt in Resources */,
 				D6BB14A81D8934300045F8EB /* 银联支付@2x.png in Resources */,
 				DDF92D461D6A9C5B009D5A1E /* 37x-Checkmark.png in Resources */,
 				D65B648F1D865CDD00D48834 /* 按钮背景_长@3x.png in Resources */,
@@ -3207,6 +3216,7 @@
 				D68F25A01D6AEE970042E0BE /* HotSearchCell.m in Sources */,
 				D63A46211D951FF200172D78 /* HtmlTypeController.m in Sources */,
 				DDF92CD51D6A9C4F009D5A1E /* CountDown.m in Sources */,
+				D64C99ED1DA89F3800B93197 /* ProblemController.m in Sources */,
 				D6F3E5E31D962F3C005455A8 /* PromptController.m in Sources */,
 				D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */,
 				DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */,
@@ -3418,6 +3428,7 @@
 				CODE_SIGN_ENTITLEMENTS = "掌上云购/掌上云购.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = T6WLX84T96;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3449,6 +3460,7 @@
 				CODE_SIGN_ENTITLEMENTS = "掌上云购/掌上云购.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = T6WLX84T96;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -37,12 +37,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ut-Ew-BjT" customClass="ProgressView">
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="8" id="UpD-aP-dUt"/>
-                        </constraints>
-                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPW-WN-FjM">
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="4xb-v0-Ee8"/>
@@ -61,33 +55,39 @@
                             <constraint firstAttribute="height" constant="25" id="zQy-QF-kbk"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ea-bt-7X4" customClass="ProgressView">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="11" id="2WG-BQ-c1K"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="2kk-o8-46h"/>
                 <constraint firstAttribute="trailing" secondItem="w9l-2s-ifk" secondAttribute="trailing" constant="16" id="48o-ON-Vge"/>
+                <constraint firstItem="PPW-WN-FjM" firstAttribute="leading" secondItem="9Ea-bt-7X4" secondAttribute="trailing" constant="8" id="5ZN-Jo-Ozj"/>
                 <constraint firstItem="w9l-2s-ifk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="76r-p1-iX7"/>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="36" id="BRN-Ix-dRN"/>
                 <constraint firstAttribute="trailing" secondItem="q2W-GW-oV4" secondAttribute="trailing" constant="10" id="BnV-2W-9PY"/>
-                <constraint firstItem="1ut-Ew-BjT" firstAttribute="top" secondItem="b4V-UQ-fgd" secondAttribute="bottom" constant="4" id="ETU-4K-5x8"/>
                 <constraint firstItem="PPW-WN-FjM" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="12" id="IJQ-gb-WLP"/>
                 <constraint firstItem="q2W-GW-oV4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="J6m-Ft-GcA"/>
+                <constraint firstItem="9Ea-bt-7X4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="NE9-No-230"/>
                 <constraint firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="16" id="XGG-Ja-AY2"/>
                 <constraint firstItem="b4V-UQ-fgd" firstAttribute="trailing" secondItem="PPW-WN-FjM" secondAttribute="trailing" constant="-56" id="btz-qe-N1o"/>
                 <constraint firstItem="b4V-UQ-fgd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="gUG-QJ-sEJ"/>
-                <constraint firstItem="PPW-WN-FjM" firstAttribute="leading" secondItem="1ut-Ew-BjT" secondAttribute="trailing" constant="12" id="goZ-Ch-gOT"/>
+                <constraint firstItem="9Ea-bt-7X4" firstAttribute="top" secondItem="b4V-UQ-fgd" secondAttribute="bottom" constant="2" id="hGK-1c-E2C"/>
                 <constraint firstAttribute="bottom" secondItem="PPW-WN-FjM" secondAttribute="bottom" constant="12" id="mU9-x1-EAE"/>
                 <constraint firstItem="b4V-UQ-fgd" firstAttribute="top" secondItem="w9l-2s-ifk" secondAttribute="bottom" constant="4" id="mnl-XJ-u9E"/>
                 <constraint firstAttribute="trailing" secondItem="Lqv-gY-nRW" secondAttribute="trailing" constant="36" id="rtS-Kq-ApF"/>
                 <constraint firstItem="w9l-2s-ifk" firstAttribute="top" secondItem="Lqv-gY-nRW" secondAttribute="bottom" constant="8" id="ucJ-iA-s06"/>
-                <constraint firstItem="1ut-Ew-BjT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="yPC-EQ-nOO"/>
             </constraints>
             <size key="customSize" width="197" height="216"/>
             <connections>
                 <outlet property="goodsName" destination="w9l-2s-ifk" id="Oil-9Q-AFk"/>
                 <outlet property="goodsPic" destination="Lqv-gY-nRW" id="gyd-D9-smO"/>
                 <outlet property="progressLabel" destination="b4V-UQ-fgd" id="6Nx-N0-FTh"/>
-                <outlet property="progressView" destination="1ut-Ew-BjT" id="p0l-eU-IO9"/>
+                <outlet property="progressView" destination="9Ea-bt-7X4" id="NpB-uv-jdf"/>
                 <outlet property="typeMarkImgView" destination="q2W-GW-oV4" id="5kO-KF-bGz"/>
             </connections>
             <point key="canvasLocation" x="439.5" y="412"/>
