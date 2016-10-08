@@ -32,13 +32,13 @@
     .widthIs(90)
     .heightIs(85);
     //商品分类
-    _goodsType = [[UIImageView alloc]init];
-    [_goodsImg addSubview:_goodsType];
-    _goodsType.sd_layout
-    .leftSpaceToView(_goodsImg,0)
-    .topSpaceToView(_goodsImg,0)
-    .widthIs(20)
-    .heightIs(20);
+//    _goodsType = [[UIImageView alloc]init];
+//    [_goodsImg addSubview:_goodsType];
+//    _goodsType.sd_layout
+//    .leftSpaceToView(_goodsImg,0)
+//    .topSpaceToView(_goodsImg,0)
+//    .widthIs(20)
+//    .heightIs(20);
     //商品名
     _goodsTitle = [[UILabel alloc]init];
     _goodsTitle.textColor = [UIColor blackColor];

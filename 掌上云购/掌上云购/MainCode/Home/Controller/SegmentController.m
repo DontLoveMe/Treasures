@@ -13,7 +13,7 @@
 #import "HomeSearchController.h"
 #import "GoodsDetailController.h"
 
-#define segmentViewWidth 60
+#define segmentViewWidth 70
 
 @interface SegmentController ()<UICollectionViewDelegate>
 

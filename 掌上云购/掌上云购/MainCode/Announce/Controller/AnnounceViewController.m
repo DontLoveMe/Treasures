@@ -205,14 +205,13 @@
     cell.titleLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"productName"]];
     //期号
     cell.numberLabel.text = [NSString stringWithFormat:@"期号：%@",[dic objectForKey:@"drawTimes"]];
-#warning 是否进入倒计时，这个判断条件需要更改
+    
+//#warning 是否进入倒计时，这个判断条件需要更改
+    NSInteger countdownTime = [dic[@"countdownTime"] integerValue];
+//    NSInteger countdownTime = 1000;
     if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
-        
-        //倒计时时间
-        if (![[dic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
-            cell.str = [dic objectForKey:@"countdownEndDate"];
-        }
 
+        cell.countDownTime = countdownTime;
         cell.getUserLabel.hidden = YES;
         cell.peopleNumLb.hidden = YES;
         cell.luckyLabel.hidden = YES;
@@ -222,14 +221,12 @@
         cell.timeLabel.hidden = NO;
         cell.unveilLabel.hidden = NO;
         
-    }else{
-    
+    }else {
         if (cell.countDown) {
             [cell.countDown destoryTimer];
         }
-        if (![[dic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
-            cell.str = [dic objectForKey:@"countdownEndDate"];
-        }
+        cell.countDownTime = countdownTime;
+
         cell.getUserLabel.hidden = NO;
         cell.peopleNumLb.hidden = NO;
         cell.luckyLabel.hidden = NO;
@@ -245,6 +242,45 @@
         cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dic objectForKey:@"drawDate"]];
         
     }
+//    if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
+//        
+//        //倒计时时间
+//        if (![[dic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
+//            cell.str = [dic objectForKey:@"countdownEndDate"];
+//        }
+//
+//        cell.getUserLabel.hidden = YES;
+//        cell.peopleNumLb.hidden = YES;
+//        cell.luckyLabel.hidden = YES;
+//        cell.announceTimeLb.hidden = YES;
+//        
+//        cell.timeIconView.hidden = NO;
+//        cell.timeLabel.hidden = NO;
+//        cell.unveilLabel.hidden = NO;
+//        
+//    }else{
+//    
+//        if (cell.countDown) {
+//            [cell.countDown destoryTimer];
+//        }
+//        if (![[dic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
+//            cell.str = [dic objectForKey:@"countdownEndDate"];
+//        }
+//        cell.getUserLabel.hidden = NO;
+//        cell.peopleNumLb.hidden = NO;
+//        cell.luckyLabel.hidden = NO;
+//        cell.announceTimeLb.hidden = NO;
+//        
+//        cell.timeIconView.hidden = YES;
+//        cell.timeLabel.hidden = YES;
+//        cell.unveilLabel.hidden = YES;
+//        
+//        cell.getUserLabel.text = [NSString stringWithFormat:@"获奖用户 %@",[dic objectForKey:@"nickName"]];
+//        cell.peopleNumLb.text = [NSString stringWithFormat:@"参与次数 %ld",[[dic objectForKey:@"partakeCount"] integerValue]];
+//        cell.luckyLabel.text = [NSString stringWithFormat:@"幸运号码 %ld",[[dic objectForKey:@"drawNumber"] integerValue]];
+//        cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dic objectForKey:@"drawDate"]];
+//        
+//    }
 //    [cell setNeedsLayout];
 //    [cell layoutIfNeeded];
     return cell;

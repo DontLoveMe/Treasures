@@ -159,7 +159,7 @@
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((KScreenWidth-2)/3, (KScreenWidth-2)/3);
-    layout.headerReferenceSize = CGSizeMake(KScreenWidth, KScreenWidth*0.618+40);
+    layout.headerReferenceSize = CGSizeMake(KScreenWidth, KScreenWidth*0.618+45);
     layout.minimumLineSpacing = 1;
     layout.minimumInteritemSpacing = 1;
     layout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
@@ -247,6 +247,9 @@
         // 去重用队列取可用的header
         PersonHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"PersonHeaderView" forIndexPath:indexPath];
         headerView.backgroundColor = [UIColor clearColor];
+        
+        headerView.iconView.layer.cornerRadius = 90/2;
+        headerView.iconView.layer.masksToBounds = YES;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
         [headerView.iconView addGestureRecognizer:tap];

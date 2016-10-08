@@ -35,6 +35,8 @@
 @property (nonatomic,copy) NSString *str;
 @property (nonatomic,strong)NSIndexPath *indexpath;
 
+@property (nonatomic,assign) NSInteger countDownTime;
+
 @property (weak ,nonatomic)id<AnnounceCellDelegate> announceDelegate;
 
 @end

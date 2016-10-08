@@ -28,7 +28,7 @@
         UIButton *mannerBtn2 = [self.contentView viewWithTag:102];
         mannerBtn2.selected = NO;
         
-        _userNameTF.placeholder = @"请输入手机号码";
+        _userNameTF.placeholder = @"请输入手机号码、油卡号等虚拟物品帐号";
     }else if(sender.tag == 101) {
         
         UIButton *mannerBtn1 = [self.contentView viewWithTag:100];
@@ -36,7 +36,7 @@
         UIButton *mannerBtn2 = [self.contentView viewWithTag:102];
         mannerBtn2.selected = NO;
         
-        _userNameTF.placeholder = @"请输入掌上元购账号";
+        _userNameTF.placeholder = @"请输入掌上云购账号";
     }else {
         UIButton *mannerBtn1 = [self.contentView viewWithTag:100];
         mannerBtn1.selected = NO;

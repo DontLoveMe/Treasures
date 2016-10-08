@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,60 +14,54 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="197" height="216"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="未加载图片.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lqv-gY-nRW">
-                        <rect key="frame" x="36" y="16" width="125" height="125"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Lqv-gY-nRW" secondAttribute="height" multiplier="1:1" id="soF-fN-fJq"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple iPhone6s Plus 16G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9l-2s-ifk">
-                        <rect key="frame" x="16" y="149" width="165" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="rk2-jd-LS5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="揭晓进度90%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4V-UQ-fgd">
-                        <rect key="frame" x="16" y="168" width="109" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="o5y-WM-nag"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ut-Ew-BjT" customClass="ProgressView">
-                        <rect key="frame" x="16" y="187" width="105" height="8"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="8" id="UpD-aP-dUt"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPW-WN-FjM">
-                        <rect key="frame" x="133" y="176" width="48" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="4xb-v0-Ee8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="加入清单" backgroundImage="加入清单.png">
-                            <color key="titleColor" red="0.9882352941176471" green="0.58039215686274515" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.9882352941176471" green="0.58039215686274515" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="addToCart:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ux2-13-5kg"/>
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q2W-GW-oV4">
-                        <rect key="frame" x="162" y="8" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="BzA-YO-h8t"/>
                             <constraint firstAttribute="height" constant="25" id="zQy-QF-kbk"/>
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="Lqv-gY-nRW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="2kk-o8-46h"/>

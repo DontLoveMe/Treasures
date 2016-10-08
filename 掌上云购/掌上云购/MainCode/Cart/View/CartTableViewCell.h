@@ -30,7 +30,7 @@
 
 @property(nonatomic,strong)NSIndexPath* indexPath;
 //标记图片
-@property(nonatomic,strong)UIImageView *goodsType;
+//@property(nonatomic,strong)UIImageView *goodsType;
 
 //商品图片
 @property(nonatomic,strong)UIImageView *goodsImg;

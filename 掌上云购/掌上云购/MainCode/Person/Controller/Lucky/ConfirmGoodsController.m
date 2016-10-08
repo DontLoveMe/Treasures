@@ -204,18 +204,7 @@
     }else {
         cell.cardNoLabel.text = @"正在充值中";
     }
-    NSInteger type = [_orderDic[@"receivingType"] integerValue];
-    if (type == 2) {
-        cell.mannerLabel.text = @"已选择：充值到话费";
-        cell.stateLabel3.text = @"充值到话费";
-        
-    }else if (type == 3) {
-        cell.mannerLabel.text = @"已选择：充值到余额";
-        cell.stateLabel3.text = @"充值到余额";
-    }else if (type == 4){
-        cell.mannerLabel.text = @"已选择：充值到支付宝";
-        cell.stateLabel3.text = @"充值到支付宝";
-    }
+   
     NSInteger statu = [_orderDic[@"status"] integerValue];
     if (statu == 4){
 //        cell.shareBtn.userInteractionEnabled = NO;
@@ -223,6 +212,31 @@
     }else {
 //        cell.shareBtn.userInteractionEnabled = YES;
         [cell.shareBtn setTitle:@"去晒单" forState:UIControlStateNormal];
+    }
+    
+    NSInteger type = [_orderDic[@"receivingType"] integerValue];
+    if (type == 2) {
+        cell.mannerLabel.text = @"已选择：充值到话费、油卡等虚拟物品";
+        if (statu == 6) {
+            cell.stateLabel3.text = @"正在充值中";
+        }else if (statu == 7) {
+            cell.stateLabel3.text = @"已充值到话费、油卡等虚拟物品";
+        }
+        
+    }else if (type == 3) {
+        cell.mannerLabel.text = @"已选择：充值到余额";
+        if (statu == 6) {
+            cell.stateLabel3.text = @"正在充值中";
+        }else if (statu == 7) {
+            cell.stateLabel3.text = @"已充值到余额";
+        }
+    }else if (type == 4){
+        cell.mannerLabel.text = @"已选择：充值到支付宝";
+        if (statu == 6) {
+            cell.stateLabel3.text = @"正在充值中";
+        }else if (statu == 7) {
+            cell.stateLabel3.text = @"已充值到支付宝";
+        }
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
