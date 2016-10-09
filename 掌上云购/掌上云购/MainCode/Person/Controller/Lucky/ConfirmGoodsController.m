@@ -15,6 +15,8 @@
 @property (nonatomic,copy)NSString *userName;
 @property (nonatomic,assign)NSInteger mannerType;
 //2：手机充值，3：余额，4：支付宝
+@property (nonatomic,strong)NSArray *dicts;
+
 @end
 
 @implementation ConfirmGoodsController
@@ -48,7 +50,7 @@
     _mannerType = 2;
 //    [self confirmGoods];
 //    [self requestSaleOrderStatus];
-    
+    [self requestDict];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
@@ -165,6 +167,8 @@
         cell.stateView1.highlighted = YES;
         cell.stateView2.highlighted = YES;
         
+        cell.dicts = _dicts;
+        
         if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
             
             cell.timeLabel1.text = _orderDic[@"drawDate"];
@@ -250,7 +254,7 @@
 //    return 275;
     NSInteger status = [_orderDic[@"status"] integerValue];
     if (status == 5||status == 0) {
-        return 365;
+        return 330;
     }
     return 263;
 }
@@ -270,26 +274,16 @@
 }
 #pragma mark - confirmGoodsDelegate
 - (void)clickButtonBackTag:(NSInteger)tag {
-    switch (tag) {
-        case 100://话费
-            _mannerType = 2;
-            break;
-        case 101://余额
-            _mannerType = 3;
-            break;
-        case 102://支付宝
-            _mannerType = 4;
-            break;
-        case 103://同意
-            
-            break;
-        case 104://确定
-            [self rechargeBalance];
-            break;
-            
-        default:
-            break;
+   
+    if (tag == 100) {//同意
+        
     }
+    if (tag == 101) {//确定
+        [self rechargeBalance];
+    }
+}
+- (void)selectMannerValue:(NSInteger)value {
+    _mannerType = value;
 }
 
 - (void)getUserName:(NSString *)userName {
@@ -321,6 +315,37 @@
                   if ([_orderDic[@"status"] integerValue]==0) {
                       [self confirmGoods];
                   }
+              }
+              
+              
+          } failure:^(NSError *error) {
+              
+              [self hideFailHUD:@"加载失败"];
+              NSLogZS(@"%@",error);
+          }];
+}
+- (void)requestDict {
+    //取出存储的用户信息
+    //    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    //    NSNumber *userId = userDic[@"id"];
+    [self showHUD:@"加载中"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];
+    [params setObject:@"receiving_type" forKey:@"type"];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Dict_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+              [self hideSuccessHUD:@"加载成功"];
+              [_tableView.mj_header endRefreshing];
+              if (isSuccess) {
+                  
+                  _dicts = json[@"data"];
+                  [_tableView reloadData];
               }
               
               
@@ -364,8 +389,8 @@
 //已发卡密或充值到余额
 - (void)rechargeBalance {
     // 取出存储的用户信息
-        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-        NSNumber *userId = userDic[@"id"];
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    NSNumber *userId = userDic[@"id"];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"buyUserId"];

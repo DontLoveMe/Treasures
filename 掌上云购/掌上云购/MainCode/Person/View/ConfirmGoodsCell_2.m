@@ -11,42 +11,95 @@
 
 @implementation ConfirmGoodsCell_2
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-    _userNameTF.delegate = self;
-}
-
-- (IBAction)mannerAction:(UIButton *)sender {
-    
-    sender.selected = YES;
-    [self.delegate clickButtonBackTag:sender.tag];
-    if (sender.tag == 100) {
+//选择方式
+- (void)setDicts:(NSArray *)dicts {
+    if (_dicts != dicts) {
+        _dicts = dicts;
         
-        UIButton *mannerBtn1 = [self.contentView viewWithTag:101];
-        mannerBtn1.selected = NO;
-        UIButton *mannerBtn2 = [self.contentView viewWithTag:102];
-        mannerBtn2.selected = NO;
+        for (int i = 0; i<dicts.count; i++) {
+            
+            NSDictionary *dict = dicts[i];
+            
+            UIControl *control = [[UIControl alloc] initWithFrame:CGRectMake(38, 100+((37.5)*i+5), KScreenWidth-50, 38)];
+            control.layer.borderWidth = 1;
+            control.layer.borderColor = [UIColor grayColor].CGColor;
+            control.backgroundColor = [UIColor whiteColor];
+            control.tag = 200 + i;
+            [control addTarget:self action:@selector(selectManner:) forControlEvents:UIControlEventTouchUpInside];
+            [self.contentView addSubview:control];
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(5, 10, 15, 15);
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"未选中.png"] forState:UIControlStateNormal];
+            [button setBackgroundImage:[UIImage imageNamed:@"选中.png"] forState:UIControlStateSelected];
+            [control addSubview:button];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, KScreenWidth-80, 38)];
+            
+            if (![dict[@"label"] isKindOfClass:[NSNull class]]) {
+                
+                label.text = [NSString stringWithFormat:@"充值到%@",dict[@"label"]];
+            }
+            label.textColor = [UIColor blackColor];
+            label.textAlignment = NSTextAlignmentLeft;
+            label.font = [UIFont systemFontOfSize:14];
+            [control addSubview:label];
+            
+            if (i == dicts.count -1) {
+                _userNameTF = [[UITextField alloc] initWithFrame:CGRectMake(38, 100+((37.5)*dicts.count+5), KScreenWidth-50, 38)];
+                _userNameTF.delegate = self;
+                _userNameTF.tag = 300;
+                _userNameTF.borderStyle = UITextBorderStyleLine;
+                _userNameTF.font = [UIFont systemFontOfSize:14];
+                _userNameTF.textColor = [UIColor blackColor];
+                [self.contentView addSubview:_userNameTF];
+                
+                NSDictionary *dic = dicts[0];
+                NSInteger value = [dic[@"value"] integerValue];
+                if (value == 3) {
+                    _userNameTF.hidden = YES;
+                }else {
+                    _userNameTF.hidden = NO;
+                }
+            }
+            if (i == 0) {
+                button.selected = YES;
+                
+            }
+        }
         
-        _userNameTF.placeholder = @"请输入手机号码、油卡号等虚拟物品帐号";
-    }else if(sender.tag == 101) {
         
-        UIButton *mannerBtn1 = [self.contentView viewWithTag:100];
-        mannerBtn1.selected = NO;
-        UIButton *mannerBtn2 = [self.contentView viewWithTag:102];
-        mannerBtn2.selected = NO;
-        
-        _userNameTF.placeholder = @"请输入掌上云购账号";
-    }else {
-        UIButton *mannerBtn1 = [self.contentView viewWithTag:100];
-        mannerBtn1.selected = NO;
-        UIButton *mannerBtn2 = [self.contentView viewWithTag:101];
-        mannerBtn2.selected = NO;
-        
-        _userNameTF.placeholder = @"请输入支付宝账号";
-
     }
-    NSLog(@"%@",_userNameTF.text);
+}
+- (void)layoutSubviews {
+    
+    
+    
+}
+- (void)selectManner:(UIControl *)sender {
+//    UIButton *mannerBtn = sender.subviews[0];
+//    mannerBtn.selected = YES;
+    
+    for (int i = 0; i<_dicts.count; i++) {
+        
+        UIControl *control = [self.contentView viewWithTag:200+i];
+        UIButton *mannerBtn = control.subviews[0];
+        mannerBtn.selected = NO;
+        if (i == sender.tag-200) {
+            mannerBtn.selected = YES;
+        }
+        
+    }
+    NSDictionary *dict = _dicts[sender.tag -200];
+    NSInteger value = [dict[@"value"] integerValue];
+    
+    if (value == 3) {
+        _userNameTF.hidden = YES;
+    }else {
+        _userNameTF.hidden = NO;
+    }
+    [self.delegate selectMannerValue:value];
 }
 
 - (IBAction)agreeAction:(UIButton *)sender {
@@ -56,7 +109,7 @@
 - (IBAction)zsygDelegate:(UIButton *)sender {
     HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
     htmlType.htmlUrl = @"/pcpServer-inf/html/agreement.html";
-    htmlType.title = @"隐私协议";
+    htmlType.title = @"协议";
     UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
     [[self viewController]presentViewController:htVC animated:YES completion:nil];
 }

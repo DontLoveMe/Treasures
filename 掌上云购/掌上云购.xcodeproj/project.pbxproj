@@ -45,7 +45,6 @@
 		D65B64721D865CDD00D48834 /* 删除.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B643C1D865CDD00D48834 /* 删除.png */; };
 		D65B64731D865CDD00D48834 /* 加@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B643D1D865CDD00D48834 /* 加@2x.png */; };
 		D65B64741D865CDD00D48834 /* 加@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B643E1D865CDD00D48834 /* 加@3x.png */; };
-		D65B64751D865CDD00D48834 /* 双框.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B643F1D865CDD00D48834 /* 双框.png */; };
 		D65B64761D865CDD00D48834 /* 对勾-暗.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B64401D865CDD00D48834 /* 对勾-暗.png */; };
 		D65B64771D865CDD00D48834 /* 对勾.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B64411D865CDD00D48834 /* 对勾.png */; };
 		D65B64781D865CDD00D48834 /* 幸运标识@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D65B64421D865CDD00D48834 /* 幸运标识@2x.png */; };
@@ -604,7 +603,6 @@
 		D65B643C1D865CDD00D48834 /* 删除.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "删除.png"; sourceTree = "<group>"; };
 		D65B643D1D865CDD00D48834 /* 加@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加@2x.png"; sourceTree = "<group>"; };
 		D65B643E1D865CDD00D48834 /* 加@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加@3x.png"; sourceTree = "<group>"; };
-		D65B643F1D865CDD00D48834 /* 双框.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "双框.png"; sourceTree = "<group>"; };
 		D65B64401D865CDD00D48834 /* 对勾-暗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对勾-暗.png"; sourceTree = "<group>"; };
 		D65B64411D865CDD00D48834 /* 对勾.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "对勾.png"; sourceTree = "<group>"; };
 		D65B64421D865CDD00D48834 /* 幸运标识@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运标识@2x.png"; sourceTree = "<group>"; };
@@ -1330,7 +1328,6 @@
 				D65B643C1D865CDD00D48834 /* 删除.png */,
 				D65B643D1D865CDD00D48834 /* 加@2x.png */,
 				D65B643E1D865CDD00D48834 /* 加@3x.png */,
-				D65B643F1D865CDD00D48834 /* 双框.png */,
 				D65B64401D865CDD00D48834 /* 对勾-暗.png */,
 				D65B64411D865CDD00D48834 /* 对勾.png */,
 				D65B64421D865CDD00D48834 /* 幸运标识@2x.png */,
@@ -2999,7 +2996,6 @@
 				DD71AC051D92755A005CBFFD /* dropdown_zsyg_028@2x.png in Resources */,
 				DD71AC3F1D92755A005CBFFD /* dropdown_zsyg_086@2x.png in Resources */,
 				DD71AC2E1D92755A005CBFFD /* dropdown_zsyg_069@2x.png in Resources */,
-				D65B64751D865CDD00D48834 /* 双框.png in Resources */,
 				DDF92C991D6A9C3D009D5A1E /* GoodsStateCell.xib in Resources */,
 				DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */,
 				DD71AC2B1D92755A005CBFFD /* dropdown_zsyg_066@2x.png in Resources */,
