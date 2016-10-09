@@ -14,6 +14,7 @@
 #import "CountWayController.h"
 #import "PreviewAllController.h"
 #import "SunSharingViewController.h"
+#import "CountDown.h"
 
 @interface GoodsDetailFunctionTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
@@ -30,7 +31,11 @@
 //@property (nonatomic ,copy)NSString *goodSID;
 ////总量
 //@property (nonatomic ,assign)NSInteger  progress;
+//倒计时时间
+@property (nonatomic,assign) NSInteger countDownTime;
 
-//进度
+@property (strong, nonatomic)  CountDown *countDown;
+//倒计时lable
+@property (strong, nonatomic) UILabel *countDownLabel;
 
 @end

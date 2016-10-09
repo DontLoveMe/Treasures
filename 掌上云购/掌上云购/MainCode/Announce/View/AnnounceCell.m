@@ -68,7 +68,7 @@
 //        }
         __weak __typeof(self) weakSelf= self;
         [self.countDown countDownWithTimeStamp:countDownTime completeBlock:^(NSInteger hour, NSInteger minute, NSInteger second, NSInteger millisecond) {
-            //倒计时方法，每毫秒调用一次
+            //倒计时方法，每10毫秒调用一次
             if (hour<=0&&minute<=0&&second<=0&&millisecond<=0) {
                 
                 [weakSelf.countDown destoryTimer];
@@ -77,6 +77,12 @@
                         _peopleNumLb.hidden = NO;
                         _luckyLabel.hidden = NO;
                         _announceTimeLb.hidden = NO;
+                    
+                    _getUserLabel1.hidden = NO;
+                    _peopleNumLb1.hidden = NO;
+                    _luckyLabel1.hidden = NO;
+                    _announceTimeLb1.hidden = NO;
+                    
                         _timeIconView.hidden = YES;
                         _timeLabel.hidden = YES;
                         _unveilLabel.hidden = YES;
@@ -99,6 +105,11 @@
                 _peopleNumLb.hidden = YES;
                 _luckyLabel.hidden = YES;
                 _announceTimeLb.hidden = YES;
+                
+                _getUserLabel1.hidden = YES;
+                _peopleNumLb1.hidden = YES;
+                _luckyLabel1.hidden = YES;
+                _announceTimeLb1.hidden = YES;
                 
                 _timeIconView.hidden = NO;
                 _timeLabel.hidden = NO;

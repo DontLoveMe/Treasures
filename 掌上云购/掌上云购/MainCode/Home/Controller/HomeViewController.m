@@ -442,6 +442,7 @@
     NSDictionary *dic = [_goodsArr objectAtIndex:indexPath.row];
     
     cell.goodsName.text = [dic objectForKey:@"name"];
+    cell.sumLabel.text = [NSString stringWithFormat:@"总需人次：%@",[dic objectForKey:@"totalShare"]];
     NSInteger progressCount = [[dic objectForKey:@"sellShare"] floatValue] * 100 / [[dic objectForKey:@"totalShare"] floatValue];
     cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%ld%%",progressCount];
     cell.progressView.progress = progressCount;
@@ -572,7 +573,7 @@
 - (void)requestGoodsList:(NSString *)kindStr withPage:(NSInteger)page{
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"orderType":kindStr}
+    [params setObject:@{@"orderType":kindStr,@"fixeType":@1}
                forKey:@"paramsMap"];
     [params setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [params setObject:@"10" forKey:@"rows"];

@@ -94,15 +94,14 @@
     
     _carView = [[UIImageView alloc]init];
     _carView.image = [UIImage imageNamed:@"购物车图标"];
-//    _carView.layer.masksToBounds=YES;
-//    _carView.layer.cornerRadius=188/2.0f; //设置为图片宽度的一半出来为圆形
-//    _carView.layer.borderWidth=1.0f;
+
+    _carView.contentMode = UIViewContentModeCenter;
     [_backView addSubview:_carView];
     _carView.sd_layout
-    .widthIs(150)
+    .widthIs(140)
     .leftSpaceToView(_backView,(KScreenWidth-_carView.frame.size.width)/2)
     .topSpaceToView(_backView,20)
-    .heightIs(150);
+    .heightIs(140);
     
     _textLabel = [[UILabel alloc]init];
     _textLabel.text = @"你的清单空空如也";
@@ -116,7 +115,8 @@
     .heightIs(20);
     
     _buyBtn = [[UIButton alloc]init];
-    [_buyBtn setTitle:@"立即购买" forState:UIControlStateNormal];
+    _buyBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_buyBtn setTitle:@"立即夺宝" forState:UIControlStateNormal];
     [_buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_buyBtn setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
 //    _buyBtn.backgroundColor = [UIColor redColor];
@@ -127,8 +127,8 @@
     _buyBtn.sd_layout
     .centerXEqualToView(_carView)
     .topSpaceToView(_textLabel,10)
-    .widthIs(100)
-    .heightIs(30);
+    .widthIs(85)
+    .heightIs(28);
     
     CGFloat w = (KScreenWidth-8*4)/3;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];

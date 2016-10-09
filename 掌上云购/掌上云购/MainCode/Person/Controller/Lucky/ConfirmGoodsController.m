@@ -392,6 +392,10 @@
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     
+    if (_userName.length == 0) {
+        _userName = userDic[@"userLoginDto"][@"userAccount"];
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"buyUserId"];
     [params setObject:@(_rcModel.orderDetailId) forKey:@"id"];

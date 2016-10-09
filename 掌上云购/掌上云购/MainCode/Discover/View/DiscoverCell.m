@@ -29,11 +29,12 @@
     
     [self.contentView addSubview:_iconView];
     
+    _iconView.contentMode = UIViewContentModeCenter;
     _iconView.sd_layout
     .leftSpaceToView(self.contentView,5)
-    .topSpaceToView(self.contentView,7)
-    .widthIs(50)
-    .heightIs(50);
+    .centerYEqualToView(self.contentView)
+    .widthIs(40)
+    .heightIs(40);
     
     _titleLabel = [[UILabel alloc]init];
     _titleLabel.font = [UIFont systemFontOfSize:15];

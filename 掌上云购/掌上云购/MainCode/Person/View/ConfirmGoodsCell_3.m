@@ -20,8 +20,8 @@
 - (IBAction)sunShareAction:(UIButton *)sender {
     
     if ([_rcModel.orderStatus integerValue]==4) {
-        InordertoshareController *isVC = [[InordertoshareController alloc] init];
-        [[self viewController].navigationController pushViewController:isVC animated:YES];
+//        InordertoshareController *isVC = [[InordertoshareController alloc] init];
+//        [[self viewController].navigationController pushViewController:isVC animated:YES];
         return;
     }
     AddShareController *addSVC = [[AddShareController alloc] init];

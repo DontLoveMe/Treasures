@@ -208,13 +208,15 @@
         issueLabel.backgroundColor = [UIColor clearColor];
         [goodsDetailView addSubview:issueLabel];
         
-        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 80.f, 20.f)];
-        countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
-        countDownLabel.textAlignment = NSTextAlignmentLeft;
-        countDownLabel.font = [UIFont systemFontOfSize:13];
-        countDownLabel.textColor = [UIColor whiteColor];
-        countDownLabel.backgroundColor = [UIColor clearColor];
-        [goodsDetailView addSubview:countDownLabel];
+        _countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 80.f, 20.f)];
+        _countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        _countDownLabel.textAlignment = NSTextAlignmentLeft;
+        _countDownLabel.font = [UIFont systemFontOfSize:13];
+        _countDownLabel.textColor = [UIColor whiteColor];
+        _countDownLabel.backgroundColor = [UIColor clearColor];
+        [goodsDetailView addSubview:_countDownLabel];
+        
+        self.countDownTime = [[_dataDic objectForKey:@"countDownTime"] integerValue];
         
         UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, 15.f, 64.f, 28.f)];
         [previewCountWayButton setTitle:@"计算详情"
@@ -230,7 +232,7 @@
         
         if (_isJoin == 0) {
             
-            UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
+            UILabel *noJoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _countDownLabel.bottom + 4.f, KScreenWidth, 20.f)];
             noJoinLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             noJoinLabel.textAlignment = NSTextAlignmentCenter;
             noJoinLabel.font = [UIFont systemFontOfSize:13];
@@ -240,7 +242,7 @@
             
         }else if (_isJoin == 1){
             
-            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, countDownLabel.bottom + 4.f, KScreenWidth-80, 20.f)];
+            UILabel *JoinedLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, _countDownLabel.bottom + 4.f, KScreenWidth-80, 20.f)];
 //            JoinedLabel.backgroundColor = [UIColor orangeColor];
             JoinedLabel.textAlignment = NSTextAlignmentLeft;
             JoinedLabel.font = [UIFont systemFontOfSize:13];
@@ -256,7 +258,7 @@
             treasureNum.textColor = [UIColor darkGrayColor];
             [goodsDetailView addSubview:treasureNum];
             
-            UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, countDownLabel.bottom + 8.f, 64.f, 32.f)];
+            UIButton *previewAllButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, _countDownLabel.bottom + 8.f, 64.f, 32.f)];
             [previewAllButton setTitle:@"查看全部"
                               forState:UIControlStateNormal];
             previewAllButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -613,6 +615,48 @@
     } while (next != nil);
     
     return nil;
+}
+- (void)setCountDownTime:(NSInteger)countDownTime {
+//    if (_countDownTime != countDownTime ) {
+    
+        _countDownTime = countDownTime;
+        if (self.countDown) {
+            [self.countDown destoryTimer];
+        }else {
+            self.countDown = [[CountDown alloc] init];
+        }
+        
+        __weak __typeof(self) weakSelf= self;
+        [self.countDown countDownWithTimeStamp:countDownTime completeBlock:^(NSInteger hour, NSInteger minute, NSInteger second, NSInteger millisecond) {
+            //倒计时方法，每10毫秒调用一次
+            if (hour<=0&&minute<=0&&second<=0&&millisecond<=0) {
+                
+                [weakSelf.countDown destoryTimer];
+                if (_countDownTime < 0) {
+                   
+//                    weakSelf.countDownLabel.text = @"正在计算开奖结果";
+                }else {
+                    
+                    weakSelf.countDownLabel.text = @"正在计算开奖结果";
+//
+                    
+                }
+                
+                
+            }else {
+                
+                
+                if (hour>0) {
+                    
+                    weakSelf.countDownLabel.text = [NSString stringWithFormat:@"%02ld : %02ld : %02ld ",hour , minute,second];
+                    
+                }else {
+                    
+                    weakSelf.countDownLabel.text = [NSString stringWithFormat:@"%02ld : %02ld : %02ld", minute,second,millisecond];
+                }
+            }
+        }];
+//    }
 }
 
 @end

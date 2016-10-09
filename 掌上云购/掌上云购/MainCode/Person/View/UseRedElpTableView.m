@@ -46,9 +46,10 @@
     [_noView addSubview:label];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((_noView.width-100)/2, CGRectGetMaxY(label.frame)+2, 100, 40);
+    button.frame = CGRectMake((_noView.width-85)/2, CGRectGetMaxY(label.frame)+2, 85, 28);
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"立即购买" forState:UIControlStateNormal];
+    [button setTitle:@"立即夺宝" forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_noView addSubview:button];

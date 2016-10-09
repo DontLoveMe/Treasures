@@ -48,32 +48,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/SnatchRecord/SnatchRecordController.m"
-            timestampString = "496641379.901132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-requestData:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Person/Controller/Lucky/ConfirmGoodsController.m"
-            timestampString = "497687140.388101"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/GoodsDetail/Views/GoodsDetailFunctionTableView.m"
+            timestampString = "497703760.64501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
-            landmarkName = "-rechargeBalance"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
+            landmarkName = "-setCountDownTime:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

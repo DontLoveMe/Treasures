@@ -35,7 +35,9 @@
     NSInteger progress = _gsModel.sellShare*100/_gsModel.totalShare;
     _progressView.progress = progress;
     
-//    _progressLb.text = [NSString stringWithFormat:@"%ld%%",progress];
+    
+    _progressLb.text = [NSString stringWithFormat:@"%ld%%",progress];
+    _progressLb.textColor = [UIColor colorFromHexRGB:ThemeColor];
     
 }
 

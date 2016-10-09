@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *typeMarkImgView;
 
 - (IBAction)addToCart:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *sumLabel;
 
 @property (nonatomic,strong)UIImageView *activityImgview;
 

@@ -643,17 +643,17 @@
     _joinView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
     [self.view addSubview:_joinView];
     
-    _joinImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12.f, 0.f, 24.f, 0)];
-    [_joinImageView setImageWithURL:[NSURL URLWithString:@""]
-                   placeholderImage:[UIImage imageNamed:@"我的-头像"]];
-    _joinImageView.layer.cornerRadius = 12;
-    _joinImageView.layer.masksToBounds = YES;
-    _joinImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    _joinImageView.layer.borderWidth = 0.5;
-    [_joinView addSubview:_joinImageView];
+//    _joinImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12.f, 0.f, 24.f, 0)];
+//    [_joinImageView setImageWithURL:[NSURL URLWithString:@""]
+//                   placeholderImage:[UIImage imageNamed:@"我的-头像"]];
+//    _joinImageView.layer.cornerRadius = 12;
+//    _joinImageView.layer.masksToBounds = YES;
+//    _joinImageView.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    _joinImageView.layer.borderWidth = 0.5;
+//    [_joinView addSubview:_joinImageView];
     
-    _joinLabel  = [[UILabel alloc] initWithFrame:CGRectMake(40.f, 4, KScreenWidth - 54.f, 0)];
-    _joinLabel.text = [NSString stringWithFormat:@"%@参与夺宝",[dataDic objectForKey:@"nickName"]];
+    _joinLabel  = [[UILabel alloc] initWithFrame:CGRectMake(12.f, 4, KScreenWidth - 54.f, 0)];
+    _joinLabel.text = [NSString stringWithFormat:@"%@参与了%@人次",[dataDic objectForKey:@"nickName"],[dataDic objectForKey:@"qty"]];
     _joinLabel.textColor = [UIColor whiteColor];
     _joinLabel.font = [UIFont systemFontOfSize:12];
     _joinLabel.textAlignment = NSTextAlignmentLeft;

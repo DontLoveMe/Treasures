@@ -266,7 +266,7 @@
     
     CGFloat w = (KScreenWidth-8*4)/3;
     
-    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-35-64, KScreenWidth, w*1.4+35)];
+    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-37-64, KScreenWidth, w*1.4+35)];
     [self.view addSubview:_loveView];
     
     
@@ -284,9 +284,10 @@
     [_noView addSubview:label];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((_noView.width-100)/2, label.bottom+5, 100, 40);
+    button.frame = CGRectMake((_noView.width-85)/2, label.bottom+5, 85, 28);
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitle:@"立即购买" forState:UIControlStateNormal];
+    [button setTitle:@"立即夺宝" forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buyAction:) forControlEvents:UIControlEventTouchUpInside];
     [_noView addSubview:button];

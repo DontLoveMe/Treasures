@@ -16,6 +16,9 @@
     if (_dicts != dicts) {
         _dicts = dicts;
         
+        if (_dicts.count<=0||_dicts == nil) {
+            return;
+        }
         for (int i = 0; i<dicts.count; i++) {
             
             NSDictionary *dict = dicts[i];
@@ -56,8 +59,15 @@
                 [self.contentView addSubview:_userNameTF];
                 
                 NSDictionary *dic = dicts[0];
-                NSInteger value = [dic[@"value"] integerValue];
+                NSInteger value = 0;
+                if (![dic[@"value"] isKindOfClass:[NSNull class]]) {
+                    value = [dic[@"value"] integerValue];
+                }
+                if (![dic[@"remarks"] isKindOfClass:[NSNull class]]) {
+                    _userNameTF.placeholder = dic[@"remarks"];
+                }
                 if (value == 3) {
+                    _userNameTF.placeholder = @"";
                     _userNameTF.hidden = YES;
                 }else {
                     _userNameTF.hidden = NO;
@@ -92,9 +102,17 @@
         
     }
     NSDictionary *dict = _dicts[sender.tag -200];
-    NSInteger value = [dict[@"value"] integerValue];
+    NSInteger value = 0;
+    if (![dict[@"value"] isKindOfClass:[NSNull class]]) {
+        value = [dict[@"value"] integerValue];
+    }
+    
+    if (![dict[@"remarks"] isKindOfClass:[NSNull class]]) {
+        _userNameTF.placeholder = dict[@"remarks"];
+    }
     
     if (value == 3) {
+        _userNameTF.placeholder = @"";
         _userNameTF.hidden = YES;
     }else {
         _userNameTF.hidden = NO;
@@ -107,6 +125,7 @@
     [self.delegate clickButtonBackTag:sender.tag];
 }
 - (IBAction)zsygDelegate:(UIButton *)sender {
+    
     HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
     htmlType.htmlUrl = @"/pcpServer-inf/html/agreement.html";
     htmlType.title = @"协议";

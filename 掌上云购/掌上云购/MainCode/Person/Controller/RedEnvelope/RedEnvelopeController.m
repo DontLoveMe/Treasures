@@ -62,7 +62,7 @@
     
     [self usableListCount ];
     [self requestUserRedEnvelope];
-    [self requestNoUserRedEnvelope];
+//    [self requestNoUserRedEnvelope];
 }
 
 - (void)createSubviews {
@@ -204,6 +204,7 @@
               NSLogZS(@"%@",error);
           }];
 }
+//请求可用的红包数据
 - (void)requestUserRedEnvelope {
     //取出存储的用户信息
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
@@ -231,6 +232,7 @@
                       _useTableView.noView.hidden = YES;
                       _loveView.hidden = YES;
                   }else {
+                      _loveView.hidden = NO;
                       _useTableView.noView.hidden = NO;
                   }
                   [_useTableView reloadData];
@@ -244,6 +246,7 @@
               NSLogZS(@"%@",error);
           }];
 }
+//请求用完的红包数据
 - (void)requestNoUserRedEnvelope {
     //取出存储的用户信息
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
@@ -273,6 +276,7 @@
                       _loveView.hidden = YES;
                   }else {
                       _noUseTableView.noView.hidden = NO;
+                      _loveView.hidden = NO;
                   }
                   [_noUseTableView reloadData];
                   [_noUseTableView.mj_header endRefreshing];
@@ -310,11 +314,25 @@
 //改变选中button的样式
 - (void)changeButtonState:(NSInteger)tag {
     if(tag == _selectBtnTag) return;
+   
     UIButton *selectBtn = [self.view viewWithTag:_selectBtnTag];
     selectBtn.selected = NO;
     UIButton *button = [self.view viewWithTag:tag];
     button.selected = YES;
     _selectBtnTag = tag;
+    
+    switch (_selectBtnTag) {
+        case 200:
+            
+            [self requestUserRedEnvelope];
+            break;
+        case 201:
+            
+            [self requestNoUserRedEnvelope];
+            break;
+        default:
+            break;
+    }
     
     [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = _lineView.frame;
@@ -337,7 +355,7 @@
     
     CGFloat w = (KScreenWidth-8*4)/3;
     
-    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-35-64, KScreenWidth, w*1.4+35)];
+    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-37-64, KScreenWidth, w*1.4+35)];
     [self.view addSubview:_loveView];
     
 

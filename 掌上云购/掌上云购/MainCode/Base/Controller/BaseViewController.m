@@ -44,22 +44,23 @@
 }
 
 - (void)hideSuccessHUD:(NSString *)title {
-    
-    if (title.length == 0) {
-        [_hud hide:YES afterDelay:1.f];
-    } else {
-        
-        _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-        //显示模式设置为：自定义视图模式
-        _hud.mode = MBProgressHUDModeCustomView;
-        _hud.labelText = title;
-        
-        //延迟隐藏
-        [_hud hide:YES afterDelay:1.5];
-        [self performSelector:@selector(changgeModel)
-                   withObject:nil
-                   afterDelay:2.f];
-    }
+    [_hud hide:YES];
+    [self changgeModel];
+//    if (title.length == 0) {
+//        [_hud hide:YES afterDelay:1.f];
+//    } else {
+//        
+//        _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+//        //显示模式设置为：自定义视图模式
+//        _hud.mode = MBProgressHUDModeCustomView;
+//        _hud.labelText = title;
+//        
+//        //延迟隐藏
+//        [_hud hide:YES afterDelay:1.5];
+//        [self performSelector:@selector(changgeModel)
+//                   withObject:nil
+//                   afterDelay:2.f];
+//    }
     
 }
 

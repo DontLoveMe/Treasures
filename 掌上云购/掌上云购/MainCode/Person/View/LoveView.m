@@ -49,7 +49,9 @@
               BOOL flag = [json objectForKey:@"flag"];
               if (flag) {
                   self.loveData = json[@"data"];
+                  
                   [_collectionView reloadData];
+                  _collectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
               }
               
           } failure:^(NSError *error) {
@@ -61,15 +63,19 @@
     
     self.backgroundColor = [UIColor whiteColor];
     
-    CGFloat w = (self.width-8*4)/3;
+    CGFloat w = (self.width-1*4)/3;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(w, w*1.4);
-    layout.sectionInset = UIEdgeInsetsMake(5, 6, 5, 6);
+    layout.itemSize = CGSizeMake(w, w*1.4-2);
+    layout.minimumLineSpacing = 1;
+    layout.minimumInteritemSpacing = 1;
+    layout.sectionInset = UIEdgeInsetsMake(1, 1, 1, 1);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 25, self.width, w*1.4+10) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 25, self.width, w*1.4) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.showsHorizontalScrollIndicator = NO;
     [self addSubview:_collectionView];
     
     
@@ -79,10 +85,10 @@
     _identify = @"LoveCell";
     [_collectionView registerNib:[UINib nibWithNibName:@"LoveCell" bundle:nil] forCellWithReuseIdentifier:_identify];
     
-    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-20, 120, 20)];
+    _loveLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, CGRectGetMinY(_collectionView.frame)-23, 120, 20)];
     _loveLabel.text = @"猜你喜欢";
     _loveLabel.textColor = [UIColor blackColor];
-    _loveLabel.font = [UIFont systemFontOfSize:16];
+    _loveLabel.font = [UIFont systemFontOfSize:15];
     [self addSubview:_loveLabel];
     
 }

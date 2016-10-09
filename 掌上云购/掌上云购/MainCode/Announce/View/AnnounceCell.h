@@ -29,6 +29,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *luckyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *announceTimeLb;
 @property (weak, nonatomic) IBOutlet UIImageView *typeMarkImgView;
+@property (weak, nonatomic) IBOutlet UILabel *getUserLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *peopleNumLb1;
+@property (weak, nonatomic) IBOutlet UILabel *luckyLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *announceTimeLb1;
+
 
 @property (strong, nonatomic)  CountDown *countDown;
 
