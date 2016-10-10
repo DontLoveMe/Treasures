@@ -68,6 +68,7 @@
     _redEnveloperReduceCount = 0;
     _redEnveloperID = @"";
     _thirdPayState = @[@"0",@"0"];
+    _isBalance = 1;
     
     self.title = @"支付";
     [self initNavBar];
@@ -164,6 +165,7 @@
     }
     
     _pricesum.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
+    
 }
 
 -(void)PayClicked:(UIButton *)btn{
@@ -174,7 +176,7 @@
     NSNumber *userId = userDic[@"id"];
     [params setObject:userId forKey:@"buyUserId"];
 
-#warning 这里根据是否选择，余额数量是否够用,是否选择第三方支付，拼写请求参数
+    //夺宝商品详情列表
     NSMutableArray *cartArr = [NSMutableArray array];
     if ([_isimidiately isEqualToString:@"1"]) {
         
@@ -200,81 +202,153 @@
         [BuyArr addObject:buyDic];
         
     }
-    
-    //红包id
-    if (_redEnveloperID.length != 0) {
-        [params setObject:_redEnveloperID forKey:@"redPacketId"];
-    }
-    //余额支付数量
-    totalPrice = totalPrice - _redEnveloperReduceCount;
-   
     //购买数量
     [params setObject:BuyArr forKey:@"orderDetailList"];
     
-    CGFloat restMoney = [userDic[@"money"] floatValue];
-
-   //余额支付数量
-    if (restMoney > totalPrice) {
+#warning 这里根据是否选择红包，是否选择余额，余额数量是否够用,是否选择第三方支付，拼写请求参数
+    //是否使用红包（id）
+    if (_redEnveloperID.length != 0) {
+        [params setObject:_redEnveloperID forKey:@"redPacketId"];
+    }
+    
+    //需要支付金额
+    totalPrice = totalPrice - _redEnveloperReduceCount;
+    
+    //如果需要支付金额小于0
+    if(totalPrice < 0){
         
-        [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
+        [params setObject:@"0"forKey:@"balanceConsume"];
         [params setObject:@"0" forKey:@"payType"];
         [params setObject:@"0"forKey:@"cashConsume"];
         
     }else{
         
-        [params setObject:[NSNumber numberWithInteger:restMoney]
-                   forKey:@"balanceConsume"];
+        //账户余额
+        CGFloat restMoney = [userDic[@"money"] floatValue];
         
-        [params setObject:[NSString stringWithFormat:@"%.0f",totalPrice - restMoney] forKey:@"cashConsume"];
-        NSInteger isWX = [_thirdPayState[0] integerValue];
-        NSInteger isAP = [_thirdPayState[1] integerValue];
-        if (isWX == 1 && isAP == 0) {
-            [params setObject:@"2" forKey:@"payType"];
-        }else if (isWX == 0 && isAP == 1){
-            [params setObject:@"1" forKey:@"payType"];
-        }else if (isWX == 1 && isAP == 1){
+        //是否使用余额支付
+        if (_isBalance == 0) {
             
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"只能选择一个支付方式"
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                                   style:UIAlertActionStyleCancel
-                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                  
-                                                                       [alertVC dismissViewControllerAnimated:YES
-                                                                                                   completion:nil];
-                                                                       
-                                                                   }];
-            [alertVC addAction:cancelAction];
-            [self presentViewController:alertVC
-                                                    animated:YES
-                                                  completion:nil];
-            return;
+            //没有使用余额支付
+            [params setObject:@"0"
+                       forKey:@"balanceConsume"];
+            [params setObject:[NSString stringWithFormat:@"%.0f",totalPrice] forKey:@"cashConsume"];
+            //使用微信还是支付宝
+            NSInteger isWX = [_thirdPayState[0] integerValue];
+            NSInteger isAP = [_thirdPayState[1] integerValue];
+            if (isWX == 1 && isAP == 0) {
+                [params setObject:@"2" forKey:@"payType"];
+            }else if (isWX == 0 && isAP == 1){
+                [params setObject:@"1" forKey:@"payType"];
+            }else if (isWX == 1 && isAP == 1){
+                
+                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"只能选择一个支付方式"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                       style:UIAlertActionStyleCancel
+                                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                                         
+                                                                         [alertVC dismissViewControllerAnimated:YES
+                                                                                                     completion:nil];
+                                                                         
+                                                                     }];
+                [alertVC addAction:cancelAction];
+                [self presentViewController:alertVC
+                                   animated:YES
+                                 completion:nil];
+                return;
+                
+            }else if (isWX == 0 && isAP == 0){
+                
+                UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择一个支付方式"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                       style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                           
+                                                                           [alertVC dismissViewControllerAnimated:YES
+                                                                                                       completion:nil];
+                                                                           
+                                                                       }];
+                [alertVC addAction:cancelAction];
+                [self presentViewController:alertVC
+                                   animated:YES
+                                 completion:nil];
+                return;
+                
+            }
             
-        }else if (isWX == 0 && isAP == 0){
-        
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择一个支付方式"
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                                   style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                                                       
-                                                                       [alertVC dismissViewControllerAnimated:YES
-                                                                                                   completion:nil];
-                                                                       
-                                                                   }];
-            [alertVC addAction:cancelAction];
-            [self presentViewController:alertVC
-                                                    animated:YES
-                                                  completion:nil];
-            return;
+        }else{
+            
+            //使用余额支付
+            if (restMoney > totalPrice) {
+                
+                [params setObject:[NSNumber numberWithInteger:totalPrice] forKey:@"balanceConsume"];
+                [params setObject:@"0" forKey:@"payType"];
+                [params setObject:@"0"forKey:@"cashConsume"];
+                
+            }else{
+                
+                [params setObject:[NSNumber numberWithInteger:restMoney]
+                           forKey:@"balanceConsume"];
+                
+                [params setObject:[NSString stringWithFormat:@"%.0f",totalPrice - restMoney] forKey:@"cashConsume"];
+                NSInteger isWX = [_thirdPayState[0] integerValue];
+                NSInteger isAP = [_thirdPayState[1] integerValue];
+                if (isWX == 1 && isAP == 0) {
+                    [params setObject:@"2" forKey:@"payType"];
+                }else if (isWX == 0 && isAP == 1){
+                    [params setObject:@"1" forKey:@"payType"];
+                }else if (isWX == 1 && isAP == 1){
+                    
+                    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"只能选择一个支付方式"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                           style:UIAlertActionStyleCancel
+                                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                                             
+                                                                             [alertVC dismissViewControllerAnimated:YES
+                                                                                                         completion:nil];
+                                                                             
+                                                                         }];
+                    [alertVC addAction:cancelAction];
+                    [self presentViewController:alertVC
+                                       animated:YES
+                                     completion:nil];
+                    return;
+                    
+                }else if (isWX == 0 && isAP == 0){
+                    
+                    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"请选择一个支付方式"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                           style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                               
+                                                                               [alertVC dismissViewControllerAnimated:YES
+                                                                                                           completion:nil];
+                                                                               
+                                                                           }];
+                    [alertVC addAction:cancelAction];
+                    [self presentViewController:alertVC
+                                       animated:YES
+                                     completion:nil];
+                    return;
+                    
+                }
+                
+            }
             
         }
-        
-    }
     
+    }
+
 //    支付url
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,SubmitCartList_URL];
-//    NSString *url = @"http://192.168.0.123:8080/pcpi/saleCart/submitPayment";
-    [CartTools realaseCartList];
+    
+    //根据是否为直接购买,判断是否清除购物车
+    if ([_isimidiately isEqualToString:@"1"]) {
+        [CartTools realaseCartList];
+    }
+
     NSArray *cartListArr = [CartTools getCartList];
     [self getRootController].cartNum = cartListArr.count;
     [self showHUD:@"正在支付"];
@@ -287,10 +361,11 @@
               NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
-                  [self hideSuccessHUD:@"预支付成功"];
+                  
                   if (![dataDic isKindOfClass:[NSNull class]]) {
-                      JHFOrder *order = [[JHFOrder alloc] init];
                       
+                      [self hideSuccessHUD:@"预支付成功"];
+                      JHFOrder *order = [[JHFOrder alloc] init];
                       order.version = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"version"]];
                       order.extra = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"extra"]];
                       order.merid = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"merid"]];
@@ -307,18 +382,26 @@
                       
                       UINavigationController *navigationController = [[JHFSDK sharedInstance] payOrder:order fromScheme:@"allpayzsyg2016" viewController:self callback:^(NSDictionary *resultDict) {
                           NSLog(@"resultDict = %@", resultDict);
-                          [self dismissViewControllerAnimated:YES completion:nil];
+                          NSInteger isWX = [_thirdPayState[0] integerValue];
+                          if (isWX == 1){
+                              [self dismissViewControllerAnimated:YES completion:nil];
+                              [self.navigationController popToRootViewControllerAnimated:YES];
+                          }else{
+                              [self.navigationController popToRootViewControllerAnimated:YES];
+                          }
+
                       }];
                       
                       if(navigationController!=nil) {
                           [self presentViewController:navigationController animated:YES completion:nil];
                       }
+                      
                   }else{
                   
                       [self hideSuccessHUD:@"支付成功"];
-                      
+                      [self.navigationController popToRootViewControllerAnimated:YES];
+                 
                   }
-                  [self.navigationController popToRootViewControllerAnimated:YES];
                   
               }else{
                   
@@ -372,8 +455,6 @@
 
     _tab = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64-49) style:UITableViewStylePlain];
     _tab.backgroundColor = TableViewBackColor;
-    
-//    _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _tab.dataSource = self;
     
@@ -446,8 +527,7 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:@"余额支付"];
-        [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
-   
+        
         NSMutableArray *cartArr = [NSMutableArray array];
         if ([_isimidiately isEqualToString:@"1"]) {
             
@@ -472,18 +552,26 @@
         
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         CGFloat restMoney = [userDic[@"money"] floatValue];
-        if (totalPrice < 0){
-            
+        
+        //是否选择余额支付
+        if (_isBalance == 0) {
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
             cell.wechat.text  = [NSString stringWithFormat:@"余额支付:0元"];
-            
-        }else if (restMoney > totalPrice) {
-            
-            cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%ld元",(long)totalPrice];
-            
         }else{
-        
-            cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%.0f元",restMoney];
-        
+            [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
+            if (totalPrice < 0){
+                
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付:0元"];
+                
+            }else if (restMoney > totalPrice) {
+                
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%ld元",(long)totalPrice];
+                
+            }else{
+                
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%.0f元",restMoney];
+                
+            }
         }
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -492,11 +580,11 @@
     }else if (indexPath.row==3){
         
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.text = @"其他支付方式";
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
         
+        //获取购物车列表
         NSMutableArray *cartArr = [NSMutableArray array];
         if ([_isimidiately isEqualToString:@"1"]) {
             
@@ -507,6 +595,7 @@
             cartArr = [_immidiatelyArr mutableCopy];
         }
         
+        //计算商品总价
         NSInteger totalPrice = 0;
         for (int i = 0; i < cartArr.count; i ++) {
             
@@ -517,17 +606,29 @@
             
         }
         
+        //减去余额，还得支付多少
         totalPrice = totalPrice - _redEnveloperReduceCount;
         
-        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-        CGFloat restMoney = [userDic[@"money"] floatValue];
-        if (restMoney > totalPrice) {
+        //是否使用余额支付
+        if (_isBalance == 0) {
             
-            cell.detailTextLabel.text = @"0元";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld元",totalPrice];
             
         }else{
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f元",totalPrice - restMoney];
+            //获取账户余额
+            NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+            CGFloat restMoney = [userDic[@"money"] floatValue];
+            
+            if (restMoney > totalPrice) {
+                
+                cell.detailTextLabel.text = @"0元";
+                
+            }else{
+                
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f元",totalPrice - restMoney];
+                
+            }
             
         }
         
@@ -538,7 +639,6 @@
     }
 
     PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-
     NSArray *titles = @[@"微信支付",@"支付宝支付"];
     if (!cell) {
         
@@ -576,7 +676,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //选择红包
     if (indexPath.row == 1) {
+        
         RedEnvelopeController *redEVC = [[RedEnvelopeController alloc] init];
         NSMutableArray *cartArr = [NSMutableArray array];
         if ([_isimidiately isEqualToString:@"1"]) {
@@ -594,12 +696,19 @@
             NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
             NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
             totalPrice = totalPrice + singlePrice * num;
+            
         }
         redEVC.constNum = totalPrice;
         redEVC.redDellegate = self;
         redEVC.isPay = @"2";
         [self.navigationController pushViewController:redEVC animated:YES];
         
+    }else if (indexPath.row == 2){
+    
+        _isBalance = 1 - _isBalance;
+        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0]]
+                    withRowAnimation:UITableViewRowAnimationFade];
+    
     }else if (indexPath.row == 4){
     
         NSInteger cellState = [_thirdPayState[0] integerValue];

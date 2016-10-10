@@ -12,9 +12,14 @@
 
 @interface PayViewController : BaseViewController<RedEnveloperDelegate>{
 
-    NSInteger _redEnveloperReduceCount;
-    NSString  *_redEnveloperID;
+    //红包减价金额
+    NSInteger   _redEnveloperReduceCount;
+    //红包id
+    NSString    *_redEnveloperID;
+    //是否选择第三方支付
     NSArray     *_thirdPayState;
+    //是否使用余额支付
+    NSInteger   _isBalance;
 
 }
 
