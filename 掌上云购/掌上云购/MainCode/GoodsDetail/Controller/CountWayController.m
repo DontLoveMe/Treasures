@@ -152,17 +152,17 @@
                           bValueResultStr = [bValueStr stringByReplacingOccurrencesOfString:@","withString:@""];
                           bValueResultStr = [NSString stringWithFormat:@"=中国福利彩票“老时时彩”第%@期的开奖结果\n＝%@",dic[@"expect"],bValueResultStr];
                       }
-                      NSString *msgStr = [_dataDic objectForKey:@"msg"];
-                      if (msgStr.length == 0) {
-                          msgStr = @"＝[(数值A+数值B)÷商品所需次数]取余数+10000001";
-                      }
+//                      NSString *msgStr = [_dataDic objectForKey:@"msg"];
+//                      if (msgStr.length == 0) {
+                          NSString *msgStr = @"＝[(数值A+数值B)÷商品所需次数]取余数+10000001";
+//                      }
                       NSString *luckyValue = _dataDic[@"luckyValue"];
                       if ([luckyValue integerValue] == 0) {
                           luckyValue = @"请等待开奖结果";
                       }
                       if (_isSpeed) {
                           _titleArr = @[@"计算公式",@"数值A",@"计算结果"];
-                          _valueArr = @[msgStr,
+                          _valueArr = @[@"＝[数值A÷商品所需次数]取余数+10000001",
                                         [NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],
                                         [NSString stringWithFormat:@"幸运号码：%@",luckyValue]];
 
@@ -176,7 +176,7 @@
                   }else{
                       if (_isSpeed) {
                           _titleArr = @[@"计算公式",@"数值A",@"计算结果"];
-                          _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"幸运号码:请等待开奖结果"];
+                          _valueArr = @[@"＝[数值A÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"幸运号码:请等待开奖结果"];
                       }else {
                           _valueArr = @[@"＝[(数值A+数值B)÷商品所需次数]取余数+10000001",[NSString stringWithFormat:@"＝截止开奖时间点前最后50条全站参与记录\n＝%@",_dataDic[@"aNumValue"]],@"＝最近一期中国福利彩票“老时时彩”的开奖结果\n＝等待开奖",@"幸运号码:请等待开奖结果"];
                       }

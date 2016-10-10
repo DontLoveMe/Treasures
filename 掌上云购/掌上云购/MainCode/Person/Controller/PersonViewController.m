@@ -111,6 +111,7 @@
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if(userDic == nil){
+        [_redBtn setTitle:@"红包:0" forState:UIControlStateNormal];
         [_collectionView reloadData];
     }else {
         

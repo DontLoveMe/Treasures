@@ -31,12 +31,69 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 23.f, 20.f)];
+    rightButton.tag = 102;
+    [rightButton setBackgroundImage:[UIImage imageNamed:@"购物车.png"]
+                           forState:UIControlStateNormal];
+    [rightButton addTarget:self
+                    action:@selector(NavAction:)
+          forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIButton *rightButton2 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 22, 22)];
+    rightButton2.tag = 103;
+    [rightButton2 setBackgroundImage:[UIImage imageNamed:@"消息.png"]
+                           forState:UIControlStateNormal];;
+    [rightButton2 addTarget:self
+                    action:@selector(NavAction:)
+          forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc]initWithCustomView:rightButton2];
+    self.navigationItem.rightBarButtonItems =@[rightItem2,rightItem];
     
 }
 
 - (void)NavAction:(UIButton *)button{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (button.tag == 101) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (button.tag == 102){
+        NSLogZS(@"进入购物车");
+        id next = [self nextResponder];
+        while (next != nil) {
+            
+            if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+                
+                //获得标签控制器
+                TabbarViewcontroller *tb = next;
+                //修改索引
+                tb.selectedIndex = 3;
+                //原选中标签修改
+                tb.selectedItem.isSelected = NO;
+                //选中新标签
+                TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:4];
+                item.isSelected = YES;
+                //设置为上一个选中
+                tb.selectedItem = item;
+                
+                return;
+            }
+            next = [next nextResponder];
+        }
+        
+    }else {
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        if (userDic == nil) {
+            LoginViewController *lVC = [[LoginViewController alloc] init];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+            [self presentViewController:nav animated:YES completion:nil];
+            return;
+        }
+        MessageController *msgVC = [[MessageController alloc] init];
+        self.navigationController.navigationBar.hidden = NO;
+        msgVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:msgVC animated:YES];
+    }
 }
 
 - (void)viewDidLoad {

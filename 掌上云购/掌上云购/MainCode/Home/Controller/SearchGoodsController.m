@@ -34,7 +34,7 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25.f, 20.f)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 23.f, 20.f)];
     rightButton.tag = 102;
     [rightButton setBackgroundImage:[UIImage imageNamed:@"购物车.png"]
                            forState:UIControlStateNormal];

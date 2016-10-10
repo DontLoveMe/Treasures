@@ -40,7 +40,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="BTf-w8-ScZ"/>
                     </constraints>
-                    <state key="normal">
+                    <state key="normal" title="红包:0">
                         <color key="titleColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>

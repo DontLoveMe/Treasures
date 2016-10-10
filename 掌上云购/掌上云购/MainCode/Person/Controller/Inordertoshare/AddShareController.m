@@ -231,28 +231,28 @@
     [self.view addSubview:footView];
 //    footView.backgroundColor = [UIColor grayColor];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, 100, 20)];
-    label.text = @"晒单内容";
-    label.textColor = [UIColor blackColor];
-    label.textAlignment = NSTextAlignmentLeft;
-    label.font = [UIFont systemFontOfSize:16];
-    [footView addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, 100, 20)];
+//    label.text = @"晒单内容";
+//    label.textColor = [UIColor blackColor];
+//    label.textAlignment = NSTextAlignmentLeft;
+//    label.font = [UIFont systemFontOfSize:16];
+//    [footView addSubview:label];
     
-    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(label.frame)+3, KScreenWidth, 1)];
-    line.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
-    [footView addSubview:line];
+//    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(label.frame)+3, KScreenWidth, 1)];
+//    line.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+//    [footView addSubview:line];
     
-    _titleTF = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(line.frame)+3, KScreenWidth-40, 25)];
+    _titleTF = [[UITextField alloc] initWithFrame:CGRectMake(20, 3, KScreenWidth-40, 25)];
     _titleTF.delegate = self;
     _titleTF.borderStyle = UITextBorderStyleRoundedRect;
     _titleTF.font = [UIFont systemFontOfSize:15];
     _titleTF.textColor = [UIColor blackColor];
-    _titleTF.placeholder = @"请输入晒单标题";
+    _titleTF.placeholder = @"请输入晒单标题(3到10个字之间)";
     [footView addSubview:_titleTF];
     
     _contentTF = [[UITextField alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(_titleTF.frame)+5, KScreenWidth-40, 30)];
     _contentTF.delegate = self;
-    _contentTF.placeholder = @"请输入晒单内容";
+    _contentTF.placeholder = @"请输入晒单内容(20到300个字之间)";
     _contentTF.textColor = [UIColor blackColor];
     _contentTF.borderStyle = UITextBorderStyleRoundedRect;
     _contentTF.font = [UIFont systemFontOfSize:13];
@@ -306,8 +306,8 @@
         return;
     }
   
-    if (_titleTF.text.length < 3||_contentTF.text.length < 20) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"标题要大与三个字，内容不少与20个字！"];
+    if (_titleTF.text.length < 3||_titleTF.text.length > 10||_contentTF.text.length < 20||_contentTF.text.length > 300) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"标题3到10个字之间，内容20到300个字之间！"];
         [alert addButtonTitleArray:@[@"好"]];
         __weak typeof(AlertController*) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {

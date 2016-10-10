@@ -310,7 +310,7 @@
                imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",AliyunPIC_URL,saleDraw[@"photoUrl"]]];
             }
 
-            [picView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+            [picView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"我的-头像"]];
         }else {
             
             picView.image = [UIImage imageNamed:@"未加载图片"];
@@ -334,7 +334,7 @@
         
         //获奖者id
         UILabel *prizeIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeNameLabel.bottom, KScreenWidth - 86.f, 20.f)];
-        prizeIdLabel.text = [NSString stringWithFormat:@"获奖者ID:%@",[prizeDic objectForKey:@"drawNumber"]];
+        prizeIdLabel.text = [NSString stringWithFormat:@"获奖者ID:%@",[prizeDic objectForKey:@"drawUserId"]];
         prizeIdLabel.textAlignment = NSTextAlignmentLeft;
         prizeIdLabel.font = [UIFont systemFontOfSize:13];
         prizeIdLabel.textColor = [UIColor darkGrayColor];

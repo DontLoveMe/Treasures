@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="164"/>
+                <frame key="frameInset" width="320" height="164.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEz-U0-5gp">
@@ -37,7 +37,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幸运号码：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-Mh-Acr">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="Z0j-Az-G4K"/>
+                                    <constraint firstAttribute="width" constant="57" id="Z0j-Az-G4K"/>
                                     <constraint firstAttribute="height" constant="13" id="xsY-9M-b5y"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -47,7 +47,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期参与：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dna-Be-u3i">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="MX4-gc-NtP"/>
-                                    <constraint firstAttribute="width" constant="55" id="nmh-om-o1o"/>
+                                    <constraint firstAttribute="width" constant="57" id="nmh-om-o1o"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,7 +55,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="揭晓时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x41-jg-XO8">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="174-Lf-Xvu"/>
+                                    <constraint firstAttribute="width" constant="57" id="174-Lf-Xvu"/>
                                     <constraint firstAttribute="height" constant="13" id="Fpl-e3-Kgk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
