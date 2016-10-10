@@ -64,8 +64,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-//    
-//    _dataArray = [NSMutableArray array];
     
     _redEnveloperReduceCount = 0;
     _redEnveloperID = @"";
@@ -81,7 +79,6 @@
     [self creatView];
     
 }
-
 
 -(void)creatView{
     
@@ -240,7 +237,8 @@
             UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"只能选择一个支付方式"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                                   style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                   style:UIAlertActionStyleCancel
+                                                                 handler:^(UIAlertAction * _Nonnull action) {
                                                                   
                                                                        [alertVC dismissViewControllerAnimated:YES
                                                                                                    completion:nil];
@@ -569,8 +567,11 @@
     return 50;
  
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
     return 0.01;
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -622,7 +623,6 @@
         
     }
 
-    
 }
 
 - (TabbarViewcontroller *)getRootController{

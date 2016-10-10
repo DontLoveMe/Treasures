@@ -184,12 +184,12 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-
+    
     if ([textField isFirstResponder]) {
         [textField resignFirstResponder];
     }
     if ([textField.text integerValue] == 0 || textField.text.length == 0){
-    
+        
         textField.text = @"1";
         return;
         
@@ -202,13 +202,40 @@
         }
         
     }else{
-
+        
         textField.text = [NSString stringWithFormat:@"%ld",_maxSelectableNum];
         return;
-    
+        
     }
-
+    
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//
+//    if ([textField.text integerValue] == 0 || textField.text.length == 0){
+//        
+//        textField.text = @"1";
+//        
+//    }else if ([textField.text integerValue] <= _maxSelectableNum) {
+//        
+//        textField.text = textField.text;
+////        NSMutableString *textFieldString = [textField.text mutableCopy];
+////        [textFieldString insertString:string atIndex:range.location];
+////        textField.text = textFieldString;
+//        
+//    }else{
+//        
+//        textField.text = [NSString stringWithFormat:@"%ld",_maxSelectableNum];
+//        
+//    }
+//    NSLog(@"%@ ,ohther:%@",textField.text,string);
+//    [CartTools inputCountWithIndexPath:_indexPath.row withCount:[textField.text integerValue]];
+//    [self getRootController].cartNum = [CartTools getCartList].count;
+//
+//    return YES;
+//
+//}
+//
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
  

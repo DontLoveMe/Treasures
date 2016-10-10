@@ -29,5 +29,101 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Announce/Controller/AnnounceViewController.m"
+            timestampString = "497759988.33677"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
+            landmarkName = "-requestAnnouncedWithCell:withDic:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Home/Controller/HomeViewController.m"
+            timestampString = "497771715.087161"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "569"
+            endingLineNumber = "569"
+            landmarkName = "-testPost"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__30-[HomeViewController testPost]_block_invoke_2"
+                  moduleName = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Desktop/%E5%A4%96%E5%8C%85%E9%A1%B9%E7%9B%AE/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E4%BA%91%E8%B4%AD%E4%BB%A3%E7%A0%81/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/MainCode/Home/Controller/HomeViewController.m"
+                  timestampString = "497777341.198191"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "570"
+                  endingLineNumber = "570"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__30-[HomeViewController testPost]_block_invoke_3"
+                  moduleName = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Desktop/%E5%A4%96%E5%8C%85%E9%A1%B9%E7%9B%AE/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E4%BA%91%E8%B4%AD%E4%BB%A3%E7%A0%81/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/%E6%8E%8C%E4%B8%8A%E4%BA%91%E8%B4%AD/MainCode/Home/Controller/HomeViewController.m"
+                  timestampString = "497777341.199939"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "572"
+                  endingLineNumber = "572"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Home/Controller/HomeViewController.m"
+            timestampString = "497771715.087161"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "571"
+            endingLineNumber = "571"
+            landmarkName = "-testPost"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x638c;&#x4e0a;&#x4e91;&#x8d2d;/MainCode/Home/Controller/HomeViewController.m"
+            timestampString = "497771715.087161"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
+            landmarkName = "-testPost"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
