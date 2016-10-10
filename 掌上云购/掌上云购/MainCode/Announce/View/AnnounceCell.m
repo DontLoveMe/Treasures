@@ -86,18 +86,16 @@
                         _timeIconView.hidden = YES;
                         _timeLabel.hidden = YES;
                         _unveilLabel.hidden = YES;
-//                    weakSelf.timeLabel.text = @"正在计算开奖结果";
+                
                 }else {
                     
                     weakSelf.timeLabel.text = @"正在计算开奖结果";
-                    if ([_announceDelegate respondsToSelector:@selector(countEnd:)]) {
-                        
-                        [_announceDelegate countEnd:_indexpath];
-                        
-                    }
-                    NSLogZS(@"%ld",_indexpath.row);
+                    
+                    [self performSelector:@selector(timeAction)
+                               withObject:nil
+                               afterDelay:8];
+                    
                 }
-                
                 
             }else {
                 
@@ -204,5 +202,16 @@
 //    }
 //    
 //}
+
+//延迟调用
+- (void)timeAction{
+
+    if ([_announceDelegate respondsToSelector:@selector(countEnd:)]) {
+        
+        [_announceDelegate countEnd:_indexpath];
+        
+    }
+
+}
 
 @end

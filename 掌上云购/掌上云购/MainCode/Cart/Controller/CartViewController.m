@@ -46,6 +46,7 @@
         
     }else{
         
+        [self.view endEditing:YES];
         btn.selected = YES;
         [_tabview setEditing:YES animated:YES];
         _deleteView.hidden = NO;
@@ -298,6 +299,7 @@
 
 -(void)PayClicked:(UIButton *)btn{
 
+    [self.view endEditing:YES];
     //取出存储的用户信息
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if(userDic != nil){
@@ -463,7 +465,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
+
     NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
     if (!cell) {
         
@@ -600,6 +602,7 @@
 //单元格点击事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    [tableView endEditing:YES];
     //是否在编辑模式下
     if (specialTag) {
         
@@ -608,7 +611,7 @@
         
     }else{
         
-        
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
         
     }
     
@@ -623,8 +626,6 @@
         _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
         
     }else{
-        
-        
         
     }
     
@@ -855,9 +856,9 @@
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    _tabview.height = _tabview.height - kbSize.height;
-    _bottomView.top = _bottomView.top - kbSize.height;
-    _deleteView.top = _deleteView.top - kbSize.height;
+    _tabview.height = KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f - kbSize.height;
+    _bottomView.top = KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f - kbSize.height;
+    _deleteView.top = KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f - kbSize.height;
 
 }
 
@@ -912,22 +913,22 @@
           }];
     
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-    [super touchesBegan:touches withEvent:event];
-    NSArray *cartArr = [CartTools getCartList];
-    [self getRootController].cartNum = cartArr.count;
-    for (int i = 0; i < cartArr.count; i++) {
-        
-        CartTableViewCell *cell = [_tabview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        if ([cell.goodsNumLab isFirstResponder]) {
-            [cell.goodsNumLab resignFirstResponder];
-        }
-        
-    }
-    
-}
+//
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    
+//    [super touchesBegan:touches withEvent:event];
+//    NSArray *cartArr = [CartTools getCartList];
+//    [self getRootController].cartNum = cartArr.count;
+//    for (int i = 0; i < cartArr.count; i++) {
+//        
+//        CartTableViewCell *cell = [_tabview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+//        if ([cell.goodsNumLab isFirstResponder]) {
+//            [cell.goodsNumLab resignFirstResponder];
+//        }
+//        
+//    }
+//    
+//}
 
 - (TabbarViewcontroller *)getRootController{
     

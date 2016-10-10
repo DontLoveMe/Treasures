@@ -60,9 +60,8 @@
     
     [self createTabelView];
     
-    
-    
 }
+
 - (void)requestData {
 
     [self showHUD:@"加载数据"];

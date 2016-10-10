@@ -184,7 +184,7 @@ constructingBodyWithBlock:nil
     
 }
 
-//特殊的地方
+//特殊的地方(去掉空值不完全的地方)
 + (void)specialPost:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{
     
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];

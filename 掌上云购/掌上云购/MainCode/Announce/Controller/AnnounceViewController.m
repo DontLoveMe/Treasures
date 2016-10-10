@@ -319,14 +319,19 @@
               cell.luckyLabel.hidden = NO;
               cell.announceTimeLb.hidden = NO;
               
+              cell.getUserLabel1.hidden = NO;
+              cell.peopleNumLb1.hidden = NO;
+              cell.luckyLabel1.hidden = NO;
+              cell.announceTimeLb1.hidden = NO;
+              
               cell.timeIconView.hidden = YES;
               cell.timeLabel.hidden = YES;
               cell.unveilLabel.hidden = YES;
               
-              cell.getUserLabel.text = [NSString stringWithFormat:@"获奖用户 %@",[dataDic objectForKey:@"nickName"]];
-              cell.peopleNumLb.text = [NSString stringWithFormat:@"参与次数 %ld",[[dataDic objectForKey:@"partakeCount"] integerValue]];
-              cell.luckyLabel.text = [NSString stringWithFormat:@"幸运号码 %ld",[[dataDic objectForKey:@"drawNumber"] integerValue]];
-              cell.announceTimeLb.text = [NSString stringWithFormat:@"揭晓时间 %@",[dataDic objectForKey:@"drawDate"]];
+              cell.getUserLabel.text = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"nickName"]];
+              cell.peopleNumLb.text = [NSString stringWithFormat:@"%ld",[[dataDic objectForKey:@"partakeCount"] integerValue]];
+              cell.luckyLabel.text = [NSString stringWithFormat:@"%ld",[[dataDic objectForKey:@"drawNumber"] integerValue]];
+              cell.announceTimeLb.text = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"drawDate"]];
               
               
           } failure:^(NSError *error) {
