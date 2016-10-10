@@ -49,20 +49,27 @@
     self.view.backgroundColor = [UIColor colorFromHexRGB:@"E6E6E6"];
     
     _countDown = [[CountDown alloc] init];
-   
-    [_validataButton setTitle:@"" forState:UIControlStateNormal];
-    _validataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _validataButton.width, _validataButton.height)];
-    [_validataButton addSubview:_validataLabel];
-    _validataLabel.font = [UIFont systemFontOfSize:14];
-    _validataLabel.textAlignment = NSTextAlignmentCenter;
-    _validataLabel.text = @"获取验证码";
-    _validataLabel.textColor = [UIColor whiteColor];
+    
+    
     
     [self initNavBar];
     //判断注册、找回密码、密码修改界面
     [self registOrmodify];
     //设置输入框
     [self setTextField];
+}
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [_validataButton setTitle:@"" forState:UIControlStateNormal];
+    if (_validataLabel == nil) {
+        
+        _validataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _validataButton.width, _validataButton.height)];
+    }
+    [_validataButton addSubview:_validataLabel];
+    _validataLabel.font = [UIFont systemFontOfSize:14];
+    _validataLabel.textAlignment = NSTextAlignmentCenter;
+    _validataLabel.text = @"获取验证码";
+    _validataLabel.textColor = [UIColor whiteColor];
 }
 #pragma mark - 判断界面
 //判断注册、找回密码、密码修改、绑定手机界面
@@ -297,8 +304,8 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    if (_passwrodTF.text.length == 0) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！"];
+    if (_passwrodTF.text.length < 6) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！(至少6位数)"];
         [alert addButtonTitleArray:@[@"知道了！"]];
         __weak typeof(AlertController *) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {
@@ -604,6 +611,12 @@
         
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_usernameTF resignFirstResponder];
+    [_validateTF resignFirstResponder];
+    [_passwrodTF resignFirstResponder];
+    [_rePasswordTF resignFirstResponder];
+}
 -(void)dealloc{
     
     [_countDown destoryTimer];

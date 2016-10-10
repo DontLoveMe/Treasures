@@ -10,6 +10,7 @@
 #import "RegisterViewController.h"
 #import "TabbarViewcontroller.h"
 #import "HtmlTypeController.h"
+#import "AlertController.h"
 
 @interface LoginViewController ()
 
@@ -110,6 +111,29 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
+    if (_userNameTF.text.length == 0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入账户！"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (_passwordTF.text.length == 0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        return;
+    }
     [params setObject:_userNameTF.text forKey:@"userAccount"];
     [params setObject:[MD5Security MD5String:_passwordTF.text] forKey:@"userPwd"];
     [params setObject:@"4" forKey:@"deviceType"];
@@ -124,13 +148,15 @@
                  success:^(id json) {
               
 //              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
+                  [self hideSuccessHUD:[json objectForKey:@"msg"]];
                   //把信息存到NSUserDefaults
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
                   
+              }else {
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
               }
               
            } failure:^(NSError *error) {

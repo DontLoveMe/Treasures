@@ -74,8 +74,8 @@
                 }
             }
             if (i == 0) {
-                button.selected = YES;
                 
+                [self selectManner:control];
             }
         }
         

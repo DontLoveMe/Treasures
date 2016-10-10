@@ -18,13 +18,13 @@
 @implementation PromptController
 
 static id instance = nil;
-+ (id) instance
-{
-    static dispatch_once_t predicate; dispatch_once(&predicate, ^{
-        instance = [[super alloc] init];
-    });
-    return instance;
-}
+//+ (id) instance
+//{
+//    static dispatch_once_t predicate; dispatch_once(&predicate, ^{
+//        instance = [[super alloc] init];
+//    });
+//    return instance;
+//}
 
 - (instancetype)init {
     self = [super init];
@@ -46,10 +46,15 @@ static id instance = nil;
 }
 - (IBAction)closeAction:(UIButton *)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        
+    }];
 }
 
 - (void)tapAction:(UITapGestureRecognizer*)tap {
+    
     if (_type == 0) {
         
         RedEnvelopeController *reVC = [[RedEnvelopeController alloc] init];

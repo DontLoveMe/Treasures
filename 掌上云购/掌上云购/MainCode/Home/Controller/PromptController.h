@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleWidth;
 
-+ (id) instance;
+//+ (id) instance;
 
 @property (nonatomic,assign)NSInteger tabbarIndex;
 //0 ：红包 1 ：中奖

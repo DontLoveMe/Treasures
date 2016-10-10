@@ -38,4 +38,6 @@
 //倒计时lable
 @property (strong, nonatomic) UILabel *countDownLabel;
 
+@property (copy, nonatomic)void(^countDownBlock)();
+
 @end

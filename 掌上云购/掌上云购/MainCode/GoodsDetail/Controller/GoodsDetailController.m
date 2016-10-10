@@ -150,7 +150,7 @@
 #pragma mark - 创建子视图
 - (void)initViews{
 
-    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight)];
+    _bgScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTabBarHeight)];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     _bgScrollView.delegate = self;
     _bgScrollView.showsVerticalScrollIndicator = NO;
@@ -321,6 +321,15 @@
     _oherFunctionTableView.isPrized = _isPrized;
     _oherFunctionTableView.backgroundColor = [UIColor whiteColor];
     [_bgScrollView addSubview:_oherFunctionTableView];
+    
+    __weak typeof(self) weakSelf = self;
+//    __weak typeof(GoodsDetailFunctionTableView *) weakGdft = _oherFunctionTableView;
+    [_oherFunctionTableView setCountDownBlock:^{
+        
+        [weakSelf requestDetail];
+        
+        
+    }];
     
 }
 
@@ -774,6 +783,7 @@
                   
                   //商品状态信息
                   _oherFunctionTableView.dataDic = _dataDic;
+                  
                   //进度
 //                  _oherFunctionTableView.goodSID = [_dataDic objectForKey:@"drawId"];
 //                  NSInteger total =  [[_dataDic objectForKey:@"totalShare"] integerValue];
@@ -781,21 +791,34 @@
 //                  _oherFunctionTableView.progress = now * 100 / total ;
                   
                   //夺宝状态
-                  
-                  //是否参与
-                  self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
-                  
-                  _drawId = [_dataDic objectForKey:@"drawId"];
-                  
-                  _oherFunctionTableView.isJoin = _isJoind;
-                  _oherFunctionTableView.isPrized = _isPrized;
-                  [_oherFunctionTableView reloadData];
+                  if (![_dataDic[@"saleDraw"] isKindOfClass:[NSNull class]]) {
+                      self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
+                      
+                      _drawId = [_dataDic objectForKey:@"drawId"];
+                      
+                      _oherFunctionTableView.isAnnounced = 3;
+                      self.isAnnounced = 3;
+                      _oherFunctionTableView.isJoin = _isJoind;
+                      _oherFunctionTableView.isPrized = _isPrized;
+                      [_oherFunctionTableView reloadData];
+
+                  }else {
+                      
+                      //是否参与
+                      self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
+                      
+                      _drawId = [_dataDic objectForKey:@"drawId"];
+                      
+                      _oherFunctionTableView.isJoin = _isJoind;
+                      _oherFunctionTableView.isPrized = _isPrized;
+                      [_oherFunctionTableView reloadData];
+                  }
                   
                   [self requestJoinList];
                   
               }else{
               
-                  NSLog(@"后台报错了");
+                  NSLogZS(@"后台报错了");
                   [self hideFailHUD:@"加载失败"];
                   [self.navigationController popViewControllerAnimated:YES];
                   
@@ -859,17 +882,54 @@
     if (_isAnnounced != isAnnounced) {
         
         _isAnnounced = isAnnounced;
+//        if (_isAnnounced == 1) {
+//
+//            _oherFunctionTableView.height = 275.f;
+//            
+//        }else if (_isAnnounced == 2){
+//
+//            _oherFunctionTableView.height = 260.f;
+//            
+//        }else if (_isAnnounced == 3){
+//            
+//            _oherFunctionTableView.height = 308.f;
+//            
+//        }
         if (_isAnnounced == 1) {
-
-            _oherFunctionTableView.height = 275.f;
+            
+            if (_isJoind == 0) {
+                
+                _oherFunctionTableView.height = 275.f+30;
+                
+            }else if (_isJoind == 1){
+                
+                _oherFunctionTableView.height = 300.f+50;
+                
+            }
             
         }else if (_isAnnounced == 2){
-
-            _oherFunctionTableView.height = 260.f;
+            
+            if (_isJoind == 0) {
+                
+                _oherFunctionTableView.height = 260.f;
+                
+            }else if (_isJoind == 1){
+                
+                _oherFunctionTableView.height = 285.f;
+                
+            }
             
         }else if (_isAnnounced == 3){
             
-            _oherFunctionTableView.height = 308.f;
+            if (_isJoind == 0) {
+                
+                _oherFunctionTableView.height = 308.f+70;
+                
+            }else if (_isJoind == 1){
+                
+                _oherFunctionTableView.height = 335.f+70;
+                
+            }
             
         }
         _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);

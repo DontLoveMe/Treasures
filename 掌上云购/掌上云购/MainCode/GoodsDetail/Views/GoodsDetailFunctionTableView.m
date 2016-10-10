@@ -209,14 +209,17 @@
         [goodsDetailView addSubview:issueLabel];
         
         _countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.f, issueLabel.bottom, KScreenWidth - 80.f, 20.f)];
-        _countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
+//        _countDownLabel.text = [NSString stringWithFormat:@"预计揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
         _countDownLabel.textAlignment = NSTextAlignmentLeft;
         _countDownLabel.font = [UIFont systemFontOfSize:13];
         _countDownLabel.textColor = [UIColor whiteColor];
         _countDownLabel.backgroundColor = [UIColor clearColor];
         [goodsDetailView addSubview:_countDownLabel];
         
-        self.countDownTime = [[_dataDic objectForKey:@"countDownTime"] integerValue];
+        if (![[_dataDic objectForKey:@"countdownTime"] isKindOfClass:[NSNull class]]) {
+            
+            self.countDownTime = [[_dataDic objectForKey:@"countdownTime"] integerValue];
+        }
         
         UIButton *previewCountWayButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth - 72.f, 15.f, 64.f, 28.f)];
         [previewCountWayButton setTitle:@"计算详情"
@@ -632,31 +635,29 @@
             if (hour<=0&&minute<=0&&second<=0&&millisecond<=0) {
                 
                 [weakSelf.countDown destoryTimer];
-                if (_countDownTime < 0) {
-                   
-//                    weakSelf.countDownLabel.text = @"正在计算开奖结果";
-                }else {
-                    
+                
                     weakSelf.countDownLabel.text = @"正在计算开奖结果";
 //
-                    
-                }
-                
+                    [self performSelector:@selector(afterDelayAction) withObject:nil afterDelay:8];
+
                 
             }else {
                 
                 
                 if (hour>0) {
                     
-                    weakSelf.countDownLabel.text = [NSString stringWithFormat:@"%02ld : %02ld : %02ld ",hour , minute,second];
+                    weakSelf.countDownLabel.text = [NSString stringWithFormat:@"揭晓倒计时：%02ld : %02ld : %02ld ",hour , minute,second];
                     
                 }else {
                     
-                    weakSelf.countDownLabel.text = [NSString stringWithFormat:@"%02ld : %02ld : %02ld", minute,second,millisecond];
+                    weakSelf.countDownLabel.text = [NSString stringWithFormat:@"揭晓倒计时：%02ld : %02ld : %02ld", minute,second,millisecond];
                 }
             }
         }];
 //    }
+}
+- (void)afterDelayAction {
+    self.countDownBlock();
 }
 
 @end

@@ -23,7 +23,10 @@
 
 #import "PromptController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+    PromptController *pVC;
+
+}
 
 @end
 
@@ -163,12 +166,19 @@
         NSLog(@"%@",userInfo[@"title"]);
 
         if ([userInfo[@"msg_type"] integerValue] == 4) {
-            PromptController *pVC = [PromptController instance];
+            if (pVC.parentViewController == self.window.rootViewController) {
+                return;
+            }
+            pVC = [[PromptController alloc] init];
             pVC.type = 0;
             pVC.titleLabel.text = userInfo[@"aps"][@"alert"];
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
         }else {
-            PromptController *pVC = [PromptController instance];
+            
+            if (pVC.parentViewController == self.window.rootViewController) {
+                return;
+            }
+            pVC = [[PromptController alloc] init];
             pVC.type = 1;
             pVC.titleLabel.text = userInfo[@"aps"][@"alert"];
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];

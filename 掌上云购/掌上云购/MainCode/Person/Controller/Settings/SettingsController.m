@@ -139,7 +139,11 @@
             break;
         case 1://通知设置
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=com.zsyg.raise"]];
+            NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if([[UIApplication sharedApplication] canOpenURL:url]) {
+                NSURL*url =[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                [[UIApplication sharedApplication] openURL:url];
+            }
         }
             break;
         case 2://常见问题

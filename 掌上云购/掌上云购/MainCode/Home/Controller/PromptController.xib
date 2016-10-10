@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromptController">
@@ -19,7 +20,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n58-bw-G9s">
-                    <rect key="frame" x="277" y="137" width="66" height="54"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="Ggt-ja-wmd"/>
                         <constraint firstAttribute="width" constant="66" id="iJz-JB-UZy"/>
@@ -29,20 +29,17 @@
                         <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="PWR-1N-WpY"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="中奖提示.png" translatesAutoresizingMaskIntoConstraints="NO" id="rLp-jj-aZk">
-                    <rect key="frame" x="45" y="199" width="284" height="269"/>
-                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="中奖提示.png" translatesAutoresizingMaskIntoConstraints="NO" id="rLp-jj-aZk"/>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜你成为幸运用户" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-2F-jj0">
-                    <rect key="frame" x="131" y="333" width="130" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="130" id="hms-el-dGU"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.94910615682601929" green="1" blue="0.0056595024652779102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.93911021947860718" green="1" blue="0.043142106384038925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="P5n-2F-jj0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="23.5" id="FTI-gB-cFF"/>
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="top" secondItem="n58-bw-G9s" secondAttribute="bottom" constant="8" id="L2a-1p-ob7"/>
@@ -51,7 +48,6 @@
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Z5E-aJ-6BU"/>
                 <constraint firstItem="rLp-jj-aZk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lJ5-sg-0sD"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="259.5" y="262.5"/>
         </view>
     </objects>

@@ -219,29 +219,43 @@
     }
     
     NSInteger type = [_orderDic[@"receivingType"] integerValue];
-    if (type == 2) {
-        cell.mannerLabel.text = @"已选择：充值到话费、油卡等虚拟物品";
-        if (statu == 6) {
-            cell.stateLabel3.text = @"正在充值中";
-        }else if (statu == 7) {
-            cell.stateLabel3.text = @"已充值到话费、油卡等虚拟物品";
+    for (int i = 0; i < _dicts.count; i++) {
+        NSDictionary *dic = _dicts[i];
+        if (type == [dic[@"value"] integerValue]) {
+            cell.mannerLabel.text = [NSString stringWithFormat:@"已选择：充值到%@",dic[@"label"]];
+            
+            if (statu == 6) {
+                cell.stateLabel3.text = @"正在充值中";
+            }else if (statu == 7) {
+                cell.stateLabel3.text = [NSString stringWithFormat:@"已充值到%@",dic[@"label"]];
+            }
         }
         
-    }else if (type == 3) {
-        cell.mannerLabel.text = @"已选择：充值到余额";
-        if (statu == 6) {
-            cell.stateLabel3.text = @"正在充值中";
-        }else if (statu == 7) {
-            cell.stateLabel3.text = @"已充值到余额";
-        }
-    }else if (type == 4){
-        cell.mannerLabel.text = @"已选择：充值到支付宝";
-        if (statu == 6) {
-            cell.stateLabel3.text = @"正在充值中";
-        }else if (statu == 7) {
-            cell.stateLabel3.text = @"已充值到支付宝";
-        }
+        
     }
+//    if (type == 2) {
+//        cell.mannerLabel.text = @"已选择：充值到话费、油卡等虚拟物品";
+//        if (statu == 6) {
+//            cell.stateLabel3.text = @"正在充值中";
+//        }else if (statu == 7) {
+//            cell.stateLabel3.text = @"已充值到话费、油卡等虚拟物品";
+//        }
+//        
+//    }else if (type == 3) {
+//        cell.mannerLabel.text = @"已选择：充值到余额";
+//        if (statu == 6) {
+//            cell.stateLabel3.text = @"正在充值中";
+//        }else if (statu == 7) {
+//            cell.stateLabel3.text = @"已充值到余额";
+//        }
+//    }else if (type == 4){
+//        cell.mannerLabel.text = @"已选择：充值到支付宝";
+//        if (statu == 6) {
+//            cell.stateLabel3.text = @"正在充值中";
+//        }else if (statu == 7) {
+//            cell.stateLabel3.text = @"已充值到支付宝";
+//        }
+//    }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

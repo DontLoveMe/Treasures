@@ -9,7 +9,6 @@
 #import "BaseViewController.h"
 
 @interface RegisterViewController : BaseViewController
-
 @property (weak, nonatomic) IBOutlet UITextField *usernameTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *validateTF;
