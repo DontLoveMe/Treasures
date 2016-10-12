@@ -63,7 +63,7 @@
     if (_timer==nil) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-            dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_MSEC, 0); //每豪秒执行
+            dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),10.0*NSEC_PER_MSEC, 0); //每10豪秒执行
             dispatch_source_set_event_handler(_timer, ^{
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     PER_SECBlock();

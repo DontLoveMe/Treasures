@@ -493,12 +493,14 @@
                             @"singlePrice":[_dataDic objectForKey:@"singlePrice"]};
 
     BOOL isSuccess = [CartTools addCartList:@[goods]];
+    [self showHUD:@"正在加入清单"];
     if (isSuccess) {
         
         [self getRootController].cartNum = [CartTools getCartList].count;
-        [self showHUD:@"正在加入购物车"];
-        [self hideSuccessHUD:@"加入购物车成功"];
+        [self hideFailHUD:@"加入清单成功"];
    
+    }else {
+        [self hideFailHUD:@"加入清单失败"];
     }
     
 }
@@ -679,7 +681,7 @@
                          
                          [self performSelector:@selector(cameBackAction)
                                     withObject:nil
-                                    afterDelay:2];
+                                    afterDelay:1.5];
                          
                      }];
 
@@ -693,7 +695,7 @@
                          _joinView.height = 0;
                          _joinImageView.height = 0;
                          _joinLabel.height = 0;
-                         
+                         _joinLabel.text = @"";
                      } completion:nil];
     
 }

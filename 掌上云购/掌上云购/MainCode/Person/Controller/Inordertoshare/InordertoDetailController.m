@@ -71,7 +71,7 @@
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:_iShareModel.content
                                          images:[self getImage]//传入要分享的图片
-                                            url:[NSURL URLWithString:@"http://mob.com"]
+                                            url:nil
                                           title:_iShareModel.title
                                            type:SSDKContentTypeAuto];
         
@@ -86,20 +86,45 @@
         //设置简单分享菜单样式
         [SSUIShareActionSheetStyle setShareActionSheetStyle:ShareActionSheetStyleSystem];
         
-        //分享
+        //分享@[@(SSDKPlatformTypeSinaWeibo),
+        //@(SSDKPlatformTypeWechat),
+        //@(SSDKPlatformTypeQQ)]
         [ShareSDK showShareActionSheet:nil
          //将要自定义顺序的平台传入items参数中
-                                 items:@[@(SSDKPlatformTypeSinaWeibo),
-                                         @(SSDKPlatformTypeWechat),
-                                         @(SSDKPlatformTypeQQ)]
+                                 items:@[@(SSDKPlatformTypeWechat)]
                            shareParams:shareParams
                    onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
                    
-                       if (!error) {
+                       if (contentEntity) {
                            NSLogZS(@"分享成功");
+                           UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                                    message:@"分享成功" preferredStyle:UIAlertControllerStyleAlert];
+                           UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                                  style:UIAlertActionStyleCancel
+                                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                                    [alertController dismissViewControllerAnimated:YES
+                                                                                                                        completion:nil];
+                                                                                }];
+                           [alertController addAction:cancelAction];
+                           [self presentViewController:alertController
+                                              animated:YES
+                                            completion:nil];
                            [self requestShara];
-                       }else {
+                       }
+                       if (error){
                            NSLogZS(@"%@",error);
+                           UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                                    message:@"分享失败！" preferredStyle:UIAlertControllerStyleAlert];
+                           UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                                  style:UIAlertActionStyleCancel
+                                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                                    [alertController dismissViewControllerAnimated:YES
+                                                                                                                        completion:nil];
+                                                                                }];
+                           [alertController addAction:cancelAction];
+                           [self presentViewController:alertController
+                                              animated:YES
+                                            completion:nil];
                        }
                    }];
     }
@@ -176,7 +201,7 @@
     
     _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth-110, 10, 100, 40)];
 //    _timeLabel.backgroundColor = [UIColor grayColor];
-    _timeLabel.text = @"08-21 21:00";
+    _timeLabel.text = @"";
     _timeLabel.textColor = [UIColor blackColor];
     _timeLabel.textAlignment = NSTextAlignmentRight;
     _timeLabel.font = [UIFont systemFontOfSize:16];
@@ -219,7 +244,7 @@
         [imgViewArr addObject:imgView];
     }
     _imgViews = imgViewArr;
-//    _scrollView.contentSize = CGSizeMake(KScreenWidth, _imgViews[0]);
+    _scrollView.contentSize = CGSizeMake(KScreenWidth, KScreenHeight+100);
 }
 - (void)requestData {
     
@@ -232,11 +257,14 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:@"数据加载成功"];
+              
               if (isSuccess) {
                   InordertoshareModel *iSModel = [InordertoshareModel mj_objectWithKeyValues:json[@"data"]];
                   _iShareModel = iSModel;
                   [self setSubViews:iSModel];
+                  [self hideSuccessHUD:@"数据加载成功"];
+              }else{
+                  [self hideFailHUD:@"加载失败"];
               }
               
               
@@ -311,12 +339,13 @@
                 imgHeight = image.size.height/image.size.width*(KScreenWidth-30);
                 imgViewHeight += imgHeight+10;
                 
-                
+                _scrollView.contentSize = CGSizeMake(KScreenWidth, _iconView.height+_bgView.height+ contentRect.size.height+imgViewHeight+50);
             } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
                 
             }];
         }
     }
-    _scrollView.contentSize = CGSizeMake(KScreenWidth, _iconView.height+_bgView.height+ contentRect.size.height+imgViewHeight+50);
+//    _scrollView.contentSize = CGSizeMake(KScreenWidth, _iconView.height+_bgView.height+ contentRect.size.height+imgViewHeight+50);
+
 }
 @end

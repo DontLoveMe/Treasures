@@ -11,6 +11,8 @@
 #import "PayTwoKindCell.h"
 #import "PayThreeKindCell.h"
 #import "UIView+SDAutoLayout.h"
+#import "ResultController.h"
+#import "SnatchRecordController.h"
 
 
 @interface PayViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -29,6 +31,12 @@
 
 //结算按钮
 @property(nonatomic,strong)UIButton *settlebtn;
+
+//展开的行数
+@property(nonatomic,assign)NSInteger rows;
+
+//是否展开
+@property(nonatomic,assign)BOOL isOpen;
 
 @end
 
@@ -215,7 +223,7 @@
     totalPrice = totalPrice - _redEnveloperReduceCount;
     
     //如果需要支付金额小于0
-    if(totalPrice < 0){
+    if(totalPrice <= 0){
         
         [params setObject:@"0"forKey:@"balanceConsume"];
         [params setObject:@"0" forKey:@"payType"];
@@ -399,13 +407,29 @@
                   }else{
                   
                       [self hideSuccessHUD:@"支付成功"];
-                      [self.navigationController popToRootViewControllerAnimated:YES];
-                 
+//                      [self.navigationController popToRootViewControllerAnimated:YES];
+                      ResultController *rVC = [[ResultController alloc] init];
+                      rVC.contentLabel.text = @"支付成功！";
+                      __weak typeof(self) weakSelf = self;
+                      [rVC setClickBlock:^(NSInteger tag) {
+                          if (tag == 100) {
+                              [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                          }else if (tag == 101){
+                              
+                              SnatchRecordController *src = [[SnatchRecordController alloc] init];
+                              [weakSelf.navigationController pushViewController:src animated:YES];
+                              
+                          }
+                          
+                      }];
+                      [self presentViewController:rVC animated:YES completion:nil];
                   }
                   
               }else{
                   
-                  [self hideFailHUD:@"支付失败"];
+                  ResultController *rVC = [[ResultController alloc] init];
+                  rVC.contentLabel.text = @"支付失败！";
+                  [self presentViewController:rVC animated:YES completion:nil];
                   
               }
               
@@ -465,43 +489,84 @@
 }
 
 #pragma mark-----UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 2;
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 6;
+    if (section == 0) {
+        return 1+_rows;
+    }
+    return 5;
 
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if (indexPath.row==0) {
-        
-        //商品总计
-        PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        
-        if (!cell) {
+    if (indexPath.section == 0) {
+        if (indexPath.row==0) {
             
-            cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+            //商品总计
+            PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             
-            NSMutableArray *carArr = [NSMutableArray array];
-            if ([_isimidiately isEqualToString:@"1"]) {
+            if (!cell) {
                 
-                carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
                 
-            }else{
+                NSMutableArray *carArr = [NSMutableArray array];
+                if ([_isimidiately isEqualToString:@"1"]) {
+                    
+                    carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                    
+                }else{
+                    
+                    carArr = [_immidiatelyArr mutableCopy];
+                }
+                NSInteger totalPrice = 0;
+                for (int i = 0; i < carArr.count; i ++) {
+                    
+                    NSDictionary *dic = [carArr objectAtIndex:i];
+                    NSInteger singlePrice = [[dic objectForKey:@"singlePrice"] integerValue];
+                    NSInteger num = [[dic objectForKey:@"buyTimes"] integerValue];
+                    totalPrice = totalPrice + singlePrice * num;
+                    
+                }
+                cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品（总计%ld元）",(unsigned long)carArr.count,totalPrice];
                 
-                carArr = [_immidiatelyArr mutableCopy];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                cell.iconView.image = [UIImage imageNamed:@"箭头-下"];
+                
             }
-            cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品",(unsigned long)carArr.count];
             
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
             
-            cell.iconView.image = [UIImage imageNamed:@"箭头-下"];
-            
+        }else {
+            if (_isOpen == YES) {
+                
+                UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
+                cell.textLabel.font = [UIFont systemFontOfSize:14];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+                
+                NSMutableArray *carArr = [NSMutableArray array];
+                if ([_isimidiately isEqualToString:@"1"]) {
+                    
+                    carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                    
+                }else{
+                    
+                    carArr = [_immidiatelyArr mutableCopy];
+                }
+                cell.textLabel.text = carArr[indexPath.row-1][@"name"];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@人次",carArr[indexPath.row-1][@"buyTimes"]];
+                
+                return cell;
+            }
         }
-        
-        return cell;
-        
-    }else if (indexPath.row==1){
+    }
+    if (indexPath.row==0){
   
         //红包抵扣
         UITableViewCell *cell = [[UITableViewCell alloc] init];
@@ -516,7 +581,7 @@
 
         return cell;
 
-    }else if (indexPath.row==2){
+    }else if (indexPath.row==1){
         
         //余额应当支付多少元
         PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -577,7 +642,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
-    }else if (indexPath.row==3){
+    }else if (indexPath.row==2){
         
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
@@ -646,7 +711,7 @@
         
     }
 
-    NSInteger cellStatu = [_thirdPayState[indexPath.row - 4] integerValue];
+    NSInteger cellStatu = [_thirdPayState[indexPath.row - 3] integerValue];
     if (cellStatu == 0) {
         [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
     }else{
@@ -654,8 +719,8 @@
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-4]];
-    cell.wechat.text = titles[indexPath.row-4];
+    cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-3]];
+    cell.wechat.text = titles[indexPath.row-3];
 
     return cell;
     
@@ -663,21 +728,52 @@
 
 #pragma mark---UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 50;
+        }else {
+            return 35;
+        }
+    }
     return 50;
  
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
+    if (section == 0) {
+        return 0;
+    }
     return 0.01;
 
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.section == 0) {
+        _isOpen = !_isOpen;
+        if (_isOpen) {
+            NSMutableArray *carArr = [NSMutableArray array];
+            if ([_isimidiately isEqualToString:@"1"]) {
+                
+                carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
+                
+            }else{
+                
+                carArr = [_immidiatelyArr mutableCopy];
+            }
+            _rows = carArr.count;
+        }else {
+            _rows = 0;
+        }
+        
+
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+        [tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+//        [tableView endUpdates];
+    }else{
+        
     //选择红包
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
         
         RedEnvelopeController *redEVC = [[RedEnvelopeController alloc] init];
         NSMutableArray *cartArr = [NSMutableArray array];
@@ -703,13 +799,13 @@
         redEVC.isPay = @"2";
         [self.navigationController pushViewController:redEVC animated:YES];
         
-    }else if (indexPath.row == 2){
+    }else if (indexPath.row == 1){
     
         _isBalance = 1 - _isBalance;
-        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0]]
+        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1],[NSIndexPath indexPathForRow:2 inSection:1]]
                     withRowAnimation:UITableViewRowAnimationFade];
     
-    }else if (indexPath.row == 4){
+    }else if (indexPath.row == 3){
     
         NSInteger cellState = [_thirdPayState[0] integerValue];
         if (cellState == 0) {
@@ -717,9 +813,9 @@
         }else{
             _thirdPayState = @[@"0",@"0"];
         }
-        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0],[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1],[NSIndexPath indexPathForRow:4 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
         
-    }else if (indexPath.row ==5){
+    }else if (indexPath.row ==4){
         
         NSInteger cellState = [_thirdPayState[1] integerValue];
         if (cellState == 0) {
@@ -728,10 +824,11 @@
             _thirdPayState = @[@"0",@"0"];
         }
         
-        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 inSection:0],[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1],[NSIndexPath indexPathForRow:4 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
         
     }
 
+    }
 }
 
 - (TabbarViewcontroller *)getRootController{
@@ -746,7 +843,7 @@
 
     _redEnveloperReduceCount = [[redEnveloperDic objectForKey:@"amount"] integerValue];
     _redEnveloperID = [NSString stringWithFormat:@"%ld",[[redEnveloperDic objectForKey:@"id"] integerValue]];
-    [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0],[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1],[NSIndexPath indexPathForRow:1 inSection:1],[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
     
 }
 

@@ -111,6 +111,7 @@
     
     _oldPhoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth-10, 35)];
     _oldPhoneTF.clearButtonMode = UITextFieldViewModeAlways;
+    _oldPhoneTF.keyboardType = UIKeyboardTypeNumberPad;
     _oldPhoneTF.borderStyle = UITextBorderStyleRoundedRect;
     _oldPhoneTF.font = [UIFont systemFontOfSize:14];
     _oldPhoneTF.textColor = [UIColor blackColor];
@@ -121,6 +122,7 @@
     _oldPhoneTF.placeholder = @"请输入旧手机号码";
     [self.view addSubview:_oldPhoneTF];
     _phoneTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 53, KScreenWidth-10, 35)];
+    _phoneTF.keyboardType = UIKeyboardTypeNumberPad;
     _phoneTF.clearButtonMode = UITextFieldViewModeAlways;
     _phoneTF.borderStyle = UITextBorderStyleRoundedRect;
     _phoneTF.font = [UIFont systemFontOfSize:14];
@@ -129,6 +131,7 @@
     [self.view addSubview:_phoneTF];
     
     _verifyTF = [[UITextField alloc] initWithFrame:CGRectMake(5, 93, KScreenWidth/2, 35)];
+    _verifyTF.keyboardType = UIKeyboardTypeNumberPad;
     _verifyTF.borderStyle = UITextBorderStyleRoundedRect;
     _verifyTF.font = [UIFont systemFontOfSize:14];
     _verifyTF.textColor = [UIColor blackColor];
@@ -178,12 +181,22 @@
 #pragma mark - 按钮点击
 //验证
 - (void)verifyAction:(UIButton *)button {
+    if (_phoneTF.text.length==0) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"请填写手机号码！"];
+        [alert addButtonTitleArray:@[@"好的"]];
+        
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     //    60s的倒计时
     NSTimeInterval aMinutes = 60;
     [self startWithStartDate:[NSDate date] finishDate:[NSDate dateWithTimeIntervalSinceNow:aMinutes] timeButton:button];
-    if (_phoneTF.text.length==0) {
-        return;
-    }
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];

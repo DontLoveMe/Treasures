@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tencent100371282</string>
+				<string>tencent1105626495</string>
 			</array>
 		</dict>
 		<dict>
@@ -33,7 +33,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wb568898243</string>
+				<string>wb2977151595</string>
 			</array>
 		</dict>
 		<dict>
@@ -126,6 +126,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>是否允许拍照</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>是否允许进入相册</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -142,9 +146,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许进入相册</string>
-	<key>NSCameraUsageDescription</key>
-	<string>是否允许拍照</string>
 </dict>
 </plist>

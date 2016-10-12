@@ -10,6 +10,7 @@
 #import "CountDown.h"
 #import "AlertController.h"
 #import "HtmlTypeController.h"
+#import "DelegateTxtController.h"
 
 @interface RegisterViewController ()
 
@@ -239,28 +240,31 @@
 
 //用户协议
 - (IBAction)userDelegateAction:(UIButton *)sender {
-    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
-    htmlType.htmlUrl = @"/pcpServer-inf/html/agreement.html";
-    htmlType.title = @"隐私协议";
-    UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
-    [self presentViewController:htVC animated:YES completion:nil];
+    DelegateTxtController *dtVC = [[DelegateTxtController alloc] init];
+
+    UINavigationController *dVC = [[UINavigationController alloc] initWithRootViewController:dtVC];
+    [self presentViewController:dVC animated:YES completion:nil];
     
 }
 //注册
 - (IBAction)registerAction:(UIButton *)sender {
-    
-    
-    if (![_passwrodTF.text isEqualToString:_rePasswordTF.text]) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"两次输入的密码不同！"];
-        [alert addButtonTitleArray:@[@"知道了！"]];
-        __weak typeof(AlertController *) weakAlert = alert;
-        [alert setClickButtonBlock:^(NSInteger tag) {
-            [weakAlert dismissViewControllerAnimated:YES completion:nil];
-        }];
+    if ([_usernameTF isFirstResponder]) {
         
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
+        [_usernameTF resignFirstResponder];
     }
+    if ([_validateTF isFirstResponder]) {
+        
+        [_validateTF resignFirstResponder];
+    }
+    if ([_passwrodTF isFirstResponder]) {
+        
+        [_passwrodTF resignFirstResponder];
+    }
+    if ([_rePasswordTF isFirstResponder]) {
+        
+        [_rePasswordTF resignFirstResponder];
+    }
+    
     
     if (_isRegistOrmodify == 0) {
         
@@ -304,8 +308,19 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    if (_passwrodTF.text.length < 6) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！(至少6位数)"];
+    if (_passwrodTF.text.length < 8 || _passwrodTF.text.length > 20) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！(8-20位数)"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (![_passwrodTF.text isEqualToString:_rePasswordTF.text]) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"两次输入的密码不同！"];
         [alert addButtonTitleArray:@[@"知道了！"]];
         __weak typeof(AlertController *) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {
@@ -374,8 +389,19 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    if (_passwrodTF.text.length == 0) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！"];
+    if (_passwrodTF.text.length < 8||_passwrodTF.text.length > 20) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！(8-20位数)"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (![_passwrodTF.text isEqualToString:_rePasswordTF.text]) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"两次输入的密码不同！"];
         [alert addButtonTitleArray:@[@"知道了！"]];
         __weak typeof(AlertController *) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {
@@ -391,6 +417,7 @@
     [params setObject:_usernameTF.text forKey:@"userAccount"];
     [params setObject:_validateTF.text forKey:@"captcha"];
     [params setObject:[MD5Security MD5String:_rePasswordTF.text] forKey:@"newUserPwd"];
+    [self showHUD:@"正在找回"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,FindPWD_URL];
     [ZSTools post:url
            params:params
@@ -402,10 +429,12 @@
                   
                   [self dismissViewControllerAnimated:YES completion:nil];
                   
+              }else{
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
               }
               
           } failure:^(NSError *error) {
-              
+              [self hideFailHUD:@"找回失败"];
           }];
 }
 #pragma mark - 修改密码
@@ -422,8 +451,8 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    if (_passwrodTF.text.length == 0) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！"];
+    if (_passwrodTF.text.length < 8||_passwrodTF.text.length >20) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！(8-20位数)"];
         [alert addButtonTitleArray:@[@"知道了！"]];
         __weak typeof(AlertController *) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {
@@ -433,7 +462,17 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    
+    if (![_passwrodTF.text isEqualToString:_rePasswordTF.text]) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"两次输入的密码不同！"];
+        [alert addButtonTitleArray:@[@"知道了！"]];
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            [weakAlert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSDictionary *userLoginDic =userDic[@"userLoginDto"];
@@ -526,7 +565,7 @@
     [params setObject:_validateTF.text forKey:@"captcha"];
     [params setObject:_usernameTF.text forKey:@"Mobile"];
 
-    
+    [self showHUD:@"绑定中"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLoginPhone_URL];
     [ZSTools specialPost:url
            params:params
@@ -535,16 +574,19 @@
               NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
+                  [self hideSuccessHUD:[json objectForKey:@"msg"]];
                   //把信息存到NSUserDefaults
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
 //                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                   [self dismissViewControllerAnimated:YES completion:nil];
                   
+              }else{
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
               }
               
           } failure:^(NSError *error) {
-              
+              [self hideFailHUD:@"绑定失败"];
           }];
 }
 #pragma mark - 下方按钮的点击
@@ -612,10 +654,22 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [_usernameTF resignFirstResponder];
-    [_validateTF resignFirstResponder];
-    [_passwrodTF resignFirstResponder];
-    [_rePasswordTF resignFirstResponder];
+    if ([_usernameTF isFirstResponder]) {
+        
+        [_usernameTF resignFirstResponder];
+    }
+    if ([_validateTF isFirstResponder]) {
+        
+        [_validateTF resignFirstResponder];
+    }
+    if ([_passwrodTF isFirstResponder]) {
+        
+        [_passwrodTF resignFirstResponder];
+    }
+    if ([_rePasswordTF isFirstResponder]) {
+        
+        [_rePasswordTF resignFirstResponder];
+    }
 }
 -(void)dealloc{
     

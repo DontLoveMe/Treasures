@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *photoUrllist;
 
+@property (nonatomic, strong) NSArray<NSString *> *photoUrl170list;
+
 @property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, copy) NSString *updateDate;

@@ -65,7 +65,7 @@
      *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
-    [ShareSDK registerApp:@"16ce650aff498"
+    [ShareSDK registerApp:@"17bce2ea96f7c"
      
           activePlatforms:@[
                             @(SSDKPlatformTypeSinaWeibo),
@@ -96,8 +96,8 @@
          {
              case SSDKPlatformTypeSinaWeibo:
                  //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243"
-                                           appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
+                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2977151595"
+                                           appSecret:@"a188c1aa32d4b842c77b95a62413ff0f"
                                          redirectUri:@"http://www.sharesdk.cn"
                                             authType:SSDKAuthTypeBoth];
                  break;

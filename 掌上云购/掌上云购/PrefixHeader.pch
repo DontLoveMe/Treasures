@@ -28,6 +28,7 @@
 #import <SS-BaiduPushSDK/BPush.h>
 #import "JHFSDK.h"
 #import "JHFOrder.h"
+#import "TimeFormat.h"
 #endif
 
 //主色调

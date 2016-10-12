@@ -198,10 +198,10 @@
             
             cell.stateLabel2.text = [NSString stringWithFormat:@"确认收货地址"];
             if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel1.text = _orderDic[@"drawDate"];
+                cell.timeLabel1.text = [TimeFormat getNewTimeString:_orderDic[@"drawDate"]];
             }
             if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+                cell.timeLabel2.text = [TimeFormat getNewTimeString:_orderDic[@"confirmGoodsAddressDate"]];
             }
             cell.timeLabel3.text = @"";
             cell.timeLabel4.text = @"";
@@ -237,13 +237,13 @@
     
             
             if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel1.text = _orderDic[@"drawDate"];
+                cell.timeLabel1.text = [TimeFormat getNewTimeString:_orderDic[@"drawDate"]];
             }
             if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+                cell.timeLabel2.text = [TimeFormat getNewTimeString: _orderDic[@"confirmGoodsAddressDate"]];
             }
             if (![_orderDic[@"deliverDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel3.text = _orderDic[@"deliverDate"];
+                cell.timeLabel3.text = [TimeFormat getNewTimeString:_orderDic[@"deliverDate"]];
             }
             cell.timeLabel4.text = @"";
             
@@ -297,16 +297,16 @@
             cell.stateView5.highlighted = YES;
             cell.stateLabel5.highlighted = YES;
             if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel1.text = _orderDic[@"drawDate"];
+                cell.timeLabel1.text = [TimeFormat getNewTimeString: _orderDic[@"drawDate"]];
             }
             if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+                cell.timeLabel2.text = [TimeFormat getNewTimeString:_orderDic[@"confirmGoodsAddressDate"]];
             }
             if (![_orderDic[@"deliverDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel3.text = _orderDic[@"deliverDate"];
+                cell.timeLabel3.text = [TimeFormat getNewTimeString:_orderDic[@"deliverDate"]];
             }
             if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
+                cell.timeLabel4.text = [TimeFormat getNewTimeString: _orderDic[@"confirmGoodsReceiptDate"]];
             }
         }else {
             
@@ -338,30 +338,51 @@
             cell.stateView5.highlighted = YES;
             cell.stateLabel5.highlighted = YES;
             if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel1.text = _orderDic[@"drawDate"];
+                cell.timeLabel1.text = [TimeFormat getNewTimeString:_orderDic[@"drawDate"]];
             }
             if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+                cell.timeLabel2.text = [TimeFormat getNewTimeString:_orderDic[@"confirmGoodsAddressDate"]];
             }
             if (![_orderDic[@"deliverDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel3.text = _orderDic[@"deliverDate"];
+                cell.timeLabel3.text = [TimeFormat getNewTimeString:_orderDic[@"deliverDate"]];
             }
             if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
-                cell.timeLabel4.text = _orderDic[@"confirmGoodsReceiptDate"];
+                cell.timeLabel4.text = [TimeFormat getNewTimeString:_orderDic[@"confirmGoodsReceiptDate"]];
             }
         }
     
         return cell;
 
     }
-    if (_sectionArr.count>2) {
-        if (indexPath.section == 1||indexPath.section == 2) {
+    if (_sectionArr.count==3) {
+        
+        if (indexPath.section == 1)
+        {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellStyleSubtitle"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.textLabel.font = [UIFont systemFontOfSize:13];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
             cell.detailTextLabel.numberOfLines = 2;
 
+           
+                if (![_orderDic[@"consigneeName"] isKindOfClass:[NSNull class]]) {
+                    cell.textLabel.text = [NSString stringWithFormat:@"姓名：%@  联系方式（%@)",_orderDic[@"consigneeName"],_orderDic[@"mobile"]];
+                }
+                if (![_orderDic[@"addressDetailFull"] isKindOfClass:[NSNull class]]) {
+                    
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"\n快递地址：%@",_orderDic[@"addressDetailFull"]];
+                }
+            
+            return cell;
+        }
+    }else if (_sectionArr.count==4){
+        if (indexPath.section == 1||indexPath.section == 2) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellStyleSubtitle"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+            cell.detailTextLabel.numberOfLines = 2;
+            
             if (indexPath.section == 1) {
                 if (![_orderDic[@"invoiceCompany"] isKindOfClass:[NSNull class]]) {
                     cell.textLabel.text = [NSString stringWithFormat:@"物流公司：%@",_orderDic[@"invoiceCompany"]];
@@ -381,6 +402,7 @@
             }
             return cell;
         }
+
     }
     
     LuckyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
@@ -572,8 +594,10 @@
                   if (status == 0) {
                       
                       _sectionArr = @[@"  商品状态",@"  商品信息"];
-                  }else {
+                  }else if (status == 1){
                       
+                      _sectionArr = @[@"  商品状态",@"  地址信息",@"  商品信息"];
+                  }else {
                       _sectionArr = @[@"  商品状态",@"  物流信息",@"  地址信息",@"  商品信息"];
                   }
                   
@@ -648,13 +672,5 @@
               NSLogZS(@"%@",error);
           }];
 }
-- (NSString *)dateForString:(NSString *)dateStr {
-    // 格式化时间
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    // 毫秒值转化为秒
-    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[dateStr doubleValue]/ 1000.0];
-    NSString* dateString = [formatter stringFromDate:date];
-    return dateString;
-}
+
 @end

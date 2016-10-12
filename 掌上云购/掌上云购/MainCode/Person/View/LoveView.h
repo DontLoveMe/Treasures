@@ -14,4 +14,6 @@
 @property (nonatomic,strong)UILabel *loveLabel;
 @property (nonatomic,strong)NSArray *loveData;
 
+- (void)requestLoveData;
+
 @end

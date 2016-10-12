@@ -130,8 +130,9 @@
             NSURL *url = [NSURL URLWithString:prtLs.img650];
             [cell.titleView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
         }
+        
         cell.titleLabel.text = _rcModel.name;
-        cell.participateLabel.text = [NSString stringWithFormat:@"参与人次：%ld",_rcModel.saleDraw.sellShare];
+        cell.participateLabel.text = [NSString stringWithFormat:@"参与人次：%ld",_rcModel.partakeCount];
          NSInteger status = [_orderDic[@"status"] integerValue];
         switch (status) {
             case 4:
@@ -171,7 +172,7 @@
         
         if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
             
-            cell.timeLabel1.text = _orderDic[@"drawDate"];
+            cell.timeLabel1.text = [TimeFormat getNewTimeString:_orderDic[@"drawDate"]];
         }else {
             cell.timeLabel1.text = @"";
         }
@@ -186,19 +187,19 @@
     cell.rcModel = self.rcModel;
     if (![_orderDic[@"drawDate"] isKindOfClass:[NSNull class]]) {
         
-        cell.timeLabel1.text = _orderDic[@"drawDate"];
+        cell.timeLabel1.text = [TimeFormat getNewTimeString:_orderDic[@"drawDate"]];
     }else {
         cell.timeLabel1.text = @"";
     }
     if (![_orderDic[@"confirmGoodsAddressDate"] isKindOfClass:[NSNull class]]) {
         
-        cell.timeLabel2.text = _orderDic[@"confirmGoodsAddressDate"];
+        cell.timeLabel2.text = [TimeFormat getNewTimeString:_orderDic[@"confirmGoodsAddressDate"]];
     }else {
         cell.timeLabel2.text = @"";
     }
     if (![_orderDic[@"confirmGoodsReceiptDate"] isKindOfClass:[NSNull class]]) {
         
-        cell.timeLabel3.text = _orderDic[@"confirmGoodsReceiptDate"];
+        cell.timeLabel3.text = [TimeFormat getNewTimeString:_orderDic[@"confirmGoodsReceiptDate"]];
     }else {
         cell.timeLabel3.text = @"";
     }
@@ -211,10 +212,10 @@
    
     NSInteger statu = [_orderDic[@"status"] integerValue];
     if (statu == 4){
-//        cell.shareBtn.userInteractionEnabled = NO;
+        cell.shareBtn.userInteractionEnabled = NO;
         [cell.shareBtn setTitle:@"已晒单" forState:UIControlStateNormal];
     }else {
-//        cell.shareBtn.userInteractionEnabled = YES;
+        cell.shareBtn.userInteractionEnabled = YES;
         [cell.shareBtn setTitle:@"去晒单" forState:UIControlStateNormal];
     }
     

@@ -108,7 +108,17 @@
 
 //登录
 - (IBAction)loginAction:(UIButton *)sender {
+    if ([_userNameTF isFirstResponder]) {
+        
+        [_userNameTF resignFirstResponder];
+        
+    }
     
+    if ([_passwordTF isFirstResponder]) {
+        
+        [_passwordTF resignFirstResponder];
+        
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     if (_userNameTF.text.length == 0) {
@@ -122,8 +132,8 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    if (_passwordTF.text.length == 0) {
-        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！"];
+    if (_passwordTF.text.length < 8||_passwordTF.text.length>20) {
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入密码！(8-20位数)"];
         [alert addButtonTitleArray:@[@"知道了！"]];
         __weak typeof(AlertController *) weakAlert = alert;
         [alert setClickButtonBlock:^(NSInteger tag) {
@@ -155,6 +165,7 @@
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
                   
+                  [self dismissViewControllerAnimated:YES completion:nil];
               }else {
                   [self hideFailHUD:[json objectForKey:@"msg"]];
               }
@@ -213,9 +224,9 @@
      {
          if (state == SSDKResponseStateSuccess)
          {
-             
-    
-             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:user.icon createBy:@"2" updateBy:@"2"];
+             NSDictionary *rawDataDic =  user.rawData;
+             NSString *icon = rawDataDic[@"figureurl_qq_2"];
+             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:icon createBy:@"2" updateBy:@"2"];
          }
          
          else
@@ -273,7 +284,7 @@
                   //把信息存到NSUserDefaults
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
-                  
+                  [self dismissViewControllerAnimated:YES completion:nil];
                   
 //                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
 //                                                                                           message:@"是否绑定手机！" preferredStyle:UIAlertControllerStyleAlert];
@@ -283,6 +294,7 @@
 //                  {
 //                      [alertController dismissViewControllerAnimated:YES
 //                                                          completion:nil];
+//                      [self dismissViewControllerAnimated:YES completion:nil];
 //                                                                       }];
 //                  [alertController addAction:cancelAction];
 //                  UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"是"
@@ -346,7 +358,7 @@
     
     [self requestCartList];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

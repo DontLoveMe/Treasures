@@ -51,7 +51,7 @@
     //自动适配屏幕
     _webView.scalesPageToFit = YES;
     [self.view addSubview:_webView];
-    
+//    _webView.contentMode = UIViewContentModeCenter;
     //设置风火轮
     _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     

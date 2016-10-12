@@ -206,7 +206,7 @@
     
     [params setObject:_nameTF.text forKey:@"receiver"];
     [params setObject:_phoneTF.text forKey:@"mobile"];
-    [params setObject:_addressTF.text forKey:@"address_detail_full"];
+    [params setObject:[NSString stringWithFormat:@"%@%@",_addressTF.text,_detailAddressTV.text] forKey:@"address_detail_full"];
     
     [params setObject:_detailAddressTV.text forKey:@"address_detail"];
         

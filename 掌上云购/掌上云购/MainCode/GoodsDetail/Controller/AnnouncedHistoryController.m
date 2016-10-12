@@ -135,8 +135,15 @@
     AnnounceHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnnounceHistory_Cell"
                                                                 forIndexPath:indexPath];
     NSDictionary *dic = [_announceHistoryArr objectAtIndex:indexPath.row];
-
-    cell.goodsMsgLabel.text = [NSString stringWithFormat:@"期号：%@(揭晓时间：%@)",[dic objectForKey:@"drawTimes"],[dic objectForKey:@"drawDate"]];
+    NSString *drawTimes;
+    if (![[dic objectForKey:@"drawTimes"] isKindOfClass:[NSNull class]]) {
+        drawTimes = [dic objectForKey:@"drawTimes"];
+    }
+    NSString *drawDate;
+    if (![[dic objectForKey:@"drawDate"] isKindOfClass:[NSNull class]]) {
+        drawDate = [TimeFormat getNewTimeString:[dic objectForKey:@"drawDate"]];
+    }
+    cell.goodsMsgLabel.text = [NSString stringWithFormat:@"期号：%@(揭晓时间：%@)",drawTimes,drawDate];
     
     if (![dic[@"photoUrl"] isKindOfClass:[NSNull class]]){
         NSString *photoUrl = dic[@"photoUrl"];
@@ -148,8 +155,9 @@
         }
         [cell.picImgView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"我的-头像"]];
     }else {
-        [cell.picImgView setImage:[UIImage imageNamed:@"未加载图片"]];
+        [cell.picImgView setImage:[UIImage imageNamed:@"我的-头像"]];
     }
+    
     if (![dic[@"drawUserId"] isKindOfClass:[NSNull class]]) {
         cell.picImgView.buyUserId = [dic[@"drawUserId"] integerValue];
         cell.userId.text = [NSString stringWithFormat:@"用户ID:%@",[dic objectForKey:@"drawUserId"]];
@@ -161,7 +169,7 @@
     if (![dic[@"nickName"] isKindOfClass:[NSNull class]]) {
         cell.userName.text = [NSString stringWithFormat:@"获奖者：%@",[dic objectForKey:@"nickName"]];
     }else {
-        cell.userName.text = @"";
+        cell.userName.text = @"获奖者：";
     }
     if (![dic[@"drawNumber"] isKindOfClass:[NSNull class]]) {
         cell.luckyNum.text = [NSString stringWithFormat:@"幸运号码：%@",[dic objectForKey:@"drawNumber"]];
@@ -209,14 +217,15 @@
                forKey:@"page"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsHistoryPrize_URL];
-    
+    [self showHUD:@"正在加载"];
     [ZSTools post:url
            params:params
           success:^(id json) {
               
-              if ([json objectForKey:@"flag"]) {
-
+              [self hideSuccessHUD:@"加载成功"];
+              if ([[json objectForKey:@"flag"] boolValue]) {
               NSArray *dataArr = json[@"data"];
+                  
               if (_pageIndex == 1) {
                   [_announceHistoryArr removeAllObjects];
                   _announceHistoryArr = dataArr.mutableCopy;
@@ -235,7 +244,7 @@
                   }
               }
               [_announcedTableView reloadData];
-                  }
+              }
               
           } failure:^(NSError *error) {
               

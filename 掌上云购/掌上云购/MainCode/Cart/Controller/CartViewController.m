@@ -261,7 +261,8 @@
     .heightIs(30);
     
     _tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f) style:UITableViewStylePlain];
-    _tabview.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    _tabview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tabview.showsVerticalScrollIndicator = NO;
     _tabview.backgroundColor = TableViewBackColor;
     _tabview.dataSource = self;
     _tabview.delegate = self;
@@ -465,7 +466,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
     if (!cell) {
         
@@ -825,6 +826,10 @@
     
     }
 
+    
+    if (_loveView) {
+        [_loveView requestLoveData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

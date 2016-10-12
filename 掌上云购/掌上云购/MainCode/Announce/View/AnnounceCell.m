@@ -32,7 +32,7 @@
 //        __weak __typeof(self) weakSelf= self;
 //        
 //        [self.countDown countDownWithPER_SECBlock:^{
-//            //倒计时方法，每毫秒调用一次
+//            //倒计时方法，每10毫秒调用一次
 //            weakSelf.timeLabel.text = [self getNowTimeWithString:_str];
 //            
 //        }];
@@ -86,14 +86,14 @@
                         _timeIconView.hidden = YES;
                         _timeLabel.hidden = YES;
                         _unveilLabel.hidden = YES;
-                
+//                weakSelf.timeLabel.text = @"正在计算开奖结果";
                 }else {
                     
                     weakSelf.timeLabel.text = @"正在计算开奖结果";
                     
                     [self performSelector:@selector(timeAction)
                                withObject:nil
-                               afterDelay:8];
+                               afterDelay:10];
                     
                 }
                 
@@ -141,12 +141,12 @@
 //    // 当前时间date格式
 //    nowDate = [formater dateFromString:nowDateStr];
 //    //传入时间与现在时间的间隔
-//    NSTimeInterval timeInterval =[expireDate timeIntervalSinceDate:nowDate]*1000;
+//    NSTimeInterval timeInterval =[expireDate timeIntervalSinceDate:nowDate]*100;
 //    
-//    int hours = (int)(timeInterval/1000/3600);
-//    int minutes = (int)(timeInterval/1000-hours*3600)/60;
-//    int seconds = timeInterval/1000-hours*3600-minutes*60;
-//    int millisecond = (int)timeInterval-(hours*3600+minutes*60+seconds)*1000;
+//    int hours = (int)(timeInterval/100/3600);
+//    int minutes = (int)(timeInterval/100-hours*3600)/60;
+//    int seconds = timeInterval/100-hours*3600-minutes*60;
+//    int millisecond = (int)timeInterval-(hours*3600+minutes*60+seconds)*100;
 //    NSString *hoursStr;NSString *minutesStr;NSString *secondsStr; NSString *millisecondStr;
 //    
 //    //小时
@@ -162,13 +162,13 @@
 //    else
 //        secondsStr = [NSString stringWithFormat:@"%d",seconds];
 //    
-//    if (millisecond<100) {
-//        millisecondStr = [NSString stringWithFormat:@"0%d",millisecond/10];
-//    }else if (millisecond<10) {
-//        millisecondStr = [NSString stringWithFormat:@"00%d",millisecond/10];
-//    }else{
-//        millisecondStr = [NSString stringWithFormat:@"%d",millisecond/10];
-//    }
+////    if (millisecond<100) {
+////        millisecondStr = [NSString stringWithFormat:@"0%d",millisecond/10];
+////    }else if (millisecond<10) {
+////        millisecondStr = [NSString stringWithFormat:@"00%d",millisecond/10];
+////    }else{
+//        millisecondStr = [NSString stringWithFormat:@"%02d",millisecond/10];
+////    }
 //    if (hours<=0&&minutes<=0&&seconds<=0&&millisecond<=0) {
 //        
 //        [self.countDown destoryTimer];

@@ -21,17 +21,11 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="按钮背景_白.png" translatesAutoresizingMaskIntoConstraints="NO" id="HYW-RZ-h8S">
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="lYD-Tz-T3J"/>
-                        <constraint firstAttribute="height" constant="150" id="tb4-us-66s"/>
+                        <constraint firstAttribute="width" constant="260" id="lYD-Tz-T3J"/>
+                        <constraint firstAttribute="height" constant="110" id="tb4-us-66s"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="恭喜充值成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvA-dU-AZe">
-                    <frame key="frameInset" minX="136" minY="147" width="102" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8w-Xh-PI4">
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8w-Xh-PI4">
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="3CK-wK-lvy"/>
                         <constraint firstAttribute="width" constant="80" id="o0B-kr-5xY"/>
@@ -44,7 +38,7 @@
                         <action selector="snatchAction:" destination="-1" eventType="touchUpInside" id="z34-3x-0jh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zep-8n-h2p">
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zep-8n-h2p">
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="6U7-rl-79F"/>
                         <constraint firstAttribute="height" constant="25" id="ZgX-Jy-HzH"/>
@@ -57,17 +51,22 @@
                         <action selector="lookListAction:" destination="-1" eventType="touchUpInside" id="blH-JF-Xqe"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜充值成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvA-dU-AZe">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="HYW-RZ-h8S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="104" id="2sO-Q2-Uwb"/>
+                <constraint firstItem="HYW-RZ-h8S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="188" id="2sO-Q2-Uwb"/>
                 <constraint firstItem="wvA-dU-AZe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cv4-oN-YdD"/>
-                <constraint firstItem="r8w-Xh-PI4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-90.5" id="Dtg-22-Mq1"/>
-                <constraint firstItem="r8w-Xh-PI4" firstAttribute="top" secondItem="wvA-dU-AZe" secondAttribute="bottom" constant="46" id="Z2S-1N-eLh"/>
-                <constraint firstItem="wvA-dU-AZe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="147" id="drq-au-EaP"/>
-                <constraint firstItem="zep-8n-h2p" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="89.5" id="tNv-ZK-8VH"/>
+                <constraint firstItem="r8w-Xh-PI4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-75.5" id="Dtg-22-Mq1"/>
+                <constraint firstItem="r8w-Xh-PI4" firstAttribute="top" secondItem="wvA-dU-AZe" secondAttribute="bottom" constant="25" id="Z2S-1N-eLh"/>
+                <constraint firstItem="wvA-dU-AZe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="220" id="drq-au-EaP"/>
+                <constraint firstItem="zep-8n-h2p" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="80.5" id="tNv-ZK-8VH"/>
                 <constraint firstItem="HYW-RZ-h8S" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vhn-mU-u3p"/>
-                <constraint firstItem="zep-8n-h2p" firstAttribute="top" secondItem="wvA-dU-AZe" secondAttribute="bottom" constant="46" id="vlW-NG-Ebi"/>
+                <constraint firstItem="zep-8n-h2p" firstAttribute="top" secondItem="wvA-dU-AZe" secondAttribute="bottom" constant="25" id="vlW-NG-Ebi"/>
             </constraints>
             <point key="canvasLocation" x="252.5" y="227.5"/>
         </view>

@@ -32,13 +32,13 @@
     _peopleNum.text = [NSString stringWithFormat:@"%ld",rcModel.partakeCount];
     
     if ([rcModel.saleDraw.nickName isKindOfClass:[NSNull class]]||rcModel.saleDraw.nickName.length == 0) {
-        _getName.text = @"正在开奖中...";
+        _getName.text = @"即将揭晓，请稍后…";
         _getLabel.hidden = YES;
         _getLabelWidth.constant = 0;
     }else {
         _getLabel.hidden = NO;
         _getName.text = rcModel.saleDraw.nickName;
-        _getLabelWidth.constant = 48;
+        _getLabelWidth.constant = 50;
     }
     if (rcModel.winnersPartakeCount == 0) {
         _peopleNumber.hidden = YES;

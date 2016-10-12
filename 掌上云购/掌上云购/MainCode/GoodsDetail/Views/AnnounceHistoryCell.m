@@ -14,7 +14,7 @@
     [super awakeFromNib];
 //    _goodsMsgLabel.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
 //    _goodsMsgLabel.textColor = [UIColor redColor];
-    _picImgView.layer.cornerRadius = _picImgView.width/2;
+    _picImgView.layer.cornerRadius = 72/2;
     _picImgView.layer.masksToBounds = YES;
 }
 

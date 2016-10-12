@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="355"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="354.5"/>
+                <frame key="frameInset" width="320" height="354"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品跟踪" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lR-j2-Ho1">
@@ -45,7 +45,7 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您获得该商品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fl-rb-Ugp">
                         <constraints>
-                            <constraint firstAttribute="width" constant="112" id="SoJ-6N-zi7"/>
+                            <constraint firstAttribute="width" constant="115" id="SoJ-6N-zi7"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -82,7 +82,7 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUo-Qu-fKD">
                         <constraints>
-                            <constraint firstAttribute="width" constant="173" id="pgO-zY-kjy"/>
+                            <constraint firstAttribute="width" constant="175" id="pgO-zY-kjy"/>
                             <constraint firstAttribute="height" constant="24" id="sZX-qP-RHt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>

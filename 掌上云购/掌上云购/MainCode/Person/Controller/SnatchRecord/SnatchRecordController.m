@@ -51,7 +51,7 @@
 
 - (void)NavAction:(UIButton *)button{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad {
@@ -79,7 +79,7 @@
     //取出存储的用户信息
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         NSNumber *userId = userDic[@"id"];
-//    [self showHUD:@"加载数据"];
+    [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if (drawStatus == nil) {
         [params setObject:@{@"buyUserId":userId} forKey:@"paramsMap"];
@@ -88,7 +88,7 @@
     }
     
     [params setObject:@(_page) forKey:@"page"];
-    [params setObject:@10 forKey:@"rows"];
+    [params setObject:@8 forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserOrderList_URL];
     [ZSTools post:url
@@ -96,7 +96,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-//              [self hideSuccessHUD:json[@"msg"]];
+              [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
                   NSArray *dataArr = json[@"data"];
                   if (_page == 1) {
@@ -293,7 +293,7 @@
     [_noView addSubview:button];
     
     
-    [self.view addSubview:_noView];
+    [self.view insertSubview:_noView atIndex:0];
     
 }
 - (void)buyAction:(UIButton *)button{

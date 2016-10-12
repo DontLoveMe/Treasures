@@ -25,6 +25,10 @@
 
 @property (nonatomic,strong)NSArray *luckyData;
 
+@property (nonatomic,strong)LoveView *loveView;//猜你喜欢
+
+@property (nonatomic,strong)UIView *noView;
+
 @end
 
 @implementation InordertoshareController
@@ -67,14 +71,16 @@
     [self initNavBar];
     
     [self createTabelView];
+    
+    [self createBottomView];
 }
 - (void)requestLuckyData {
     //取出存储的用户信息
         NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
         NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载数据"];
+//    [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@{@"buyUserId":userId} forKey:@"paramsMap"];
+    [params setObject:@{@"buyUserId":userId,@"shaidan":@1} forKey:@"paramsMap"];
     [params setObject:@1 forKey:@"page"];
     [params setObject:@200 forKey:@"rows"];
     
@@ -84,7 +90,7 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:json[@"msg"]];
+//              [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
                   NSArray *dataArr = json[@"data"];
                   NSMutableArray *arr = [NSMutableArray array];
@@ -139,7 +145,13 @@
                   if (_page == 1) {
                       [_data removeAllObjects];
                       _data = dataArr.mutableCopy;
-                      
+                      if (_data.count >0) {
+                          _noView.hidden = YES;
+                          _loveView.hidden = YES;
+                      }else {
+                          _noView.hidden = NO;
+                          _loveView.hidden = NO;
+                      }
                       [_tableView.mj_footer resetNoMoreData];
                       [_tableView.mj_header endRefreshing];
                   }
@@ -238,6 +250,64 @@
     _tableView.mj_footer = footer;
     
 }
+- (void)createBottomView {
+    
+    CGFloat w = (KScreenWidth-8*4)/3;
+    
+    _loveView = [[LoveView alloc] initWithFrame:CGRectMake(0, KScreenHeight-w*1.4-37-64, KScreenWidth, w*1.4+35)];
+    [self.view addSubview:_loveView];
+    
+    
+    _noView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth-220)/2, (KScreenHeight-240)/2-100, 220, 240)];
+    //    _noView.backgroundColor = [UIColor grayColor];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((_noView.width-150)/2, 15, 150, 150)];
+    imgView.image = [UIImage imageNamed:@"无记录"];
+    [_noView addSubview:imgView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imgView.bottom +5, _noView.width, 16)];
+    label.text = @"你还没有记录哦";
+    label.textColor = [UIColor darkGrayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13];
+    [_noView addSubview:label];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake((_noView.width-85)/2, label.bottom+5, 85, 28);
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitle:@"立即夺宝" forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"按钮背景-黄"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buyAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_noView addSubview:button];
+    
+    
+    [self.view addSubview:_noView];
+    
+}
+- (void)buyAction:(UIButton *)button{
+    id next = [self nextResponder];
+    while (next != nil) {
+        
+        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+            
+            //获得标签控制器
+            TabbarViewcontroller *tb = (TabbarViewcontroller *)next;
+            //修改索引
+            tb.selectedIndex = 0;
+            //原选中标签修改
+            tb.selectedItem.isSelected = NO;
+            //选中新标签
+            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:1];
+            item.isSelected = YES;
+            //设置为上一个选中
+            tb.selectedItem = item;
+            
+            return;
+        }
+        next = [next nextResponder];
+    }
+    
+}
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -269,6 +339,7 @@
         return cell;
     }
     InordertoshareCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.iSModel = [InordertoshareModel mj_objectWithKeyValues:self.data[indexPath.row]];
     return cell;
 }

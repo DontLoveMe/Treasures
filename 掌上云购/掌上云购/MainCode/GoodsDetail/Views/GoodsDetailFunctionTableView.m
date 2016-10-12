@@ -313,52 +313,61 @@
             [picView setImageWithURL:imgUrl placeholderImage:[UIImage imageNamed:@"我的-头像"]];
         }else {
             
-            picView.image = [UIImage imageNamed:@"未加载图片"];
+            picView.image = [UIImage imageNamed:@"我的-头像"];
         }
         [goodsDetailView addSubview:picView];
         
         //图片
-        UIImageView *luckyView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-88, 8, 70, 70)];
+        UIImageView *luckyView = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-82, 8, 70, 70)];
         luckyView.image = [UIImage imageNamed:@"幸运标识"];
         luckyView.alpha = 0.5;
         [goodsDetailView addSubview:luckyView];
         
         
         //获奖者name
-        UILabel *prizeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, 8.f, KScreenWidth - 86.f, 20.f)];
+        UILabel *prizeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, 3.f, KScreenWidth - 86.f, 18.f)];
         prizeNameLabel.text = [NSString stringWithFormat:@"获奖者:%@",[prizeDic objectForKey:@"nickName"]];
         prizeNameLabel.textAlignment = NSTextAlignmentLeft;
         prizeNameLabel.font = [UIFont boldSystemFontOfSize:13];
         prizeNameLabel.textColor = [UIColor blackColor];
         [goodsDetailView addSubview:prizeNameLabel];
         
+        //获奖者idAdress
+        UILabel *idAdressLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeNameLabel.bottom, KScreenWidth - 86.f, 18.f)];
+        idAdressLabel.text = [NSString stringWithFormat:@"%@",[prizeDic objectForKey:@"buyIpAddress"]];
+        idAdressLabel.textAlignment = NSTextAlignmentLeft;
+        idAdressLabel.font = [UIFont systemFontOfSize:13];
+        idAdressLabel.textColor = [UIColor darkGrayColor];
+        [goodsDetailView addSubview:idAdressLabel];
+        
         //获奖者id
-        UILabel *prizeIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeNameLabel.bottom, KScreenWidth - 86.f, 20.f)];
+        UILabel *prizeIdLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, idAdressLabel.bottom, KScreenWidth - 86.f, 18.f)];
         prizeIdLabel.text = [NSString stringWithFormat:@"获奖者ID:%@",[prizeDic objectForKey:@"drawUserId"]];
         prizeIdLabel.textAlignment = NSTextAlignmentLeft;
         prizeIdLabel.font = [UIFont systemFontOfSize:13];
         prizeIdLabel.textColor = [UIColor darkGrayColor];
         [goodsDetailView addSubview:prizeIdLabel];
         
-        //期号
-        UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeIdLabel.bottom, KScreenWidth - 86.f, 20.f)];
-        issueLabel.text = [NSString stringWithFormat:@"本期期号：%@",[_dataDic objectForKey:@"drawTimes"]];
-        issueLabel.textAlignment = NSTextAlignmentLeft;
-        issueLabel.font = [UIFont systemFontOfSize:13];
-        issueLabel.textColor = [UIColor darkGrayColor];
-        [goodsDetailView addSubview:issueLabel];
         
         //参与次数
-        UILabel *joinCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, issueLabel.bottom, KScreenWidth - 86.f, 20.f)];
-        joinCountLabel.text = [NSString stringWithFormat:@"本期参与：%ld",[[prizeDic objectForKey:@"qty"] integerValue]];
+        UILabel *joinCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, prizeIdLabel.bottom, KScreenWidth - 86.f, 18.f)];
+        joinCountLabel.text = [NSString stringWithFormat:@"本次参与：%ld人次",[[prizeDic objectForKey:@"qty"] integerValue]];
         joinCountLabel.textAlignment = NSTextAlignmentLeft;
         joinCountLabel.font = [UIFont systemFontOfSize:13];
         joinCountLabel.textColor = [UIColor darkGrayColor];
         [goodsDetailView addSubview:joinCountLabel];
+        //期号
+        UILabel *issueLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, joinCountLabel.bottom, KScreenWidth - 86.f, 18.f)];
+        issueLabel.text = [NSString stringWithFormat:@"期号：%@",[_dataDic objectForKey:@"drawTimes"]];
+        issueLabel.textAlignment = NSTextAlignmentLeft;
+        issueLabel.font = [UIFont systemFontOfSize:13];
+        issueLabel.textColor = [UIColor darkGrayColor];
+        [goodsDetailView addSubview:issueLabel];
 
         //揭晓时间
-        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, joinCountLabel.bottom, KScreenWidth - 76.f, 20.f)];
-        countDownLabel.text = [NSString stringWithFormat:@"揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        UILabel *countDownLabel = [[UILabel alloc] initWithFrame:CGRectMake(picView.right+8.f, issueLabel.bottom, KScreenWidth - 76.f, 18.f)];
+        NSString *drawDate = [TimeFormat getNewTimeString:[prizeDic objectForKey:@"drawDate"]];
+        countDownLabel.text = [NSString stringWithFormat:@"揭晓时间：%@",drawDate];
         countDownLabel.textAlignment = NSTextAlignmentLeft;
         countDownLabel.font = [UIFont systemFontOfSize:13];
         countDownLabel.textColor = [UIColor darkGrayColor];

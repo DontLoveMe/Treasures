@@ -41,7 +41,7 @@
 
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@(_page) forKey:@"page"];
-    [params setObject:@"20" forKey:@"rows"];
+    [params setObject:@"12" forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,NewnestAnnounceList_URL];
     
@@ -208,11 +208,12 @@
     
 //#warning 是否进入倒计时，这个判断条件需要更改
     NSInteger countdownTime = [dic[@"countdownTime"] integerValue];
+//    NSString *countdownTime = dic[@"countdownEndDate"];
 //    NSInteger countdownTime = 1000;
     if ([[dic objectForKey:@"drawNumber"] isKindOfClass:[NSNull class]]) {
 
         cell.countDownTime = countdownTime;
-        
+//        cell.str = countdownTime;
         cell.getUserLabel.hidden = YES;
         cell.peopleNumLb.hidden = YES;
         cell.luckyLabel.hidden = YES;
@@ -255,9 +256,10 @@
         
         cell.getUserLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
         cell.getUserLabel.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"nickName"]];
-        cell.peopleNumLb.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"partakeCount"] integerValue]];
+        cell.peopleNumLb.text = [NSString stringWithFormat:@"%ld人次",[[dic objectForKey:@"partakeCount"] integerValue]];
         cell.luckyLabel.text = [NSString stringWithFormat:@"%ld",[[dic objectForKey:@"drawNumber"] integerValue]];
-        cell.announceTimeLb.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"drawDate"]];
+//        cell.announceTimeLb.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"drawDate"]];
+        cell.announceTimeLb.text = [TimeFormat getNowTimeToString:[dic objectForKey:@"drawDate"]];
         
     }
 
@@ -329,15 +331,14 @@
               cell.unveilLabel.hidden = YES;
               
               cell.getUserLabel.text = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"nickName"]];
-              cell.peopleNumLb.text = [NSString stringWithFormat:@"%ld",[[dataDic objectForKey:@"partakeCount"] integerValue]];
+              cell.peopleNumLb.text = [NSString stringWithFormat:@"%ld人次",[[dataDic objectForKey:@"partakeCount"] integerValue]];
               cell.luckyLabel.text = [NSString stringWithFormat:@"%ld",[[dataDic objectForKey:@"drawNumber"] integerValue]];
-              cell.announceTimeLb.text = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"drawDate"]];
-              
+//              cell.announceTimeLb.text = [NSString stringWithFormat:@"%@",[dataDic objectForKey:@"drawDate"]];
+              cell.announceTimeLb.text = [TimeFormat getNowTimeToString:[dataDic objectForKey:@"drawDate"]];
               
           } failure:^(NSError *error) {
               
           }];
     
 }
-
 @end

@@ -63,18 +63,6 @@
                         <action selector="wechatLogin:" destination="-1" eventType="touchUpInside" id="fRz-aL-Jbp"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LR-E8-BxZ">
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="Q4E-KN-LH1"/>
-                        <constraint firstAttribute="height" constant="40" id="lcb-i5-vJm"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="QQ.png">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="QQLogin:" destination="-1" eventType="touchUpInside" id="hc6-SN-PUP"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IS-5p-Hj0">
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="IMQ-XW-nHQ"/>
@@ -126,7 +114,7 @@
                         <constraint firstAttribute="width" constant="2" id="xqp-PD-Xny"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码(至少6位数)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MGI-1n-tb1">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码(8-20位数)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MGI-1n-tb1">
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="agd-4x-XNT"/>
@@ -143,7 +131,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfl-g4-g5h">
+                <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfl-g4-g5h">
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="JcN-jM-8ae"/>
                         <constraint firstAttribute="height" constant="40" id="kmK-Qx-MJO"/>
@@ -155,7 +143,7 @@
                         <action selector="weiboLogin:" destination="-1" eventType="touchUpInside" id="n81-ti-WXY"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adh-yP-nwB">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adh-yP-nwB">
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="xCE-gv-tNh"/>
                         <constraint firstAttribute="width" constant="60" id="xas-z2-Ikb"/>
@@ -189,18 +177,30 @@
                         <action selector="registerActiion:" destination="-1" eventType="touchUpInside" id="1Su-mF-OEV"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LR-E8-BxZ">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Q4E-KN-LH1"/>
+                        <constraint firstAttribute="height" constant="40" id="lcb-i5-vJm"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="QQ.png">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="QQLogin:" destination="-1" eventType="touchUpInside" id="hc6-SN-PUP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="bA5-eS-Xd8" firstAttribute="centerX" secondItem="UkN-vc-gxx" secondAttribute="centerX" id="2hB-dq-a2f"/>
                 <constraint firstItem="CIx-qn-Dsd" firstAttribute="top" secondItem="MGI-1n-tb1" secondAttribute="bottom" constant="10" id="C1K-sZ-O3H"/>
-                <constraint firstItem="XV8-hS-mRY" firstAttribute="top" secondItem="1LR-E8-BxZ" secondAttribute="bottom" constant="8" id="Eoh-JU-DjQ"/>
+                <constraint firstItem="XV8-hS-mRY" firstAttribute="top" secondItem="1LR-E8-BxZ" secondAttribute="bottom" constant="7" id="Eoh-JU-DjQ"/>
                 <constraint firstItem="oIr-zr-hcC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="Fug-J8-pRL"/>
                 <constraint firstItem="9np-7T-ksN" firstAttribute="leading" secondItem="6ii-7K-Ety" secondAttribute="trailing" constant="9" id="Fy0-C5-dTz"/>
                 <constraint firstAttribute="trailing" secondItem="m0o-LI-W8O" secondAttribute="trailing" constant="15" id="H0d-2B-to3"/>
                 <constraint firstItem="h6G-3g-Fct" firstAttribute="top" secondItem="CIx-qn-Dsd" secondAttribute="bottom" constant="28" id="JXq-5g-nxx"/>
-                <constraint firstItem="adh-yP-nwB" firstAttribute="top" secondItem="wfl-g4-g5h" secondAttribute="bottom" constant="8" id="Kyx-Yl-HAB"/>
-                <constraint firstItem="UkN-vc-gxx" firstAttribute="leading" secondItem="1LR-E8-BxZ" secondAttribute="trailing" constant="25" id="MGG-yE-kSG"/>
+                <constraint firstItem="adh-yP-nwB" firstAttribute="top" secondItem="wfl-g4-g5h" secondAttribute="bottom" constant="7" id="Kyx-Yl-HAB"/>
+                <constraint firstItem="UkN-vc-gxx" firstAttribute="leading" secondItem="1LR-E8-BxZ" secondAttribute="trailing" constant="91.5" id="MGG-yE-kSG"/>
                 <constraint firstItem="h6G-3g-Fct" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="NpN-mj-g8s"/>
                 <constraint firstItem="m0o-LI-W8O" firstAttribute="top" secondItem="h6G-3g-Fct" secondAttribute="bottom" constant="5" id="OJt-wy-3rX"/>
                 <constraint firstItem="UkN-vc-gxx" firstAttribute="bottom" secondItem="wfl-g4-g5h" secondAttribute="bottom" id="PPr-mp-QHB"/>
@@ -215,7 +215,7 @@
                 <constraint firstAttribute="trailing" secondItem="CIx-qn-Dsd" secondAttribute="trailing" constant="10" id="j4u-3A-KH7"/>
                 <constraint firstItem="6ii-7K-Ety" firstAttribute="centerY" secondItem="3IS-5p-Hj0" secondAttribute="centerY" id="jOF-4l-dO7"/>
                 <constraint firstItem="lis-ST-C7Y" firstAttribute="centerY" secondItem="3IS-5p-Hj0" secondAttribute="centerY" id="kn7-M8-NGL"/>
-                <constraint firstItem="1LR-E8-BxZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lMS-Rd-Jl9"/>
+                <constraint firstItem="1LR-E8-BxZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-66.5" id="lMS-Rd-Jl9"/>
                 <constraint firstItem="adh-yP-nwB" firstAttribute="centerX" secondItem="wfl-g4-g5h" secondAttribute="centerX" id="mKw-hb-z65"/>
                 <constraint firstItem="8hl-a7-XFK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nVN-R4-4EC"/>
                 <constraint firstItem="wfl-g4-g5h" firstAttribute="top" secondItem="8hl-a7-XFK" secondAttribute="bottom" constant="30" id="ndU-lE-944"/>
@@ -224,7 +224,7 @@
                 <constraint firstItem="MGI-1n-tb1" firstAttribute="top" secondItem="oIr-zr-hcC" secondAttribute="bottom" constant="2" id="pEm-Mh-FI3"/>
                 <constraint firstItem="lis-ST-C7Y" firstAttribute="leading" secondItem="6ii-7K-Ety" secondAttribute="trailing" constant="20" id="tgu-Ld-TGT"/>
                 <constraint firstItem="6ii-7K-Ety" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="13" id="ubn-9N-TfV"/>
-                <constraint firstItem="1LR-E8-BxZ" firstAttribute="leading" secondItem="wfl-g4-g5h" secondAttribute="trailing" constant="25" id="vYi-Pf-Seu"/>
+                <constraint firstItem="1LR-E8-BxZ" firstAttribute="leading" secondItem="wfl-g4-g5h" secondAttribute="trailing" constant="-106" id="vYi-Pf-Seu"/>
                 <constraint firstItem="bA5-eS-Xd8" firstAttribute="top" secondItem="UkN-vc-gxx" secondAttribute="bottom" constant="8" id="wKK-eV-eQQ"/>
                 <constraint firstItem="MGI-1n-tb1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wRd-9T-Nrq"/>
                 <constraint firstItem="WgJ-TH-fsK" firstAttribute="centerY" secondItem="3IS-5p-Hj0" secondAttribute="centerY" id="wz8-Kd-btR"/>

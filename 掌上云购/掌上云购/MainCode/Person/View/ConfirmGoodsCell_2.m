@@ -8,6 +8,7 @@
 
 #import "ConfirmGoodsCell_2.h"
 #import "HtmlTypeController.h"
+#import "DelegateTxtController.h"
 
 @implementation ConfirmGoodsCell_2
 
@@ -126,11 +127,11 @@
 }
 - (IBAction)zsygDelegate:(UIButton *)sender {
     
-    HtmlTypeController *htmlType = [[HtmlTypeController alloc] init];
-    htmlType.htmlUrl = @"/pcpServer-inf/html/agreement.html";
-    htmlType.title = @"协议";
-    UINavigationController *htVC = [[UINavigationController alloc] initWithRootViewController:htmlType];
-    [[self viewController]presentViewController:htVC animated:YES completion:nil];
+    DelegateTxtController *dtVC = [[DelegateTxtController alloc] init];
+    
+    UINavigationController *dVC = [[UINavigationController alloc] initWithRootViewController:dtVC];
+    [[self viewController] presentViewController:dVC animated:YES completion:nil];
+    
 }
 - (UIViewController *)viewController {
     

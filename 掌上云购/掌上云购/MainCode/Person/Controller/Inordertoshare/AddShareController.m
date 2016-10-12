@@ -155,7 +155,7 @@
     [dataDic setObject:imageData forKey:nameStr];
     
     
-    NSString *url = [NSString stringWithFormat:@"%@%@", PIC_URL,UpdataFile_URL];
+    NSString *url = [NSString stringWithFormat:@"%@%@?createThumb=true", PIC_URL,UpdataFile_URL];
 
     
     [ZSTools post:url
@@ -222,6 +222,14 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 135;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([_titleTF isFirstResponder]){
+        [_titleTF resignFirstResponder];
+    }
+    if ([_contentTF isFirstResponder]) {
+        [_contentTF resignFirstResponder];
+    }
 }
 
 #pragma mark - 自定义尾视图
@@ -374,6 +382,12 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([_titleTF isFirstResponder]){
+        [_titleTF resignFirstResponder];
+    }
+    if ([_contentTF isFirstResponder]) {
+        [_contentTF resignFirstResponder];
+    }
     if (indexPath.row == _selectedPhotos.count) {
         BOOL showSheet = YES;
         if (showSheet) {
@@ -623,7 +637,10 @@
 - (void)deleteBtnClik:(UIButton *)sender {
     [_selectedPhotos removeObjectAtIndex:sender.tag];
     [_selectedAssets removeObjectAtIndex:sender.tag];
-    [_picLoctionArr removeObjectAtIndex:sender.tag];
+    if (_picLoctionArr.count >0) {
+        
+        [_picLoctionArr removeObjectAtIndex:sender.tag];
+    }
     
     [_collectionView performBatchUpdates:^{
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];

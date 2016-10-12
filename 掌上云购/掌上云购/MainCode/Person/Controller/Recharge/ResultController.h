@@ -8,9 +8,12 @@
 
 #import "BaseViewController.h"
 
-@interface RechargeResultController : BaseViewController
+@interface ResultController : BaseViewController
+
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *snatchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *lookListBtn;
+
+@property (nonatomic,copy)void(^clickBlock)(NSInteger tag);
 
 @end

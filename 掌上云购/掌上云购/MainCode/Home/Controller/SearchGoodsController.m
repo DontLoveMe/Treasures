@@ -176,7 +176,12 @@
     headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     UILabel *resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-120, 20)];
-    resultLabel.text = [NSString stringWithFormat:@"搜索结果：%@(%ld)",_searchStr,self.seachData.count];
+    if (self.seachData.count == 0) {
+        resultLabel.text = @"  抱歉，未搜索到相关商品";
+    }else {
+       resultLabel.text = [NSString stringWithFormat:@"  共搜索到%ld件商品",self.seachData.count];
+    }
+    
     resultLabel.textColor = [UIColor grayColor];
     resultLabel.textAlignment = NSTextAlignmentLeft;
     resultLabel.font = [UIFont systemFontOfSize:12];
