@@ -18,6 +18,7 @@
 @implementation GoodsDetailController {
     //记录导航栏的透明度
     CGFloat _navBarAalpha;
+    UILabel *_countLabel;
 }
 
 - (void)initNavBar{
@@ -83,7 +84,7 @@
                                    forState:UIControlStateNormal];
         }
     } else{
-        
+        _navBarAalpha = 0;
         UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
         leftButton.size = CGSizeMake(22, 22);
         [leftButton setBackgroundImage:[UIImage imageNamed:@"返回-黑.png"]
@@ -188,6 +189,7 @@
                          animations:^{
                              _bgScrollView.top = - KScreenHeight;
                              _broughtHistoryView.top = 0;
+                             _bottomView.hidden = YES;
                          }completion:^(BOOL finished) {
                              [_bgScrollView.mj_footer endRefreshing];
                          }];
@@ -259,6 +261,7 @@
     _joinRecordArr = [NSMutableArray array];
     [UIView animateWithDuration:0.5
                      animations:^{
+                         _bottomView.hidden = NO;
                          _broughtHistoryView.top = KScreenHeight ;
                          _bgScrollView.top = 0;
                          _bgScrollView.delegate = self;
@@ -367,6 +370,26 @@
                               action:@selector(gotoCartAction:)
                     forControlEvents:UIControlEventTouchUpInside];
         [_bottomView addSubview:_cartBottomButton];
+        //购物车上的数字
+        if (!_countLabel) {
+            _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(_cartBottomButton.width - 23, 3.f, 14, 14)];
+        }
+        
+        _countLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
+        _countLabel.layer.borderWidth = 0.5;
+        _countLabel.layer.cornerRadius = 7.f;
+        _countLabel.layer.masksToBounds = YES;
+        _countLabel.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+        //    _countLabel.text = [NSString stringWithFormat:@"%ld",_cartNum];
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.font = [UIFont systemFontOfSize:11];
+        _countLabel.textAlignment = NSTextAlignmentCenter;
+        [_cartBottomButton addSubview:_countLabel];
+        if ([CartTools getCartList].count >0) {
+            _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
+        }else {
+            _countLabel.hidden = YES;
+        }
         
     }else{
     
@@ -498,6 +521,8 @@
         
         [self getRootController].cartNum = [CartTools getCartList].count;
         [self hideFailHUD:@"加入清单成功"];
+        _countLabel.hidden = NO;
+        _countLabel.text =  [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
    
     }else {
         [self hideFailHUD:@"加入清单失败"];
@@ -590,10 +615,17 @@
     
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _oherFunctionTableView.bottom);
     //导航栏透明
+
     self.navigationController.navigationBar.translucent = YES;
     UIColor * color = [UIColor colorFromHexRGB:ThemeColor];
     [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:_navBarAalpha]];
 
+    if (_broughtHistoryView) {
+        if (_broughtHistoryView.top ==0) {
+            
+            _broughtHistoryView.top = self.view.top;
+        }
+    }
 }
 
 #pragma mark 请求网络数据
@@ -744,7 +776,7 @@
     }
 
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,GoodsDetail_URL];
-    [self showHUD:@"正在加载数据"];
+    [self showHUD:@""];
     [ZSTools post:url
            params:params
           success:^(id json) {

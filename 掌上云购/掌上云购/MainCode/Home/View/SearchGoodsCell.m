@@ -52,7 +52,22 @@
         [picArr replaceObjectAtIndex:i withObject:dic];
         
     }
-    
+    //强行去掉为空字段
+    for (int i = 0; i < picArr.count; i ++) {
+        
+        NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+        for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+            
+            if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                
+                [dic removeObjectForKey:dic.allKeys[j]];
+                
+            }
+            
+        }
+        [picArr replaceObjectAtIndex:i withObject:dic];
+        
+    }
     NSDictionary *goods = @{@"id":_gsModel.ID,
                             @"name":_gsModel.name,
                             @"proPictureList":picArr,

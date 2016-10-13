@@ -67,7 +67,7 @@
 - (void)hideFailHUD:(NSString *)title {
     
     if (title.length == 0) {
-        [_hud hide:YES afterDelay:1.5];
+        [_hud hide:YES afterDelay:1];
     } else {
         
         _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
@@ -76,10 +76,10 @@
         _hud.labelText = title;
         
         //延迟隐藏
-        [_hud hide:YES afterDelay:1.5];
+        [_hud hide:YES afterDelay:1];
         [self performSelector:@selector(changgeModel)
                    withObject:nil
-                   afterDelay:2.f];
+                   afterDelay:1.f];
     }
     
 }

@@ -507,11 +507,11 @@
         if (indexPath.row==0) {
             
             //商品总计
-            PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            PayFirstKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
             
             if (!cell) {
                 
-                cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+                cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell1"];
                 
                 NSMutableArray *carArr = [NSMutableArray array];
                 if ([_isimidiately isEqualToString:@"1"]) {
@@ -584,10 +584,10 @@
     }else if (indexPath.row==1){
         
         //余额应当支付多少元
-        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
         if (!cell) {
             
-            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+            cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell2"];
             
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -703,11 +703,11 @@
         
     }
 
-    PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
     NSArray *titles = @[@"微信支付",@"支付宝支付"];
     if (!cell) {
         
-        cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell2"];
         
     }
 

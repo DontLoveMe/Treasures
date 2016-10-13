@@ -105,6 +105,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UseRedCell *cell = [tableView dequeueReusableCellWithIdentifier:_identify forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.reModel = [RedEnvelopeModel mj_objectWithKeyValues:self.data[indexPath.row]];
     return cell;
 }

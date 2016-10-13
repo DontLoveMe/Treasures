@@ -41,6 +41,7 @@
         [_tabview setEditing:NO animated:YES];
         _deleteView.hidden = YES;
         _bottomView.hidden = NO;
+        _allSelectButton.selected = NO;
         specialTag = 0;
         [_tabview reloadData];
         
@@ -150,7 +151,7 @@
     [self.view addSubview:_deleteView];
     
     //全选按钮
-    _allSelectButton  = [[UIButton alloc] initWithFrame:CGRectMake(12.f, 24.f, 16.f, 16.f)];
+    _allSelectButton  = [[UIButton alloc] initWithFrame:CGRectMake(12.f, 24.f, 20.f, 20.f)];
     _allSelectButton.layer.cornerRadius = 8.f;
     _allSelectButton.layer.masksToBounds = YES;
     [_allSelectButton setBackgroundImage:[UIImage imageNamed:@"复选框-未选中"] forState:UIControlStateNormal];
@@ -467,6 +468,7 @@
 
     CartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     NSDictionary *dic = [_dataArray objectAtIndex:indexPath.row];
     if (!cell) {
         
@@ -487,9 +489,9 @@
     NSArray *picArr = [dic objectForKey:@"proPictureList"];
     if (picArr.count > 0) {
         NSDictionary *picDic = [picArr firstObject];
-        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"品牌图片"]];
+        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }else{
-        cell.goodsImg.image = [UIImage imageNamed:@"品牌图片"];
+        cell.goodsImg.image = [UIImage imageNamed:@"未加载图片"];
     }
 
     
@@ -608,7 +610,17 @@
     if (specialTag) {
         
         selectNum ++;
+//        _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
+        _deleteView.hidden = NO;
+        _bottomView.hidden = YES;
+        specialTag = 1;
+//        selectNum = 0;
         _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
+//        [_tabview reloadData];
+        if (selectNum == _dataArray.count) {
+            
+            _allSelectButton.selected = YES;
+        }
         
     }else{
         
@@ -625,6 +637,10 @@
         
         selectNum --;
         _selectedNumLabel.text = [NSString stringWithFormat:@"已选%ld件",(long)selectNum];
+        if (selectNum != _dataArray.count) {
+            
+            _allSelectButton.selected = NO;
+        }
         
     }else{
         
@@ -669,7 +685,14 @@
         [_tabview reloadData];
         
     }
-    
+    _rightbtn.selected = NO;
+    [_tabview setEditing:NO animated:YES];
+    _deleteView.hidden = YES;
+    _bottomView.hidden = NO;
+    _allSelectButton.selected = NO;
+    specialTag = 0;
+    selectNum = 0;
+    [_tabview reloadData];
 }
 
 //减少事件
@@ -709,6 +732,15 @@
         
     }
     
+    _rightbtn.selected = NO;
+    [_tabview setEditing:NO animated:YES];
+    _deleteView.hidden = YES;
+    _bottomView.hidden = NO;
+    _allSelectButton.selected = NO;
+    specialTag = 0;
+    selectNum = 0;
+    [_tabview reloadData];
+    
 }
 
 -(void)allRestAtIndexPath:(NSIndexPath *)indexPath{
@@ -745,7 +777,14 @@
         [_tabview reloadData];
         
     }
-    
+    _rightbtn.selected = NO;
+    [_tabview setEditing:NO animated:YES];
+    _deleteView.hidden = YES;
+    _bottomView.hidden = NO;
+    _allSelectButton.selected = NO;
+    specialTag = 0;
+    selectNum = 0;
+    [_tabview reloadData];
 }
 
 //输入事件
@@ -783,6 +822,7 @@
         
     }
 
+
 }
 
 
@@ -803,7 +843,7 @@
         _backView.hidden = NO;
         _rightbtn.hidden = YES;
         _deleteView.hidden = YES;
-        
+        [_tabview reloadData];
     }else{
         
         _tabview.hidden = NO;
@@ -844,6 +884,14 @@
 - (void)viewDidDisappear:(BOOL)animated{
 
     [super viewDidDisappear:animated];
+
+    _rightbtn.selected = NO;
+    [_tabview setEditing:NO animated:YES];
+    _deleteView.hidden = YES;
+    _bottomView.hidden = NO;
+    _allSelectButton.selected = NO;
+    specialTag = 0;
+    [_tabview reloadData];
 
     
     //取出存储的用户信息

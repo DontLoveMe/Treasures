@@ -60,6 +60,12 @@
     self.tabBar.backgroundImage = [UIImage imageNamed:@"标签栏背景"];
     
 //    self.tabBar.sha
+    if ([CartTools getCartList].count >0) {
+        self.cartNum = [CartTools getCartList].count;
+        
+    }else {
+//        _countLabel.hidden = YES;
+    }
 }
 
 - (void)selectAction:(TabbarItem *)item {
@@ -149,7 +155,7 @@
             
             TabbarItem *item = [self.tabBar viewWithTag:4];
             if (!_countLabel) {
-                _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(item.width - 25, 0.f, 12, 12)];
+                _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(item.width - 24, 0.f, 14, 14)];
             }
             _countLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
             _countLabel.layer.borderWidth = 0.5;

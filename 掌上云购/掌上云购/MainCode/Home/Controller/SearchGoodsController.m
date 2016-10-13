@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong)UISearchBar *searchBar;
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UILabel *countLabel;
 
 @property (nonatomic,strong)NSArray *seachData;
 
@@ -43,6 +44,26 @@
           forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    if (!_countLabel) {
+        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(rightButton.width - 7, -7.f, 14, 14)];
+    }
+    
+    _countLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
+    _countLabel.layer.borderWidth = 0.5;
+    _countLabel.layer.cornerRadius = 7.f;
+    _countLabel.layer.masksToBounds = YES;
+    _countLabel.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+//    _countLabel.text = [NSString stringWithFormat:@"%ld",_cartNum];
+    _countLabel.textColor = [UIColor whiteColor];
+    _countLabel.font = [UIFont systemFontOfSize:11];
+    _countLabel.textAlignment = NSTextAlignmentCenter;
+    [rightButton addSubview:_countLabel];
+    if ([CartTools getCartList].count >0) {
+        _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
+    }else {
+        _countLabel.hidden = YES;
+    }
     
     _searchBar = [[UISearchBar alloc] init];
     _searchBar.barStyle = UIBarStyleBlackTranslucent;
@@ -94,6 +115,17 @@
     }
     
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (_countLabel) {
+        
+        if ([CartTools getCartList].count >0) {
+            _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
+        }else {
+            _countLabel.hidden = YES;
+        }
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -123,7 +155,7 @@
     }else {
         [params setObject:@{@"name":@""} forKey:@"paramsMap"];
     }
-    
+    [self showHUD:@"正在搜索中"];
     [ZSTools post:url
            params:params
           success:^(id json) {
@@ -169,13 +201,13 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    return 20;
+    return 30;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-    UILabel *resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-120, 20)];
+    UILabel *resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth-120, 30)];
     if (self.seachData.count == 0) {
         resultLabel.text = @"  抱歉，未搜索到相关商品";
     }else {
@@ -188,7 +220,7 @@
     [headerView addSubview:resultLabel];
    
     UIButton *allButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    allButton.frame = CGRectMake(KScreenWidth-100, 0, 100, 20);
+    allButton.frame = CGRectMake(KScreenWidth-100, 0, 100, 30);
     allButton.titleLabel.font = [UIFont systemFontOfSize:12];
     [allButton setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
     [allButton setTitle:@"全部加入清单" forState:UIControlStateNormal];
@@ -233,6 +265,9 @@
                          
                      }];
     
+    _countLabel.hidden = NO;
+    _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -271,6 +306,22 @@
             [picArr replaceObjectAtIndex:i withObject:dic];
             
         }
+        //强行去掉为空字段
+        for (int i = 0; i < picArr.count; i ++) {
+            
+            NSMutableDictionary *dic = [[picArr objectAtIndex:i] mutableCopy];
+            for (NSInteger j = dic.allKeys.count - 1 ; j >= 0 ; j --) {
+                
+                if ([[dic objectForKey:dic.allKeys[j]] isEqual:[NSNull null]]) {
+                    
+                    [dic removeObjectForKey:dic.allKeys[j]];
+                    
+                }
+                
+            }
+            [picArr replaceObjectAtIndex:i withObject:dic];
+            
+        }
         
         NSDictionary *goods = @{@"id":gsModel.ID,
                                 @"name":gsModel.name,
@@ -288,6 +339,12 @@
             //            [_delegate addToCartWithIndexpath:_nowIndexpath];
             //
             //        }
+            if (i == _seachData.count -1) {
+                [self showHUD:@"正在加入清单"];
+                [self hideFailHUD:@"全部加入成功"];
+                _countLabel.hidden = NO;
+                _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
+            }
         }
         NSLogZS(@"加入清单，成功了么%d",isSuccess);
     }
