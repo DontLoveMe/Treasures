@@ -139,6 +139,8 @@
 #define EditUserMobile_URL @"/pcpServer-inf/user/editUserMobile"
 //绑定邮箱
 #define BindingEmail_URL @"/pcpServer-inf/user/bindingEmail"
+//用户中奖信息
+#define PrizeRemind_URL @"/pcpServer-inf/userdraw/remind"
 
 /*---------------发现模块---------------------*/
 //晒单分享列表

@@ -43,7 +43,7 @@
     TabbarViewcontroller *TVC = [[TabbarViewcontroller alloc] init];
     _window.rootViewController = TVC;
     
-    
+    [self requestPrizeMsg];
   //推送测试
 //    double delayInSeconds = 15.0;
 //    
@@ -164,7 +164,10 @@
         NSLog(@"%@",userInfo[@"aps"][@"alert"]);
         NSLog(@"%@",userInfo[@"description"]);
         NSLog(@"%@",userInfo[@"title"]);
-
+        NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+        if(userDic == nil){
+            return;
+        }
         if ([userInfo[@"msg_type"] integerValue] == 4) {
             if (pVC.parentViewController == self.window.rootViewController) {
                 return;
@@ -184,16 +187,6 @@
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
         }
     }
-//        else//杀死状态下，直接跳转到跳转页面。
-//        {
-//            SkipViewController *skipCtr = [[SkipViewController alloc]init];
-//            // 根视图是nav 用push 方式跳转
-//            [_tabBarCtr.selectedViewController pushViewController:skipCtr animated:YES];
-//            /*
-//             // 根视图是普通的viewctr 用present跳转
-//             [_tabBarCtr.selectedViewController presentViewController:skipCtr animated:YES completion:nil]; */
-//        }
-//        [self.viewController addLogString:[NSString stringWithFormat:@"backgroud : %@",userInfo]];
     
 }
 
@@ -300,6 +293,46 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo{
     }];
     
     return YES;
+}
+
+//请求中奖信息
+- (void)requestPrizeMsg{
+
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        return;
+    }
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSNumber *userId = userDic[@"id"];
+    [params setObject:userId forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,PrizeRemind_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              if (![[json objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
+                  
+                  NSDictionary *dataDic = [json objectForKey:@"data"];
+                  if (pVC.parentViewController == self.window.rootViewController) {
+                      return;
+                  }
+                  pVC = [[PromptController alloc] init];
+                  pVC.type = 1;
+                  pVC.titleLabel.text = [NSString stringWithFormat:@"恭喜你中奖，获得%@",dataDic[@"productId"]];
+                  [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
+                  
+              }else{
+                  
+                  return;
+                  
+              }
+              
+          } failure:^(NSError *error) {
+              
+              return ;
+              
+          }];
 }
 
 @end

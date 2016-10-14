@@ -239,8 +239,7 @@
     
     //设置动画图片初始位置
     SearchGoodsCell *cell = (SearchGoodsCell *)[_tableView cellForRowAtIndexPath:nowIndexpath];
-    
-    UIImageView *activityImgview = [[UIImageView alloc] initWithFrame:CGRectMake(nowIndexpath.row % 2 * (cell.width + 1) + 36, nowIndexpath.row / 2 * (cell.height + 1) + 16.f + _tableView.top, cell.imgView.width,cell.imgView.height)];
+    UIImageView *activityImgview = [[UIImageView alloc] initWithFrame:CGRectMake(5.f, nowIndexpath.row * (cell.height + 1) + _tableView.top + 5.f + 30.f, cell.imgView.width,cell.imgView.height)];
     //设置图片
     NSArray *picList = [dic objectForKey:@"proPictureList"];
     if (picList.count != 0) {

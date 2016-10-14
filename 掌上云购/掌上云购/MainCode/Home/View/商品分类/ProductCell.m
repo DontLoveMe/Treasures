@@ -75,14 +75,16 @@
     
     BOOL isSuccess = [CartTools addCartList:@[goods]];
     
-    [[self viewController] showHUD:@"正在加入清单"];
     if (isSuccess) {
         
-         [self getRootController].cartNum = [CartTools getCartList].count;
-        [[self viewController] hideFailHUD:@"加入清单成功"];
-    
-    }else {
-        [[self viewController] hideFailHUD:@"加入清单失败"];
+        [self getRootController].cartNum = [CartTools getCartList].count;
+        
+        if ([_productDelegate respondsToSelector:@selector(addToCartWithIndexpath:)]) {
+            
+            [_productDelegate addToCartWithIndexpath:_nowIndexpath];
+            
+        }
+        
     }
     NSLogZS(@"加入清单，成功了么%d",isSuccess);
 }

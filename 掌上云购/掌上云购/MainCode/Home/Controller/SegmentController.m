@@ -417,7 +417,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"%@",indexPath);
     NSDictionary *dic = [_collectionView.data objectAtIndex:indexPath.row];
     
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];

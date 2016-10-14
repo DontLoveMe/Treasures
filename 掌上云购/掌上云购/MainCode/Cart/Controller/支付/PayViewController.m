@@ -590,6 +590,16 @@
             cell = [[PayThreeKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell2"];
             
         }
+        cell.iconView.width = 0;
+        CGRect frame = cell.iconView.frame;
+        frame.origin.x = 0;
+        cell.iconView.frame = frame;
+//        
+//        CGRect frame1 = cell.wechat.frame;
+//        frame1.size.width = frame1.size.width + 30.f;
+//        cell.wechat.frame = frame1;
+//        
+//        [cell.iconView removeFromSuperview];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:@"余额支付"];
         
@@ -621,25 +631,27 @@
         //是否选择余额支付
         if (_isBalance == 0) {
             [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            cell.wechat.text  = [NSString stringWithFormat:@"余额支付:0元"];
+            cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):0元",restMoney];
         }else{
             [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
             if (totalPrice < 0){
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付:0元"];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):0元",restMoney];
                 
             }else if (restMoney > totalPrice) {
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%ld元",(long)totalPrice];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):%ld元",restMoney,(long)totalPrice];
                 
             }else{
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付:%.0f元",restMoney];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):%.0f元",restMoney,restMoney];
                 
             }
         }
 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell setNeedsLayout];
+        [cell layoutIfNeeded];
         return cell;
         
     }else if (indexPath.row==2){
@@ -720,7 +732,7 @@
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-3]];
-    cell.wechat.text = titles[indexPath.row-3];
+    cell.wechat.text = [NSString stringWithFormat:@"    %@",titles[indexPath.row-3]];
 
     return cell;
     
@@ -829,6 +841,7 @@
     }
 
     }
+    
 }
 
 - (TabbarViewcontroller *)getRootController{

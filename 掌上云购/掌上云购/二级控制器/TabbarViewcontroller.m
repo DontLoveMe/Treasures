@@ -56,8 +56,8 @@
        forControlEvents:UIControlEventTouchUpInside];
         [self.tabBar addSubview:item];
     }
-    self.tabBar.shadowImage = [UIImage imageNamed:@"横线_蓝"];
-    self.tabBar.backgroundImage = [UIImage imageNamed:@"标签栏背景"];
+//    self.tabBar.shadowImage = [UIImage imageNamed:@"横线_蓝"];
+//    self.tabBar.backgroundImage = [UIImage imageNamed:@"标签栏背景"];
     
 //    self.tabBar.sha
     if ([CartTools getCartList].count >0) {

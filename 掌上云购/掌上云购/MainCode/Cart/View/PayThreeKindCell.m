@@ -25,31 +25,26 @@
 -(void)initWithUI
 {
 
-   
     _iconView = [[UIImageView alloc]init];
-    
     [self.contentView addSubview:_iconView];
-    
     _iconView.sd_layout
     .leftSpaceToView(self.contentView,14)
-    .topSpaceToView(self.contentView,5)
-    .widthIs(40)
-    .heightIs(40);
+    .topSpaceToView(self.contentView,8)
+    .widthIs(32)
+    .heightIs(32);
     
     _wechat  =[[UILabel alloc]init];
-    
+    _wechat.font = [UIFont systemFontOfSize:14];
     [self.contentView addSubview:_wechat];
-    
     _wechat.sd_layout
-    .leftSpaceToView(_iconView,10)
+    .leftSpaceToView(_iconView,0)
     .centerYEqualToView(_iconView)
     .rightSpaceToView(self.contentView,30)
     .heightIs(20);
-    
+
     _radio = [UIButton buttonWithType:UIButtonTypeCustom];
     _radio.userInteractionEnabled = NO;
     [self.contentView addSubview:_radio];
-    
     _radio.sd_layout
     .rightSpaceToView(self.contentView,11)
     .centerYEqualToView(_iconView)

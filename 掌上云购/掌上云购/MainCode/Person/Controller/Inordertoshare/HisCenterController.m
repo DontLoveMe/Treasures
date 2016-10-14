@@ -259,6 +259,7 @@
     [self showHUD:@"加载数据"];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@{@"buyUserId":@(_buyUserId)} forKey:@"paramsMap"];
+    [params setObject:@"3" forKey:@"status"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@10 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];

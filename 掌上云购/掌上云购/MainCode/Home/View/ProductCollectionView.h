@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductCell.h"
+#import "GoodsModel.h"
 
-@interface ProductCollectionView : UICollectionView<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface ProductCollectionView : UICollectionView<UICollectionViewDelegate,UICollectionViewDataSource,ProductCellDelegate>
 
 @property (nonatomic,strong)NSArray *data;
 

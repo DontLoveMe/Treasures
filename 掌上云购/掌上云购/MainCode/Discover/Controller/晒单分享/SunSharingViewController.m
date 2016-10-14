@@ -70,6 +70,7 @@
         [params setObject:@{@"productId":_productID}
                    forKey:@"paramsMap"];
     }
+    [params setObject:@"3" forKey:@"status"];
     [params setObject:@(_page) forKey:@"page"];
     [params setObject:@20 forKey:@"rows"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,Sunsharing_URL];

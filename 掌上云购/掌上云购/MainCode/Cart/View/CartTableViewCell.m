@@ -147,6 +147,15 @@
     .widthIs(50)
     .heightIs(25);
     
+    //下面的线
+    _bottomLine = [[UIImageView alloc] init];
+    _bottomLine.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:_bottomLine];
+    _bottomLine.sd_layout
+    .xIs(12)
+    .yIs(111)
+    .widthIs(KScreenWidth - 24.f)
+    .heightIs(1);
 }
 
 #pragma mark - ButtonAction

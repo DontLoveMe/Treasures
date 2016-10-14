@@ -12,6 +12,13 @@
 #import "ProgressView.h"
 #import "GoodsModel.h"
 
+@protocol ProductCellDelegate <NSObject>
+
+@optional
+- (void)addToCartWithIndexpath:(NSIndexPath *)nowIndexpath;
+
+@end
+
 @interface ProductCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *productImg;
@@ -25,5 +32,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *typeMarkImgView;
 
 @property (nonatomic,strong)GoodsModel *gsModel;
+
+@property (nonatomic ,strong)NSIndexPath *nowIndexpath;
+
+@property (nonatomic, weak)id<ProductCellDelegate> productDelegate;
 
 @end

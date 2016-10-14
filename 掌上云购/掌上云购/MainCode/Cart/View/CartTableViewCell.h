@@ -75,6 +75,8 @@
 //包尾按钮
 @property (nonatomic,strong)UIButton    *allRestButton;
 
+@property (nonatomic,strong)UIImageView *bottomLine;
+
 @property (nonatomic ,weak)id <CartFunctionDelegate> functionDelegate;
 
 @property (nonatomic ,assign)NSInteger maxSelectableNum;

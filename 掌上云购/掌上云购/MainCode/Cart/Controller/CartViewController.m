@@ -262,7 +262,7 @@
     .heightIs(30);
     
     _tabview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight - kNavigationBarHeight - kTabBarHeight - 64.f) style:UITableViewStylePlain];
-//    _tabview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tabview.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tabview.showsVerticalScrollIndicator = NO;
     _tabview.backgroundColor = TableViewBackColor;
     _tabview.dataSource = self;
@@ -489,7 +489,8 @@
     NSArray *picArr = [dic objectForKey:@"proPictureList"];
     if (picArr.count > 0) {
         NSDictionary *picDic = [picArr firstObject];
-        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+//        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[picDic objectForKey:@"img170"]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }else{
         cell.goodsImg.image = [UIImage imageNamed:@"未加载图片"];
     }
