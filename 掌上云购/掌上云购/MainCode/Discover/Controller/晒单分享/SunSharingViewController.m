@@ -19,6 +19,9 @@
 @property (nonatomic,strong)NSMutableArray *data;
 @property (nonatomic,assign)NSInteger page;
 
+@property (nonatomic,strong)UIView *noView;
+
+
 @end
 
 @implementation SunSharingViewController
@@ -60,8 +63,26 @@
     
     [self createTabelView];
     
+    [self createNoView];
 }
 
+- (void)createNoView {
+    _noView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth-220)/2, (KScreenHeight-240)/2-100, 220, 240)];
+    //    _noView.backgroundColor = [UIColor grayColor];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((_noView.width-150)/2, 15, 150, 150)];
+    imgView.image = [UIImage imageNamed:@"无记录"];
+    [_noView addSubview:imgView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imgView.bottom +5, _noView.width, 16)];
+    label.text = @"你还没有记录哦";
+    label.textColor = [UIColor darkGrayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13];
+    [_noView addSubview:label];
+    
+    
+    [self.view addSubview:_noView];
+}
 - (void)requestData {
 
     [self showHUD:@"加载数据"];
@@ -94,6 +115,12 @@
                   if (_page == 1) {
                       [_data removeAllObjects];
                       _data = sunData;
+                      
+                      if (_data.count > 0) {
+                          _noView.hidden = YES;
+                      }else {
+                          _noView.hidden = NO;
+                      }
                       
                       [_tableView.mj_footer resetNoMoreData];
                       [_tableView.mj_header endRefreshing];

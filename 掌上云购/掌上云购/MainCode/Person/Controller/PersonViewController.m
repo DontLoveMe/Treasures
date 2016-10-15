@@ -469,6 +469,7 @@
               NSLogZS(@"%@",error);
           }];
 }
+
 //获取红包个数
 - (void)usableListCount{
     //取出存储的用户信息

@@ -10,6 +10,8 @@
 
 @interface ResultController : BaseViewController
 
+
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *snatchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *lookListBtn;

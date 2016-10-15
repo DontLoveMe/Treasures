@@ -10,6 +10,8 @@
 
 @interface AnnouncedHistoryController ()
 
+@property (nonatomic,strong)UIView *noView;
+
 @end
 
 @implementation AnnouncedHistoryController
@@ -46,6 +48,27 @@
     
     [self requestData:_pageIndex];
     
+    [self createNoView];
+    
+}
+
+- (void)createNoView {
+    
+    _noView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth-220)/2, (KScreenHeight-240)/2-100, 220, 240)];
+    //    _noView.backgroundColor = [UIColor grayColor];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((_noView.width-150)/2, 15, 150, 150)];
+    imgView.image = [UIImage imageNamed:@"无记录"];
+    [_noView addSubview:imgView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, imgView.bottom +5, _noView.width, 16)];
+    label.text = @"你还没有记录哦";
+    label.textColor = [UIColor darkGrayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13];
+    [_noView addSubview:label];
+    
+    
+    [self.view addSubview:_noView];
 }
 
 - (void)initViews{
@@ -229,6 +252,12 @@
               if (_pageIndex == 1) {
                   [_announceHistoryArr removeAllObjects];
                   _announceHistoryArr = dataArr.mutableCopy;
+                  
+                  if (_announceHistoryArr.count > 0) {
+                      _noView.hidden = YES;
+                  }else {
+                      _noView.hidden = NO;
+                  }
                   
                   [_announcedTableView.mj_footer resetNoMoreData];
                   [_announcedTableView.mj_header endRefreshing];
