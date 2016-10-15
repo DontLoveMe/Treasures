@@ -45,7 +45,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5um-Zl-T0o">
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="cGs-fU-w86"/>
-                            <constraint firstAttribute="height" constant="33" id="fik-h9-i6W"/>
+                            <constraint firstAttribute="height" constant="35" id="fik-h9-i6W"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="设为默认">
@@ -53,18 +53,6 @@
                         </state>
                         <connections>
                             <action selector="defaultAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="G3h-jV-dUq"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5g-Re-7aK">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="RjW-OR-Fv7"/>
-                            <constraint firstAttribute="height" constant="20" id="u8J-UL-VoM"/>
-                        </constraints>
-                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <state key="normal" backgroundImage="状态-暗.png"/>
-                        <state key="selected" backgroundImage="状态-亮.png"/>
-                        <connections>
-                            <action selector="defaultAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pqc-nD-MwZ"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSD-ZI-BgG">
@@ -76,6 +64,18 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5g-Re-7aK">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="17" id="RjW-OR-Fv7"/>
+                            <constraint firstAttribute="height" constant="17" id="u8J-UL-VoM"/>
+                        </constraints>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" backgroundImage="状态-暗.png"/>
+                        <state key="selected" backgroundImage="状态-亮.png"/>
+                        <connections>
+                            <action selector="defaultAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pqc-nD-MwZ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="d3i-Qg-Twc" firstAttribute="top" secondItem="EhC-W0-uRb" secondAttribute="bottom" constant="8" id="4dw-KE-vsT"/>
@@ -84,15 +84,15 @@
                     <constraint firstItem="vSD-ZI-BgG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GPj-Le-y5I"/>
                     <constraint firstItem="5um-Zl-T0o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="H07-ld-wZN"/>
                     <constraint firstItem="vSD-ZI-BgG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="PkE-kc-RqC"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="t5g-Re-7aK" secondAttribute="trailing" constant="5" id="SbD-P2-6PN"/>
-                    <constraint firstItem="t5g-Re-7aK" firstAttribute="leading" secondItem="5um-Zl-T0o" secondAttribute="trailing" id="ZvK-OR-h4L"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="t5g-Re-7aK" secondAttribute="trailing" constant="6" id="SbD-P2-6PN"/>
+                    <constraint firstItem="t5g-Re-7aK" firstAttribute="leading" secondItem="5um-Zl-T0o" secondAttribute="trailing" constant="2" id="ZvK-OR-h4L"/>
                     <constraint firstItem="d3i-Qg-Twc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="bOh-wb-jBg"/>
                     <constraint firstAttribute="bottom" secondItem="8Zh-AB-Oud" secondAttribute="bottom" id="fOC-p0-thA"/>
-                    <constraint firstItem="t5g-Re-7aK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ftL-ag-0Fx"/>
+                    <constraint firstItem="t5g-Re-7aK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="ftL-ag-0Fx"/>
                     <constraint firstAttribute="trailing" secondItem="8Zh-AB-Oud" secondAttribute="trailing" id="iB1-6n-jag"/>
                     <constraint firstItem="EhC-W0-uRb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="iez-2B-FKS"/>
                     <constraint firstItem="EhC-W0-uRb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="wbj-Kg-hLb"/>
-                    <constraint firstItem="EhC-W0-uRb" firstAttribute="top" secondItem="5um-Zl-T0o" secondAttribute="bottom" constant="-1" id="xeJ-yz-Ymc"/>
+                    <constraint firstItem="EhC-W0-uRb" firstAttribute="top" secondItem="5um-Zl-T0o" secondAttribute="bottom" constant="-3" id="xeJ-yz-Ymc"/>
                 </constraints>
                 <variation key="default">
                     <mask key="subviews">
