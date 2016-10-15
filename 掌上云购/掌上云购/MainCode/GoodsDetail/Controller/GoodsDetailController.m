@@ -331,7 +331,6 @@
         
         [weakSelf requestDetail];
         
-        
     }];
     
 }
@@ -842,7 +841,23 @@
                   
                   
                   //夺宝状态
-                  NSInteger isUnSaleOut = [[_dataDic objectForKey:@"status"] integerValue];
+                  NSInteger isLimit = [[_dataDic objectForKey:@"proNumberStatus"] integerValue];
+                  if (isLimit == 1) {
+                      
+                      _gotoNewOrderButton.userInteractionEnabled = NO;
+                      [_gotoNewOrderButton setTitle:@"该商品已限购" forState:UIControlStateNormal];
+
+                  }
+                  
+                  NSInteger isSaleOutStatus = [[_dataDic objectForKey:@"proStatus"] integerValue];
+                  if (isSaleOutStatus == 1) {
+                      
+                      //已下架
+                      _gotoNewOrderButton.userInteractionEnabled = NO;
+                      [_gotoNewOrderButton setTitle:@"该商品下架" forState:UIControlStateNormal];
+                      
+                  }
+                  
                   if (![_dataDic[@"saleDraw"] isKindOfClass:[NSNull class]]) {
                       
                       self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
@@ -855,37 +870,6 @@
                       _oherFunctionTableView.isPrized = _isPrized;
                       [_oherFunctionTableView reloadData];
 
-                  }else if (isUnSaleOut == 3){
-                      
-//                      self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
-//                      
-//                      _drawId = [_dataDic objectForKey:@"drawId"];
-//                      
-//                      _oherFunctionTableView.isAnnounced = 2;
-//                      self.isAnnounced = 2;
-//                      _oherFunctionTableView.isJoin = _isJoind;
-//                      _oherFunctionTableView.isPrized = _isPrized;
-//                      [_oherFunctionTableView reloadData];
-//                      [self requestDetail];
-                      
-                      UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                                       message:@"该商品已限期!"
-                                                                                preferredStyle:UIAlertControllerStyleAlert];
-                      UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                                             style:UIAlertActionStyleCancel
-                                                                           handler:^(UIAlertAction * _Nonnull action) {
-                                                                               
-                                                                               [self.navigationController popViewControllerAnimated:YES];
-                                                                               
-                                                                           }];
-                      [alertVC addAction:cancelAction];
-                      [self presentViewController:alertVC
-                                         animated:YES
-                                       completion:^{
-                                           
-                                       }];
-                      return;
-                      
                   }else {
                       
                       //是否参与
