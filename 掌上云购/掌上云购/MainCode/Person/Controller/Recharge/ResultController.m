@@ -19,6 +19,8 @@
         self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.view.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
+        self.bgView.layer.cornerRadius = 5;
+        self.bgView.layer.masksToBounds = YES;
         
     }
     return self;

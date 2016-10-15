@@ -444,7 +444,7 @@
     cell.goodsName.text = [dic objectForKey:@"name"];
     cell.sumLabel.text = [NSString stringWithFormat:@"总需人次：%@",[dic objectForKey:@"totalShare"]];
     NSInteger progressCount = [[dic objectForKey:@"sellShare"] floatValue] * 100 / [[dic objectForKey:@"totalShare"] floatValue];
-    cell.progressLabel.text = [NSString stringWithFormat:@"当前进度%ld%%",progressCount];
+    cell.progressLabel.text = [NSString stringWithFormat:@"揭晓进度%ld%%",progressCount];
     cell.progressView.progress = progressCount;
     
     NSArray *picList = [dic objectForKey:@"proPictureList"];

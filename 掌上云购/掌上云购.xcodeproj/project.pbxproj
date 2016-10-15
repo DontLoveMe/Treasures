@@ -112,8 +112,6 @@
 		D67419701D7D177200B655A5 /* MessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D674196E1D7D177200B655A5 /* MessageController.xib */; };
 		D68551731D8E9233007E84CA /* 无记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D68551711D8E9233007E84CA /* 无记录@2x.png */; };
 		D68551741D8E9233007E84CA /* 无记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D68551721D8E9233007E84CA /* 无记录@3x.png */; };
-		D68551781D8E97F0007E84CA /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = D68551761D8E97F0007E84CA /* ResultController.m */; };
-		D68551791D8E97F0007E84CA /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68551771D8E97F0007E84CA /* ResultController.xib */; };
 		D68C534D1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */; };
 		D68F25951D6AE8DA0042E0BE /* SeachHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D68F25931D6AE8D90042E0BE /* SeachHistoryCell.m */; };
 		D68F25961D6AE8DA0042E0BE /* SeachHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68F25941D6AE8D90042E0BE /* SeachHistoryCell.xib */; };
@@ -235,6 +233,8 @@
 		DD5607631D80FE720054B1A8 /* HomeGoodsHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607611D80FE720054B1A8 /* HomeGoodsHeadView.xib */; };
 		DD5607671D8147D60054B1A8 /* PreviewAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5607651D8147D60054B1A8 /* PreviewAllController.m */; };
 		DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607661D8147D60054B1A8 /* PreviewAllController.xib */; };
+		DD598CA81DB1E01D00B4B146 /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD598CA61DB1E01D00B4B146 /* ResultController.m */; };
+		DD598CA91DB1E01D00B4B146 /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD598CA71DB1E01D00B4B146 /* ResultController.xib */; };
 		DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E611D8FB53E0049EA18 /* 时间@2x.png */; };
 		DD716E641D8FB53E0049EA18 /* 时间@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E621D8FB53E0049EA18 /* 时间@3x.png */; };
 		DD71ABEA1D92755A005CBFFD /* dropdown_zsyg_001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD71AB7A1D92755A005CBFFD /* dropdown_zsyg_001@2x.png */; };
@@ -676,9 +676,6 @@
 		D674196E1D7D177200B655A5 /* MessageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageController.xib; sourceTree = "<group>"; };
 		D68551711D8E9233007E84CA /* 无记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无记录@2x.png"; sourceTree = "<group>"; };
 		D68551721D8E9233007E84CA /* 无记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无记录@3x.png"; sourceTree = "<group>"; };
-		D68551751D8E97F0007E84CA /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
-		D68551761D8E97F0007E84CA /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
-		D68551771D8E97F0007E84CA /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
 		D68C534B1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		D68C534C1D7EDABE00E9D72B /* CollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
 		D68F25921D6AE8D90042E0BE /* SeachHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeachHistoryCell.h; sourceTree = "<group>"; };
@@ -857,6 +854,9 @@
 		DD5607641D8147D60054B1A8 /* PreviewAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewAllController.h; sourceTree = "<group>"; };
 		DD5607651D8147D60054B1A8 /* PreviewAllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewAllController.m; sourceTree = "<group>"; };
 		DD5607661D8147D60054B1A8 /* PreviewAllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviewAllController.xib; sourceTree = "<group>"; };
+		DD598CA51DB1E01D00B4B146 /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
+		DD598CA61DB1E01D00B4B146 /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
+		DD598CA71DB1E01D00B4B146 /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
 		DD716E611D8FB53E0049EA18 /* 时间@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@2x.png"; sourceTree = "<group>"; };
 		DD716E621D8FB53E0049EA18 /* 时间@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@3x.png"; sourceTree = "<group>"; };
 		DD71AB7A1D92755A005CBFFD /* dropdown_zsyg_001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_zsyg_001@2x.png"; sourceTree = "<group>"; };
@@ -2219,9 +2219,9 @@
 				DDF92BFA1D6A9C3D009D5A1E /* RechargeRecordController.h */,
 				DDF92BFB1D6A9C3D009D5A1E /* RechargeRecordController.m */,
 				DDF92BFC1D6A9C3D009D5A1E /* RechargeRecordController.xib */,
-				D68551751D8E97F0007E84CA /* ResultController.h */,
-				D68551761D8E97F0007E84CA /* ResultController.m */,
-				D68551771D8E97F0007E84CA /* ResultController.xib */,
+				DD598CA51DB1E01D00B4B146 /* ResultController.h */,
+				DD598CA61DB1E01D00B4B146 /* ResultController.m */,
+				DD598CA71DB1E01D00B4B146 /* ResultController.xib */,
 			);
 			path = Recharge;
 			sourceTree = "<group>";
@@ -2757,6 +2757,7 @@
 				D64BEE9B1D74183900A6158B /* PersonHeaderView.xib in Resources */,
 				D65B64931D865CDD00D48834 /* 横线_灰@2x.png in Resources */,
 				D6A221731D8816930094C3BC /* 按钮背景-黄@3x.png in Resources */,
+				DD598CA91DB1E01D00B4B146 /* ResultController.xib in Resources */,
 				DD71AC591D92755A005CBFFD /* dropdown_zsyg_112@2x.png in Resources */,
 				DDF92C691D6A9C3D009D5A1E /* LoginViewController.xib in Resources */,
 				DDF92C381D6A9C3D009D5A1E /* AnnounceCell.xib in Resources */,
@@ -2764,7 +2765,6 @@
 				D65B64711D865CDD00D48834 /* 内容背景@3x.png in Resources */,
 				D6DBC3981D6DB903003BA793 /* SnatchRecordingCell.xib in Resources */,
 				D6EDC2621D93B95000EEADC7 /* 5元@2x.png in Resources */,
-				D68551791D8E97F0007E84CA /* ResultController.xib in Resources */,
 				DD71ABF71D92755A005CBFFD /* dropdown_zsyg_014@2x.png in Resources */,
 				DD71ABF51D92755A005CBFFD /* dropdown_zsyg_012@2x.png in Resources */,
 				D65B64D01D8688D900D48834 /* 按钮背景_白.png in Resources */,
@@ -3238,6 +3238,7 @@
 				DDF92CD51D6A9C4F009D5A1E /* CountDown.m in Sources */,
 				D64C99ED1DA89F3800B93197 /* ProblemController.m in Sources */,
 				D6F3E5E31D962F3C005455A8 /* PromptController.m in Sources */,
+				DD598CA81DB1E01D00B4B146 /* ResultController.m in Sources */,
 				D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */,
 				DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */,
 				DDF92C7C1D6A9C3D009D5A1E /* ConfirmDataController.m in Sources */,
@@ -3259,7 +3260,6 @@
 				DDF92CD81D6A9C4F009D5A1E /* UIView+SDAutoLayout.m in Sources */,
 				D625DA071D7EA96100316A49 /* GoodsModel.m in Sources */,
 				DDF92C7A1D6A9C3D009D5A1E /* InordertoshareController.m in Sources */,
-				D68551781D8E97F0007E84CA /* ResultController.m in Sources */,
 				FC3689941D6EA052005C1429 /* SunShareModel.m in Sources */,
 				DDF92C5F1D6A9C3D009D5A1E /* WingNotificationCell.m in Sources */,
 				DDF92CA01D6A9C3D009D5A1E /* RechargeCell.m in Sources */,

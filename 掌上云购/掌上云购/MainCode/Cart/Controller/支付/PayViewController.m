@@ -626,20 +626,20 @@
         //是否选择余额支付
         if (_isBalance == 0) {
             [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):0元",restMoney];
+            cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):0元",restMoney];
         }else{
             [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
             if (totalPrice < 0){
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):0元",restMoney];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):0元",restMoney];
                 
             }else if (restMoney > totalPrice) {
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):%ld元",restMoney,(long)totalPrice];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):%ld元",restMoney,(long)totalPrice];
                 
             }else{
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(%.0f元):%.0f元",restMoney,restMoney];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):%.0f元",restMoney,restMoney];
                 
             }
         }
@@ -858,6 +858,72 @@
     _redEnveloperID = [NSString stringWithFormat:@"%ld",[[redEnveloperDic objectForKey:@"id"] integerValue]];
     [_tab reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:1],[NSIndexPath indexPathForRow:1 inSection:1],[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    [self getUserInfo];
+
+}
+
+- (void)getUserInfo {
+    //取出存储的用户信息
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        return;
+    }
+    NSNumber *userId = userDic[@"id"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:userId forKey:@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,UserInfo_URL];
+    [ZSTools specialPost:url
+                  params:params
+                 success:^(id json) {
+                     
+                     BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
+                     if (isSuccess) {
+                         
+                         //更新存到NSUserDefaults信息
+                         NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                         for (int i = 0; i < userDic.allKeys.count; i ++) {
+                             
+                             id ss=userDic[userDic.allKeys[i]];
+                             if ([ss isEqual:[NSNull null]]) {
+                                 [userDic removeObjectForKey:userDic.allKeys[i]];
+                                 i = 0;
+                             }
+                             
+                             if ([[userDic objectForKey:userDic.allKeys[i]] isEqual:[NSNull null]]||[[userDic objectForKey:userDic.allKeys[i]] isKindOfClass:[NSNull class]]) {
+                                 
+                                 [userDic removeObjectForKey:userDic.allKeys[i]];
+                                 i = 0;
+                             }
+                             if ([userDic.allKeys[i] isEqualToString:@"userLoginDto"]) {
+                                 
+                                 NSMutableDictionary *userLoginDic = [userDic[@"userLoginDto"] mutableCopy];
+                                 for (int j = 0; j< userLoginDic.allKeys.count; j ++) {
+                                     if ([[userLoginDic objectForKey:userLoginDic.allKeys[j]] isEqual:[NSNull null]]||[[userLoginDic objectForKey:userLoginDic.allKeys[j]] isKindOfClass:[NSNull class]]) {
+                                         [userLoginDic removeObjectForKey:userLoginDic.allKeys[j]];
+                                         j = 0;
+                                     }
+                                     userDic[@"userLoginDto"] = userLoginDic;
+                                 }
+                                 
+                             }
+                         }
+                         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                         
+                         [defaults setObject:userDic forKey:@"userDic"];
+                         
+                         [defaults synchronize];
+                     }
+                     
+                 } failure:^(NSError *error) {
+                     
+                     NSLogZS(@"%@",error);
+                 }];
 }
 
 @end
