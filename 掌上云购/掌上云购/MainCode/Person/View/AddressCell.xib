@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="89"/>
+                <frame key="frameInset" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3i-Qg-Twc">
@@ -45,7 +45,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5um-Zl-T0o">
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="cGs-fU-w86"/>
-                            <constraint firstAttribute="height" constant="28" id="fik-h9-i6W"/>
+                            <constraint firstAttribute="height" constant="33" id="fik-h9-i6W"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="设为默认">
@@ -55,10 +55,10 @@
                             <action selector="defaultAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="G3h-jV-dUq"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5g-Re-7aK">
+                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5g-Re-7aK">
                         <constraints>
-                            <constraint firstAttribute="width" constant="16" id="RjW-OR-Fv7"/>
-                            <constraint firstAttribute="height" constant="16" id="u8J-UL-VoM"/>
+                            <constraint firstAttribute="width" constant="20" id="RjW-OR-Fv7"/>
+                            <constraint firstAttribute="height" constant="20" id="u8J-UL-VoM"/>
                         </constraints>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" backgroundImage="状态-暗.png"/>
@@ -92,7 +92,7 @@
                     <constraint firstAttribute="trailing" secondItem="8Zh-AB-Oud" secondAttribute="trailing" id="iB1-6n-jag"/>
                     <constraint firstItem="EhC-W0-uRb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="iez-2B-FKS"/>
                     <constraint firstItem="EhC-W0-uRb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="wbj-Kg-hLb"/>
-                    <constraint firstItem="EhC-W0-uRb" firstAttribute="top" secondItem="5um-Zl-T0o" secondAttribute="bottom" constant="4" id="xeJ-yz-Ymc"/>
+                    <constraint firstItem="EhC-W0-uRb" firstAttribute="top" secondItem="5um-Zl-T0o" secondAttribute="bottom" constant="-1" id="xeJ-yz-Ymc"/>
                 </constraints>
                 <variation key="default">
                     <mask key="subviews">
