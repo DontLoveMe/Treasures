@@ -19,6 +19,8 @@
 #import "UIScrollView+MJRefresh.h"
 #import "BuyNowController.h"
 
+#import "CartViewController.h"
+
 @interface GoodsDetailController : BaseViewController<SDCycleScrollViewDelegate,/*WingTableDelegate,*/BroughtHistoryDelegate,UIScrollViewDelegate,BuyNowControllerDelegate>{
 
     //背景
@@ -80,7 +82,6 @@
 @property (nonatomic ,assign)NSInteger isAnnounced;
 //标记是否中奖(前置条件：已揭晓。0:尚未中奖 1:中奖)
 @property (nonatomic ,assign)NSInteger isPrized;
-
 
 //商品id
 @property (nonatomic ,copy)NSString *goodsId;

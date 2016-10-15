@@ -489,8 +489,8 @@
     NSArray *picArr = [dic objectForKey:@"proPictureList"];
     if (picArr.count > 0) {
         NSDictionary *picDic = [picArr firstObject];
-//        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
-        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[picDic objectForKey:@"img170"]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[[picDic  allKeys] firstObject]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
+//        [cell.goodsImg setImageWithURL:[NSURL URLWithString:[picDic objectForKey:[picDic objectForKey:@"img170"]]] placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }else{
         cell.goodsImg.image = [UIImage imageNamed:@"未加载图片"];
     }

@@ -533,26 +533,42 @@
 - (void)gotoCartAction:(UIButton *)button{
 
     NSLogZS(@"进入购物车");
-    id next = [self nextResponder];
-    while (next != nil) {
+    NSLog(@"%@",self.parentViewController.parentViewController);
+    
+    NSArray *vcsArray = self.navigationController.viewControllers ;
+    NSInteger vcCount = vcsArray.count;
+    UIViewController *lastVC = vcsArray[vcCount-2];
+    
+    if ([lastVC isKindOfClass:[CartViewController class]]) {
         
-        if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+        [self.navigationController popToViewController:lastVC
+                                              animated:YES];
+        
+    }else{
+    
+        
+        id next = [self nextResponder];
+        while (next != nil) {
             
-            //获得标签控制器
-            TabbarViewcontroller *tb = next;
-            //修改索引
-            tb.selectedIndex = 3;
-            //原选中标签修改
-            tb.selectedItem.isSelected = NO;
-            //选中新标签
-            TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:4];
-            item.isSelected = YES;
-            //设置为上一个选中
-            tb.selectedItem = item;
-            
-            return;
+            if ([next isKindOfClass:[TabbarViewcontroller class]]) {
+                
+                //获得标签控制器
+                TabbarViewcontroller *tb = next;
+                //修改索引
+                tb.selectedIndex = 3;
+                //原选中标签修改
+                tb.selectedItem.isSelected = NO;
+                //选中新标签
+                TabbarItem *item = (TabbarItem *)[tb.view viewWithTag:4];
+                item.isSelected = YES;
+                //设置为上一个选中
+                tb.selectedItem = item;
+                
+                return;
+            }
+            next = [next nextResponder];
         }
-        next = [next nextResponder];
+    
     }
     
 }
@@ -824,8 +840,11 @@
 //                  NSInteger now = [[_dataDic objectForKey:@"sellShare"] integerValue];
 //                  _oherFunctionTableView.progress = now * 100 / total ;
                   
+                  
                   //夺宝状态
+                  NSInteger isUnSaleOut = [[_dataDic objectForKey:@"status"] integerValue];
                   if (![_dataDic[@"saleDraw"] isKindOfClass:[NSNull class]]) {
+                      
                       self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
                       
                       _drawId = [_dataDic objectForKey:@"drawId"];
@@ -836,6 +855,37 @@
                       _oherFunctionTableView.isPrized = _isPrized;
                       [_oherFunctionTableView reloadData];
 
+                  }else if (isUnSaleOut == 3){
+                      
+//                      self.isJoind = [[_dataDic objectForKey:@"isBuy"] integerValue];
+//                      
+//                      _drawId = [_dataDic objectForKey:@"drawId"];
+//                      
+//                      _oherFunctionTableView.isAnnounced = 2;
+//                      self.isAnnounced = 2;
+//                      _oherFunctionTableView.isJoin = _isJoind;
+//                      _oherFunctionTableView.isPrized = _isPrized;
+//                      [_oherFunctionTableView reloadData];
+//                      [self requestDetail];
+                      
+                      UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                       message:@"该商品已限期!"
+                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                      UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                             style:UIAlertActionStyleCancel
+                                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                                               
+                                                                               [self.navigationController popViewControllerAnimated:YES];
+                                                                               
+                                                                           }];
+                      [alertVC addAction:cancelAction];
+                      [self presentViewController:alertVC
+                                         animated:YES
+                                       completion:^{
+                                           
+                                       }];
+                      return;
+                      
                   }else {
                       
                       //是否参与
@@ -846,6 +896,7 @@
                       _oherFunctionTableView.isJoin = _isJoind;
                       _oherFunctionTableView.isPrized = _isPrized;
                       [_oherFunctionTableView reloadData];
+                      
                   }
                   
                   [self requestJoinList];
@@ -853,8 +904,25 @@
               }else{
               
                   NSLogZS(@"后台报错了");
-                  [self hideFailHUD:@"加载失败"];
-                  [self.navigationController popViewControllerAnimated:YES];
+                  [self hideFailHUD:@""];
+                  UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                   message:@"该商品已下架!"
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                         style:UIAlertActionStyleCancel
+                                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                                           
+                                                                           [self.navigationController popViewControllerAnimated:YES];
+                                                                           
+                                                                       }];
+                  [alertVC addAction:cancelAction];
+                  [self presentViewController:alertVC
+                                     animated:YES
+                                   completion:^{
+                                       
+                                   }];
+                  return;
+                 
                   
               }
               

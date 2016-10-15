@@ -624,9 +624,10 @@ constructingBodyWithBlock:nil
 
                       [_goodsArr addObjectsFromArray:dataArr];
                       _page++;
+                      
                   }
 
-                  _goodsList.height = ((KScreenWidth - 1) * 11 / 20) * (_goodsArr.count / 2 + _goodsArr.count % 2) + _goodsArr.count - 1;
+                  _goodsList.height = ((KScreenWidth ) * 11 / 20 - 1) * (_goodsArr.count / 2 + _goodsArr.count % 2) + _goodsArr.count - 1;
                   _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _goodsList.bottom);
                   [_goodsList reloadData];
               }

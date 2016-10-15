@@ -594,12 +594,7 @@
         CGRect frame = cell.iconView.frame;
         frame.origin.x = 0;
         cell.iconView.frame = frame;
-//        
-//        CGRect frame1 = cell.wechat.frame;
-//        frame1.size.width = frame1.size.width + 30.f;
-//        cell.wechat.frame = frame1;
-//        
-//        [cell.iconView removeFromSuperview];
+
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:@"余额支付"];
         
@@ -716,6 +711,10 @@
     }
 
     PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+    cell.iconView.width = 32;
+    CGRect frame = cell.iconView.frame;
+    frame.origin.x = 14;
+    cell.iconView.frame = frame;
     NSArray *titles = @[@"微信支付",@"支付宝支付"];
     if (!cell) {
         
@@ -733,7 +732,8 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.iconView.image = [UIImage imageNamed:titles[indexPath.row-3]];
     cell.wechat.text = [NSString stringWithFormat:@"    %@",titles[indexPath.row-3]];
-
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
     return cell;
     
 }

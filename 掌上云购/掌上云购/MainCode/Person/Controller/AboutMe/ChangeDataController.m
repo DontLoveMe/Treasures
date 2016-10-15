@@ -310,7 +310,7 @@
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载中"];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"id"];
     if (_verifyTF.text.length>0) {
@@ -340,7 +340,7 @@
     }else{
         return;
     }
-
+    [self showHUD:@"加载中"];
 //    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserMobile_URL];
     NSString *url = @"http://192.168.0.92:8080/pcpi/user/editUserMobile";
     [ZSTools post:url
@@ -381,7 +381,7 @@
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
-    [self showHUD:@"加载中"];
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:userId forKey:@"id"];
     
@@ -403,7 +403,7 @@
         
     }
    
-    
+    [self showHUD:@"加载中"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,BindingEmail_URL];
     [ZSTools post:url
            params:params
