@@ -45,6 +45,10 @@
 #define kNavigationBarHeight 64
 #define kTabBarHeight 49
 
+#define kNavigationBarItemWidth 15
+#define kNavigationBarItemHight 20
+
+
 //判断尺寸
 #define kkDeviceVersion UIDevice.currentDevice.systemVersion.floatValue >= 7.0
 

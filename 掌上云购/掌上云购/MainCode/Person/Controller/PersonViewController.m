@@ -43,19 +43,12 @@
 
 #pragma mark - 导航栏
 - (void)initNavBar{
+
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, KScreenWidth, 25)];
-    label.text = @"个人中心";
-    label.textColor = [UIColor whiteColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:20];
-    [self.view insertSubview:label aboveSubview:_collectionView];
-    _titleLabel = label;
-    
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-40, 30, 22.f, 22.f)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-45, 21, 40.f, 40.f)];
     rightButton.tag = 101;
 //    [rightButton setTitle:@"信息" forState:UIControlStateNormal];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"消息"]
+    [rightButton setImage:[UIImage imageNamed:@"消息"]
                           forState:UIControlStateNormal];
     [rightButton addTarget:self
                    action:@selector(NavAction:)
@@ -63,10 +56,10 @@
     [self.view insertSubview:rightButton aboveSubview:_collectionView];
     _msgBtn = rightButton;
     
-    UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-75, 30, 22.f, 22.f)];
+    UIButton *rightButton1 = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-85, 21, 40.f, 40.f)];
     rightButton1.tag = 102;
 //    [rightButton1 setTitle:@"设置" forState:UIControlStateNormal];
-    [rightButton1 setBackgroundImage:[UIImage imageNamed:@"我的_设置"]
+    [rightButton1 setImage:[UIImage imageNamed:@"我的_设置"]
                            forState:UIControlStateNormal];
     [rightButton1 addTarget:self
                     action:@selector(NavAction:)
@@ -75,6 +68,13 @@
     [self.view insertSubview:rightButton1 aboveSubview:_collectionView];
     _setBtn = rightButton1;
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, KScreenWidth, 25)];
+    label.text = @"个人中心";
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:20];
+    [self.view insertSubview:label aboveSubview:_collectionView];
+    _titleLabel = label;
 }
 
 - (void)NavAction:(UIButton *)button{

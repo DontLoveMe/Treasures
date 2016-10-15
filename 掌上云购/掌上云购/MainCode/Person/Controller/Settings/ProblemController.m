@@ -17,7 +17,7 @@
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0,kNavigationBarItemWidth, kNavigationBarItemHight)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
