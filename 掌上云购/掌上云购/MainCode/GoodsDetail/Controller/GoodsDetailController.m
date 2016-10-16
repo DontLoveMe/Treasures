@@ -62,7 +62,7 @@
         [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
         if(alpha > 0.5) {
             UIButton *leftButton = [self.navigationController.navigationBar viewWithTag:101];
-            leftButton.size = CGSizeMake(12, 18);
+            leftButton.size = CGSizeMake(kNavigationBarItemWidth,kNavigationBarItemHight);
             [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                                   forState:UIControlStateNormal];
             UIButton *rightButton = [self.navigationController.navigationBar viewWithTag:102];
@@ -337,53 +337,64 @@
 
 - (void)initBottonView{
     
-    _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
-    _bottomView.backgroundColor = [UIColor whiteColor];
-    _bottomView.image = [UIImage imageNamed:@"标签栏背景"];
-    _bottomView.userInteractionEnabled = YES;
-    [self.view addSubview:_bottomView];
+    if (_bottomView == nil) {
+        
+        _bottomView = [[UIImageView alloc] initWithFrame:CGRectMake(0, KScreenHeight - kTabBarHeight, KScreenWidth, kTabBarHeight)];
+        _bottomView.backgroundColor = [UIColor whiteColor];
+        _bottomView.image = [UIImage imageNamed:@"标签栏背景"];
+        _bottomView.userInteractionEnabled = YES;
+        [self.view addSubview:_bottomView];
+    }
     
     if (_isAnnounced == 1) {
     
-        _buyNowButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth*2 / 5-10, 30)];
-        [_buyNowButton setTitle:@"立即购买" forState:UIControlStateNormal];
-        [_buyNowButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
-        [_buyNowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_buyNowButton addTarget:self
-                          action:@selector(buyNowAction:)
-                forControlEvents:UIControlEventTouchUpInside];
-        [_bottomView addSubview:_buyNowButton];
-        
-        _addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*2 / 5+10, 10, KScreenWidth*2 / 5-10, 30)];
-        [_addToCartButton setTitle:@"加入清单" forState:UIControlStateNormal];
-        [_addToCartButton setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
-        [_addToCartButton setBackgroundImage:[UIImage imageNamed:@"按钮框_亮"] forState:UIControlStateNormal];
-        [_addToCartButton addTarget:self
-                             action:@selector(addToCartAction:)
-                   forControlEvents:UIControlEventTouchUpInside];
-        [_bottomView addSubview:_addToCartButton];
-        
-        _cartBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*4 / 5, 0, KScreenWidth*1 / 5, kTabBarHeight)];
-        [_cartBottomButton setImage:[UIImage imageNamed:@"清单-selected"] forState:UIControlStateNormal];
-        [_cartBottomButton addTarget:self
-                              action:@selector(gotoCartAction:)
+        if (_buyNowButton == nil) {
+            
+            _buyNowButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 10, KScreenWidth*2 / 5-10, 30)];
+            [_buyNowButton setTitle:@"立即购买" forState:UIControlStateNormal];
+            [_buyNowButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
+            [_buyNowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_buyNowButton addTarget:self
+                              action:@selector(buyNowAction:)
                     forControlEvents:UIControlEventTouchUpInside];
-        [_bottomView addSubview:_cartBottomButton];
+            [_bottomView addSubview:_buyNowButton];
+        }
+        if (_addToCartButton == nil) {
+            
+            _addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*2 / 5+10, 10, KScreenWidth*2 / 5-10, 30)];
+            [_addToCartButton setTitle:@"加入清单" forState:UIControlStateNormal];
+            [_addToCartButton setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateNormal];
+            [_addToCartButton setBackgroundImage:[UIImage imageNamed:@"按钮框_亮"] forState:UIControlStateNormal];
+            [_addToCartButton addTarget:self
+                                 action:@selector(addToCartAction:)
+                       forControlEvents:UIControlEventTouchUpInside];
+            [_bottomView addSubview:_addToCartButton];
+        }
+        
+        if (_cartBottomButton == nil) {
+            
+            _cartBottomButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth*4 / 5, 0, KScreenWidth*1 / 5, kTabBarHeight)];
+            [_cartBottomButton setImage:[UIImage imageNamed:@"清单-selected"] forState:UIControlStateNormal];
+            [_cartBottomButton addTarget:self
+                                  action:@selector(gotoCartAction:)
+                        forControlEvents:UIControlEventTouchUpInside];
+            [_bottomView addSubview:_cartBottomButton];
+        }
         //购物车上的数字
         if (!_countLabel) {
             _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(_cartBottomButton.width - 23, 3.f, 14, 14)];
+            _countLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
+            _countLabel.layer.borderWidth = 0.5;
+            _countLabel.layer.cornerRadius = 7.f;
+            _countLabel.layer.masksToBounds = YES;
+            _countLabel.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
+            //    _countLabel.text = [NSString stringWithFormat:@"%ld",_cartNum];
+            _countLabel.textColor = [UIColor whiteColor];
+            _countLabel.font = [UIFont systemFontOfSize:11];
+            _countLabel.textAlignment = NSTextAlignmentCenter;
+            [_cartBottomButton addSubview:_countLabel];
         }
         
-        _countLabel.layer.borderColor = [[UIColor whiteColor] CGColor];
-        _countLabel.layer.borderWidth = 0.5;
-        _countLabel.layer.cornerRadius = 7.f;
-        _countLabel.layer.masksToBounds = YES;
-        _countLabel.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
-        //    _countLabel.text = [NSString stringWithFormat:@"%ld",_cartNum];
-        _countLabel.textColor = [UIColor whiteColor];
-        _countLabel.font = [UIFont systemFontOfSize:11];
-        _countLabel.textAlignment = NSTextAlignmentCenter;
-        [_cartBottomButton addSubview:_countLabel];
         if ([CartTools getCartList].count >0) {
             _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
         }else {
@@ -392,23 +403,29 @@
         
     }else{
     
-        _gotoNewOrderButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth * 2 / 3+15, 10, KScreenWidth / 3-30, 30)];
-        [_gotoNewOrderButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
-        _gotoNewOrderButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_gotoNewOrderButton setTitle:@"前往购买"
-                             forState:UIControlStateNormal];
-        [_gotoNewOrderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_gotoNewOrderButton addTarget:self
-                              action:@selector(addToNewOrderAction:)
-                    forControlEvents:UIControlEventTouchUpInside];
-        [_bottomView addSubview:_gotoNewOrderButton];
+        if (_gotoNewOrderButton == nil) {
+            
+            _gotoNewOrderButton = [[UIButton alloc] initWithFrame:CGRectMake(KScreenWidth * 2 / 3+15, 10, KScreenWidth / 3-30, 30)];
+            [_gotoNewOrderButton setBackgroundImage:[UIImage imageNamed:@"按钮背景"] forState:UIControlStateNormal];
+            _gotoNewOrderButton.titleLabel.font = [UIFont systemFontOfSize:12];
+            [_gotoNewOrderButton setTitle:@"前往购买"
+                                 forState:UIControlStateNormal];
+            [_gotoNewOrderButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_gotoNewOrderButton addTarget:self
+                                    action:@selector(addToNewOrderAction:)
+                          forControlEvents:UIControlEventTouchUpInside];
+            [_bottomView addSubview:_gotoNewOrderButton];
+        }
         
-        _newOrderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth * 2 / 3, kTabBarHeight)];
-        _newOrderNumLabel.text = @"  新一期正在火热进行中";
-        _newOrderNumLabel.textColor = [UIColor darkGrayColor];
-        _newOrderNumLabel.font = [UIFont systemFontOfSize:13];
-        _newOrderNumLabel.textAlignment = NSTextAlignmentLeft;
-        [_bottomView addSubview:_newOrderNumLabel];
+        if (_newOrderNumLabel == nil) {
+            
+            _newOrderNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth * 2 / 3, kTabBarHeight)];
+            _newOrderNumLabel.text = @"  新一期正在火热进行中";
+            _newOrderNumLabel.textColor = [UIColor darkGrayColor];
+            _newOrderNumLabel.font = [UIFont systemFontOfSize:13];
+            _newOrderNumLabel.textAlignment = NSTextAlignmentLeft;
+            [_bottomView addSubview:_newOrderNumLabel];
+        }
     
     }
 
@@ -843,6 +860,13 @@
                   //夺宝状态
                   NSInteger isLimit = [[_dataDic objectForKey:@"proNumberStatus"] integerValue];
                   if (isLimit == 1) {
+//                      self.isAnnounced = 3;
+//                      [self initBottonView];
+//                      
+//                      _buyNowButton.hidden = YES;
+//                      _addToCartButton.hidden = YES;
+//                      _cartBottomButton.hidden = YES;
+//                      _countLabel.hidden = NO;
                       
                       _gotoNewOrderButton.userInteractionEnabled = NO;
                       [_gotoNewOrderButton setTitle:@"该商品已限购" forState:UIControlStateNormal];
@@ -850,9 +874,16 @@
                   }
                   
                   NSInteger isSaleOutStatus = [[_dataDic objectForKey:@"proStatus"] integerValue];
-                  if (isSaleOutStatus == 1) {
+                  if (isSaleOutStatus == 0) {
                       
                       //已下架
+//                      self.isAnnounced = 3;
+//                      [self initBottonView];
+//                      _buyNowButton.hidden = YES;
+//                      _addToCartButton.hidden = YES;
+//                      _cartBottomButton.hidden = YES;
+//                      _countLabel.hidden = NO;
+                      
                       _gotoNewOrderButton.userInteractionEnabled = NO;
                       [_gotoNewOrderButton setTitle:@"该商品下架" forState:UIControlStateNormal];
                       

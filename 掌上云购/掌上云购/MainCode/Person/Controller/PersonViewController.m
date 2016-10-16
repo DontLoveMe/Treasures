@@ -375,16 +375,16 @@
         _bgIconView.transform = CGAffineTransformMakeScale(scale, scale);
         _bgIconView.top = 0;
         _titleLabel.top = 30;
-        _msgBtn.top = 30;
-        _setBtn.top = 30;
+        _msgBtn.top = 21;
+        _setBtn.top = 21;
 
         
     }else {
         
         _bgIconView.top = -offsetY;
         _titleLabel.top = -offsetY + 30;
-        _msgBtn.top = -offsetY + 30;
-        _setBtn.top = -offsetY + 30;
+        _msgBtn.top = -offsetY + 21;
+        _setBtn.top = -offsetY + 21;
     }
    
     //使titleLabel与headerImgView底部重合

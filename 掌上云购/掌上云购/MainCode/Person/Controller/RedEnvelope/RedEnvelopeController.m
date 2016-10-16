@@ -45,8 +45,12 @@
 }
 
 - (void)NavAction:(UIButton *)button{
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_isMsgPush) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewDidLoad {

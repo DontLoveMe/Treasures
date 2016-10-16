@@ -38,7 +38,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     self.clickBlock(sender.tag);
 }
+- (IBAction)knowAction:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.clickBlock(sender.tag);
+}
 
-
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 @end

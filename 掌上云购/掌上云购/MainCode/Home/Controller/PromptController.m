@@ -59,6 +59,7 @@ static id instance = nil;
         
         RedEnvelopeController *reVC = [[RedEnvelopeController alloc] init];
         reVC.isPay = @"1";
+        reVC.isMsgPush = YES;
         self.navigationController.navigationBar.hidden = NO;
         reVC.hidesBottomBarWhenPushed = YES;
         TabbarViewcontroller *view = (TabbarViewcontroller *)self.presentingViewController;

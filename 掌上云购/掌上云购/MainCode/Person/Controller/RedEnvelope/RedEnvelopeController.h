@@ -25,5 +25,7 @@
 @property (nonatomic,assign)NSInteger constNum;
 
 @property (nonatomic,strong)NSNumber *businessId;
+//yes:是红包弹窗进来的
+@property (nonatomic,assign)BOOL isMsgPush;
 
 @end

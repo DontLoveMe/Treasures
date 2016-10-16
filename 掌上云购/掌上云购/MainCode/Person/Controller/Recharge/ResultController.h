@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *snatchBtn;
 @property (weak, nonatomic) IBOutlet UIButton *lookListBtn;
+@property (weak, nonatomic) IBOutlet UIButton *knowBtn;
 
 @property (nonatomic,copy)void(^clickBlock)(NSInteger tag);
 

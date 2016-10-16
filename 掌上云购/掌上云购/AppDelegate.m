@@ -168,13 +168,16 @@
         if(userDic == nil){
             return;
         }
+        TabbarViewcontroller *tabbar = (TabbarViewcontroller *)self.window.rootViewController;
         if ([userInfo[@"msg_type"] integerValue] == 4) {
             if (pVC.parentViewController == self.window.rootViewController) {
                 return;
             }
             pVC = [[PromptController alloc] init];
             pVC.type = 0;
+            pVC.tabbarIndex = tabbar.selectedIndex;
             pVC.titleLabel.text = userInfo[@"aps"][@"alert"];
+            
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
         }else {
             
@@ -183,6 +186,7 @@
             }
             pVC = [[PromptController alloc] init];
             pVC.type = 1;
+            pVC.tabbarIndex = tabbar.selectedIndex;
             pVC.titleLabel.text = userInfo[@"aps"][@"alert"];
             [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
         }

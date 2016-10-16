@@ -132,7 +132,7 @@
         {
             RegisterViewController *rVC = [[RegisterViewController alloc] init];
             rVC.isRegistOrmodify = 2;
-            rVC.title = @"密码修改";
+            rVC.title = @"重置密码";
             UINavigationController *rnVC = [[UINavigationController alloc] initWithRootViewController:rVC];
             [self presentViewController:rnVC animated:YES completion:nil];
         }

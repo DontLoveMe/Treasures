@@ -22,7 +22,7 @@
     NSArray *pArr = _rcModel.proPictureList;
     if (pArr.count>0) {
         Propicturelist *prtLs = pArr[0];
-        NSURL *url = [NSURL URLWithString:prtLs.img650];
+        NSURL *url = [NSURL URLWithString:prtLs.img170];
         [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }
     
@@ -48,6 +48,25 @@
         _getPeopleN.text = [NSString stringWithFormat:@"%ld",rcModel.winnersPartakeCount];
     }
 
+    //夺宝状态
+    NSInteger isLimit = rcModel.proNumberStatus;
+    if (isLimit == 1) {
+        
+        _againButton.userInteractionEnabled = NO;
+        [_againButton setTitle:@"该商品已限购" forState:UIControlStateNormal];
+        
+    }
+    
+    NSInteger isSaleOutStatus = rcModel.proStatus;
+    if (isSaleOutStatus == 0) {
+        
+        //已下架
+        _againButton.userInteractionEnabled = NO;
+        [_againButton setTitle:@"该商品下架" forState:UIControlStateNormal];
+        
+    }
+    
+    
 }
 
 //查看详情

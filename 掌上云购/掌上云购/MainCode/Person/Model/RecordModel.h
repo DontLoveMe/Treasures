@@ -100,6 +100,10 @@
 
 @property (nonatomic, copy) NSString *orderDrawStatus;
 
+@property (nonatomic, assign) NSInteger proStatus;
+
+@property (nonatomic,assign) NSInteger proNumberStatus;
+
 @end
 
 @interface Saledraw : NSObject

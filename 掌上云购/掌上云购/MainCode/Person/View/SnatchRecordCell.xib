@@ -70,7 +70,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mq0-Eb-pZf">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="LFg-HT-ETS"/>
+                                    <constraint firstAttribute="width" constant="72" id="LFg-HT-ETS"/>
                                     <constraint firstAttribute="height" constant="23" id="qWM-dg-8uW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>

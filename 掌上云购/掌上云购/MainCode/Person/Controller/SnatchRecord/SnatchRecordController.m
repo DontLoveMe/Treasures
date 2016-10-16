@@ -143,12 +143,12 @@
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = 200 + i;
-        button.frame = CGRectMake(KScreenWidth/3*i, 0, KScreenWidth/3, 30);
+        button.frame = CGRectMake(KScreenWidth/3*i, 0, KScreenWidth/3, 45);
         button.backgroundColor = [UIColor whiteColor];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorFromHexRGB:ThemeColor] forState:UIControlStateSelected];
         [button setTitle:titles[i] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:13];
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
         
@@ -157,19 +157,19 @@
             _selectButtonTag = 200;
         }
     }
-    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 29, KScreenWidth, 1)];
+    UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, KScreenWidth, 1)];
     lineView.backgroundColor = [UIColor colorFromHexRGB:@"EAEAEA"];
     [self.view addSubview:lineView];
 
     //按钮下方的横线
-    _lineView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth/3-40)/2, 29, 40, 1)];
+    _lineView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth/3-40)/2, 44, 40, 1)];
     _lineView.backgroundColor = [UIColor colorFromHexRGB:ThemeColor];
     [self.view addSubview:_lineView];
     
     
     [self requestData:nil];
     //创建表视图
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, KScreenWidth, KScreenHeight-30-64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 45, KScreenWidth, KScreenHeight-45-64) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.showsVerticalScrollIndicator = NO;

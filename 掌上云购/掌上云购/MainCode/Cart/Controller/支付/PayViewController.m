@@ -43,7 +43,7 @@
 @implementation PayViewController{
 
     UITableView *_tab;
-    
+    ResultController *_rVC;
 //    NSMutableArray *_dataArray;
 
 }
@@ -51,7 +51,7 @@
 - (void)initNavBar{
     
     self.navigationItem.backBarButtonItem = nil;
-    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 12.f, 18.f)];
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, kNavigationBarItemWidth, kNavigationBarItemHight)];
     leftButton.tag = 101;
     [leftButton setBackgroundImage:[UIImage imageNamed:@"返回.png"]
                           forState:UIControlStateNormal];
@@ -355,6 +355,17 @@
     //根据是否为直接购买,判断是否清除购物车
     if ([_isimidiately isEqualToString:@"1"]) {
         [CartTools realaseCartList];
+    }else {
+        NSArray *cartArr = [CartTools getCartList];
+        NSDictionary *cartDic = [_immidiatelyArr firstObject];
+        for (int i = 0 ; i < cartArr.count; i ++) {
+            NSDictionary *cartDic1 = cartArr[i];
+            
+            if ([cartDic[@"id"] integerValue] == [cartDic1[@"id"] integerValue]) {
+                [CartTools removeGoodsWithIndexPath:i];
+            }
+            
+        }
     }
 
     NSArray *cartListArr = [CartTools getCartList];
@@ -408,10 +419,16 @@
                   
                       [self hideSuccessHUD:@"支付成功"];
 //                      [self.navigationController popToRootViewControllerAnimated:YES];
-                      ResultController *rVC = [[ResultController alloc] init];
-                      rVC.contentLabel.text = @"支付成功！";
+                      if (_rVC == nil) {
+                          
+                          _rVC = [[ResultController alloc] init];
+                      }
+                      _rVC.contentLabel.text = @"支付成功！";
+                      _rVC.knowBtn.hidden = YES;
+                      _rVC.snatchBtn.hidden = NO;
+                      _rVC.lookListBtn.hidden = NO;
                       __weak typeof(self) weakSelf = self;
-                      [rVC setClickBlock:^(NSInteger tag) {
+                      [_rVC setClickBlock:^(NSInteger tag) {
                           if (tag == 100) {
                               [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                           }else if (tag == 101){
@@ -422,14 +439,27 @@
                           }
                           
                       }];
-                      [self presentViewController:rVC animated:YES completion:nil];
+                      [self presentViewController:_rVC animated:YES completion:nil];
                   }
                   
               }else{
-                  
-                  ResultController *rVC = [[ResultController alloc] init];
-                  rVC.contentLabel.text = @"支付失败！";
-                  [self presentViewController:rVC animated:YES completion:nil];
+                  [self hideSuccessHUD:@"支付失败"];
+                  if (_rVC == nil) {
+                      
+                      _rVC = [[ResultController alloc] init];
+                  }
+                  _rVC.contentLabel.text = @"支付失败！";
+                  _rVC.knowBtn.hidden = NO;
+                  _rVC.snatchBtn.hidden = YES;
+                  _rVC.lookListBtn.hidden = YES;
+                  __weak typeof(self) weakSelf = self;
+                  [_rVC setClickBlock:^(NSInteger tag) {
+                      if (tag == 102) {
+                          [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                      }
+                      
+                  }];
+                  [self presentViewController:_rVC animated:YES completion:nil];
                   
               }
               
@@ -864,7 +894,10 @@
 
     [super viewWillDisappear:animated];
     [self getUserInfo];
+    
 
+    [_rVC dismissViewControllerAnimated:YES completion:nil];
+    _rVC = nil;
 }
 
 - (void)getUserInfo {

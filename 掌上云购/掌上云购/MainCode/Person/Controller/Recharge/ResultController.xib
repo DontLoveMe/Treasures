@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="bgView" destination="xbt-Tr-Pl5" id="u5g-Bc-cMZ"/>
                 <outlet property="contentLabel" destination="wvA-dU-AZe" id="RTX-CD-I7b"/>
+                <outlet property="knowBtn" destination="5Gw-Pf-SLS" id="xQQ-Sd-REB"/>
                 <outlet property="lookListBtn" destination="zep-8n-h2p" id="TUF-3f-GP1"/>
                 <outlet property="snatchBtn" destination="r8w-Xh-PI4" id="QBw-Tt-St6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -54,6 +55,18 @@
                                 <action selector="snatchAction:" destination="-1" eventType="touchUpInside" id="z34-3x-0jh"/>
                             </connections>
                         </button>
+                        <button hidden="YES" opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gw-Pf-SLS">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="106" id="PZa-SH-Rwj"/>
+                                <constraint firstAttribute="height" constant="25" id="ju3-uP-Wn7"/>
+                            </constraints>
+                            <state key="normal" title="我知道了" backgroundImage="按钮背景.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="knowAction:" destination="-1" eventType="touchUpInside" id="jVi-P7-bI1"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -61,7 +74,9 @@
                         <constraint firstAttribute="trailing" secondItem="zep-8n-h2p" secondAttribute="trailing" constant="16" id="ARk-Uy-Mbj"/>
                         <constraint firstItem="zep-8n-h2p" firstAttribute="leading" secondItem="r8w-Xh-PI4" secondAttribute="trailing" constant="20" id="FSQ-tf-s9T"/>
                         <constraint firstAttribute="height" constant="121" id="GhV-qN-Pdt"/>
+                        <constraint firstItem="5Gw-Pf-SLS" firstAttribute="centerX" secondItem="xbt-Tr-Pl5" secondAttribute="centerX" id="O66-Oq-hTf"/>
                         <constraint firstItem="zep-8n-h2p" firstAttribute="width" secondItem="r8w-Xh-PI4" secondAttribute="width" id="Pfb-Gy-eFv"/>
+                        <constraint firstAttribute="bottom" secondItem="5Gw-Pf-SLS" secondAttribute="bottom" constant="12" id="S4F-df-sOI"/>
                         <constraint firstItem="wvA-dU-AZe" firstAttribute="top" secondItem="xbt-Tr-Pl5" secondAttribute="top" constant="32" id="VSH-CT-O09"/>
                         <constraint firstItem="r8w-Xh-PI4" firstAttribute="leading" secondItem="xbt-Tr-Pl5" secondAttribute="leading" constant="16" id="ajq-AR-9DV"/>
                         <constraint firstAttribute="trailing" secondItem="wvA-dU-AZe" secondAttribute="trailing" constant="24" id="ego-hF-qk4"/>
@@ -76,7 +91,7 @@
                 <constraint firstItem="xbt-Tr-Pl5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-2" id="Uhx-L0-E9m"/>
                 <constraint firstItem="xbt-Tr-Pl5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-80" id="hf5-hc-gKb"/>
             </constraints>
-            <point key="canvasLocation" x="252.5" y="227.5"/>
+            <point key="canvasLocation" x="-136" y="76"/>
         </view>
     </objects>
     <resources>

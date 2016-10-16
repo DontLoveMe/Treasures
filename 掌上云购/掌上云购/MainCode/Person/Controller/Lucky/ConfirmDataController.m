@@ -64,6 +64,7 @@
         _sectionArr = @[@"  商品状态",@"  物流信息",@"  地址信息",@"  商品信息"];
         
     }
+    _defaultArea = @"";
     
 //    [self requestAreaData];
     
@@ -545,6 +546,7 @@
                               
                           }
                       }];
+                      [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                       return;
                   }
                   for (NSDictionary *dic in area) {

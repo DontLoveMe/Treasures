@@ -24,7 +24,7 @@
     NSArray *pArr = _lkModel.proPictureList;
     if (pArr.count>0) {
         Propicturelist *prtLs = pArr[0];
-        NSURL *url = [NSURL URLWithString:prtLs.img650];
+        NSURL *url = [NSURL URLWithString:prtLs.img170];
         [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }
     

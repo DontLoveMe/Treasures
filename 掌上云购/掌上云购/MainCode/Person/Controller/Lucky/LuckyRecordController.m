@@ -46,7 +46,7 @@
 
 - (void)NavAction:(UIButton *)button{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -327,15 +327,18 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     return 158;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     RecordModel *rModel = [RecordModel mj_objectWithKeyValues:_data[indexPath.row]];
     GoodsDetailController *gsDVC = [[GoodsDetailController alloc] init];
     gsDVC.goodsId = rModel.ID;
     gsDVC.drawId = [NSString stringWithFormat:@"%ld",(long)rModel.saleDraw.drawId];
     gsDVC.isAnnounced = 3;
     [self.navigationController pushViewController:gsDVC animated:YES];
+    
 }
 - (void)confirmAddress:(RecordModel *)rmodel {
     

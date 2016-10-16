@@ -75,6 +75,7 @@
     [self.view addSubview:textView];
     textView.font = [UIFont systemFontOfSize:15];
     textView.text = body;
+    textView.editable = NO;
 }
 
 
