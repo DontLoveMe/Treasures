@@ -169,12 +169,12 @@
     _reEmailTF.placeholder = @"再次确认邮箱";
     [self.view addSubview:_reEmailTF];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, KScreenWidth, 20)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"邮箱绑定后不可修改";
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:12];
-    [self.view addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, KScreenWidth, 20)];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.text = @"邮箱绑定后不可修改";
+//    label.textColor = [UIColor blackColor];
+//    label.font = [UIFont systemFontOfSize:12];
+//    [self.view addSubview:label];
 }
 
 
