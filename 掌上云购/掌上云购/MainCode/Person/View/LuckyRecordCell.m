@@ -11,6 +11,13 @@
 #import "ConfirmGoodsController.h"
 #import "AddShareController.h"
 
+// 弹出分享菜单需要导入的头文件
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+// 自定义分享菜单栏需要导入的头文件
+#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
+//自定义分享编辑界面所需要导入的头文件
+#import <ShareSDKUI/SSUIEditorViewStyle.h>
+
 @implementation LuckyRecordCell
 
 - (void)awakeFromNib {
@@ -24,7 +31,7 @@
     NSArray *pArr = _lkModel.proPictureList;
     if (pArr.count>0) {
         Propicturelist *prtLs = pArr[0];
-        NSURL *url = [NSURL URLWithString:prtLs.img170];
+        NSURL *url = [NSURL URLWithString:prtLs.img400];
         [_imgView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"未加载图片"]];
     }
     
@@ -64,11 +71,72 @@
 - (IBAction)isSunAction:(UIButton *)sender {
     
     NSInteger orderStatus = [_lkModel.orderStatus integerValue];
-    if (orderStatus == 3) {
+    if (orderStatus == 3 ||orderStatus == 7||orderStatus == 4) {
+    
+        NSString *urlStr = [NSString stringWithFormat:@"http://zsys58.com/pcpServer-wechat/product/detail/%@",_lkModel.ID];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        //创建分享参数
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:@""//
+                                         images:_imgView.image//[self getImage]//传入要分享的图片
+                                            url:url
+                                          title:_lkModel.name
+                                           type:SSDKContentTypeAuto];
         
-        AddShareController *asVC = [[AddShareController alloc] init];
-        asVC.lkModel = _lkModel;
-        [[self viewController].navigationController pushViewController:asVC animated:YES];
+        [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor colorFromHexRGB:ThemeColor]];
+        //设置编辑界面标题颜色
+        [SSUIEditorViewStyle setTitleColor:[UIColor whiteColor]];
+        //设置取消发布标签文本颜色
+        [SSUIEditorViewStyle setCancelButtonLabelColor:[UIColor whiteColor]];
+        [SSUIEditorViewStyle setShareButtonLabelColor:[UIColor whiteColor]];
+        //设置分享编辑界面状态栏风格
+        [SSUIEditorViewStyle setStatusBarStyle:UIStatusBarStyleDefault];
+        //设置简单分享菜单样式
+        [SSUIShareActionSheetStyle setShareActionSheetStyle:ShareActionSheetStyleSystem];
+        
+        //分享@[@(SSDKPlatformTypeSinaWeibo),
+        //@(SSDKPlatformTypeWechat),
+        //@(SSDKPlatformTypeQQ)]
+        [ShareSDK showShareActionSheet:nil
+         //将要自定义顺序的平台传入items参数中
+                                 items:@[@(SSDKPlatformTypeWechat)]
+                           shareParams:shareParams
+                   onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                       
+                       if (contentEntity) {
+                           NSLogZS(@"分享成功");
+                           UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                                    message:@"分享成功" preferredStyle:UIAlertControllerStyleAlert];
+                           UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                                  style:UIAlertActionStyleCancel
+                                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                                    [alertController dismissViewControllerAnimated:YES
+                                                                                                                        completion:nil];
+                                                                                }];
+                           [alertController addAction:cancelAction];
+                           [[self viewController] presentViewController:alertController
+                                              animated:YES
+                                            completion:nil];
+                           
+                       }
+                       if (error){
+                           NSLogZS(@"%@",error);
+                           UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                                    message:@"分享失败！" preferredStyle:UIAlertControllerStyleAlert];
+                           UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+                                                                                  style:UIAlertActionStyleCancel
+                                                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                                                    [alertController dismissViewControllerAnimated:YES
+                                                                                                                        completion:nil];
+                                                                                }];
+                           [alertController addAction:cancelAction];
+                           [[self viewController] presentViewController:alertController
+                                              animated:YES
+                                            completion:nil];
+                       }
+                   }];
+   
+
     }else {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
                                                                                  message:@"请确认收货！" preferredStyle:UIAlertControllerStyleAlert];
@@ -83,7 +151,7 @@
                            animated:YES
                          completion:nil];
     }
-    
+
 }
 
 
