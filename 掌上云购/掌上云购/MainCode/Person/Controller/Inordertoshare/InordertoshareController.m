@@ -113,6 +113,13 @@
                       }
                   }
                   _luckyData = arr;
+                  if (_luckyData.count >0) {
+                      _noView.hidden = YES;
+                      _loveView.hidden = YES;
+                  }else {
+                      _noView.hidden = NO;
+                      _loveView.hidden = NO;
+                  }
                   [_tableView reloadData];
               }
               
