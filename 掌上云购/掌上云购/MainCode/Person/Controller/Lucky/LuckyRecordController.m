@@ -263,10 +263,10 @@
     [cell setSuerBlock:^{
         [weakSelf confirmAddress:rModel];
     }];
-    cell.isSunBtn.hidden = YES;
+//    cell.isSunBtn.hidden = YES;
 //    NSInteger orderStatus = [rModel.orderStatus integerValue];
 //    if (orderStatus == 4) {
-//    [cell.isSunBtn setTitle:@"分享" forState:UIControlStateNormal];
+    [cell.isSunBtn setTitle:@"分享" forState:UIControlStateNormal];
 //    cell.isSunBtn.userInteractionEnabled = NO;
 //    }else {
 //        [cell.isSunBtn setTitle:@"未晒单" forState:UIControlStateNormal];

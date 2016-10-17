@@ -67,12 +67,14 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else if (button.tag == 102) {
         
+        NSString *urlStr = [NSString stringWithFormat:@"http://zsys58.com/pcpServer-wechat/user/userComment/detailComment/%ld?drawTimes=%@",(long)_iShareModel.ID,_iShareModel.drawTimes];
+        NSURL *url = [NSURL URLWithString:urlStr];
         //创建分享参数
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:_iShareModel.content
-                                         images:[self getImage]//传入要分享的图片
-                                            url:nil
-                                          title:_iShareModel.title
+        [shareParams SSDKSetupShareParamsByText:@""//_iShareModel.content
+                                         images:[UIImage imageNamed:@"掌上云购"]//[self getImage]//传入要分享的图片
+                                            url:url
+                                          title:@""//_iShareModel.title
                                            type:SSDKContentTypeAuto];
         
         [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor colorFromHexRGB:ThemeColor]];
