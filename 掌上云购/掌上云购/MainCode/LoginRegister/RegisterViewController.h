@@ -8,6 +8,13 @@
 
 #import "BaseViewController.h"
 
+@protocol ChangeIndexDelegeta <NSObject>
+
+@optional
+- (void)firstGuideBack;
+
+@end
+
 @interface RegisterViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UITextField *usernameTF;
 
@@ -26,6 +33,8 @@
 
 //0代表注册,1代表找回密码,2代表修改密码,3第三方登录绑定手机。默认为0。
 @property (nonatomic,assign)NSInteger isRegistOrmodify;
+
+@property (weak ,nonatomic)id<ChangeIndexDelegeta> delegate;
 
 //@property (nonatomic,strong)NSDictionary *userParams;
 

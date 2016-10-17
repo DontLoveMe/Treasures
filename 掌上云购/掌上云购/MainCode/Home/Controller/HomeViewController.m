@@ -717,4 +717,39 @@ constructingBodyWithBlock:nil
     
 }
 
+#pragma mark - 红包中奖提示
+- (void)viewDidAppear:(BOOL)animated{
+
+    [super viewDidAppear:animated];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *isFirst = [defaults objectForKey:@"isFirstTime"];
+    
+    if ([isFirst isEqualToString:@"2"]){
+        
+        return;
+        
+    }else{
+        
+//        [defaults setObject:@"2" forKey:@"isFirstTime"];
+        [defaults synchronize];
+        
+        [self performSelector:@selector(GuideAction)
+                   withObject:nil
+                   afterDelay:3];
+
+
+    }
+
+}
+
+- (void)GuideAction{
+
+    UIWindow *currentWindow = [UIApplication sharedApplication].keyWindow;
+    FirstGuideController *FGVC = [[FirstGuideController alloc] init];
+    [currentWindow.rootViewController presentViewController:FGVC animated:YES completion:nil];
+
+}
+
 @end

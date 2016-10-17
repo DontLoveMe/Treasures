@@ -43,6 +43,7 @@ static id instance = nil;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     _imgView.userInteractionEnabled = YES;
     [_imgView addGestureRecognizer:tap];
+    
 }
 - (IBAction)closeAction:(UIButton *)sender {
     

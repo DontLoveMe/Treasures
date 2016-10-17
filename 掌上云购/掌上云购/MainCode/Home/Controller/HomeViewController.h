@@ -19,6 +19,7 @@
 #import "HomeSearchController.h"
 #import "SunSharingViewController.h"
 #import "MessageController.h"
+#import "FirstGuideController.h"
 
 @interface HomeViewController : BaseViewController<SDCycleScrollViewDelegate,WingTableDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,homeGoodsCellDelegate,UIScrollViewDelegate>{
  

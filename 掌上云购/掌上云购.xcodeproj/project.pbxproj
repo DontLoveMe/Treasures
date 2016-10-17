@@ -235,6 +235,8 @@
 		DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607661D8147D60054B1A8 /* PreviewAllController.xib */; };
 		DD598CA81DB1E01D00B4B146 /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD598CA61DB1E01D00B4B146 /* ResultController.m */; };
 		DD598CA91DB1E01D00B4B146 /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD598CA71DB1E01D00B4B146 /* ResultController.xib */; };
+		DD643CBE1DB4A40C00942824 /* FirstGuideController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD643CBC1DB4A40C00942824 /* FirstGuideController.m */; };
+		DD643CBF1DB4A40C00942824 /* FirstGuideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD643CBD1DB4A40C00942824 /* FirstGuideController.xib */; };
 		DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E611D8FB53E0049EA18 /* 时间@2x.png */; };
 		DD716E641D8FB53E0049EA18 /* 时间@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E621D8FB53E0049EA18 /* 时间@3x.png */; };
 		DD71ABEA1D92755A005CBFFD /* dropdown_zsyg_001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD71AB7A1D92755A005CBFFD /* dropdown_zsyg_001@2x.png */; };
@@ -857,6 +859,9 @@
 		DD598CA51DB1E01D00B4B146 /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		DD598CA61DB1E01D00B4B146 /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		DD598CA71DB1E01D00B4B146 /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
+		DD643CBB1DB4A40C00942824 /* FirstGuideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstGuideController.h; sourceTree = "<group>"; };
+		DD643CBC1DB4A40C00942824 /* FirstGuideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstGuideController.m; sourceTree = "<group>"; };
+		DD643CBD1DB4A40C00942824 /* FirstGuideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideController.xib; sourceTree = "<group>"; };
 		DD716E611D8FB53E0049EA18 /* 时间@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@2x.png"; sourceTree = "<group>"; };
 		DD716E621D8FB53E0049EA18 /* 时间@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "时间@3x.png"; sourceTree = "<group>"; };
 		DD71AB7A1D92755A005CBFFD /* dropdown_zsyg_001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_zsyg_001@2x.png"; sourceTree = "<group>"; };
@@ -2049,6 +2054,9 @@
 				D6CC64C61D9B9F1A004AF871 /* BannerDetailController.h */,
 				D6CC64C71D9B9F1A004AF871 /* BannerDetailController.m */,
 				D6CC64C81D9B9F1A004AF871 /* BannerDetailController.xib */,
+				DD643CBB1DB4A40C00942824 /* FirstGuideController.h */,
+				DD643CBC1DB4A40C00942824 /* FirstGuideController.m */,
+				DD643CBD1DB4A40C00942824 /* FirstGuideController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3069,6 +3077,7 @@
 				DD71AC321D92755A005CBFFD /* dropdown_zsyg_073@2x.png in Resources */,
 				D6BB14A91D8934300045F8EB /* 银联支付@3x.png in Resources */,
 				DD71AC2D1D92755A005CBFFD /* dropdown_zsyg_068@2x.png in Resources */,
+				DD643CBF1DB4A40C00942824 /* FirstGuideController.xib in Resources */,
 				DDF92D8E1D6A9C5B009D5A1E /* sort104_checked.png in Resources */,
 				D602165F1D87A20200316614 /* 返回-黑@3x.png in Resources */,
 				DD757F681D86520300A38058 /* 加入清单@2x.png in Resources */,
@@ -3316,6 +3325,7 @@
 				D63CD6FF1D713B3500658365 /* RecordModel.m in Sources */,
 				D64BEE9A1D74183900A6158B /* PersonHeaderView.m in Sources */,
 				D6BB14991D88E8F30045F8EB /* MsgViewController.m in Sources */,
+				DD643CBE1DB4A40C00942824 /* FirstGuideController.m in Sources */,
 				DDF92C391D6A9C3D009D5A1E /* BaseViewController.m in Sources */,
 				DDF92C5E1D6A9C3D009D5A1E /* ProductCollectionView.m in Sources */,
 				D6DBC3971D6DB903003BA793 /* SnatchRecordingCell.m in Sources */,

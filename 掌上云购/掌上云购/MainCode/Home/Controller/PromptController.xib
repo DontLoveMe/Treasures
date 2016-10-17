@@ -35,7 +35,7 @@
                         <constraint firstAttribute="width" constant="130" id="hms-el-dGU"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.93911021947860718" green="1" blue="0.043142106384038925" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.93725490196078431" green="1" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

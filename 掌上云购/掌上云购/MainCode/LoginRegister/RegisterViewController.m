@@ -285,7 +285,7 @@
 }
 #pragma mark - 注册
 - (void)regist {
-    
+
     if (_usernameTF.text.length == 0) {
         AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"请输入手机号码！"];
         [alert addButtonTitleArray:@[@"知道了！"]];
@@ -349,8 +349,13 @@
                   [self hideSuccessHUD:@"注册成功"];
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
-                  [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                  
+                  [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                      
+                      if ([_delegate respondsToSelector:@selector(firstGuideBack)]) {
+                          [_delegate firstGuideBack];
+                      }
+
+                  }];
                   
               }else{
               
@@ -579,7 +584,9 @@
                   NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
                   [self saveDataForUserUserDefaults:userDic];
 //                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                  [self dismissViewControllerAnimated:YES completion:nil];
+                  [self dismissViewControllerAnimated:YES completion:^{
+                      
+                  }];
                   
               }else{
                   [self hideFailHUD:[json objectForKey:@"msg"]];

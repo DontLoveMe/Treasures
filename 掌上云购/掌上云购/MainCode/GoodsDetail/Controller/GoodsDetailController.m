@@ -869,7 +869,7 @@
 //                      _countLabel.hidden = NO;
                       
                       _gotoNewOrderButton.userInteractionEnabled = NO;
-                      [_gotoNewOrderButton setTitle:@"该商品已限购" forState:UIControlStateNormal];
+                      [_gotoNewOrderButton setTitle:@"该商品已限期" forState:UIControlStateNormal];
 
                   }
                   

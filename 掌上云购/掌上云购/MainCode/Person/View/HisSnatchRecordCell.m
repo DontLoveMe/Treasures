@@ -49,6 +49,24 @@
         _peopleNumber.hidden = NO;
         _getPeopleN.text = [NSString stringWithFormat:@"%ld",rcModel.partakeCount];
     }
+    //夺宝状态
+    NSInteger isLimit = rcModel.proNumberStatus;
+    if (isLimit == 1) {
+        
+        _againButton.userInteractionEnabled = NO;
+        [_againButton setTitle:@"该商品已限期" forState:UIControlStateNormal];
+        
+    }
+    
+    NSInteger isSaleOutStatus = rcModel.proStatus;
+    isSaleOutStatus = 1 - isSaleOutStatus;
+    if (isSaleOutStatus == 1) {
+        
+        //已下架
+        _againButton.userInteractionEnabled = NO;
+        [_againButton setTitle:@"该商品下架" forState:UIControlStateNormal];
+        
+    }
     
 }
 

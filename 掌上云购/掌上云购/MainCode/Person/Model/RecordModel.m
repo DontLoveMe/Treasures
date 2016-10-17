@@ -17,6 +17,8 @@
 + (NSDictionary *)objectClassInArray{
     return @{@"proPictureList" : [Propicturelist class], @"proAttrList" : [Proattrlist class]};
 }
+
+
 @end
 @implementation Saledraw
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
