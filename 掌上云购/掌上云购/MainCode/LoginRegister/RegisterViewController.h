@@ -36,6 +36,8 @@
 
 @property (weak ,nonatomic)id<ChangeIndexDelegeta> delegate;
 
+@property (nonatomic ,copy)NSString *phoneText;
+
 //@property (nonatomic,strong)NSDictionary *userParams;
 
 @end

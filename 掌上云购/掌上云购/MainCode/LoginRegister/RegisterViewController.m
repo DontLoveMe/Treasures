@@ -50,17 +50,31 @@
     self.view.backgroundColor = [UIColor colorFromHexRGB:@"E6E6E6"];
     
     _countDown = [[CountDown alloc] init];
-    
-    
-    
+
     [self initNavBar];
     //判断注册、找回密码、密码修改界面
     [self registOrmodify];
     //设置输入框
     [self setTextField];
 }
+
+- (void)setPhoneText:(NSString *)phoneText{
+
+    if (_phoneText != phoneText) {
+        
+        _phoneText = phoneText;
+
+    }
+
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    
+    if (_phoneText.length > 0) {
+        _usernameTF.text = _phoneText;
+    }
+    
     [_validataButton setTitle:@"" forState:UIControlStateNormal];
     if (_validataLabel == nil) {
         

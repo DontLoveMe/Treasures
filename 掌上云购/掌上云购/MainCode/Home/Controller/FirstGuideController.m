@@ -36,8 +36,18 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    
+    _phoneTF.delegate = self;
+    
 
-     [_remaindLabel sizeToFit];
+    [_remaindLabel sizeToFit];
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    [textField resignFirstResponder];
+    return YES;
     
 }
 
@@ -54,10 +64,12 @@
     
     LoginViewController *lVC = [[LoginViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lVC];
+//    __weak typeof(self) weakself = self;
+    NSString *textText = _phoneTF.text;
     [self presentViewController:nav animated:YES completion:^{
         RegisterViewController *RVC= [[RegisterViewController alloc] init];
         RVC.delegate = self;
-        RVC.usernameTF.text = _phoneTF.text;
+        RVC.phoneText = textText;
         [lVC.navigationController pushViewController:RVC animated:YES];
     }];
   
@@ -76,6 +88,16 @@
       item.isSelected = YES;
       //设置为上一个选中
       tb.selectedItem = item;
+
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    if([_phoneTF isFirstResponder]){
+    
+        [_phoneTF resignFirstResponder];
+        
+    }
 
 }
 

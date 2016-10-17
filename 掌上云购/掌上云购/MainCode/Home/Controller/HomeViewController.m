@@ -732,13 +732,12 @@ constructingBodyWithBlock:nil
         
     }else{
         
-//        [defaults setObject:@"2" forKey:@"isFirstTime"];
+        [defaults setObject:@"2" forKey:@"isFirstTime"];
         [defaults synchronize];
         
         [self performSelector:@selector(GuideAction)
                    withObject:nil
                    afterDelay:3];
-
 
     }
 

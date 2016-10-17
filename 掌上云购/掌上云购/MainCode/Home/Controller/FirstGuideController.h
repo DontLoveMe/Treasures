@@ -12,7 +12,7 @@
 #import "RegisterViewController.h"
 #import "HomeViewController.h"
 
-@interface FirstGuideController : BaseViewController<ChangeIndexDelegeta>
+@interface FirstGuideController : BaseViewController<ChangeIndexDelegeta,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *remaindLabel;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
