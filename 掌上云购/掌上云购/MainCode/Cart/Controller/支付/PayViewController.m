@@ -543,7 +543,7 @@
                 
                 cell = [[PayFirstKindCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell1"];
                 
-                NSMutableArray *carArr = [NSMutableArray array];
+                NSMutableArray *carArr = nil;
                 if ([_isimidiately isEqualToString:@"1"]) {
                     
                     carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
@@ -580,7 +580,7 @@
                 cell.textLabel.font = [UIFont systemFontOfSize:14];
                 cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
                 
-                NSMutableArray *carArr = [NSMutableArray array];
+                NSMutableArray *carArr = nil;
                 if ([_isimidiately isEqualToString:@"1"]) {
                     
                     carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
@@ -628,7 +628,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.iconView.image = [UIImage imageNamed:@"余额支付"];
         
-        NSMutableArray *cartArr = [NSMutableArray array];
+        NSMutableArray *cartArr = nil;
         if ([_isimidiately isEqualToString:@"1"]) {
             
             cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
@@ -687,7 +687,7 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
         
         //获取购物车列表
-        NSMutableArray *cartArr = [NSMutableArray array];
+        NSMutableArray *cartArr = nil;
         if ([_isimidiately isEqualToString:@"1"]) {
             
             cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
@@ -794,7 +794,7 @@
     if (indexPath.section == 0) {
         _isOpen = !_isOpen;
         if (_isOpen) {
-            NSMutableArray *carArr = [NSMutableArray array];
+            NSMutableArray *carArr = nil;
             if ([_isimidiately isEqualToString:@"1"]) {
                 
                 carArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
@@ -818,7 +818,7 @@
     if (indexPath.row == 0) {
         
         RedEnvelopeController *redEVC = [[RedEnvelopeController alloc] init];
-        NSMutableArray *cartArr = [NSMutableArray array];
+        NSMutableArray *cartArr = nil;
         if ([_isimidiately isEqualToString:@"1"]) {
             
             cartArr = [NSMutableArray arrayWithArray:[CartTools getCartList]];
