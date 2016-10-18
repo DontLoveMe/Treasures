@@ -330,7 +330,7 @@
             
             //输入购买数量：输入多少->小于剩余量
             NSMutableDictionary *indexPathDic = [existArr objectAtIndex:indexPath];
-            NSInteger times = [[indexPathDic objectForKey:@"buyTimes"] integerValue];
+            NSInteger times = 0;
             NSInteger superShare = [[indexPathDic objectForKey:@"surplusShare"] integerValue];
             if (superShare >= count) {
                 

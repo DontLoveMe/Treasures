@@ -607,6 +607,14 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self requestData];
     
+    if ([CartTools getCartList].count >0) {
+        _countLabel.hidden = NO;
+        _countLabel.text = [NSString stringWithFormat:@"%ld",[CartTools getCartList].count];
+    }else {
+        _countLabel.hidden = YES;
+    }
+    
+    
     if (_isAnnounced == 1) {
         
         if (_isJoind == 0) {

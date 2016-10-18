@@ -545,33 +545,6 @@
 
 }
 
-- (void)testPost{
-
-//    http://121.196.197.222:8080/pcpfiles/file/upload?createThumb=true
-    
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    AFJSONResponseSerializer *response = [AFJSONResponseSerializer serializer];
-    response.removesKeysWithNullValues = YES;
-    mgr.responseSerializer = response;
-    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
-//    NSString *obj = @"true";
-//    paramsObj[@"createThumb"] = obj;
-//    createThumb=true
-    NSString *obj = @"createThumb=true";
-    NSString *finalObj = [obj JSONString];
-    [mgr POST:@"http://121.196.197.222:8080/pcpfiles/file/upload"
-   parameters:finalObj
-constructingBodyWithBlock:nil
-     progress:^(NSProgress * _Nonnull uploadProgress) {
-         
-     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         
-     }];
-    
-}
 
 #pragma mark 请求网络数据
 - (void)requestData{
