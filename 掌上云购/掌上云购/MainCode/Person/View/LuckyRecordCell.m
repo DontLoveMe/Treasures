@@ -70,8 +70,8 @@
 }
 - (IBAction)isSunAction:(UIButton *)sender {
     
-    NSInteger orderStatus = [_lkModel.orderStatus integerValue];
-    if (orderStatus == 3 ||orderStatus == 7||orderStatus == 4) {
+//    NSInteger orderStatus = [_lkModel.orderStatus integerValue];
+//    if (orderStatus == 3 ||orderStatus == 7||orderStatus == 4) {
     
         NSString *urlStr = [NSString stringWithFormat:@"http://zsys58.com/pcpServer-wechat/product/detail/%@",_lkModel.ID];
         NSURL *url = [NSURL URLWithString:urlStr];
@@ -137,20 +137,20 @@
                    }];
    
 
-    }else {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                                 message:@"请确认收货！" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
-                                                               style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 [alertController dismissViewControllerAnimated:YES
-                                                                                                     completion:nil];
-                                                             }];
-        [alertController addAction:cancelAction];
-        [[self viewController] presentViewController:alertController
-                           animated:YES
-                         completion:nil];
-    }
+//    }else {
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+//                                                                                 message:@"请确认收货！" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
+//                                                               style:UIAlertActionStyleCancel
+//                                                             handler:^(UIAlertAction * _Nonnull action) {
+//                                                                 [alertController dismissViewControllerAnimated:YES
+//                                                                                                     completion:nil];
+//                                                             }];
+//        [alertController addAction:cancelAction];
+//        [[self viewController] presentViewController:alertController
+//                           animated:YES
+//                         completion:nil];
+//    }
 
 }
 

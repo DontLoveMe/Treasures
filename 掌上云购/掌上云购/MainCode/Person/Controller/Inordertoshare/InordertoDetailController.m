@@ -74,7 +74,7 @@
         [shareParams SSDKSetupShareParamsByText:@""//_iShareModel.content
                                          images:[UIImage imageNamed:@"掌上云购"]//[self getImage]//传入要分享的图片
                                             url:url
-                                          title:@"[掌上云购]一元秒杀快乐无限，掌上云购让您的生活高潮迭起！"//_iShareModel.title
+                                          title:_iShareModel.productName//@"[掌上云购]一元秒杀快乐无限，掌上云购让您的生活高潮迭起！"
                                            type:SSDKContentTypeAuto];
         
         [SSUIEditorViewStyle setiPhoneNavigationBarBackgroundColor:[UIColor colorFromHexRGB:ThemeColor]];

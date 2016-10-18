@@ -72,7 +72,8 @@
             if (hour<=0&&minute<=0&&second<=0&&millisecond<=0) {
                 
                 [weakSelf.countDown destoryTimer];
-                if (_countDownTime < 0) {
+                if (_countDownTime <= 0) {
+                    
                         _getUserLabel.hidden = NO;
                         _peopleNumLb.hidden = NO;
                         _luckyLabel.hidden = NO;
@@ -88,7 +89,19 @@
                         _unveilLabel.hidden = YES;
 //                weakSelf.timeLabel.text = @"正在计算开奖结果";
                 }else {
+                    _getUserLabel.hidden = YES;
+                    _peopleNumLb.hidden = YES;
+                    _luckyLabel.hidden = YES;
+                    _announceTimeLb.hidden = YES;
                     
+                    _getUserLabel1.hidden = YES;
+                    _peopleNumLb1.hidden = YES;
+                    _luckyLabel1.hidden = YES;
+                    _announceTimeLb1.hidden = YES;
+                    
+                    _timeIconView.hidden = NO;
+                    _timeLabel.hidden = NO;
+                    _unveilLabel.hidden = NO;
                     weakSelf.timeLabel.text = @"正在计算开奖结果";
                     
                     [self performSelector:@selector(timeAction)
