@@ -91,7 +91,7 @@
 - (void)selectManner:(UIControl *)sender {
 //    UIButton *mannerBtn = sender.subviews[0];
 //    mannerBtn.selected = YES;
-    
+    _userNameTF.text = @"";
     for (int i = 0; i<_dicts.count; i++) {
         
         UIControl *control = [self.contentView viewWithTag:200+i];

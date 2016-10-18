@@ -417,6 +417,7 @@
     [params setObject:@(_mannerType) forKey:@"receivingType"];
     [params setObject:_userName forKey:@"receiptAccount"];
     
+    [self showHUD:@"正在充值中"];
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RechargeBalance_URL];
     [ZSTools post:url
            params:params
@@ -426,8 +427,10 @@
               NSLogZS(@"%@",json[@"msg"]);
               if (isSuccess) {
                   NSLogZS(@"已发卡密或充值到余额");
-                  
+                  [self hideSuccessHUD:@""];
                   [self requestSaleOrderStatus];
+              }else {
+                  [self hideFailHUD:[NSString stringWithFormat:@"%@",json[@"msg"]]];
               }
               
               
