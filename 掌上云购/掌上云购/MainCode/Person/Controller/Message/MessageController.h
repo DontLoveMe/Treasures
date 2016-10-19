@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
-@interface MessageController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface MessageController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+
+    NSMutableArray *_dataArr;
+
+}
 
 @end

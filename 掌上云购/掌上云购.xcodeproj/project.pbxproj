@@ -219,6 +219,10 @@
 		D6FB47821D92815D00C64DC4 /* 幸运号码背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */; };
 		D6FB47831D92815D00C64DC4 /* Label背景@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */; };
 		D6FB47841D92815D00C64DC4 /* Label背景@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */; };
+		DD065E4D1DB70B2600167A9B /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = DD065E451DB70B2600167A9B /* GTMBase64.m */; };
+		DD065E4E1DB70B2600167A9B /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = DD065E481DB70B2600167A9B /* NSData+AES.m */; };
+		DD065E4F1DB70B2600167A9B /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = DD065E4A1DB70B2600167A9B /* NSString+MD5.m */; };
+		DD065E501DB70B2600167A9B /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DD065E4C1DB70B2600167A9B /* SecurityUtil.m */; };
 		DD06FAE31D93ACBB00C850B1 /* wx_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD06FABD1D93ACBB00C850B1 /* wx_logo@2x.png */; };
 		DD06FAE41D93ACBB00C850B1 /* zfb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD06FABE1D93ACBB00C850B1 /* zfb@2x.png */; };
 		DD06FAE51D93ACBB00C850B1 /* libJHFSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD06FAC11D93ACBB00C850B1 /* libJHFSDK.a */; };
@@ -816,6 +820,15 @@
 		D6FB477C1D92815D00C64DC4 /* 幸运号码背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "幸运号码背景@3x.png"; sourceTree = "<group>"; };
 		D6FB477D1D92815D00C64DC4 /* Label背景@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@2x.png"; sourceTree = "<group>"; };
 		D6FB477E1D92815D00C64DC4 /* Label背景@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Label背景@3x.png"; sourceTree = "<group>"; };
+		DD065E441DB70B2600167A9B /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		DD065E451DB70B2600167A9B /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		DD065E461DB70B2600167A9B /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		DD065E471DB70B2600167A9B /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		DD065E481DB70B2600167A9B /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		DD065E491DB70B2600167A9B /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		DD065E4A1DB70B2600167A9B /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		DD065E4B1DB70B2600167A9B /* SecurityUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
+		DD065E4C1DB70B2600167A9B /* SecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		DD06FABD1D93ACBB00C850B1 /* wx_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wx_logo@2x.png"; sourceTree = "<group>"; };
 		DD06FABE1D93ACBB00C850B1 /* zfb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zfb@2x.png"; sourceTree = "<group>"; };
 		DD06FABF1D93ACBB00C850B1 /* JHFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHFOrder.h; sourceTree = "<group>"; };
@@ -1523,6 +1536,30 @@
 				D6E0F3771D6C617A00E962D1 /* AlertController.m */,
 			);
 			path = "提示框";
+			sourceTree = "<group>";
+		};
+		DD065E421DB70B2600167A9B /* 报文加密和解密 */ = {
+			isa = PBXGroup;
+			children = (
+				DD065E431DB70B2600167A9B /* GTMBase64 */,
+				DD065E471DB70B2600167A9B /* NSData+AES.h */,
+				DD065E481DB70B2600167A9B /* NSData+AES.m */,
+				DD065E491DB70B2600167A9B /* NSString+MD5.h */,
+				DD065E4A1DB70B2600167A9B /* NSString+MD5.m */,
+				DD065E4B1DB70B2600167A9B /* SecurityUtil.h */,
+				DD065E4C1DB70B2600167A9B /* SecurityUtil.m */,
+			);
+			path = "报文加密和解密";
+			sourceTree = "<group>";
+		};
+		DD065E431DB70B2600167A9B /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				DD065E441DB70B2600167A9B /* GTMBase64.h */,
+				DD065E451DB70B2600167A9B /* GTMBase64.m */,
+				DD065E461DB70B2600167A9B /* GTMDefines.h */,
+			);
+			path = GTMBase64;
 			sourceTree = "<group>";
 		};
 		DD06FABA1D93ACBB00C850B1 /* 聚合富 */ = {
@@ -2353,6 +2390,7 @@
 		DDF92CAA1D6A9C4F009D5A1E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				DD065E421DB70B2600167A9B /* 报文加密和解密 */,
 				D6C78A141DACF4F60005AAC2 /* 时间格式化 */,
 				DD06FABA1D93ACBB00C850B1 /* 聚合富 */,
 				D69BBF201D8FBBCC005F360C /* 导航栏渐变 */,
@@ -3247,6 +3285,7 @@
 				DDF92CD51D6A9C4F009D5A1E /* CountDown.m in Sources */,
 				D64C99ED1DA89F3800B93197 /* ProblemController.m in Sources */,
 				D6F3E5E31D962F3C005455A8 /* PromptController.m in Sources */,
+				DD065E4D1DB70B2600167A9B /* GTMBase64.m in Sources */,
 				DD598CA81DB1E01D00B4B146 /* ResultController.m in Sources */,
 				D63721FD1D76757400FEE6C8 /* RedEnvelopeModel.m in Sources */,
 				DD1B9E471D6EF01C002E9CE9 /* CartTools.m in Sources */,
@@ -3281,6 +3320,7 @@
 				DDF92C541D6A9C3D009D5A1E /* GoodsDetailFunctionTableView.m in Sources */,
 				DDF92C721D6A9C3D009D5A1E /* ChangeDataController.m in Sources */,
 				D625D9FC1D7E8EDD00316A49 /* SearchGoodsCell.m in Sources */,
+				DD065E4E1DB70B2600167A9B /* NSData+AES.m in Sources */,
 				FCF09F361D6BDF0400CC3B7F /* SunSharingViewController.m in Sources */,
 				DDF92CA61D6A9C3D009D5A1E /* UseRedCell.m in Sources */,
 				D66FF4481D78106B001C4B6E /* AddShareController.m in Sources */,
@@ -3333,6 +3373,7 @@
 				DDF92C8A1D6A9C3D009D5A1E /* SettingsController.m in Sources */,
 				DDF92C491D6A9C3D009D5A1E /* CountWayController.m in Sources */,
 				DDF92CD71D6A9C4F009D5A1E /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
+				DD065E501DB70B2600167A9B /* SecurityUtil.m in Sources */,
 				DDF92C821D6A9C3D009D5A1E /* PersonViewController.m in Sources */,
 				D66FF4441D77C110001C4B6E /* InordertoshareModel.m in Sources */,
 				D6C78A111DACCB5F0005AAC2 /* DelegateTxtController.m in Sources */,
@@ -3342,6 +3383,7 @@
 				D6CC64C91D9B9F1A004AF871 /* BannerDetailController.m in Sources */,
 				DDF92C661D6A9C3D009D5A1E /* ProductTableView.m in Sources */,
 				DDF92CE41D6A9C4F009D5A1E /* UIView+SDExtension.m in Sources */,
+				DD065E4F1DB70B2600167A9B /* NSString+MD5.m in Sources */,
 				DDF92CE11D6A9C4F009D5A1E /* TAPageControl.m in Sources */,
 				DDF92C781D6A9C3D009D5A1E /* InordertoDetailController.m in Sources */,
 				DDF92C551D6A9C3D009D5A1E /* HomeSearchController.m in Sources */,

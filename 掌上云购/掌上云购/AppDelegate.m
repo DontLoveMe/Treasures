@@ -43,7 +43,7 @@
     TabbarViewcontroller *TVC = [[TabbarViewcontroller alloc] init];
     _window.rootViewController = TVC;
     
-    [self requestPrizeMsg];
+//    [self requestPrizeMsg];
   //推送测试
 //    double delayInSeconds = 15.0;
 //    

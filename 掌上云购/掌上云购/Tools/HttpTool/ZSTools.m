@@ -23,17 +23,47 @@
     // 2.在这里将传过来的参数转换成json格式
     if (params) {
         NSString *obj = [params JSONString];
-        paramsObj[@"obj"] = obj;
+        NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
+        NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
+        securityString = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                      
+                                                                                      NULL, /* allocator */
+                                                                                      
+                                                                                      (__bridge CFStringRef)securityString,
+                                                                                      
+                                                                                      NULL, /* charactersToLeaveUnescaped */
+                                                                                      
+                                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                      
+                                                                                      kCFStringEncodingUTF8);
+        paramsObj[@"param"] = securityString;
     } else {
         paramsObj = nil;
     }
+    
     // 3.发送请求
     [mgr GET:url parameters:paramsObj progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {
-            success(responseObject);
+            NSString *sucurytyResult = [responseObject objectForKey:@"data"];
+            NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *data2=[GTMBase64 decodeData:dd];
+            NSString *aesresult=[SecurityUtil decryptAESData:data2];
+            NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *err;
+            NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                        options:NSJSONReadingMutableContainers
+                                                                          error:&err];
+            NSMutableDictionary *responsDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+            if (err) {
+                [responsDic setObject:aesresult forKey:@"data"];
+            }else{
+                [responsDic setObject:testDataDic forKey:@"data"];
+            }
+            
+            success(responsDic);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -54,12 +84,29 @@
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
     if (params) {
+        
         NSString *obj = [params JSONString];
-        paramsObj[@"param"] = obj;
+        //项目加密方式
+        NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
+        NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
+        //特殊字符转码
+        securityString = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                      
+                                                                                      NULL, /* allocator */
+                                                                                      
+                                                                                      (__bridge CFStringRef)securityString,
+                                                                                      
+                                                                                      NULL, /* charactersToLeaveUnescaped */
+                                                                                      
+                                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                      
+                                                                                      kCFStringEncodingUTF8);
+        paramsObj[@"param"] = securityString;
     } else {
         paramsObj = nil;
     }
-    [mgr POST:url parameters:paramsObj
+    [mgr POST:url
+   parameters:paramsObj
 constructingBodyWithBlock:nil
      
      progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -67,7 +114,28 @@ constructingBodyWithBlock:nil
      } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          
          if (success) {
-             success(responseObject);
+             
+             //项目解密
+             NSString *sucurytyResult = [responseObject objectForKey:@"data"];
+             NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
+             NSData *data2=[GTMBase64 decodeData:dd];
+             NSString *aesresult=[SecurityUtil decryptAESData:data2];
+             
+             //string转字典
+             NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
+             NSError *err;
+             NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                         options:NSJSONReadingMutableContainers
+                                                                           error:&err];
+             NSMutableDictionary *responsDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+             //是否成功
+             if (err) {
+                 [responsDic setObject:aesresult forKey:@"data"];
+             }else{
+                 [responsDic setObject:testDataDic forKey:@"data"];
+             }
+             
+             success(responsDic);
          }
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -127,16 +195,29 @@ constructingBodyWithBlock:nil
      success:(void (^)(id))success
      failure:(void (^)(NSError *))failure{
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
     if (params) {
         NSString *obj = [params JSONString];
-        paramsObj[@"param"] = obj;
+        NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
+        NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
+        securityString = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                      
+                                                                                      NULL, /* allocator */
+                                                                                      
+                                                                                      (__bridge CFStringRef)securityString,
+                                                                                      
+                                                                                      NULL, /* charactersToLeaveUnescaped */
+                                                                                      
+                                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                      
+                                                                                      kCFStringEncodingUTF8);
+        paramsObj[@"param"] = securityString;
     } else {
         paramsObj = nil;
     }
     
-    [manager POST:url
+    [mgr POST:url
        parameters:paramsObj constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
            
            //将需要上传的文件数据添加到formData中
@@ -171,7 +252,23 @@ constructingBodyWithBlock:nil
        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
            
            if (success) {
-               success(responseObject);
+               NSString *sucurytyResult = [responseObject objectForKey:@"data"];
+               NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
+               NSData *data2=[GTMBase64 decodeData:dd];
+               NSString *aesresult=[SecurityUtil decryptAESData:data2];
+               NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
+               NSError *err;
+               NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:&err];
+               NSMutableDictionary *responsDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+               if (err) {
+                   [responsDic setObject:aesresult forKey:@"data"];
+               }else{
+                   [responsDic setObject:testDataDic forKey:@"data"];
+               }
+               
+               success(responsDic);
            }
            
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -195,7 +292,20 @@ constructingBodyWithBlock:nil
     NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
     if (params) {
         NSString *obj = [params JSONString];
-        paramsObj[@"param"] = obj;
+        NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
+        NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
+        securityString = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+                                                                                      
+                                                                                      NULL, /* allocator */
+                                                                                      
+                                                                                      (__bridge CFStringRef)securityString,
+                                                                                      
+                                                                                      NULL, /* charactersToLeaveUnescaped */
+                                                                                      
+                                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                                                      
+                                                                                      kCFStringEncodingUTF8);
+        paramsObj[@"param"] = securityString;
     } else {
         paramsObj = nil;
     }
@@ -207,7 +317,23 @@ constructingBodyWithBlock:nil
      } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          
          if (success) {
-             success(responseObject);
+             NSString *sucurytyResult = [responseObject objectForKey:@"data"];
+             NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
+             NSData *data2=[GTMBase64 decodeData:dd];
+             NSString *aesresult=[SecurityUtil decryptAESData:data2];
+             NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
+             NSError *err;
+             NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                         options:NSJSONReadingMutableContainers
+                                                                           error:&err];
+             NSMutableDictionary *responsDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+             if (err) {
+                 [responsDic setObject:aesresult forKey:@"data"];
+             }else{
+                 [responsDic setObject:testDataDic forKey:@"data"];
+             }
+             
+             success(responsDic);
          }
          
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

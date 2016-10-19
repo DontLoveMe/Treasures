@@ -74,6 +74,9 @@
     //商品参与公告
     NSMutableArray      *_joinListArr;
     
+    //小红点
+    UIImageView         *_redPoint;
+    
 }
 
 //标记是否参与(0:尚未参加 1:已参加)

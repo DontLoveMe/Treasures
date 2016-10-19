@@ -380,8 +380,8 @@
               NSLogZS(@"%@",[json objectForKey:@"msg"]);
               if (isSuccess) {
                   
-                  
-                  if (![dataDic isKindOfClass:[NSNull class]]) {
+              
+                  if (![[json objectForKey:@"data"] isKindOfClass:[NSNull class]] && ![[json objectForKey:@"data"] isKindOfClass:[NSString class]]) {
                       
                       [self hideSuccessHUD:@"预支付成功"];
                       JHFOrder *order = [[JHFOrder alloc] init];
@@ -440,6 +440,7 @@
                           
                       }];
                       [self presentViewController:_rVC animated:YES completion:nil];
+                  
                   }
                   
               }else{

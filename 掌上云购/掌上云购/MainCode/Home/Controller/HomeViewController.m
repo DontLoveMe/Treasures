@@ -533,18 +533,19 @@
 
     [super viewWillAppear:animated];
     
+    //查询商品列表
     [self requestData];
-    
+    //首页banner
     [self requsetBanner];
-    
+    //中奖通知
     [self requestPrizeList];
-
+    //是否有未读信息
+    [self haveNotReadMessage];
     _bgScrollView.contentSize = CGSizeMake(KScreenWidth, _goodsList.bottom);
     
 //    [self testPost];
 
 }
-
 
 #pragma mark 请求网络数据
 - (void)requestData{
@@ -623,7 +624,18 @@
            params:params
           success:^(id json) {
               
-              if ([json objectForKey:@"flag"]) {
+//              NSString *sucurytyResult = [json objectForKey:@"data"];
+//              NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
+//              NSData *data2=[GTMBase64 decodeData:dd];
+//              NSString *aesresult=[SecurityUtil decryptAESData:data2];
+//              NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
+//              NSError *err;
+//              NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
+//                                                                                               options:NSJSONReadingMutableContainers  
+//                                                                
+//                                                                                                 error:&err];
+////              NSLogZS(@"%@",[json objectForKey:@"msg"]);
+              if ([[json objectForKey:@"flag"] boolValue]) {
                   _bannerArr = [[json objectForKey:@"data"] mutableCopy];
                   NSMutableArray *picArr = [NSMutableArray array];
                   for (int i = 0; i < _bannerArr.count; i ++) {
@@ -670,6 +682,53 @@
               
           } failure:^(NSError *error) {
               
+          }];
+
+}
+
+//是否有未读信息
+- (void)haveNotReadMessage{
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        return;
+    }
+    NSNumber *userId = userDic[@"id"];
+    [params setObject:userId forKey:@"userId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ExistNoOpenMessage_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSInteger notExist = [[json objectForKey:@"data"] integerValue];
+              if (notExist == 0) {
+                  
+                  UIButton *rightButton = self.navigationItem.rightBarButtonItem.customView;
+                  _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 4.f, 1.f, 4.f, 4.f)];
+                  _redPoint.backgroundColor = [UIColor redColor];
+                  _redPoint.layer.cornerRadius = 2.f;
+                  _redPoint.layer.masksToBounds = YES;
+                  [rightButton addSubview:_redPoint];
+
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  [defaults setObject:@"1" forKey:@"haveNotRead"];
+                  [defaults synchronize];
+                  
+              }else{
+                  
+                  if (_redPoint) {
+                      [_redPoint removeFromSuperview];
+                  }
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  [defaults setObject:@"0" forKey:@"haveNotRead"];
+                  [defaults synchronize];
+              }
+              
+          } failure:^(NSError *error) {
+              NSLogZS(@"%@",error);
           }];
 
 }

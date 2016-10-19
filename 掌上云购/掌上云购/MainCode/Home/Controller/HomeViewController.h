@@ -48,5 +48,8 @@
     NSInteger           _page;
     NSInteger           _selectIndext;
     
+    //小红点
+    UIImageView         *_redPoint;
+    
 }
 @end

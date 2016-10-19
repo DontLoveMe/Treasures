@@ -666,6 +666,35 @@
             _broughtHistoryView.top = self.view.top;
         }
     }
+    
+    [self haveNotReadMessage];
+    
+}
+
+//是否有未读信息
+- (void)haveNotReadMessage{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *haveOrNot = [defaults objectForKey:@"haveNotRead"];
+    
+    if ([haveOrNot isEqualToString:@"1"]){
+        
+        UIButton *rightButton = self.navigationItem.rightBarButtonItem.customView;
+        _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 4.f, 0.f, 4.f, 4.f)];
+        _redPoint.backgroundColor = [UIColor redColor];
+        _redPoint.layer.cornerRadius = 2.f;
+        _redPoint.layer.masksToBounds = YES;
+        [rightButton addSubview:_redPoint];
+        
+    }else{
+        
+        if (_redPoint) {
+            [_redPoint removeFromSuperview];
+        }
+        
+    }
+    
 }
 
 #pragma mark 请求网络数据

@@ -10,12 +10,12 @@
 #define Common_h
 
 //测试服务器
-//#define BASE_URL @"http://192.168.0.252:8889"
+#define BASE_URL @"http://192.168.0.252:8081"
 //测试服务器1
 //#define BASE_URL @"http://192.168.0.117:8080"
 
 //外网服务器
-#define BASE_URL            @"http://121.43.164.18:8080"
+//#define BASE_URL            @"http://121.43.164.18:8080"
 //阿里云图片
 #define AliyunPIC_URL       @"http://zsys.oss-cn-hangzhou.aliyuncs.com/"
 #define PIC_URL             @"http://121.196.197.222:8080"
@@ -112,10 +112,19 @@
 #define UsableListCount_URL @"/pcpServer-inf/red/packet/usableListCount"
 //已使用/失效红包列表接口
 #define RedPacketDisabledList_URL @"/pcpServer-inf/red/packet/disabledList"
-//消息列表接口
-#define MessageList_URL @"/pcpServer-inf/messageSite/list"
 //客服
 #define ArticleContent_URL @"/pcpServer-inf/cmsArticleContent/help/list"
+
+/*---------------消息中心----------------------*/
+//消息列表接口
+#define MessageList_URL @"/pcpServer-inf/messageSite/list"
+//是否存在未读消息
+#define ExistNoOpenMessage_URL @"/pcpServer-inf/messageSite/countAllMessageIsHaveRead"
+//阅读消息（修改阅读状态为已阅读）
+#define ReadMessage_URL @"/pcpServer-inf/messageSite/updateByIdAndUserId"
+//消息类型
+#define MessageType_URL @"/pcpServer-inf/messageSite/countMessageIsHaveRead"
+
 /*---------------收货地址模块----------------------*/
 //省、市、区
 #define AreaProvince_URL @"/pcpServer-inf/area/province"
