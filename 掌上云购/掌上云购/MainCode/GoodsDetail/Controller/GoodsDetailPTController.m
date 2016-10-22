@@ -78,10 +78,22 @@
            params:params
           success:^(id json) {
 
-//              NSString *urlString = [NSString stringWithFormat:@"<div>p>img style='width:100%;'>%@</div>",[json objectForKey:@"data"]];
-              [_webView loadHTMLString:[json objectForKey:@"data"]
+              NSString *urlString = [json objectForKey:@"data"];
+
+              //去掉转义字符"\r"."\n"."\t"
+              urlString = [urlString stringByReplacingOccurrencesOfString:@"\\r\\n\\t" withString:@""];
+              //去掉转义字符"\"
+              urlString = [urlString stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+             
+              NSMutableString *mutString = urlString.mutableCopy;
+              [mutString deleteCharactersInRange:NSMakeRange(0, 1)];
+              [mutString deleteCharactersInRange:NSMakeRange(mutString.length-1, 1)];
+              urlString = mutString.copy;
+              [_webView loadHTMLString:urlString
                                baseURL:nil];
-              
+//              [_webView loadHTMLString:[json objectForKey:@"data"]
+//                               baseURL:nil];
+
           } failure:^(NSError *error) {
               
           }];

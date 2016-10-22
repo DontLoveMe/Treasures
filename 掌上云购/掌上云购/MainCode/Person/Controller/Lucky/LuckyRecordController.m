@@ -50,12 +50,13 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _page = 1;
     [self requestData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"幸运记录";
-    _page = 1;
+//    _page = 1;
     [self initNavBar];
 
     

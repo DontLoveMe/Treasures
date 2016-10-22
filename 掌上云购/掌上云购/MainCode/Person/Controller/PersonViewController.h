@@ -11,9 +11,7 @@
 
 @interface PersonViewController : BaseViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 
 
 @end

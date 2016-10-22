@@ -260,6 +260,10 @@
 }
 - (void)getChangeName {
     
+    if ([_nameTF isFirstResponder]) {
+        [_nameTF resignFirstResponder];
+    }
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     if (_nameTF.text.length>0) {
@@ -290,11 +294,13 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:@"绑定成功"];
               if (isSuccess) {
-                  
+                  [self hideSuccessHUD:@"成功"];
                   [self.navigationController popViewControllerAnimated:YES];
+              }else {
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
               }
+
               
               
           } failure:^(NSError *error) {
@@ -307,7 +313,15 @@
 
 - (void)getChangePhone {
 //    NSLogZS(@"手机%@验证码%@",_phoneTF.text,_verifyTF.text);
-    
+    if ([_oldPhoneTF isFirstResponder]) {
+        [_oldPhoneTF resignFirstResponder];
+    }
+    if ([_phoneTF isFirstResponder]) {
+        [_phoneTF resignFirstResponder];
+    }
+    if ([_verifyTF isFirstResponder]) {
+        [_verifyTF resignFirstResponder];
+    }
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     
@@ -333,27 +347,48 @@
     if (_oldPhoneTF.text.length>0) {
         [params setObject:_oldPhoneTF.text forKey:@"mobile"];
     }else{
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"请完善信息！"];
+        [alert addButtonTitleArray:@[@"好的"]];
+        
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     if (_phoneTF.text.length>0) {
         [params setObject:_phoneTF.text forKey:@"newMobile"];
     }else{
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"请完善信息！"];
+        [alert addButtonTitleArray:@[@"好的"]];
+        
+        __weak typeof(AlertController *) weakAlert = alert;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
         return;
     }
     [self showHUD:@"加载中"];
-//    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserMobile_URL];
-    NSString *url = @"http://192.168.0.92:8080/pcpi/user/editUserMobile";
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,EditUserMobile_URL];
+//    NSString *url = @"http://192.168.0.92:8080/pcpi/user/editUserMobile";
     [ZSTools post:url
            params:params
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               if (isSuccess) {
-                  
+                  [self hideSuccessHUD:@"成功"];
                   [self.navigationController popViewControllerAnimated:YES];
-                  
+              }else {
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
               }
+
               
           } failure:^(NSError *error) {
               
@@ -364,7 +399,12 @@
 - (void)getBindEmail {
     
      NSLogZS(@"邮箱%@确认邮箱%@",_emailTF.text,_reEmailTF.text);
-    
+    if ([_emailTF isFirstResponder]) {
+        [_emailTF resignFirstResponder];
+    }
+    if ([_reEmailTF isFirstResponder]) {
+        [_reEmailTF resignFirstResponder];
+    }
     if (![_emailTF.text isEqualToString:_reEmailTF.text]) {
         AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示" message:@"两次输入邮箱不同！请重新输入"];
         [alert addButtonTitleArray:@[@"好的"]];
@@ -410,10 +450,12 @@
           success:^(id json) {
               
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
-              [self hideSuccessHUD:@"绑定成功"];
+              
               if (isSuccess) {
-                  
+                  [self hideSuccessHUD:@"绑定成功"];
                   [self.navigationController popViewControllerAnimated:YES];
+              }else {
+                  [self hideFailHUD:[json objectForKey:@"msg"]];
               }
               
               

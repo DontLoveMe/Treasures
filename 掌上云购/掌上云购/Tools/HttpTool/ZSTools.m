@@ -189,35 +189,113 @@ constructingBodyWithBlock:nil
 /**
  *  POST-UPDATE--FILE(MimeType)(POST上传文件)
  */
+//+ (void)post:(NSString *)url
+//      params:(NSDictionary *)params
+//        data:(NSMutableDictionary *)datas
+//     success:(void (^)(id))success
+//     failure:(void (^)(NSError *))failure{
+//    
+//    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+//    NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
+//    if (params) {
+//        NSString *obj = [params JSONString];
+//        NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
+//        NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
+//        securityString = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+//                                                                                      
+//                                                                                      NULL, /* allocator */
+//                                                                                      
+//                                                                                      (__bridge CFStringRef)securityString,
+//                                                                                      
+//                                                                                      NULL, /* charactersToLeaveUnescaped */
+//                                                                                      
+//                                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+//                                                                                      
+//                                                                                      kCFStringEncodingUTF8);
+//        paramsObj[@"param"] = securityString;
+//    } else {
+//        paramsObj = nil;
+//    }
+//    
+//    [mgr POST:url
+//       parameters:paramsObj constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//           
+//           //将需要上传的文件数据添加到formData中
+//           //循环遍历需要上传的文件数据
+//           for (NSString *name in datas) {
+//               
+//               /**
+//                *   多图片上传，这个功能，得根据后台的接收方式
+//                *   遇到过的情况：
+//                *   （1）以表单形式接收：一次上传多张，将文件data，拼接起来。
+//                *   （2）每次请求后台只接收单张，但是需要上传多张：用串行队列调用此方法依次上传。
+//                */
+//               NSData *data = datas[name];
+//               /**
+//                *   传进来的datas -> 建议格式: @{@"图片名":(NSData *)picData,...}
+//                *   FileData -> picData
+//                *   name     -> 指后台指定的数据流对应的字段
+//                *   fileName -> 图片名
+//                *   mimeType -> 数据流对应的类型，mimeType的对照表就不列举，有需要的请百度
+//                */
+//               [formData appendPartWithFileData:data
+//                                           name:@"fileData"
+//                                       fileName:name
+//                                       mimeType:@"image/jpeg"];
+//           }
+//           
+//       } progress:^(NSProgress * _Nonnull uploadProgress) {
+//           
+//           NSLog(@"%lld",uploadProgress.completedUnitCount);
+//           
+//           
+//       } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//           
+//           if (success) {
+//               NSString *sucurytyResult = [responseObject objectForKey:@"data"];
+//               NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
+//               NSData *data2=[GTMBase64 decodeData:dd];
+//               NSString *aesresult=[SecurityUtil decryptAESData:data2];
+//               NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
+//               NSError *err;
+//               NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
+//                                                                           options:NSJSONReadingMutableContainers
+//                                                                             error:&err];
+//               NSMutableDictionary *responsDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
+//               if (err) {
+//                   [responsDic setObject:aesresult forKey:@"data"];
+//               }else{
+//                   [responsDic setObject:testDataDic forKey:@"data"];
+//               }
+//               
+//               success(responsDic);
+//           }
+//           
+//       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//           
+//           if (failure) {
+//               failure(error);
+//           }
+//           
+//       }];
+//    
+//}
 + (void)post:(NSString *)url
       params:(NSDictionary *)params
         data:(NSMutableDictionary *)datas
      success:(void (^)(id))success
      failure:(void (^)(NSError *))failure{
     
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
     if (params) {
         NSString *obj = [params JSONString];
-        NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
-        NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
-        securityString = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
-                                                                                      
-                                                                                      NULL, /* allocator */
-                                                                                      
-                                                                                      (__bridge CFStringRef)securityString,
-                                                                                      
-                                                                                      NULL, /* charactersToLeaveUnescaped */
-                                                                                      
-                                                                                      (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                      
-                                                                                      kCFStringEncodingUTF8);
-        paramsObj[@"param"] = securityString;
+        paramsObj[@"param"] = obj;
     } else {
         paramsObj = nil;
     }
     
-    [mgr POST:url
+    [manager POST:url
        parameters:paramsObj constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
            
            //将需要上传的文件数据添加到formData中
@@ -252,23 +330,7 @@ constructingBodyWithBlock:nil
        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
            
            if (success) {
-               NSString *sucurytyResult = [responseObject objectForKey:@"data"];
-               NSData *dd=[sucurytyResult dataUsingEncoding:NSUTF8StringEncoding];
-               NSData *data2=[GTMBase64 decodeData:dd];
-               NSString *aesresult=[SecurityUtil decryptAESData:data2];
-               NSData *jsonData = [aesresult dataUsingEncoding:NSUTF8StringEncoding];
-               NSError *err;
-               NSDictionary *testDataDic = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                           options:NSJSONReadingMutableContainers
-                                                                             error:&err];
-               NSMutableDictionary *responsDic = [NSMutableDictionary dictionaryWithDictionary:responseObject];
-               if (err) {
-                   [responsDic setObject:aesresult forKey:@"data"];
-               }else{
-                   [responsDic setObject:testDataDic forKey:@"data"];
-               }
-               
-               success(responsDic);
+               success(responseObject);
            }
            
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -280,6 +342,7 @@ constructingBodyWithBlock:nil
        }];
     
 }
+
 
 //特殊的地方(去掉空值不完全的地方)
 + (void)specialPost:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure{

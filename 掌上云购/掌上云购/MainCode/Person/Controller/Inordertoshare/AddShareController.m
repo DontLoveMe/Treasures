@@ -170,7 +170,7 @@
                   if (index < paths.count - 1) {
                       [self uploadPicwithFile:_selectedPhotos withIndex:index + 1];
                   }else{
-                      
+                    [self insertShareRequest];
                       [self hideSuccessHUD:@"上传照片成功"];
                   }
                   
@@ -325,7 +325,9 @@
         }];
         [self presentViewController:alert animated:YES completion:nil];
     }else {
-        [self insertShareRequest];
+        [self uploadPic];
+//        [self insertShareRequest];
+        
     }
     
     
@@ -358,9 +360,9 @@
 #pragma mark UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_selectedPhotos.count == 6) {
-        return _selectedPhotos.count;
-    }
+//    if (_selectedPhotos.count == 6) {
+//        return _selectedPhotos.count;
+//    }
     return _selectedPhotos.count + 1;
 }
 
@@ -556,7 +558,7 @@
                         [_selectedPhotos addObject:image];
                         [_collectionView reloadData];
                         
-                        [self uploadPic];
+//                        [self uploadPic];
                         
                     }];
                 }];
@@ -620,7 +622,7 @@
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
     [_collectionView reloadData];
     // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
-    [self uploadPic];
+//    [self uploadPic];
 }
 
 // 如果用户选择了一个视频，下面的handle会被执行
@@ -642,8 +644,10 @@
         [_picLoctionArr removeObjectAtIndex:sender.tag];
     }
     
+    NSLog(@"%ld",(long)sender.tag);
     [_collectionView performBatchUpdates:^{
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
+
         [_collectionView deleteItemsAtIndexPaths:@[indexPath]];
     } completion:^(BOOL finished) {
         [_collectionView reloadData];

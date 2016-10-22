@@ -10,12 +10,14 @@
 #define Common_h
 
 //测试服务器
-#define BASE_URL @"http://192.168.0.252:8081"
+//#define BASE_URL @"http://192.168.0.252:8081"
 //测试服务器1
 //#define BASE_URL @"http://192.168.0.117:8080"
 
 //外网服务器
 //#define BASE_URL            @"http://121.43.164.18:8080"
+#define BASE_URL            @"http://118.178.117.221:9000"
+
 //阿里云图片
 #define AliyunPIC_URL       @"http://zsys.oss-cn-hangzhou.aliyuncs.com/"
 #define PIC_URL             @"http://121.196.197.222:8080"

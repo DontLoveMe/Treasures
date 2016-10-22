@@ -39,7 +39,9 @@
 
 @end
 
-@implementation PersonViewController
+@implementation PersonViewController {
+    UIImageView         *_redPoint;
+}
 
 #pragma mark - 导航栏
 - (void)initNavBar{
@@ -102,7 +104,35 @@
     
 }
 
-
+//是否有未读信息
+- (void)haveNotReadMessage{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *haveOrNot = [defaults objectForKey:@"haveNotRead"];
+    
+    if ([haveOrNot isEqualToString:@"1"]){
+        
+        UIButton *rightButton = [self.view viewWithTag:101];
+        if (_redPoint == nil) {
+            
+            _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 10.f, 7.f, 4.f, 4.f)];
+        }
+        _redPoint.backgroundColor = [UIColor redColor];
+        _redPoint.layer.cornerRadius = 2.f;
+        _redPoint.layer.masksToBounds = YES;
+        [rightButton addSubview:_redPoint];
+        
+    }else{
+        
+        if (_redPoint) {
+            [_redPoint removeFromSuperview];
+            _redPoint = nil;
+        }
+        
+    }
+    
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
@@ -119,7 +149,13 @@
         [self usableListCount];
     }
 
+//    [self haveNotReadMessage];
+    
+    //是否有未读信息
+    [self isNotReadMessage];
+    
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -500,4 +536,48 @@
               NSLogZS(@"%@",error);
           }];
 }
+
+
+- (void)isNotReadMessage{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        if (_redPoint) {
+            [_redPoint removeFromSuperview];
+            _redPoint = nil;
+        }
+        return;
+    }
+    NSNumber *userId = userDic[@"id"];
+    [params setObject:userId forKey:@"userId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ExistNoOpenMessage_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSInteger notExist = [[json objectForKey:@"data"] integerValue];
+              if (notExist == 0) {
+                  
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  [defaults setObject:@"1" forKey:@"haveNotRead"];
+                  [defaults synchronize];
+                  
+              }else{
+                  
+                  
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  [defaults setObject:@"0" forKey:@"haveNotRead"];
+                  [defaults synchronize];
+              }
+              [self haveNotReadMessage];
+              
+          } failure:^(NSError *error) {
+              NSLogZS(@"%@",error);
+          }];
+    
+}
+
+
 @end

@@ -74,7 +74,14 @@
     drawNum.text = [NSString stringWithFormat:@"期号:%@",[_dataDic objectForKey:@"drawTimes"]];
     
     if (![[_dataDic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
-        drawTime.text = [NSString stringWithFormat:@"揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        NSString *timeString = [NSString stringWithFormat:@"%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss.0"];
+        NSDate *oldDate = [formater dateFromString:timeString];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        timeString = [formater stringFromDate:oldDate];
+        drawTime.text = [NSString stringWithFormat:@"揭晓时间：%@",timeString];
     }else{
         
         drawTime.text = @"该商品尚未筹满";
@@ -82,7 +89,14 @@
     }
     
     if (![[_dataDic objectForKey:@"countdownEndDate"] isKindOfClass:[NSNull class]]) {
-        drawTime.text = [NSString stringWithFormat:@"揭晓时间：%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        NSString *timeString = [NSString stringWithFormat:@"%@",[_dataDic objectForKey:@"countdownEndDate"]];
+        NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss.0"];
+        NSDate *oldDate = [formater dateFromString:timeString];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        timeString = [formater stringFromDate:oldDate];
+        drawTime.text = [NSString stringWithFormat:@"揭晓时间：%@",timeString];
     }else{
         
         drawTime.text = @"揭晓时间：该商品尚未筹满";

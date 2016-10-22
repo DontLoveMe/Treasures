@@ -43,7 +43,7 @@
     TabbarViewcontroller *TVC = [[TabbarViewcontroller alloc] init];
     _window.rootViewController = TVC;
     
-//    [self requestPrizeMsg];
+    [self requestPrizeMsg];
   //推送测试
 //    double delayInSeconds = 15.0;
 //    
@@ -315,15 +315,22 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo{
            params:params
           success:^(id json) {
               
+              if (![json[@"flag"] boolValue]) {
+                  return;
+              }
               if (![[json objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
                   
                   NSDictionary *dataDic = [json objectForKey:@"data"];
+                  if ([dataDic isKindOfClass:[NSString class]]) {
+                      return;
+                  }
                   if (pVC.parentViewController == self.window.rootViewController) {
                       return;
                   }
+                  
                   pVC = [[PromptController alloc] init];
                   pVC.type = 1;
-                  pVC.titleLabel.text = [NSString stringWithFormat:@"恭喜你中奖，获得%@",dataDic[@"productId"]];
+//                  pVC.titleLabel.text = [NSString stringWithFormat:@"恭喜你中奖，获得%@",dataDic[@"productId"]];
                   [self.window.rootViewController presentViewController:pVC animated:YES completion:nil];
                   
               }else{

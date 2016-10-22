@@ -676,7 +676,7 @@
 		D66FF4431D77C110001C4B6E /* InordertoshareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InordertoshareModel.m; sourceTree = "<group>"; };
 		D66FF4451D78106B001C4B6E /* AddShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddShareController.h; sourceTree = "<group>"; };
 		D66FF4461D78106B001C4B6E /* AddShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddShareController.m; sourceTree = "<group>"; };
-		D66FF4471D78106B001C4B6E /* AddShareController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddShareController.xib; sourceTree = "<group>"; };
+		D66FF4471D78106B001C4B6E /* AddShareController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddShareController.xib; path = ../Inordertoshare/AddShareController.xib; sourceTree = "<group>"; };
 		D674196C1D7D177200B655A5 /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
 		D674196D1D7D177200B655A5 /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
 		D674196E1D7D177200B655A5 /* MessageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageController.xib; sourceTree = "<group>"; };
@@ -2232,7 +2232,6 @@
 				DDF92BE81D6A9C3D009D5A1E /* InordertoshareController.xib */,
 				D66FF4451D78106B001C4B6E /* AddShareController.h */,
 				D66FF4461D78106B001C4B6E /* AddShareController.m */,
-				D66FF4471D78106B001C4B6E /* AddShareController.xib */,
 				D6C09BFC1D7916DA00C092A7 /* LxGridViewFlowLayout.h */,
 				D6C09BFD1D7916DA00C092A7 /* LxGridViewFlowLayout.m */,
 			);
@@ -2250,6 +2249,7 @@
 				DDF92BEF1D6A9C3D009D5A1E /* ConfirmGoodsController.xib */,
 				DDF92BF01D6A9C3D009D5A1E /* LuckyRecordController.h */,
 				DDF92BF11D6A9C3D009D5A1E /* LuckyRecordController.m */,
+				D66FF4471D78106B001C4B6E /* AddShareController.xib */,
 				DDF92BF21D6A9C3D009D5A1E /* LuckyRecordController.xib */,
 			);
 			path = Lucky;

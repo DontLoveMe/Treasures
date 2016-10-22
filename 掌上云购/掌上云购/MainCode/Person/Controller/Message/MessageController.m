@@ -13,7 +13,6 @@
 
 @property (nonatomic,strong)UITableView *tableView;
 
-
 @end
 
 @implementation MessageController
@@ -73,7 +72,7 @@
         return;
     }
     NSNumber *userId = userDic[@"id"];
-    [params setObject:userId forKey:@"userId"];
+    [params setObject:@{@"userId":userId} forKey:@"paramsMap"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,MessageType_URL];
     [ZSTools post:url
@@ -113,15 +112,33 @@
     
     NSInteger haveRead = [[dic objectForKey:@"isHaveRead"] integerValue];
     
-    if (haveRead == 0) {
-        
-        UIImageView *redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(cell.width - 4, 18.f, 4, 4)];
+    
+    if ([[cell.subviews lastObject] isKindOfClass:[UIImageView class]]) {
+        UIImageView *redPoint = (UIImageView *)[cell.subviews lastObject];
+        if (haveRead == 0) {
+            
+            redPoint.hidden = NO;
+            
+        }else {
+            redPoint.hidden = YES;
+        }
+    }else {
+        UIImageView *redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(cell.width - 14, 18.f, 4, 4)];
         redPoint.backgroundColor = [UIColor redColor];
         redPoint.layer.cornerRadius = 2.f;
         redPoint.layer.masksToBounds = YES;
+        redPoint.hidden = YES;
         [cell addSubview:redPoint];
-        
+        if (haveRead == 0) {
+            
+            redPoint.hidden = NO;
+            
+        }else {
+            redPoint.hidden = YES;
+        }
     }
+    
+    
     NSLogZS(@"%@：%@",[dic objectForKey:@"msgType"],[dic objectForKey:@"title"]);
     return cell;
 }

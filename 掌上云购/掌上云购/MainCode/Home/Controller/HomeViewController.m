@@ -693,6 +693,10 @@
     
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     if(userDic == nil){
+        if (_redPoint) {
+            [_redPoint removeFromSuperview];
+            _redPoint = nil;
+        }
         return;
     }
     NSNumber *userId = userDic[@"id"];
@@ -707,7 +711,10 @@
               if (notExist == 0) {
                   
                   UIButton *rightButton = self.navigationItem.rightBarButtonItem.customView;
-                  _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 4.f, 1.f, 4.f, 4.f)];
+                  if (_redPoint == nil) {
+                      
+                      _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 4.f, 1.f, 4.f, 4.f)];
+                  }
                   _redPoint.backgroundColor = [UIColor redColor];
                   _redPoint.layer.cornerRadius = 2.f;
                   _redPoint.layer.masksToBounds = YES;
@@ -721,6 +728,7 @@
                   
                   if (_redPoint) {
                       [_redPoint removeFromSuperview];
+                      _redPoint = nil;
                   }
                   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                   [defaults setObject:@"0" forKey:@"haveNotRead"];

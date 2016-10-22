@@ -311,8 +311,8 @@
     [ZSTools post:url
            params:params
           success:^(id json) {
-              
-              if ([[json objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
+              id data = [json objectForKey:@"data"];
+              if ([[json objectForKey:@"data"] isKindOfClass:[NSNull class]]||[data isKindOfClass:[NSString class]]) {
                   return ;
               }
               

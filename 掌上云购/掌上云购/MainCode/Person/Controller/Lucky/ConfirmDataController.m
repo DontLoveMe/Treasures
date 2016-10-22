@@ -546,6 +546,9 @@
                               
                           }
                       }];
+                      [self presentViewController:alert
+                                                          animated:YES
+                                                        completion:nil];
                       [_tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
                       return;
                   }

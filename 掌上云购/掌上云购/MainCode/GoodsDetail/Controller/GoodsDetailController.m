@@ -667,7 +667,7 @@
         }
     }
     
-    [self haveNotReadMessage];
+    [self isNotReadMessage];
     
 }
 
@@ -681,7 +681,10 @@
     if ([haveOrNot isEqualToString:@"1"]){
         
         UIButton *rightButton = self.navigationItem.rightBarButtonItem.customView;
-        _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 4.f, 0.f, 4.f, 4.f)];
+        if (_redPoint == nil) {
+            
+            _redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(rightButton.width - 4.f, 0.f, 4.f, 4.f)];
+        }
         _redPoint.backgroundColor = [UIColor redColor];
         _redPoint.layer.cornerRadius = 2.f;
         _redPoint.layer.masksToBounds = YES;
@@ -691,6 +694,7 @@
         
         if (_redPoint) {
             [_redPoint removeFromSuperview];
+            _redPoint = nil;
         }
         
     }
@@ -857,7 +861,7 @@
                   [self hideSuccessHUD:@"加载成功"];
                   //商品图片
                   _dataDic = [json objectForKey:@"data"];
-                  if ([_dataDic isEqual:[NSNull null]]) {
+                  if ([_dataDic isEqual:[NSNull null]]||[_dataDic isKindOfClass:[NSString class]]) {
                       return;
                   }
                   if (![[_dataDic objectForKey:@"proPictureList"] isEqual:[NSNull null]]) {
@@ -1127,5 +1131,47 @@
     return (TabbarViewcontroller *)windows.rootViewController;
     
 }
+
+- (void)isNotReadMessage{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+    if(userDic == nil){
+        if (_redPoint) {
+            [_redPoint removeFromSuperview];
+            _redPoint = nil;
+        }
+        return;
+    }
+    NSNumber *userId = userDic[@"id"];
+    [params setObject:userId forKey:@"userId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ExistNoOpenMessage_URL];
+    [ZSTools post:url
+           params:params
+          success:^(id json) {
+              
+              NSInteger notExist = [[json objectForKey:@"data"] integerValue];
+              if (notExist == 0) {
+                  
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  [defaults setObject:@"1" forKey:@"haveNotRead"];
+                  [defaults synchronize];
+                  
+              }else{
+                  
+                  
+                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                  [defaults setObject:@"0" forKey:@"haveNotRead"];
+                  [defaults synchronize];
+              }
+              [self haveNotReadMessage];
+              
+          } failure:^(NSError *error) {
+              NSLogZS(@"%@",error);
+          }];
+    
+}
+
 
 @end

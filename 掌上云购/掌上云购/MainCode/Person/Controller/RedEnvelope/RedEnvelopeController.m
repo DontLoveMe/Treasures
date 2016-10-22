@@ -22,10 +22,15 @@
     UseRedElpTableView *_useTableView;//红包可用
     UseRedElpTableView *_noUseTableView;//不可用红包
     
+    NSMutableArray *_userData;
+    NSMutableArray *_noUserData;
+    
     UICollectionView *_collectionView;
     NSString *_identify;
     
     LoveView *_loveView;//猜你喜欢
+    
+    NSInteger _page;
 }
 
 #pragma mark - 导航栏
@@ -58,6 +63,12 @@
     
     self.title = @"我的红包";
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    
+    _page = 1;
+    _userData = [NSMutableArray array];
+    _noUserData = [NSMutableArray array];
+    
+    
     [self initNavBar];
     
     [self createSubviews];
@@ -114,11 +125,15 @@
     [self setRefreshHeader:_noUseTableView];
 //    _useTableView.mj_header = header;
 //    _noUseTableView.mj_header = header;
+    [self setRefreshFoot:_useTableView];
+    [self setRefreshFoot:_noUseTableView];
 }
+
 - (void)setRefreshHeader:(UITableView *)tableView {
     //下拉时动画
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         
+        _page = 1;
         switch (_selectBtnTag) {
             case 200:
                 
@@ -175,6 +190,26 @@
     [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
     tableView.mj_header = header;
 }
+- (void)setRefreshFoot:(UITableView *)tableView {
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        switch (_selectBtnTag) {
+            case 200:
+                
+                [self requestUserRedEnvelope];
+                break;
+            case 201:
+                
+                [self requestNoUserRedEnvelope];
+                break;
+            default:
+                break;
+        }
+    }];
+    tableView.mj_footer = footer;
+}
 #pragma mark - 数据请求
 //获取红包个数
 - (void)usableListCount{
@@ -220,8 +255,8 @@
     }else {
         [params setObject:@{@"userId":userId,@"batchNumber":_businessId} forKey:@"paramsMap"];
     }
-    [params setObject:@1 forKey:@"page"];
-    [params setObject:@200 forKey:@"rows"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@20 forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RedPacketList_URL];
     [ZSTools post:url
@@ -231,16 +266,44 @@
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:json[@"msg"]];
               if (isSuccess) {
-                  _useTableView.data = json[@"data"];
-                  if (_useTableView.data.count>0) {
-                      _useTableView.noView.hidden = YES;
-                      _loveView.hidden = YES;
-                  }else {
-                      _loveView.hidden = NO;
-                      _useTableView.noView.hidden = NO;
+//                  _useTableView.data = json[@"data"];
+//                  if (_useTableView.data.count>0) {
+//                      _useTableView.noView.hidden = YES;
+//                      _loveView.hidden = YES;
+//                  }else {
+//                      _loveView.hidden = NO;
+//                      _useTableView.noView.hidden = NO;
+//                  }
+//                  [_useTableView reloadData];
+//                  [_useTableView.mj_header endRefreshing];
+                  
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_userData removeAllObjects];
+                      _userData = dataArr.mutableCopy;
+                      if (_userData.count>0) {
+                          _useTableView.noView.hidden = YES;
+                          _loveView.hidden = YES;
+                      }else {
+                          _loveView.hidden = NO;
+                          _useTableView.noView.hidden = NO;
+                      }
+                      [_useTableView.mj_footer resetNoMoreData];
+                      [_useTableView.mj_header endRefreshing];
                   }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_userData addObjectsFromArray:dataArr];
+                          [_useTableView.mj_footer endRefreshing];
+                      }else {
+                          [_useTableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  _useTableView.data = _userData;
                   [_useTableView reloadData];
-                  [_useTableView.mj_header endRefreshing];
+ 
               }
               
               
@@ -262,8 +325,8 @@
     }else {
         [params setObject:@{@"userId":userId,@"batchNumber":_businessId} forKey:@"paramsMap"];
     }
-    [params setObject:@1 forKey:@"page"];
-    [params setObject:@200 forKey:@"rows"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@20 forKey:@"rows"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,RedPacketDisabledList_URL];
     [ZSTools post:url
@@ -273,17 +336,44 @@
               BOOL isSuccess = [[json objectForKey:@"flag"] boolValue];
               [self hideSuccessHUD:@"数据加载成功"];
               if (isSuccess) {
-                  _noUseTableView.data = json[@"data"];
+//                  _noUseTableView.data = json[@"data"];
+//                  
+//                  if (_noUseTableView.data.count>0) {
+//                      _noUseTableView.noView.hidden = YES;
+//                      _loveView.hidden = YES;
+//                  }else {
+//                      _noUseTableView.noView.hidden = NO;
+//                      _loveView.hidden = NO;
+//                  }
+//                  [_noUseTableView reloadData];
+//                  [_noUseTableView.mj_header endRefreshing];
                   
-                  if (_noUseTableView.data.count>0) {
-                      _noUseTableView.noView.hidden = YES;
-                      _loveView.hidden = YES;
-                  }else {
-                      _noUseTableView.noView.hidden = NO;
-                      _loveView.hidden = NO;
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_noUserData removeAllObjects];
+                      _noUserData = dataArr.mutableCopy;
+                      if (_noUserData.count>0) {
+                          _noUseTableView.noView.hidden = YES;
+                          _loveView.hidden = YES;
+                      }else {
+                          _loveView.hidden = NO;
+                          _noUseTableView.noView.hidden = NO;
+                      }
+                      [_noUseTableView.mj_footer resetNoMoreData];
+                      [_noUseTableView.mj_header endRefreshing];
                   }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_noUserData addObjectsFromArray:dataArr];
+                          [_noUseTableView.mj_footer endRefreshing];
+                      }else {
+                          [_noUseTableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
+                  _noUseTableView.data = _noUserData;
                   [_noUseTableView reloadData];
-                  [_noUseTableView.mj_header endRefreshing];
               }
               
               
@@ -379,7 +469,7 @@
         if (_constNum < limitNum) {
             
             UIAlertController *alerVC = [UIAlertController alertControllerWithTitle:@"温馨提示"
-                                                                            message:@"未达到红包使用条件，再去选两件上品就可以使用了哦！"
+                                                                            message:@"未达到红包使用条件，再去选几件商品就可以使用了哦！"
                                                                      preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好"
                                                                    style:UIAlertActionStyleCancel

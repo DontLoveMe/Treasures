@@ -15,6 +15,7 @@
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *msgList;
+@property (nonatomic,assign)NSInteger page;
 
 @end
 
@@ -44,7 +45,8 @@
     [super viewDidLoad];
     [self initNavBar];
     
-    [self requestMsgData];
+    _msgList = [NSMutableArray array];
+//    [self requestMsgData];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight-64) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
@@ -55,6 +57,68 @@
     _tableView.dataSource = self;
     
     [_tableView registerNib:[UINib nibWithNibName:@"MessageCell" bundle:nil] forCellReuseIdentifier:@"MessageCell"];
+    
+    //下拉时动画
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        _page = 1;
+        [self requestMsgData];
+        
+    }];
+    //下拉时图片
+    NSMutableArray *gifWhenPullDown = [NSMutableArray array];
+    for (NSInteger i = 1 ; i <= 30; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenPullDown addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenPullDown
+             duration:1 forState:MJRefreshStatePulling];
+    
+    //正在刷新时图片
+    NSMutableArray *gifWhenRefresh = [NSMutableArray array];
+    for (NSInteger i = 31 ; i <= 112; i++) {
+        
+        if (i / 100 > 0) {
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_%ld",i]]];
+        }else if (i / 10){
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_0%ld",i]]];
+        }else{
+            [gifWhenRefresh addObject:[UIImage imageNamed:[NSString stringWithFormat:@"dropdown_zsyg_00%ld",i]]];
+        }
+        
+    }
+    
+    [header setImages:gifWhenRefresh
+             duration:2 forState:MJRefreshStateRefreshing];
+    
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = NO;
+    header.stateLabel.textColor = [UIColor colorFromHexRGB:ThemeColor];
+    [header setTitle:@"下拉刷新。" forState:MJRefreshStateIdle];
+    [header setTitle:@"松手即可刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+    _tableView.mj_header = header;
+    
+    MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        if (_page == 1) {
+            _page = 2;
+        }
+        [self requestMsgData];
+    }];
+    _tableView.mj_footer = footer;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _page = 1;
+    [self requestMsgData];
 }
 
 - (void)requestMsgData {
@@ -65,6 +129,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     [params setObject:@{@"userId":userId,@"msgType":@(_msgType)} forKey:@"paramsMap"];
+    [params setObject:@(_page) forKey:@"page"];
+    [params setObject:@20 forKey:@"rows"];
     
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,MessageList_URL];
@@ -76,7 +142,26 @@
               [self hideSuccessHUD:[json objectForKey:@"msg"]];
               if (isSuccess) {
                   
-                  self.msgList = json[@"data"];
+//                  self.msgList = json[@"data"];
+//                  [_tableView reloadData];
+                  NSArray *dataArr = json[@"data"];
+                  if (_page == 1) {
+                      [_msgList removeAllObjects];
+                      _msgList = dataArr.mutableCopy;
+                     
+                      [_tableView.mj_footer resetNoMoreData];
+                      [_tableView.mj_header endRefreshing];
+                  }
+                  
+                  if (_page != 1 && _page != 0) {
+                      if (dataArr.count > 0) {
+                          _page ++;
+                          [_msgList addObjectsFromArray:dataArr];
+                          [_tableView.mj_footer endRefreshing];
+                      }else {
+                          [_tableView.mj_footer endRefreshingWithNoMoreData];
+                      }
+                  }
                   [_tableView reloadData];
               }
               
@@ -127,15 +212,31 @@
     
     if (_msgType != 3) {
         
-        if (haveRead == 0) {
-            
-            UIImageView *redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(cell.width - 30, 34.f, 4, 4)];
+        if ([[cell.subviews lastObject] isKindOfClass:[UIImageView class]]) {
+            UIImageView *redPoint = (UIImageView *)[cell.subviews lastObject];
+            if (haveRead == 0) {
+                
+                redPoint.hidden = NO;
+                
+            }else {
+                redPoint.hidden = YES;
+            }
+        }else {
+            UIImageView *redPoint = [[UIImageView alloc] initWithFrame:CGRectMake(cell.width - 14, 18.f, 4, 4)];
             redPoint.backgroundColor = [UIColor redColor];
             redPoint.layer.cornerRadius = 2.f;
             redPoint.layer.masksToBounds = YES;
+            redPoint.hidden = YES;
             [cell addSubview:redPoint];
-            
+            if (haveRead == 0) {
+                
+                redPoint.hidden = NO;
+                
+            }else {
+                redPoint.hidden = YES;
+            }
         }
+
         
     }
 
@@ -144,6 +245,15 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    NSDictionary *msgDic = self.msgList[indexPath.row];
+    if (![msgDic[@"content"] isKindOfClass:[NSNull class]]) {
+        NSString *content = msgDic[@"content"];
+        
+        CGRect rect = [content boundingRectWithSize:CGSizeMake(KScreenWidth-40, 300) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
+
+//        NSLog(@"%@",NSStringFromCGRect(rect));
+        return rect.size.height+35;
+    }
     return 69;
 
 }

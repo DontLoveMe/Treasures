@@ -445,11 +445,25 @@
               NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
+                  [self hideSuccessHUD:@"找回成功"];
                   
-                  [self dismissViewControllerAnimated:YES completion:nil];
+                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                           message:@"找回成功！" preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了"
+                                                                         style:UIAlertActionStyleCancel
+                                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                                           [alertController dismissViewControllerAnimated:YES
+                                                                                                               completion:nil];
+                                                                           [self dismissViewControllerAnimated:YES completion:nil];
+                                                                       }];
+                  [alertController addAction:cancelAction];
+                  [self presentViewController:alertController
+                                     animated:YES
+                                   completion:nil];
                   
               }else{
-                  [self hideFailHUD:[json objectForKey:@"msg"]];
+                 
+                  [self hideFailHUD:[NSString stringWithFormat:@"%@",json[@"msg"]]];
               }
               
           } failure:^(NSError *error) {
@@ -505,49 +519,35 @@
           success:^(id json) {
               
 //              NSLog(@"返回信息:%@",[json objectForKey:@"msg"]);
-              [self hideSuccessHUD:[json objectForKey:@"msg"]];
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
+                  [self hideSuccessHUD:[json objectForKey:@"msg"]];
                   
-                  AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"修改密码成功！"];
-                  [alert addButtonTitleArray:@[@"知道了！"]];
-                  __weak typeof(AlertController *) weakAlert = alert;
-                  [alert setClickButtonBlock:^(NSInteger tag) {
-                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
-                      
-                      [self dismissViewControllerAnimated:YES completion:nil];
-                  }];
-                  
-                  [self presentViewController:alert animated:YES completion:nil];
+                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                           message:@"修改成功！" preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了"
+                                                                         style:UIAlertActionStyleCancel
+                                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                                           [alertController dismissViewControllerAnimated:YES
+                                                                                                               completion:nil];
+                                                                           [self dismissViewControllerAnimated:YES completion:nil];
+                                                                       }];
+                  [alertController addAction:cancelAction];
+                  [self presentViewController:alertController
+                                     animated:YES
+                                   completion:nil];
                   return;
                   
               }else{
               
-                  AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"修改密码失败！"];
-                  [alert addButtonTitleArray:@[@"知道了！"]];
-                  __weak typeof(AlertController *) weakAlert = alert;
-                  [alert setClickButtonBlock:^(NSInteger tag) {
-                      [weakAlert dismissViewControllerAnimated:YES completion:nil];
-
-                  }];
+                  [self hideFailHUD:[NSString stringWithFormat:@"%@",json[@"msg"]]];
                   
-                  [self presentViewController:alert animated:YES completion:nil];
-                  return;
                   
               }
               
           } failure:^(NSError *error) {
               
-              AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示！" message:@"修改密码失败！"];
-              [alert addButtonTitleArray:@[@"知道了！"]];
-              __weak typeof(AlertController *) weakAlert = alert;
-              [alert setClickButtonBlock:^(NSInteger tag) {
-                  [weakAlert dismissViewControllerAnimated:YES completion:nil];
-                  
-              }];
-              
-              [self presentViewController:alert animated:YES completion:nil];
-              return;
+             [self hideFailHUD:@"找回失败"];
               
           }];
 }
@@ -594,16 +594,31 @@
               BOOL flag = [[json objectForKey:@"flag"] boolValue];
               if (flag == 1) {
                   [self hideSuccessHUD:[json objectForKey:@"msg"]];
-                  //把信息存到NSUserDefaults
-                  NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
-                  [self saveDataForUserUserDefaults:userDic];
-//                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-                  [self dismissViewControllerAnimated:YES completion:^{
-                      
-                  }];
+                  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示"
+                                                                                           message:@"修改失败！" preferredStyle:UIAlertControllerStyleAlert];
+                  UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了"
+                                                                         style:UIAlertActionStyleCancel
+                                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                                           [alertController dismissViewControllerAnimated:YES
+                                                                                                               completion:nil];
+                                                                           [self dismissViewControllerAnimated:YES completion:nil];
+                                                                           //把信息存到NSUserDefaults
+                                                                           NSMutableDictionary *userDic = [[json objectForKey:@"data"] mutableCopy];
+                                                                           [self saveDataForUserUserDefaults:userDic];
+                                                                           //                 [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                                                                           [self dismissViewControllerAnimated:YES completion:^{
+                                                                               
+                                                                           }];
+                                                                           
+                                                                       }];
+                  [alertController addAction:cancelAction];
+                  [self presentViewController:alertController
+                                     animated:YES
+                                   completion:nil];
+                  
                   
               }else{
-                  [self hideFailHUD:[json objectForKey:@"msg"]];
+                  [self hideFailHUD:[NSString stringWithFormat:@"%@",json[@"msg"]]];
               }
               
           } failure:^(NSError *error) {

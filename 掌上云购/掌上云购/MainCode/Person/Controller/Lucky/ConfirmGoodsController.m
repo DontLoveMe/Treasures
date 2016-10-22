@@ -8,6 +8,7 @@
 
 #import "ConfirmGoodsController.h"
 #import "GoodsDetailController.h"
+#import "AlertController.h"
 
 @interface ConfirmGoodsController ()
 
@@ -407,8 +408,24 @@
     NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
     NSNumber *userId = userDic[@"id"];
     
-    if (_userName.length == 0) {
+    if (_mannerType == 3) {
         _userName = userDic[@"userLoginDto"][@"userAccount"];
+    }
+    if (_userName.length == 0) {
+        
+        AlertController *alert = [[AlertController alloc] initWithTitle:@"温馨提示!" message:@"请填写帐号！"];
+        [alert addButtonTitleArray:@[@"知道了"]];
+        __weak typeof(AlertController*) weakAlert = alert;
+//        __weak typeof(self) weakSelf = self;
+        [alert setClickButtonBlock:^(NSInteger tag) {
+            if (tag == 0) {//取消
+                [weakAlert dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+        [self presentViewController:alert
+                           animated:YES
+                         completion:nil];
+        return;
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];

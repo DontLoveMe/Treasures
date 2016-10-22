@@ -19,6 +19,8 @@
     UILabel     *_hotSearchLabel;
     
     NSArray   *_historyData;
+    
+    UIImageView *_redPoint;
 }
 
 @end
