@@ -20,6 +20,7 @@
 + (void)addHistoryData:(NSString *)historyStr {
     NSMutableArray *dataArr = [NSMutableArray array];
 
+    if (historyStr.length == 0) return;
     if ([self getHistoryData].count > 0) {
         dataArr = [self getHistoryData].mutableCopy;
 
