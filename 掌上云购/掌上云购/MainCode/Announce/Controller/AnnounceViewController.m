@@ -229,7 +229,7 @@
         cell.unveilLabel.hidden = NO;
         
         if(countdownTime<0){
-            cell.timeLabel.text = @"正在计算开奖结果";
+            cell.timeLabel.text = @"正在计算中";
         }else {
             
         }

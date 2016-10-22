@@ -102,7 +102,7 @@
                     _timeIconView.hidden = NO;
                     _timeLabel.hidden = NO;
                     _unveilLabel.hidden = NO;
-                    weakSelf.timeLabel.text = @"正在计算开奖结果";
+                    weakSelf.timeLabel.text = @"正在计算中";
                     
                     [self performSelector:@selector(timeAction)
                                withObject:nil

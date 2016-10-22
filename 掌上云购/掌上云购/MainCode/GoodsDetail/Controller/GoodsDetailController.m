@@ -593,6 +593,10 @@
 
     GoodsDetailController *GDVC = [[GoodsDetailController alloc] init];
     GDVC.isAnnounced = 1;
+    if(_goodsId == nil){
+    
+        return;
+    }
     GDVC.goodsId = _goodsId;
     GDVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:GDVC
@@ -864,6 +868,11 @@
                   if ([_dataDic isEqual:[NSNull null]]||[_dataDic isKindOfClass:[NSString class]]) {
                       return;
                   }
+                  
+                  if (![[_dataDic objectForKey:@"id"] isEqual:[NSNull null]]) {
+                        _goodsId = [_dataDic objectForKey:@"id"];
+                  }
+
                   if (![[_dataDic objectForKey:@"proPictureList"] isEqual:[NSNull null]]) {
                       
                       NSArray   *picDicArr = [_dataDic objectForKey:@"proPictureList"];

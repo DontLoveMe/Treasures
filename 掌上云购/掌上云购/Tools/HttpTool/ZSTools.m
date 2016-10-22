@@ -22,6 +22,7 @@
     NSMutableDictionary *paramsObj = [NSMutableDictionary dictionary];
     // 2.在这里将传过来的参数转换成json格式
     if (params) {
+        
         NSString *obj = [params JSONString];
         NSData *aesdataresult = [SecurityUtil encryptAESData:obj];
         NSString *securityString = [SecurityUtil encodeBase64Data:aesdataresult];
