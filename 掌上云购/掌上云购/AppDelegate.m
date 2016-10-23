@@ -299,6 +299,21 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo{
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString*, id> *)options{
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+        // 支付结果处理
+        [[JHFSDK sharedInstance] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDict) {
+            // standbyCallback为备用回调，当调起第三方支付客户端(比如：支付宝，微信支付)在操作时，商户app进程在后台被结束，只能通过这个block输出支付结果。
+        }];
+        
+        return YES;
+    }
+    return YES;
+}
+
 //请求中奖信息
 - (void)requestPrizeMsg{
 

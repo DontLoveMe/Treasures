@@ -201,13 +201,15 @@
 }
 //微信登录
 - (IBAction)wechatLogin:(UIButton *)sender {
+    
     [ShareSDK getUserInfo:SSDKPlatformTypeWechat
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
      {
-         if (state == SSDKResponseStateSuccess)
-         {
+         if (state == SSDKResponseStateSuccess){
              
-             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:user.icon createBy:@"2" updateBy:@"2"];
+             NSLog(@"%@",user.rawData);
+             [self userThirdLoginAccount:[user.rawData objectForKey:@"unionid"] name:user.nickname accountType:@"2" photoUrl:user.icon createBy:@"2" updateBy:@"2" openId:user.uid];
+             
          }
          
          else
@@ -217,6 +219,8 @@
          
      }];
 }
+
+
 //QQ登录
 - (IBAction)QQLogin:(UIButton *)sender {
     [ShareSDK getUserInfo:SSDKPlatformTypeQQ
@@ -226,7 +230,7 @@
          {
              NSDictionary *rawDataDic =  user.rawData;
              NSString *icon = rawDataDic[@"figureurl_qq_2"];
-             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:icon createBy:@"2" updateBy:@"2"];
+             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"2" photoUrl:icon createBy:@"2" updateBy:@"2" openId:nil];
          }
          
          else
@@ -245,7 +249,7 @@
          if (state == SSDKResponseStateSuccess)
          {
          
-             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"3" photoUrl:user.icon createBy:@"2" updateBy:@"2"];
+             [self userThirdLoginAccount:user.uid name:user.nickname accountType:@"3" photoUrl:user.icon createBy:@"2" updateBy:@"2" openId:nil];
          }
          
          else
@@ -261,12 +265,22 @@
                   accountType:(NSString *)accountType
                      photoUrl:(NSString *)photoUrl
                      createBy:(NSString *)createBy
-                     updateBy:(NSString *)updateBy {
+                     updateBy:(NSString *)updateBy
+                       openId:(NSString *)openId{
     
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [params setObject:account forKey:@"account"];
+    if (openId == nil) {
+        
+        [params setObject:account forKey:@"account"];
+        
+    }else{
+    
+        [params setObject:account forKey:@"account"];
+        [params setObject:openId forKey:@"openId"];
+        
+    }
     [params setObject:name forKey:@"name"];
     [params setObject:accountType forKey:@"accountType"];
     [params setObject:photoUrl forKey:@"photoUrl"];
