@@ -153,8 +153,6 @@
     [header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
     _collectionView.mj_header = header;
 
-    
-    
     MJRefreshBackStateFooter *footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
         if (_page == 1) {
             _page = 2;
@@ -342,4 +340,5 @@
           }];
     
 }
+
 @end
