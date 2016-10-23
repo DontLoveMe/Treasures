@@ -895,13 +895,13 @@
     [_tabview reloadData];
 
     
-    //取出存储的用户信息
-    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
-    if (userDic) {
-        [self updateCartList];
-    }else{
-        return;
-    }
+//    //取出存储的用户信息
+//    NSDictionary *userDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"];
+//    if (userDic) {
+//        [self updateCartList];
+//    }else{
+//        return;
+//    }
     
 }
 
