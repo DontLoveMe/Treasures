@@ -239,6 +239,11 @@
 		DD5607681D8147D60054B1A8 /* PreviewAllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5607661D8147D60054B1A8 /* PreviewAllController.xib */; };
 		DD598CA81DB1E01D00B4B146 /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD598CA61DB1E01D00B4B146 /* ResultController.m */; };
 		DD598CA91DB1E01D00B4B146 /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD598CA71DB1E01D00B4B146 /* ResultController.xib */; };
+		DD59FA821DC8828E0047BB10 /* 引导页-1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD59FA7D1DC8828E0047BB10 /* 引导页-1.png */; };
+		DD59FA831DC8828E0047BB10 /* 引导页-2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD59FA7E1DC8828E0047BB10 /* 引导页-2.png */; };
+		DD59FA841DC8828E0047BB10 /* 引导页-3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD59FA7F1DC8828E0047BB10 /* 引导页-3.png */; };
+		DD59FA851DC8828E0047BB10 /* 引导页-4.png in Resources */ = {isa = PBXBuildFile; fileRef = DD59FA801DC8828E0047BB10 /* 引导页-4.png */; };
+		DD59FA861DC8828E0047BB10 /* 引导页-按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = DD59FA811DC8828E0047BB10 /* 引导页-按钮.png */; };
 		DD643CBE1DB4A40C00942824 /* FirstGuideController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD643CBC1DB4A40C00942824 /* FirstGuideController.m */; };
 		DD643CBF1DB4A40C00942824 /* FirstGuideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD643CBD1DB4A40C00942824 /* FirstGuideController.xib */; };
 		DD716E631D8FB53E0049EA18 /* 时间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD716E611D8FB53E0049EA18 /* 时间@2x.png */; };
@@ -390,6 +395,7 @@
 		DD757F651D86517800A38058 /* 首页_搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F631D86517800A38058 /* 首页_搜索@3x.png */; };
 		DD757F681D86520300A38058 /* 加入清单@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F661D86520300A38058 /* 加入清单@2x.png */; };
 		DD757F691D86520300A38058 /* 加入清单@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DD757F671D86520300A38058 /* 加入清单@3x.png */; };
+		DD7C5A0A1DCAD6E8006144EA /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7C5A091DCAD6E8006144EA /* GuideViewController.m */; };
 		DD89FC331D6C7A6300DBAB16 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD89FC321D6C7A6300DBAB16 /* ProgressView.m */; };
 		DDF92B3D1D6A9B15009D5A1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92B3C1D6A9B15009D5A1E /* main.m */; };
 		DDF92B401D6A9B15009D5A1E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF92B3F1D6A9B15009D5A1E /* AppDelegate.m */; };
@@ -872,6 +878,11 @@
 		DD598CA51DB1E01D00B4B146 /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		DD598CA61DB1E01D00B4B146 /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		DD598CA71DB1E01D00B4B146 /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
+		DD59FA7D1DC8828E0047BB10 /* 引导页-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页-1.png"; sourceTree = "<group>"; };
+		DD59FA7E1DC8828E0047BB10 /* 引导页-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页-2.png"; sourceTree = "<group>"; };
+		DD59FA7F1DC8828E0047BB10 /* 引导页-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页-3.png"; sourceTree = "<group>"; };
+		DD59FA801DC8828E0047BB10 /* 引导页-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页-4.png"; sourceTree = "<group>"; };
+		DD59FA811DC8828E0047BB10 /* 引导页-按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导页-按钮.png"; sourceTree = "<group>"; };
 		DD643CBB1DB4A40C00942824 /* FirstGuideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstGuideController.h; sourceTree = "<group>"; };
 		DD643CBC1DB4A40C00942824 /* FirstGuideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstGuideController.m; sourceTree = "<group>"; };
 		DD643CBD1DB4A40C00942824 /* FirstGuideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstGuideController.xib; sourceTree = "<group>"; };
@@ -1024,6 +1035,8 @@
 		DD757F631D86517800A38058 /* 首页_搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页_搜索@3x.png"; sourceTree = "<group>"; };
 		DD757F661D86520300A38058 /* 加入清单@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加入清单@2x.png"; sourceTree = "<group>"; };
 		DD757F671D86520300A38058 /* 加入清单@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加入清单@3x.png"; sourceTree = "<group>"; };
+		DD7C5A081DCAD6E8006144EA /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideViewController.h; sourceTree = "<group>"; };
+		DD7C5A091DCAD6E8006144EA /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
 		DD89FC311D6C7A6300DBAB16 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		DD89FC321D6C7A6300DBAB16 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 		DDA2BBF21DAB973500878BE6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -1488,6 +1501,11 @@
 		D69BBF2B1D8FE749005F360C /* 引导页 */ = {
 			isa = PBXGroup;
 			children = (
+				DD59FA7D1DC8828E0047BB10 /* 引导页-1.png */,
+				DD59FA7E1DC8828E0047BB10 /* 引导页-2.png */,
+				DD59FA7F1DC8828E0047BB10 /* 引导页-3.png */,
+				DD59FA801DC8828E0047BB10 /* 引导页-4.png */,
+				DD59FA811DC8828E0047BB10 /* 引导页-按钮.png */,
 			);
 			path = "引导页";
 			sourceTree = "<group>";
@@ -1662,6 +1680,15 @@
 				DD1B9E461D6EF01C002E9CE9 /* CartTools.m */,
 			);
 			path = "购物车逻辑";
+			sourceTree = "<group>";
+		};
+		DD59FA7C1DC87FDD0047BB10 /* 启动页 */ = {
+			isa = PBXGroup;
+			children = (
+				DD7C5A081DCAD6E8006144EA /* GuideViewController.h */,
+				DD7C5A091DCAD6E8006144EA /* GuideViewController.m */,
+			);
+			path = "启动页";
 			sourceTree = "<group>";
 		};
 		DD6B52321D6DA31B00B6297F /* 刷新Gif */ = {
@@ -2145,6 +2172,7 @@
 		DDF92BC51D6A9C3D009D5A1E /* LoginRegister */ = {
 			isa = PBXGroup;
 			children = (
+				DD59FA7C1DC87FDD0047BB10 /* 启动页 */,
 				DDF92BC61D6A9C3D009D5A1E /* LoginViewController.h */,
 				DDF92BC71D6A9C3D009D5A1E /* LoginViewController.m */,
 				DDF92BC81D6A9C3D009D5A1E /* LoginViewController.xib */,
@@ -2867,6 +2895,7 @@
 				DD71AC481D92755A005CBFFD /* dropdown_zsyg_095@2x.png in Resources */,
 				DD71AC181D92755A005CBFFD /* dropdown_zsyg_047@2x.png in Resources */,
 				D65B64851D865CDD00D48834 /* 我的晒单@2x.png in Resources */,
+				DD59FA831DC8828E0047BB10 /* 引导页-2.png in Resources */,
 				D60216581D879C0300316614 /* 按钮框_亮@2x.png in Resources */,
 				DD71ABFB1D92755A005CBFFD /* dropdown_zsyg_018@2x.png in Resources */,
 				DD757F351D864E6E00A38058 /* 夺宝@3x.png in Resources */,
@@ -2980,6 +3009,7 @@
 				DD71AC411D92755A005CBFFD /* dropdown_zsyg_088@2x.png in Resources */,
 				DDF92D7A1D6A9C5B009D5A1E /* 复选框-未选中.png in Resources */,
 				DDF92D8D1D6A9C5B009D5A1E /* sort100_normal.png in Resources */,
+				DD59FA861DC8828E0047BB10 /* 引导页-按钮.png in Resources */,
 				D65B64C11D86808400D48834 /* 明文@2x.png in Resources */,
 				DD757F421D864E6E00A38058 /* 我的云购-selected@2x.png in Resources */,
 				DD71AC151D92755A005CBFFD /* dropdown_zsyg_044@2x.png in Resources */,
@@ -3043,6 +3073,7 @@
 				DD71AC461D92755A005CBFFD /* dropdown_zsyg_093@2x.png in Resources */,
 				DD71AC561D92755A005CBFFD /* dropdown_zsyg_109@2x.png in Resources */,
 				D6D4BD8F1D9123AA001D9599 /* 关闭@2x.png in Resources */,
+				DD59FA821DC8828E0047BB10 /* 引导页-1.png in Resources */,
 				DDF92D8A1D6A9C5B009D5A1E /* sort0_checked.png in Resources */,
 				D6D4BD901D9123AA001D9599 /* 关闭@3x.png in Resources */,
 				DD71AC121D92755A005CBFFD /* dropdown_zsyg_041@2x.png in Resources */,
@@ -3077,6 +3108,7 @@
 				DD71AC001D92755A005CBFFD /* dropdown_zsyg_023@2x.png in Resources */,
 				DD71ABF81D92755A005CBFFD /* dropdown_zsyg_015@2x.png in Resources */,
 				DD71AC311D92755A005CBFFD /* dropdown_zsyg_072@2x.png in Resources */,
+				DD59FA851DC8828E0047BB10 /* 引导页-4.png in Resources */,
 				D6CAA33E1D9E4E15003930AF /* CountWayCell.xib in Resources */,
 				DDF92D7D1D6A9C5B009D5A1E /* 按钮-.png in Resources */,
 				D625D9F81D7E6D5600316A49 /* SearchGoodsController.xib in Resources */,
@@ -3192,6 +3224,7 @@
 				D65B64781D865CDD00D48834 /* 幸运标识@2x.png in Resources */,
 				D6CC64CA1D9B9F1A004AF871 /* BannerDetailController.xib in Resources */,
 				DDF92D771D6A9C5B009D5A1E /* 品牌图片.png in Resources */,
+				DD59FA841DC8828E0047BB10 /* 引导页-3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3351,6 +3384,7 @@
 				DDF92C4D1D6A9C3D009D5A1E /* GoodsDetailPTController.m in Sources */,
 				DDF92C8E1D6A9C3D009D5A1E /* AddressModel.m in Sources */,
 				DDF92C421D6A9C3D009D5A1E /* DiscoverViewController.m in Sources */,
+				DD7C5A0A1DCAD6E8006144EA /* GuideViewController.m in Sources */,
 				DDF92C571D6A9C3D009D5A1E /* HomeViewController.m in Sources */,
 				DDF92CA81D6A9C3D009D5A1E /* UseRedElpTableView.m in Sources */,
 				DDF92C3D1D6A9C3D009D5A1E /* CartModel.m in Sources */,

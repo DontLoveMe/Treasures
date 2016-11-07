@@ -85,6 +85,7 @@
 
 - (void)layoutSubviews{
 
+    
     [super layoutSubviews];
     _bgImgView.layer.cornerRadius = self.height / 2;
     _bgImgView.layer.masksToBounds = YES;
@@ -100,6 +101,7 @@
     _bgImgView.height = self.height;
     _progressImgView.width = self.width * _progress / 100;
     _progressImgView.height = self.height;
+
 }
 
 @end

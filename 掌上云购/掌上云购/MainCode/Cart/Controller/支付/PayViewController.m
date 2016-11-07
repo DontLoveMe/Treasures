@@ -112,7 +112,7 @@
     //商品总钱数
     _pricesum = [[UILabel alloc]init];
     _pricesum.textColor = [UIColor redColor];
-    _pricesum.text = @"0元";
+    _pricesum.text = @"0夺宝币";
     _pricesum.font = [UIFont systemFontOfSize:15];
     [view addSubview:_pricesum];
     _pricesum.sd_layout
@@ -172,7 +172,7 @@
         totalPrice = totalPrice + singlePrice * num;
     }
     
-    _pricesum.text = [NSString stringWithFormat:@"总计:%ld元",(long)totalPrice];
+    _pricesum.text = [NSString stringWithFormat:@"总计:%ld夺宝币",(long)totalPrice];
     
 }
 
@@ -417,13 +417,13 @@
                       
                   }else{
                   
-                      [self hideSuccessHUD:@"支付成功"];
+                      [self hideSuccessHUD:@"夺宝成功"];
 //                      [self.navigationController popToRootViewControllerAnimated:YES];
                       if (_rVC == nil) {
                           
                           _rVC = [[ResultController alloc] init];
                       }
-                      _rVC.contentLabel.text = @"支付成功！";
+                      _rVC.contentLabel.text = @"夺宝成功！";
                       _rVC.knowBtn.hidden = YES;
                       _rVC.snatchBtn.hidden = NO;
                       _rVC.lookListBtn.hidden = NO;
@@ -444,12 +444,12 @@
                   }
                   
               }else{
-                  [self hideSuccessHUD:@"支付失败"];
+                  [self hideSuccessHUD:@"夺宝失败"];
                   if (_rVC == nil) {
                       
                       _rVC = [[ResultController alloc] init];
                   }
-                  _rVC.contentLabel.text = @"支付失败！";
+                  _rVC.contentLabel.text = @"夺宝失败！";
                   _rVC.knowBtn.hidden = NO;
                   _rVC.snatchBtn.hidden = YES;
                   _rVC.lookListBtn.hidden = YES;
@@ -466,7 +466,7 @@
               
           } failure:^(NSError *error) {
               
-              [self hideFailHUD:@"支付失败"];
+              [self hideFailHUD:@"夺宝失败"];
               
           }];
  
@@ -562,7 +562,7 @@
                     totalPrice = totalPrice + singlePrice * num;
                     
                 }
-                cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品（总计%ld元）",(unsigned long)carArr.count,totalPrice];
+                cell.goodsTotal.text = [NSString stringWithFormat:@"共 %ld 件商品（总计%ld夺宝币）",(unsigned long)carArr.count,totalPrice];
                 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
@@ -605,7 +605,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:15];
         if (_redEnveloperReduceCount > 0) {
-            cell.textLabel.text = [NSString stringWithFormat:@"红包抵扣:%ld元",_redEnveloperReduceCount];
+            cell.textLabel.text = [NSString stringWithFormat:@"红包抵扣:%ld夺宝币",_redEnveloperReduceCount];
         }else{
             cell.textLabel.text = @"红包抵扣";
         }
@@ -614,7 +614,7 @@
 
     }else if (indexPath.row==1){
         
-        //余额应当支付多少元
+        //余额应当支付多少夺宝币
         PayThreeKindCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
         if (!cell) {
             
@@ -657,20 +657,20 @@
         //是否选择余额支付
         if (_isBalance == 0) {
             [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-暗"] forState:UIControlStateNormal];
-            cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):0元",restMoney];
+            cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f夺宝币):0夺宝币",restMoney];
         }else{
             [cell.radio setBackgroundImage:[UIImage imageNamed:@"状态-亮"] forState:UIControlStateNormal];
             if (totalPrice < 0){
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):0元",restMoney];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f夺宝币):0夺宝币",restMoney];
                 
             }else if (restMoney > totalPrice) {
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):%ld元",restMoney,(long)totalPrice];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f夺宝币):%ld夺宝币",restMoney,(long)totalPrice];
                 
             }else{
                 
-                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f元):%.0f元",restMoney,restMoney];
+                cell.wechat.text  = [NSString stringWithFormat:@"余额支付(余额%.0f夺宝币):%.0f夺宝币",restMoney,restMoney];
                 
             }
         }
@@ -715,7 +715,7 @@
         //是否使用余额支付
         if (_isBalance == 0) {
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld元",totalPrice];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld夺宝币",totalPrice];
             
         }else{
             
@@ -725,11 +725,11 @@
             
             if (restMoney > totalPrice) {
                 
-                cell.detailTextLabel.text = @"0元";
+                cell.detailTextLabel.text = @"0夺宝币";
                 
             }else{
                 
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f元",totalPrice - restMoney];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f夺宝币",totalPrice - restMoney];
                 
             }
             

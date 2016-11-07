@@ -350,6 +350,8 @@
                         @"userPwd":[MD5Security MD5String:_passwrodTF.text],
                         @"captcha":_validateTF.text}
                forKey:@"userLoginDto"];
+    [params setObject:@"3" forKey:@"regType"];
+    [params setObject:@"0" forKey:@"userType"];
     NSString *url  = [NSString stringWithFormat:@"%@%@",BASE_URL,Regist_URL];
     [self showHUD:@"正在注册"];
     [ZSTools specialPost:url

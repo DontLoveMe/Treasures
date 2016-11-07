@@ -208,7 +208,7 @@
          if (state == SSDKResponseStateSuccess){
              
              NSLog(@"%@",user.rawData);
-             [self userThirdLoginAccount:[user.rawData objectForKey:@"unionid"] name:user.nickname accountType:@"2" photoUrl:user.icon createBy:@"2" updateBy:@"2" openId:user.uid];
+             [self userThirdLoginAccount:[user.rawData objectForKey:@"unionid"] name:user.nickname accountType:@"1" photoUrl:user.icon createBy:@"2" updateBy:@"2" openId:user.uid];
              
          }
          
@@ -286,6 +286,8 @@
     [params setObject:photoUrl forKey:@"photoUrl"];
     [params setObject:createBy forKey:@"createBy"];
     [params setObject:updateBy forKey:@"updateBy"];
+    
+    [params setObject:@"3" forKey:@"regType"];
     
     NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,ThirdLogin_URL];
     [ZSTools specialPost:url

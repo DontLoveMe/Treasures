@@ -40,8 +40,7 @@
     
     [_window makeKeyAndVisible];
     
-    TabbarViewcontroller *TVC = [[TabbarViewcontroller alloc] init];
-    _window.rootViewController = TVC;
+    [self isFirst];
     
     [self requestPrizeMsg];
   //推送测试
@@ -152,6 +151,31 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     return YES;
+}
+
+//判断是否登陆
+-(void)isFirst{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *isFirst = [defaults objectForKey:@"isFirstTime"];
+    
+    if ([isFirst isEqualToString:@"2"]){
+        
+        TabbarViewcontroller *TVC = [[TabbarViewcontroller alloc] init];
+        _window.rootViewController = TVC;
+        return;
+        
+    }else{
+        
+        [defaults setObject:@"2" forKey:@"isFirstTime"];
+        [defaults synchronize];
+        
+        GuideViewController *GVC = [[GuideViewController alloc] init];
+        _window.rootViewController = GVC;
+        return;
+    }
+    
 }
 
 // 此方法是 用户点击了通知，应用在前台 或者开启后台并且应用在后台 时调起
@@ -359,6 +383,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo{
               return ;
               
           }];
+    
 }
 
 @end

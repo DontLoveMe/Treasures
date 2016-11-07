@@ -223,17 +223,17 @@
     NSLogZS(@"点击了第几个:%ld",index);
     BannerDetailController *banner = [[BannerDetailController alloc] init];
     NSDictionary *dic = _bannerArr[index];
-    if (![dic[@"linkUrl"] isKindOfClass:[NSNull class]]) {
-        banner.htmlUrl = dic[@"linkUrl"];
-    }
     if (![dic[@"remarks"] isKindOfClass:[NSNull class]]) {
         
         banner.title = dic[@"remarks"];
     }
-    banner.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:banner animated:YES];
     
-    
+    if (![dic[@"linkUrl"] isKindOfClass:[NSNull class]]) {
+        banner.htmlUrl = dic[@"linkUrl"];
+        banner.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:banner animated:YES];
+    }
+
 }
 
 - (void)WingNotificationTableViewTimerInvalidate{
@@ -764,7 +764,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSString *isFirst = [defaults objectForKey:@"isFirstTime"];
+    NSString *isFirst = [defaults objectForKey:@"isTime"];
     
     if ([isFirst isEqualToString:@"2"]){
         
@@ -772,7 +772,7 @@
         
     }else{
         
-        [defaults setObject:@"2" forKey:@"isFirstTime"];
+        [defaults setObject:@"2" forKey:@"isTime"];
         [defaults synchronize];
         
         [self performSelector:@selector(GuideAction)
